@@ -1,0 +1,4766 @@
+{
+  "status": "COMPACT_AOA_SUPPORT_AND_EXPOSURE_LOCALIZATION",
+  "purpose": "Passive localization of compact-view AoA failure using existing full-eval/AoA files and materialized corpora; not a training selector.",
+  "inputs": {
+    "a02_full_core_summary": "experiments/archive/frontier_consolidation/data/density_full_eval/density_full_eval_summary.json",
+    "a02_aoa_analysis": "experiments/archive/frontier_consolidation/data/aoa_mechanism_analysis/aoa_mechanism_analysis.json",
+    "compact_experience_full_summary": "experiments/archive/compact_experience/data/full_eval/full_eval_summary.json",
+    "metadata": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+    "clean_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+    "core_pool": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl",
+    "reinvest_pool": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "heldout_rows": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+    "cdi_human": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/aoa/cdi_human.csv"
+  },
+  "target_word_counting_scope": {
+    "child_aoa_words_with_valid_child_fit": 421,
+    "single_orthographic_token_targets_counted": 421,
+    "note": "Official AoA targets are used only for post-hoc interpretation of existing results, not for corpus construction."
+  },
+  "compact_core_full_result": {
+    "scores": {
+      "BLiMP": 67.15,
+      "Supplement": 61.85,
+      "EWoK": 51.26,
+      "Entity": 27.85,
+      "COMPS": 52.18,
+      "SuperGLUE": 68.90115283225359,
+      "GlobalPIQA": 35.135,
+      "Reading": 8.25,
+      "AoA": -12.687286024554457
+    },
+    "Overall": 39.987651867522125,
+    "NLP_average": 52.04659326175051,
+    "Human_like_average": -2.2186430122772283,
+    "delta_vs_clean_qwen": {
+      "BLiMP": 0.3100000000000023,
+      "Supplement": -0.990000000000002,
+      "EWoK": 1.0700000000000003,
+      "Entity": 2.09,
+      "COMPS": 0.3999999999999986,
+      "SuperGLUE": -1.4074631509079865,
+      "GlobalPIQA": -1.4849999999999994,
+      "Reading": 0.4900000000000002,
+      "AoA": -12.687286024554457,
+      "Overall": -1.3566387972736038,
+      "NLP_average": -0.00178045012971495,
+      "Human_like_average": -6.098643012277228
+    }
+  },
+  "support_localization": {
+    "clean_n": 180,
+    "compact_n": 193,
+    "common_n": 159,
+    "only_clean_n": 21,
+    "only_compact_n": 34,
+    "clean_bins": {
+      "late_gt25": 80,
+      "middle_20to25": 88,
+      "early_le20": 12
+    },
+    "compact_bins": {
+      "late_gt25": 84,
+      "middle_20to25": 96,
+      "early_le20": 13
+    },
+    "common_bins": {
+      "late_gt25": 72,
+      "middle_20to25": 77,
+      "early_le20": 10
+    },
+    "only_clean_bins": {
+      "middle_20to25": 11,
+      "late_gt25": 8,
+      "early_le20": 2
+    },
+    "only_compact_bins": {
+      "late_gt25": 12,
+      "middle_20to25": 19,
+      "early_le20": 3
+    },
+    "clean_official_support": {
+      "pearson": -0.11093117857765683,
+      "pearson_p": 0.13820496620663064,
+      "official_thresholded_leaderboard_score": 0.0
+    },
+    "compact_official_support": {
+      "pearson": -0.12687286024554456,
+      "pearson_p": 0.07870730227036446,
+      "official_thresholded_leaderboard_score": -12.687286024554457
+    },
+    "clean_on_common_words": {
+      "n": 159,
+      "pearson": -0.07366419281567793,
+      "pearson_p": 0.3561137178309359,
+      "spearman": -0.10821590637688083,
+      "spearman_p": 0.17453511710041422,
+      "words": [
+        "backyard",
+        "bathroom",
+        "beach",
+        "belt",
+        "bird",
+        "black",
+        "block",
+        "blow",
+        "boots",
+        "bottom",
+        "bowl",
+        "box",
+        "boy",
+        "bread",
+        "break",
+        "brother",
+        "build",
+        "bus",
+        "butter",
+        "buy",
+        "cake",
+        "candy",
+        "car",
+        "careful",
+        "carry",
+        "catch",
+        "chair",
+        "climb",
+        "clock",
+        "coffee",
+        "cold",
+        "corn",
+        "couch",
+        "crib",
+        "cry",
+        "cup",
+        "cut",
+        "day",
+        "dinner",
+        "dish",
+        "doctor",
+        "door",
+        "eat",
+        "eye",
+        "face",
+        "fall",
+        "farm",
+        "fast",
+        "feed",
+        "find",
+        "fit",
+        "fix",
+        "flag",
+        "food",
+        "friend",
+        "game",
+        "garden",
+        "get",
+        "girl",
+        "glass",
+        "go",
+        "good",
+        "green",
+        "hair",
+        "hand",
+        "happy",
+        "hard",
+        "have",
+        "hear",
+        "help",
+        "hide",
+        "high",
+        "hold",
+        "home",
+        "horse",
+        "hot",
+        "house",
+        "hurt",
+        "ice",
+        "jacket",
+        "juice",
+        "jump",
+        "knife",
+        "later",
+        "like",
+        "lips",
+        "listen",
+        "look",
+        "lunch",
+        "make",
+        "man",
+        "meat",
+        "medicine",
+        "milk",
+        "money",
+        "morning",
+        "mouth",
+        "movie",
+        "nice",
+        "night",
+        "nose",
+        "open",
+        "outside",
+        "oven",
+        "park",
+        "party",
+        "people",
+        "picture",
+        "plant",
+        "plate",
+        "play",
+        "police",
+        "pool",
+        "present",
+        "pull",
+        "rain",
+        "read",
+        "red",
+        "ride",
+        "room",
+        "run",
+        "sauce",
+        "say",
+        "school",
+        "see",
+        "share",
+        "show",
+        "sing",
+        "sink",
+        "sister",
+        "sky",
+        "sleep",
+        "slow",
+        "snow",
+        "stand",
+        "stay",
+        "stop",
+        "store",
+        "story",
+        "sun",
+        "swim",
+        "table",
+        "take",
+        "talk",
+        "taste",
+        "teacher",
+        "tired",
+        "today",
+        "toe",
+        "tongue",
+        "touch",
+        "trash",
+        "truck",
+        "wait",
+        "walk",
+        "wash",
+        "white",
+        "window",
+        "write"
+      ],
+      "model_aoa_stats": {
+        "n": 159,
+        "min": 6.148669193923279,
+        "p05": 6.370206586465358,
+        "mean": 7.011279031238646,
+        "median": 6.959182184256365,
+        "p95": 7.596214614016883,
+        "max": 7.869103078398588
+      },
+      "model_aoa_by_child_age_bin": {
+        "late_gt25": {
+          "n": 72,
+          "min": 6.181464919835764,
+          "p05": 6.382208272610681,
+          "mean": 6.978994619164255,
+          "median": 6.9231648569445685,
+          "p95": 7.606240083964607,
+          "max": 7.816077901684228
+        },
+        "middle_20to25": {
+          "n": 77,
+          "min": 6.148669193923279,
+          "p05": 6.5606039310152156,
+          "mean": 7.033680361321263,
+          "median": 7.00388043422238,
+          "p95": 7.557474139143936,
+          "max": 7.869103078398588
+        },
+        "early_le20": {
+          "n": 10,
+          "min": 6.335756819364622,
+          "p05": 6.5228935259919165,
+          "mean": 7.071236556538118,
+          "median": 7.100205105683063,
+          "p95": 7.556964414296701,
+          "max": 7.714898096197952
+        }
+      },
+      "late_minus_early_model_aoa_log10": -0.09224193737386344
+    },
+    "compact_on_common_words": {
+      "n": 159,
+      "pearson": -0.05526193966589969,
+      "pearson_p": 0.4890269018794383,
+      "spearman": -0.08684917602101744,
+      "spearman_p": 0.27635506379074304,
+      "words": [
+        "backyard",
+        "bathroom",
+        "beach",
+        "belt",
+        "bird",
+        "black",
+        "block",
+        "blow",
+        "boots",
+        "bottom",
+        "bowl",
+        "box",
+        "boy",
+        "bread",
+        "break",
+        "brother",
+        "build",
+        "bus",
+        "butter",
+        "buy",
+        "cake",
+        "candy",
+        "car",
+        "careful",
+        "carry",
+        "catch",
+        "chair",
+        "climb",
+        "clock",
+        "coffee",
+        "cold",
+        "corn",
+        "couch",
+        "crib",
+        "cry",
+        "cup",
+        "cut",
+        "day",
+        "dinner",
+        "dish",
+        "doctor",
+        "door",
+        "eat",
+        "eye",
+        "face",
+        "fall",
+        "farm",
+        "fast",
+        "feed",
+        "find",
+        "fit",
+        "fix",
+        "flag",
+        "food",
+        "friend",
+        "game",
+        "garden",
+        "get",
+        "girl",
+        "glass",
+        "go",
+        "good",
+        "green",
+        "hair",
+        "hand",
+        "happy",
+        "hard",
+        "have",
+        "hear",
+        "help",
+        "hide",
+        "high",
+        "hold",
+        "home",
+        "horse",
+        "hot",
+        "house",
+        "hurt",
+        "ice",
+        "jacket",
+        "juice",
+        "jump",
+        "knife",
+        "later",
+        "like",
+        "lips",
+        "listen",
+        "look",
+        "lunch",
+        "make",
+        "man",
+        "meat",
+        "medicine",
+        "milk",
+        "money",
+        "morning",
+        "mouth",
+        "movie",
+        "nice",
+        "night",
+        "nose",
+        "open",
+        "outside",
+        "oven",
+        "park",
+        "party",
+        "people",
+        "picture",
+        "plant",
+        "plate",
+        "play",
+        "police",
+        "pool",
+        "present",
+        "pull",
+        "rain",
+        "read",
+        "red",
+        "ride",
+        "room",
+        "run",
+        "sauce",
+        "say",
+        "school",
+        "see",
+        "share",
+        "show",
+        "sing",
+        "sink",
+        "sister",
+        "sky",
+        "sleep",
+        "slow",
+        "snow",
+        "stand",
+        "stay",
+        "stop",
+        "store",
+        "story",
+        "sun",
+        "swim",
+        "table",
+        "take",
+        "talk",
+        "taste",
+        "teacher",
+        "tired",
+        "today",
+        "toe",
+        "tongue",
+        "touch",
+        "trash",
+        "truck",
+        "wait",
+        "walk",
+        "wash",
+        "white",
+        "window",
+        "write"
+      ],
+      "model_aoa_stats": {
+        "n": 159,
+        "min": 6.0296029196557415,
+        "p05": 6.358965677035757,
+        "mean": 6.985122800691916,
+        "median": 6.942675887421231,
+        "p95": 7.578986155640227,
+        "max": 7.92208359195278
+      },
+      "model_aoa_by_child_age_bin": {
+        "late_gt25": {
+          "n": 72,
+          "min": 6.1365420732585125,
+          "p05": 6.376631917971605,
+          "mean": 6.96287485977107,
+          "median": 6.919707014931035,
+          "p95": 7.5983654941015395,
+          "max": 7.899196235472183
+        },
+        "middle_20to25": {
+          "n": 77,
+          "min": 6.0296029196557415,
+          "p05": 6.358867937324218,
+          "mean": 6.996426203434495,
+          "median": 6.9455295767863205,
+          "p95": 7.5582149892787625,
+          "max": 7.92208359195278
+        },
+        "early_le20": {
+          "n": 10,
+          "min": 6.341111094933538,
+          "p05": 6.575076661178464,
+          "mean": 7.058271774204154,
+          "median": 7.133389376571674,
+          "p95": 7.31215354714529,
+          "max": 7.316463685465303
+        }
+      },
+      "late_minus_early_model_aoa_log10": -0.09539691443308396
+    },
+    "clean_only_words": {
+      "n": 21,
+      "pearson": -0.1848057485962075,
+      "pearson_p": 0.4225688631062457,
+      "spearman": -0.1948051948051948,
+      "spearman_p": 0.39744295350722536,
+      "words": [
+        "bath",
+        "bear",
+        "bed",
+        "bedroom",
+        "better",
+        "button",
+        "closet",
+        "cook",
+        "dance",
+        "drive",
+        "ear",
+        "leg",
+        "love",
+        "moon",
+        "paint",
+        "shirt",
+        "sick",
+        "sit",
+        "soup",
+        "train",
+        "vitamins"
+      ],
+      "model_aoa_stats": {
+        "n": 21,
+        "min": 6.322593364357736,
+        "p05": 6.679038377373291,
+        "mean": 7.211938711414244,
+        "median": 7.177835175032016,
+        "p95": 7.821816002882818,
+        "max": 7.858733554015723
+      },
+      "model_aoa_by_child_age_bin": {
+        "early_le20": {
+          "n": 2,
+          "min": 7.314808911997974,
+          "p05": 7.325048049914645,
+          "mean": 7.417200291164678,
+          "median": 7.417200291164678,
+          "p95": 7.509352532414712,
+          "max": 7.5195916703313825
+        },
+        "middle_20to25": {
+          "n": 11,
+          "min": 6.322593364357736,
+          "p05": 6.500815870865514,
+          "mean": 7.23950319679829,
+          "median": 7.31042417040348,
+          "p95": 7.84027477844927,
+          "max": 7.858733554015723
+        },
+        "late_gt25": {
+          "n": 8,
+          "min": 6.810198933200416,
+          "p05": 6.833349228905928,
+          "mean": 7.122722149073572,
+          "median": 7.037062843999523,
+          "p95": 7.636018021741646,
+          "max": 7.739335790533711
+        }
+      },
+      "late_minus_early_model_aoa_log10": -0.2944781420911067
+    },
+    "compact_only_words": {
+      "n": 34,
+      "pearson": -0.3415184077489993,
+      "pearson_p": 0.048066620605543564,
+      "spearman": -0.2058059587471352,
+      "spearman_p": 0.24292373622626928,
+      "words": [
+        "animal",
+        "beans",
+        "bite",
+        "boat",
+        "breakfast",
+        "bucket",
+        "camera",
+        "cat",
+        "chocolate",
+        "cookie",
+        "cover",
+        "finger",
+        "finish",
+        "first",
+        "glasses",
+        "grass",
+        "hat",
+        "new",
+        "paper",
+        "pen",
+        "pizza",
+        "push",
+        "quiet",
+        "refrigerator",
+        "rock",
+        "sad",
+        "shower",
+        "star",
+        "stick",
+        "street",
+        "telephone",
+        "tissue",
+        "wind",
+        "yellow"
+      ],
+      "model_aoa_stats": {
+        "n": 34,
+        "min": 6.082853230779353,
+        "p05": 6.594417921811292,
+        "mean": 7.1511452356564025,
+        "median": 7.028728813778672,
+        "p95": 7.9317384421287835,
+        "max": 7.973447398767284
+      },
+      "model_aoa_by_child_age_bin": {
+        "middle_20to25": {
+          "n": 19,
+          "min": 6.781881479748156,
+          "p05": 6.791919321684896,
+          "mean": 7.304255550987541,
+          "median": 7.120056617710608,
+          "p95": 7.92463532595506,
+          "max": 7.950206544180468
+        },
+        "late_gt25": {
+          "n": 12,
+          "min": 6.082853230779353,
+          "p05": 6.172733176668551,
+          "mean": 6.884265070926573,
+          "median": 6.945564843393843,
+          "p95": 7.367539485586638,
+          "max": 7.4542852504577235
+        },
+        "early_le20": {
+          "n": 3,
+          "min": 6.853287921851307,
+          "p05": 6.859975766847868,
+          "mean": 7.2489672308118385,
+          "median": 6.920166371816923,
+          "p95": 7.868119296072248,
+          "max": 7.973447398767284
+        }
+      },
+      "late_minus_early_model_aoa_log10": -0.36470215988526533
+    },
+    "compact_minus_clean_model_aoa_delta_on_common": {
+      "delta_stats": {
+        "n": 159,
+        "min": -0.9389276643114917,
+        "p05": -0.41612455720598057,
+        "mean": -0.02615623054673015,
+        "median": -0.01893539429833524,
+        "p95": 0.32211544708554035,
+        "max": 0.7139270257981947
+      },
+      "child_aoa_vs_delta": {
+        "n": 159,
+        "pearson": 0.025054611859353825,
+        "pearson_p": 0.7539136392089772,
+        "spearman": 0.022940052543587296,
+        "spearman_p": 0.7740981669005337
+      },
+      "delta_by_child_bin": {
+        "late_gt25": {
+          "n": 72,
+          "min": -0.5055036110704769,
+          "p05": -0.3323180021828095,
+          "mean": -0.016119759393185502,
+          "median": -0.017769446788572285,
+          "p95": 0.3062436864117467,
+          "max": 0.7139270257981947
+        },
+        "middle_20to25": {
+          "n": 77,
+          "min": -0.9389276643114917,
+          "p05": -0.5675733287092354,
+          "mean": -0.03725415788676758,
+          "median": -0.01893539429833524,
+          "p95": 0.3909166149177955,
+          "max": 0.7029436350911293
+        },
+        "early_le20": {
+          "n": 10,
+          "min": -0.40835722191099944,
+          "p05": -0.35149897472739067,
+          "mean": -0.01296478233396341,
+          "median": -0.045260855020190505,
+          "p95": 0.3026872126586694,
+          "max": 0.3178497040424677
+        }
+      },
+      "largest_compact_advances": [
+        {
+          "word": "tongue",
+          "child_aoa_month": 23.45827047984588,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.869103078398588,
+          "compact_model_aoa": 6.930175414087096,
+          "compact_minus_clean": -0.9389276643114917
+        },
+        {
+          "word": "wash",
+          "child_aoa_month": 23.84021130656202,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.732161853475777,
+          "compact_model_aoa": 6.919607965239251,
+          "compact_minus_clean": -0.8125538882365255
+        },
+        {
+          "word": "look",
+          "child_aoa_month": 24.098423511314476,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.159497652216151,
+          "compact_model_aoa": 6.359063416747295,
+          "compact_minus_clean": -0.8004342354688561
+        },
+        {
+          "word": "picture",
+          "child_aoa_month": 24.12466878869911,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.600976353316655,
+          "compact_model_aoa": 6.9703579238387965,
+          "compact_minus_clean": -0.6306184294778587
+        },
+        {
+          "word": "bus",
+          "child_aoa_month": 20.85319790543193,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.46323790303528,
+          "compact_model_aoa": 6.9114258495182,
+          "compact_minus_clean": -0.5518120535170796
+        },
+        {
+          "word": "beach",
+          "child_aoa_month": 26.499831193868143,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.553999771542578,
+          "compact_model_aoa": 7.0484961604721015,
+          "compact_minus_clean": -0.5055036110704769
+        },
+        {
+          "word": "see",
+          "child_aoa_month": 23.26497097971234,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.809724905587721,
+          "compact_model_aoa": 6.358086019631911,
+          "compact_minus_clean": -0.45163888595581003
+        },
+        {
+          "word": "tired",
+          "child_aoa_month": 25.834664804067693,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.321335286471057,
+          "compact_model_aoa": 6.902626314226759,
+          "compact_minus_clean": -0.41870897224429804
+        },
+        {
+          "word": "talk",
+          "child_aoa_month": 26.1666744723998,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.3633556972769085,
+          "compact_model_aoa": 6.947518297297408,
+          "compact_minus_clean": -0.41583739997950087
+        },
+        {
+          "word": "hair",
+          "child_aoa_month": 19.9970789541941,
+          "child_bin": "early_le20",
+          "clean_model_aoa": 7.714898096197952,
+          "compact_model_aoa": 7.306540874286952,
+          "compact_minus_clean": -0.40835722191099944
+        },
+        {
+          "word": "knife",
+          "child_aoa_month": 25.31616693081719,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.664325942265625,
+          "compact_model_aoa": 7.3074762241520865,
+          "compact_minus_clean": -0.3568497181135388
+        },
+        {
+          "word": "food",
+          "child_aoa_month": 23.482138731792105,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.146040373973623,
+          "compact_model_aoa": 6.806161640196767,
+          "compact_minus_clean": -0.33987873377685585
+        },
+        {
+          "word": "medicine",
+          "child_aoa_month": 24.709281294511936,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.309766975314791,
+          "compact_model_aoa": 6.977316999740591,
+          "compact_minus_clean": -0.33244997557420053
+        },
+        {
+          "word": "home",
+          "child_aoa_month": 21.78006375395454,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.359192848353017,
+          "compact_model_aoa": 6.0296029196557415,
+          "compact_minus_clean": -0.3295899286972759
+        },
+        {
+          "word": "taste",
+          "child_aoa_month": 28.750765928594387,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.628016764331952,
+          "compact_model_aoa": 7.3157701660924666,
+          "compact_minus_clean": -0.31224659823948553
+        },
+        {
+          "word": "park",
+          "child_aoa_month": 22.878206476855862,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.311193899681271,
+          "compact_model_aoa": 6.999816034667048,
+          "compact_minus_clean": -0.31137786501422315
+        },
+        {
+          "word": "climb",
+          "child_aoa_month": 25.58444891978825,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.487689108817521,
+          "compact_model_aoa": 7.186816420493229,
+          "compact_minus_clean": -0.3008726883242918
+        },
+        {
+          "word": "table",
+          "child_aoa_month": 23.623454640728905,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.276740750547429,
+          "compact_model_aoa": 6.982073076544333,
+          "compact_minus_clean": -0.29466767400309557
+        },
+        {
+          "word": "get",
+          "child_aoa_month": 24.364636413972246,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.725471163282005,
+          "compact_model_aoa": 6.439188073060026,
+          "compact_minus_clean": -0.2862830902219784
+        },
+        {
+          "word": "truck",
+          "child_aoa_month": 19.835819314022853,
+          "child_bin": "early_le20",
+          "clean_model_aoa": 7.34131901438765,
+          "compact_model_aoa": 7.05931345288467,
+          "compact_minus_clean": -0.28200556150297995
+        },
+        {
+          "word": "swim",
+          "child_aoa_month": 24.758145909832024,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.346591497986337,
+          "compact_model_aoa": 7.094483659480728,
+          "compact_minus_clean": -0.2521078385056086
+        },
+        {
+          "word": "mouth",
+          "child_aoa_month": 20.209807579108084,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.147157656536239,
+          "compact_model_aoa": 6.898013921538588,
+          "compact_minus_clean": -0.2491437349976504
+        },
+        {
+          "word": "nice",
+          "child_aoa_month": 25.83342302182803,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.775671306182906,
+          "compact_model_aoa": 6.5279328641347325,
+          "compact_minus_clean": -0.2477384420481732
+        },
+        {
+          "word": "story",
+          "child_aoa_month": 24.83326348723299,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.00388043422238,
+          "compact_model_aoa": 6.756655717156736,
+          "compact_minus_clean": -0.2472247170656443
+        },
+        {
+          "word": "oven",
+          "child_aoa_month": 27.085939648491006,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.554278995859655,
+          "compact_model_aoa": 7.311249281942855,
+          "compact_minus_clean": -0.24302971391680028
+        },
+        {
+          "word": "present",
+          "child_aoa_month": 25.256832955307473,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.150587073405159,
+          "compact_model_aoa": 6.921292520991803,
+          "compact_minus_clean": -0.22929455241335628
+        },
+        {
+          "word": "block",
+          "child_aoa_month": 21.984059781669306,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.149764629181882,
+          "compact_model_aoa": 6.923615340144224,
+          "compact_minus_clean": -0.22614928903765819
+        },
+        {
+          "word": "sink",
+          "child_aoa_month": 25.39558925497061,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.5146407471953935,
+          "compact_model_aoa": 7.289562576388248,
+          "compact_minus_clean": -0.2250781708071452
+        },
+        {
+          "word": "outside",
+          "child_aoa_month": 20.586834888836407,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.355538468365403,
+          "compact_model_aoa": 7.133347876916708,
+          "compact_minus_clean": -0.2221905914486948
+        },
+        {
+          "word": "black",
+          "child_aoa_month": 25.804687037784696,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.577170547155376,
+          "compact_model_aoa": 6.362030045080323,
+          "compact_minus_clean": -0.21514050207505253
+        }
+      ],
+      "largest_compact_delays": [
+        {
+          "word": "fast",
+          "child_aoa_month": 25.50491253156236,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.911630833107073,
+          "compact_model_aoa": 7.6255578589052675,
+          "compact_minus_clean": 0.7139270257981947
+        },
+        {
+          "word": "chair",
+          "child_aoa_month": 21.225459750312105,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.195696849472043,
+          "compact_model_aoa": 7.898640484563172,
+          "compact_minus_clean": 0.7029436350911293
+        },
+        {
+          "word": "stand",
+          "child_aoa_month": 26.243248085091533,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.0170325409018535,
+          "compact_model_aoa": 7.674910163808677,
+          "compact_minus_clean": 0.657877622906824
+        },
+        {
+          "word": "blow",
+          "child_aoa_month": 24.239916417068418,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.330068658697215,
+          "compact_model_aoa": 7.92208359195278,
+          "compact_minus_clean": 0.5920149332555651
+        },
+        {
+          "word": "school",
+          "child_aoa_month": 23.937530807499474,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.25739578687206,
+          "compact_model_aoa": 6.832949299395305,
+          "compact_minus_clean": 0.5755535125232454
+        },
+        {
+          "word": "cake",
+          "child_aoa_month": 22.219009204871558,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.047996655390794,
+          "compact_model_aoa": 7.604806795770418,
+          "compact_minus_clean": 0.5568101403796248
+        },
+        {
+          "word": "flag",
+          "child_aoa_month": 27.41475309249198,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.048608457865685,
+          "compact_model_aoa": 7.5489542460507595,
+          "compact_minus_clean": 0.5003457881850748
+        },
+        {
+          "word": "dinner",
+          "child_aoa_month": 24.335488629604637,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.935060694283572,
+          "compact_model_aoa": 7.284503927835909,
+          "compact_minus_clean": 0.3494432335523374
+        },
+        {
+          "word": "dish",
+          "child_aoa_month": 28.392517499821075,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.434364961972574,
+          "compact_model_aoa": 7.753443988339582,
+          "compact_minus_clean": 0.3190790263670076
+        },
+        {
+          "word": "nose",
+          "child_aoa_month": 17.566643472145085,
+          "child_bin": "early_le20",
+          "clean_model_aoa": 6.852757518121355,
+          "compact_model_aoa": 7.170607222163823,
+          "compact_minus_clean": 0.3178497040424677
+        },
+        {
+          "word": "bread",
+          "child_aoa_month": 22.252228192835148,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.00651655763698,
+          "compact_model_aoa": 7.3167534091220325,
+          "compact_minus_clean": 0.31023685148505287
+        },
+        {
+          "word": "say",
+          "child_aoa_month": 27.143040225343398,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.507775665589522,
+          "compact_model_aoa": 6.803517710219691,
+          "compact_minus_clean": 0.2957420446301695
+        },
+        {
+          "word": "milk",
+          "child_aoa_month": 18.255048075517685,
+          "child_bin": "early_le20",
+          "clean_model_aoa": 7.02273032156458,
+          "compact_model_aoa": 7.306885600309719,
+          "compact_minus_clean": 0.28415527874513824
+        },
+        {
+          "word": "green",
+          "child_aoa_month": 24.21157425029654,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.792243075424361,
+          "compact_model_aoa": 7.071840920039029,
+          "compact_minus_clean": 0.27959784461466786
+        },
+        {
+          "word": "boy",
+          "child_aoa_month": 23.9923879977722,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.610956701680765,
+          "compact_model_aoa": 6.8854836931555345,
+          "compact_minus_clean": 0.27452699147476967
+        },
+        {
+          "word": "window",
+          "child_aoa_month": 24.902760458259664,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.907777344260164,
+          "compact_model_aoa": 7.160426758828713,
+          "compact_minus_clean": 0.25264941456854917
+        },
+        {
+          "word": "pool",
+          "child_aoa_month": 23.89664497593775,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.2082045229807425,
+          "compact_model_aoa": 7.4472698736017495,
+          "compact_minus_clean": 0.23906535062100698
+        },
+        {
+          "word": "white",
+          "child_aoa_month": 26.40244979152026,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.745509727093189,
+          "compact_model_aoa": 6.961104465192959,
+          "compact_minus_clean": 0.21559473809976915
+        },
+        {
+          "word": "ice",
+          "child_aoa_month": 23.464365625838706,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.160101024557709,
+          "compact_model_aoa": 7.3756896721591225,
+          "compact_minus_clean": 0.21558864760141372
+        },
+        {
+          "word": "fall",
+          "child_aoa_month": 23.398800241984326,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.898586861174424,
+          "compact_model_aoa": 7.109266921889137,
+          "compact_minus_clean": 0.21068006071471324
+        },
+        {
+          "word": "couch",
+          "child_aoa_month": 24.274913544484477,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.126649675095701,
+          "compact_model_aoa": 7.335188718093669,
+          "compact_minus_clean": 0.20853904299796788
+        },
+        {
+          "word": "bathroom",
+          "child_aoa_month": 23.557409105204858,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.5479212909618045,
+          "compact_model_aoa": 7.753957523852473,
+          "compact_minus_clean": 0.20603623289066864
+        },
+        {
+          "word": "store",
+          "child_aoa_month": 24.24553978030457,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.9884466867171,
+          "compact_model_aoa": 7.190628052123367,
+          "compact_minus_clean": 0.2021813654062674
+        },
+        {
+          "word": "pull",
+          "child_aoa_month": 26.217858907282245,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 7.375724163987105,
+          "compact_model_aoa": 7.576117195625762,
+          "compact_minus_clean": 0.20039303163865707
+        },
+        {
+          "word": "car",
+          "child_aoa_month": 17.496796781553705,
+          "child_bin": "early_le20",
+          "clean_model_aoa": 6.751616167425277,
+          "compact_model_aoa": 6.934761815407477,
+          "compact_minus_clean": 0.1831456479822
+        },
+        {
+          "word": "cry",
+          "child_aoa_month": 23.357992706748902,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 7.021286611275362,
+          "compact_model_aoa": 7.199319984438359,
+          "compact_minus_clean": 0.1780333731629975
+        },
+        {
+          "word": "listen",
+          "child_aoa_month": 28.048745584501315,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.7631320237426475,
+          "compact_model_aoa": 6.932283516287378,
+          "compact_minus_clean": 0.1691514925447306
+        },
+        {
+          "word": "run",
+          "child_aoa_month": 23.46802530452093,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.762789824659015,
+          "compact_model_aoa": 6.920016892794051,
+          "compact_minus_clean": 0.15722706813503606
+        },
+        {
+          "word": "make",
+          "child_aoa_month": 26.76673663101711,
+          "child_bin": "late_gt25",
+          "clean_model_aoa": 6.355705111301152,
+          "compact_model_aoa": 6.511807609009307,
+          "compact_minus_clean": 0.15610249770815532
+        },
+        {
+          "word": "sun",
+          "child_aoa_month": 22.620513837393432,
+          "child_bin": "middle_20to25",
+          "clean_model_aoa": 6.799501158344086,
+          "compact_model_aoa": 6.942675887421231,
+          "compact_minus_clean": 0.14317472907714546
+        }
+      ]
+    },
+    "only_compact_child_latest": [
+      {
+        "word": "cover",
+        "child_aoa_month": 29.120587673006845,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.931451049637107
+      },
+      {
+        "word": "first",
+        "child_aoa_month": 28.986200167021508,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.082853230779353
+      },
+      {
+        "word": "new",
+        "child_aoa_month": 28.840785987993776,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.246271314214257
+      },
+      {
+        "word": "finish",
+        "child_aoa_month": 27.879604149197586,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.959678637150579
+      },
+      {
+        "word": "quiet",
+        "child_aoa_month": 26.982735254027116,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.818441797252932
+      },
+      {
+        "word": "bucket",
+        "child_aoa_month": 26.218844749584207,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.296565677964843
+      },
+      {
+        "word": "sad",
+        "child_aoa_month": 26.12385805343161,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.962184818652679
+      },
+      {
+        "word": "wind",
+        "child_aoa_month": 26.109702397075804,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.857281594000294
+      },
+      {
+        "word": "street",
+        "child_aoa_month": 25.889294579190338,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.798501764790585
+      },
+      {
+        "word": "camera",
+        "child_aoa_month": 25.871615597327157,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.031705564197784
+      },
+      {
+        "word": "refrigerator",
+        "child_aoa_month": 25.702396416486902,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.4542852504577235
+      },
+      {
+        "word": "beans",
+        "child_aoa_month": 25.33209562564099,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.171960152020739
+      },
+      {
+        "word": "tissue",
+        "child_aoa_month": 24.71696112712117,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.9217940794855695
+      },
+      {
+        "word": "pen",
+        "child_aoa_month": 24.683860647952418,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.901539561142181
+      },
+      {
+        "word": "push",
+        "child_aoa_month": 24.61567138170203,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.652694385506873
+      },
+      {
+        "word": "stick",
+        "child_aoa_month": 24.602147570761282,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.770528502840481
+      },
+      {
+        "word": "chocolate",
+        "child_aoa_month": 24.58033128800783,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.723416475732471
+      },
+      {
+        "word": "animal",
+        "child_aoa_month": 24.330089945071023,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.828497796685794
+      },
+      {
+        "word": "breakfast",
+        "child_aoa_month": 24.161838030910175,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.025752063359561
+      },
+      {
+        "word": "shower",
+        "child_aoa_month": 24.142481410581965,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.950206544180468
+      },
+      {
+        "word": "glasses",
+        "child_aoa_month": 23.829833304182998,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.093459099723492
+      },
+      {
+        "word": "yellow",
+        "child_aoa_month": 23.813112283182036,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.120056617710608
+      },
+      {
+        "word": "grass",
+        "child_aoa_month": 23.607923804559615,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.086358920904225
+      },
+      {
+        "word": "paper",
+        "child_aoa_month": 22.99233148218998,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.229854856056813
+      },
+      {
+        "word": "bite",
+        "child_aoa_month": 22.943816797389026,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.764103610363312
+      }
+    ],
+    "only_compact_child_earliest": [
+      {
+        "word": "cat",
+        "child_aoa_month": 18.228507346753123,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 6.853287921851307
+      },
+      {
+        "word": "hat",
+        "child_aoa_month": 18.89138270526583,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 6.920166371816923
+      },
+      {
+        "word": "cookie",
+        "child_aoa_month": 19.063897306535317,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 7.973447398767284
+      },
+      {
+        "word": "boat",
+        "child_aoa_month": 21.092331322802426,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.793034637455645
+      },
+      {
+        "word": "telephone",
+        "child_aoa_month": 21.409080313239528,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.494807956712172
+      },
+      {
+        "word": "pizza",
+        "child_aoa_month": 21.47922641023574,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.893114595444038
+      },
+      {
+        "word": "finger",
+        "child_aoa_month": 21.849311819029033,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.781881479748156
+      },
+      {
+        "word": "star",
+        "child_aoa_month": 22.531843509244336,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.864631322432877
+      },
+      {
+        "word": "rock",
+        "child_aoa_month": 22.67177290650117,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.885122963278559
+      },
+      {
+        "word": "bite",
+        "child_aoa_month": 22.943816797389026,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.764103610363312
+      },
+      {
+        "word": "paper",
+        "child_aoa_month": 22.99233148218998,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.229854856056813
+      },
+      {
+        "word": "grass",
+        "child_aoa_month": 23.607923804559615,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.086358920904225
+      },
+      {
+        "word": "yellow",
+        "child_aoa_month": 23.813112283182036,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.120056617710608
+      },
+      {
+        "word": "glasses",
+        "child_aoa_month": 23.829833304182998,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.093459099723492
+      },
+      {
+        "word": "shower",
+        "child_aoa_month": 24.142481410581965,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.950206544180468
+      },
+      {
+        "word": "breakfast",
+        "child_aoa_month": 24.161838030910175,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.025752063359561
+      },
+      {
+        "word": "animal",
+        "child_aoa_month": 24.330089945071023,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.828497796685794
+      },
+      {
+        "word": "chocolate",
+        "child_aoa_month": 24.58033128800783,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.723416475732471
+      },
+      {
+        "word": "stick",
+        "child_aoa_month": 24.602147570761282,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.770528502840481
+      },
+      {
+        "word": "push",
+        "child_aoa_month": 24.61567138170203,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.652694385506873
+      },
+      {
+        "word": "pen",
+        "child_aoa_month": 24.683860647952418,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.901539561142181
+      },
+      {
+        "word": "tissue",
+        "child_aoa_month": 24.71696112712117,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.9217940794855695
+      },
+      {
+        "word": "beans",
+        "child_aoa_month": 25.33209562564099,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.171960152020739
+      },
+      {
+        "word": "refrigerator",
+        "child_aoa_month": 25.702396416486902,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.4542852504577235
+      },
+      {
+        "word": "camera",
+        "child_aoa_month": 25.871615597327157,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.031705564197784
+      }
+    ],
+    "only_clean_child_latest": [
+      {
+        "word": "vitamins",
+        "child_aoa_month": 29.851211676176195,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.876342635216166
+      },
+      {
+        "word": "better",
+        "child_aoa_month": 27.4836269032841,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.810198933200416
+      },
+      {
+        "word": "sick",
+        "child_aoa_month": 26.810475954734216,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.890275885867128
+      },
+      {
+        "word": "closet",
+        "child_aoa_month": 26.335369068359697,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.739335790533711
+      },
+      {
+        "word": "paint",
+        "child_aoa_month": 26.332309328783996,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.444142165413524
+      },
+      {
+        "word": "drive",
+        "child_aoa_month": 25.239924635828906,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.147356094358582
+      },
+      {
+        "word": "bedroom",
+        "child_aoa_month": 25.160391755050476,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.05804475310085
+      },
+      {
+        "word": "cook",
+        "child_aoa_month": 25.150438741536785,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.016080934898197
+      },
+      {
+        "word": "soup",
+        "child_aoa_month": 24.801226241774163,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.740929809519789
+      },
+      {
+        "word": "dance",
+        "child_aoa_month": 23.335263733647373,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.993605994611045
+      },
+      {
+        "word": "button",
+        "child_aoa_month": 23.297598677811564,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.858733554015723
+      },
+      {
+        "word": "love",
+        "child_aoa_month": 23.249110931637965,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.322593364357736
+      },
+      {
+        "word": "leg",
+        "child_aoa_month": 22.967834744581136,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.31042417040348
+      },
+      {
+        "word": "sit",
+        "child_aoa_month": 21.993039748466675,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.339838926624118
+      },
+      {
+        "word": "shirt",
+        "child_aoa_month": 21.81321042623773,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.821816002882818
+      },
+      {
+        "word": "moon",
+        "child_aoa_month": 21.266352929569763,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.774336528191064
+      },
+      {
+        "word": "train",
+        "child_aoa_month": 21.08687529603096,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.177835175032016
+      },
+      {
+        "word": "bed",
+        "child_aoa_month": 20.670831293608018,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.679038377373291
+      },
+      {
+        "word": "bear",
+        "child_aoa_month": 20.255559869502484,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.615383261770099
+      },
+      {
+        "word": "ear",
+        "child_aoa_month": 18.557045885439496,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 7.314808911997974
+      },
+      {
+        "word": "bath",
+        "child_aoa_month": 18.505566610748357,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 7.5195916703313825
+      }
+    ],
+    "only_clean_child_earliest": [
+      {
+        "word": "bath",
+        "child_aoa_month": 18.505566610748357,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 7.5195916703313825
+      },
+      {
+        "word": "ear",
+        "child_aoa_month": 18.557045885439496,
+        "child_bin": "early_le20",
+        "model_aoa_log10_words": 7.314808911997974
+      },
+      {
+        "word": "bear",
+        "child_aoa_month": 20.255559869502484,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.615383261770099
+      },
+      {
+        "word": "bed",
+        "child_aoa_month": 20.670831293608018,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.679038377373291
+      },
+      {
+        "word": "train",
+        "child_aoa_month": 21.08687529603096,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.177835175032016
+      },
+      {
+        "word": "moon",
+        "child_aoa_month": 21.266352929569763,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.774336528191064
+      },
+      {
+        "word": "shirt",
+        "child_aoa_month": 21.81321042623773,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.821816002882818
+      },
+      {
+        "word": "sit",
+        "child_aoa_month": 21.993039748466675,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.339838926624118
+      },
+      {
+        "word": "leg",
+        "child_aoa_month": 22.967834744581136,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.31042417040348
+      },
+      {
+        "word": "love",
+        "child_aoa_month": 23.249110931637965,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.322593364357736
+      },
+      {
+        "word": "button",
+        "child_aoa_month": 23.297598677811564,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.858733554015723
+      },
+      {
+        "word": "dance",
+        "child_aoa_month": 23.335263733647373,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 6.993605994611045
+      },
+      {
+        "word": "soup",
+        "child_aoa_month": 24.801226241774163,
+        "child_bin": "middle_20to25",
+        "model_aoa_log10_words": 7.740929809519789
+      },
+      {
+        "word": "cook",
+        "child_aoa_month": 25.150438741536785,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.016080934898197
+      },
+      {
+        "word": "bedroom",
+        "child_aoa_month": 25.160391755050476,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.05804475310085
+      },
+      {
+        "word": "drive",
+        "child_aoa_month": 25.239924635828906,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.147356094358582
+      },
+      {
+        "word": "paint",
+        "child_aoa_month": 26.332309328783996,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.444142165413524
+      },
+      {
+        "word": "closet",
+        "child_aoa_month": 26.335369068359697,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 7.739335790533711
+      },
+      {
+        "word": "sick",
+        "child_aoa_month": 26.810475954734216,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.890275885867128
+      },
+      {
+        "word": "better",
+        "child_aoa_month": 27.4836269032841,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.810198933200416
+      },
+      {
+        "word": "vitamins",
+        "child_aoa_month": 29.851211676176195,
+        "child_bin": "late_gt25",
+        "model_aoa_log10_words": 6.876342635216166
+      }
+    ]
+  },
+  "corpus_exposure": {
+    "clean_qwen_pool": {
+      "path": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "rows": 64381,
+      "declared_words": 10000000,
+      "parse_errors": 0,
+      "target_occurrences_total": 709093,
+      "target_occurrences_by_bin": {
+        "middle_20to25": 318986,
+        "late_gt25": 342147,
+        "early_le20": 47960
+      },
+      "target_occurrences_per_million_words_by_bin": {
+        "middle_20to25": 31898.6,
+        "late_gt25": 34214.7,
+        "early_le20": 4796.0
+      },
+      "target_occurrences_per_million_words_total": 70909.29999999999,
+      "by_source_top": {
+        "childes": {
+          "middle_20to25": 142337,
+          "total": 279781,
+          "late_gt25": 112239,
+          "early_le20": 25205
+        },
+        "open_subtitles": {
+          "late_gt25": 79823,
+          "total": 149282,
+          "middle_20to25": 59418,
+          "early_le20": 10041
+        },
+        "gutenberg": {
+          "late_gt25": 64224,
+          "total": 126579,
+          "middle_20to25": 56504,
+          "early_le20": 5851
+        },
+        "qwen_pair_packed": {
+          "late_gt25": 43723,
+          "total": 82573,
+          "middle_20to25": 35154,
+          "early_le20": 3696
+        },
+        "simple_wiki": {
+          "late_gt25": 21790,
+          "total": 36172,
+          "middle_20to25": 13296,
+          "early_le20": 1086
+        },
+        "bnc_spoken": {
+          "late_gt25": 19557,
+          "total": 33432,
+          "early_le20": 2017,
+          "middle_20to25": 11858
+        },
+        "switchboard": {
+          "late_gt25": 791,
+          "total": 1274,
+          "middle_20to25": 419,
+          "early_le20": 64
+        }
+      }
+    },
+    "compact_core_pool": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl",
+      "rows": 64683,
+      "declared_words": 10000000,
+      "parse_errors": 0,
+      "target_occurrences_total": 696775,
+      "target_occurrences_by_bin": {
+        "middle_20to25": 312673,
+        "late_gt25": 337422,
+        "early_le20": 46680
+      },
+      "target_occurrences_per_million_words_by_bin": {
+        "middle_20to25": 31267.3,
+        "late_gt25": 33742.2,
+        "early_le20": 4668.0
+      },
+      "target_occurrences_per_million_words_total": 69677.5,
+      "by_source_top": {
+        "childes": {
+          "middle_20to25": 134928,
+          "total": 265422,
+          "early_le20": 23961,
+          "late_gt25": 106533
+        },
+        "open_subtitles": {
+          "late_gt25": 75746,
+          "total": 141710,
+          "middle_20to25": 56431,
+          "early_le20": 9533
+        },
+        "gutenberg": {
+          "late_gt25": 60857,
+          "total": 120075,
+          "middle_20to25": 53647,
+          "early_le20": 5571
+        },
+        "qwen_pair_packed": {
+          "late_gt25": 43723,
+          "total": 82573,
+          "middle_20to25": 35154,
+          "early_le20": 3696
+        },
+        "simple_wiki": {
+          "late_gt25": 20713,
+          "total": 34350,
+          "middle_20to25": 12614,
+          "early_le20": 1023
+        },
+        "bnc_spoken": {
+          "late_gt25": 18589,
+          "total": 31716,
+          "middle_20to25": 11220,
+          "early_le20": 1907
+        },
+        "cleanqwen_fineweb_compact_view_core_neutral": {
+          "middle_20to25": 5846,
+          "total": 14460,
+          "late_gt25": 8073,
+          "early_le20": 541
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::childes": {
+          "late_gt25": 980,
+          "total": 2439,
+          "middle_20to25": 1234,
+          "early_le20": 225
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::open_subtitles": {
+          "middle_20to25": 557,
+          "total": 1368,
+          "late_gt25": 720,
+          "early_le20": 91
+        },
+        "switchboard": {
+          "late_gt25": 737,
+          "total": 1199,
+          "middle_20to25": 401,
+          "early_le20": 61
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::gutenberg": {
+          "late_gt25": 511,
+          "total": 1035,
+          "middle_20to25": 473,
+          "early_le20": 51
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::simple_wiki": {
+          "late_gt25": 145,
+          "total": 254,
+          "middle_20to25": 101,
+          "early_le20": 8
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::bnc_spoken": {
+          "late_gt25": 95,
+          "total": 174,
+          "middle_20to25": 67,
+          "early_le20": 12
+        }
+      }
+    },
+    "compact_reinvest_pool": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "rows": 64740,
+      "declared_words": 10000000,
+      "parse_errors": 0,
+      "target_occurrences_total": 694449,
+      "target_occurrences_by_bin": {
+        "middle_20to25": 311524,
+        "late_gt25": 336513,
+        "early_le20": 46412
+      },
+      "target_occurrences_per_million_words_by_bin": {
+        "middle_20to25": 31152.4,
+        "late_gt25": 33651.3,
+        "early_le20": 4641.2
+      },
+      "target_occurrences_per_million_words_total": 69444.90000000001,
+      "by_source_top": {
+        "childes": {
+          "middle_20to25": 134928,
+          "total": 265422,
+          "early_le20": 23961,
+          "late_gt25": 106533
+        },
+        "open_subtitles": {
+          "late_gt25": 75746,
+          "total": 141710,
+          "middle_20to25": 56431,
+          "early_le20": 9533
+        },
+        "gutenberg": {
+          "late_gt25": 60857,
+          "total": 120075,
+          "middle_20to25": 53647,
+          "early_le20": 5571
+        },
+        "qwen_pair_packed": {
+          "late_gt25": 43723,
+          "total": 82573,
+          "middle_20to25": 35154,
+          "early_le20": 3696
+        },
+        "simple_wiki": {
+          "late_gt25": 20713,
+          "total": 34350,
+          "middle_20to25": 12614,
+          "early_le20": 1023
+        },
+        "bnc_spoken": {
+          "late_gt25": 18589,
+          "total": 31716,
+          "middle_20to25": 11220,
+          "early_le20": 1907
+        },
+        "cleanqwen_fineweb_compact_view_reinvest": {
+          "middle_20to25": 7126,
+          "total": 17401,
+          "late_gt25": 9615,
+          "early_le20": 660
+        },
+        "switchboard": {
+          "late_gt25": 737,
+          "total": 1199,
+          "middle_20to25": 401,
+          "early_le20": 61
+        },
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": {
+          "middle_20to25": 3,
+          "total": 3
+        }
+      }
+    },
+    "heldout_cleanqwen_slice": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+      "rows": 2647,
+      "declared_words": 423520,
+      "parse_errors": 0,
+      "target_occurrences_total": 32048,
+      "target_occurrences_by_bin": {
+        "middle_20to25": 14591,
+        "late_gt25": 15249,
+        "early_le20": 2208
+      },
+      "target_occurrences_per_million_words_by_bin": {
+        "middle_20to25": 34451.73781639592,
+        "late_gt25": 36005.383452965616,
+        "early_le20": 5213.449187759728
+      },
+      "target_occurrences_per_million_words_total": 75670.57045712127,
+      "by_source_top": {
+        "childes": {
+          "late_gt25": 5706,
+          "total": 14359,
+          "middle_20to25": 7409,
+          "early_le20": 1244
+        },
+        "open_subtitles": {
+          "middle_20to25": 2987,
+          "total": 7572,
+          "late_gt25": 4077,
+          "early_le20": 508
+        },
+        "gutenberg": {
+          "late_gt25": 3367,
+          "total": 6504,
+          "middle_20to25": 2857,
+          "early_le20": 280
+        },
+        "simple_wiki": {
+          "late_gt25": 1077,
+          "total": 1822,
+          "middle_20to25": 682,
+          "early_le20": 63
+        },
+        "bnc_spoken": {
+          "late_gt25": 968,
+          "total": 1716,
+          "middle_20to25": 638,
+          "early_le20": 110
+        },
+        "switchboard": {
+          "late_gt25": 54,
+          "total": 75,
+          "middle_20to25": 18,
+          "early_le20": 3
+        }
+      }
+    },
+    "compact_core_changed_block": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl",
+      "rows": 2949,
+      "declared_words": 423520,
+      "parse_errors": 0,
+      "target_occurrences_total": 19730,
+      "target_occurrences_by_bin": {
+        "middle_20to25": 8278,
+        "late_gt25": 10524,
+        "early_le20": 928
+      },
+      "target_occurrences_per_million_words_by_bin": {
+        "middle_20to25": 19545.712126936156,
+        "late_gt25": 24848.885530789572,
+        "early_le20": 2191.1598035511897
+      },
+      "target_occurrences_per_million_words_total": 46585.75746127692,
+      "by_source_top": {
+        "cleanqwen_fineweb_compact_view_core_neutral": {
+          "middle_20to25": 5846,
+          "total": 14460,
+          "late_gt25": 8073,
+          "early_le20": 541
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::childes": {
+          "late_gt25": 980,
+          "total": 2439,
+          "middle_20to25": 1234,
+          "early_le20": 225
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::open_subtitles": {
+          "middle_20to25": 557,
+          "total": 1368,
+          "late_gt25": 720,
+          "early_le20": 91
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::gutenberg": {
+          "late_gt25": 511,
+          "total": 1035,
+          "middle_20to25": 473,
+          "early_le20": 51
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::simple_wiki": {
+          "late_gt25": 145,
+          "total": 254,
+          "middle_20to25": 101,
+          "early_le20": 8
+        },
+        "neutral_cleanqwen_topup_compact_core_neutral::bnc_spoken": {
+          "late_gt25": 95,
+          "total": 174,
+          "middle_20to25": 67,
+          "early_le20": 12
+        }
+      }
+    },
+    "compact_reinvest_changed_block": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "rows": 3006,
+      "declared_words": 423520,
+      "parse_errors": 0,
+      "target_occurrences_total": 17404,
+      "target_occurrences_by_bin": {
+        "middle_20to25": 7129,
+        "late_gt25": 9615,
+        "early_le20": 660
+      },
+      "target_occurrences_per_million_words_by_bin": {
+        "middle_20to25": 16832.73517189271,
+        "late_gt25": 22702.58783528523,
+        "early_le20": 1558.3679637325274
+      },
+      "target_occurrences_per_million_words_total": 41093.690970910466,
+      "by_source_top": {
+        "cleanqwen_fineweb_compact_view_reinvest": {
+          "middle_20to25": 7126,
+          "total": 17401,
+          "late_gt25": 9615,
+          "early_le20": 660
+        },
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": {
+          "middle_20to25": 3,
+          "total": 3
+        }
+      }
+    },
+    "changed_block_core_minus_heldout_cleanqwen": {
+      "before": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+      "after": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl",
+      "word_delta_total": -12318,
+      "bin_delta": {
+        "middle_20to25": -6313,
+        "late_gt25": -4725,
+        "early_le20": -1280
+      },
+      "total_per_million_delta": -29084.812995844353,
+      "bin_per_million_delta": {
+        "early_le20": -3022.2893842085386,
+        "late_gt25": -11156.497922176044,
+        "middle_20to25": -14906.025689459766
+      },
+      "largest_losses": [
+        {
+          "word": "go",
+          "child_aoa_month": 19.7106217091394,
+          "child_bin": "early_le20",
+          "before": 1154,
+          "after": 286,
+          "delta": -868
+        },
+        {
+          "word": "have",
+          "child_aoa_month": 25.902575376900778,
+          "child_bin": "late_gt25",
+          "before": 1958,
+          "after": 1169,
+          "delta": -789
+        },
+        {
+          "word": "get",
+          "child_aoa_month": 24.364636413972246,
+          "child_bin": "middle_20to25",
+          "before": 1043,
+          "after": 362,
+          "delta": -681
+        },
+        {
+          "word": "see",
+          "child_aoa_month": 23.26497097971234,
+          "child_bin": "middle_20to25",
+          "before": 967,
+          "after": 315,
+          "delta": -652
+        },
+        {
+          "word": "like",
+          "child_aoa_month": 25.75007721668643,
+          "child_bin": "late_gt25",
+          "before": 1392,
+          "after": 792,
+          "delta": -600
+        },
+        {
+          "word": "look",
+          "child_aoa_month": 24.098423511314476,
+          "child_bin": "middle_20to25",
+          "before": 620,
+          "after": 152,
+          "delta": -468
+        },
+        {
+          "word": "put",
+          "child_aoa_month": 26.847988805835868,
+          "child_bin": "late_gt25",
+          "before": 615,
+          "after": 159,
+          "delta": -456
+        },
+        {
+          "word": "good",
+          "child_aoa_month": 24.339939004434495,
+          "child_bin": "middle_20to25",
+          "before": 762,
+          "after": 366,
+          "delta": -396
+        },
+        {
+          "word": "man",
+          "child_aoa_month": 26.239323453067815,
+          "child_bin": "late_gt25",
+          "before": 441,
+          "after": 131,
+          "delta": -310
+        },
+        {
+          "word": "say",
+          "child_aoa_month": 27.143040225343398,
+          "child_bin": "late_gt25",
+          "before": 543,
+          "after": 234,
+          "delta": -309
+        },
+        {
+          "word": "take",
+          "child_aoa_month": 26.912440144087405,
+          "child_bin": "late_gt25",
+          "before": 504,
+          "after": 223,
+          "delta": -281
+        },
+        {
+          "word": "big",
+          "child_aoa_month": 22.607359585163238,
+          "child_bin": "middle_20to25",
+          "before": 400,
+          "after": 148,
+          "delta": -252
+        },
+        {
+          "word": "give",
+          "child_aoa_month": 25.598843914428592,
+          "child_bin": "late_gt25",
+          "before": 316,
+          "after": 112,
+          "delta": -204
+        },
+        {
+          "word": "eat",
+          "child_aoa_month": 20.38286318166485,
+          "child_bin": "middle_20to25",
+          "before": 327,
+          "after": 132,
+          "delta": -195
+        },
+        {
+          "word": "boy",
+          "child_aoa_month": 23.9923879977722,
+          "child_bin": "middle_20to25",
+          "before": 249,
+          "after": 60,
+          "delta": -189
+        },
+        {
+          "word": "nice",
+          "child_aoa_month": 25.83342302182803,
+          "child_bin": "late_gt25",
+          "before": 212,
+          "after": 41,
+          "delta": -171
+        },
+        {
+          "word": "play",
+          "child_aoa_month": 22.7220598630656,
+          "child_bin": "middle_20to25",
+          "before": 268,
+          "after": 117,
+          "delta": -151
+        },
+        {
+          "word": "girl",
+          "child_aoa_month": 24.667729430346036,
+          "child_bin": "middle_20to25",
+          "before": 193,
+          "after": 44,
+          "delta": -149
+        },
+        {
+          "word": "house",
+          "child_aoa_month": 23.090503002489797,
+          "child_bin": "middle_20to25",
+          "before": 271,
+          "after": 129,
+          "delta": -142
+        },
+        {
+          "word": "love",
+          "child_aoa_month": 23.249110931637965,
+          "child_bin": "middle_20to25",
+          "before": 189,
+          "after": 47,
+          "delta": -142
+        },
+        {
+          "word": "talk",
+          "child_aoa_month": 26.1666744723998,
+          "child_bin": "late_gt25",
+          "before": 193,
+          "after": 59,
+          "delta": -134
+        },
+        {
+          "word": "wait",
+          "child_aoa_month": 26.10356767864079,
+          "child_bin": "late_gt25",
+          "before": 178,
+          "after": 50,
+          "delta": -128
+        },
+        {
+          "word": "night",
+          "child_aoa_month": 24.482917590787725,
+          "child_bin": "middle_20to25",
+          "before": 232,
+          "after": 112,
+          "delta": -120
+        },
+        {
+          "word": "make",
+          "child_aoa_month": 26.76673663101711,
+          "child_bin": "late_gt25",
+          "before": 498,
+          "after": 384,
+          "delta": -114
+        },
+        {
+          "word": "read",
+          "child_aoa_month": 23.095216853951683,
+          "child_bin": "middle_20to25",
+          "before": 212,
+          "after": 98,
+          "delta": -114
+        },
+        {
+          "word": "morning",
+          "child_aoa_month": 26.726898941775957,
+          "child_bin": "late_gt25",
+          "before": 154,
+          "after": 41,
+          "delta": -113
+        },
+        {
+          "word": "today",
+          "child_aoa_month": 29.606093090564784,
+          "child_bin": "late_gt25",
+          "before": 148,
+          "after": 35,
+          "delta": -113
+        },
+        {
+          "word": "hear",
+          "child_aoa_month": 26.993574492322516,
+          "child_bin": "late_gt25",
+          "before": 141,
+          "after": 30,
+          "delta": -111
+        },
+        {
+          "word": "room",
+          "child_aoa_month": 24.722076365420904,
+          "child_bin": "middle_20to25",
+          "before": 206,
+          "after": 95,
+          "delta": -111
+        },
+        {
+          "word": "pretty",
+          "child_aoa_month": 25.930457910420653,
+          "child_bin": "late_gt25",
+          "before": 134,
+          "after": 26,
+          "delta": -108
+        },
+        {
+          "word": "door",
+          "child_aoa_month": 21.094330119099542,
+          "child_bin": "middle_20to25",
+          "before": 144,
+          "after": 40,
+          "delta": -104
+        },
+        {
+          "word": "hungry",
+          "child_aoa_month": 24.654359259781693,
+          "child_bin": "middle_20to25",
+          "before": 148,
+          "after": 46,
+          "delta": -102
+        },
+        {
+          "word": "sit",
+          "child_aoa_month": 21.993039748466675,
+          "child_bin": "middle_20to25",
+          "before": 127,
+          "after": 32,
+          "delta": -95
+        },
+        {
+          "word": "stop",
+          "child_aoa_month": 22.7025658907012,
+          "child_bin": "middle_20to25",
+          "before": 168,
+          "after": 81,
+          "delta": -87
+        },
+        {
+          "word": "friend",
+          "child_aoa_month": 26.671894161677375,
+          "child_bin": "late_gt25",
+          "before": 131,
+          "after": 46,
+          "delta": -85
+        },
+        {
+          "word": "head",
+          "child_aoa_month": 21.410556416835345,
+          "child_bin": "middle_20to25",
+          "before": 216,
+          "after": 131,
+          "delta": -85
+        },
+        {
+          "word": "stick",
+          "child_aoa_month": 24.602147570761282,
+          "child_bin": "middle_20to25",
+          "before": 95,
+          "after": 11,
+          "delta": -84
+        },
+        {
+          "word": "brother",
+          "child_aoa_month": 27.4731814681999,
+          "child_bin": "late_gt25",
+          "before": 105,
+          "after": 22,
+          "delta": -83
+        },
+        {
+          "word": "home",
+          "child_aoa_month": 21.78006375395454,
+          "child_bin": "middle_20to25",
+          "before": 304,
+          "after": 223,
+          "delta": -81
+        },
+        {
+          "word": "bear",
+          "child_aoa_month": 20.255559869502484,
+          "child_bin": "middle_20to25",
+          "before": 118,
+          "after": 38,
+          "delta": -80
+        }
+      ],
+      "largest_gains": [
+        {
+          "word": "new",
+          "child_aoa_month": 28.840785987993776,
+          "child_bin": "late_gt25",
+          "before": 340,
+          "after": 624,
+          "delta": 284
+        },
+        {
+          "word": "high",
+          "child_aoa_month": 26.708808302132432,
+          "child_bin": "late_gt25",
+          "before": 133,
+          "after": 392,
+          "delta": 259
+        },
+        {
+          "word": "food",
+          "child_aoa_month": 23.482138731792105,
+          "child_bin": "middle_20to25",
+          "before": 115,
+          "after": 341,
+          "delta": 226
+        },
+        {
+          "word": "people",
+          "child_aoa_month": 27.729170763166103,
+          "child_bin": "late_gt25",
+          "before": 515,
+          "after": 739,
+          "delta": 224
+        },
+        {
+          "word": "first",
+          "child_aoa_month": 28.986200167021508,
+          "child_bin": "late_gt25",
+          "before": 508,
+          "after": 693,
+          "delta": 185
+        },
+        {
+          "word": "plant",
+          "child_aoa_month": 27.17845363579105,
+          "child_bin": "late_gt25",
+          "before": 16,
+          "after": 126,
+          "delta": 110
+        },
+        {
+          "word": "help",
+          "child_aoa_month": 22.549129293001915,
+          "child_bin": "middle_20to25",
+          "before": 208,
+          "after": 291,
+          "delta": 83
+        },
+        {
+          "word": "animal",
+          "child_aoa_month": 24.330089945071023,
+          "child_bin": "middle_20to25",
+          "before": 35,
+          "after": 104,
+          "delta": 69
+        },
+        {
+          "word": "tooth",
+          "child_aoa_month": 22.288597086318816,
+          "child_bin": "middle_20to25",
+          "before": 7,
+          "after": 75,
+          "delta": 68
+        },
+        {
+          "word": "sun",
+          "child_aoa_month": 22.620513837393432,
+          "child_bin": "middle_20to25",
+          "before": 73,
+          "after": 133,
+          "delta": 60
+        },
+        {
+          "word": "share",
+          "child_aoa_month": 26.32381034652683,
+          "child_bin": "late_gt25",
+          "before": 18,
+          "after": 71,
+          "delta": 53
+        },
+        {
+          "word": "medicine",
+          "child_aoa_month": 24.709281294511936,
+          "child_bin": "middle_20to25",
+          "before": 9,
+          "after": 60,
+          "delta": 51
+        },
+        {
+          "word": "tissue",
+          "child_aoa_month": 24.71696112712117,
+          "child_bin": "middle_20to25",
+          "before": 6,
+          "after": 54,
+          "delta": 48
+        },
+        {
+          "word": "light",
+          "child_aoa_month": 21.573068682350033,
+          "child_bin": "middle_20to25",
+          "before": 123,
+          "after": 171,
+          "delta": 48
+        },
+        {
+          "word": "show",
+          "child_aoa_month": 27.51748617185101,
+          "child_bin": "late_gt25",
+          "before": 141,
+          "after": 183,
+          "delta": 42
+        },
+        {
+          "word": "white",
+          "child_aoa_month": 26.40244979152026,
+          "child_bin": "late_gt25",
+          "before": 121,
+          "after": 159,
+          "delta": 38
+        },
+        {
+          "word": "present",
+          "child_aoa_month": 25.256832955307473,
+          "child_bin": "late_gt25",
+          "before": 63,
+          "after": 99,
+          "delta": 36
+        },
+        {
+          "word": "eye",
+          "child_aoa_month": 17.56441529060678,
+          "child_bin": "early_le20",
+          "before": 40,
+          "after": 74,
+          "delta": 34
+        },
+        {
+          "word": "park",
+          "child_aoa_month": 22.878206476855862,
+          "child_bin": "middle_20to25",
+          "before": 49,
+          "after": 80,
+          "delta": 31
+        },
+        {
+          "word": "soap",
+          "child_aoa_month": 22.847457883648175,
+          "child_bin": "middle_20to25",
+          "before": 2,
+          "after": 32,
+          "delta": 30
+        },
+        {
+          "word": "full",
+          "child_aoa_month": 27.37585639496008,
+          "child_bin": "late_gt25",
+          "before": 92,
+          "after": 120,
+          "delta": 28
+        },
+        {
+          "word": "teacher",
+          "child_aoa_month": 28.36884966091159,
+          "child_bin": "late_gt25",
+          "before": 35,
+          "after": 59,
+          "delta": 24
+        },
+        {
+          "word": "cover",
+          "child_aoa_month": 29.120587673006845,
+          "child_bin": "late_gt25",
+          "before": 28,
+          "after": 52,
+          "delta": 24
+        },
+        {
+          "word": "block",
+          "child_aoa_month": 21.984059781669306,
+          "child_bin": "middle_20to25",
+          "before": 24,
+          "after": 46,
+          "delta": 22
+        },
+        {
+          "word": "foot",
+          "child_aoa_month": 21.095607950124922,
+          "child_bin": "middle_20to25",
+          "before": 48,
+          "after": 69,
+          "delta": 21
+        },
+        {
+          "word": "vitamins",
+          "child_aoa_month": 29.851211676176195,
+          "child_bin": "late_gt25",
+          "before": 7,
+          "after": 25,
+          "delta": 18
+        },
+        {
+          "word": "soft",
+          "child_aoa_month": 26.553159844649922,
+          "child_bin": "late_gt25",
+          "before": 27,
+          "after": 45,
+          "delta": 18
+        },
+        {
+          "word": "corn",
+          "child_aoa_month": 24.30521021007631,
+          "child_bin": "middle_20to25",
+          "before": 22,
+          "after": 40,
+          "delta": 18
+        },
+        {
+          "word": "farm",
+          "child_aoa_month": 28.02073014859909,
+          "child_bin": "late_gt25",
+          "before": 20,
+          "after": 37,
+          "delta": 17
+        },
+        {
+          "word": "slow",
+          "child_aoa_month": 28.72766020830381,
+          "child_bin": "late_gt25",
+          "before": 28,
+          "after": 44,
+          "delta": 16
+        },
+        {
+          "word": "ice",
+          "child_aoa_month": 23.464365625838706,
+          "child_bin": "middle_20to25",
+          "before": 58,
+          "after": 73,
+          "delta": 15
+        },
+        {
+          "word": "brown",
+          "child_aoa_month": 26.727189326690834,
+          "child_bin": "late_gt25",
+          "before": 50,
+          "after": 65,
+          "delta": 15
+        },
+        {
+          "word": "peas",
+          "child_aoa_month": 24.90319915475007,
+          "child_bin": "middle_20to25",
+          "before": 9,
+          "after": 23,
+          "delta": 14
+        },
+        {
+          "word": "feed",
+          "child_aoa_month": 27.19892571562119,
+          "child_bin": "late_gt25",
+          "before": 16,
+          "after": 30,
+          "delta": 14
+        },
+        {
+          "word": "dark",
+          "child_aoa_month": 26.0144061423592,
+          "child_bin": "late_gt25",
+          "before": 43,
+          "after": 57,
+          "delta": 14
+        },
+        {
+          "word": "later",
+          "child_aoa_month": 28.08468448252086,
+          "child_bin": "late_gt25",
+          "before": 140,
+          "after": 153,
+          "delta": 13
+        },
+        {
+          "word": "doctor",
+          "child_aoa_month": 25.058857514368704,
+          "child_bin": "late_gt25",
+          "before": 53,
+          "after": 66,
+          "delta": 13
+        },
+        {
+          "word": "beans",
+          "child_aoa_month": 25.33209562564099,
+          "child_bin": "late_gt25",
+          "before": 3,
+          "after": 16,
+          "delta": 13
+        },
+        {
+          "word": "store",
+          "child_aoa_month": 24.24553978030457,
+          "child_bin": "middle_20to25",
+          "before": 49,
+          "after": 61,
+          "delta": 12
+        },
+        {
+          "word": "close",
+          "child_aoa_month": 24.519368084825462,
+          "child_bin": "middle_20to25",
+          "before": 81,
+          "after": 93,
+          "delta": 12
+        }
+      ]
+    },
+    "changed_block_reinvest_minus_heldout_cleanqwen": {
+      "before": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+      "after": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "word_delta_total": -14644,
+      "bin_delta": {
+        "middle_20to25": -7462,
+        "late_gt25": -5634,
+        "early_le20": -1548
+      },
+      "total_per_million_delta": -34576.879486210804,
+      "bin_per_million_delta": {
+        "early_le20": -3655.0812240272007,
+        "late_gt25": -13302.795617680385,
+        "middle_20to25": -17619.002644503213
+      },
+      "largest_losses": [
+        {
+          "word": "go",
+          "child_aoa_month": 19.7106217091394,
+          "child_bin": "early_le20",
+          "before": 1154,
+          "after": 93,
+          "delta": -1061
+        },
+        {
+          "word": "have",
+          "child_aoa_month": 25.902575376900778,
+          "child_bin": "late_gt25",
+          "before": 1958,
+          "after": 1067,
+          "delta": -891
+        },
+        {
+          "word": "get",
+          "child_aoa_month": 24.364636413972246,
+          "child_bin": "middle_20to25",
+          "before": 1043,
+          "after": 247,
+          "delta": -796
+        },
+        {
+          "word": "see",
+          "child_aoa_month": 23.26497097971234,
+          "child_bin": "middle_20to25",
+          "before": 967,
+          "after": 229,
+          "delta": -738
+        },
+        {
+          "word": "like",
+          "child_aoa_month": 25.75007721668643,
+          "child_bin": "late_gt25",
+          "before": 1392,
+          "after": 705,
+          "delta": -687
+        },
+        {
+          "word": "put",
+          "child_aoa_month": 26.847988805835868,
+          "child_bin": "late_gt25",
+          "before": 615,
+          "after": 62,
+          "delta": -553
+        },
+        {
+          "word": "look",
+          "child_aoa_month": 24.098423511314476,
+          "child_bin": "middle_20to25",
+          "before": 620,
+          "after": 79,
+          "delta": -541
+        },
+        {
+          "word": "good",
+          "child_aoa_month": 24.339939004434495,
+          "child_bin": "middle_20to25",
+          "before": 762,
+          "after": 312,
+          "delta": -450
+        },
+        {
+          "word": "say",
+          "child_aoa_month": 27.143040225343398,
+          "child_bin": "late_gt25",
+          "before": 543,
+          "after": 151,
+          "delta": -392
+        },
+        {
+          "word": "man",
+          "child_aoa_month": 26.239323453067815,
+          "child_bin": "late_gt25",
+          "before": 441,
+          "after": 82,
+          "delta": -359
+        },
+        {
+          "word": "take",
+          "child_aoa_month": 26.912440144087405,
+          "child_bin": "late_gt25",
+          "before": 504,
+          "after": 160,
+          "delta": -344
+        },
+        {
+          "word": "big",
+          "child_aoa_month": 22.607359585163238,
+          "child_bin": "middle_20to25",
+          "before": 400,
+          "after": 105,
+          "delta": -295
+        },
+        {
+          "word": "give",
+          "child_aoa_month": 25.598843914428592,
+          "child_bin": "late_gt25",
+          "before": 316,
+          "after": 83,
+          "delta": -233
+        },
+        {
+          "word": "boy",
+          "child_aoa_month": 23.9923879977722,
+          "child_bin": "middle_20to25",
+          "before": 249,
+          "after": 19,
+          "delta": -230
+        },
+        {
+          "word": "eat",
+          "child_aoa_month": 20.38286318166485,
+          "child_bin": "middle_20to25",
+          "before": 327,
+          "after": 97,
+          "delta": -230
+        },
+        {
+          "word": "nice",
+          "child_aoa_month": 25.83342302182803,
+          "child_bin": "late_gt25",
+          "before": 212,
+          "after": 6,
+          "delta": -206
+        },
+        {
+          "word": "play",
+          "child_aoa_month": 22.7220598630656,
+          "child_bin": "middle_20to25",
+          "before": 268,
+          "after": 74,
+          "delta": -194
+        },
+        {
+          "word": "girl",
+          "child_aoa_month": 24.667729430346036,
+          "child_bin": "middle_20to25",
+          "before": 193,
+          "after": 21,
+          "delta": -172
+        },
+        {
+          "word": "make",
+          "child_aoa_month": 26.76673663101711,
+          "child_bin": "late_gt25",
+          "before": 498,
+          "after": 330,
+          "delta": -168
+        },
+        {
+          "word": "wait",
+          "child_aoa_month": 26.10356767864079,
+          "child_bin": "late_gt25",
+          "before": 178,
+          "after": 16,
+          "delta": -162
+        },
+        {
+          "word": "love",
+          "child_aoa_month": 23.249110931637965,
+          "child_bin": "middle_20to25",
+          "before": 189,
+          "after": 29,
+          "delta": -160
+        },
+        {
+          "word": "house",
+          "child_aoa_month": 23.090503002489797,
+          "child_bin": "middle_20to25",
+          "before": 271,
+          "after": 112,
+          "delta": -159
+        },
+        {
+          "word": "night",
+          "child_aoa_month": 24.482917590787725,
+          "child_bin": "middle_20to25",
+          "before": 232,
+          "after": 75,
+          "delta": -157
+        },
+        {
+          "word": "talk",
+          "child_aoa_month": 26.1666744723998,
+          "child_bin": "late_gt25",
+          "before": 193,
+          "after": 36,
+          "delta": -157
+        },
+        {
+          "word": "room",
+          "child_aoa_month": 24.722076365420904,
+          "child_bin": "middle_20to25",
+          "before": 206,
+          "after": 54,
+          "delta": -152
+        },
+        {
+          "word": "today",
+          "child_aoa_month": 29.606093090564784,
+          "child_bin": "late_gt25",
+          "before": 148,
+          "after": 4,
+          "delta": -144
+        },
+        {
+          "word": "hungry",
+          "child_aoa_month": 24.654359259781693,
+          "child_bin": "middle_20to25",
+          "before": 148,
+          "after": 12,
+          "delta": -136
+        },
+        {
+          "word": "hear",
+          "child_aoa_month": 26.993574492322516,
+          "child_bin": "late_gt25",
+          "before": 141,
+          "after": 7,
+          "delta": -134
+        },
+        {
+          "word": "door",
+          "child_aoa_month": 21.094330119099542,
+          "child_bin": "middle_20to25",
+          "before": 144,
+          "after": 13,
+          "delta": -131
+        },
+        {
+          "word": "read",
+          "child_aoa_month": 23.095216853951683,
+          "child_bin": "middle_20to25",
+          "before": 212,
+          "after": 81,
+          "delta": -131
+        },
+        {
+          "word": "morning",
+          "child_aoa_month": 26.726898941775957,
+          "child_bin": "late_gt25",
+          "before": 154,
+          "after": 25,
+          "delta": -129
+        },
+        {
+          "word": "head",
+          "child_aoa_month": 21.410556416835345,
+          "child_bin": "middle_20to25",
+          "before": 216,
+          "after": 94,
+          "delta": -122
+        },
+        {
+          "word": "pretty",
+          "child_aoa_month": 25.930457910420653,
+          "child_bin": "late_gt25",
+          "before": 134,
+          "after": 13,
+          "delta": -121
+        },
+        {
+          "word": "friend",
+          "child_aoa_month": 26.671894161677375,
+          "child_bin": "late_gt25",
+          "before": 131,
+          "after": 18,
+          "delta": -113
+        },
+        {
+          "word": "sit",
+          "child_aoa_month": 21.993039748466675,
+          "child_bin": "middle_20to25",
+          "before": 127,
+          "after": 21,
+          "delta": -106
+        },
+        {
+          "word": "happy",
+          "child_aoa_month": 23.945755954119555,
+          "child_bin": "middle_20to25",
+          "before": 119,
+          "after": 18,
+          "delta": -101
+        },
+        {
+          "word": "table",
+          "child_aoa_month": 23.623454640728905,
+          "child_bin": "middle_20to25",
+          "before": 136,
+          "after": 35,
+          "delta": -101
+        },
+        {
+          "word": "day",
+          "child_aoa_month": 28.57030413820359,
+          "child_bin": "late_gt25",
+          "before": 381,
+          "after": 281,
+          "delta": -100
+        },
+        {
+          "word": "write",
+          "child_aoa_month": 28.395648019984414,
+          "child_bin": "late_gt25",
+          "before": 138,
+          "after": 39,
+          "delta": -99
+        },
+        {
+          "word": "stop",
+          "child_aoa_month": 22.7025658907012,
+          "child_bin": "middle_20to25",
+          "before": 168,
+          "after": 71,
+          "delta": -97
+        }
+      ],
+      "largest_gains": [
+        {
+          "word": "new",
+          "child_aoa_month": 28.840785987993776,
+          "child_bin": "late_gt25",
+          "before": 340,
+          "after": 705,
+          "delta": 365
+        },
+        {
+          "word": "high",
+          "child_aoa_month": 26.708808302132432,
+          "child_bin": "late_gt25",
+          "before": 133,
+          "after": 457,
+          "delta": 324
+        },
+        {
+          "word": "food",
+          "child_aoa_month": 23.482138731792105,
+          "child_bin": "middle_20to25",
+          "before": 115,
+          "after": 390,
+          "delta": 275
+        },
+        {
+          "word": "people",
+          "child_aoa_month": 27.729170763166103,
+          "child_bin": "late_gt25",
+          "before": 515,
+          "after": 778,
+          "delta": 263
+        },
+        {
+          "word": "first",
+          "child_aoa_month": 28.986200167021508,
+          "child_bin": "late_gt25",
+          "before": 508,
+          "after": 725,
+          "delta": 217
+        },
+        {
+          "word": "plant",
+          "child_aoa_month": 27.17845363579105,
+          "child_bin": "late_gt25",
+          "before": 16,
+          "after": 137,
+          "delta": 121
+        },
+        {
+          "word": "help",
+          "child_aoa_month": 22.549129293001915,
+          "child_bin": "middle_20to25",
+          "before": 208,
+          "after": 328,
+          "delta": 120
+        },
+        {
+          "word": "tooth",
+          "child_aoa_month": 22.288597086318816,
+          "child_bin": "middle_20to25",
+          "before": 7,
+          "after": 80,
+          "delta": 73
+        },
+        {
+          "word": "animal",
+          "child_aoa_month": 24.330089945071023,
+          "child_bin": "middle_20to25",
+          "before": 35,
+          "after": 108,
+          "delta": 73
+        },
+        {
+          "word": "sun",
+          "child_aoa_month": 22.620513837393432,
+          "child_bin": "middle_20to25",
+          "before": 73,
+          "after": 145,
+          "delta": 72
+        },
+        {
+          "word": "share",
+          "child_aoa_month": 26.32381034652683,
+          "child_bin": "late_gt25",
+          "before": 18,
+          "after": 86,
+          "delta": 68
+        },
+        {
+          "word": "tissue",
+          "child_aoa_month": 24.71696112712117,
+          "child_bin": "middle_20to25",
+          "before": 6,
+          "after": 67,
+          "delta": 61
+        },
+        {
+          "word": "medicine",
+          "child_aoa_month": 24.709281294511936,
+          "child_bin": "middle_20to25",
+          "before": 9,
+          "after": 69,
+          "delta": 60
+        },
+        {
+          "word": "light",
+          "child_aoa_month": 21.573068682350033,
+          "child_bin": "middle_20to25",
+          "before": 123,
+          "after": 180,
+          "delta": 57
+        },
+        {
+          "word": "eye",
+          "child_aoa_month": 17.56441529060678,
+          "child_bin": "early_le20",
+          "before": 40,
+          "after": 97,
+          "delta": 57
+        },
+        {
+          "word": "show",
+          "child_aoa_month": 27.51748617185101,
+          "child_bin": "late_gt25",
+          "before": 141,
+          "after": 185,
+          "delta": 44
+        },
+        {
+          "word": "white",
+          "child_aoa_month": 26.40244979152026,
+          "child_bin": "late_gt25",
+          "before": 121,
+          "after": 161,
+          "delta": 40
+        },
+        {
+          "word": "present",
+          "child_aoa_month": 25.256832955307473,
+          "child_bin": "late_gt25",
+          "before": 63,
+          "after": 96,
+          "delta": 33
+        },
+        {
+          "word": "teacher",
+          "child_aoa_month": 28.36884966091159,
+          "child_bin": "late_gt25",
+          "before": 35,
+          "after": 67,
+          "delta": 32
+        },
+        {
+          "word": "ice",
+          "child_aoa_month": 23.464365625838706,
+          "child_bin": "middle_20to25",
+          "before": 58,
+          "after": 89,
+          "delta": 31
+        },
+        {
+          "word": "soap",
+          "child_aoa_month": 22.847457883648175,
+          "child_bin": "middle_20to25",
+          "before": 2,
+          "after": 32,
+          "delta": 30
+        },
+        {
+          "word": "full",
+          "child_aoa_month": 27.37585639496008,
+          "child_bin": "late_gt25",
+          "before": 92,
+          "after": 120,
+          "delta": 28
+        },
+        {
+          "word": "foot",
+          "child_aoa_month": 21.095607950124922,
+          "child_bin": "middle_20to25",
+          "before": 48,
+          "after": 73,
+          "delta": 25
+        },
+        {
+          "word": "cover",
+          "child_aoa_month": 29.120587673006845,
+          "child_bin": "late_gt25",
+          "before": 28,
+          "after": 53,
+          "delta": 25
+        },
+        {
+          "word": "block",
+          "child_aoa_month": 21.984059781669306,
+          "child_bin": "middle_20to25",
+          "before": 24,
+          "after": 49,
+          "delta": 25
+        },
+        {
+          "word": "slow",
+          "child_aoa_month": 28.72766020830381,
+          "child_bin": "late_gt25",
+          "before": 28,
+          "after": 52,
+          "delta": 24
+        },
+        {
+          "word": "school",
+          "child_aoa_month": 23.937530807499474,
+          "child_bin": "middle_20to25",
+          "before": 226,
+          "after": 250,
+          "delta": 24
+        },
+        {
+          "word": "build",
+          "child_aoa_month": 26.870721478274586,
+          "child_bin": "late_gt25",
+          "before": 50,
+          "after": 73,
+          "delta": 23
+        },
+        {
+          "word": "brown",
+          "child_aoa_month": 26.727189326690834,
+          "child_bin": "late_gt25",
+          "before": 50,
+          "after": 73,
+          "delta": 23
+        },
+        {
+          "word": "vitamins",
+          "child_aoa_month": 29.851211676176195,
+          "child_bin": "late_gt25",
+          "before": 7,
+          "after": 27,
+          "delta": 20
+        },
+        {
+          "word": "park",
+          "child_aoa_month": 22.878206476855862,
+          "child_bin": "middle_20to25",
+          "before": 49,
+          "after": 68,
+          "delta": 19
+        },
+        {
+          "word": "close",
+          "child_aoa_month": 24.519368084825462,
+          "child_bin": "middle_20to25",
+          "before": 81,
+          "after": 100,
+          "delta": 19
+        },
+        {
+          "word": "beans",
+          "child_aoa_month": 25.33209562564099,
+          "child_bin": "late_gt25",
+          "before": 3,
+          "after": 21,
+          "delta": 18
+        },
+        {
+          "word": "soft",
+          "child_aoa_month": 26.553159844649922,
+          "child_bin": "late_gt25",
+          "before": 27,
+          "after": 44,
+          "delta": 17
+        },
+        {
+          "word": "corn",
+          "child_aoa_month": 24.30521021007631,
+          "child_bin": "middle_20to25",
+          "before": 22,
+          "after": 39,
+          "delta": 17
+        },
+        {
+          "word": "feed",
+          "child_aoa_month": 27.19892571562119,
+          "child_bin": "late_gt25",
+          "before": 16,
+          "after": 32,
+          "delta": 16
+        },
+        {
+          "word": "farm",
+          "child_aoa_month": 28.02073014859909,
+          "child_bin": "late_gt25",
+          "before": 20,
+          "after": 36,
+          "delta": 16
+        },
+        {
+          "word": "dark",
+          "child_aoa_month": 26.0144061423592,
+          "child_bin": "late_gt25",
+          "before": 43,
+          "after": 59,
+          "delta": 16
+        },
+        {
+          "word": "bee",
+          "child_aoa_month": 21.516560770858195,
+          "child_bin": "middle_20to25",
+          "before": 10,
+          "after": 26,
+          "delta": 16
+        },
+        {
+          "word": "camera",
+          "child_aoa_month": 25.871615597327157,
+          "child_bin": "late_gt25",
+          "before": 19,
+          "after": 34,
+          "delta": 15
+        }
+      ]
+    },
+    "pool_core_minus_clean_qwen": {
+      "before": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "after": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl",
+      "word_delta_total": -12318,
+      "bin_delta": {
+        "middle_20to25": -6313,
+        "late_gt25": -4725,
+        "early_le20": -1280
+      },
+      "total_per_million_delta": -1231.7999999999884,
+      "bin_per_million_delta": {
+        "early_le20": -128.0,
+        "late_gt25": -472.5,
+        "middle_20to25": -631.2999999999993
+      },
+      "largest_losses": [
+        {
+          "word": "go",
+          "child_aoa_month": 19.7106217091394,
+          "child_bin": "early_le20",
+          "before": 23910,
+          "after": 23042,
+          "delta": -868
+        },
+        {
+          "word": "have",
+          "child_aoa_month": 25.902575376900778,
+          "child_bin": "late_gt25",
+          "before": 46102,
+          "after": 45313,
+          "delta": -789
+        },
+        {
+          "word": "get",
+          "child_aoa_month": 24.364636413972246,
+          "child_bin": "middle_20to25",
+          "before": 21657,
+          "after": 20976,
+          "delta": -681
+        },
+        {
+          "word": "see",
+          "child_aoa_month": 23.26497097971234,
+          "child_bin": "middle_20to25",
+          "before": 21104,
+          "after": 20452,
+          "delta": -652
+        },
+        {
+          "word": "like",
+          "child_aoa_month": 25.75007721668643,
+          "child_bin": "late_gt25",
+          "before": 29113,
+          "after": 28513,
+          "delta": -600
+        },
+        {
+          "word": "look",
+          "child_aoa_month": 24.098423511314476,
+          "child_bin": "middle_20to25",
+          "before": 13252,
+          "after": 12784,
+          "delta": -468
+        },
+        {
+          "word": "put",
+          "child_aoa_month": 26.847988805835868,
+          "child_bin": "late_gt25",
+          "before": 12973,
+          "after": 12517,
+          "delta": -456
+        },
+        {
+          "word": "good",
+          "child_aoa_month": 24.339939004434495,
+          "child_bin": "middle_20to25",
+          "before": 16144,
+          "after": 15748,
+          "delta": -396
+        },
+        {
+          "word": "man",
+          "child_aoa_month": 26.239323453067815,
+          "child_bin": "late_gt25",
+          "before": 10868,
+          "after": 10558,
+          "delta": -310
+        },
+        {
+          "word": "say",
+          "child_aoa_month": 27.143040225343398,
+          "child_bin": "late_gt25",
+          "before": 11418,
+          "after": 11109,
+          "delta": -309
+        },
+        {
+          "word": "take",
+          "child_aoa_month": 26.912440144087405,
+          "child_bin": "late_gt25",
+          "before": 10821,
+          "after": 10540,
+          "delta": -281
+        },
+        {
+          "word": "big",
+          "child_aoa_month": 22.607359585163238,
+          "child_bin": "middle_20to25",
+          "before": 6945,
+          "after": 6693,
+          "delta": -252
+        },
+        {
+          "word": "give",
+          "child_aoa_month": 25.598843914428592,
+          "child_bin": "late_gt25",
+          "before": 6809,
+          "after": 6605,
+          "delta": -204
+        },
+        {
+          "word": "eat",
+          "child_aoa_month": 20.38286318166485,
+          "child_bin": "middle_20to25",
+          "before": 5506,
+          "after": 5311,
+          "delta": -195
+        },
+        {
+          "word": "boy",
+          "child_aoa_month": 23.9923879977722,
+          "child_bin": "middle_20to25",
+          "before": 5451,
+          "after": 5262,
+          "delta": -189
+        },
+        {
+          "word": "nice",
+          "child_aoa_month": 25.83342302182803,
+          "child_bin": "late_gt25",
+          "before": 4386,
+          "after": 4215,
+          "delta": -171
+        },
+        {
+          "word": "play",
+          "child_aoa_month": 22.7220598630656,
+          "child_bin": "middle_20to25",
+          "before": 5594,
+          "after": 5443,
+          "delta": -151
+        },
+        {
+          "word": "girl",
+          "child_aoa_month": 24.667729430346036,
+          "child_bin": "middle_20to25",
+          "before": 4536,
+          "after": 4387,
+          "delta": -149
+        },
+        {
+          "word": "house",
+          "child_aoa_month": 23.090503002489797,
+          "child_bin": "middle_20to25",
+          "before": 7180,
+          "after": 7038,
+          "delta": -142
+        },
+        {
+          "word": "love",
+          "child_aoa_month": 23.249110931637965,
+          "child_bin": "middle_20to25",
+          "before": 4809,
+          "after": 4667,
+          "delta": -142
+        },
+        {
+          "word": "talk",
+          "child_aoa_month": 26.1666744723998,
+          "child_bin": "late_gt25",
+          "before": 4097,
+          "after": 3963,
+          "delta": -134
+        },
+        {
+          "word": "wait",
+          "child_aoa_month": 26.10356767864079,
+          "child_bin": "late_gt25",
+          "before": 3916,
+          "after": 3788,
+          "delta": -128
+        },
+        {
+          "word": "night",
+          "child_aoa_month": 24.482917590787725,
+          "child_bin": "middle_20to25",
+          "before": 5838,
+          "after": 5718,
+          "delta": -120
+        },
+        {
+          "word": "make",
+          "child_aoa_month": 26.76673663101711,
+          "child_bin": "late_gt25",
+          "before": 11483,
+          "after": 11369,
+          "delta": -114
+        },
+        {
+          "word": "read",
+          "child_aoa_month": 23.095216853951683,
+          "child_bin": "middle_20to25",
+          "before": 3849,
+          "after": 3735,
+          "delta": -114
+        },
+        {
+          "word": "morning",
+          "child_aoa_month": 26.726898941775957,
+          "child_bin": "late_gt25",
+          "before": 3523,
+          "after": 3410,
+          "delta": -113
+        },
+        {
+          "word": "today",
+          "child_aoa_month": 29.606093090564784,
+          "child_bin": "late_gt25",
+          "before": 3358,
+          "after": 3245,
+          "delta": -113
+        },
+        {
+          "word": "hear",
+          "child_aoa_month": 26.993574492322516,
+          "child_bin": "late_gt25",
+          "before": 3017,
+          "after": 2906,
+          "delta": -111
+        },
+        {
+          "word": "room",
+          "child_aoa_month": 24.722076365420904,
+          "child_bin": "middle_20to25",
+          "before": 5370,
+          "after": 5259,
+          "delta": -111
+        },
+        {
+          "word": "pretty",
+          "child_aoa_month": 25.930457910420653,
+          "child_bin": "late_gt25",
+          "before": 3063,
+          "after": 2955,
+          "delta": -108
+        },
+        {
+          "word": "door",
+          "child_aoa_month": 21.094330119099542,
+          "child_bin": "middle_20to25",
+          "before": 3465,
+          "after": 3361,
+          "delta": -104
+        },
+        {
+          "word": "hungry",
+          "child_aoa_month": 24.654359259781693,
+          "child_bin": "middle_20to25",
+          "before": 2768,
+          "after": 2666,
+          "delta": -102
+        },
+        {
+          "word": "sit",
+          "child_aoa_month": 21.993039748466675,
+          "child_bin": "middle_20to25",
+          "before": 2722,
+          "after": 2627,
+          "delta": -95
+        },
+        {
+          "word": "stop",
+          "child_aoa_month": 22.7025658907012,
+          "child_bin": "middle_20to25",
+          "before": 3554,
+          "after": 3467,
+          "delta": -87
+        },
+        {
+          "word": "friend",
+          "child_aoa_month": 26.671894161677375,
+          "child_bin": "late_gt25",
+          "before": 2647,
+          "after": 2562,
+          "delta": -85
+        },
+        {
+          "word": "head",
+          "child_aoa_month": 21.410556416835345,
+          "child_bin": "middle_20to25",
+          "before": 4846,
+          "after": 4761,
+          "delta": -85
+        },
+        {
+          "word": "stick",
+          "child_aoa_month": 24.602147570761282,
+          "child_bin": "middle_20to25",
+          "before": 2370,
+          "after": 2286,
+          "delta": -84
+        },
+        {
+          "word": "brother",
+          "child_aoa_month": 27.4731814681999,
+          "child_bin": "late_gt25",
+          "before": 2230,
+          "after": 2147,
+          "delta": -83
+        },
+        {
+          "word": "home",
+          "child_aoa_month": 21.78006375395454,
+          "child_bin": "middle_20to25",
+          "before": 7380,
+          "after": 7299,
+          "delta": -81
+        },
+        {
+          "word": "bear",
+          "child_aoa_month": 20.255559869502484,
+          "child_bin": "middle_20to25",
+          "before": 2576,
+          "after": 2496,
+          "delta": -80
+        }
+      ],
+      "largest_gains": [
+        {
+          "word": "new",
+          "child_aoa_month": 28.840785987993776,
+          "child_bin": "late_gt25",
+          "before": 8101,
+          "after": 8385,
+          "delta": 284
+        },
+        {
+          "word": "high",
+          "child_aoa_month": 26.708808302132432,
+          "child_bin": "late_gt25",
+          "before": 3276,
+          "after": 3535,
+          "delta": 259
+        },
+        {
+          "word": "food",
+          "child_aoa_month": 23.482138731792105,
+          "child_bin": "middle_20to25",
+          "before": 2873,
+          "after": 3099,
+          "delta": 226
+        },
+        {
+          "word": "people",
+          "child_aoa_month": 27.729170763166103,
+          "child_bin": "late_gt25",
+          "before": 12636,
+          "after": 12860,
+          "delta": 224
+        },
+        {
+          "word": "first",
+          "child_aoa_month": 28.986200167021508,
+          "child_bin": "late_gt25",
+          "before": 11315,
+          "after": 11500,
+          "delta": 185
+        },
+        {
+          "word": "plant",
+          "child_aoa_month": 27.17845363579105,
+          "child_bin": "late_gt25",
+          "before": 387,
+          "after": 497,
+          "delta": 110
+        },
+        {
+          "word": "help",
+          "child_aoa_month": 22.549129293001915,
+          "child_bin": "middle_20to25",
+          "before": 4804,
+          "after": 4887,
+          "delta": 83
+        },
+        {
+          "word": "animal",
+          "child_aoa_month": 24.330089945071023,
+          "child_bin": "middle_20to25",
+          "before": 851,
+          "after": 920,
+          "delta": 69
+        },
+        {
+          "word": "tooth",
+          "child_aoa_month": 22.288597086318816,
+          "child_bin": "middle_20to25",
+          "before": 185,
+          "after": 253,
+          "delta": 68
+        },
+        {
+          "word": "sun",
+          "child_aoa_month": 22.620513837393432,
+          "child_bin": "middle_20to25",
+          "before": 1730,
+          "after": 1790,
+          "delta": 60
+        },
+        {
+          "word": "share",
+          "child_aoa_month": 26.32381034652683,
+          "child_bin": "late_gt25",
+          "before": 723,
+          "after": 776,
+          "delta": 53
+        },
+        {
+          "word": "medicine",
+          "child_aoa_month": 24.709281294511936,
+          "child_bin": "middle_20to25",
+          "before": 420,
+          "after": 471,
+          "delta": 51
+        },
+        {
+          "word": "tissue",
+          "child_aoa_month": 24.71696112712117,
+          "child_bin": "middle_20to25",
+          "before": 109,
+          "after": 157,
+          "delta": 48
+        },
+        {
+          "word": "light",
+          "child_aoa_month": 21.573068682350033,
+          "child_bin": "middle_20to25",
+          "before": 2549,
+          "after": 2597,
+          "delta": 48
+        },
+        {
+          "word": "show",
+          "child_aoa_month": 27.51748617185101,
+          "child_bin": "late_gt25",
+          "before": 3720,
+          "after": 3762,
+          "delta": 42
+        },
+        {
+          "word": "white",
+          "child_aoa_month": 26.40244979152026,
+          "child_bin": "late_gt25",
+          "before": 3034,
+          "after": 3072,
+          "delta": 38
+        },
+        {
+          "word": "present",
+          "child_aoa_month": 25.256832955307473,
+          "child_bin": "late_gt25",
+          "before": 1567,
+          "after": 1603,
+          "delta": 36
+        },
+        {
+          "word": "eye",
+          "child_aoa_month": 17.56441529060678,
+          "child_bin": "early_le20",
+          "before": 1255,
+          "after": 1289,
+          "delta": 34
+        },
+        {
+          "word": "park",
+          "child_aoa_month": 22.878206476855862,
+          "child_bin": "middle_20to25",
+          "before": 1298,
+          "after": 1329,
+          "delta": 31
+        },
+        {
+          "word": "soap",
+          "child_aoa_month": 22.847457883648175,
+          "child_bin": "middle_20to25",
+          "before": 191,
+          "after": 221,
+          "delta": 30
+        },
+        {
+          "word": "full",
+          "child_aoa_month": 27.37585639496008,
+          "child_bin": "late_gt25",
+          "before": 2295,
+          "after": 2323,
+          "delta": 28
+        },
+        {
+          "word": "teacher",
+          "child_aoa_month": 28.36884966091159,
+          "child_bin": "late_gt25",
+          "before": 932,
+          "after": 956,
+          "delta": 24
+        },
+        {
+          "word": "cover",
+          "child_aoa_month": 29.120587673006845,
+          "child_bin": "late_gt25",
+          "before": 735,
+          "after": 759,
+          "delta": 24
+        },
+        {
+          "word": "block",
+          "child_aoa_month": 21.984059781669306,
+          "child_bin": "middle_20to25",
+          "before": 621,
+          "after": 643,
+          "delta": 22
+        },
+        {
+          "word": "foot",
+          "child_aoa_month": 21.095607950124922,
+          "child_bin": "middle_20to25",
+          "before": 994,
+          "after": 1015,
+          "delta": 21
+        },
+        {
+          "word": "vitamins",
+          "child_aoa_month": 29.851211676176195,
+          "child_bin": "late_gt25",
+          "before": 68,
+          "after": 86,
+          "delta": 18
+        },
+        {
+          "word": "soft",
+          "child_aoa_month": 26.553159844649922,
+          "child_bin": "late_gt25",
+          "before": 737,
+          "after": 755,
+          "delta": 18
+        },
+        {
+          "word": "corn",
+          "child_aoa_month": 24.30521021007631,
+          "child_bin": "middle_20to25",
+          "before": 405,
+          "after": 423,
+          "delta": 18
+        },
+        {
+          "word": "farm",
+          "child_aoa_month": 28.02073014859909,
+          "child_bin": "late_gt25",
+          "before": 553,
+          "after": 570,
+          "delta": 17
+        },
+        {
+          "word": "slow",
+          "child_aoa_month": 28.72766020830381,
+          "child_bin": "late_gt25",
+          "before": 525,
+          "after": 541,
+          "delta": 16
+        },
+        {
+          "word": "ice",
+          "child_aoa_month": 23.464365625838706,
+          "child_bin": "middle_20to25",
+          "before": 1290,
+          "after": 1305,
+          "delta": 15
+        },
+        {
+          "word": "brown",
+          "child_aoa_month": 26.727189326690834,
+          "child_bin": "late_gt25",
+          "before": 1240,
+          "after": 1255,
+          "delta": 15
+        },
+        {
+          "word": "peas",
+          "child_aoa_month": 24.90319915475007,
+          "child_bin": "middle_20to25",
+          "before": 206,
+          "after": 220,
+          "delta": 14
+        },
+        {
+          "word": "feed",
+          "child_aoa_month": 27.19892571562119,
+          "child_bin": "late_gt25",
+          "before": 499,
+          "after": 513,
+          "delta": 14
+        },
+        {
+          "word": "dark",
+          "child_aoa_month": 26.0144061423592,
+          "child_bin": "late_gt25",
+          "before": 1373,
+          "after": 1387,
+          "delta": 14
+        },
+        {
+          "word": "later",
+          "child_aoa_month": 28.08468448252086,
+          "child_bin": "late_gt25",
+          "before": 3282,
+          "after": 3295,
+          "delta": 13
+        },
+        {
+          "word": "doctor",
+          "child_aoa_month": 25.058857514368704,
+          "child_bin": "late_gt25",
+          "before": 1532,
+          "after": 1545,
+          "delta": 13
+        },
+        {
+          "word": "beans",
+          "child_aoa_month": 25.33209562564099,
+          "child_bin": "late_gt25",
+          "before": 263,
+          "after": 276,
+          "delta": 13
+        },
+        {
+          "word": "store",
+          "child_aoa_month": 24.24553978030457,
+          "child_bin": "middle_20to25",
+          "before": 1052,
+          "after": 1064,
+          "delta": 12
+        },
+        {
+          "word": "close",
+          "child_aoa_month": 24.519368084825462,
+          "child_bin": "middle_20to25",
+          "before": 2072,
+          "after": 2084,
+          "delta": 12
+        }
+      ]
+    },
+    "pool_reinvest_minus_clean_qwen": {
+      "before": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "after": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "word_delta_total": -14644,
+      "bin_delta": {
+        "middle_20to25": -7462,
+        "late_gt25": -5634,
+        "early_le20": -1548
+      },
+      "total_per_million_delta": -1464.3999999999796,
+      "bin_per_million_delta": {
+        "early_le20": -154.80000000000018,
+        "late_gt25": -563.3999999999942,
+        "middle_20to25": -746.1999999999971
+      },
+      "largest_losses": [
+        {
+          "word": "go",
+          "child_aoa_month": 19.7106217091394,
+          "child_bin": "early_le20",
+          "before": 23910,
+          "after": 22849,
+          "delta": -1061
+        },
+        {
+          "word": "have",
+          "child_aoa_month": 25.902575376900778,
+          "child_bin": "late_gt25",
+          "before": 46102,
+          "after": 45211,
+          "delta": -891
+        },
+        {
+          "word": "get",
+          "child_aoa_month": 24.364636413972246,
+          "child_bin": "middle_20to25",
+          "before": 21657,
+          "after": 20861,
+          "delta": -796
+        },
+        {
+          "word": "see",
+          "child_aoa_month": 23.26497097971234,
+          "child_bin": "middle_20to25",
+          "before": 21104,
+          "after": 20366,
+          "delta": -738
+        },
+        {
+          "word": "like",
+          "child_aoa_month": 25.75007721668643,
+          "child_bin": "late_gt25",
+          "before": 29113,
+          "after": 28426,
+          "delta": -687
+        },
+        {
+          "word": "put",
+          "child_aoa_month": 26.847988805835868,
+          "child_bin": "late_gt25",
+          "before": 12973,
+          "after": 12420,
+          "delta": -553
+        },
+        {
+          "word": "look",
+          "child_aoa_month": 24.098423511314476,
+          "child_bin": "middle_20to25",
+          "before": 13252,
+          "after": 12711,
+          "delta": -541
+        },
+        {
+          "word": "good",
+          "child_aoa_month": 24.339939004434495,
+          "child_bin": "middle_20to25",
+          "before": 16144,
+          "after": 15694,
+          "delta": -450
+        },
+        {
+          "word": "say",
+          "child_aoa_month": 27.143040225343398,
+          "child_bin": "late_gt25",
+          "before": 11418,
+          "after": 11026,
+          "delta": -392
+        },
+        {
+          "word": "man",
+          "child_aoa_month": 26.239323453067815,
+          "child_bin": "late_gt25",
+          "before": 10868,
+          "after": 10509,
+          "delta": -359
+        },
+        {
+          "word": "take",
+          "child_aoa_month": 26.912440144087405,
+          "child_bin": "late_gt25",
+          "before": 10821,
+          "after": 10477,
+          "delta": -344
+        },
+        {
+          "word": "big",
+          "child_aoa_month": 22.607359585163238,
+          "child_bin": "middle_20to25",
+          "before": 6945,
+          "after": 6650,
+          "delta": -295
+        },
+        {
+          "word": "give",
+          "child_aoa_month": 25.598843914428592,
+          "child_bin": "late_gt25",
+          "before": 6809,
+          "after": 6576,
+          "delta": -233
+        },
+        {
+          "word": "boy",
+          "child_aoa_month": 23.9923879977722,
+          "child_bin": "middle_20to25",
+          "before": 5451,
+          "after": 5221,
+          "delta": -230
+        },
+        {
+          "word": "eat",
+          "child_aoa_month": 20.38286318166485,
+          "child_bin": "middle_20to25",
+          "before": 5506,
+          "after": 5276,
+          "delta": -230
+        },
+        {
+          "word": "nice",
+          "child_aoa_month": 25.83342302182803,
+          "child_bin": "late_gt25",
+          "before": 4386,
+          "after": 4180,
+          "delta": -206
+        },
+        {
+          "word": "play",
+          "child_aoa_month": 22.7220598630656,
+          "child_bin": "middle_20to25",
+          "before": 5594,
+          "after": 5400,
+          "delta": -194
+        },
+        {
+          "word": "girl",
+          "child_aoa_month": 24.667729430346036,
+          "child_bin": "middle_20to25",
+          "before": 4536,
+          "after": 4364,
+          "delta": -172
+        },
+        {
+          "word": "make",
+          "child_aoa_month": 26.76673663101711,
+          "child_bin": "late_gt25",
+          "before": 11483,
+          "after": 11315,
+          "delta": -168
+        },
+        {
+          "word": "wait",
+          "child_aoa_month": 26.10356767864079,
+          "child_bin": "late_gt25",
+          "before": 3916,
+          "after": 3754,
+          "delta": -162
+        },
+        {
+          "word": "love",
+          "child_aoa_month": 23.249110931637965,
+          "child_bin": "middle_20to25",
+          "before": 4809,
+          "after": 4649,
+          "delta": -160
+        },
+        {
+          "word": "house",
+          "child_aoa_month": 23.090503002489797,
+          "child_bin": "middle_20to25",
+          "before": 7180,
+          "after": 7021,
+          "delta": -159
+        },
+        {
+          "word": "night",
+          "child_aoa_month": 24.482917590787725,
+          "child_bin": "middle_20to25",
+          "before": 5838,
+          "after": 5681,
+          "delta": -157
+        },
+        {
+          "word": "talk",
+          "child_aoa_month": 26.1666744723998,
+          "child_bin": "late_gt25",
+          "before": 4097,
+          "after": 3940,
+          "delta": -157
+        },
+        {
+          "word": "room",
+          "child_aoa_month": 24.722076365420904,
+          "child_bin": "middle_20to25",
+          "before": 5370,
+          "after": 5218,
+          "delta": -152
+        },
+        {
+          "word": "today",
+          "child_aoa_month": 29.606093090564784,
+          "child_bin": "late_gt25",
+          "before": 3358,
+          "after": 3214,
+          "delta": -144
+        },
+        {
+          "word": "hungry",
+          "child_aoa_month": 24.654359259781693,
+          "child_bin": "middle_20to25",
+          "before": 2768,
+          "after": 2632,
+          "delta": -136
+        },
+        {
+          "word": "hear",
+          "child_aoa_month": 26.993574492322516,
+          "child_bin": "late_gt25",
+          "before": 3017,
+          "after": 2883,
+          "delta": -134
+        },
+        {
+          "word": "door",
+          "child_aoa_month": 21.094330119099542,
+          "child_bin": "middle_20to25",
+          "before": 3465,
+          "after": 3334,
+          "delta": -131
+        },
+        {
+          "word": "read",
+          "child_aoa_month": 23.095216853951683,
+          "child_bin": "middle_20to25",
+          "before": 3849,
+          "after": 3718,
+          "delta": -131
+        },
+        {
+          "word": "morning",
+          "child_aoa_month": 26.726898941775957,
+          "child_bin": "late_gt25",
+          "before": 3523,
+          "after": 3394,
+          "delta": -129
+        },
+        {
+          "word": "head",
+          "child_aoa_month": 21.410556416835345,
+          "child_bin": "middle_20to25",
+          "before": 4846,
+          "after": 4724,
+          "delta": -122
+        },
+        {
+          "word": "pretty",
+          "child_aoa_month": 25.930457910420653,
+          "child_bin": "late_gt25",
+          "before": 3063,
+          "after": 2942,
+          "delta": -121
+        },
+        {
+          "word": "friend",
+          "child_aoa_month": 26.671894161677375,
+          "child_bin": "late_gt25",
+          "before": 2647,
+          "after": 2534,
+          "delta": -113
+        },
+        {
+          "word": "sit",
+          "child_aoa_month": 21.993039748466675,
+          "child_bin": "middle_20to25",
+          "before": 2722,
+          "after": 2616,
+          "delta": -106
+        },
+        {
+          "word": "happy",
+          "child_aoa_month": 23.945755954119555,
+          "child_bin": "middle_20to25",
+          "before": 2400,
+          "after": 2299,
+          "delta": -101
+        },
+        {
+          "word": "table",
+          "child_aoa_month": 23.623454640728905,
+          "child_bin": "middle_20to25",
+          "before": 2903,
+          "after": 2802,
+          "delta": -101
+        },
+        {
+          "word": "day",
+          "child_aoa_month": 28.57030413820359,
+          "child_bin": "late_gt25",
+          "before": 8844,
+          "after": 8744,
+          "delta": -100
+        },
+        {
+          "word": "write",
+          "child_aoa_month": 28.395648019984414,
+          "child_bin": "late_gt25",
+          "before": 2766,
+          "after": 2667,
+          "delta": -99
+        },
+        {
+          "word": "stop",
+          "child_aoa_month": 22.7025658907012,
+          "child_bin": "middle_20to25",
+          "before": 3554,
+          "after": 3457,
+          "delta": -97
+        }
+      ],
+      "largest_gains": [
+        {
+          "word": "new",
+          "child_aoa_month": 28.840785987993776,
+          "child_bin": "late_gt25",
+          "before": 8101,
+          "after": 8466,
+          "delta": 365
+        },
+        {
+          "word": "high",
+          "child_aoa_month": 26.708808302132432,
+          "child_bin": "late_gt25",
+          "before": 3276,
+          "after": 3600,
+          "delta": 324
+        },
+        {
+          "word": "food",
+          "child_aoa_month": 23.482138731792105,
+          "child_bin": "middle_20to25",
+          "before": 2873,
+          "after": 3148,
+          "delta": 275
+        },
+        {
+          "word": "people",
+          "child_aoa_month": 27.729170763166103,
+          "child_bin": "late_gt25",
+          "before": 12636,
+          "after": 12899,
+          "delta": 263
+        },
+        {
+          "word": "first",
+          "child_aoa_month": 28.986200167021508,
+          "child_bin": "late_gt25",
+          "before": 11315,
+          "after": 11532,
+          "delta": 217
+        },
+        {
+          "word": "plant",
+          "child_aoa_month": 27.17845363579105,
+          "child_bin": "late_gt25",
+          "before": 387,
+          "after": 508,
+          "delta": 121
+        },
+        {
+          "word": "help",
+          "child_aoa_month": 22.549129293001915,
+          "child_bin": "middle_20to25",
+          "before": 4804,
+          "after": 4924,
+          "delta": 120
+        },
+        {
+          "word": "tooth",
+          "child_aoa_month": 22.288597086318816,
+          "child_bin": "middle_20to25",
+          "before": 185,
+          "after": 258,
+          "delta": 73
+        },
+        {
+          "word": "animal",
+          "child_aoa_month": 24.330089945071023,
+          "child_bin": "middle_20to25",
+          "before": 851,
+          "after": 924,
+          "delta": 73
+        },
+        {
+          "word": "sun",
+          "child_aoa_month": 22.620513837393432,
+          "child_bin": "middle_20to25",
+          "before": 1730,
+          "after": 1802,
+          "delta": 72
+        },
+        {
+          "word": "share",
+          "child_aoa_month": 26.32381034652683,
+          "child_bin": "late_gt25",
+          "before": 723,
+          "after": 791,
+          "delta": 68
+        },
+        {
+          "word": "tissue",
+          "child_aoa_month": 24.71696112712117,
+          "child_bin": "middle_20to25",
+          "before": 109,
+          "after": 170,
+          "delta": 61
+        },
+        {
+          "word": "medicine",
+          "child_aoa_month": 24.709281294511936,
+          "child_bin": "middle_20to25",
+          "before": 420,
+          "after": 480,
+          "delta": 60
+        },
+        {
+          "word": "light",
+          "child_aoa_month": 21.573068682350033,
+          "child_bin": "middle_20to25",
+          "before": 2549,
+          "after": 2606,
+          "delta": 57
+        },
+        {
+          "word": "eye",
+          "child_aoa_month": 17.56441529060678,
+          "child_bin": "early_le20",
+          "before": 1255,
+          "after": 1312,
+          "delta": 57
+        },
+        {
+          "word": "show",
+          "child_aoa_month": 27.51748617185101,
+          "child_bin": "late_gt25",
+          "before": 3720,
+          "after": 3764,
+          "delta": 44
+        },
+        {
+          "word": "white",
+          "child_aoa_month": 26.40244979152026,
+          "child_bin": "late_gt25",
+          "before": 3034,
+          "after": 3074,
+          "delta": 40
+        },
+        {
+          "word": "present",
+          "child_aoa_month": 25.256832955307473,
+          "child_bin": "late_gt25",
+          "before": 1567,
+          "after": 1600,
+          "delta": 33
+        },
+        {
+          "word": "teacher",
+          "child_aoa_month": 28.36884966091159,
+          "child_bin": "late_gt25",
+          "before": 932,
+          "after": 964,
+          "delta": 32
+        },
+        {
+          "word": "ice",
+          "child_aoa_month": 23.464365625838706,
+          "child_bin": "middle_20to25",
+          "before": 1290,
+          "after": 1321,
+          "delta": 31
+        },
+        {
+          "word": "soap",
+          "child_aoa_month": 22.847457883648175,
+          "child_bin": "middle_20to25",
+          "before": 191,
+          "after": 221,
+          "delta": 30
+        },
+        {
+          "word": "full",
+          "child_aoa_month": 27.37585639496008,
+          "child_bin": "late_gt25",
+          "before": 2295,
+          "after": 2323,
+          "delta": 28
+        },
+        {
+          "word": "foot",
+          "child_aoa_month": 21.095607950124922,
+          "child_bin": "middle_20to25",
+          "before": 994,
+          "after": 1019,
+          "delta": 25
+        },
+        {
+          "word": "cover",
+          "child_aoa_month": 29.120587673006845,
+          "child_bin": "late_gt25",
+          "before": 735,
+          "after": 760,
+          "delta": 25
+        },
+        {
+          "word": "block",
+          "child_aoa_month": 21.984059781669306,
+          "child_bin": "middle_20to25",
+          "before": 621,
+          "after": 646,
+          "delta": 25
+        },
+        {
+          "word": "slow",
+          "child_aoa_month": 28.72766020830381,
+          "child_bin": "late_gt25",
+          "before": 525,
+          "after": 549,
+          "delta": 24
+        },
+        {
+          "word": "school",
+          "child_aoa_month": 23.937530807499474,
+          "child_bin": "middle_20to25",
+          "before": 5270,
+          "after": 5294,
+          "delta": 24
+        },
+        {
+          "word": "build",
+          "child_aoa_month": 26.870721478274586,
+          "child_bin": "late_gt25",
+          "before": 863,
+          "after": 886,
+          "delta": 23
+        },
+        {
+          "word": "brown",
+          "child_aoa_month": 26.727189326690834,
+          "child_bin": "late_gt25",
+          "before": 1240,
+          "after": 1263,
+          "delta": 23
+        },
+        {
+          "word": "vitamins",
+          "child_aoa_month": 29.851211676176195,
+          "child_bin": "late_gt25",
+          "before": 68,
+          "after": 88,
+          "delta": 20
+        },
+        {
+          "word": "park",
+          "child_aoa_month": 22.878206476855862,
+          "child_bin": "middle_20to25",
+          "before": 1298,
+          "after": 1317,
+          "delta": 19
+        },
+        {
+          "word": "close",
+          "child_aoa_month": 24.519368084825462,
+          "child_bin": "middle_20to25",
+          "before": 2072,
+          "after": 2091,
+          "delta": 19
+        },
+        {
+          "word": "beans",
+          "child_aoa_month": 25.33209562564099,
+          "child_bin": "late_gt25",
+          "before": 263,
+          "after": 281,
+          "delta": 18
+        },
+        {
+          "word": "soft",
+          "child_aoa_month": 26.553159844649922,
+          "child_bin": "late_gt25",
+          "before": 737,
+          "after": 754,
+          "delta": 17
+        },
+        {
+          "word": "corn",
+          "child_aoa_month": 24.30521021007631,
+          "child_bin": "middle_20to25",
+          "before": 405,
+          "after": 422,
+          "delta": 17
+        },
+        {
+          "word": "feed",
+          "child_aoa_month": 27.19892571562119,
+          "child_bin": "late_gt25",
+          "before": 499,
+          "after": 515,
+          "delta": 16
+        },
+        {
+          "word": "farm",
+          "child_aoa_month": 28.02073014859909,
+          "child_bin": "late_gt25",
+          "before": 553,
+          "after": 569,
+          "delta": 16
+        },
+        {
+          "word": "dark",
+          "child_aoa_month": 26.0144061423592,
+          "child_bin": "late_gt25",
+          "before": 1373,
+          "after": 1389,
+          "delta": 16
+        },
+        {
+          "word": "bee",
+          "child_aoa_month": 21.516560770858195,
+          "child_bin": "middle_20to25",
+          "before": 204,
+          "after": 220,
+          "delta": 16
+        },
+        {
+          "word": "camera",
+          "child_aoa_month": 25.871615597327157,
+          "child_bin": "late_gt25",
+          "before": 450,
+          "after": 465,
+          "delta": 15
+        }
+      ]
+    }
+  },
+  "out_json": "experiments/archive/representation_and_objectives/data/compact_aoa_localization/compact_aoa_support_and_exposure_localization.json",
+  "out_note": "research/notes/representation_and_objectives/compact_aoa_support_and_exposure_localization.md"
+}

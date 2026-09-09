@@ -1,0 +1,192 @@
+{
+  "status": "ROBERTA_REPEAT_SPLIT_PREFLIGHT_OK",
+  "created_utc": "2026-09-06T09:53:11Z",
+  "scientific_purpose": "Second-architecture locality test: train RoBERTa on the same row-split exact-recurrence stream and later compare compact T/U/N readout against existing RoBERTa CLEAN and REPEAT seed43022.",
+  "stream": "experiments/archive/relation_learning/data/split_inwindow_rowholdout_pools/compact_repeat_split_dose2p64x_100M.jsonl",
+  "stream_sha256": "427302c903d40ea23c4afc4afd12b9bb3fc0f33cd69bca3bbf8fcb3d32fd3345",
+  "stream_accounting": {
+    "rows": 648280,
+    "words": 100000000,
+    "exact_100M": true,
+    "sha256": "427302c903d40ea23c4afc4afd12b9bb3fc0f33cd69bca3bbf8fcb3d32fd3345",
+    "first_rows": [
+      {
+        "row": 0,
+        "words": 160,
+        "source": "childes",
+        "example_id": 7830,
+        "text_prefix": "yeah. *FAT: yeah. [takes Bozo] *CHI: [returns to her chair and her sandwich]. [bef laughs] *MOT: where? *CHI: what's the"
+      },
+      {
+        "row": 1,
+        "words": 133,
+        "source": "qwen_pair_packed",
+        "example_id": 309731,
+        "text_prefix": "the Heisei, as well as the first standalone Kamen Rider TV series since Kamen Rider Black RX and the first series of the"
+      },
+      {
+        "row": 2,
+        "words": 157,
+        "source": "qwen_pair_packed",
+        "example_id": 312076,
+        "text_prefix": "These problems were presented in his speech as \"unattackable at the present state of mathematics\". In his address, he ch"
+      }
+    ],
+    "last_rows": [
+      {
+        "row": 648277,
+        "words": 160,
+        "source": "childes",
+        "example_id": 6475,
+        "text_prefix": "see. *CHI: see Cromer. *CHI: see xxx. *URS: see what? *CHI: open it [Ursula's bag]? *CHI: wan' open it? *CHI: dere it go"
+      },
+      {
+        "row": 648278,
+        "words": 149,
+        "source": "compact_repeat_split_companion_dose2p64x",
+        "example_id": 1470903,
+        "text_prefix": "elsewhere. The expansion of finance consumes each of the beams will reflect from the same plane surface. This is of extr"
+      },
+      {
+        "row": 648279,
+        "words": 160,
+        "source": "gutenberg",
+        "example_id": 24337,
+        "text_prefix": "before he could finish; and in two seconds everything was sopping wet. The noise of it was deafening, \"Why, it's a cloud"
+      }
+    ],
+    "source_words_top20": [
+      [
+        "childes",
+        23489600
+      ],
+      [
+        "gutenberg",
+        16961600
+      ],
+      [
+        "open_subtitles",
+        16688000
+      ],
+      [
+        "qwen_pair_packed",
+        16568000
+      ],
+      [
+        "simple_wiki",
+        9660800
+      ],
+      [
+        "compact_split_source_dose2p64x",
+        6904650
+      ],
+      [
+        "bnc_spoken",
+        5252800
+      ],
+      [
+        "compact_repeat_split_companion_dose2p64x",
+        4281220
+      ],
+      [
+        "switchboard",
+        192000
+      ],
+      [
+        "neutral_cleanqwen_topup_dose2p64x::gutenberg",
+        1330
+      ]
+    ],
+    "expected_steps_at_batch256": 2533
+  },
+  "split_metadata": "experiments/archive/relation_learning/data/split_inwindow_rowholdout_pools/split_inwindow_rowholdout_metadata.json",
+  "tokenizer_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+  "model_variant": {
+    "parameter_count": 30528064,
+    "vocab_size": 16384,
+    "model_type": "roberta"
+  },
+  "recipe": {
+    "model_family": "roberta",
+    "parameter_count_expected": 30528064,
+    "vocab_size_expected": 16384,
+    "hidden_size": 480,
+    "n_layer": 8,
+    "n_head": 8,
+    "ffn_mult": 4,
+    "seed": 43,
+    "extra_init_seed": 43022,
+    "train_rng_seed": 43023,
+    "batch_size": 256,
+    "seq_length": 256,
+    "max_seq_length": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.06,
+    "mask_prob": 0.15,
+    "checkpoint_words": 10000000,
+    "max_word_exposure": 100000000,
+    "lr_total_steps": 2529,
+    "num_workers": 0,
+    "log_every": 50
+  },
+  "run_dir": "experiments/archive/relation_learning/training/runs/roberta_repeat_split_dose2p64x_rowholdout_100M_seed43022",
+  "command": [
+    "python3",
+    "-B",
+    "experiments/archive/frontier_consolidation/scripts/roberta_mlm_transfer_trainer.py",
+    "--tokenizer_path",
+    "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "--tokenizer_label",
+    "compliant16k_reinvest10M",
+    "--model_family",
+    "roberta",
+    "--hidden_size",
+    "480",
+    "--n_layer",
+    "8",
+    "--n_head",
+    "8",
+    "--ffn_mult",
+    "4",
+    "--seed",
+    "43",
+    "--extra_init_seed",
+    "43022",
+    "--train_rng_seed",
+    "43023",
+    "--batch_size",
+    "256",
+    "--seq_length",
+    "256",
+    "--max_seq_length",
+    "256",
+    "--learning_rate",
+    "0.001",
+    "--weight_decay",
+    "0.01",
+    "--warmup_fraction",
+    "0.06",
+    "--mask_prob",
+    "0.15",
+    "--max_word_exposure",
+    "100000000",
+    "--checkpoint_words",
+    "10000000",
+    "--lr_total_steps",
+    "2529",
+    "--num_workers",
+    "0",
+    "--log_every",
+    "50",
+    "--example_jsonl",
+    "experiments/archive/relation_learning/data/split_inwindow_rowholdout_pools/compact_repeat_split_dose2p64x_100M.jsonl",
+    "--example_jsonl_label",
+    "roberta_repeat_split_dose2p64x_rowholdout",
+    "--output_dir",
+    "experiments/archive/relation_learning/training/runs/roberta_repeat_split_dose2p64x_rowholdout_100M_seed43022"
+  ],
+  "no_evaluation_superglue_aoa_upload_or_leaderboard": true,
+  "mechanism_instrument_not_leaderboard_submission": true
+}

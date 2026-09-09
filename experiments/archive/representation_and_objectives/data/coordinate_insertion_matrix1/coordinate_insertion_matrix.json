@@ -1,0 +1,1562 @@
+{
+  "status": "INSERTION_MATRIX",
+  "created": "2026-09-04T10:48:35Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/coordinate_insertion_matrix1",
+    "seed": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "train_arm": "unique_tag_direct",
+    "train_construction": {
+      "arm_name": "unique_tag_direct",
+      "ctx_mode": "unique",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=unique|q=direct_tag": 2560,
+          "base_stable_train|ctx=unique|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=unique|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=unique|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "unique_tag_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "unique_tag_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "unique_tag_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    },
+    "eval_ctx_modes": [
+      "unique",
+      "filler",
+      "labeldup",
+      "entrydup",
+      "slotdecl",
+      "roledecl"
+    ],
+    "eval_inventory": {
+      "train_total": 1320,
+      "held_total": 440
+    },
+    "eval_selection": {
+      "base_stable": {
+        "n": 80,
+        "changed": {
+          "False": 80
+        },
+        "dir": {
+          "A->A": 40,
+          "B->B": 40
+        },
+        "winner_initial_later": {
+          "1->1": 44,
+          "0->0": 36
+        }
+      },
+      "base_stable2": {
+        "n": 97,
+        "changed": {
+          "False": 97
+        },
+        "dir": {
+          "A->A": 49,
+          "B->B": 48
+        },
+        "winner_initial_later": {
+          "1->1": 53,
+          "0->0": 44
+        }
+      },
+      "sparse_changed": {
+        "n": 16,
+        "changed": {
+          "True": 16
+        },
+        "dir": {
+          "A->B": 8,
+          "B->A": 8
+        },
+        "winner_initial_later": {
+          "0->1": 13,
+          "1->0": 3
+        }
+      },
+      "sparse_stable": {
+        "n": 16,
+        "changed": {
+          "False": 16
+        },
+        "dir": {
+          "B->B": 8,
+          "A->A": 8
+        },
+        "winner_initial_later": {
+          "0->0": 9,
+          "1->1": 7
+        }
+      },
+      "sparse_secondary_stable": {
+        "n": 33,
+        "changed": {
+          "False": 33
+        },
+        "dir": {
+          "A->A": 17,
+          "B->B": 16
+        },
+        "winner_initial_later": {
+          "0->0": 14,
+          "1->1": 19
+        }
+      },
+      "eval_train_changed": {
+        "n": 40,
+        "changed": {
+          "True": 40
+        },
+        "dir": {
+          "A->B": 20,
+          "B->A": 20
+        },
+        "winner_initial_later": {
+          "1->0": 16,
+          "0->1": 24
+        }
+      },
+      "eval_train_stable": {
+        "n": 40,
+        "changed": {
+          "False": 40
+        },
+        "dir": {
+          "A->A": 20,
+          "B->B": 20
+        },
+        "winner_initial_later": {
+          "1->1": 22,
+          "0->0": 18
+        }
+      },
+      "eval_held_changed": {
+        "n": 40,
+        "changed": {
+          "True": 40
+        },
+        "dir": {
+          "A->B": 20,
+          "B->A": 20
+        },
+        "winner_initial_later": {
+          "0->1": 24,
+          "1->0": 16
+        }
+      },
+      "eval_held_stable": {
+        "n": 40,
+        "changed": {
+          "False": 40
+        },
+        "dir": {
+          "A->A": 20,
+          "B->B": 20
+        },
+        "winner_initial_later": {
+          "0->0": 22,
+          "1->1": 18
+        }
+      },
+      "eval_held_stable2": {
+        "n": 40,
+        "changed": {
+          "False": 40
+        },
+        "dir": {
+          "B->B": 20,
+          "A->A": 20
+        },
+        "winner_initial_later": {
+          "1->1": 23,
+          "0->0": 17
+        }
+      }
+    },
+    "eval_counts": {
+      "insert_entrydup_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_entrydup_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_entrydup_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_filler_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_filler_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_filler_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_labeldup_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_labeldup_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_labeldup_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_roledecl_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_roledecl_heldChanged_heldStable_directTag_roleSwap_heldHyp": 1280,
+      "insert_roledecl_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_roledecl_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_slotdecl_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_slotdecl_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_slotdecl_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_unique_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_unique_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_unique_trainChanged_heldStable_directTag_heldHyp": 1280
+    },
+    "boundary": "Evaluation-time insertion matrix after fitting supplied unique-tag address model."
+  },
+  "token_audit": {
+    "train": {
+      "n": 5632,
+      "min": 78,
+      "p50": 85.0,
+      "p90": 89.0,
+      "p99": 93.0,
+      "max": 97,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 24320,
+      "min": 80,
+      "p50": 125.0,
+      "p90": 140.0,
+      "p99": 145.0,
+      "max": 153,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "summary": {
+    "best_train_acc": 0.9998224973678589,
+    "train_fit": {
+      "overall": 0.9998224431818182,
+      "by_train_kind": {
+        "base_stable_anchor|ctx=unique|q=direct_tag": 0.999609375,
+        "base_stable_train|ctx=unique|q=direct_tag": 1.0,
+        "sparse_changed_focal|ctx=unique|q=direct_tag": 1.0,
+        "sparse_stable_focal|ctx=unique|q=direct_tag": 1.0
+      },
+      "by_query_family": {
+        "focal_after": 1.0,
+        "focal_before": 1.0,
+        "secondary_after": 0.99921875,
+        "secondary_before": 1.0
+      },
+      "by_changed_focal": {
+        "False": 0.9998139880952381,
+        "True": 1.0
+      }
+    },
+    "evals": {
+      "insert_entrydup_heldChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.6875,
+        "by_query": {
+          "focal_before": 0.75,
+          "focal_after": 0.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 1.7597742080688477,
+          "focal_after": -6.683752536773682,
+          "secondary_before": 24.741475820541382,
+          "secondary_after": 24.92326784133911
+        },
+        "standard_acc": 0.740625
+      },
+      "insert_entrydup_heldStable_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 25.46270489692688,
+          "focal_after": 25.613691329956055,
+          "secondary_before": 24.776584148406982,
+          "secondary_after": 24.61541175842285
+        },
+        "standard_acc": 0.99453125
+      },
+      "insert_entrydup_trainChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.6875,
+        "by_query": {
+          "focal_before": 0.25,
+          "focal_after": 0.5,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -1.159186601638794,
+          "focal_after": 0.5716437101364136,
+          "secondary_before": 21.38048166036606,
+          "secondary_after": 22.982472896575928
+        },
+        "standard_acc": 0.72734375
+      },
+      "insert_filler_heldChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 23.93570566177368,
+          "focal_after": 25.421457767486572,
+          "secondary_before": 25.35587501525879,
+          "secondary_after": 25.688923597335815
+        },
+        "standard_acc": 0.99765625
+      },
+      "insert_filler_heldStable_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 25.681018590927124,
+          "focal_after": 25.945887327194214,
+          "secondary_before": 25.89182162284851,
+          "secondary_after": 25.938881158828735
+        },
+        "standard_acc": 1.0
+      },
+      "insert_filler_trainChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 25.203052282333374,
+          "focal_after": 25.277158975601196,
+          "secondary_before": 25.630935430526733,
+          "secondary_after": 25.59954309463501
+        },
+        "standard_acc": 0.99453125
+      },
+      "insert_labeldup_heldChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.75,
+        "by_query": {
+          "focal_before": 0.5,
+          "focal_after": 0.5,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 1.296304702758789,
+          "focal_after": 4.896798372268677,
+          "secondary_before": 25.362797260284424,
+          "secondary_after": 25.288915395736694
+        },
+        "standard_acc": 0.78828125
+      },
+      "insert_labeldup_heldStable_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 26.151264429092407,
+          "focal_after": 26.111650228500366,
+          "secondary_before": 24.85004162788391,
+          "secondary_after": 24.50675892829895
+        },
+        "standard_acc": 0.99765625
+      },
+      "insert_labeldup_trainChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.8125,
+        "by_query": {
+          "focal_before": 0.25,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -2.701164722442627,
+          "focal_after": 14.678823232650757,
+          "secondary_before": 25.607712030410767,
+          "secondary_after": 25.620761156082153
+        },
+        "standard_acc": 0.78515625
+      },
+      "insert_roledecl_heldChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.6875,
+        "by_query": {
+          "focal_before": 0.25,
+          "focal_after": 0.5,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -3.874158091843128,
+          "focal_after": 1.6380168050527573,
+          "secondary_before": 23.556407928466797,
+          "secondary_after": 23.84580659866333
+        },
+        "standard_acc": 0.73671875
+      },
+      "insert_roledecl_heldChanged_heldStable_directTag_roleSwap_heldHyp": {
+        "contrastive_acc": 0.6875,
+        "by_query": {
+          "focal_before": 0.25,
+          "focal_after": 0.5,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -2.819594621658325,
+          "focal_after": -0.6906366348266602,
+          "secondary_before": 25.05808138847351,
+          "secondary_after": 25.40570092201233
+        },
+        "standard_acc": 0.73828125
+      },
+      "insert_roledecl_heldStable_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 25.412292003631592,
+          "focal_after": 25.57207703590393,
+          "secondary_before": 22.325848758220673,
+          "secondary_after": 23.333868861198425
+        },
+        "standard_acc": 0.9984375
+      },
+      "insert_roledecl_trainChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.8125,
+        "by_query": {
+          "focal_before": 0.5,
+          "focal_after": 0.75,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 1.4723996222019196,
+          "focal_after": 0.5798571705818176,
+          "secondary_before": 25.529930114746094,
+          "secondary_after": 25.71225118637085
+        },
+        "standard_acc": 0.74453125
+      },
+      "insert_slotdecl_heldChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.75,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 5.670181751251221,
+          "focal_after": -10.918355643749237,
+          "secondary_before": 26.483119249343872,
+          "secondary_after": 26.420177936553955
+        },
+        "standard_acc": 0.73203125
+      },
+      "insert_slotdecl_heldStable_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 25.667897701263428,
+          "focal_after": 25.65658712387085,
+          "secondary_before": 25.172786951065063,
+          "secondary_after": 25.456133365631104
+        },
+        "standard_acc": 0.99296875
+      },
+      "insert_slotdecl_trainChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 0.75,
+        "by_query": {
+          "focal_before": 0.5,
+          "focal_after": 0.5,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -5.214149475097656,
+          "focal_after": 3.5886744260787964,
+          "secondary_before": 25.672868967056274,
+          "secondary_after": 25.718152046203613
+        },
+        "standard_acc": 0.73671875
+      },
+      "insert_unique_heldChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 23.609073877334595,
+          "focal_after": 24.54889941215515,
+          "secondary_before": 25.344318151474,
+          "secondary_after": 25.339385271072388
+        },
+        "standard_acc": 0.99609375
+      },
+      "insert_unique_heldStable_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 25.511801719665527,
+          "focal_after": 25.447288513183594,
+          "secondary_before": 25.69026279449463,
+          "secondary_after": 25.22032594680786
+        },
+        "standard_acc": 1.0
+      },
+      "insert_unique_trainChanged_heldStable_directTag_heldHyp": {
+        "contrastive_acc": 1.0,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 24.85744285583496,
+          "focal_after": 24.988773584365845,
+          "secondary_before": 25.346374988555908,
+          "secondary_after": 25.286564826965332
+        },
+        "standard_acc": 0.99765625
+      }
+    }
+  },
+  "per_seed": [
+    {
+      "arm": "unique_tag_direct",
+      "seed": 26700,
+      "best_train_acc": 0.9998224973678589,
+      "train_fit": {
+        "overall": 0.9998224431818182,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=unique|q=direct_tag": 0.999609375,
+          "base_stable_train|ctx=unique|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=unique|q=direct_tag": 1.0,
+          "sparse_stable_focal|ctx=unique|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 0.99921875,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 0.9998139880952381,
+          "True": 1.0
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.4836707958391509,
+          "train_acc": 0.9387429356575012
+        },
+        {
+          "epoch": 2,
+          "loss": 0.11054444013951649,
+          "train_acc": 0.9884588122367859
+        },
+        {
+          "epoch": 3,
+          "loss": 0.08177683964944488,
+          "train_acc": 0.9932528734207153
+        },
+        {
+          "epoch": 4,
+          "loss": 0.06066713675009148,
+          "train_acc": 0.9985795617103577
+        },
+        {
+          "epoch": 5,
+          "loss": 0.04291675839556126,
+          "train_acc": 0.997691810131073
+        },
+        {
+          "epoch": 6,
+          "loss": 0.04501093239303344,
+          "train_acc": 0.999644935131073
+        },
+        {
+          "epoch": 7,
+          "loss": 0.04252165373767391,
+          "train_acc": 0.9982244372367859
+        },
+        {
+          "epoch": 8,
+          "loss": 0.03778003512481443,
+          "train_acc": 0.9984019994735718
+        },
+        {
+          "epoch": 9,
+          "loss": 0.03627338066542284,
+          "train_acc": 0.999644935131073
+        },
+        {
+          "epoch": 10,
+          "loss": 0.03438549425622432,
+          "train_acc": 0.9998224973678589
+        }
+      ],
+      "evals": {
+        "insert_unique_heldChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99609375,
+            "by_query_family": {
+              "focal_before": 0.990625,
+              "focal_after": 0.99375,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.99609375
+            },
+            "by_stable_secondary": {
+              "True": 0.99609375
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 23.609073877334595,
+              "focal_after": 24.54889941215515,
+              "secondary_before": 25.344318151474,
+              "secondary_after": 25.339385271072388
+            },
+            "by_changed_focal": {
+              "True": 1.0
+            },
+            "margin_mean": 24.710419178009033
+          }
+        },
+        "insert_unique_trainChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99765625,
+            "by_query_family": {
+              "focal_before": 0.99375,
+              "focal_after": 0.996875,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.99765625
+            },
+            "by_stable_secondary": {
+              "True": 0.99765625
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 24.85744285583496,
+              "focal_after": 24.988773584365845,
+              "secondary_before": 25.346374988555908,
+              "secondary_after": 25.286564826965332
+            },
+            "by_changed_focal": {
+              "True": 1.0
+            },
+            "margin_mean": 25.11978906393051
+          }
+        },
+        "insert_unique_heldStable_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 1.0,
+            "by_query_family": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "by_stable_secondary": {
+              "True": 1.0
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 25.511801719665527,
+              "focal_after": 25.447288513183594,
+              "secondary_before": 25.69026279449463,
+              "secondary_after": 25.22032594680786
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "margin_mean": 25.467419743537903
+          }
+        },
+        "insert_filler_heldChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99765625,
+            "by_query_family": {
+              "focal_before": 0.996875,
+              "focal_after": 0.99375,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.99765625
+            },
+            "by_stable_secondary": {
+              "True": 0.99765625
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 23.93570566177368,
+              "focal_after": 25.421457767486572,
+              "secondary_before": 25.35587501525879,
+              "secondary_after": 25.688923597335815
+            },
+            "by_changed_focal": {
+              "True": 1.0
+            },
+            "margin_mean": 25.100490510463715
+          }
+        },
+        "insert_filler_trainChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99453125,
+            "by_query_family": {
+              "focal_before": 0.9875,
+              "focal_after": 0.990625,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.99453125
+            },
+            "by_stable_secondary": {
+              "True": 0.99453125
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 25.203052282333374,
+              "focal_after": 25.277158975601196,
+              "secondary_before": 25.630935430526733,
+              "secondary_after": 25.59954309463501
+            },
+            "by_changed_focal": {
+              "True": 1.0
+            },
+            "margin_mean": 25.42767244577408
+          }
+        },
+        "insert_filler_heldStable_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 1.0,
+            "by_query_family": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "by_stable_secondary": {
+              "True": 1.0
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 25.681018590927124,
+              "focal_after": 25.945887327194214,
+              "secondary_before": 25.89182162284851,
+              "secondary_after": 25.938881158828735
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "margin_mean": 25.864402174949646
+          }
+        },
+        "insert_labeldup_heldChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.78828125,
+            "by_query_family": {
+              "focal_before": 0.55,
+              "focal_after": 0.603125,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.78828125
+            },
+            "by_stable_secondary": {
+              "True": 0.78828125
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.75,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 1.296304702758789,
+              "focal_after": 4.896798372268677,
+              "secondary_before": 25.362797260284424,
+              "secondary_after": 25.288915395736694
+            },
+            "by_changed_focal": {
+              "True": 0.75
+            },
+            "margin_mean": 14.211203932762146
+          }
+        },
+        "insert_labeldup_trainChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.78515625,
+            "by_query_family": {
+              "focal_before": 0.55625,
+              "focal_after": 0.584375,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.78515625
+            },
+            "by_stable_secondary": {
+              "True": 0.78515625
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.8125,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.25,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -2.701164722442627,
+              "focal_after": 14.678823232650757,
+              "secondary_before": 25.607712030410767,
+              "secondary_after": 25.620761156082153
+            },
+            "by_changed_focal": {
+              "True": 0.8125
+            },
+            "margin_mean": 15.801532924175262
+          }
+        },
+        "insert_labeldup_heldStable_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99765625,
+            "by_query_family": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 0.99375,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "False": 0.99765625
+            },
+            "by_stable_secondary": {
+              "True": 0.99765625
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 26.151264429092407,
+              "focal_after": 26.111650228500366,
+              "secondary_before": 24.85004162788391,
+              "secondary_after": 24.50675892829895
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "margin_mean": 25.40492880344391
+          }
+        },
+        "insert_entrydup_heldChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.740625,
+            "by_query_family": {
+              "focal_before": 0.490625,
+              "focal_after": 0.475,
+              "secondary_before": 1.0,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "True": 0.740625
+            },
+            "by_stable_secondary": {
+              "True": 0.740625
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.6875,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.75,
+              "focal_after": 0.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 1.7597742080688477,
+              "focal_after": -6.683752536773682,
+              "secondary_before": 24.741475820541382,
+              "secondary_after": 24.92326784133911
+            },
+            "by_changed_focal": {
+              "True": 0.6875
+            },
+            "margin_mean": 11.185191333293915
+          }
+        },
+        "insert_entrydup_trainChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.72734375,
+            "by_query_family": {
+              "focal_before": 0.45625,
+              "focal_after": 0.459375,
+              "secondary_before": 0.996875,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "True": 0.72734375
+            },
+            "by_stable_secondary": {
+              "True": 0.72734375
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.6875,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.25,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -1.159186601638794,
+              "focal_after": 0.5716437101364136,
+              "secondary_before": 21.38048166036606,
+              "secondary_after": 22.982472896575928
+            },
+            "by_changed_focal": {
+              "True": 0.6875
+            },
+            "margin_mean": 10.943852916359901
+          }
+        },
+        "insert_entrydup_heldStable_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99453125,
+            "by_query_family": {
+              "focal_before": 0.99375,
+              "focal_after": 0.990625,
+              "secondary_before": 0.996875,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "False": 0.99453125
+            },
+            "by_stable_secondary": {
+              "True": 0.99453125
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 25.46270489692688,
+              "focal_after": 25.613691329956055,
+              "secondary_before": 24.776584148406982,
+              "secondary_after": 24.61541175842285
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "margin_mean": 25.117098033428192
+          }
+        },
+        "insert_slotdecl_heldChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.73203125,
+            "by_query_family": {
+              "focal_before": 0.503125,
+              "focal_after": 0.425,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.73203125
+            },
+            "by_stable_secondary": {
+              "True": 0.73203125
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.75,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 5.670181751251221,
+              "focal_after": -10.918355643749237,
+              "secondary_before": 26.483119249343872,
+              "secondary_after": 26.420177936553955
+            },
+            "by_changed_focal": {
+              "True": 0.75
+            },
+            "margin_mean": 11.913780823349953
+          }
+        },
+        "insert_slotdecl_trainChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.73671875,
+            "by_query_family": {
+              "focal_before": 0.490625,
+              "focal_after": 0.4625,
+              "secondary_before": 0.996875,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "True": 0.73671875
+            },
+            "by_stable_secondary": {
+              "True": 0.73671875
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.75,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -5.214149475097656,
+              "focal_after": 3.5886744260787964,
+              "secondary_before": 25.672868967056274,
+              "secondary_after": 25.718152046203613
+            },
+            "by_changed_focal": {
+              "True": 0.75
+            },
+            "margin_mean": 12.441386491060257
+          }
+        },
+        "insert_slotdecl_heldStable_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.99296875,
+            "by_query_family": {
+              "focal_before": 1.0,
+              "focal_after": 0.996875,
+              "secondary_before": 0.9875,
+              "secondary_after": 0.9875
+            },
+            "by_changed_focal": {
+              "False": 0.99296875
+            },
+            "by_stable_secondary": {
+              "True": 0.99296875
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 25.667897701263428,
+              "focal_after": 25.65658712387085,
+              "secondary_before": 25.172786951065063,
+              "secondary_after": 25.456133365631104
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "margin_mean": 25.48835128545761
+          }
+        },
+        "insert_roledecl_heldChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.73671875,
+            "by_query_family": {
+              "focal_before": 0.50625,
+              "focal_after": 0.440625,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_changed_focal": {
+              "True": 0.73671875
+            },
+            "by_stable_secondary": {
+              "True": 0.73671875
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.6875,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.25,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -3.874158091843128,
+              "focal_after": 1.6380168050527573,
+              "secondary_before": 23.556407928466797,
+              "secondary_after": 23.84580659866333
+            },
+            "by_changed_focal": {
+              "True": 0.6875
+            },
+            "margin_mean": 11.291518310084939
+          }
+        },
+        "insert_roledecl_heldChanged_heldStable_directTag_roleSwap_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.73828125,
+            "by_query_family": {
+              "focal_before": 0.484375,
+              "focal_after": 0.475,
+              "secondary_before": 0.996875,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "True": 0.73828125
+            },
+            "by_stable_secondary": {
+              "True": 0.73828125
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.6875,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.25,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -2.819594621658325,
+              "focal_after": -0.6906366348266602,
+              "secondary_before": 25.05808138847351,
+              "secondary_after": 25.40570092201233
+            },
+            "by_changed_focal": {
+              "True": 0.6875
+            },
+            "margin_mean": 11.738387763500214
+          }
+        },
+        "insert_roledecl_trainChanged_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.74453125,
+            "by_query_family": {
+              "focal_before": 0.496875,
+              "focal_after": 0.4875,
+              "secondary_before": 0.996875,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "True": 0.74453125
+            },
+            "by_stable_secondary": {
+              "True": 0.74453125
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.8125,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.5,
+              "focal_after": 0.75,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 1.4723996222019196,
+              "focal_after": 0.5798571705818176,
+              "secondary_before": 25.529930114746094,
+              "secondary_after": 25.71225118637085
+            },
+            "by_changed_focal": {
+              "True": 0.8125
+            },
+            "margin_mean": 13.32360952347517
+          }
+        },
+        "insert_roledecl_heldStable_heldStable_directTag_heldHyp": {
+          "standard": {
+            "n": 1280,
+            "acc": 0.9984375,
+            "by_query_family": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 0.996875,
+              "secondary_after": 0.996875
+            },
+            "by_changed_focal": {
+              "False": 0.9984375
+            },
+            "by_stable_secondary": {
+              "True": 0.9984375
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 1.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 25.412292003631592,
+              "focal_after": 25.57207703590393,
+              "secondary_before": 22.325848758220673,
+              "secondary_after": 23.333868861198425
+            },
+            "by_changed_focal": {
+              "False": 1.0
+            },
+            "margin_mean": 24.161021664738655
+          }
+        }
+      }
+    }
+  ],
+  "boundary": "Same fitted unique-tag coordinate model evaluated with inserted contexts."
+}

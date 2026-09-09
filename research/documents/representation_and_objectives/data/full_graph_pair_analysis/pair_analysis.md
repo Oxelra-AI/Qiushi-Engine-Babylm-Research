@@ -1,0 +1,41 @@
+# comparison channel design row-paired sign analysis
+
+| family | n | metric | value |
+|---|---:|---|---:|
+| direct_anchor | 384 | opposite_sign_frac | 0.5000 |
+| direct_anchor | 384 | same_sign_frac | 0.5000 |
+| direct_anchor | 384 | mean_d_e_plus | 0.3822 |
+| direct_anchor | 384 | mean_d_e_minus | 0.6208 |
+| graph_transfer | 384 | opposite_sign_frac | 0.5000 |
+| graph_transfer | 384 | same_sign_frac | 0.5000 |
+| graph_transfer | 384 | mean_d_e_plus | 0.2351 |
+| graph_transfer | 384 | mean_d_e_minus | 0.3758 |
+| unchanged | 384 | same_sign_frac | 1.0000 |
+| comp_product_stability | 640 | same_sign_frac | 0.2000 |
+
+## Central eval metrics
+
+### Bridge sign +1
+- direct_same: 1.0
+- graph_mean_de: 0.4702475965023041
+- graph_same: 1.0
+- graph_same_margin: 13.696041733026505
+- hh_closure: 1.0
+- hh_closure_margin: 10.494245974268106
+- mixed_acc: 1.0
+- mixed_acc_margin: 11.52538570662267
+- pair_both_graph_same: 0.5
+- same_init_changed: 1.0
+- unchanged: 0.5
+### Bridge sign -1
+- direct_same: 0.0
+- graph_mean_de: 0.7515000104904175
+- graph_same: 0.0
+- graph_same_margin: -16.770620703697205
+- hh_closure: 1.0
+- hh_closure_margin: 11.571417766484206
+- mixed_acc: 0.0
+- mixed_acc_margin: -9.34942054005717
+- pair_both_graph_same: 0.0
+- same_init_changed: 0.0
+- unchanged: 0.5

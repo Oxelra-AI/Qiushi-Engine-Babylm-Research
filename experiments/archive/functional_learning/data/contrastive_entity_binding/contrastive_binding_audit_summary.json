@@ -1,0 +1,125 @@
+{
+  "status": "CONTRASTIVE_ENTITY_BINDING_AUDIT",
+  "created_by": "functional_learning",
+  "scientific_question": "Can we construct natural-language experience where only entity-specific update binding, not source retention or recency copying, solves both update and retention targets?",
+  "source_packet_files": [
+    "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_all.jsonl",
+    "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_balanced.jsonl",
+    "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_train.jsonl",
+    "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_heldout.jsonl"
+  ],
+  "count_summaries": [
+    {
+      "path": "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_all.jsonl",
+      "rows": 4657,
+      "type_counts": {
+        "UNCHANGED_DISTRACTOR_USE": 1866,
+        "UPDATED_USE": 2791
+      },
+      "unique_pair_ids": 4657,
+      "same_pair_both_types": 0
+    },
+    {
+      "path": "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_balanced.jsonl",
+      "rows": 3732,
+      "type_counts": {
+        "UNCHANGED_DISTRACTOR_USE": 1866,
+        "UPDATED_USE": 1866
+      },
+      "unique_pair_ids": 3732,
+      "same_pair_both_types": 0
+    },
+    {
+      "path": "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_train.jsonl",
+      "rows": 3332,
+      "type_counts": {
+        "UNCHANGED_DISTRACTOR_USE": 1666,
+        "UPDATED_USE": 1666
+      },
+      "unique_pair_ids": 3332,
+      "same_pair_both_types": 0
+    },
+    {
+      "path": "experiments/archive/relation_learning/data/state_use_generation/validated_state_use_packets_plainuse_full_heldout.jsonl",
+      "rows": 400,
+      "type_counts": {
+        "UNCHANGED_DISTRACTOR_USE": 200,
+        "UPDATED_USE": 200
+      },
+      "unique_pair_ids": 400,
+      "same_pair_both_types": 0
+    }
+  ],
+  "same_pair_both_types": 0,
+  "strict_same_source_contrast_candidates": 0,
+  "strict_rejection_counts": {},
+  "single_packet_actual_mask_summary": {
+    "UPDATED_USE": {
+      "n": 2791,
+      "answer_in_source_frac": 0.002866356144750985,
+      "answer_in_update_frac": 0.6427803654604085,
+      "foil_in_source_frac": 0.4901469007524185,
+      "foil_in_update_frac": 0.06664278036546041,
+      "masked_words_missing_frac": 0.5800788247939807,
+      "cue_hit_frac": 0.0,
+      "mean_answer_piece_count": 4.527767825152275,
+      "mean_use_source_lcs": 1.7248298101039055,
+      "mean_use_update_lcs": 2.707273378717306
+    },
+    "UNCHANGED_DISTRACTOR_USE": {
+      "n": 1866,
+      "answer_in_source_frac": 0.25509110396570206,
+      "answer_in_update_frac": 0.0021436227224008574,
+      "foil_in_source_frac": 0.010182207931404072,
+      "foil_in_update_frac": 0.5557341907824223,
+      "masked_words_missing_frac": 0.992497320471597,
+      "cue_hit_frac": 0.0010718113612004287,
+      "mean_answer_piece_count": 6.986066452304394,
+      "mean_use_source_lcs": 2.8215434083601285,
+      "mean_use_update_lcs": 0.9431939978563773
+    }
+  },
+  "aln_pool_stats": {
+    "path": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+    "exists": true,
+    "rows": 64381,
+    "words": 10000000,
+    "source_counts": {
+      "childes": 16954,
+      "open_subtitles": 12045,
+      "bnc_spoken": 3791,
+      "gutenberg": 12243,
+      "qwen_pair_packed": 12236,
+      "simple_wiki": 6973,
+      "switchboard": 139
+    },
+    "qwen_aligned_rows": 0,
+    "filler_rows": 64381,
+    "sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+    "sample_aln_text": [],
+    "packed_meta_rows": 12236,
+    "packed_meta_words": 1656800,
+    "packed_meta_pairs": 37594,
+    "packed_meta_path": "experiments/archive/compact_experience/data/qwen_clean_aligned/qwen_pair_packed_rows_meta.jsonl"
+  },
+  "budget_prototype": {
+    "n_same_source_contrast_pairs": 0,
+    "raw_two_row_words_total": 0,
+    "raw_words_mean_per_pair": null,
+    "raw_words_p95_per_pair": null,
+    "suggested_next_materialization": "replace official filler rows in the 10M ALN pool with 160-word rows containing one contrast packet per row; do not remove qwen_aligned rows until ALN expansion comparator has been separated.",
+    "aln_rows_available": 0,
+    "official_filler_rows_available": 64381
+  },
+  "outputs": {
+    "summary_json": "experiments/archive/functional_learning/data/contrastive_entity_binding/contrastive_binding_audit_summary.json",
+    "candidate_sample_jsonl": "experiments/archive/functional_learning/data/contrastive_entity_binding/same_pair_contrast_candidates_sample.jsonl",
+    "quality_csv": null,
+    "note": "research/notes/functional_learning/contrastive_entity_binding_design.md"
+  },
+  "interpretation": {
+    "existing_plainuse_training_status": "A02 research shows the existing replacement arm is not a direct route: it improved retention-like margins while target-update use was neutral/negative.",
+    "if_strict_candidates_few": "Generate paired prompts explicitly rather than recombining independent updated/distractor generations; the pair must share source and target entity so that changing only updated_entity changes the correct masked state.",
+    "first_training_readout": "neutral-adjusted update margin and neutral-adjusted retention margin on held-out same-source paired packets; both must improve, because an average trading update against retention repeats the research failure."
+  }
+}

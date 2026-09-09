@@ -1,0 +1,128 @@
+{
+  "status": "FINEWEB_SENTENCE_REWRITE_PROMPTS_PREPARED",
+  "purpose": "future matched test of broad cached FineWeb source sentences alone versus the same sentences coupled to faithful Qwen simplifications; no GPU job launched",
+  "source_jsonl": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_sources/fineweb_sentence_sources.jsonl",
+  "source_sha256": "388be1158bcac02a1583cc65c1ca4fda1f06a0551f38c56d9f3335037f1de68e",
+  "leader_readme_reference": "research/documents/initial_model_studies/data/leader_package_revision_124/dataset_readme__README.md",
+  "require_clean_source_rows": true,
+  "selected_sources": 59769,
+  "selected_source_words": 1246944,
+  "unique_docs": 5419,
+  "top_docs_by_sentence_count": [
+    [
+      "5571",
+      38
+    ],
+    [
+      "6213",
+      37
+    ],
+    [
+      "6093",
+      36
+    ],
+    [
+      "9949",
+      36
+    ],
+    [
+      "12520",
+      35
+    ],
+    [
+      "16942",
+      35
+    ],
+    [
+      "2170",
+      35
+    ],
+    [
+      "7955",
+      35
+    ],
+    [
+      "16982",
+      34
+    ],
+    [
+      "4408",
+      34
+    ]
+  ],
+  "word_stats": {
+    "n": 59769,
+    "min": 8,
+    "p05": 9,
+    "mean": 20.862721477689103,
+    "median": 19,
+    "p95": 39,
+    "p99": 50,
+    "max": 55,
+    "sum": 1246944
+  },
+  "entity_count_stats": {
+    "n": 59769,
+    "min": 0,
+    "p05": 0,
+    "mean": 1.3723669460757248,
+    "median": 1,
+    "p95": 4,
+    "p99": 7,
+    "max": 30,
+    "sum": 82025
+  },
+  "number_count_stats": {
+    "n": 59769,
+    "min": 0,
+    "p05": 0,
+    "mean": 0.27955963793940003,
+    "median": 0,
+    "p95": 2,
+    "p99": 3,
+    "max": 12,
+    "sum": 16709
+  },
+  "domain_hit_counts": {
+    "geography_places": 2838,
+    "quant_numeric": 5279,
+    "people_history": 1297,
+    "causal_relational": 4610,
+    "science_physical": 3769,
+    "institutions_society": 3871,
+    "media_culture": 1369
+  },
+  "full_prompts": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_rewrite/fineweb_complete_sentence_simplification_prompts_all.jsonl",
+  "full_prompts_count": 59769,
+  "full_prompt_sha256": "0d5af01208d71e894d84d2bedf1d4a3e55da19092bd6fb29031dc9c0c179651b",
+  "pilot_prompts": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_rewrite/fineweb_complete_sentence_simplification_prompts_pilot8192.jsonl",
+  "pilot_prompts_count": 8192,
+  "pilot_prompt_sha256": "97d5852a02f8095d3d5ebffa53f66192369841f631a3ae92f55fb578118a9126",
+  "selected_sources_path": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_rewrite/fineweb_complete_sentence_sources_selected.jsonl",
+  "selected_sources_sha256": "c6dbf3115bd5290e2fa5767ae042f96d4d3110c3636f0bb4ed8a7c60a486ec98",
+  "expected_pair_words_if_accept_all": {
+    "source_words": 1246944,
+    "rewrite_words_low_ratio_0p75": 935208,
+    "rewrite_words_mid_ratio_0p90": 1122250,
+    "rewrite_words_high_ratio_1p05": 1309291,
+    "pair_words_low": 2182152,
+    "pair_words_mid": 2369194,
+    "pair_words_high": 2556235
+  },
+  "intended_generation_not_launched": {
+    "model": "qwen3.5-9b or the current local Qwen model allowed by official accounting",
+    "prompt_file": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_rewrite/fineweb_complete_sentence_simplification_prompts_all.jsonl",
+    "max_new_tokens_hint": 72,
+    "temperature_hint": 0.1,
+    "batch_size_hint": 64,
+    "reason_not_launched": "both H100s are occupied by the active semantic-view treatment/control pair; next allocation should wait for paired trajectory and frontier_consolidation evidence"
+  },
+  "future_source_by_rewrite_contrast": {
+    "treatment": "for each accepted source sentence, concatenate original sentence + accepted simplification",
+    "control": "use the identical source-sentence set and exact row-length sequence, filling extra words by same-source repetition rather than adding different facts",
+    "shared_filler": "remaining words drawn from the same official pool rows in identical order after the source/rewrite prefix",
+    "screening": "reject outputs with added numbers, missing source numbers, low entity retention, more than two new named-entity tokens, newline/disclaimer/artifact strings, fragment endings, extreme length ratios, or near-copy outputs",
+    "required_before_training": "materialized arms must pass exact word count, exact row-length matching, identical filler, source-string reconstruction, and seq256 visibility checks"
+  },
+  "not_a_training_result": true
+}

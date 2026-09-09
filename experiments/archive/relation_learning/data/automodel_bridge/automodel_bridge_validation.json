@@ -1,0 +1,162 @@
+{
+  "status": "AUTOMODEL_BRIDGE_DONE",
+  "out_root": "experiments/archive/relation_learning/data/automodel_bridge",
+  "repairs": [
+    {
+      "label": "chck82_scale1p75",
+      "kind": "research",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+      "repaired": "experiments/archive/relation_learning/data/automodel_bridge/repaired_chck82_scale1p75",
+      "auto_model_entry": "adapter_scaled_modeling.AdapterDebertaV2Model",
+      "copied": [
+        "config.json[pending_auto_map]",
+        "special_tokens_map.json",
+        "adapter_scaled_modeling.py[patched]",
+        "tokenizer.json",
+        "tokenizer_config.json"
+      ],
+      "symlinked": [
+        "model.safetensors"
+      ],
+      "source_model_sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3",
+      "repaired_model_sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3"
+    },
+    {
+      "label": "coherent86_alpha075",
+      "kind": "research",
+      "source": "models/frontier",
+      "repaired": "experiments/archive/relation_learning/data/automodel_bridge/repaired_coherent86_alpha075",
+      "auto_model_entry": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2Model",
+      "copied": [
+        "config.json[pending_auto_map]",
+        "special_tokens_map.json",
+        "frozen82_private_modeling.py[patched]",
+        "private_scale_manifest.json",
+        "tokenizer.json",
+        "tokenizer_config.json"
+      ],
+      "symlinked": [
+        "model.safetensors"
+      ],
+      "source_model_sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8",
+      "repaired_model_sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8"
+    }
+  ],
+  "validations": [
+    {
+      "label": "chck82_scale1p75",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+      "repaired": "experiments/archive/relation_learning/data/automodel_bridge/repaired_chck82_scale1p75",
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM",
+        "AutoModel": "adapter_scaled_modeling.AdapterDebertaV2Model"
+      },
+      "trusted_mlm_class": "transformers_modules.repaired_chck82_scale1p75.adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM",
+      "repaired_automodel_class": "transformers_modules.repaired_chck82_scale1p75.adapter_scaled_modeling.AdapterDebertaV2Model",
+      "trusted_mlm_params": {
+        "total": 35463008,
+        "adapter": 995584,
+        "private_adapter": 0,
+        "trainable": 35463008
+      },
+      "repaired_automodel_params": {
+        "total": 35214784,
+        "adapter": 995584,
+        "private_adapter": 0,
+        "trainable": 35214784
+      },
+      "automodel_vs_mlm_encoder": {
+        "max_abs_diff": 0.0,
+        "mean_abs_diff": 0.0,
+        "identical_tol_1e_6": true
+      },
+      "executed_scales": {
+        "adapter": [
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75
+        ],
+        "private_adapter": []
+      },
+      "source_automodel_without_bridge": {
+        "class": "transformers.models.deberta_v2.modeling_deberta_v2.DebertaV2Model",
+        "params": {
+          "total": 34219200,
+          "adapter": 0,
+          "private_adapter": 0,
+          "trainable": 34219200
+        },
+        "max_abs_diff_vs_trusted_mlm": 1.5124444961547852,
+        "mean_abs_diff_vs_trusted_mlm": 0.24962779879570007
+      }
+    },
+    {
+      "label": "coherent86_alpha075",
+      "source": "models/frontier",
+      "repaired": "experiments/archive/relation_learning/data/automodel_bridge/repaired_coherent86_alpha075",
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM",
+        "AutoModel": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2Model"
+      },
+      "trusted_mlm_class": "transformers_modules.repaired_coherent86_alpha075.frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM",
+      "repaired_automodel_class": "transformers_modules.repaired_coherent86_alpha075.frozen82_private_modeling.FrozenSlowPrivateDebertaV2Model",
+      "trusted_mlm_params": {
+        "total": 36458592,
+        "adapter": 995584,
+        "private_adapter": 995584,
+        "trainable": 36458592
+      },
+      "repaired_automodel_params": {
+        "total": 36210368,
+        "adapter": 995584,
+        "private_adapter": 995584,
+        "trainable": 36210368
+      },
+      "automodel_vs_mlm_encoder": {
+        "max_abs_diff": 0.0,
+        "mean_abs_diff": 0.0,
+        "identical_tol_1e_6": true
+      },
+      "executed_scales": {
+        "adapter": [
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75
+        ],
+        "private_adapter": [
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ]
+      },
+      "source_automodel_without_bridge": {
+        "class": "transformers.models.deberta_v2.modeling_deberta_v2.DebertaV2Model",
+        "params": {
+          "total": 34219200,
+          "adapter": 0,
+          "private_adapter": 0,
+          "trainable": 34219200
+        },
+        "max_abs_diff_vs_trusted_mlm": 1.4846571683883667,
+        "mean_abs_diff_vs_trusted_mlm": 0.25142335891723633
+      }
+    }
+  ],
+  "all_valid": true,
+  "interpretation": "Repaired AutoModel directories are valid only when AutoModel hidden states match trusted MLM encoder hidden states and adapter/private parameter counts are nonzero as expected."
+}

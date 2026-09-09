@@ -1,0 +1,177 @@
+\chapterstart{Stage III: Principle-Guided Model Improvement}
+\label{sec:guided}
+
+Qiushi Engine returned to the first-generation model with two findings: presenting text does not ensure use of its relationships, and acquiring new behavior does not ensure retention of existing functions. It retained the \Frontier{} weights, tokenizer, residual structure, and existing text while changing the training task: which clues remain visible, which tokens must be predicted, and how changes to established predictions are constrained. Comparison with ordinary continuation then tested the practical value of the design.
+
+\subsection{From Mechanism Findings to Training Decisions}
+
+Relation experiments showed that including the source within the prediction window changes learned source use. Supervision and internal interventions further showed that available information can go unused, and familiar performance need not establish reuse. These findings led to three controllable design choices (Table~\ref{tab:bridge}).
+
+\begin{table}[htbp]
+\caption{Connections between scientific findings and the new training design. Each finding motivates a specific intervention and a corresponding comparison.}
+\label{tab:bridge}
+\small
+\begin{tabularx}{\linewidth}{@{}Y Y Y@{}}
+\toprule Finding & Training intervention & Direct test\\\midrule
+A visible source need not be used & Retain the source; remove more local clues in the restatement & Hold targets fixed and vary masking; measure source-condition effects\\
+Input conditions and target counts are separate variables & Use dense masking with sparse supervised targets & Compare sparse and dense targets; complete model evaluation\\
+Preservation can also suppress new learning & Preserve parent behavior on ordinary inputs & Compare acquisition, prediction changes, and task scores under ordinary and dense-input preservation\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The design developed through revisions. Early explanations emphasized the number of prediction targets. Effects persisted when sparse targets were fixed and masking increased, directing attention to information availability separately from supervision quantity. After developing ordinary-input preservation, the study compared alternative preservation inputs and update magnitudes. These were iterative hypotheses and tests, rather than one complete method fixed before all experiments.
+
+\subsection{Separating Visible Inputs from Supervised Targets}
+
+Source--restatement pairs come from the first-stage data; no new rewriting is performed in this continuation. Ordinary whole-word masking may leave enough local clues to predict a restatement target without consulting the source. The new method retains the source and masks more candidate words in the restatement, while computing focused prediction loss at only a selected subset. Character spans map candidate words to one or more tokens; these jointly treated units are called \emph{content groups}.
+
+Masking determines what the model can see; supervision determines which prediction errors update its parameters. A position may be masked without contributing its own loss, removing a clue for another target. Dense masking with sparse supervision expands the missing local context without requiring prediction at every masked position.
+
+Let $(I,T)$ denote the combination of input masking and focused targets, with $S$ for sparse and $M$ for dense. \emph{Focused targets} are positions selected specifically for source--restatement prediction; their loss is the focused loss. $(S,S)$ and $(M,S)$ share sparse focused targets but change visible clues. $(M,S)$ and $(M,M)$ share dense masking but change which positions contribute focused loss (Figure~\ref{fig:mask}).
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{input_supervision.pdf}}
+\caption{Separating input masking from supervision, illustrated at word level. The first two rows retain targets while changing masking; the final two retain masking while changing targets. Empty boxes denote masked words; dots mark positions contributing prediction loss. Candidate content words are selected while stopwords remain visible. Appendix~\ref{app:repro} gives the actual selection and tokenization rules.}
+\label{fig:mask}
+\end{figure}
+
+The continuation stream contains 20,475 packed rows and 3,162,742 words. A row is a training input that may contain several segments. The focused relation objective applies to 3,831 rows of existing Qwen rewrites, containing 11,778 paired segments. Other rows retain ordinary language prediction, including Stage I's compact-restatement and budget-reinvestment material. Dense masking covers 132,283 content groups and 176,607 tokens; sparse supervision selects 21,479 groups and 28,590 tokens. Thus, 148,017 tokens are masked without contributing the focused loss in $(M,S)$. Sparse and dense are defined relative to the candidate set; Appendix~\ref{app:repro} gives the exact rules.
+
+The acquisition objective combines relation prediction with ordinary language prediction:
+\begin{equation}
+\mathcal L_{\mathrm{acq}}
+=0.15\,\overline{\CE}_{\mathrm{focus}}
++0.85\,\overline{\CE}_{\mathrm{ordinary}}.
+\label{eq:acquisition}
+\end{equation}
+For each optimizer update, the focused and ordinary losses are each summed over all valid targets in their respective rows, then divided by their own total target-token counts before weighting. This is not an equal-weight average of row or microbatch means. The coefficients weight the two learning signals; they are not fractions of text or tokens. The ordinary objective continues broader language learning while the focused objective trains the relation task.
+
+Input corruption and prediction supervision have been separated in prior work~\citep{wettig2023mask}. This study uses that distinction for source--restatement learning: keep the source available, alter local clues on the restatement side, and choose supervised targets separately. The comparisons test both the behavioral effect and the benefit to the first-generation model.
+
+\subsection{Preserving Functions on Ordinary Inputs}
+
+The new task permits changes to predictions when local clues are missing, while preservation protects behavior under ordinary input conditions. The same existing Qwen paired rows used for relation learning are presented again with ordinary 15\% whole-word masking. The updated model and frozen \Frontier{} predict the same targets from the same complete rows, with sources retained. KL divergence constrains differences between their probability distributions. Here \emph{ordinary input} denotes the masking procedure, not a separate corpus.
+
+The full objective is
+\begin{align}
+\mathcal L_{\mathrm{pres}}
+&=\frac{1}{|Q_p|}\sum_{(x,i)\in Q_p}
+\KL\!\left(p_{\Frontier}(\cdot\mid x,i)\,\|\,p_\theta(\cdot\mid x,i)\right),\\
+\mathcal L&=\mathcal L_{\mathrm{acq}}+\lambda\mathcal L_{\mathrm{pres}},
+\qquad\lambda=1,\quad T=1.
+\label{eq:preservation}
+\end{align}
+Here $x$ is a complete row after ordinary whole-word masking, $i$ is a selected ordinary prediction position, and $Q_p$ collects all preservation targets in the update. KL is computed over the full vocabulary at those positions and averaged over their total count, not over all visible positions. The frozen first-generation model supplies $p_{\Frontier}$; $p_\theta$ is the updated model. The coefficient $\lambda$ sets the preservation weight. Temperature $T$ scales logits before probabilities are computed; $T=1$ leaves them unscaled. In teacher--student terminology, the teacher is the first-generation model itself.
+
+Forward-pass randomness must be controlled. Dropout randomly disables parts of a neural network during training, so two forward passes can differ even at identical weights. Preservation uses deterministic computation, saving and restoring random-number-generator state so its extra passes do not perturb acquisition. This separates prediction changes due to updated parameters from those introduced by the comparison procedure.
+
+Output-based preservation is directly related to Learning without Forgetting~\citep{li2016learning}. It also extends the first generation's existing KL term: the question here is how preservation conditions allow new learning while limiting unnecessary changes on ordinary inputs.
+
+Only the existing increment's 995,584 parameters are updated, at residual scale 0.75; total parameter count is unchanged. The full method uses 80 updates and adds 517,332 preservation-word presentations beyond acquisition:
+\begin{equation}
+86{,}005{,}295+3{,}162{,}742+517{,}332=89{,}685{,}369.
+\label{eq:budget}
+\end{equation}
+Controls without preservation total 89,168,037 words. Additional preservation presentations equal 16.36\% of this continuation's acquisition words and require extra forward computation. Both remain under the 100M limit. The equal-exposure acquisition comparison and the full method's combined benefit are reported separately.
+
+\subsection{Complete Evaluation Across Two Continuation Seeds}
+\label{sec:complete_results}
+
+Table~\ref{tab:strategies} reports the common parent and four strategies evaluated on all nine metrics. Seeds 62064 and 62065 vary continuation randomness from the same pretrained model. Ordinary continuation tests whether the new design improves on continued training itself. The $(S,S)$ condition serves a different purpose: mechanism comparisons of input conditions with sparse targets fixed.
+
+\begin{table}[htbp]
+\caption{Complete Overall scores for the shared parent and four continuation strategies. The two seeds share a pretrained starting model. The full method includes additional preservation presentations; all nine component scores are in Appendix~\ref{app:local}.}
+\label{tab:strategies}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule Strategy & Seed 62064 & Seed 62065 & Cumulative words\\\midrule
+\input{tables/strategies}
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{strategy_comparison.pdf}}
+\caption{Complete evaluation of continuation strategies from one parent. Circles and triangles represent seeds 62064 and 62065; the dashed line is the parent's Overall. All candidates have nine-metric evaluations. The full preservation method includes additional ordinary-input presentations.}
+\label{fig:strategies}
+\end{figure}
+
+$(M,S)$ exceeds ordinary continuation by 0.1099 and 0.0630 at the same cumulative word exposure. The full method exceeds ordinary continuation by 0.1538 and 0.1158, and $(M,S)$ by a further 0.0439 and 0.0529. Both dense-target $(M,M)$ models score below the corresponding sparse-target $(M,S)$ models. With the total focused-loss weight fixed at 0.15, distributing supervision over more targets does not improve Overall. This changes both the target set and the relative weight received by an individual target.
+
+The comparisons establish an equal-exposure gain for the acquisition design and a further gain for the combined preservation method. Available $(S,S)$ results comprise screening and mechanism measurements, not the complete nine-metric table. Its masking-specific evidence must therefore be taken from those measurements; the Overall difference between $(M,S)$ and ordinary continuation does not isolate masking alone.
+
+Figure~\ref{fig:contributions} decomposes the full method's change from the parent. Dividing a component change by nine gives its Overall contribution. GlobalPIQA contributes about 0.165 for both seeds, or approximately 74\% and 79\% of the total gains. Entity Tracking also improves, while some components decline. The remaining eight components jointly contribute 0.0574 and 0.0428. Net improvement thus combines identifiable gains and trade-offs.
+
+To identify what the method improves beyond continued training, ordinary continuation is the relevant reference. Against that reference, Entity Tracking supplies the largest positive Overall contribution for both seeds, $+0.1378$ and $+0.1511$. GlobalPIQA contributes $+0.0572$ in each case; other components partly offset these gains. Comparing the full method with acquisition-only $(M,S)$, GlobalPIQA is unchanged: the additional $+0.0439$ and $+0.0529$ come from the net changes in other components. Gains from the parent, advantages over ordinary continuation, and the added effect of preservation are distinct comparisons.
+
+An additional check varies downstream fine-tuning rather than continuation. At fine-tuning seeds 42 and 44, the full method's (Super)GLUE mean exceeds both the parent and $(M,S)$. This comparison holds the continued models fixed and tests another source of randomness. Table~\ref{tab:finetuning_seeds} reports all three models under both fine-tuning seeds.
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{task_contributions.pdf}}
+\caption{Component gains and costs of the full method relative to the common parent. Each task-score change is divided by nine to give its contribution to Overall. Circles and triangles denote seeds 62064 and 62065. Values are point estimates; both seeds use the same evaluation sets, including the 203-item GlobalPIQA set.}
+\label{fig:contributions}
+\end{figure}
+
+\subsection{Acquisition and Preservation Measurements}
+
+Three quantities measure new learning on densely masked inputs: correct-target cross-entropy, the correct token's rank among vocabulary candidates, and KL from the parent to the updated model. Lower CE and a better rank indicate improved prediction; lower KL indicates less output change. The comparison uses 169 previously trained examples and 1,003 shared target tokens. It measures learned behavior on those examples, not generalization to unseen documents.
+
+\begin{table}[htbp]
+\caption{Acquisition and prediction changes on densely masked inputs. All rows use continuation seed 62064 except the explicitly labeled 62065 row. Larger CE and rank improvements relative to the parent are better; KL measures output divergence. The final row applies preservation to densely masked inputs.}
+\label{tab:preservation}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule Method & CE gain (nats) & Rank gain & Parent KL (nats)\\\midrule
+Ordinary continuation & $-0.005$ & 0.7 & 0.001\\
+$(M,S)$ without preservation & 0.757 & 132.8 & 0.503\\
+Full method, 62064 & 0.682 & 128.3 & 0.353\\
+Full method, 62065 & 0.679 & 128.0 & 0.345\\
+Dense-input preservation & 0.159 & 34.8 & 0.009\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Ordinary-input preservation retains most of the acquisition gain. Dense-input preservation sharply reduces model change but also suppresses improvement on correct targets. A useful preservation method must limit damage to ordinary behavior while allowing the changes required by the new task. Qiushi Engine therefore compared the effective strength of the constraints under different inputs.
+
+With the updated model, parent, and shared target positions fixed, dense masking increases parent entropy by 1.6330 nats, correct-target CE by 1.3155 nats, and teacher-to-student KL by 0.4738 nats. The preservation gradient norm on trainable parameters is 11.835 times its ordinary-input value. A gradient describes the direction and magnitude of parameter change favored by a loss. Here the two gradients have directional similarity 0.7288 but markedly different magnitudes. Equal loss coefficients do not impose equal effective constraints.
+
+\begin{table}[htbp]
+\caption{Preservation constraints at fixed models and shared target positions. The updated model is $(M,S)$ at continuation seed 62064; the reference is the first-generation parent. The first three rows give dense-minus-ordinary input differences; the final row gives the gradient-norm ratio.}
+\label{tab:gradient_geometry}
+\begin{tabularx}{\linewidth}{@{}Yr@{}}
+\toprule Measurement & Result\\\midrule
+Parent predictive entropy difference (nats) & $+1.6330$\\
+Parent target CE difference (nats) & $+1.3155$\\
+Teacher-to-student KL difference (nats) & $+0.4738$\\
+Preservation gradient norm: dense/ordinary & $11.835$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Preservation configurations also differ in their target positions: ordinary masking has 4,762 targets; densely masked positions outside focused supervision have 6,665; their intersection contains the 1,003 positions above. Their effects therefore reflect changes in input type, target set, and effective constraint strength, whose contributions remain partly confounded. All three specify the configuration and must be considered alongside measures of new and retained behavior.
+
+A separate ordinary-input measurement uses 384 complete existing rows and 10,348 targets, retaining sources under ordinary whole-word masking. Parent KL is 0.02449 nats without preservation and 0.00941 with the full method. CE deterioration relative to the parent falls from 0.0290 to 0.0100 nats. These measurements show reduced change on ordinary inputs; they use a different sample from Table~\ref{tab:preservation}, which measures densely masked inputs.
+
+Source interventions use 96 pairs and 186 common targets after the continuation prefix. They are outside this continuation's trained prefix, but independence from the parent's pretraining documents has not been established. Correct-source NLL improves slightly, while wrong-source and source-removal conditions incur larger costs (Table~\ref{tab:source_final}). The full method reduces some of those costs while retaining correct-source improvement. This measures responses to source changes, separately from generalization of relational reasoning.
+
+\begin{table}[htbp]
+\caption{Source interventions on two models at continuation seed 62064. Values are target NLL differences from the parent, in nats; negative values mean improvement. Every condition uses the same targets.}
+\label{tab:source_final}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule Source condition & $(M,S)$ alone & Full method\\\midrule
+Correct source & $-0.024$ & $-0.022$\\
+Wrong source & $+0.149$ & $+0.099$\\
+Restatement only & $+0.107$ & $+0.076$\\
+Current source erased from full row & $+0.210$ & $+0.127$\\
+All sources erased from full row & $+0.0248$ & $+0.0101$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{How the Model Tests Refined the Principle}
+
+Stage III established practical value and sharpened the design principle. Increasing masking and increasing target count produced different outcomes, supporting separate control of prediction conditions and supervision. Preservation had to be evaluated through both acquisition and ordinary behavior, rather than proximity to the old model alone. Source interventions further exposed correct-source benefits and wrong-source costs.
+
+The three stages thus form a continuous development of methods: the first supplies a mature model and paired text; the second investigates conditions for information use and capability reuse; the third changes input, supervision, and preservation accordingly and obtains repeated complete-evaluation gains. Model experiments turn the findings into a usable method, while additional controls provide more precise questions for subsequent research.
+
+The new experiments also change the criteria for the next research. Fixed-target masking controls distinguish information availability from target quantity. Gradients measured at common positions show that equal preservation coefficients can impose unequal effective constraints. Qiushi Engine retains the successful method while revising its explanation and recording more informative comparison conditions. This connection between model improvement, method development, and revised scientific understanding underlies the Research RSI discussion in Section~\ref{sec:rsi}.

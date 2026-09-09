@@ -1,0 +1,93 @@
+{
+  "variant": "paired_tail_freshmom_residual_low_lr",
+  "model_family": "DebertaV2ForMaskedLM",
+  "parameter_count": 45826720,
+  "vocab_size": 40000,
+  "mode": "residual_low_lr",
+  "pairing_contract": {
+    "same_source_checkpoint": true,
+    "same_tail_rows": true,
+    "same_mask_rng_seed_between_modes": 53023,
+    "same_dropout_global_seed_between_modes": 53023,
+    "fresh_adamw_moments_in_both_modes": true,
+    "only_intended_difference": "original residual low-LR trajectory vs restarted reheated cosine LR",
+    "anchor_endpoint": "uninterrupted legal40k fixed-256 100M baseline, not either continuation arm"
+  },
+  "source_checkpoint_name": "chck_80M",
+  "source_model_path": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+  "source_consumed_words": 80034368,
+  "source_step": 2024,
+  "tail_examples": 129256,
+  "tail_word_exposure": 19965632,
+  "word_exposure": 100000000,
+  "loss_first": 2.4111779473432167,
+  "loss_last": 2.49214464448035,
+  "actual_training_steps": 505,
+  "final_global_step": 2529,
+  "effective_batch_size": 256,
+  "micro_batch_size": 64,
+  "gradient_accumulation_steps": 4,
+  "optimizer": "AdamW_fresh_state",
+  "adam_betas": [
+    0.9,
+    0.98
+  ],
+  "weight_decay": 0.01,
+  "masking_curriculum": "wwm_fixed",
+  "mask_prob": 0.15,
+  "seed": 43,
+  "train_rng_seed": 53023,
+  "max_seq_length": 256,
+  "lr_geometry": {
+    "mode": "residual_low_lr",
+    "original_base_lr": 0.001,
+    "original_total_steps": 2529,
+    "original_warmup_fraction": 0.06,
+    "original_warmup_steps": 151,
+    "reheat_peak_lr": 0.0003,
+    "reheat_warmup_fraction": 0.06,
+    "reheat_warmup_steps": 30,
+    "first_update_lr": 0.00010720866372880134,
+    "first_after_update_lr": 0.00010680028468509506,
+    "last_update_lr": 4.3633092056127864e-10,
+    "final_after_update_lr": 0.0,
+    "source_logged_lr_after_step": 0.00010720866372880134,
+    "baseline_next_step_logged_lr": 0.00010680028468509506,
+    "residual_first_update_matches_source_logged_lr": true,
+    "residual_first_after_update_matches_baseline_next_step_log": true
+  },
+  "first_step_replay_hashes": {
+    "input_ids_sha256": "f890c152a8eeaf871b018113b6df6c63630af61149421875e504f48711119d72",
+    "attention_mask_sha256": "e51db5cba375f08b338e24d6342b765addf4592c1ad9bda19be34ece0ac98ef5",
+    "word_group_sha256": "29a5b585632a3d6d15631ce9b5660f9322945c3197f9704200d2e43256a76f75",
+    "masked_inputs_sha256": "22f2a2eebede3fcc753a037d8d397cbff2b7da95ade0043ee9cfd266e144e7cd",
+    "labels_sha256": "9bbd00267d7e91b231fb9f382dce0c62bcf901a661b7ac83b0b97a679bc420d0",
+    "selected_positions_sha256": "3b30c11877aaf20065f5bf1597de70fa5ba1e83b12ae1e3f10546a46c8cdabcf",
+    "first_step_words": 39780,
+    "first_step_masked_tokens": 8278,
+    "first_step_update_lr": 0.00010720866372880134
+  },
+  "saved_checkpoints": [
+    {
+      "name": "chck_90M",
+      "target_total_word_exposure": 90000000,
+      "actual_total_word_exposure": 90038971,
+      "tail_word_exposure": 10004603,
+      "local_step": 253,
+      "global_step": 2277,
+      "path": "experiments/archive/representation_and_objectives/training/runs/tail_residual_low_lr_freshmom_from_chck80M/hf_model/chck_90M"
+    },
+    {
+      "name": "chck_100M",
+      "target_total_word_exposure": 100000000,
+      "actual_total_word_exposure": 100000000,
+      "tail_word_exposure": 19965632,
+      "local_step": 505,
+      "global_step": 2529,
+      "path": "experiments/archive/representation_and_objectives/training/runs/tail_residual_low_lr_freshmom_from_chck80M/hf_model/chck_100M"
+    }
+  ],
+  "final_checkpoint": "experiments/archive/representation_and_objectives/training/runs/tail_residual_low_lr_freshmom_from_chck80M/hf_model/chck_final",
+  "manifest": "experiments/archive/representation_and_objectives/training/runs/tail_residual_low_lr_freshmom_from_chck80M/paired_tail_manifest.json",
+  "training_log": "experiments/archive/representation_and_objectives/training/runs/tail_residual_low_lr_freshmom_from_chck80M/training_log.jsonl"
+}

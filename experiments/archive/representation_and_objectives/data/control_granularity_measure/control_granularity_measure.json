@@ -1,0 +1,54 @@
+{
+  "status": "CONTROL_GRANULARITY_MEASURE",
+  "meaning": "Pair-only measure of whether the matched copied-label deletion removed whole copied target groups or partial groups. Groups are contiguous selected-token runs within copied/absent strata, so adjacent same-stratum selected words can be merged; partial copied deletion is therefore a conservative warning, not exact word_ids.",
+  "inputs": {
+    "data": "experiments/archive/representation_and_objectives/data/crossview_data_v2/crossview_consolidated_v2.jsonl",
+    "tokenizer": "experiments/archive/representation_and_objectives/training/runs/gc_compact_repeat_reinvest_16k_seed43022_r2/hf_model/chck_1M",
+    "word_exposure": 20000000,
+    "epochs": 2,
+    "pair_examples": 24310,
+    "drop_k": 7649,
+    "selection_seed": 22543023
+  },
+  "pair_target_piece_counts": {
+    "rw_copied": 65723,
+    "rw_abs_content": 7649
+  },
+  "drop_positions": 7649,
+  "copied_target_groups_contiguous": 44718,
+  "abs_target_groups_contiguous": 5676,
+  "copied_group_size_counts": {
+    "1": 31646,
+    "3": 3396,
+    "2": 7872,
+    "4": 1194,
+    "6": 154,
+    "5": 389,
+    "9": 5,
+    "7": 46,
+    "8": 14,
+    "11": 1,
+    "10": 1
+  },
+  "abs_group_size_counts": {
+    "1": 4282,
+    "2": 961,
+    "3": 318,
+    "4": 89,
+    "5": 21,
+    "6": 5
+  },
+  "copied_untouched_groups": 37492,
+  "copied_touched_groups": 7226,
+  "copied_fully_dropped_groups": 3776,
+  "copied_partial_groups": 3450,
+  "fraction_touched_partial": 0.4774425685026294,
+  "pieces_dropped_in_partial_groups": 3745,
+  "pieces_dropped_in_fully_dropped_groups": 3904,
+  "touched_group_size_stats": {
+    "median": 1,
+    "p90": 4,
+    "max": 11
+  },
+  "scientific_warning": "The research copied-drop arm matched deleted token-piece count, not whole-word target groups. If the source-absent channel remains important, rerun with a whole-word copied-drop control matched on piece count as closely as possible."
+}

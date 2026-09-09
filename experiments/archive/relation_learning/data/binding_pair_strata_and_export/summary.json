@@ -1,0 +1,26 @@
+{
+  "status": "A01_RECOMBINATION_EXPORT",
+  "created_utc": "2026-09-07T05:04:12Z",
+  "schema": {
+    "train_rows": "JSONL records with row_id,pair_id,split,packet_type,query_entity,answer_text,answer_kind,role,pair_half,source_sentence,update_sentence,source_state,new_state,target_entity,updated_entity,context_text,answer_char_start,answer_char_end.",
+    "heldout_rows": "same schema as train rows; held-out contains 400 DISTRACTOR rows (200 pairs) plus 200 UPDATED single rows.",
+    "binding_pairs": "JSONL pair records with pair_id,row_a_id,row_b_id,entity_a,entity_b,answer_a,answer_b. row_a is unchanged_entity/source_state; row_b is updated_entity/new_state. The source_sentence and update_sentence are identical across the two rows of each pair; only query_entity and final answer differ.",
+    "contract": "Full-phrase candidate comparison should score source_state and new_state in the same final frame The relevant state of {query_entity} is ___. Joint success requires row_a source_state>new_state and row_b new_state>source_state."
+  },
+  "paths": {
+    "train": "experiments/archive/relation_learning/data/recombination_rows/recombination_train.jsonl",
+    "heldout": "experiments/archive/relation_learning/data/recombination_rows/recombination_heldout.jsonl",
+    "binding_pairs": "experiments/archive/relation_learning/data/recombination_rows/binding_pairs_heldout.jsonl",
+    "strata_csv": "experiments/archive/relation_learning/data/binding_pair_strata_and_export/heldout_binding_pair_source_presence.csv"
+  },
+  "strata_counts": {
+    "updated_entity_in_source": 119,
+    "target_entity_in_source": 193,
+    "both_entities_in_source": 115,
+    "target_entity_not_in_source": 7,
+    "not_both_entities_in_source": 85,
+    "updated_entity_not_in_source": 81
+  },
+  "n_examples": 10,
+  "examples_path": "experiments/archive/relation_learning/data/binding_pair_strata_and_export/a01_recombination_schema_and_examples.json"
+}

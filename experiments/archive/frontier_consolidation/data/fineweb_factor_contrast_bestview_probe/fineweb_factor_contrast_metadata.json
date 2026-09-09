@@ -1,0 +1,110 @@
+{
+  "status": "FINEWEB_FACTOR_CONTRAST_MATERIALIZED",
+  "created_utc": "2026-08-29T10:52:09Z",
+  "scientific_purpose": "Factorized source-breadth and second-view contrast: official lengthmatched vs FineWeb packet-local source repetition vs FineWeb source+rewrite.",
+  "accepted_input": "experiments/archive/frontier_consolidation/data/high_anchor_best_view_selection/fineweb_high_anchor_best_views.jsonl",
+  "accepted_input_sha256": "3793ac563aa045748edd636c541f60d6dec2ea8acc57065d2dfba78d4a5b578d",
+  "official_pool": "experiments/archive/compact_experience/data/mixture/official_pool.jsonl",
+  "official_pool_sha256": "072eb2a9ecb52e6e6022d46d233c99c2ad9758843c2ae29f4eb653fb38902f02",
+  "total_words_per_pool": 10000000,
+  "passes": 10,
+  "write_training": false,
+  "available_pairs": 803,
+  "available_pair_words": 35451,
+  "selected_pairs": 725,
+  "selected_pair_words": 32000,
+  "selected_source_words": 18982,
+  "selected_rewrite_words": 13018,
+  "selected_unique_docs": 725,
+  "selected_domain_hit_counts": {
+    "no_domain": 266,
+    "science_physical": 125,
+    "causal_relational": 123,
+    "institutions_society": 112,
+    "quant_numeric": 99,
+    "geography_places": 85,
+    "people_history": 55,
+    "media_culture": 46
+  },
+  "selection_seed": 82912012,
+  "target_pair_words": 0,
+  "min_pair_words": 1,
+  "audit": {
+    "row_length_sequence_identical": true,
+    "identical_filler_after_changed_prefix": {
+      "repeat_vs_rewrite": true,
+      "official_vs_rewrite": true
+    },
+    "word_totals": {
+      "official_lengthmatched": 10000000,
+      "fineweb_packet_local_repeat": 10000000,
+      "fineweb_source_rewrite": 10000000
+    },
+    "row_counts": {
+      "official_lengthmatched": 62532,
+      "fineweb_packet_local_repeat": 62532,
+      "fineweb_source_rewrite": 62532
+    },
+    "changed_block_rows": 232,
+    "changed_block_words": 32000,
+    "changed_block_fraction": 0.0032,
+    "filler_rows": 62300,
+    "filler_words": 9968000
+  },
+  "source_word_counts_by_arm": {
+    "official_lengthmatched": {
+      "childes": 2833280,
+      "gutenberg": 2549600,
+      "open_subtitles": 2274080,
+      "simple_wiki": 1527360,
+      "bnc_spoken": 759040,
+      "official_lengthmatched::bnc_spoken": 32000,
+      "switchboard": 24640
+    },
+    "fineweb_packet_local_repeat": {
+      "childes": 2833280,
+      "gutenberg": 2549600,
+      "open_subtitles": 2274080,
+      "simple_wiki": 1527360,
+      "bnc_spoken": 759040,
+      "fineweb_packet_local_repeat": 32000,
+      "switchboard": 24640
+    },
+    "fineweb_source_rewrite": {
+      "childes": 2833280,
+      "gutenberg": 2549600,
+      "open_subtitles": 2274080,
+      "simple_wiki": 1527360,
+      "bnc_spoken": 759040,
+      "fineweb_source_rewrite": 32000,
+      "switchboard": 24640
+    }
+  },
+  "files": {
+    "selected_pairs": "experiments/archive/frontier_consolidation/data/fineweb_factor_contrast_bestview_probe/selected_pairs.jsonl",
+    "pools": {
+      "official_lengthmatched": "experiments/archive/frontier_consolidation/data/fineweb_factor_contrast_bestview_probe/official_lengthmatched_10M.jsonl",
+      "fineweb_packet_local_repeat": "experiments/archive/frontier_consolidation/data/fineweb_factor_contrast_bestview_probe/fineweb_packet_local_repeat_10M.jsonl",
+      "fineweb_source_rewrite": "experiments/archive/frontier_consolidation/data/fineweb_factor_contrast_bestview_probe/fineweb_source_rewrite_10M.jsonl"
+    },
+    "training": {},
+    "row_meta": {
+      "fineweb_packet_local_repeat": "experiments/archive/frontier_consolidation/data/fineweb_factor_contrast_bestview_probe/fineweb_packet_local_repeat_changed_block_rows_meta.jsonl",
+      "fineweb_source_rewrite": "experiments/archive/frontier_consolidation/data/fineweb_factor_contrast_bestview_probe/fineweb_source_rewrite_changed_block_rows_meta.jsonl"
+    },
+    "note": "research/notes/frontier_consolidation/fineweb_factor_contrast_bestview_probe.md"
+  },
+  "sha256": {
+    "official_lengthmatched_10M.jsonl": "59ed9e676295237cb19d18b9aad875757d140b25a822821b79c052e0fc4ab825",
+    "fineweb_packet_local_repeat_10M.jsonl": "455143bb4f2b7af1620933d8f98dfedcdc2c47edf9374db908812826b76d9517",
+    "fineweb_source_rewrite_10M.jsonl": "f74bd21c249212173ef4b2601331eff6890eb69ed7ae79b4934554957e847ea3",
+    "selected_pairs.jsonl": "970796328bde107b1e3f59c169f1804ffbf6a324906059932b429d22307f3b28"
+  },
+  "interpretation": {
+    "source_breadth_effect": "fineweb_packet_local_repeat minus official_lengthmatched",
+    "second_view_effect_within_fineweb": "fineweb_source_rewrite minus fineweb_packet_local_repeat",
+    "combined_effect": "fineweb_source_rewrite minus official_lengthmatched",
+    "compare_to_existing_official_second_view": "COMPACT_EXPERIENCE clean-Qwen minus selected_original_dup_all gives the analogous official-source rewrite value under older materialization; use task-family signatures rather than only a scalar mean."
+  },
+  "elapsed_sec": 3.87
+}

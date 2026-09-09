@@ -1,0 +1,110 @@
+{
+  "variant": "stagewise_wwm_to_token",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "model_type": "deberta_v2",
+  "parameter_count": 34677184,
+  "embedding_parameter_count": 15360000,
+  "non_embedding_parameter_count": 19317184,
+  "vocab_size": 40000,
+  "tokenizer_label": "sp40k_shared_official7p5M",
+  "tokenizer_path": "experiments/archive/compact_experience/data/shared_tokenizer/hf_tokenizer_40k_shared",
+  "word_exposure": 10000000,
+  "loss_first": 10.724832534790039,
+  "loss_last": 3.879544258117676,
+  "actual_training_steps": 585,
+  "total_scheduled_steps": 585,
+  "mask_mode": "wwm",
+  "mask_switch_mode": "token",
+  "mask_switch_words": 7000000,
+  "mask_prob": 0.15,
+  "optimizer": "lamb",
+  "learning_rate": 0.007,
+  "warmup_fraction": 0.06,
+  "weight_decay": 0.01,
+  "amp_dtype": "bf16",
+  "n_layer": 12,
+  "hidden_size": 384,
+  "n_head": 12,
+  "intermediate_size": 1280,
+  "share_att_key": "true",
+  "position_biased_input": "false",
+  "max_position_embeddings": 1024,
+  "max_relative_positions": -1,
+  "seed": 43,
+  "extra_init_seed": 44011,
+  "train_rng_seed": 44012,
+  "stage_config": [
+    {
+      "stage": 1,
+      "jsonl": "experiments/archive/frontier_consolidation/data/qwen10_stagewise_pairfit/qwen10_pairfit_stage1_seq64_3M.jsonl",
+      "seq": 64,
+      "batch": 512,
+      "words": 3000000
+    },
+    {
+      "stage": 2,
+      "jsonl": "experiments/archive/frontier_consolidation/data/qwen10_stagewise_pairfit/qwen10_pairfit_stage2_seq128_3M.jsonl",
+      "seq": 128,
+      "batch": 256,
+      "words": 3000000
+    },
+    {
+      "stage": 3,
+      "jsonl": "experiments/archive/frontier_consolidation/data/qwen10_stagewise_pairfit/qwen10_pairfit_stage3_seq256_4M.jsonl",
+      "seq": 256,
+      "batch": 128,
+      "words": 4000000
+    }
+  ],
+  "stage_metrics": [
+    {
+      "stage": 1,
+      "seq": 64,
+      "batch": 512,
+      "words": 3000000,
+      "visible_tokens": 4162989,
+      "visible_word_groups": 2995233,
+      "masked_tokens": 625379,
+      "loss_first": 10.724832534790039,
+      "loss_last": 5.986299991607666,
+      "visible_tokens_per_word": 1.387663,
+      "visible_word_groups_per_word": 0.998411
+    },
+    {
+      "stage": 2,
+      "seq": 128,
+      "batch": 256,
+      "words": 3000000,
+      "visible_tokens": 4297903,
+      "visible_word_groups": 2997870,
+      "masked_tokens": 644906,
+      "loss_first": 6.270630359649658,
+      "loss_last": 5.2022929191589355,
+      "visible_tokens_per_word": 1.432634,
+      "visible_word_groups_per_word": 0.99929
+    },
+    {
+      "stage": 3,
+      "seq": 256,
+      "batch": 128,
+      "words": 4000000,
+      "visible_tokens": 5709240,
+      "visible_word_groups": 3912231,
+      "masked_tokens": 855409,
+      "loss_first": 5.265256404876709,
+      "loss_last": 3.879544258117676,
+      "visible_tokens_per_word": 1.42731,
+      "visible_word_groups_per_word": 0.978058
+    }
+  ],
+  "saved_checkpoints": [
+    {
+      "name": "chck_10M",
+      "target_word_exposure": 10000000,
+      "actual_cumulative_word_exposure": 10000000,
+      "path": "experiments/archive/frontier_consolidation/training/runs/qwen10_stagewise_pairfit_40k_12x384_lamb_bf16_seed44011/hf_model/chck_10M"
+    }
+  ],
+  "elapsed_sec": 433.6
+}

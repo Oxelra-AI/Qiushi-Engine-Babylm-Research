@@ -1,0 +1,135 @@
+{
+  "status": "ARCHITECTURE_INTERACTION_SELECTED_PANEL_PLAN",
+  "created_utc": "2026-09-02T14:56:11Z",
+  "out_dir": "experiments/archive/frontier_consolidation/data/commoncopy_architecture_interaction_selected_panel",
+  "wrapper": "experiments/archive/frontier_consolidation/scripts/eval_custom_checkpoint.py",
+  "arms": {
+    "full_compact": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "variant": "full_p2c_c2p_abs",
+      "data_arm": "compact",
+      "role": "existing legal full-DeBERTa compact cell",
+      "metrics": {
+        "exists": true,
+        "path": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/scientific_metrics.json",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_first": 9.837543487548828,
+        "loss_last": 2.5525617599487305,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "saved_checkpoint_count": 100
+      },
+      "requested_endpoints": {
+        "chck_80M": true,
+        "chck_100M": true
+      },
+      "existing_per_target_reuse": {
+        "chck_80M": "experiments/archive/frontier_consolidation/data/legal_mature_treatment_effect_eval/per_target/complianttok_reinvest_seed43022_80M.json",
+        "chck_100M": "experiments/archive/frontier_consolidation/data/compliant_full_eval/per_target/complianttok_reinvest_seed43022.json"
+      }
+    },
+    "full_repeat": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_repeat_deberta100M_seed43022",
+      "variant": "full_p2c_c2p_abs",
+      "data_arm": "repeat",
+      "role": "legal full-DeBERTa repeat cell from research",
+      "metrics": {
+        "exists": true,
+        "path": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_repeat_deberta100M_seed43022/scientific_metrics.json",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_first": 9.839323997497559,
+        "loss_last": 2.5566213130950928,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "saved_checkpoint_count": 10
+      },
+      "requested_endpoints": {
+        "chck_80M": true,
+        "chck_100M": true
+      },
+      "existing_per_target_reuse": {
+        "chck_80M": "experiments/archive/frontier_consolidation/data/architecture_interaction_selected_panel_final/full_repeat/chck_80M/eval/per_target/arch_full_repeat_chck_80M.json",
+        "chck_100M": "experiments/archive/frontier_consolidation/data/architecture_interaction_selected_panel_final/full_repeat/chck_100M/eval/per_target/arch_full_repeat_chck_100M.json"
+      }
+    },
+    "nodis_compact": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/commoncopy_nodis_compact_deberta100M_seed43022",
+      "variant": "commoncopy_no_disentangle_abs",
+      "data_arm": "compact",
+      "role": "common-copied compact cell with c2p/p2c score terms removed",
+      "metrics": {
+        "exists": true,
+        "path": "experiments/archive/frontier_consolidation/training/runs/commoncopy_nodis_compact_deberta100M_seed43022/scientific_metrics.json",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_first": 9.837443351745605,
+        "loss_last": 4.234443187713623,
+        "parameter_count": 30773344,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "saved_checkpoint_count": 10
+      },
+      "requested_endpoints": {
+        "chck_80M": true,
+        "chck_100M": true
+      },
+      "existing_per_target_reuse": {
+        "chck_80M": null,
+        "chck_100M": null
+      }
+    },
+    "nodis_repeat": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/commoncopy_nodis_repeat_deberta100M_seed43022",
+      "variant": "commoncopy_no_disentangle_abs",
+      "data_arm": "repeat",
+      "role": "common-copied repeat cell with c2p/p2c score terms removed",
+      "metrics": {
+        "exists": true,
+        "path": "experiments/archive/frontier_consolidation/training/runs/commoncopy_nodis_repeat_deberta100M_seed43022/scientific_metrics.json",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_first": 9.839239120483398,
+        "loss_last": 4.421522617340088,
+        "parameter_count": 30773344,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "saved_checkpoint_count": 10
+      },
+      "requested_endpoints": {
+        "chck_80M": true,
+        "chck_100M": true
+      },
+      "existing_per_target_reuse": {
+        "chck_80M": null,
+        "chck_100M": null
+      }
+    }
+  },
+  "checkpoints": [
+    "chck_80M",
+    "chck_100M"
+  ],
+  "primary_interaction": "(compact - repeat)_no_disentangle_abs minus (compact - repeat)_full_p2c_c2p_abs",
+  "readout_columns": [
+    "cheap7",
+    "cheap6_no_GlobalPIQA",
+    "cheap5_no_GlobalPIQA_Reading",
+    "EWoK_plus_Entity_sum",
+    "Supplement",
+    "Entity",
+    "COMPS",
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA",
+    "Reading"
+  ],
+  "interpretation_boundary": "Survival of full-like compact-minus-repeat under no_disentangle_abs shows c2p/p2c score terms are not necessary. Collapse initially implicates the whole removed score-term package plus parameter/normalization changes, not c2p versus p2c separately. EWoK_plus_Entity_sum is a score-column sum, not the item-weighted EWoK_plus_Entity pool used in bootstrap files.",
+  "no_training_superglue_aoa_upload_or_leaderboard": true
+}

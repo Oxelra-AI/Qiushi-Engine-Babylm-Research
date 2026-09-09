@@ -1,0 +1,241 @@
+{
+  "status": "SUPERGLUE_LOADER_IDENTITY_AUDIT_DONE",
+  "created_utc": "2026-09-07T20:13:57Z",
+  "question": "Does AutoModel-based SuperGLUE finetuning load the custom private-adapter checkpoints, or does it fall back to the frozen DeBERTa encoder and ignore private tensors?",
+  "probe_text": "The child put the marble in the red box and later looked for the marble.",
+  "models": {
+    "chck82": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+      "exists": true,
+      "config_architectures": [
+        "AdapterDebertaV2ForMaskedLM"
+      ],
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+      },
+      "config_private_adapter_scale": null,
+      "private_state_keys": 0,
+      "private_state_params": 0,
+      "examples": [],
+      "AutoModel": {
+        "ok": true,
+        "class": "DebertaV2Model",
+        "module": "transformers.models.deberta_v2.modeling_deberta_v2",
+        "param_count": 34219200,
+        "private_named_params": 0,
+        "loading_info_missing_count": 0,
+        "loading_info_unexpected_count": 53,
+        "missing_examples": [],
+        "unexpected_examples": [
+          "cls.predictions.bias",
+          "cls.predictions.transform.LayerNorm.bias",
+          "cls.predictions.transform.LayerNorm.weight",
+          "cls.predictions.transform.dense.bias",
+          "cls.predictions.transform.dense.weight",
+          "encoder.layer.0.adapter.down.bias",
+          "encoder.layer.0.adapter.down.weight",
+          "encoder.layer.0.adapter.layer_norm.bias",
+          "encoder.layer.0.adapter.layer_norm.weight",
+          "encoder.layer.0.adapter.up.bias",
+          "encoder.layer.0.adapter.up.weight",
+          "encoder.layer.1.adapter.down.bias"
+        ],
+        "probe_hidden_mean": -0.0010375557467341423,
+        "probe_hidden_std": 0.9854415655136108,
+        "probe_hidden_shape": [
+          1,
+          18,
+          480
+        ]
+      },
+      "AutoModelForMaskedLM": {
+        "ok": false,
+        "error": "OSError(30, 'Read-only file system')"
+      }
+    },
+    "coherent86_train_scale1p0": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/final",
+      "exists": true,
+      "config_architectures": [
+        "FrozenSlowPrivateDebertaV2ForMaskedLM"
+      ],
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+      },
+      "config_private_adapter_scale": 1.0,
+      "private_state_keys": 48,
+      "private_state_params": 995584,
+      "examples": [
+        "deberta.encoder.layer.0.private_adapter.down.bias",
+        "deberta.encoder.layer.0.private_adapter.down.weight",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+        "deberta.encoder.layer.0.private_adapter.up.bias"
+      ],
+      "AutoModel": {
+        "ok": true,
+        "class": "DebertaV2Model",
+        "module": "transformers.models.deberta_v2.modeling_deberta_v2",
+        "param_count": 34219200,
+        "private_named_params": 0,
+        "loading_info_missing_count": 0,
+        "loading_info_unexpected_count": 101,
+        "missing_examples": [],
+        "unexpected_examples": [
+          "cls.predictions.bias",
+          "cls.predictions.transform.LayerNorm.bias",
+          "cls.predictions.transform.LayerNorm.weight",
+          "cls.predictions.transform.dense.bias",
+          "cls.predictions.transform.dense.weight",
+          "encoder.layer.0.adapter.down.bias",
+          "encoder.layer.0.adapter.down.weight",
+          "encoder.layer.0.adapter.layer_norm.bias",
+          "encoder.layer.0.adapter.layer_norm.weight",
+          "encoder.layer.0.adapter.up.bias",
+          "encoder.layer.0.adapter.up.weight",
+          "encoder.layer.0.private_adapter.down.bias"
+        ],
+        "probe_hidden_mean": -0.0010375557467341423,
+        "probe_hidden_std": 0.9854415655136108,
+        "probe_hidden_shape": [
+          1,
+          18,
+          480
+        ]
+      },
+      "AutoModelForMaskedLM": {
+        "ok": false,
+        "error": "OSError(30, 'Read-only file system')"
+      }
+    },
+    "dense62064_u0080": {
+      "path": "experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080",
+      "exists": true,
+      "config_architectures": [
+        "FrozenSlowPrivateDebertaV2ForMaskedLM"
+      ],
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+      },
+      "config_private_adapter_scale": 0.75,
+      "private_state_keys": 48,
+      "private_state_params": 995584,
+      "examples": [
+        "deberta.encoder.layer.0.private_adapter.down.bias",
+        "deberta.encoder.layer.0.private_adapter.down.weight",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+        "deberta.encoder.layer.0.private_adapter.up.bias"
+      ],
+      "AutoModel": {
+        "ok": true,
+        "class": "DebertaV2Model",
+        "module": "transformers.models.deberta_v2.modeling_deberta_v2",
+        "param_count": 34219200,
+        "private_named_params": 0,
+        "loading_info_missing_count": 0,
+        "loading_info_unexpected_count": 101,
+        "missing_examples": [],
+        "unexpected_examples": [
+          "cls.predictions.bias",
+          "cls.predictions.transform.LayerNorm.bias",
+          "cls.predictions.transform.LayerNorm.weight",
+          "cls.predictions.transform.dense.bias",
+          "cls.predictions.transform.dense.weight",
+          "encoder.layer.0.adapter.down.bias",
+          "encoder.layer.0.adapter.down.weight",
+          "encoder.layer.0.adapter.layer_norm.bias",
+          "encoder.layer.0.adapter.layer_norm.weight",
+          "encoder.layer.0.adapter.up.bias",
+          "encoder.layer.0.adapter.up.weight",
+          "encoder.layer.0.private_adapter.down.bias"
+        ],
+        "probe_hidden_mean": -0.0010375557467341423,
+        "probe_hidden_std": 0.9854415655136108,
+        "probe_hidden_shape": [
+          1,
+          18,
+          480
+        ]
+      },
+      "AutoModelForMaskedLM": {
+        "ok": false,
+        "error": "OSError(30, 'Read-only file system')"
+      }
+    },
+    "dense62065_u0080": {
+      "path": "experiments/archive/functional_learning/data/dense_focus_rep_seed62065_train/correspondence_focus_weighted/checkpoints/update_0080",
+      "exists": true,
+      "config_architectures": [
+        "FrozenSlowPrivateDebertaV2ForMaskedLM"
+      ],
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+      },
+      "config_private_adapter_scale": 0.75,
+      "private_state_keys": 48,
+      "private_state_params": 995584,
+      "examples": [
+        "deberta.encoder.layer.0.private_adapter.down.bias",
+        "deberta.encoder.layer.0.private_adapter.down.weight",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+        "deberta.encoder.layer.0.private_adapter.up.bias"
+      ],
+      "AutoModel": {
+        "ok": true,
+        "class": "DebertaV2Model",
+        "module": "transformers.models.deberta_v2.modeling_deberta_v2",
+        "param_count": 34219200,
+        "private_named_params": 0,
+        "loading_info_missing_count": 0,
+        "loading_info_unexpected_count": 101,
+        "missing_examples": [],
+        "unexpected_examples": [
+          "cls.predictions.bias",
+          "cls.predictions.transform.LayerNorm.bias",
+          "cls.predictions.transform.LayerNorm.weight",
+          "cls.predictions.transform.dense.bias",
+          "cls.predictions.transform.dense.weight",
+          "encoder.layer.0.adapter.down.bias",
+          "encoder.layer.0.adapter.down.weight",
+          "encoder.layer.0.adapter.layer_norm.bias",
+          "encoder.layer.0.adapter.layer_norm.weight",
+          "encoder.layer.0.adapter.up.bias",
+          "encoder.layer.0.adapter.up.weight",
+          "encoder.layer.0.private_adapter.down.bias"
+        ],
+        "probe_hidden_mean": -0.0010375557467341423,
+        "probe_hidden_std": 0.9854415655136108,
+        "probe_hidden_shape": [
+          1,
+          18,
+          480
+        ]
+      },
+      "AutoModelForMaskedLM": {
+        "ok": false,
+        "error": "OSError(30, 'Read-only file system')"
+      }
+    }
+  },
+  "pairwise_probe_diffs": {
+    "AutoModel_hidden_coherent86_train_scale1p0_minus_chck82": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    "AutoModel_hidden_dense62064_u0080_minus_chck82": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    "AutoModel_hidden_dense62065_u0080_minus_chck82": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    "AutoModel_hidden_dense62065_minus_dense62064": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    "MLM_diff_error": "OSError(30, 'Read-only file system')"
+  }
+}

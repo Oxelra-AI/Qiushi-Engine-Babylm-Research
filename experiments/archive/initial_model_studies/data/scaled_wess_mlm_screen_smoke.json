@@ -1,0 +1,214 @@
+{
+  "status": "SCALED_WESS_SCREEN_COMPLETE",
+  "args": {
+    "output": "experiments/archive/initial_model_studies/data/scaled_wess_mlm_screen_smoke.json",
+    "hidden_size": 128,
+    "n_layer": 2,
+    "n_head": 4,
+    "intermediate_size": 512,
+    "max_position_embeddings": 512,
+    "position_buckets": 256,
+    "steps": 20,
+    "batch_size": 8,
+    "episode_ratio": 0.25,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "seed": 42,
+    "train_pairs": 80,
+    "eval_pairs": 40,
+    "official_examples": 200,
+    "max_official_len": 192,
+    "arms": "plain_mlm,no_address,wess_gold,wess_eventwise_random",
+    "log_every": 10
+  },
+  "device": "cuda",
+  "arms": [
+    "plain_mlm",
+    "no_address",
+    "wess_gold",
+    "wess_eventwise_random"
+  ],
+  "train_episode_examples": 160,
+  "eval_episode_examples": 80,
+  "official_meta": {
+    "official_examples": 200,
+    "official_unique_words_loaded": 1550,
+    "official_tokens_loaded": 2529
+  },
+  "train_episode_words_unique_approx": 3840,
+  "eval_episode_words_approx": 1920,
+  "shortcut_audit_eval": {
+    "first_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 40
+    },
+    "last_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 40
+    },
+    "nearest_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 40
+    },
+    "majority_fixed_first_visible": {
+      "example_acc": 0.2625,
+      "pair_acc": 0.0,
+      "n_pairs": 40
+    },
+    "prev_query_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 40
+    }
+  },
+  "source_bridge": "experiments/archive/initial_model_studies/scripts/wess_mlm_transfer_pilot.py",
+  "elapsed_sec": 6.3,
+  "arms_results": {
+    "plain_mlm": {
+      "train_meta": {
+        "steps": 20,
+        "batch_size": 8,
+        "episode_examples_seen": 40,
+        "official_examples_seen": 120,
+        "approx_word_exposure": 1851,
+        "token_exposure": 2702,
+        "masked_targets": 160,
+        "loss_first": 9.881549835205078,
+        "loss_last": 8.617462158203125,
+        "loss_mean_last20": 9.09133734703064
+      },
+      "binding": {
+        "example_acc": 0.0,
+        "pair_acc": 0.0,
+        "mean_logodds": 1.3911724090576172e-05,
+        "n_pairs": 40,
+        "n_examples": 80
+      },
+      "official_mlm_loss": 8.728499821254186,
+      "params": 2905344
+    },
+    "no_address": {
+      "train_meta": {
+        "steps": 20,
+        "batch_size": 8,
+        "episode_examples_seen": 40,
+        "official_examples_seen": 120,
+        "approx_word_exposure": 1851,
+        "token_exposure": 2702,
+        "masked_targets": 160,
+        "loss_first": 9.875152587890625,
+        "loss_last": 8.779712677001953,
+        "loss_mean_last20": 9.165792274475098
+      },
+      "binding": {
+        "example_acc": 0.15,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.0018887042999267579,
+        "n_pairs": 40,
+        "n_examples": 80
+      },
+      "official_mlm_loss": 8.723943982805524,
+      "params": 2905344,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.0,
+        "swap_top1_to_other": 0.15,
+        "ablation_logodds_delta_prev_minus_answer": 0.006146913766860962,
+        "ablation_top1_to_prev": 0.1
+      }
+    },
+    "wess_gold": {
+      "train_meta": {
+        "steps": 20,
+        "batch_size": 8,
+        "episode_examples_seen": 40,
+        "official_examples_seen": 120,
+        "approx_word_exposure": 1851,
+        "token_exposure": 2702,
+        "masked_targets": 160,
+        "loss_first": 9.876982688903809,
+        "loss_last": 8.792872428894043,
+        "loss_mean_last20": 9.170667505264282
+      },
+      "binding": {
+        "example_acc": 0.1625,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.014255481958389282,
+        "n_pairs": 40,
+        "n_examples": 80
+      },
+      "official_mlm_loss": 8.724974496023995,
+      "params": 2905344,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.029650312662124634,
+        "swap_top1_to_other": 0.1375,
+        "ablation_logodds_delta_prev_minus_answer": 0.014830166101455688,
+        "ablation_top1_to_prev": 0.1
+      }
+    },
+    "wess_eventwise_random": {
+      "train_meta": {
+        "steps": 20,
+        "batch_size": 8,
+        "episode_examples_seen": 40,
+        "official_examples_seen": 120,
+        "approx_word_exposure": 1851,
+        "token_exposure": 2702,
+        "masked_targets": 160,
+        "loss_first": 9.876861572265625,
+        "loss_last": 8.79245376586914,
+        "loss_mean_last20": 9.172497463226318
+      },
+      "binding": {
+        "example_acc": 0.15,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.0024732470512390135,
+        "n_pairs": 40,
+        "n_examples": 80
+      },
+      "official_mlm_loss": 8.72511100769043,
+      "params": 2905344,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.005941760540008545,
+        "swap_top1_to_other": 0.15,
+        "ablation_logodds_delta_prev_minus_answer": 0.011182713508605956,
+        "ablation_top1_to_prev": 0.1
+      }
+    }
+  },
+  "summary": {
+    "plain_mlm": {
+      "mean_logodds": 1.3911724090576172e-05,
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 8.728499821254186
+    },
+    "no_address": {
+      "mean_logodds": 0.0018887042999267579,
+      "example_acc": 0.15,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 8.723943982805524,
+      "swap_delta": 0.0,
+      "ablation_delta": 0.006146913766860962
+    },
+    "wess_gold": {
+      "mean_logodds": 0.014255481958389282,
+      "example_acc": 0.1625,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 8.724974496023995,
+      "swap_delta": 0.029650312662124634,
+      "ablation_delta": 0.014830166101455688
+    },
+    "wess_eventwise_random": {
+      "mean_logodds": 0.0024732470512390135,
+      "example_acc": 0.15,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 8.72511100769043,
+      "swap_delta": 0.005941760540008545,
+      "ablation_delta": 0.011182713508605956
+    }
+  }
+}

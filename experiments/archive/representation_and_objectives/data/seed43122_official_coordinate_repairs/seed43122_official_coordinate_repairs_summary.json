@@ -1,0 +1,101 @@
+{
+  "status": "SEED43122_OFFICIAL_COORDINATE_REPAIRS_DONE",
+  "created_utc": "2026-08-29T20:36:34Z",
+  "preflight": {
+    "created_utc": "2026-08-29T20:15:17Z",
+    "gpu": 1,
+    "model_root": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/repl_compact_view_reinvest_seed43122/hf_model",
+      "exists": true,
+      "size_bytes": 4096
+    },
+    "model_ckpt_100m": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/repl_compact_view_reinvest_seed43122/hf_model/chck_100M",
+      "exists": true,
+      "size_bytes": 156
+    },
+    "pristine_ewok_dir": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/ewok_filtered",
+      "exists": true,
+      "size_bytes": 4096
+    },
+    "ewok_script": {
+      "path": "experiments/archive/representation_and_objectives/training/scripts/official_ewok_reeval_seed43122.py",
+      "exists": true,
+      "size_bytes": 7282
+    },
+    "aoa_script": {
+      "path": "experiments/archive/representation_and_objectives/training/scripts/official_aoa_min0_seed43122.py",
+      "exists": true,
+      "size_bytes": 12225
+    },
+    "missing_required_aoa_steps": [],
+    "scientific_purpose": "Place seed43122 on the same official EWoK and AoA coordinate as seed43022 after the inherited full wrapper used stale/local variants."
+  },
+  "runs": [
+    {
+      "name": "official_ewok_7618",
+      "cmd": [
+        "data/external/python",
+        "-B",
+        "experiments/archive/representation_and_objectives/training/scripts/official_ewok_reeval_seed43122.py",
+        "--gpu",
+        "1",
+        "--model-path",
+        "experiments/archive/representation_and_objectives/training/runs/repl_compact_view_reinvest_seed43122/hf_model/chck_100M",
+        "--out-root",
+        "experiments/archive/representation_and_objectives/data/official_ewok_reeval_seed43122"
+      ],
+      "returncode": 0,
+      "elapsed_sec": 33.58976435661316,
+      "log": "experiments/archive/representation_and_objectives/data/seed43122_official_coordinate_repairs/logs/official_ewok_7618.log"
+    },
+    {
+      "name": "official_aoa_min0_8005",
+      "cmd": [
+        "data/external/python",
+        "-B",
+        "experiments/archive/representation_and_objectives/training/scripts/official_aoa_min0_seed43122.py",
+        "--gpu",
+        "1",
+        "--model_root",
+        "experiments/archive/representation_and_objectives/training/runs/repl_compact_view_reinvest_seed43122/hf_model",
+        "--out_dir",
+        "experiments/archive/representation_and_objectives/data/official_aoa_min0_seed43122",
+        "--min_context",
+        "0"
+      ],
+      "returncode": 0,
+      "elapsed_sec": 1243.4092926979065,
+      "log": "experiments/archive/representation_and_objectives/data/seed43122_official_coordinate_repairs/logs/official_aoa_min0_8005.log"
+    }
+  ],
+  "outputs": {
+    "ewok": {
+      "json": {
+        "path": "experiments/archive/representation_and_objectives/data/official_ewok_reeval_seed43122/official_ewok_reeval_seed43122.json",
+        "exists": true,
+        "size_bytes": 1962
+      },
+      "score": 51.89,
+      "prediction_item_total": 7618,
+      "predictions_path": "experiments/archive/representation_and_objectives/data/official_ewok_reeval_seed43122/official_outputs/EWoK/chck_100M/official_ewok_seed43122/zero_shot/mlm/ewok/ewok_filtered/predictions.json",
+      "returncode": 0
+    },
+    "aoa": {
+      "json": {
+        "path": "experiments/archive/representation_and_objectives/data/official_aoa_min0_seed43122/official_aoa_min0_seed43122.json",
+        "exists": true,
+        "size_bytes": 1925
+      },
+      "aoa_raw_correlation": 0.0,
+      "aoa_leaderboard_score": 0.0,
+      "num_rows": 152095,
+      "row_count_values": [
+        8005
+      ],
+      "finite_surprisals": true
+    }
+  },
+  "next_use": "After the inherited seed43122 full vector becomes available, stage seed43122 with stage_pristine_collate_seed43122.py using ewok.predictions_path and AOA_OUT as --aoa-dir."
+}

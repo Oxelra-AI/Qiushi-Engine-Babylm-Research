@@ -1,0 +1,305 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import pathlib
+import random
+import re
+from collections import Counter, defaultdict
+
+ROOT = pathlib.Path('experiments/archive/initial_model_studies')
+RAW_DIR_DEFAULT = ROOT/'data/reconstruct_tmp/raw_dataset'
+OUT_DIR_DEFAULT = ROOT/'data/xspan_revision_117'
+NOTE_DEFAULT = (ROOT.parents[2] / 'research/notes/initial_model_studies/relational_xspan_materialization_v3.md')
+SENT_RE = re.compile(r'(?<=[.!?])\s+')
+WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9]*(?:[-'][A-Za-z0-9]+)?")
+DEP_STARTS = {'it','they','this','these','that','those'}
+BAD_START = {'because','however','which','who','where','when','while','although','and','or','but','so','then','therefore','thus'}
+DANGLING_END = {'in','of','to','by','for','with','as','on','at','from','until','according','that','the','a','an','and','or','but','into','onto','over','under','near','between','among','through','after','before','during','whenever','next','via','towards','toward'}
+STOP = {'a','an','the','is','are','was','were','be','been','being','and','or','but','of','to','for','with','by','as','in','on','at','from','which','who','that','this','these','those','it','they','them','their','its','however','because'}
+CLAUSE_TRIGGERS = {'which','who','whom','whose','where','when','whenever','while','although','because'}
+ANCHOR_VERBS = {'is','are','was','were','means','refers','has','have','contains','includes','uses','covers','describes','represents','forms','consists','lives','live','accepts','works','stars','released','split','put','located','found','based','became','received','provides','features','distributed','named','extends','allows'}
+LOCATION_MARKERS = {'in','on','at','near','from','inside','outside','north','south','east','west','within','around','beside','between'}
+ACTION_MARKERS = {'contains','includes','uses','accepts','works','stars','released','split','put','provides','features','covers','describes','represents','forms','consists','lives','live','located','found','based','became','received','distributed','named','extends','allows','replaced','exported','discontinued','made','produced','directed','written','sung','announced','opposed','surrounds','gives','played','appears'}
+
+
+def split_sents(line: str) -> list[str]:
+    return [s.strip() for s in SENT_RE.split(line.strip()) if s.strip()]
+
+
+def word_items(text: str):
+    return [(m.group(0), m.start(), m.end()) for m in WORD_RE.finditer(text)]
+
+
+def words(text: str) -> list[str]:
+    return [w for w, _, _ in word_items(text)]
+
+
+def norm(w: str) -> str:
+    return w.lower().strip("-'")
+
+
+def count_ws(text: str) -> int:
+    return len(text.split())
+
+
+def sent_len_bin(n: int) -> str:
+    if n <= 10: return 's_le10'
+    if n <= 20: return 's_11_20'
+    if n <= 40: return 's_21_40'
+    return 's_41p'
+
+
+def has_s1_anchor(s1: str) -> bool:
+    ws = [norm(w) for w in words(s1)]
+    return len(ws) >= 4 and any(w in ANCHOR_VERBS for w in ws[:16])
+
+
+def substantive(ws: list[str]) -> list[str]:
+    return [w for w in ws if w not in STOP and len(w) >= 4 and not w.isdigit()]
+
+
+def balanced_text(txt: str) -> bool:
+    if txt.count('"') % 2:
+        return False
+    pairs = [('(', ')'), ('[', ']'), ('{', '}')]
+    return all(txt.count(a) == txt.count(b) for a, b in pairs)
+
+
+def cleaned_words(txt: str) -> list[str]:
+    return [w.strip('.,;:!?"()[]{}').lower() for w in txt.split() if w.strip('.,;:!?"()[]{}')]
+
+
+def valid_target_text(txt: str) -> bool:
+    ws = cleaned_words(txt)
+    if not ws or len(ws) > 10:
+        return False
+    if ws[0] in BAD_START or ws[-1] in DANGLING_END:
+        return False
+    if any(w in CLAUSE_TRIGGERS for w in ws[1:]):
+        return False
+    if not balanced_text(txt):
+        return False
+    if len(substantive(ws)) < 2:
+        return False
+    return True
+
+
+def cut_before_clause(items, start_i: int, hard_end_i: int) -> int:
+    # If a relative/subordinate marker appears mid-span, end before it if enough content remains.
+    end_i = hard_end_i
+    for j in range(start_i + 1, hard_end_i + 1):
+        if norm(items[j][0]) in CLAUSE_TRIGGERS:
+            candidate = j - 1
+            txt = items_to_text(items, start_i, candidate)
+            if len(substantive(cleaned_words(txt))) >= 2 and not norm(items[candidate][0]) in DANGLING_END:
+                return candidate
+            return hard_end_i
+    return end_i
+
+
+def items_to_text(items, start_i: int, end_i: int) -> str:
+    # This is a text slice span helper; actual source slice is made from char spans.
+    return ' '.join(w for w, _, _ in items[start_i:end_i + 1])
+
+
+def extend_balanced(items, start_i: int, end_i: int, max_words: int) -> int:
+    # Extend a little to balance quotes/brackets and to complete dangling connectors, while preserving compactness.
+    n = len(items)
+    guard = 0
+    while end_i + 1 < n and guard < 8:
+        txt = items_to_text(items, start_i, end_i)
+        last = norm(items[end_i][0])
+        need_balance = not balanced_text(txt)
+        need_connector = last in DANGLING_END
+        if not need_balance and not need_connector:
+            break
+        if (end_i - start_i + 1) >= max_words:
+            break
+        end_i += 1
+        guard += 1
+        # If we just added an article/determiner after a connector, add one more head when possible.
+        if norm(items[end_i][0]) in {'the', 'a', 'an'} and end_i + 1 < n and (end_i - start_i + 1) < max_words:
+            end_i += 1
+            guard += 1
+    return end_i
+
+
+def phrase_end(items, start_i: int, max_words: int = 10) -> int | None:
+    n = len(items)
+    if start_i >= n:
+        return None
+    end_i = min(n - 1, start_i + max_words - 1)
+    # Prefer stopping at punctuation/clause/conjunction before the max window, if the pre-stop phrase is valid-ish.
+    for j in range(start_i + 1, min(n, start_i + max_words)):
+        x = norm(items[j][0])
+        if x in CLAUSE_TRIGGERS:
+            if j - 1 >= start_i:
+                end_i = j - 1
+            break
+        if x in {'and', 'or', 'but'} and j - start_i >= 3:
+            # keep first list segment; if it leaves a dangling connector, later validation rejects/extends.
+            end_i = j - 1
+            break
+    end_i = extend_balanced(items, start_i, end_i, max_words=max_words)
+    end_i = cut_before_clause(items, start_i, end_i)
+    # Try shortening from too-long/invalid endings until valid, then try connector extension again.
+    for candidate in range(end_i, start_i - 1, -1):
+        cand2 = extend_balanced(items, start_i, candidate, max_words=max_words)
+        txt = items_to_text(items, start_i, cand2)
+        if valid_target_text(txt):
+            return cand2
+    return None
+
+
+def build_target(s2: str, items, start_i: int, target_type: str, max_words: int = 10):
+    end_i = phrase_end(items, start_i, max_words=max_words)
+    if end_i is None:
+        return None
+    a = items[start_i][1]
+    b = items[end_i][2]
+    txt = s2[a:b].strip()
+    if not valid_target_text(txt):
+        return None
+    return {'target_type': target_type, 'target_span_s2': [a, b], 'target_text': txt, 'dependent': items[0][0]}
+
+
+def choose_target(s2: str):
+    items = word_items(s2)
+    if len(items) < 4:
+        return None
+    xs = [norm(w) for w, _, _ in items]
+    if xs[0] not in DEP_STARTS:
+        return None
+    # Location/spatial phrases: include predicate when it improves content density.
+    for i in range(1, len(xs)):
+        if xs[i] in LOCATION_MARKERS:
+            start_i = i
+            if i >= 1 and xs[i - 1] in {'lives', 'live', 'located', 'found', 'based', 'is', 'are', 'was', 'were', 'appears'}:
+                start_i = i - 1
+            r = build_target(s2, items, start_i, 'location_spatial_phrase')
+            if r: return r
+    # Action/object/result phrase.
+    for i in range(1, len(xs)):
+        if xs[i] in ACTION_MARKERS:
+            r = build_target(s2, items, i, 'action_object_result_phrase')
+            if r: return r
+    # Definition/property complement after early copula.
+    for i in range(1, min(len(xs), 5)):
+        if xs[i] in {'is', 'are', 'was', 'were'}:
+            start_i = i + 1
+            while start_i < len(items) and norm(items[start_i][0]) in {'a', 'an', 'the'}:
+                start_i += 1
+            r = build_target(s2, items, start_i, 'definition_property_complement')
+            if r: return r
+    # Fallback semantic content phrase, only if not beginning with bad discourse.
+    for i in range(1, min(len(xs), 8)):
+        if xs[i] not in STOP and xs[i] not in BAD_START and len(xs[i]) >= 4:
+            r = build_target(s2, items, i, 'semantic_content_continuation')
+            if r: return r
+    return None
+
+
+def collect(raw_dir: pathlib.Path, source: str, min_s1_words: int, max_s1_words: int, min_s2_words: int, max_s2_words: int):
+    p = raw_dir / source
+    rows = []
+    with p.open('r', encoding='utf-8', errors='replace') as f:
+        for line_no, line in enumerate(f, 1):
+            sents = split_sents(line)
+            for i in range(len(sents) - 1):
+                s1 = sents[i]
+                s2 = sents[i + 1]
+                w1 = len(words(s1)); w2 = len(words(s2))
+                if not (min_s1_words <= w1 <= max_s1_words and min_s2_words <= w2 <= max_s2_words):
+                    continue
+                if not has_s1_anchor(s1):
+                    continue
+                t = choose_target(s2)
+                if t:
+                    rows.append({'source': source, 'line_no': line_no, 'sent_index': i, 's1': s1, 's2': s2, 's1_word_count': w1, 's2_word_count': w2, **t})
+    return rows
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--raw_dir', default=str(RAW_DIR_DEFAULT))
+    ap.add_argument('--out_dir', default=str(OUT_DIR_DEFAULT))
+    ap.add_argument('--source', default='simple_wiki.train.txt')
+    ap.add_argument('--target_counted_words', type=int, default=200000)
+    ap.add_argument('--seed', type=int, default=117)
+    ap.add_argument('--min_s1_words', type=int, default=4)
+    ap.add_argument('--max_s1_words', type=int, default=70)
+    ap.add_argument('--min_s2_words', type=int, default=4)
+    ap.add_argument('--max_s2_words', type=int, default=70)
+    args = ap.parse_args()
+    raw_dir = pathlib.Path(args.raw_dir)
+    out_dir = pathlib.Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rng = random.Random(args.seed)
+    cand = collect(raw_dir, args.source, args.min_s1_words, args.max_s1_words, args.min_s2_words, args.max_s2_words)
+    idx = defaultdict(list)
+    for r in cand:
+        idx[sent_len_bin(r['s1_word_count'])].append(r)
+    rng.shuffle(cand)
+    rows = []
+    counted = 0
+    by_type = Counter()
+    skipped = Counter()
+    for r in cand:
+        pool = [q for q in idx[sent_len_bin(r['s1_word_count'])] if q['line_no'] != r['line_no']]
+        if not pool:
+            skipped['no_wrong_s1'] += 1
+            continue
+        wrong = min(rng.sample(pool, min(20, len(pool))), key=lambda q: abs(q['s1_word_count'] - r['s1_word_count']))
+        text_true = r['s1'] + ' ' + r['s2']
+        text_wrong = wrong['s1'] + ' ' + r['s2']
+        text_no = r['s2']
+        wt = count_ws(text_true)
+        if rows and counted + wt > args.target_counted_words:
+            break
+        a, b = r['target_span_s2']
+        row = {
+            'example_id': len(rows),
+            'split': 'heldout' if len(rows) % 20 == 0 else 'train',
+            'source': r['source'], 'line_no': r['line_no'], 'sent_index': r['sent_index'],
+            's1': r['s1'], 's2': r['s2'],
+            'text': text_true, 'text_wrong_s1': text_wrong, 'text_no_s1': text_no,
+            'words': wt, 'words_wrong_s1': count_ws(text_wrong), 'words_no_s1': count_ws(text_no),
+            's2_start_char_text': len(r['s1']) + 1,
+            's2_start_char_wrong_s1': len(wrong['s1']) + 1,
+            's2_start_char_no_s1': 0,
+            'target_span_s2': [a, b], 'target_text': r['target_text'], 'target_type': r['target_type'], 'dependent': r['dependent'],
+            'target_span_text': [len(r['s1']) + 1 + a, len(r['s1']) + 1 + b],
+            'target_span_wrong_s1': [len(wrong['s1']) + 1 + a, len(wrong['s1']) + 1 + b],
+            'target_span_no_s1': [a, b],
+            'wrong_s1': {'source': wrong['source'], 'line_no': wrong['line_no'], 'sent_index': wrong['sent_index'], 's1': wrong['s1'], 's1_word_count': wrong['s1_word_count']},
+            'materializer_version': 'relational_xspan_v3',
+            'selection_policy': 'rule_based_only_no_model_score_filtering',
+        }
+        rows.append(row)
+        counted += wt
+        by_type[r['target_type']] += 1
+    out_path = out_dir / f'relational_xspan_v3_seed{args.seed}_target{args.target_counted_words}_actual.jsonl'
+    with out_path.open('w', encoding='utf-8') as f:
+        for r in rows:
+            f.write(json.dumps(r, ensure_ascii=False) + '\n')
+    summary = {
+        'status': 'RELATIONAL_XSPAN_V3_MATERIALIZED',
+        'out_jsonl': str(out_path), 'raw_dir': str(raw_dir), 'source': args.source, 'seed': args.seed,
+        'candidate_rows_before_budget': len(cand), 'num_rows': len(rows), 'true_context_counted_words': counted,
+        'target_counted_words': args.target_counted_words, 'by_target_type': dict(by_type),
+        'heldout_rows': sum(r['split'] == 'heldout' for r in rows), 'train_rows': sum(r['split'] == 'train' for r in rows),
+        'skipped': dict(skipped),
+        'policy': 'No protected-model scores used. v3 requires >=2 substantive tokens, balanced quotes/brackets, no dangling connectors, no mid-span clause triggers.'
+    }
+    summary_path = out_path.with_suffix('.summary.json')
+    summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    lines = ['# research — relational XSpan v3 materialization', '', f'JSONL: `{out_path}`', f'Summary: `{summary_path}`', '',
+             f'Rows: **{len(rows)}**', f'True-context counted words: **{counted}**', f'By target type: {dict(by_type)}', '',
+             'v3 policy: no protected-model score filtering; stricter compact semantic span validation before any XSpan trainer work.']
+    NOTE_DEFAULT.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print(json.dumps({'status': summary['status'], 'jsonl': str(out_path), 'summary': str(summary_path), 'rows': len(rows), 'counted_words': counted, 'by_target_type': dict(by_type)}, indent=2))
+
+if __name__ == '__main__':
+    main()

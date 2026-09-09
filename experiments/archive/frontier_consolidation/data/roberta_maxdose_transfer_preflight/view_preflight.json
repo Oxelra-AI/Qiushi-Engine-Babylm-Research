@@ -1,0 +1,210 @@
+{
+  "status": "ROBERTA_MAXDOSE_TRANSFER_PREFLIGHT_OK",
+  "created_utc": "2026-09-04T05:36:26Z",
+  "data_arm": "view",
+  "scientific_purpose": "CPU dry-run for a future RoBERTa MAX-dose generality test using the fixed research tokenizer and research matched 2.64x row-holdout pools.",
+  "stream": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/compact_view_dose2p64x_100M.jsonl",
+  "stream_accounting": {
+    "path": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/compact_view_dose2p64x_100M.jsonl",
+    "rows": 653130,
+    "words": 100000000,
+    "sha256": "11a5cf7281a4b9e4a281fd155aef3103825ade1489f8dead59e3c0225186137f",
+    "first_rows": [
+      {
+        "row": 0,
+        "words": 160,
+        "example_id": 10599,
+        "source": "childes",
+        "text_prefix": "*CHI: xxx I want this. *BRO: I xxx like this one. [whines] *CHI: this. *MOT: that's a grape. *CHI: I want this one. *BRO"
+      },
+      {
+        "row": 1,
+        "words": 160,
+        "example_id": 11835,
+        "source": "childes",
+        "text_prefix": "noises] *MOT: wait a minute! *MOT: you can't take off 'til I get in! *CHI: zzz zzz. [laughs] *MOT: le' me close the door"
+      },
+      {
+        "row": 2,
+        "words": 160,
+        "example_id": 35427,
+        "source": "gutenberg",
+        "text_prefix": "I were you. Do your preparation this evening, and if it's fine to-morrow perhaps Uncle David will take you with him to C"
+      },
+      {
+        "row": 3,
+        "words": 160,
+        "example_id": 40383,
+        "source": "open_subtitles",
+        "text_prefix": "I like it. \"She made me feel all right. - She kept me up all night. \" - Kept me up all night. \"She taught me the ways of"
+      }
+    ],
+    "last_rows": [
+      {
+        "row": 653126,
+        "words": 114,
+        "example_id": 302467,
+        "source": "qwen_pair_packed",
+        "text_prefix": "It went to number 7 in the United Kingdom, number 11 in Scotland, number 32 in Australia, number 76 in the Netherlands, "
+      },
+      {
+        "row": 653127,
+        "words": 160,
+        "example_id": 14634,
+        "source": "childes",
+        "text_prefix": "if you want dessert. *CHI: mm. *MOT: don't play please. *MOT: Chi food is for eating not for playing. *MOT: please don't"
+      },
+      {
+        "row": 653128,
+        "words": 155,
+        "example_id": 975543,
+        "source": "compact_view_dose2p64x_matched_rowholdout",
+        "text_prefix": "Other areas throughout the north and north-east highlighted included Ianstown, near Buckie in Moray, which had mixed lit"
+      },
+      {
+        "row": 653129,
+        "words": 160,
+        "example_id": 16782,
+        "source": "childes",
+        "text_prefix": "*CHI: and I can draw... *CHI: no! *CHI: uhoh I got... *MOT: y you make... *CHI: all I gotta do is just cut 'em out. *CHI"
+      }
+    ],
+    "source_word_types": 9,
+    "source_words_top20": [
+      [
+        "childes",
+        23489600
+      ],
+      [
+        "gutenberg",
+        16961600
+      ],
+      [
+        "open_subtitles",
+        16688000
+      ],
+      [
+        "qwen_pair_packed",
+        16568000
+      ],
+      [
+        "compact_view_dose2p64x_matched_rowholdout",
+        11185870
+      ],
+      [
+        "simple_wiki",
+        9660800
+      ],
+      [
+        "bnc_spoken",
+        5252800
+      ],
+      [
+        "switchboard",
+        192000
+      ],
+      [
+        "neutral_cleanqwen_topup_dose2p64x::gutenberg",
+        1330
+      ]
+    ],
+    "expected_update_steps_at_batch256": 2552
+  },
+  "expected_stream_sha256": "11a5cf7281a4b9e4a281fd155aef3103825ade1489f8dead59e3c0225186137f",
+  "clean100_materialization": null,
+  "tokenizer_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+  "model_variant": {
+    "parameter_count": 30528064,
+    "vocab_size": 16384
+  },
+  "recipe": {
+    "model_family": "roberta",
+    "parameter_count_expected": 30528064,
+    "vocab_size_expected": 16384,
+    "hidden_size": 480,
+    "n_layer": 8,
+    "n_head": 8,
+    "ffn_mult": 4,
+    "seed": 43,
+    "extra_init_seed": 43022,
+    "train_rng_seed": 43023,
+    "batch_size": 256,
+    "seq_length": 256,
+    "max_seq_length": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.06,
+    "mask_prob": 0.15,
+    "checkpoint_words": 10000000,
+    "max_word_exposure": 100000000,
+    "lr_total_steps": 2529,
+    "num_workers": 0,
+    "log_every": 50
+  },
+  "actual_updates_at_batch256_from_rows": 2552,
+  "lr_total_steps_kept_from_step211_and_step256": 2529,
+  "run_dir_if_launched": "experiments/archive/frontier_consolidation/training/runs/roberta_view_dose2p64x_matched_rowholdout_100M_seed43022",
+  "command_if_launched": [
+    "data/external/python",
+    "-B",
+    "experiments/archive/frontier_consolidation/scripts/roberta_mlm_transfer_trainer.py",
+    "--tokenizer_path",
+    "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "--tokenizer_label",
+    "compliant16k_reinvest10M",
+    "--model_family",
+    "roberta",
+    "--hidden_size",
+    "480",
+    "--n_layer",
+    "8",
+    "--n_head",
+    "8",
+    "--ffn_mult",
+    "4",
+    "--seed",
+    "43",
+    "--extra_init_seed",
+    "43022",
+    "--train_rng_seed",
+    "43023",
+    "--batch_size",
+    "256",
+    "--seq_length",
+    "256",
+    "--max_seq_length",
+    "256",
+    "--learning_rate",
+    "0.001",
+    "--weight_decay",
+    "0.01",
+    "--warmup_fraction",
+    "0.06",
+    "--mask_prob",
+    "0.15",
+    "--max_word_exposure",
+    "100000000",
+    "--checkpoint_words",
+    "10000000",
+    "--lr_total_steps",
+    "2529",
+    "--num_workers",
+    "0",
+    "--log_every",
+    "50",
+    "--example_jsonl",
+    "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/compact_view_dose2p64x_100M.jsonl",
+    "--example_jsonl_label",
+    "roberta_compact_view_dose2p64x_matched_rowholdout",
+    "--output_dir",
+    "experiments/archive/frontier_consolidation/training/runs/roberta_view_dose2p64x_matched_rowholdout_100M_seed43022"
+  ],
+  "launch_policy": {
+    "semantic_leg_load_bearing": "launch view + repeat RoBERTa MAX-dose pair",
+    "source_or_freed_budget_leg_load_bearing": "launch view + clean RoBERTa MAX-dose pair as the total fixed-budget treatment transfer test",
+    "do_not_launch_before": "research/258 DeBERTa budget-decomposition readout identifies which leg carries the MAX-minus-1x dose growth"
+  },
+  "no_training_started": false,
+  "no_evaluation_superglue_aoa_upload_or_leaderboard": true
+}

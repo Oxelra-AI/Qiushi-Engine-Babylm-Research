@@ -1,0 +1,171 @@
+{
+  "status": "A02_MULTITOKEN_BASELINE_SCORER",
+  "rows_path": "experiments/archive/functional_learning/data/curated_source_grounded_probe/curated_source_grounded_training_rows.jsonl",
+  "model_path": "models/frontier",
+  "device": "cpu",
+  "seq_length": 256,
+  "private_scale": 0.75,
+  "scoring": {
+    "primary_margin": "mean per candidate token log probability difference",
+    "secondary_margin": "summed candidate token log probability difference, most interpretable on equal-token-length rows",
+    "masked_positions": "candidate span inside final use_sentence_frame only; source/update occurrences are not masked",
+    "pair_contrast": "U + R under update_new_minus_source and retain_source_minus_new signed margins"
+  },
+  "validation": {
+    "n_rows": 12,
+    "n_pairs": 6,
+    "n_pair_issues": 0,
+    "pair_issues_first20": [],
+    "packet_type_counts": {
+      "UPDATE": 6,
+      "RETAIN": 6
+    },
+    "role_position_distribution_rows": {
+      "manual_balanced_unknown": 12
+    },
+    "source_distribution_rows": {
+      "unknown": 12
+    },
+    "literal_target_position_counts": {
+      "target_later": 1,
+      "target_earlier": 5
+    },
+    "metadata_literal_mismatch_examples": [
+      {
+        "pair_id": "sgp_chart_netherlands_australia",
+        "metadata_role": "manual_balanced_unknown",
+        "literal_role": "target_later",
+        "target": "Netherlands",
+        "distractor": "Australia",
+        "source_prefix": "It went to number 1 in New Zealand, number 3 in the United States, number 11 in Australia, number 14 in Canada and the Netherlands and number 20 in Belgium."
+      },
+      {
+        "pair_id": "sgp_chart_italy_billboard",
+        "metadata_role": "manual_balanced_unknown",
+        "literal_role": "target_earlier",
+        "target": "Italy",
+        "distractor": "Billboard Adult Alternative Songs",
+        "source_prefix": "It is the second single from his 16th studio album \"Working on a Dream\" and went to number 41 in Italy and number 18 on the Billboard Adult Alternative Songs chart."
+      },
+      {
+        "pair_id": "sgp_pope_action_nicholas_photios",
+        "metadata_role": "manual_balanced_unknown",
+        "literal_role": "target_earlier",
+        "target": "Pope Nicholas I",
+        "distractor": "Patriarch Photios I",
+        "source_prefix": "Pope Nicholas I had refused to recognize Patriarch Photios I of Constantinople, who in turn had attacked the pope as a heretic."
+      },
+      {
+        "pair_id": "sgp_music_video_fatima_trainor",
+        "metadata_role": "manual_balanced_unknown",
+        "literal_role": "target_earlier",
+        "target": "Fatima Robinson",
+        "distractor": "Trainor",
+        "source_prefix": "Fatima Robinson directed the music video for \"No\", which features Trainor performing choreographed dances in a warehouse and entwining her arms with accompanying female dancers."
+      },
+      {
+        "pair_id": "sgp_military_listing_iraqi_bombers",
+        "metadata_role": "manual_balanced_unknown",
+        "literal_role": "target_earlier",
+        "target": "Iraqi troops",
+        "distractor": "British and United States ground attack bombers",
+        "source_prefix": "At the same time, the three thousand five hundred tanks and three hundred and ninety thousand Iraqi troops have dug into defensive positions which make them difficult to knock out, even with the sophistication of British"
+      },
+      {
+        "pair_id": "sgp_brand_label_mcafee_intel",
+        "metadata_role": "manual_balanced_unknown",
+        "literal_role": "target_earlier",
+        "target": "McAfee",
+        "distractor": "Intel",
+        "source_prefix": "This bore the McAfee brand-name for years, until it was bought by Intel and given the Intel name."
+      }
+    ],
+    "n_scoring_errors": 0,
+    "scoring_errors_first20": []
+  },
+  "pair_summary": {
+    "all_pairs": {
+      "n_pairs": 6,
+      "mean_U_mean": 3.0250981123319693,
+      "mean_R_mean": -4.072363947621651,
+      "mean_UR_mean": -1.047265835289681,
+      "n_update_correct_mean": 6,
+      "n_retain_correct_mean": 0,
+      "n_joint_correct_mean": 0,
+      "mean_U_sum": 6.632541366542379,
+      "mean_R_sum": -11.122942427794138,
+      "mean_UR_sum": -4.4904010612517595,
+      "n_joint_correct_sum": 0,
+      "UR_mean_quantiles": {
+        "n": 6,
+        "mean": -1.047265835289681,
+        "median": -0.5118835928539436,
+        "p10": -3.276465630531311,
+        "p90": 0.6465517175162119,
+        "min": -5.004939794540405,
+        "max": 0.8223863103914821
+      }
+    },
+    "same_token_length_both_rows": {
+      "n_pairs": 0
+    },
+    "by_role_position_relation": {
+      "manual_balanced_unknown": {
+        "n_pairs": 6,
+        "mean_U_mean": 3.0250981123319693,
+        "mean_R_mean": -4.072363947621651,
+        "mean_UR_mean": -1.047265835289681,
+        "n_update_correct_mean": 6,
+        "n_retain_correct_mean": 0,
+        "n_joint_correct_mean": 0,
+        "mean_U_sum": 6.632541366542379,
+        "mean_R_sum": -11.122942427794138,
+        "mean_UR_sum": -4.4904010612517595,
+        "n_joint_correct_sum": 0,
+        "UR_mean_quantiles": {
+          "n": 6,
+          "mean": -1.047265835289681,
+          "median": -0.5118835928539436,
+          "p10": -3.276465630531311,
+          "p90": 0.6465517175162119,
+          "min": -5.004939794540405,
+          "max": 0.8223863103914821
+        }
+      }
+    },
+    "token_length_distribution": {
+      "update_answer": {
+        "3": 3,
+        "4": 2,
+        "5": 1
+      },
+      "update_foil": {
+        "7": 1,
+        "4": 2,
+        "2": 1,
+        "1": 1,
+        "3": 1
+      },
+      "retain_answer": {
+        "7": 1,
+        "4": 2,
+        "2": 1,
+        "1": 1,
+        "3": 1
+      },
+      "retain_foil": {
+        "3": 3,
+        "4": 2,
+        "5": 1
+      },
+      "same_token_length_both_rows_n": 0
+    }
+  },
+  "load_info": {
+    "missing": [
+      "cls.predictions.decoder.weight",
+      "cls.predictions.decoder.bias"
+    ],
+    "unexpected": []
+  }
+}

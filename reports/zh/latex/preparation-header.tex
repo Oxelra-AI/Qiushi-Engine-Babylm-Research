@@ -1,0 +1,70 @@
+% Body style adapted from Qiushi template_report_zh.tex and the existing report.
+% Shared authored-report typography. Not an anonymous conference template.
+\usepackage{setspace}
+\setstretch{1.22}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+\usepackage{etoolbox}
+\usepackage{needspace}
+\usepackage{caption}
+\captionsetup[table]{position=top,font=small,labelfont=bf,labelsep=quad,justification=raggedright,singlelinecheck=false,skip=6pt}
+\newcommand{\ReportTableContinuation}{\textbf{\tablename~\thetable}\quad（续）}
+\pretocmd{\tableofcontents}{\clearpage}{}{}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\definecolor{ReportPrimary}{HTML}{1F3A5F}
+\definecolor{ReportRule}{HTML}{D6DDE5}
+\definecolor{QiushiBlue}{HTML}{003F88}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\small\color{QiushiBlue}\textbf{Qiushi Engine}}
+\fancyfoot[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{ReportRule}\leaders\hrule height \footrulewidth\hfill}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[L]{\small\color{QiushiBlue}\textbf{Qiushi Engine}}%
+  \fancyfoot[R]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0.4pt}%
+}
+\setlength{\emergencystretch}{3em}
+\raggedbottom
+\ctexset{section/format={\Large\bfseries\color{ReportPrimary}},section/aftertitle={\par\vspace{0.1em}{\color{ReportRule}\rule{\textwidth}{0.4pt}}\par},subsection/format={\large\bfseries\color{ReportPrimary}},subsubsection/format={\normalsize\bfseries}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.4em plus 0.1em}
+\clubpenalty=10000
+\widowpenalty=10000
+\setlength{\LTpre}{0.65\baselineskip}
+\setlength{\LTpost}{0.65\baselineskip}
+\AtBeginEnvironment{longtable}{\small\setstretch{1.12}\renewcommand{\arraystretch}{1.12}}
+\hypersetup{linkcolor=ReportPrimary,citecolor=ReportPrimary,urlcolor=ReportPrimary}
+\usepackage{graphicx}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{16pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\renewcommand{\@maketitle}{%
+  \begingroup
+  \setstretch{1.08}\parindent=0pt
+  \noindent\begin{minipage}[c]{0.64\linewidth}
+    \includegraphics[width=42mm]{../../assets/qiushi-engine-logo.png}%
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.32\linewidth}
+    \raggedleft\small\color{ReportPrimary}\@date
+  \end{minipage}\par
+  \vspace{3mm}{\color{ReportRule}\rule{\linewidth}{0.5pt}}\par
+  \vspace{5mm}
+  {\centering\LARGE\bfseries\@title\par}
+  \vspace{4mm}
+  {\centering\small\ReportAuthorBlock\par}
+  \vspace{2mm}
+  {\centering\small\ReportAffiliation\par}
+  \vspace{1mm}
+  {\centering\small\ReportCorrespondence\par}
+  \vspace{5mm}
+  \endgroup
+}
+\makeatother

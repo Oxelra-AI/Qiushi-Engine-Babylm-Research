@@ -1,0 +1,137 @@
+{
+  "status": "COMPACT_ORDER_CHANNEL_PROBE",
+  "meaning": "Fixed ordered compact-side denoising readout on the research arms. The main channel is source_absent_content. Negative ordered_minus_scrambled means ordered training gives lower NLL on the same ordered source+compact masked event, i.e. preserves the source-absent compact target channel better than scrambled training.",
+  "inputs": {
+    "pair_file": "experiments/archive/frontier_consolidation/data/factorial_view_candidate_audit/compact_candidate_pairs.jsonl",
+    "pair_file_sha256": "6d0ac85dec1718e5f5663d09123e2f62a23f7cceb0b491b83a34f7bfca59d32d",
+    "tokenizer": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "events": 60,
+    "event_meta": {
+      "pairs": 12155,
+      "counts_before_pair_cap": {
+        "function_other": 53486,
+        "retained_content": 89774,
+        "source_absent_content": 18429
+      },
+      "selected_counts": {
+        "retained_content": 20,
+        "source_absent_content": 20,
+        "function_other": 20
+      },
+      "per_category_requested": 20,
+      "seed": 22443023,
+      "n_events": 60
+    },
+    "checkpoints": [
+      "chck_20M"
+    ],
+    "arms": {
+      "ordered": "experiments/archive/frontier_consolidation/training/runs/compact_order_ordered_40M_seed43022/hf_model",
+      "scrambled": "experiments/archive/frontier_consolidation/training/runs/compact_order_scrambled_40M_seed43022/hf_model"
+    },
+    "device": "cpu",
+    "batch_size": 96,
+    "n_boot": 10
+  },
+  "missing": [
+    "experiments/archive/frontier_consolidation/training/runs/compact_order_scrambled_40M_seed43022/hf_model/chck_20M"
+  ],
+  "training_summaries": {
+    "ordered": {
+      "run_root": "experiments/archive/frontier_consolidation/training/runs/compact_order_ordered_40M_seed43022",
+      "training_log_rows": 620,
+      "first_log": {
+        "step": 1,
+        "loss": 9.815051078796387,
+        "lr": 6.622516556291391e-06,
+        "batch_words": 35716,
+        "cumulative_word_exposure": 35716,
+        "seq_len": 256,
+        "masked_tokens": 7572,
+        "effective_mask_rate": 0.1485,
+        "mask_mode": "wwm",
+        "mask_prob_nominal": 0.15,
+        "elapsed_sec": 17.1
+      },
+      "last_log": {
+        "step": 620,
+        "loss": 3.465848684310913,
+        "lr": 0.0009070556281372226,
+        "batch_words": 39886,
+        "cumulative_word_exposure": 24492720,
+        "seq_len": 256,
+        "masked_tokens": 8431,
+        "effective_mask_rate": 0.1483,
+        "mask_mode": "wwm",
+        "mask_prob_nominal": 0.15,
+        "elapsed_sec": 950.4
+      },
+      "tail50_loss_mean": 3.5072106075286866,
+      "loss_finite": true,
+      "cum_words_last_log": 24492720,
+      "chck_20M_exists": true,
+      "chck_40M_exists": false
+    },
+    "scrambled": {
+      "run_root": "experiments/archive/frontier_consolidation/training/runs/compact_order_scrambled_40M_seed43022",
+      "training_log_rows": 0,
+      "chck_20M_exists": false,
+      "chck_40M_exists": false
+    }
+  },
+  "loader_confound_summary": {
+    "contrast": "compact_minus_compact_scrambled",
+    "rows": 3006,
+    "delta_raw_tokens_sum": 0.0,
+    "delta_raw_tokens_mean": 0.0,
+    "delta_raw_tokens_nonzero_rows": 0,
+    "delta_raw_tokens_max_abs": 0.0,
+    "delta_active_tokens_sum": 0.0,
+    "delta_active_tokens_mean": 0.0,
+    "delta_active_tokens_nonzero_rows": 0,
+    "delta_active_tokens_max_abs": 0.0,
+    "delta_truncated_tokens_sum": 0.0,
+    "delta_truncated_tokens_mean": 0.0,
+    "delta_truncated_tokens_nonzero_rows": 0,
+    "delta_truncated_tokens_max_abs": 0.0,
+    "delta_candidate_tokens_sum": 0.0,
+    "delta_candidate_tokens_mean": 0.0,
+    "delta_candidate_tokens_nonzero_rows": 0,
+    "delta_candidate_tokens_max_abs": 0.0,
+    "delta_candidate_groups_sum": 8.0,
+    "delta_candidate_groups_mean": 0.0026613439787092482,
+    "delta_candidate_groups_nonzero_rows": 30,
+    "delta_candidate_groups_max_abs": 5.0,
+    "delta_source_active_tokens_sum": 0.0,
+    "delta_source_active_tokens_mean": 0.0,
+    "delta_source_active_tokens_nonzero_rows": 0,
+    "delta_source_active_tokens_max_abs": 0.0,
+    "delta_view_active_tokens_sum": 165.0,
+    "delta_view_active_tokens_mean": 0.054890219560878244,
+    "delta_view_active_tokens_nonzero_rows": 237,
+    "delta_view_active_tokens_max_abs": 2.0,
+    "delta_masked_tokens_cpu_proxy_sum": 557.0,
+    "delta_masked_tokens_cpu_proxy_mean": 0.18529607451763142,
+    "delta_masked_tokens_cpu_proxy_nonzero_rows": 2806,
+    "delta_masked_tokens_cpu_proxy_max_abs": 28.0,
+    "delta_masked_source_tokens_cpu_proxy_sum": 183.0,
+    "delta_masked_source_tokens_cpu_proxy_mean": 0.06087824351297405,
+    "delta_masked_source_tokens_cpu_proxy_nonzero_rows": 2593,
+    "delta_masked_source_tokens_cpu_proxy_max_abs": 29.0,
+    "delta_masked_view_tokens_cpu_proxy_sum": 472.0,
+    "delta_masked_view_tokens_cpu_proxy_mean": 0.15701929474384566,
+    "delta_masked_view_tokens_cpu_proxy_nonzero_rows": 2795,
+    "delta_masked_view_tokens_cpu_proxy_max_abs": 25.0,
+    "delta_selected_groups_cpu_proxy_sum": 13.0,
+    "delta_selected_groups_cpu_proxy_mean": 0.004324683965402528,
+    "delta_selected_groups_cpu_proxy_nonzero_rows": 2408,
+    "delta_selected_groups_cpu_proxy_max_abs": 12.0
+  },
+  "event_file": "experiments/archive/frontier_consolidation/data/compact_order_channel_probe_preflight/probe_events.jsonl",
+  "event_losses_jsonl": "experiments/archive/frontier_consolidation/data/compact_order_channel_probe_preflight/event_losses.jsonl",
+  "event_loss_delta_csv": "experiments/archive/frontier_consolidation/data/compact_order_channel_probe_preflight/event_loss_delta_rows.csv",
+  "summary": {},
+  "elapsed_sec": 44.1,
+  "json_path": "experiments/archive/frontier_consolidation/data/compact_order_channel_probe_preflight/compact_order_channel_probe.json"
+}

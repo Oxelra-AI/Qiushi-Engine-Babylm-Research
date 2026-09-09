@@ -1,0 +1,283 @@
+{
+  "status": "NATURAL_REMENTION_PROBE_CONSTRUCTED",
+  "created_utc": "2026-09-06T05:41:37Z",
+  "heuristic_version": "natural_remention_v1.1",
+  "seed": 9061002,
+  "source": {
+    "path": "experiments/archive/representation_and_objectives/training/data/cached_fineweb_seqsafe96_candidate/cleanqwen_seqsafe_fineweb_single_doc_10M.jsonl",
+    "sha256": "73eead098555694cacf36c65605e98dd203a0f7e6f4a973d11136d8289eb574d",
+    "total_pool_lines": 75339,
+    "selected_natural_source_label": "fineweb_edu_random_quality_single_doc_seqsafe_cached_initial_model_studies",
+    "natural_rows_scanned": 21916,
+    "source_words_from_metadata": 1753280,
+    "provenance": "experiments/archive/initial_model_studies/data/fineweb_relation_matched_3M/fineweb_random_quality_3000000w.jsonl",
+    "generated_rewrites_used": false,
+    "entity_benchmark_items_used": false
+  },
+  "rejected_preferred_source_audit": {
+    "path": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/heldout_cleanqwen_rows.jsonl",
+    "rows": 6992,
+    "words": 1118720,
+    "sha256": "e1a28130141d52aaca34d752864cddc509bdc5a44a99994c44ca813db630fb0c",
+    "entire_word_stream_equals_clean_training_prefix": true,
+    "note": "Rejected as a source: the research materializer uses this stream for CLEAN changed text and a 133-word VIEW/REPEAT top-up."
+  },
+  "extraction": {
+    "raw_records": 5711,
+    "deduplicated_records": 5711,
+    "duplicate_span_records_removed": 0,
+    "raw_by_rule": {
+      "raw_nonidentical_explicit_appositive_description": 314,
+      "raw_nonidentical_full_name_to_acronym": 442,
+      "raw_nonidentical_full_name_to_surname_or_final_token": 169,
+      "raw_nonidentical_nonperson_name_to_pronoun": 81,
+      "raw_nonidentical_person_name_to_pronoun": 189,
+      "raw_verbatim_exact_named_entity": 3917,
+      "raw_verbatim_indefinite_to_definite_nominal": 599,
+      "row_rejected_bibliography_entry": 11,
+      "row_rejected_bullet_list": 44,
+      "row_rejected_citation_or_bracket_list": 9,
+      "row_rejected_dictionary_or_catalog_entry": 19,
+      "row_rejected_duplicated_titlecase_token": 25,
+      "row_rejected_multiple_choice_item": 22,
+      "row_rejected_multiple_urls": 97,
+      "row_rejected_outline_or_study_notes": 1,
+      "row_rejected_source_code_or_query": 28,
+      "row_rejected_table_pipe_markup": 150,
+      "row_rejected_word_puzzle": 2
+    },
+    "after_training_overlap_screen": 1384
+  },
+  "training_overlap_screen": {
+    "cache_used": true,
+    "cache_path": "experiments/archive/relation_learning/analysis/natural_remention_probe/training_overlap_cache.json",
+    "candidate_rows_screened": 3999,
+    "candidate_rows_rejected_any_arm": 3019,
+    "candidate_records_before": 5711,
+    "candidate_records_after": 1384,
+    "arm_scans": {
+      "VIEW": {
+        "path": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/compact_view_dose2p64x_10M.jsonl",
+        "sha256": "06dbef7249d313ed2b0f19fc16ecdbfdd66560b88aee4381fe8aea59b625d666",
+        "rows_scanned": 65313,
+        "words_scanned": 10000000,
+        "candidate_rows_with_overlap": 3018
+      },
+      "REPEAT": {
+        "path": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/compact_repeat_dose2p64x_10M.jsonl",
+        "sha256": "ea538c1769ae2100f316a8feb41b820cf5fe2e9d7c4592772276304b6a4fedf2",
+        "rows_scanned": 65313,
+        "words_scanned": 10000000,
+        "candidate_rows_with_overlap": 3018
+      },
+      "CLEAN": {
+        "path": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/cleanqwen_lengthmatched_dose2p64x_10M.jsonl",
+        "sha256": "ed9d6a2c550c44c0b7573bbf1362a4056101164781072251c32ad2ba99e16d9f",
+        "rows_scanned": 65313,
+        "words_scanned": 10000000,
+        "candidate_rows_with_overlap": 0
+      }
+    }
+  },
+  "selection_and_matching": {
+    "matched_pairs": 129,
+    "records": 258,
+    "one_record_per_source_row": true,
+    "matching_levels": {
+      "distance+length+sentence": 120,
+      "distance+length": 7,
+      "distance": 2
+    },
+    "pronoun_cap": 0.7
+  },
+  "replacement_plans": {
+    "same_type_exact_length_donor": 246,
+    "typed_fallback": 12,
+    "exact_word_count_matches": 258
+  },
+  "final_distribution": {
+    "ALL": {
+      "records": 258,
+      "unique_rows": 258,
+      "subtype": {
+        "exact_named_entity": 125,
+        "explicit_appositive_description": 15,
+        "full_name_to_acronym": 35,
+        "full_name_to_surname_or_final_token": 37,
+        "indefinite_to_definite_nominal": 4,
+        "nonperson_name_to_pronoun": 11,
+        "person_name_to_pronoun": 31
+      },
+      "distance_bin": {
+        "00_04": 60,
+        "05_09": 44,
+        "10_19": 76,
+        "20_39": 48,
+        "40_79": 30
+      },
+      "remention_length_bin": {
+        "1": 236,
+        "2": 14,
+        "3_plus": 8
+      },
+      "sentence_distance": {
+        "0": 55,
+        "1": 171,
+        "2": 28,
+        "3": 4
+      },
+      "antecedent_entity_type": {
+        "FAC": 2,
+        "GPE": 46,
+        "LOC": 8,
+        "NOMINAL": 4,
+        "NONPERSON_ENTITY": 11,
+        "ORG": 54,
+        "PERSON": 130,
+        "PRODUCT": 2,
+        "WORK_OF_ART": 1
+      },
+      "intervening_words": {
+        "n": 258,
+        "mean": 17.217054263565892,
+        "median": 12.0,
+        "p10": 2.0,
+        "p90": 44.0,
+        "min": 0.0,
+        "max": 74.0
+      },
+      "antecedent_to_remention_start_words": {
+        "n": 258,
+        "mean": 18.94573643410853,
+        "median": 13.5,
+        "p10": 4.0,
+        "p90": 46.0,
+        "min": 1.0,
+        "max": 76.0
+      }
+    },
+    "verbatim_remention": {
+      "records": 129,
+      "unique_rows": 129,
+      "subtype": {
+        "exact_named_entity": 125,
+        "indefinite_to_definite_nominal": 4
+      },
+      "distance_bin": {
+        "00_04": 30,
+        "05_09": 22,
+        "10_19": 38,
+        "20_39": 24,
+        "40_79": 15
+      },
+      "remention_length_bin": {
+        "1": 119,
+        "2": 7,
+        "3_plus": 3
+      },
+      "sentence_distance": {
+        "0": 23,
+        "1": 90,
+        "2": 14,
+        "3": 2
+      },
+      "antecedent_entity_type": {
+        "GPE": 40,
+        "LOC": 8,
+        "NOMINAL": 4,
+        "ORG": 25,
+        "PERSON": 50,
+        "PRODUCT": 2
+      },
+      "intervening_words": {
+        "n": 129,
+        "mean": 17.527131782945737,
+        "median": 12.0,
+        "p10": 4.0,
+        "p90": 44.0,
+        "min": 3.0,
+        "max": 71.0
+      },
+      "antecedent_to_remention_start_words": {
+        "n": 129,
+        "mean": 18.643410852713178,
+        "median": 13.0,
+        "p10": 5.0,
+        "p90": 45.0,
+        "min": 4.0,
+        "max": 72.0
+      }
+    },
+    "nonidentical_remention": {
+      "records": 129,
+      "unique_rows": 129,
+      "subtype": {
+        "explicit_appositive_description": 15,
+        "full_name_to_acronym": 35,
+        "full_name_to_surname_or_final_token": 37,
+        "nonperson_name_to_pronoun": 11,
+        "person_name_to_pronoun": 31
+      },
+      "distance_bin": {
+        "00_04": 30,
+        "05_09": 22,
+        "10_19": 38,
+        "20_39": 24,
+        "40_79": 15
+      },
+      "remention_length_bin": {
+        "1": 117,
+        "2": 7,
+        "3_plus": 5
+      },
+      "sentence_distance": {
+        "0": 32,
+        "1": 81,
+        "2": 14,
+        "3": 2
+      },
+      "antecedent_entity_type": {
+        "FAC": 2,
+        "GPE": 6,
+        "NONPERSON_ENTITY": 11,
+        "ORG": 29,
+        "PERSON": 80,
+        "WORK_OF_ART": 1
+      },
+      "intervening_words": {
+        "n": 129,
+        "mean": 16.906976744186046,
+        "median": 12.0,
+        "p10": 0.0,
+        "p90": 44.0,
+        "min": 0.0,
+        "max": 74.0
+      },
+      "antecedent_to_remention_start_words": {
+        "n": 129,
+        "mean": 19.248062015503876,
+        "median": 14.0,
+        "p10": 3.0,
+        "p90": 46.0,
+        "min": 1.0,
+        "max": 76.0
+      }
+    }
+  },
+  "heuristics": {
+    "verbatim_exact_named_entity": "Both mentions are spaCy NER spans of the same accepted entity type with identical normalized strings; gap >=3 words, sentence distance <=3.",
+    "verbatim_indefinite_to_definite_nominal": "Same <=4-token singular common-noun core changes from a/an to the; gap 3-60, sentence distance <=2.",
+    "full_name_to_surname_or_final_token": "Multi-token PERSON-NER span followed by its last proper-name token, no intervening competing PERSON, sentence distance <=3; rare NER boundary errors can yield valid final-head shortening rather than a personal surname.",
+    "full_name_to_acronym": "Initials of a 2-8 word named entity exactly equal a later uppercase token, sentence distance <=3.",
+    "name_to_pronoun": "Exactly one type-compatible named entity in prior sentence; antecedent is subject; pronoun starts within six tokens as subject/possessive; no intervening compatible entity.",
+    "explicit_appositive_description": "Later noun chunk is a direct appos dependency of the PERSON/ORG named entity.",
+    "training_disjointness": "Reject the entire candidate row if any normalized 12-word sequence is found in any VIEW/REPEAT/CLEAN 10M pool."
+  },
+  "output": {
+    "probe": "experiments/archive/relation_learning/analysis/natural_remention_probe/natural_remention_probe.jsonl",
+    "probe_sha256": "0735a6add28ee2c5f622bb265a0360d2992b5b5f8b51d6eca9be7f3d7ce1be81",
+    "sample": "experiments/archive/relation_learning/analysis/natural_remention_probe/natural_remention_probe_sample.md",
+    "sample_records": 100
+  },
+  "elapsed_seconds": 157.6076946258545
+}

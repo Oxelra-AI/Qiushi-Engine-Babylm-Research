@@ -1,0 +1,726 @@
+{
+  "status": "ADDRESS_DISSOCIATION_PARTIAL",
+  "created": "2026-09-04T06:47:29Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/temporal_address_dissociation_tag1",
+    "modes": "arbitrary_tag",
+    "n_seeds": 1,
+    "base_stable": 80,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "base_train_wording": true,
+    "max_len": 160,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "arbitrary_tag": {
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor": 2560,
+          "base_stable_train": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal": 256,
+            "sparse_stable_focal": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "arbitrary_tag_heldChanged_heldStable_heldHyp": 1280,
+        "arbitrary_tag_heldChanged_heldStable_heldHyp_swappedFocalTags": 1280,
+        "arbitrary_tag_heldChanged_heldStable_trainHyp": 1280,
+        "arbitrary_tag_heldStable_heldStable_heldHyp": 1280,
+        "arbitrary_tag_heldStable_heldStable_trainHyp": 1280,
+        "arbitrary_tag_trainChanged_heldStable_heldHyp": 1280,
+        "arbitrary_tag_trainChanged_heldStable_trainHyp": 1280
+      },
+      "mode": "arbitrary_tag",
+      "randomized_record_order": true,
+      "boundary": "Small one-seed balanced-temporal bridge dissociation; not BabyLM-scale training."
+    }
+  },
+  "summary": {
+    "arbitrary_tag": {
+      "best_train_acc": 0.9989346861839294,
+      "train_fit": {
+        "overall": 0.9989346590909091,
+        "by_train_kind": {
+          "base_stable_anchor": 1.0,
+          "base_stable_train": 1.0,
+          "sparse_changed_focal": 0.9765625,
+          "sparse_stable_focal": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 0.998046875,
+          "focal_before": 0.998046875,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 1.0,
+          "True": 0.9765625
+        }
+      },
+      "evals": {
+        "arbitrary_tag_heldChanged_heldStable_heldHyp": {
+          "contrastive_acc": 0.975,
+          "by_query": {
+            "focal_before": 0.94375,
+            "focal_after": 0.95625,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 9.285886695608497,
+            "focal_after": 9.896214760188013,
+            "secondary_before": 20.17274013236165,
+            "secondary_after": 20.200423008203508
+          },
+          "standard_acc": 0.8796875
+        },
+        "arbitrary_tag_heldChanged_heldStable_heldHyp_swappedFocalTags": {
+          "contrastive_acc": 0.53125,
+          "by_query": {
+            "focal_before": 0.05625,
+            "focal_after": 0.06875,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -9.636485931742936,
+            "focal_after": -9.2533779385034,
+            "secondary_before": 19.989808936417102,
+            "secondary_after": 19.924682423472404
+          },
+          "standard_acc": 0.628125
+        },
+        "arbitrary_tag_heldChanged_heldStable_trainHyp": {
+          "contrastive_acc": 0.9953125,
+          "by_query": {
+            "focal_before": 0.9875,
+            "focal_after": 0.99375,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 20.75343323238194,
+            "focal_after": 20.453590861335396,
+            "secondary_before": 23.003814935684204,
+            "secondary_after": 23.17397462129593
+          },
+          "standard_acc": 0.984375
+        },
+        "arbitrary_tag_heldStable_heldStable_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 20.080648427270354,
+            "focal_after": 20.201806006394328,
+            "secondary_before": 20.42401951998472,
+            "secondary_after": 19.758677451871336
+          },
+          "standard_acc": 0.99609375
+        },
+        "arbitrary_tag_heldStable_heldStable_trainHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 23.130971616506578,
+            "focal_after": 23.188574689626694,
+            "secondary_before": 23.199119436740876,
+            "secondary_after": 23.195487174391747
+          },
+          "standard_acc": 1.0
+        },
+        "arbitrary_tag_trainChanged_heldStable_heldHyp": {
+          "contrastive_acc": 0.9625,
+          "by_query": {
+            "focal_before": 0.96875,
+            "focal_after": 0.88125,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 9.988580566970631,
+            "focal_after": 8.5487797643058,
+            "secondary_before": 19.976539984997363,
+            "secondary_after": 20.1252568885684
+          },
+          "standard_acc": 0.87265625
+        },
+        "arbitrary_tag_trainChanged_heldStable_trainHyp": {
+          "contrastive_acc": 0.996875,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 0.9875,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 20.81769469678402,
+            "focal_after": 20.35403678789735,
+            "secondary_before": 23.150707632303238,
+            "secondary_after": 23.137677335739134
+          },
+          "standard_acc": 0.984375
+        }
+      }
+    }
+  },
+  "per_seed": [
+    {
+      "mode": "arbitrary_tag",
+      "seed": 26700,
+      "result": {
+        "arm": "balanced_temporal",
+        "seed": 26700,
+        "best_train_acc": 0.9989346861839294,
+        "train_fit": {
+          "overall": 0.9989346590909091,
+          "by_train_kind": {
+            "base_stable_anchor": 1.0,
+            "base_stable_train": 1.0,
+            "sparse_changed_focal": 0.9765625,
+            "sparse_stable_focal": 1.0
+          },
+          "by_query_family": {
+            "focal_after": 0.998046875,
+            "focal_before": 0.998046875,
+            "secondary_after": 1.0,
+            "secondary_before": 1.0
+          },
+          "by_changed_focal": {
+            "False": 1.0,
+            "True": 0.9765625
+          }
+        },
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.6996268813752315,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 2,
+            "loss": 0.31587469566069226,
+            "train_acc": 0.9769176244735718
+          },
+          {
+            "epoch": 3,
+            "loss": 0.11117270504365706,
+            "train_acc": 0.9849076867103577
+          },
+          {
+            "epoch": 4,
+            "loss": 0.07554552635828768,
+            "train_acc": 0.9870383739471436
+          },
+          {
+            "epoch": 5,
+            "loss": 0.07426240197870791,
+            "train_acc": 0.9891690611839294
+          },
+          {
+            "epoch": 6,
+            "loss": 0.04474177667310189,
+            "train_acc": 0.9987571239471436
+          },
+          {
+            "epoch": 7,
+            "loss": 0.03111695591954409,
+            "train_acc": 0.9905894994735718
+          },
+          {
+            "epoch": 8,
+            "loss": 0.04052195811551003,
+            "train_acc": 0.9944957494735718
+          },
+          {
+            "epoch": 9,
+            "loss": 0.037414366450394775,
+            "train_acc": 0.9989346861839294
+          },
+          {
+            "epoch": 10,
+            "loss": 0.02988641793771035,
+            "train_acc": 0.9989346861839294
+          }
+        ],
+        "evals": {
+          "arbitrary_tag_heldChanged_heldStable_trainHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.984375,
+              "by_query_family": {
+                "focal_before": 0.96875,
+                "focal_after": 0.971875,
+                "secondary_before": 0.996875,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 0.984375
+              },
+              "by_stable_secondary": {
+                "True": 0.984375
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.9953125,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 0.9875,
+                "focal_after": 0.99375,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 20.75343323238194,
+                "focal_after": 20.453590861335396,
+                "secondary_before": 23.003814935684204,
+                "secondary_after": 23.17397462129593
+              },
+              "by_changed_focal": {
+                "True": 0.9953125
+              },
+              "margin_mean": 21.846203412674367
+            }
+          },
+          "arbitrary_tag_heldChanged_heldStable_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.8796875,
+              "by_query_family": {
+                "focal_before": 0.7625,
+                "focal_after": 0.75625,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 0.8796875
+              },
+              "by_stable_secondary": {
+                "True": 0.8796875
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.975,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 0.94375,
+                "focal_after": 0.95625,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 9.285886695608497,
+                "focal_after": 9.896214760188013,
+                "secondary_before": 20.17274013236165,
+                "secondary_after": 20.200423008203508
+              },
+              "by_changed_focal": {
+                "True": 0.975
+              },
+              "margin_mean": 14.888816149090417
+            }
+          },
+          "arbitrary_tag_heldChanged_heldStable_heldHyp_swappedFocalTags": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.628125,
+              "by_query_family": {
+                "focal_before": 0.2375,
+                "focal_after": 0.275,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 0.628125
+              },
+              "by_stable_secondary": {
+                "True": 0.628125
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.53125,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 0.05625,
+                "focal_after": 0.06875,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -9.636485931742936,
+                "focal_after": -9.2533779385034,
+                "secondary_before": 19.989808936417102,
+                "secondary_after": 19.924682423472404
+              },
+              "by_changed_focal": {
+                "True": 0.53125
+              },
+              "margin_mean": 5.256156872410793
+            }
+          },
+          "arbitrary_tag_heldStable_heldStable_trainHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 1.0,
+              "by_query_family": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "by_stable_secondary": {
+                "True": 1.0
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 23.130971616506578,
+                "focal_after": 23.188574689626694,
+                "secondary_before": 23.199119436740876,
+                "secondary_after": 23.195487174391747
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "margin_mean": 23.178538229316473
+            }
+          },
+          "arbitrary_tag_heldStable_heldStable_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.99609375,
+              "by_query_family": {
+                "focal_before": 0.996875,
+                "focal_after": 1.0,
+                "secondary_before": 0.996875,
+                "secondary_after": 0.990625
+              },
+              "by_changed_focal": {
+                "False": 0.99609375
+              },
+              "by_stable_secondary": {
+                "True": 0.99609375
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 20.080648427270354,
+                "focal_after": 20.201806006394328,
+                "secondary_before": 20.42401951998472,
+                "secondary_after": 19.758677451871336
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "margin_mean": 20.116287851380186
+            }
+          },
+          "arbitrary_tag_trainChanged_heldStable_trainHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.984375,
+              "by_query_family": {
+                "focal_before": 0.98125,
+                "focal_after": 0.95625,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 0.984375
+              },
+              "by_stable_secondary": {
+                "True": 0.984375
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.996875,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 0.9875,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 20.81769469678402,
+                "focal_after": 20.35403678789735,
+                "secondary_before": 23.150707632303238,
+                "secondary_after": 23.137677335739134
+              },
+              "by_changed_focal": {
+                "True": 0.996875
+              },
+              "margin_mean": 21.865029113180935
+            }
+          },
+          "arbitrary_tag_trainChanged_heldStable_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.87265625,
+              "by_query_family": {
+                "focal_before": 0.76875,
+                "focal_after": 0.725,
+                "secondary_before": 0.996875,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 0.87265625
+              },
+              "by_stable_secondary": {
+                "True": 0.87265625
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.9625,
+              "n_pairs": 640,
+              "by_query": {
+                "focal_before": 0.96875,
+                "focal_after": 0.88125,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 9.988580566970631,
+                "focal_after": 8.5487797643058,
+                "secondary_before": 19.976539984997363,
+                "secondary_after": 20.1252568885684
+              },
+              "by_changed_focal": {
+                "True": 0.9625
+              },
+              "margin_mean": 14.659789301210548
+            }
+          }
+        },
+        "mode": "arbitrary_tag"
+      }
+    }
+  ],
+  "boundary": "Small bridge dissociation; arbitrary tags are address ceilings, not semantic temporal proof."
+}

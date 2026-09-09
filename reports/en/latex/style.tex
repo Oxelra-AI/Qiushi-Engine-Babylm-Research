@@ -1,0 +1,69 @@
+% English technical-report typography; shared logo and scientific figures.
+\usepackage{setspace,etoolbox,needspace,caption,fancyhdr,titlesec}
+\setstretch{1.08}
+\renewenvironment{abstract}{\par\begingroup\small\setstretch{1.04}\noindent\textbf{Abstract}\par\smallskip\noindent}{\par\endgroup\medskip}
+\definecolor{ReportPrimary}{HTML}{1F3A5F}
+\definecolor{ReportText}{HTML}{202328}
+\definecolor{ReportRule}{HTML}{D6DDE5}
+\definecolor{QiushiBlue}{HTML}{003F88}
+\captionsetup[table]{position=top,font={small,stretch=1.04},labelfont=bf,labelsep=quad,justification=raggedright,singlelinecheck=false,skip=5pt}
+\captionsetup[figure]{font={small,stretch=1.04},labelfont=bf,labelsep=quad,justification=raggedright,singlelinecheck=false,skip=6pt}
+% Enlarge vector figures without changing the text block or shared artwork.
+\newlength{\ReportFigureWidth}
+\setlength{\ReportFigureWidth}{180mm}
+\newcommand{\ReportTableContinuation}{\textbf{\tablename~\thetable}\quad (continued)}
+\pretocmd{\tableofcontents}{\clearpage}{}{}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\small\color{QiushiBlue}\textbf{Qiushi Engine}}
+\fancyfoot[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{ReportRule}\leaders\hrule height \footrulewidth\hfill}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[L]{\small\color{QiushiBlue}\textbf{Qiushi Engine}}\fancyfoot[R]{\small\thepage}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\titleformat{\section}{\Large\bfseries\color{ReportText}}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\large\bfseries\color{ReportText}}{\thesubsection}{0.65em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ReportText}}{\thesubsubsection}{0.65em}{}
+\titlespacing*{\section}{0pt}{16pt plus 2pt minus 2pt}{7pt}
+\titlespacing*{\subsection}{0pt}{11pt plus 2pt minus 1pt}{5pt}
+\titlespacing*{\subsubsection}{0pt}{8pt plus 1pt}{3pt}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{2pt plus 0.5pt}
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+\setlength{\abovedisplayskip}{8pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{8pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{4pt plus 1pt}
+\setlength{\belowdisplayshortskip}{5pt plus 1pt minus 1pt}
+\renewcommand{\topfraction}{0.88}
+\renewcommand{\bottomfraction}{0.75}
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\floatpagefraction}{0.70}
+\clubpenalty=10000
+\widowpenalty=10000
+\raggedbottom
+\setlength{\LTpre}{0.45\baselineskip}
+\setlength{\LTpost}{0.45\baselineskip}
+\AtBeginEnvironment{longtable}{\small\setstretch{1.04}\renewcommand{\arraystretch}{1.10}}
+\hypersetup{linkcolor=ReportText,citecolor=ReportText,urlcolor=ReportPrimary}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{16pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\renewcommand{\@maketitle}{%
+  \begingroup\setstretch{1.04}\parindent=0pt
+  \noindent\begin{minipage}[c]{0.64\linewidth}
+    \includegraphics[width=42mm]{../../assets/qiushi-engine-logo.png}%
+  \end{minipage}\hfill
+    \begin{minipage}[c]{0.32\linewidth}\raggedleft\small\color{ReportText}\@date\end{minipage}\par
+  \vspace{3mm}{\color{ReportRule}\rule{\linewidth}{0.5pt}}\par
+  \vspace{4mm}{\centering\fontsize{16}{20}\selectfont\bfseries\@title\par}
+  \vspace{2.5mm}{\centering\small\ReportSubtitle\par}
+  \vspace{3mm}{\centering\small\ReportAuthorBlock\par}
+  \vspace{1.5mm}{\centering\small\ReportAffiliation\par}
+  \vspace{1mm}{\centering\small\mbox{\ReportCorrespondence}\par}
+  \vspace{2mm}\endgroup
+}
+\makeatother

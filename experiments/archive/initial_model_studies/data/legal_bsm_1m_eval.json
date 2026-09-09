@@ -1,0 +1,785 @@
+{
+  "status": "LEGAL_BSM_1M_EVAL_DONE",
+  "attribution_warning": "coherent-official deltas are confounded by ~3x update count, shorter binding rows/packing, and targeted-mask supervision; coherent-swapped is the cleaner current mechanism contrast. If coherent-swapped separates, add a matched-update/input-structure official-experience reference before scaling.",
+  "models": {
+    "official_control": {
+      "path": "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+      "trained_words": 1000000,
+      "binding_words": 0,
+      "steps": 98,
+      "note": "pure official, standard WWM, exact 1M words"
+    },
+    "bsm_coherent_20pct": {
+      "path": "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+      "trained_words": 999874,
+      "binding_words": 199234,
+      "steps": 292,
+      "note": "20% coherent binding replacement, targeted answer masks, final root slightly below 1M due no partial JSONL rows"
+    },
+    "bsm_swapped_20pct": {
+      "path": "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+      "trained_words": 999989,
+      "binding_words": 198869,
+      "steps": 291,
+      "note": "20% swapped/random binding replacement, targeted answer masks, final root slightly below 1M due no partial JSONL rows"
+    }
+  },
+  "results": {
+    "official_control": {
+      "metadata": {
+        "path": "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+        "trained_words": 1000000,
+        "binding_words": 0,
+        "steps": 98,
+        "note": "pure official, standard WWM, exact 1M words"
+      },
+      "binding_probes": {
+        "train": {
+          "n_pairs": 70,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.14028869814106396,
+          "mean_margin_q2": 0.1402887534882341,
+          "mean_margin_overall": 2.7673585076271046e-08
+        },
+        "heldout_entities": {
+          "n_pairs": 61,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.07887354835135038,
+          "mean_margin_q2": 0.07887347506695107,
+          "mean_margin_overall": -3.664219965643367e-08
+        },
+        "heldout_values": {
+          "n_pairs": 71,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.28569566741795605,
+          "mean_margin_q2": 0.28569573961513145,
+          "mean_margin_overall": 3.6098587702371177e-08
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.13873489778488873,
+          "mean_margin_q2": 0.13873496921733022,
+          "mean_margin_overall": 3.5716220744830274e-08
+        },
+        "heldout_order_flip": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": 0.14504918412885803,
+          "mean_margin_q2": -0.14504919600659522,
+          "mean_margin_overall": -5.938868591348623e-09
+        },
+        "natural_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": 0.07074262499809265,
+          "mean_margin_q2": -0.07074275035411119,
+          "mean_margin_overall": -6.267800926884615e-08
+        }
+      },
+      "official_fast": {
+        "blimp_fast": {
+          "score": 54.31,
+          "returncode": 0,
+          "elapsed_sec": 56.7279531955719,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_blimp_fast.log",
+          "stdout_head": "1.0\t54.31\n\nTEMPERATURE: 1.00\n\n### FIELD ACCURACY\nmorphology: 52.56\nsyntax: 58.85\nsyntax/semantics: 56.71\nsemantics: 40.94\n\n### UID ACCURACY\nanaphor_gender_agreement: 68.00\nanimate_subject_passive: 63.50\nadjunct_island: 49.50\ncausative: 39.00\nanimate_subject_trans: 69.50\ncomplex_NP_island: 50.00\nanaphor_number_agreement: 64.00\ndeterminer_noun_agreement_1: 49.50\ncoordinate_structure_constraint_complex_left_branch: 43.50\ncoordinate_structure_constraint_object_extraction: 50.50\ndeterminer_noun_agree",
+          "stderr_tail": " 91%|█████████▏| 192/210 [00:39<00:04,  3.70it/s]\n 92%|█████████▏| 193/210 [00:40<00:05,  3.32it/s]\n 92%|█████████▏| 194/210 [00:40<00:05,  3.17it/s]\n 93%|█████████▎| 195/210 [00:40<00:04,  3.37it/s]\n 93%|█████████▎| 196/210 [00:41<00:03,  3.55it/s]\n 94%|█████████▍| 197/210 [00:41<00:03,  3.69it/s]\n 94%|█████████▍| 198/210 [00:41<00:03,  3.78it/s]\n 95%|█████████▍| 199/210 [00:41<00:02,  3.85it/s]\n 95%|█████████▌| 200/210 [00:42<00:02,  3.91it/s]\n 96%|█████████▌| 201/210 [00:42<00:02,  4.07it/s]\n 96%|█████████▌| 202/210 [00:42<00:01,  4.25it/s]\n 97%|█████████▋| 203/210 [00:42<00:01,  4.38it/s]\n 97%|█████████▋| 204/210 [00:43<00:01,  3.87it/s]\n 98%|█████████▊| 205/210 [00:43<00:01,  3.52it/s]\n 98%|█████████▊| 206/210 [00:43<00:01,  3.29it/s]\n 99%|█████████▊| 207/210 [00:44<00:00,  3.22it/s]\n 99%|█████████▉| 208/210 [00:44<00:00,  3.23it/s]\n100%|█████████▉| 209/210 [00:44<00:00,  3.29it/s]\n100%|██████████| 210/210 [00:44<00:00,  3.95it/s]\n100%|██████████| 210/210 [00:44<00:00,  4.68it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "blimp",
+            "--data_path",
+            "evaluation_data/fast_eval/blimp_fast",
+            "--revision_name",
+            "official_control_blimp_fast",
+            "--save_predictions"
+          ]
+        },
+        "supplement_fast": {
+          "score": 48.8,
+          "returncode": 0,
+          "elapsed_sec": 13.779407262802124,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_supplement_fast.log",
+          "stdout_head": "1.0\t48.80\n\nTEMPERATURE: 1.00\n\n### FIELD ACCURACY\nsupplement: 48.80\n\n### UID ACCURACY\nhypernym: 48.00\nqa_congruence_easy: 40.00\nqa_congruence_tricky: 44.00\nsubject_aux_inversion: 68.00\nturn_taking: 44.00\n\n### LINGUISTICS_TERM ACCURACY\nsupplement: 48.80\n\n### AVERAGE ACCURACY\n48.80\n\n",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/4 [00:00<?, ?it/s]\n 25%|██▌       | 1/4 [00:00<00:02,  1.25it/s]\n 50%|█████     | 2/4 [00:01<00:01,  1.55it/s]\n 75%|███████▌  | 3/4 [00:01<00:00,  2.03it/s]\n100%|██████████| 4/4 [00:01<00:00,  2.39it/s]\n100%|██████████| 4/4 [00:01<00:00,  2.05it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "blimp",
+            "--data_path",
+            "evaluation_data/fast_eval/supplement_fast",
+            "--revision_name",
+            "official_control_supplement_fast",
+            "--save_predictions"
+          ]
+        },
+        "entity_tracking_fast": {
+          "score": 17.99,
+          "returncode": 0,
+          "elapsed_sec": 62.61068034172058,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_entity_tracking_fast.log",
+          "stdout_head": "1.0\t17.99\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nregular_0_ops: 17.41\nregular_1_ops: 18.58\nregular_2_ops: 12.35\nregular_3_ops: 17.41\nregular_4_ops: 18.81\nregular_5_ops: 23.40\nregular: 17.99\n\n### AVERAGE ACCURACY\n17.99\n\n",
+          "stderr_tail": "█▌     | 16/35 [00:21<00:26,  1.40s/it]\n 49%|████▊     | 17/35 [00:22<00:25,  1.43s/it]\n 51%|█████▏    | 18/35 [00:24<00:24,  1.43s/it]\n 54%|█████▍    | 19/35 [00:25<00:23,  1.44s/it]\n 57%|█████▋    | 20/35 [00:27<00:21,  1.41s/it]\n 60%|██████    | 21/35 [00:28<00:20,  1.47s/it]\n 63%|██████▎   | 22/35 [00:30<00:18,  1.43s/it]\n 66%|██████▌   | 23/35 [00:31<00:17,  1.46s/it]\n 69%|██████▊   | 24/35 [00:33<00:16,  1.47s/it]\n 71%|███████▏  | 25/35 [00:34<00:15,  1.52s/it]\n 74%|███████▍  | 26/35 [00:36<00:14,  1.57s/it]\n 77%|███████▋  | 27/35 [00:38<00:13,  1.63s/it]\n 80%|████████  | 28/35 [00:39<00:11,  1.61s/it]\n 83%|████████▎ | 29/35 [00:41<00:09,  1.58s/it]\n 86%|████████▌ | 30/35 [00:43<00:08,  1.61s/it]\n 89%|████████▊ | 31/35 [00:44<00:06,  1.62s/it]\n 91%|█████████▏| 32/35 [00:46<00:04,  1.64s/it]\n 94%|█████████▍| 33/35 [00:47<00:03,  1.55s/it]\n 97%|█████████▋| 34/35 [00:49<00:01,  1.58s/it]\n100%|██████████| 35/35 [00:50<00:00,  1.55s/it]\n100%|██████████| 35/35 [00:50<00:00,  1.45s/it]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "entity_tracking",
+            "--data_path",
+            "evaluation_data/fast_eval/entity_tracking_fast",
+            "--revision_name",
+            "official_control_entity_tracking_fast",
+            "--save_predictions"
+          ]
+        },
+        "ewok_fast": {
+          "score": 48.73,
+          "returncode": 0,
+          "elapsed_sec": 15.55299186706543,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_ewok_fast.log",
+          "stdout_head": "1.0\t48.73\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nsocial-relations: 48.00\nphysical-relations: 48.00\nagent-properties: 52.00\nphysical-interactions: 49.00\nmaterial-dynamics: 43.00\nmaterial-properties: 49.00\nsocial-properties: 42.00\nsocial-interactions: 50.00\nquantitative-properties: 51.00\nspatial-relations: 56.00\nphysical-dynamics: 48.00\n\n### CONTEXT_TYPE ACCURACY\nindirect: 45.81\ndirect: 52.34\n\n### CONTEXT_CONTRAST ACCURACY\nvariable swap: 50.71\nantonym: 49.17\nother: 40.74\nactive-passive: 66.67\nnegati",
+          "stderr_tail": "_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/18 [00:00<?, ?it/s]\n  6%|▌         | 1/18 [00:00<00:11,  1.53it/s]\n 11%|█         | 2/18 [00:00<00:07,  2.26it/s]\n 17%|█▋        | 3/18 [00:01<00:06,  2.31it/s]\n 22%|██▏       | 4/18 [00:01<00:05,  2.77it/s]\n 28%|██▊       | 5/18 [00:01<00:04,  3.10it/s]\n 33%|███▎      | 6/18 [00:02<00:03,  3.63it/s]\n 39%|███▉      | 7/18 [00:02<00:02,  4.33it/s]\n 44%|████▍     | 8/18 [00:02<00:02,  4.94it/s]\n 50%|█████     | 9/18 [00:02<00:01,  5.29it/s]\n 56%|█████▌    | 10/18 [00:02<00:01,  5.76it/s]\n 61%|██████    | 11/18 [00:02<00:01,  6.38it/s]\n 67%|██████▋   | 12/18 [00:02<00:00,  6.35it/s]\n 72%|███████▏  | 13/18 [00:03<00:01,  4.45it/s]\n 78%|███████▊  | 14/18 [00:03<00:00,  4.73it/s]\n 83%|████████▎ | 15/18 [00:03<00:00,  4.88it/s]\n 89%|████████▉ | 16/18 [00:03<00:00,  5.15it/s]\n 94%|█████████▍| 17/18 [00:03<00:00,  5.65it/s]\n100%|██████████| 18/18 [00:04<00:00,  4.50it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "ewok",
+            "--data_path",
+            "evaluation_data/fast_eval/evaluation_data/fast_eval/ewok_fast",
+            "--revision_name",
+            "official_control_ewok_fast",
+            "--save_predictions"
+          ]
+        },
+        "global_piqa_parallel": {
+          "score": 18.45,
+          "returncode": 0,
+          "elapsed_sec": 13.465115785598755,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_global_piqa_parallel.log",
+          "stdout_head": "1.0\t18.45\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nparallel_ex000000_eng_latn: 0.00\nparallel_ex000001_eng_latn: 0.00\nparallel_ex000002_eng_latn: 0.00\nparallel_ex000003_eng_latn: 0.00\nparallel_ex000004_eng_latn: 100.00\nparallel_ex000005_eng_latn: 0.00\nparallel_ex000008_eng_latn: 0.00\nparallel_ex000009_eng_latn: 0.00\nparallel_ex000010_eng_latn: 0.00\nparallel_ex000011_eng_latn: 0.00\nparallel_ex000013_eng_latn: 0.00\nparallel_ex000014_eng_latn: 0.00\nparallel_ex000015_eng_latn: 0.00\nparallel_ex000016_eng_",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/2 [00:00<?, ?it/s]\n 50%|█████     | 1/2 [00:00<00:00,  1.21it/s]\n100%|██████████| 2/2 [00:01<00:00,  1.50it/s]\n100%|██████████| 2/2 [00:01<00:00,  1.45it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "global_piqa_parallel",
+            "--data_path",
+            "evaluation_data/fast_eval/global_piqa_parallel",
+            "--revision_name",
+            "official_control_global_piqa_parallel",
+            "--save_predictions"
+          ]
+        },
+        "global_piqa_nonparallel": {
+          "score": 56.0,
+          "returncode": 0,
+          "elapsed_sec": 15.335788011550903,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_global_piqa_nonparallel.log",
+          "stdout_head": "1.0\t56.00\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\ngroup0123_ex000088_eng_latn_0_v1: 100.00\ngroup0123_ex000012_eng_latn_0_v1: 0.00\ngroup0123_ex000022_eng_latn_0_v1: 100.00\ngroup0123_ex000102_eng_latn_0_v1: 0.00\ngroup0123_ex000028_eng_latn_0_v1: 100.00\ngroup0123_ex000002_eng_latn_0_v1: 0.00\ngroup0123_ex000081_eng_latn_0_v1: 100.00\ngroup0123_ex000018_eng_latn_0_v1: 0.00\ngroup0123_ex000000_eng_latn_0_v1: 100.00\ngroup0123_ex000046_eng_latn_0_v1: 100.00\ngroup0123_ex000075_eng_latn_0_v1: 0.00\ngroup0123_ex",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/2 [00:00<?, ?it/s]\n 50%|█████     | 1/2 [00:02<00:02,  2.63s/it]\n100%|██████████| 2/2 [00:03<00:00,  1.56s/it]\n100%|██████████| 2/2 [00:03<00:00,  1.72s/it]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "global_piqa_nonparallel",
+            "--data_path",
+            "evaluation_data/fast_eval/global_piqa_nonparallel",
+            "--revision_name",
+            "official_control_global_piqa_nonparallel",
+            "--save_predictions"
+          ]
+        },
+        "reading": {
+          "scores": {
+            "reading_eye_tracking": 9.57,
+            "reading_self_paced": 3.37,
+            "reading_mean": 6.470000000000001
+          },
+          "returncode": 0,
+          "elapsed_sec": 39.69724130630493,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/official_control_reading.log",
+          "stdout_head": "EYE TRACKING SCORE: 9.57\nSELF-PACED READING SCORE: 3.37\n",
+          "stderr_tail": " 64.41it/s]\n 93%|█████████▎| 1604/1726 [00:26<00:01, 63.19it/s]\n 93%|█████████▎| 1611/1726 [00:26<00:01, 61.17it/s]\n 94%|█████████▎| 1618/1726 [00:26<00:01, 60.93it/s]\n 94%|█████████▍| 1625/1726 [00:26<00:01, 61.94it/s]\n 95%|█████████▍| 1632/1726 [00:27<00:01, 61.41it/s]\n 95%|█████████▌| 1640/1726 [00:27<00:01, 66.37it/s]\n 95%|█████████▌| 1647/1726 [00:27<00:01, 65.87it/s]\n 96%|█████████▌| 1654/1726 [00:27<00:01, 61.71it/s]\n 96%|█████████▌| 1661/1726 [00:27<00:01, 60.03it/s]\n 97%|█████████▋| 1668/1726 [00:27<00:00, 58.99it/s]\n 97%|█████████▋| 1675/1726 [00:27<00:00, 60.55it/s]\n 97%|█████████▋| 1682/1726 [00:27<00:00, 61.66it/s]\n 98%|█████████▊| 1689/1726 [00:28<00:00, 62.52it/s]\n 98%|█████████▊| 1696/1726 [00:28<00:00, 63.32it/s]\n 99%|█████████▊| 1703/1726 [00:28<00:00, 62.28it/s]\n 99%|█████████▉| 1710/1726 [00:28<00:00, 61.64it/s]\n 99%|█████████▉| 1717/1726 [00:28<00:00, 59.80it/s]\n100%|█████████▉| 1724/1726 [00:28<00:00, 61.03it/s]\n100%|██████████| 1726/1726 [00:28<00:00, 60.33it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.reading.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_official_control_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--data_path",
+            "evaluation_data/fast_eval/reading/reading_data.csv",
+            "--revision_name",
+            "official_control_reading"
+          ]
+        }
+      }
+    },
+    "bsm_coherent_20pct": {
+      "metadata": {
+        "path": "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+        "trained_words": 999874,
+        "binding_words": 199234,
+        "steps": 292,
+        "note": "20% coherent binding replacement, targeted answer masks, final root slightly below 1M due no partial JSONL rows"
+      },
+      "binding_probes": {
+        "train": {
+          "n_pairs": 70,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.025287655421665736,
+          "mean_margin_q2": 0.025287328447614398,
+          "mean_margin_overall": -1.6348702566899853e-07
+        },
+        "heldout_entities": {
+          "n_pairs": 61,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.012835049238361295,
+          "mean_margin_q2": 0.01283487726430424,
+          "mean_margin_overall": -8.59870285278494e-08
+        },
+        "heldout_values": {
+          "n_pairs": 71,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.6262921204029674,
+          "mean_margin_q2": 0.6262921930198938,
+          "mean_margin_overall": 3.630846318047887e-08
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": 0.0040653467178344725,
+          "mean_margin_q2": -0.004065406322479248,
+          "mean_margin_overall": -2.9802322387695312e-08
+        },
+        "heldout_order_flip": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": 0.0016637332197548687,
+          "mean_margin_q2": -0.0016636364701865375,
+          "mean_margin_overall": 4.8374784165612986e-08
+        },
+        "natural_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": 0.00804750919342041,
+          "mean_margin_q2": -0.00804758071899414,
+          "mean_margin_overall": -3.576278686558132e-08
+        }
+      },
+      "official_fast": {
+        "blimp_fast": {
+          "score": 55.29,
+          "returncode": 0,
+          "elapsed_sec": 55.9639687538147,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_blimp_fast.log",
+          "stdout_head": "1.0\t55.29\n\nTEMPERATURE: 1.00\n\n### FIELD ACCURACY\nmorphology: 51.78\nsyntax: 57.48\nsyntax/semantics: 56.89\nsemantics: 53.50\n\n### UID ACCURACY\nanaphor_gender_agreement: 59.00\nanimate_subject_passive: 57.50\nadjunct_island: 43.00\ncausative: 38.50\nanimate_subject_trans: 71.00\ncomplex_NP_island: 49.00\nanaphor_number_agreement: 54.50\ndeterminer_noun_agreement_1: 50.00\ncoordinate_structure_constraint_complex_left_branch: 50.50\ncoordinate_structure_constraint_object_extraction: 45.50\ndeterminer_noun_agree",
+          "stderr_tail": " 91%|█████████▏| 192/210 [00:39<00:04,  3.78it/s]\n 92%|█████████▏| 193/210 [00:39<00:04,  3.41it/s]\n 92%|█████████▏| 194/210 [00:39<00:04,  3.25it/s]\n 93%|█████████▎| 195/210 [00:40<00:04,  3.45it/s]\n 93%|█████████▎| 196/210 [00:40<00:03,  3.62it/s]\n 94%|█████████▍| 197/210 [00:40<00:03,  3.75it/s]\n 94%|█████████▍| 198/210 [00:40<00:03,  3.84it/s]\n 95%|█████████▍| 199/210 [00:41<00:02,  3.90it/s]\n 95%|█████████▌| 200/210 [00:41<00:02,  3.95it/s]\n 96%|█████████▌| 201/210 [00:41<00:02,  4.11it/s]\n 96%|█████████▌| 202/210 [00:41<00:01,  4.29it/s]\n 97%|█████████▋| 203/210 [00:41<00:01,  4.43it/s]\n 97%|█████████▋| 204/210 [00:42<00:01,  3.92it/s]\n 98%|█████████▊| 205/210 [00:42<00:01,  3.58it/s]\n 98%|█████████▊| 206/210 [00:42<00:01,  3.36it/s]\n 99%|█████████▊| 207/210 [00:43<00:00,  3.26it/s]\n 99%|█████████▉| 208/210 [00:43<00:00,  3.26it/s]\n100%|█████████▉| 209/210 [00:43<00:00,  3.31it/s]\n100%|██████████| 210/210 [00:43<00:00,  3.97it/s]\n100%|██████████| 210/210 [00:43<00:00,  4.78it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "blimp",
+            "--data_path",
+            "evaluation_data/fast_eval/blimp_fast",
+            "--revision_name",
+            "bsm_coherent_20pct_blimp_fast",
+            "--save_predictions"
+          ]
+        },
+        "supplement_fast": {
+          "score": 47.6,
+          "returncode": 0,
+          "elapsed_sec": 13.703985452651978,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_supplement_fast.log",
+          "stdout_head": "1.0\t47.60\n\nTEMPERATURE: 1.00\n\n### FIELD ACCURACY\nsupplement: 47.60\n\n### UID ACCURACY\nhypernym: 58.00\nqa_congruence_easy: 38.00\nqa_congruence_tricky: 36.00\nsubject_aux_inversion: 62.00\nturn_taking: 44.00\n\n### LINGUISTICS_TERM ACCURACY\nsupplement: 47.60\n\n### AVERAGE ACCURACY\n47.60\n\n",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/4 [00:00<?, ?it/s]\n 25%|██▌       | 1/4 [00:00<00:02,  1.23it/s]\n 50%|█████     | 2/4 [00:01<00:01,  1.52it/s]\n 75%|███████▌  | 3/4 [00:01<00:00,  1.99it/s]\n100%|██████████| 4/4 [00:01<00:00,  2.33it/s]\n100%|██████████| 4/4 [00:01<00:00,  2.00it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "blimp",
+            "--data_path",
+            "evaluation_data/fast_eval/supplement_fast",
+            "--revision_name",
+            "bsm_coherent_20pct_supplement_fast",
+            "--save_predictions"
+          ]
+        },
+        "entity_tracking_fast": {
+          "score": 19.85,
+          "returncode": 0,
+          "elapsed_sec": 62.81043076515198,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_entity_tracking_fast.log",
+          "stdout_head": "1.0\t19.85\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nregular_0_ops: 17.41\nregular_1_ops: 20.05\nregular_2_ops: 15.06\nregular_3_ops: 15.29\nregular_4_ops: 17.27\nregular_5_ops: 34.04\nregular: 19.85\n\n### AVERAGE ACCURACY\n19.85\n\n",
+          "stderr_tail": "█▌     | 16/35 [00:21<00:26,  1.41s/it]\n 49%|████▊     | 17/35 [00:23<00:25,  1.43s/it]\n 51%|█████▏    | 18/35 [00:24<00:24,  1.43s/it]\n 54%|█████▍    | 19/35 [00:26<00:23,  1.45s/it]\n 57%|█████▋    | 20/35 [00:27<00:21,  1.41s/it]\n 60%|██████    | 21/35 [00:28<00:20,  1.47s/it]\n 63%|██████▎   | 22/35 [00:30<00:18,  1.43s/it]\n 66%|██████▌   | 23/35 [00:31<00:17,  1.47s/it]\n 69%|██████▊   | 24/35 [00:33<00:16,  1.47s/it]\n 71%|███████▏  | 25/35 [00:34<00:15,  1.52s/it]\n 74%|███████▍  | 26/35 [00:36<00:14,  1.57s/it]\n 77%|███████▋  | 27/35 [00:38<00:13,  1.63s/it]\n 80%|████████  | 28/35 [00:39<00:11,  1.61s/it]\n 83%|████████▎ | 29/35 [00:41<00:09,  1.57s/it]\n 86%|████████▌ | 30/35 [00:43<00:08,  1.61s/it]\n 89%|████████▊ | 31/35 [00:44<00:06,  1.62s/it]\n 91%|█████████▏| 32/35 [00:46<00:04,  1.65s/it]\n 94%|█████████▍| 33/35 [00:47<00:03,  1.55s/it]\n 97%|█████████▋| 34/35 [00:49<00:01,  1.58s/it]\n100%|██████████| 35/35 [00:50<00:00,  1.55s/it]\n100%|██████████| 35/35 [00:50<00:00,  1.46s/it]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "entity_tracking",
+            "--data_path",
+            "evaluation_data/fast_eval/entity_tracking_fast",
+            "--revision_name",
+            "bsm_coherent_20pct_entity_tracking_fast",
+            "--save_predictions"
+          ]
+        },
+        "ewok_fast": {
+          "score": 51.0,
+          "returncode": 0,
+          "elapsed_sec": 16.712020874023438,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_ewok_fast.log",
+          "stdout_head": "1.0\t51.00\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nsocial-relations: 58.00\nphysical-relations: 51.00\nagent-properties: 51.00\nphysical-interactions: 50.00\nmaterial-dynamics: 54.00\nmaterial-properties: 50.00\nsocial-properties: 50.00\nsocial-interactions: 51.00\nquantitative-properties: 52.00\nspatial-relations: 49.00\nphysical-dynamics: 45.00\n\n### CONTEXT_TYPE ACCURACY\nindirect: 52.22\ndirect: 49.49\n\n### CONTEXT_CONTRAST ACCURACY\nvariable swap: 49.29\nantonym: 50.33\nother: 45.68\nactive-passive: 66.67\nnegati",
+          "stderr_tail": "_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/18 [00:00<?, ?it/s]\n  6%|▌         | 1/18 [00:00<00:12,  1.41it/s]\n 11%|█         | 2/18 [00:00<00:07,  2.16it/s]\n 17%|█▋        | 3/18 [00:01<00:06,  2.23it/s]\n 22%|██▏       | 4/18 [00:01<00:05,  2.68it/s]\n 28%|██▊       | 5/18 [00:01<00:04,  3.02it/s]\n 33%|███▎      | 6/18 [00:02<00:03,  3.53it/s]\n 39%|███▉      | 7/18 [00:02<00:02,  4.21it/s]\n 44%|████▍     | 8/18 [00:02<00:02,  4.82it/s]\n 50%|█████     | 9/18 [00:02<00:01,  5.07it/s]\n 56%|█████▌    | 10/18 [00:02<00:01,  5.52it/s]\n 61%|██████    | 11/18 [00:02<00:01,  6.08it/s]\n 67%|██████▋   | 12/18 [00:03<00:00,  6.04it/s]\n 72%|███████▏  | 13/18 [00:03<00:01,  4.11it/s]\n 78%|███████▊  | 14/18 [00:03<00:00,  4.39it/s]\n 83%|████████▎ | 15/18 [00:03<00:00,  4.57it/s]\n 89%|████████▉ | 16/18 [00:04<00:00,  4.90it/s]\n 94%|█████████▍| 17/18 [00:04<00:00,  5.34it/s]\n100%|██████████| 18/18 [00:04<00:00,  4.29it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "ewok",
+            "--data_path",
+            "evaluation_data/fast_eval/evaluation_data/fast_eval/ewok_fast",
+            "--revision_name",
+            "bsm_coherent_20pct_ewok_fast",
+            "--save_predictions"
+          ]
+        },
+        "global_piqa_parallel": {
+          "score": 15.53,
+          "returncode": 0,
+          "elapsed_sec": 12.931620597839355,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_global_piqa_parallel.log",
+          "stdout_head": "1.0\t15.53\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nparallel_ex000000_eng_latn: 0.00\nparallel_ex000001_eng_latn: 0.00\nparallel_ex000002_eng_latn: 0.00\nparallel_ex000003_eng_latn: 0.00\nparallel_ex000004_eng_latn: 100.00\nparallel_ex000005_eng_latn: 0.00\nparallel_ex000008_eng_latn: 0.00\nparallel_ex000009_eng_latn: 0.00\nparallel_ex000010_eng_latn: 0.00\nparallel_ex000011_eng_latn: 0.00\nparallel_ex000013_eng_latn: 0.00\nparallel_ex000014_eng_latn: 0.00\nparallel_ex000015_eng_latn: 0.00\nparallel_ex000016_eng_",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/2 [00:00<?, ?it/s]\n 50%|█████     | 1/2 [00:00<00:00,  1.26it/s]\n100%|██████████| 2/2 [00:01<00:00,  1.53it/s]\n100%|██████████| 2/2 [00:01<00:00,  1.48it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "global_piqa_parallel",
+            "--data_path",
+            "evaluation_data/fast_eval/global_piqa_parallel",
+            "--revision_name",
+            "bsm_coherent_20pct_global_piqa_parallel",
+            "--save_predictions"
+          ]
+        },
+        "global_piqa_nonparallel": {
+          "score": 51.0,
+          "returncode": 0,
+          "elapsed_sec": 15.445150136947632,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_global_piqa_nonparallel.log",
+          "stdout_head": "1.0\t51.00\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\ngroup0123_ex000088_eng_latn_0_v1: 0.00\ngroup0123_ex000012_eng_latn_0_v1: 0.00\ngroup0123_ex000022_eng_latn_0_v1: 0.00\ngroup0123_ex000102_eng_latn_0_v1: 0.00\ngroup0123_ex000028_eng_latn_0_v1: 100.00\ngroup0123_ex000002_eng_latn_0_v1: 0.00\ngroup0123_ex000081_eng_latn_0_v1: 100.00\ngroup0123_ex000018_eng_latn_0_v1: 0.00\ngroup0123_ex000000_eng_latn_0_v1: 100.00\ngroup0123_ex000046_eng_latn_0_v1: 100.00\ngroup0123_ex000075_eng_latn_0_v1: 0.00\ngroup0123_ex0000",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/2 [00:00<?, ?it/s]\n 50%|█████     | 1/2 [00:02<00:02,  2.63s/it]\n100%|██████████| 2/2 [00:03<00:00,  1.57s/it]\n100%|██████████| 2/2 [00:03<00:00,  1.73s/it]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "global_piqa_nonparallel",
+            "--data_path",
+            "evaluation_data/fast_eval/global_piqa_nonparallel",
+            "--revision_name",
+            "bsm_coherent_20pct_global_piqa_nonparallel",
+            "--save_predictions"
+          ]
+        },
+        "reading": {
+          "scores": {
+            "reading_eye_tracking": 9.01,
+            "reading_self_paced": 3.25,
+            "reading_mean": 6.13
+          },
+          "returncode": 0,
+          "elapsed_sec": 40.8048357963562,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_coherent_20pct_reading.log",
+          "stdout_head": "EYE TRACKING SCORE: 9.01\nSELF-PACED READING SCORE: 3.25\n",
+          "stderr_tail": " 60.61it/s]\n 93%|█████████▎| 1611/1726 [00:27<00:01, 58.74it/s]\n 94%|█████████▎| 1617/1726 [00:27<00:01, 58.52it/s]\n 94%|█████████▍| 1624/1726 [00:27<00:01, 59.50it/s]\n 94%|█████████▍| 1630/1726 [00:27<00:01, 58.81it/s]\n 95%|█████████▍| 1638/1726 [00:27<00:01, 62.61it/s]\n 95%|█████████▌| 1645/1726 [00:27<00:01, 63.89it/s]\n 96%|█████████▌| 1652/1726 [00:28<00:01, 59.73it/s]\n 96%|█████████▌| 1659/1726 [00:28<00:01, 57.94it/s]\n 96%|█████████▋| 1665/1726 [00:28<00:01, 57.92it/s]\n 97%|█████████▋| 1671/1726 [00:28<00:00, 56.56it/s]\n 97%|█████████▋| 1679/1726 [00:28<00:00, 61.01it/s]\n 98%|█████████▊| 1686/1726 [00:28<00:00, 59.95it/s]\n 98%|█████████▊| 1693/1726 [00:28<00:00, 60.83it/s]\n 98%|█████████▊| 1700/1726 [00:28<00:00, 60.10it/s]\n 99%|█████████▉| 1707/1726 [00:29<00:00, 59.34it/s]\n 99%|█████████▉| 1713/1726 [00:29<00:00, 57.45it/s]\n100%|█████████▉| 1720/1726 [00:29<00:00, 58.79it/s]\n100%|██████████| 1726/1726 [00:29<00:00, 58.39it/s]\n100%|██████████| 1726/1726 [00:29<00:00, 58.83it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.reading.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_coherent_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--data_path",
+            "evaluation_data/fast_eval/reading/reading_data.csv",
+            "--revision_name",
+            "bsm_coherent_20pct_reading"
+          ]
+        }
+      }
+    },
+    "bsm_swapped_20pct": {
+      "metadata": {
+        "path": "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+        "trained_words": 999989,
+        "binding_words": 198869,
+        "steps": 291,
+        "note": "20% swapped/random binding replacement, targeted answer masks, final root slightly below 1M due no partial JSONL rows"
+      },
+      "binding_probes": {
+        "train": {
+          "n_pairs": 70,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.03348522186279297,
+          "mean_margin_q2": 0.03348514011928013,
+          "mean_margin_overall": -4.08717564202854e-08
+        },
+        "heldout_entities": {
+          "n_pairs": 61,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.005410835391185323,
+          "mean_margin_q2": 0.005410475809066022,
+          "mean_margin_overall": -1.7979105965040126e-07
+        },
+        "heldout_values": {
+          "n_pairs": 71,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.21977879967488034,
+          "mean_margin_q2": 0.21977885340301084,
+          "mean_margin_overall": 2.6864065250098434e-08
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.003623378276824951,
+          "mean_margin_q2": 0.0036231517791748048,
+          "mean_margin_overall": -1.1324882507311208e-07
+        },
+        "heldout_order_flip": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": 0.027889182602149853,
+          "mean_margin_q2": -0.027889099673948425,
+          "mean_margin_overall": 4.146410071369233e-08
+        },
+        "natural_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0,
+          "same_value_pref_frac": 1.0,
+          "mean_margin_q1": -0.01233590841293335,
+          "mean_margin_q2": 0.01233069896697998,
+          "mean_margin_overall": -2.604722976685264e-06
+        }
+      },
+      "official_fast": {
+        "blimp_fast": {
+          "score": 53.35,
+          "returncode": 0,
+          "elapsed_sec": 56.22172403335571,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_blimp_fast.log",
+          "stdout_head": "1.0\t53.35\n\nTEMPERATURE: 1.00\n\n### FIELD ACCURACY\nmorphology: 50.75\nsyntax: 56.48\nsyntax/semantics: 56.00\nsemantics: 45.39\n\n### UID ACCURACY\nanaphor_gender_agreement: 38.00\nanimate_subject_passive: 56.00\nadjunct_island: 47.50\ncausative: 40.00\nanimate_subject_trans: 69.00\ncomplex_NP_island: 50.50\nanaphor_number_agreement: 55.00\ndeterminer_noun_agreement_1: 47.00\ncoordinate_structure_constraint_complex_left_branch: 49.00\ncoordinate_structure_constraint_object_extraction: 39.00\ndeterminer_noun_agree",
+          "stderr_tail": " 91%|█████████▏| 192/210 [00:39<00:04,  3.76it/s]\n 92%|█████████▏| 193/210 [00:39<00:05,  3.38it/s]\n 92%|█████████▏| 194/210 [00:39<00:04,  3.22it/s]\n 93%|█████████▎| 195/210 [00:40<00:04,  3.43it/s]\n 93%|█████████▎| 196/210 [00:40<00:03,  3.60it/s]\n 94%|█████████▍| 197/210 [00:40<00:03,  3.73it/s]\n 94%|█████████▍| 198/210 [00:40<00:03,  3.81it/s]\n 95%|█████████▍| 199/210 [00:41<00:02,  3.87it/s]\n 95%|█████████▌| 200/210 [00:41<00:02,  3.93it/s]\n 96%|█████████▌| 201/210 [00:41<00:02,  4.09it/s]\n 96%|█████████▌| 202/210 [00:41<00:01,  4.27it/s]\n 97%|█████████▋| 203/210 [00:42<00:01,  4.41it/s]\n 97%|█████████▋| 204/210 [00:42<00:01,  3.91it/s]\n 98%|█████████▊| 205/210 [00:42<00:01,  3.56it/s]\n 98%|█████████▊| 206/210 [00:43<00:01,  3.34it/s]\n 99%|█████████▊| 207/210 [00:43<00:00,  3.26it/s]\n 99%|█████████▉| 208/210 [00:43<00:00,  3.27it/s]\n100%|█████████▉| 209/210 [00:43<00:00,  3.33it/s]\n100%|██████████| 210/210 [00:44<00:00,  4.01it/s]\n100%|██████████| 210/210 [00:44<00:00,  4.77it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "blimp",
+            "--data_path",
+            "evaluation_data/fast_eval/blimp_fast",
+            "--revision_name",
+            "bsm_swapped_20pct_blimp_fast",
+            "--save_predictions"
+          ]
+        },
+        "supplement_fast": {
+          "score": 50.4,
+          "returncode": 0,
+          "elapsed_sec": 13.792614698410034,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_supplement_fast.log",
+          "stdout_head": "1.0\t50.40\n\nTEMPERATURE: 1.00\n\n### FIELD ACCURACY\nsupplement: 50.40\n\n### UID ACCURACY\nhypernym: 58.00\nqa_congruence_easy: 38.00\nqa_congruence_tricky: 42.00\nsubject_aux_inversion: 56.00\nturn_taking: 58.00\n\n### LINGUISTICS_TERM ACCURACY\nsupplement: 50.40\n\n### AVERAGE ACCURACY\n50.40\n\n",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/4 [00:00<?, ?it/s]\n 25%|██▌       | 1/4 [00:00<00:02,  1.20it/s]\n 50%|█████     | 2/4 [00:01<00:01,  1.51it/s]\n 75%|███████▌  | 3/4 [00:01<00:00,  1.98it/s]\n100%|██████████| 4/4 [00:02<00:00,  2.33it/s]\n100%|██████████| 4/4 [00:02<00:00,  1.99it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "blimp",
+            "--data_path",
+            "evaluation_data/fast_eval/supplement_fast",
+            "--revision_name",
+            "bsm_swapped_20pct_supplement_fast",
+            "--save_predictions"
+          ]
+        },
+        "entity_tracking_fast": {
+          "score": 19.12,
+          "returncode": 0,
+          "elapsed_sec": 63.02544403076172,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_entity_tracking_fast.log",
+          "stdout_head": "1.0\t19.12\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nregular_0_ops: 17.60\nregular_1_ops: 18.09\nregular_2_ops: 17.28\nregular_3_ops: 18.35\nregular_4_ops: 14.69\nregular_5_ops: 28.72\nregular: 19.12\n\n### AVERAGE ACCURACY\n19.12\n\n",
+          "stderr_tail": "█▌     | 16/35 [00:21<00:26,  1.42s/it]\n 49%|████▊     | 17/35 [00:23<00:25,  1.44s/it]\n 51%|█████▏    | 18/35 [00:24<00:24,  1.45s/it]\n 54%|█████▍    | 19/35 [00:26<00:23,  1.46s/it]\n 57%|█████▋    | 20/35 [00:27<00:21,  1.42s/it]\n 60%|██████    | 21/35 [00:29<00:20,  1.48s/it]\n 63%|██████▎   | 22/35 [00:30<00:18,  1.44s/it]\n 66%|██████▌   | 23/35 [00:31<00:17,  1.47s/it]\n 69%|██████▊   | 24/35 [00:33<00:16,  1.48s/it]\n 71%|███████▏  | 25/35 [00:35<00:15,  1.53s/it]\n 74%|███████▍  | 26/35 [00:36<00:14,  1.57s/it]\n 77%|███████▋  | 27/35 [00:38<00:13,  1.63s/it]\n 80%|████████  | 28/35 [00:40<00:11,  1.61s/it]\n 83%|████████▎ | 29/35 [00:41<00:09,  1.57s/it]\n 86%|████████▌ | 30/35 [00:43<00:08,  1.61s/it]\n 89%|████████▊ | 31/35 [00:44<00:06,  1.62s/it]\n 91%|█████████▏| 32/35 [00:46<00:04,  1.64s/it]\n 94%|█████████▍| 33/35 [00:47<00:03,  1.55s/it]\n 97%|█████████▋| 34/35 [00:49<00:01,  1.58s/it]\n100%|██████████| 35/35 [00:51<00:00,  1.55s/it]\n100%|██████████| 35/35 [00:51<00:00,  1.46s/it]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "entity_tracking",
+            "--data_path",
+            "evaluation_data/fast_eval/entity_tracking_fast",
+            "--revision_name",
+            "bsm_swapped_20pct_entity_tracking_fast",
+            "--save_predictions"
+          ]
+        },
+        "ewok_fast": {
+          "score": 50.45,
+          "returncode": 0,
+          "elapsed_sec": 15.426263809204102,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_ewok_fast.log",
+          "stdout_head": "1.0\t50.45\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nsocial-relations: 56.00\nphysical-relations: 47.00\nagent-properties: 56.00\nphysical-interactions: 49.00\nmaterial-dynamics: 44.00\nmaterial-properties: 46.00\nsocial-properties: 52.00\nsocial-interactions: 54.00\nquantitative-properties: 51.00\nspatial-relations: 47.00\nphysical-dynamics: 53.00\n\n### CONTEXT_TYPE ACCURACY\nindirect: 50.25\ndirect: 50.71\n\n### CONTEXT_CONTRAST ACCURACY\nvariable swap: 56.40\nantonym: 48.33\nother: 58.02\nactive-passive: 66.67\nnegati",
+          "stderr_tail": "_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/18 [00:00<?, ?it/s]\n  6%|▌         | 1/18 [00:00<00:10,  1.56it/s]\n 11%|█         | 2/18 [00:00<00:06,  2.42it/s]\n 17%|█▋        | 3/18 [00:01<00:06,  2.49it/s]\n 22%|██▏       | 4/18 [00:01<00:04,  2.99it/s]\n 28%|██▊       | 5/18 [00:01<00:03,  3.42it/s]\n 33%|███▎      | 6/18 [00:01<00:02,  4.04it/s]\n 39%|███▉      | 7/18 [00:02<00:02,  4.81it/s]\n 44%|████▍     | 8/18 [00:02<00:01,  5.55it/s]\n 50%|█████     | 9/18 [00:02<00:01,  5.97it/s]\n 56%|█████▌    | 10/18 [00:02<00:01,  6.48it/s]\n 61%|██████    | 11/18 [00:02<00:00,  7.17it/s]\n 67%|██████▋   | 12/18 [00:02<00:00,  7.13it/s]\n 72%|███████▏  | 13/18 [00:02<00:00,  5.02it/s]\n 78%|███████▊  | 14/18 [00:03<00:00,  5.31it/s]\n 83%|████████▎ | 15/18 [00:03<00:00,  5.41it/s]\n 89%|████████▉ | 16/18 [00:03<00:00,  5.68it/s]\n 94%|█████████▍| 17/18 [00:03<00:00,  6.24it/s]\n100%|██████████| 18/18 [00:03<00:00,  4.96it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "ewok",
+            "--data_path",
+            "evaluation_data/fast_eval/evaluation_data/fast_eval/ewok_fast",
+            "--revision_name",
+            "bsm_swapped_20pct_ewok_fast",
+            "--save_predictions"
+          ]
+        },
+        "global_piqa_parallel": {
+          "score": 19.42,
+          "returncode": 0,
+          "elapsed_sec": 13.282662630081177,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_global_piqa_parallel.log",
+          "stdout_head": "1.0\t19.42\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\nparallel_ex000000_eng_latn: 100.00\nparallel_ex000001_eng_latn: 0.00\nparallel_ex000002_eng_latn: 0.00\nparallel_ex000003_eng_latn: 0.00\nparallel_ex000004_eng_latn: 100.00\nparallel_ex000005_eng_latn: 0.00\nparallel_ex000008_eng_latn: 0.00\nparallel_ex000009_eng_latn: 0.00\nparallel_ex000010_eng_latn: 0.00\nparallel_ex000011_eng_latn: 0.00\nparallel_ex000013_eng_latn: 0.00\nparallel_ex000014_eng_latn: 0.00\nparallel_ex000015_eng_latn: 0.00\nparallel_ex000016_en",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/2 [00:00<?, ?it/s]\n 50%|█████     | 1/2 [00:00<00:00,  1.23it/s]\n100%|██████████| 2/2 [00:01<00:00,  1.50it/s]\n100%|██████████| 2/2 [00:01<00:00,  1.45it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "global_piqa_parallel",
+            "--data_path",
+            "evaluation_data/fast_eval/global_piqa_parallel",
+            "--revision_name",
+            "bsm_swapped_20pct_global_piqa_parallel",
+            "--save_predictions"
+          ]
+        },
+        "global_piqa_nonparallel": {
+          "score": 54.0,
+          "returncode": 0,
+          "elapsed_sec": 15.330081939697266,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_global_piqa_nonparallel.log",
+          "stdout_head": "1.0\t54.00\n\nTEMPERATURE: 1.00\n\n### UID ACCURACY\ngroup0123_ex000088_eng_latn_0_v1: 100.00\ngroup0123_ex000012_eng_latn_0_v1: 100.00\ngroup0123_ex000022_eng_latn_0_v1: 100.00\ngroup0123_ex000102_eng_latn_0_v1: 100.00\ngroup0123_ex000028_eng_latn_0_v1: 0.00\ngroup0123_ex000002_eng_latn_0_v1: 0.00\ngroup0123_ex000081_eng_latn_0_v1: 100.00\ngroup0123_ex000018_eng_latn_0_v1: 0.00\ngroup0123_ex000000_eng_latn_0_v1: 100.00\ngroup0123_ex000046_eng_latn_0_v1: 100.00\ngroup0123_ex000075_eng_latn_0_v1: 0.00\ngroup0123_",
+          "stderr_tail": "data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\n  warnings.warn(\n\n  0%|          | 0/2 [00:00<?, ?it/s]\n 50%|█████     | 1/2 [00:02<00:02,  2.64s/it]\n100%|██████████| 2/2 [00:03<00:00,  1.59s/it]\n100%|██████████| 2/2 [00:03<00:00,  1.75s/it]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.sentence_zero_shot.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--task",
+            "global_piqa_nonparallel",
+            "--data_path",
+            "evaluation_data/fast_eval/global_piqa_nonparallel",
+            "--revision_name",
+            "bsm_swapped_20pct_global_piqa_nonparallel",
+            "--save_predictions"
+          ]
+        },
+        "reading": {
+          "scores": {
+            "reading_eye_tracking": 10.64,
+            "reading_self_paced": 2.98,
+            "reading_mean": 6.8100000000000005
+          },
+          "returncode": 0,
+          "elapsed_sec": 39.52107620239258,
+          "log": "experiments/archive/initial_model_studies/data/legal_bsm_1m_eval/logs/bsm_swapped_20pct_reading.log",
+          "stdout_head": "EYE TRACKING SCORE: 10.64\nSELF-PACED READING SCORE: 2.98\n",
+          "stderr_tail": " 62.32it/s]\n 93%|█████████▎| 1600/1726 [00:26<00:01, 64.38it/s]\n 93%|█████████▎| 1607/1726 [00:26<00:01, 61.70it/s]\n 94%|█████████▎| 1614/1726 [00:26<00:01, 60.20it/s]\n 94%|█████████▍| 1621/1726 [00:26<00:01, 61.42it/s]\n 94%|█████████▍| 1628/1726 [00:26<00:01, 61.11it/s]\n 95%|█████████▍| 1635/1726 [00:26<00:01, 63.37it/s]\n 95%|█████████▌| 1643/1726 [00:27<00:01, 66.35it/s]\n 96%|█████████▌| 1650/1726 [00:27<00:01, 62.07it/s]\n 96%|█████████▌| 1657/1726 [00:27<00:01, 61.57it/s]\n 96%|█████████▋| 1664/1726 [00:27<00:01, 59.89it/s]\n 97%|█████████▋| 1671/1726 [00:27<00:00, 58.92it/s]\n 97%|█████████▋| 1679/1726 [00:27<00:00, 63.14it/s]\n 98%|█████████▊| 1686/1726 [00:27<00:00, 62.14it/s]\n 98%|█████████▊| 1693/1726 [00:27<00:00, 63.03it/s]\n 98%|█████████▊| 1700/1726 [00:27<00:00, 62.30it/s]\n 99%|█████████▉| 1707/1726 [00:28<00:00, 61.52it/s]\n 99%|█████████▉| 1714/1726 [00:28<00:00, 59.77it/s]\n100%|█████████▉| 1721/1726 [00:28<00:00, 61.03it/s]\n100%|██████████| 1726/1726 [00:28<00:00, 60.75it/s]\n",
+          "cmd": [
+            "data/external/python",
+            "-m",
+            "evaluation_pipeline.reading.run",
+            "--model_path_or_name",
+            "experiments/archive/initial_model_studies/training/runs/legal_bsm_1m_bsm_swapped_20pct_seed42/hf_model",
+            "--backend",
+            "mlm",
+            "--data_path",
+            "evaluation_data/fast_eval/reading/reading_data.csv",
+            "--revision_name",
+            "bsm_swapped_20pct_reading"
+          ]
+        }
+      }
+    }
+  },
+  "deltas": {
+    "coherent_minus_swapped": {
+      "official_fast": {
+        "blimp_fast": 1.9399999999999977,
+        "supplement_fast": -2.799999999999997,
+        "entity_tracking_fast": 0.7300000000000004,
+        "ewok_fast": 0.5499999999999972,
+        "global_piqa_parallel": -3.8900000000000023,
+        "global_piqa_nonparallel": -3.0,
+        "reading_eye_tracking": -1.6300000000000008,
+        "reading_self_paced": 0.27,
+        "reading_mean": -0.6800000000000006
+      },
+      "binding_probes": {
+        "train_both_correct": 0.0,
+        "heldout_entities_both_correct": 0.0,
+        "heldout_values_both_correct": 0.0,
+        "heldout_templates_both_correct": 0.0,
+        "heldout_order_flip_both_correct": 0.0,
+        "natural_templates_both_correct": 0.0
+      }
+    },
+    "coherent_minus_official": {
+      "official_fast": {
+        "blimp_fast": 0.9799999999999969,
+        "supplement_fast": -1.1999999999999957,
+        "entity_tracking_fast": 1.860000000000003,
+        "ewok_fast": 2.270000000000003,
+        "global_piqa_parallel": -2.92,
+        "global_piqa_nonparallel": -5.0,
+        "reading_eye_tracking": -0.5600000000000005,
+        "reading_self_paced": -0.1200000000000001,
+        "reading_mean": -0.34000000000000075
+      },
+      "binding_probes": {
+        "train_both_correct": 0.0,
+        "heldout_entities_both_correct": 0.0,
+        "heldout_values_both_correct": 0.0,
+        "heldout_templates_both_correct": 0.0,
+        "heldout_order_flip_both_correct": 0.0,
+        "natural_templates_both_correct": 0.0
+      }
+    },
+    "swapped_minus_official": {
+      "official_fast": {
+        "blimp_fast": -0.9600000000000009,
+        "supplement_fast": 1.6000000000000014,
+        "entity_tracking_fast": 1.1300000000000026,
+        "ewok_fast": 1.720000000000006,
+        "global_piqa_parallel": 0.9700000000000024,
+        "global_piqa_nonparallel": -2.0,
+        "reading_eye_tracking": 1.0700000000000003,
+        "reading_self_paced": -0.3900000000000001,
+        "reading_mean": 0.33999999999999986
+      },
+      "binding_probes": {
+        "train_both_correct": 0.0,
+        "heldout_entities_both_correct": 0.0,
+        "heldout_values_both_correct": 0.0,
+        "heldout_templates_both_correct": 0.0,
+        "heldout_order_flip_both_correct": 0.0,
+        "natural_templates_both_correct": 0.0
+      }
+    }
+  },
+  "elapsed_sec": 674.1131014823914
+}

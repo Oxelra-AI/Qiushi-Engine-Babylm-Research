@@ -1,0 +1,86 @@
+{
+  "status": "FW_100M_GLOBALPIQA_MATURE_SYNTHESIS_DONE",
+  "source_margin_json": "experiments/archive/representation_and_objectives/data/fw_globalpiqa_margin_reader/globalpiqa_margin_reader_results.json",
+  "rows_100m": [
+    {
+      "arm": "fw_compact_fullbatch_seed43022",
+      "model_path": "experiments/archive/frontier_consolidation/training/runs/fw_compact_view_shared16k_seed43022/hf_model",
+      "revision": "chck_100M",
+      "parallel_acc": 24.271844660194176,
+      "nonparallel_acc": 53.0,
+      "globalpiqa_agg": 38.63592233009709,
+      "parallel_rank1": 25,
+      "parallel_rank2": 24,
+      "parallel_rank3": 30,
+      "parallel_rank4": 24,
+      "hard52_acc": 3.8461538461538463,
+      "hard52_rank1": 2,
+      "hard52_mean_top_minus_correct": 1.7169032966268565,
+      "hard52_small_le_0p50": 5,
+      "nonparallel_small_le_0p50": 32
+    },
+    {
+      "arm": "fw_breadth_rowblock_fullbatch_seed43022",
+      "model_path": "experiments/archive/frontier_consolidation/training/runs/fw_source_breadth_shared16k_seed43022/hf_model",
+      "revision": "chck_100M",
+      "parallel_acc": 29.12621359223301,
+      "nonparallel_acc": 45.0,
+      "globalpiqa_agg": 37.06310679611651,
+      "parallel_rank1": 30,
+      "parallel_rank2": 26,
+      "parallel_rank3": 30,
+      "parallel_rank4": 17,
+      "hard52_acc": 5.769230769230769,
+      "hard52_rank1": 3,
+      "hard52_mean_top_minus_correct": 1.4332541533467318,
+      "hard52_small_le_0p50": 9,
+      "nonparallel_small_le_0p50": 41
+    }
+  ],
+  "breadth_minus_compact_100m": {
+    "breadth_minus_compact_parallel_acc": 4.854368932038835,
+    "breadth_minus_compact_nonparallel_acc": -8.0,
+    "breadth_minus_compact_globalpiqa_agg": -1.572815533980581,
+    "breadth_minus_compact_parallel_rank1": 5,
+    "breadth_minus_compact_hard52_acc": 1.923076923076923,
+    "breadth_minus_compact_hard52_rank1": 1,
+    "breadth_minus_compact_hard52_mean_top_minus_correct": -0.2836491432801247,
+    "breadth_minus_compact_hard52_small_le_0p50": 4
+  },
+  "ref_70m": {
+    "compact": {
+      "parallel_acc": 26.21359223300971,
+      "nonparallel_acc": 51.0,
+      "hard52_rank1": 2,
+      "hard52_mean_top_minus_correct": 1.7031002964455157,
+      "globalpiqa_agg": 38.60679611650485
+    },
+    "breadth_rowblock": {
+      "parallel_acc": 26.21359223300971,
+      "nonparallel_acc": 47.0,
+      "hard52_rank1": 1,
+      "hard52_mean_top_minus_correct": 1.4763328583714115,
+      "globalpiqa_agg": 36.60679611650485
+    }
+  },
+  "within_arm_70m_to_100m": {
+    "compact": {
+      "parallel_70to100": -1.9417475728155331,
+      "nonparallel_70to100": 2.0,
+      "globalpiqa_70to100": 0.029126213592235217,
+      "hard52_mean_margin_70to100": 0.01380300018134073
+    },
+    "breadth_rowblock": {
+      "parallel_70to100": 2.9126213592233015,
+      "nonparallel_70to100": -2.0,
+      "globalpiqa_70to100": 0.4563106796116543,
+      "hard52_mean_margin_70to100": -0.0430787050246797
+    }
+  },
+  "interpretation": [
+    "Mature 100M GlobalPIQA is a within-checkpoint tradeoff, not a joint improvement.",
+    "Row-block breadth raises hard parallel accuracy and softens hard52 margins but lowers nonparallel accuracy by a larger margin, so its GlobalPIQA aggregate is lower than compact.",
+    "Compact preserves broad GlobalPIQA (higher nonparallel) but keeps the deep-rank parallel weakness.",
+    "This reproduces the 70M direction at the final checkpoint: independent coverage shifts probability mass toward hard parallel structure while degrading broad capability; the proposed 'combination' of preserved breadth plus improved relational ranks does not appear."
+  ]
+}

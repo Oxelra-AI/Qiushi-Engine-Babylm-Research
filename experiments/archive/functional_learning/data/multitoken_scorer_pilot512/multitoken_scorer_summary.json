@@ -1,0 +1,235 @@
+{
+  "status": "A02_MULTITOKEN_BASELINE_SCORER",
+  "rows_path": "experiments/archive/relation_learning/data/contrastive_binding_validated_strict/accepted_contrastive_binding_training_rows_strict_pilot512.jsonl",
+  "model_path": "models/frontier",
+  "device": "cuda:1",
+  "seq_length": 256,
+  "private_scale": 0.75,
+  "scoring": {
+    "primary_margin": "mean per candidate token log probability difference",
+    "secondary_margin": "summed candidate token log probability difference, most interpretable on equal-token-length rows",
+    "masked_positions": "candidate span inside final use_sentence_frame only; source/update occurrences are not masked",
+    "pair_contrast": "U + R under update_new_minus_source and retain_source_minus_new signed margins"
+  },
+  "validation": {
+    "n_rows": 110,
+    "n_pairs": 55,
+    "n_pair_issues": 0,
+    "pair_issues_first20": [],
+    "packet_type_counts": {
+      "UPDATE": 55,
+      "RETAIN": 55
+    },
+    "role_position_distribution_rows": {
+      "target_earlier": 52,
+      "target_later": 58
+    },
+    "source_distribution_rows": {
+      "unknown": 110
+    },
+    "literal_target_position_counts": {
+      "target_earlier": 23,
+      "target_later": 26,
+      "distractor_found_target_missing": 2,
+      "target_found_distractor_missing": 4
+    },
+    "metadata_literal_mismatch_examples": [
+      {
+        "pair_id": "rw2s0_031693",
+        "metadata_role": "target_later",
+        "literal_role": "distractor_found_target_missing",
+        "target": "London England",
+        "distractor": "August",
+        "source_prefix": "Evans died on 9 August 2022 at his home in London, England from a heart attack at the age of 72."
+      },
+      {
+        "pair_id": "rw2s0_015419",
+        "metadata_role": "target_earlier",
+        "literal_role": "target_found_distractor_missing",
+        "target": "Government",
+        "distractor": "Digital Transformation Chobanyan",
+        "source_prefix": "At the request of the Ministry of Digital Transformation, Chobanyan helped the Government of Ukraine to create and manage state cryptocurrency wallets for donations in Kuna Exchange."
+      },
+      {
+        "pair_id": "rw2s1_029613",
+        "metadata_role": "target_earlier",
+        "literal_role": "target_found_distractor_missing",
+        "target": "Villanueva",
+        "distractor": "APRA's Juventud Aprista Peruana",
+        "source_prefix": "At the age of 15 Villanueva became a member of APRA's \"Juventud Aprista Peruana\" in opposition to the military dictatorship of Luis Miguel Sánchez Cerro."
+      },
+      {
+        "pair_id": "rw2s0_016677",
+        "metadata_role": "target_later",
+        "literal_role": "target_found_distractor_missing",
+        "target": "June",
+        "distractor": "hospital",
+        "source_prefix": "He died at the Royal Brompton Hospital in London and was buried in Brookwood Cemetery on 10 June 2011."
+      },
+      {
+        "pair_id": "rw_007527",
+        "metadata_role": "target_earlier",
+        "literal_role": "target_found_distractor_missing",
+        "target": "Burgpreppach",
+        "distractor": "Maroldsweisach Seßlach Untermerzbach Ebern",
+        "source_prefix": "Its neighbouring municipalities (clockwise from the north) are: Maroldsweisach, Seßlach, Untermerzbach, Ebern and Burgpreppach."
+      },
+      {
+        "pair_id": "rw_040052",
+        "metadata_role": "target_later",
+        "literal_role": "distractor_found_target_missing",
+        "target": "*CHI I'm",
+        "distractor": "Diandra",
+        "source_prefix": "[Mother is teaching Paul and Diandra single words throughout the hour] *CHI: I'm making a egg."
+      }
+    ],
+    "n_scoring_errors": 0,
+    "scoring_errors_first20": []
+  },
+  "pair_summary": {
+    "all_pairs": {
+      "n_pairs": 55,
+      "mean_U_mean": 1.9352137250407708,
+      "mean_R_mean": -1.954157392789052,
+      "mean_UR_mean": -0.01894366774828147,
+      "n_update_correct_mean": 42,
+      "n_retain_correct_mean": 13,
+      "n_joint_correct_mean": 3,
+      "mean_U_sum": 6.452254480580715,
+      "mean_R_sum": -6.449120458520271,
+      "mean_UR_sum": 0.0031340220604430544,
+      "n_joint_correct_sum": 2,
+      "UR_mean_quantiles": {
+        "n": 55,
+        "mean": -0.01894366774828147,
+        "median": -0.05095863342285156,
+        "p10": -1.779340446790059,
+        "p90": 1.4012750768661495,
+        "min": -3.2654124908149242,
+        "max": 4.57678151379029
+      }
+    },
+    "same_token_length_both_rows": {
+      "n_pairs": 15,
+      "mean_U_mean": 1.300380836394098,
+      "mean_R_mean": -1.2769196046723261,
+      "mean_UR_mean": 0.02346123172177205,
+      "n_update_correct_mean": 11,
+      "n_retain_correct_mean": 4,
+      "n_joint_correct_mean": 1,
+      "mean_U_sum": 2.3243797649939855,
+      "mean_R_sum": -2.3801373481750487,
+      "mean_UR_sum": -0.05575758318106334,
+      "n_joint_correct_sum": 1,
+      "UR_mean_quantiles": {
+        "n": 15,
+        "mean": 0.02346123172177205,
+        "median": -0.0751620133717843,
+        "p10": -0.7957252025604242,
+        "p90": 1.1050687360763547,
+        "min": -2.194126009941101,
+        "max": 2.663388267159462
+      }
+    },
+    "by_role_position_relation": {
+      "target_earlier": {
+        "n_pairs": 26,
+        "mean_U_mean": 2.9916982543972352,
+        "mean_R_mean": -3.3820005245997047,
+        "mean_UR_mean": -0.3903022702024694,
+        "n_update_correct_mean": 21,
+        "n_retain_correct_mean": 3,
+        "n_joint_correct_mean": 0,
+        "mean_U_sum": 14.999699018967267,
+        "mean_R_sum": -16.189380860421807,
+        "mean_UR_sum": -1.1896818414545403,
+        "n_joint_correct_sum": 1,
+        "UR_mean_quantiles": {
+          "n": 26,
+          "mean": -0.3903022702024694,
+          "median": -0.17615627000729273,
+          "p10": -2.5739979545275364,
+          "p90": 0.9609139263629913,
+          "min": -3.2654124908149242,
+          "max": 4.57678151379029
+        }
+      },
+      "target_later": {
+        "n_pairs": 29,
+        "mean_U_mean": 0.9880206987211817,
+        "mean_R_mean": -0.6740221711657086,
+        "mean_UR_mean": 0.3139985275554732,
+        "n_update_correct_mean": 21,
+        "n_retain_correct_mean": 10,
+        "n_joint_correct_mean": 3,
+        "mean_U_sum": -1.2109716572830904,
+        "mean_R_sum": 2.283526798356967,
+        "mean_UR_sum": 1.0725551410738765,
+        "n_joint_correct_sum": 1,
+        "UR_mean_quantiles": {
+          "n": 29,
+          "mean": 0.3139985275554732,
+          "median": 0.15046404224510113,
+          "p10": -0.4368396282196044,
+          "p90": 1.7857058644294739,
+          "min": -2.194126009941101,
+          "max": 2.663388267159462
+        }
+      }
+    },
+    "token_length_distribution": {
+      "update_answer": {
+        "3": 19,
+        "4": 5,
+        "5": 8,
+        "2": 9,
+        "6": 8,
+        "9": 1,
+        "8": 1,
+        "1": 4
+      },
+      "update_foil": {
+        "4": 8,
+        "2": 14,
+        "3": 9,
+        "6": 4,
+        "5": 8,
+        "8": 5,
+        "7": 1,
+        "13": 1,
+        "9": 1,
+        "1": 4
+      },
+      "retain_answer": {
+        "4": 8,
+        "2": 14,
+        "3": 9,
+        "6": 4,
+        "5": 8,
+        "8": 5,
+        "7": 1,
+        "13": 1,
+        "9": 1,
+        "1": 4
+      },
+      "retain_foil": {
+        "3": 19,
+        "4": 5,
+        "5": 8,
+        "2": 9,
+        "6": 8,
+        "9": 1,
+        "8": 1,
+        "1": 4
+      },
+      "same_token_length_both_rows_n": 15
+    }
+  },
+  "load_info": {
+    "missing": [
+      "cls.predictions.decoder.weight",
+      "cls.predictions.decoder.bias"
+    ],
+    "unexpected": []
+  }
+}

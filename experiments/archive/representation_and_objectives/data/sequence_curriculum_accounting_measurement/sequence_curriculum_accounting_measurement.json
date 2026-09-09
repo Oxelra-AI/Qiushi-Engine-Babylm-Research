@@ -1,0 +1,58 @@
+{
+  "status": "SEQUENCE_CURRICULUM_ACCOUNTING_MEASUREMENT",
+  "pool_rows": 64740,
+  "pool_words": 10000000,
+  "leader_factor": "sequence length curriculum 64->256, batch size scaled inversely with sequence length (model card lines 203 and 213)",
+  "current_schedule_path_behavior": "research/research seq_len_schedule slices max-256 tokenized rows to the current short prefix but still charges full row words; this hides suffix word-groups during short phases while counting them in word exposure.",
+  "summary": {
+    "legal40k": {
+      "vocab_size": 40000,
+      "tokens_per_word": 1.3942644,
+      "prefix_visible_group_fraction_by_length": {
+        "64": 0.3064708,
+        "128": 0.6083342,
+        "256": 0.9871336
+      },
+      "prefix_missing_group_fraction_by_length": {
+        "64": 0.6935292,
+        "128": 0.39166579999999995,
+        "256": 0.012866399999999945
+      },
+      "three_stage_64x3_128x4_256x3": {
+        "prefix_missing_group_fraction": 0.36858500000000005,
+        "faithful_chunking_target_token_ratio_vs_prefix": 1.6092776538826647,
+        "faithful_chunking_optimizer_step_ratio_vs_prefix": 1.0810276679841897
+      },
+      "two_stage_64x7_256x3": {
+        "prefix_missing_group_fraction": 0.48933035999999996,
+        "faithful_chunking_target_token_ratio_vs_prefix": 1.9883532262863786,
+        "faithful_chunking_optimizer_step_ratio_vs_prefix": 1.0367588932806324
+      }
+    },
+    "minfreq25": {
+      "vocab_size": 29529,
+      "tokens_per_word": 1.4138512,
+      "prefix_visible_group_fraction_by_length": {
+        "64": 0.3022295,
+        "128": 0.5997401,
+        "256": 0.9855127
+      },
+      "prefix_missing_group_fraction_by_length": {
+        "64": 0.6977705000000001,
+        "128": 0.4002599,
+        "256": 0.01448729999999998
+      },
+      "three_stage_64x3_128x4_256x3": {
+        "prefix_missing_group_fraction": 0.3737813,
+        "faithful_chunking_target_token_ratio_vs_prefix": 1.622485619925082,
+        "faithful_chunking_optimizer_step_ratio_vs_prefix": 1.092490118577075
+      },
+      "two_stage_64x7_256x3": {
+        "prefix_missing_group_fraction": 0.49278553999999997,
+        "faithful_chunking_target_token_ratio_vs_prefix": 2.002136195445145,
+        "faithful_chunking_optimizer_step_ratio_vs_prefix": 1.049802371541502
+      }
+    }
+  },
+  "route_implication": "A future 64->256 route should use stage-length word-boundary chunking or streaming with inverse row-batch scaling. The existing short-prefix slicing path should not be treated as the leader-style sequence factor because it hides large fractions of word-groups while counting their words."
+}

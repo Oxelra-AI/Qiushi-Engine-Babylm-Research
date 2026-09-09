@@ -1,0 +1,126 @@
+{
+  "status": "PAIRED_TAIL_CONTINUATION_READY",
+  "created_utc": "2026-08-31T09:32:11Z",
+  "purpose": "factor-separated fresh-AdamW tail continuation: both arms reset optimizer moments from the same legal40k chck_80M weights and replay the same tail rows/masks/dropout; only LR trajectory differs",
+  "mode": "residual_low_lr",
+  "pairing_contract": {
+    "same_source_checkpoint": true,
+    "same_tail_rows": true,
+    "same_mask_rng_seed_between_modes": 53023,
+    "same_dropout_global_seed_between_modes": 53023,
+    "fresh_adamw_moments_in_both_modes": true,
+    "only_intended_difference": "original residual low-LR trajectory vs restarted reheated cosine LR",
+    "anchor_endpoint": "uninterrupted legal40k fixed-256 100M baseline, not either continuation arm"
+  },
+  "source_checkpoint": {
+    "name": "chck_80M",
+    "path": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+    "metrics_path": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/scientific_metrics.json",
+    "training_log": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/training_log.jsonl",
+    "record": {
+      "name": "chck_80M",
+      "target_word_exposure": 80000000,
+      "actual_cumulative_word_exposure": 80034368,
+      "path": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M"
+    },
+    "source_step_record": {
+      "step": 2024,
+      "loss": 2.5238365632967668,
+      "lr": 0.00010720866372880134,
+      "batch_words": 39389,
+      "cumulative_word_exposure": 80034368,
+      "seq_len": 256,
+      "masked_tokens": 8257,
+      "effective_mask_rate": 0.1534,
+      "mask_mode": "wwm",
+      "mask_prob_nominal": 0.15,
+      "active_microbatches": 4,
+      "micro_batch_size": 64,
+      "elapsed_sec": 3652.2
+    },
+    "consumed_words": 80034368,
+    "source_step": 2024,
+    "source_logged_lr_after_step": 0.00010720866372880134
+  },
+  "stream": {
+    "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "example_jsonl_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "jsonl_total_words": 100000000,
+    "jsonl_total_rows": 647400,
+    "loaded_words": 100000000,
+    "tail_start_row_index": 518144,
+    "tail_examples": 129256,
+    "continuation_words": 19965632,
+    "max_total_word_exposure": 100000000,
+    "sample_rows": [
+      {
+        "words": 160,
+        "example_id": 10289,
+        "source": "childes"
+      },
+      {
+        "words": 160,
+        "example_id": 14184,
+        "source": "childes"
+      },
+      {
+        "words": 96,
+        "example_id": 300801,
+        "source": "qwen_pair_packed"
+      }
+    ],
+    "first_effective_batch_plain_hashes": {
+      "input_ids_sha256": "f890c152a8eeaf871b018113b6df6c63630af61149421875e504f48711119d72",
+      "attention_mask_sha256": "e51db5cba375f08b338e24d6342b765addf4592c1ad9bda19be34ece0ac98ef5",
+      "word_group_sha256": "29a5b585632a3d6d15631ce9b5660f9322945c3197f9704200d2e43256a76f75",
+      "words_sha256": "6bbc9c9ac699bbc182214aca4358c300a38707caa25cf7d9033a6c2216c83e8f",
+      "words_sum": 39780
+    },
+    "first_effective_batch_cpu_mask_hashes": {
+      "masked_inputs_sha256": "32d05c098c4deacb2c8c4caaf79e7efeb5ef94b7d81e624ab3dbc4e1e97f02cf",
+      "labels_sha256": "b26d52d27ffa568da53f7a1ba75431368663d1725009f746d059f47ee8800b56",
+      "selected_positions_sha256": "319950e1e6aab858c2144c3f9848481f1a0222467281729ec7afda893010abf9",
+      "masked_tokens": 8232
+    }
+  },
+  "method": {
+    "model_family": "DebertaV2ForMaskedLM",
+    "tokenizer_path": "experiments/archive/representation_and_objectives/data/legal_representation_route_map/tokenizers/legal_byte_bpe_40k",
+    "tokenizer_len": 40000,
+    "max_seq_length": 256,
+    "batch_size": 256,
+    "micro_batch_size": 64,
+    "gradient_accumulation_steps": 4,
+    "optimizer": "AdamW_fresh_state",
+    "adam_betas": [
+      0.9,
+      0.98
+    ],
+    "weight_decay": 0.01,
+    "masking_curriculum": "wwm_fixed",
+    "mask_prob": 0.15,
+    "seed": 43,
+    "train_rng_seed": 53023,
+    "total_tail_steps": 505,
+    "source_step": 2024,
+    "final_global_step": 2529
+  },
+  "lr_geometry": {
+    "mode": "residual_low_lr",
+    "original_base_lr": 0.001,
+    "original_total_steps": 2529,
+    "original_warmup_fraction": 0.06,
+    "original_warmup_steps": 151,
+    "reheat_peak_lr": 0.0003,
+    "reheat_warmup_fraction": 0.06,
+    "reheat_warmup_steps": 30,
+    "first_update_lr": 0.00010720866372880134,
+    "first_after_update_lr": 0.00010680028468509506,
+    "last_update_lr": 4.3633092056127864e-10,
+    "final_after_update_lr": 0.0,
+    "source_logged_lr_after_step": 0.00010720866372880134,
+    "baseline_next_step_logged_lr": 0.00010680028468509506,
+    "residual_first_update_matches_source_logged_lr": true,
+    "residual_first_after_update_matches_baseline_next_step_log": true
+  }
+}

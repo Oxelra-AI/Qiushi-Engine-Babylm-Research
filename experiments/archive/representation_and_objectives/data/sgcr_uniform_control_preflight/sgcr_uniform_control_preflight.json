@@ -1,0 +1,204 @@
+{
+  "status": "SGCR_UNIFORM_CONTROL_PREFLIGHT",
+  "created_utc": "2026-08-30T16:04:42Z",
+  "script_never_trains": true,
+  "script_never_runs_evaluation": true,
+  "scientific_purpose": "Prepare the single attribution comparison for a promising-but-ambiguous SGCR endpoint: same extra component estimator and same training-token residual mass as K=50 SGCR, but no support-dependent routing.",
+  "use_condition": "Run the full uniform-control training only if the pending SGCR endpoint is sub-frontier but improves COMPS/GlobalPIQA or Overall over matched depth enough that distinguishing support routing from generic auxiliary capacity will change the next route.",
+  "do_not_run_condition": "Do not run this control if SGCR clears the visible 41.80 leader (reproduce seed43122 instead), or if SGCR is flat/damaging on COMPS and GlobalPIQA relative to matched depth.",
+  "paths": {
+    "tok40": "experiments/archive/representation_and_objectives/data/legal_representation_route_map/tokenizers/legal_byte_bpe_40k",
+    "tok16": "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer",
+    "pool_10m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl"
+  },
+  "hashes": {
+    "tok40_sha256": "94b44bcf5901d097e20294e8220740758eac29af3ec20d58d8da867c85197758",
+    "tok16_sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+    "decomposition_map_sha256": "b450cc45f7d66564a894fb8cc12e0b0ab8e3ba7db0339cad5eec6f30c6edfd8b"
+  },
+  "decomposition": {
+    "token_count": 40000,
+    "length_histogram": {
+      "1": 16384,
+      "2": 19333,
+      "3": 3629,
+      "4": 571,
+      "5": 63,
+      "6": 16,
+      "7": 4
+    },
+    "max_components": 7,
+    "component_slots": 68660
+  },
+  "counts": {
+    "legal40_pool_tokens": 13942644,
+    "legal40_used_types": 39320,
+    "force_standard_ids": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "parameter_check": {
+    "base_param_count": 38421952,
+    "sgcr_new_params": 1073536,
+    "total_param_count": 39495488
+  },
+  "cold_exactness": {
+    "zero_sharing_limit": {
+      "max_diff": 0.0,
+      "mean_diff": 0.0,
+      "exact_recovery": true
+    },
+    "uniform_cold_effective_table_max_diff_vs_standard": 0.0,
+    "uniform_cold_effective_table_mean_diff_vs_standard": 0.0
+  },
+  "gate_stats": {
+    "treatment_K50": {
+      "ordinary_used": {
+        "types": 39320,
+        "token_mass": 13942644,
+        "rho_mass_weighted": 0.9357199668884277,
+        "residual_mass_weighted": 0.06428007036447525,
+        "residual_type_mean": 0.544133187459056,
+        "residual_type_quantiles": {
+          "min": 6.717443466186523e-05,
+          "p10": 0.16393440961837769,
+          "median": 0.6024096012115479,
+          "p90": 0.78125,
+          "max": 0.9803921580314636
+        }
+      },
+      "low_support_lt50": {
+        "types": 24854,
+        "token_mass": 575941,
+        "rho_mass_weighted": 0.35228216648101807,
+        "residual_mass_weighted": 0.6477178335189819,
+        "residual_type_mean": 0.6998090913546693,
+        "residual_type_quantiles": {
+          "min": 0.505050539970398,
+          "p10": 0.5555555820465088,
+          "median": 0.7042253613471985,
+          "p90": 0.8474576473236084,
+          "max": 0.9803921580314636
+        }
+      },
+      "common_ge50": {
+        "types": 14466,
+        "token_mass": 13366703,
+        "rho_mass_weighted": 0.960858941078186,
+        "residual_mass_weighted": 0.039141055196523666,
+        "residual_type_mean": 0.27666678932401034,
+        "residual_type_quantiles": {
+          "min": 6.717443466186523e-05,
+          "p10": 0.06067970395088196,
+          "median": 0.29069769382476807,
+          "p90": 0.4672897458076477,
+          "max": 0.5
+        }
+      },
+      "force_or_unseen": {
+        "types": 680,
+        "token_mass": 0,
+        "rho_mass_weighted": null,
+        "residual_mass_weighted": null,
+        "residual_type_mean": 0.9926470588235294,
+        "residual_type_quantiles": {
+          "min": 0.0,
+          "p10": 1.0,
+          "median": 1.0,
+          "p90": 1.0,
+          "max": 1.0
+        }
+      },
+      "ordinary_used_rho_min": 0.019607843831181526,
+      "ordinary_used_rho_max": 0.9999328255653381,
+      "ordinary_used_unique_rho_rounded_1e12": 1887
+    },
+    "uniform_mass_matched_K50": {
+      "ordinary_used": {
+        "types": 39320,
+        "token_mass": 13942644,
+        "rho_mass_weighted": 0.9357197880744934,
+        "residual_mass_weighted": 0.06428009271621704,
+        "residual_type_mean": 0.06428009271621704,
+        "residual_type_quantiles": {
+          "min": 0.06428009271621704,
+          "p10": 0.06428009271621704,
+          "median": 0.06428009271621704,
+          "p90": 0.06428009271621704,
+          "max": 0.06428009271621704
+        }
+      },
+      "low_support_lt50": {
+        "types": 24854,
+        "token_mass": 575941,
+        "rho_mass_weighted": 0.9357198476791382,
+        "residual_mass_weighted": 0.06428009271621704,
+        "residual_type_mean": 0.06428009271621704,
+        "residual_type_quantiles": {
+          "min": 0.06428009271621704,
+          "p10": 0.06428009271621704,
+          "median": 0.06428009271621704,
+          "p90": 0.06428009271621704,
+          "max": 0.06428009271621704
+        }
+      },
+      "common_ge50": {
+        "types": 14466,
+        "token_mass": 13366703,
+        "rho_mass_weighted": 0.935719907283783,
+        "residual_mass_weighted": 0.06428008526563644,
+        "residual_type_mean": 0.06428009271621704,
+        "residual_type_quantiles": {
+          "min": 0.06428009271621704,
+          "p10": 0.06428009271621704,
+          "median": 0.06428009271621704,
+          "p90": 0.06428009271621704,
+          "max": 0.06428009271621704
+        }
+      },
+      "force_or_unseen": {
+        "types": 680,
+        "token_mass": 0,
+        "rho_mass_weighted": null,
+        "residual_mass_weighted": null,
+        "residual_type_mean": 0.06380744497565662,
+        "residual_type_quantiles": {
+          "min": 0.0,
+          "p10": 0.06428009271621704,
+          "median": 0.06428009271621704,
+          "p90": 0.06428009271621704,
+          "max": 0.06428009271621704
+        }
+      },
+      "ordinary_used_rho_min": 0.935719907283783,
+      "ordinary_used_rho_max": 0.935719907283783,
+      "ordinary_used_unique_rho_rounded_1e12": 1
+    },
+    "uniform_minus_treatment_residual_mass_absdiff": 2.2351741790771484e-08,
+    "treatment_low_support_to_common_residual_type_mean_ratio": 2.5294293292828436,
+    "uniform_low_support_to_common_residual_type_mean_ratio": 1.0
+  },
+  "expected": {
+    "tok40_sha256": "94b44bcf5901d097e20294e8220740758eac29af3ec20d58d8da867c85197758",
+    "tok16_sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+    "decomposition_map_sha256": "b450cc45f7d66564a894fb8cc12e0b0ab8e3ba7db0339cad5eec6f30c6edfd8b",
+    "component_slots": 68660,
+    "max_components": 7,
+    "legal40_pool_tokens": 13942644,
+    "legal40_used_types": 39320,
+    "base_param_count": 38421952,
+    "sgcr_new_params": 1073536,
+    "total_param_count": 39495488,
+    "K": 50.0,
+    "d_comp": 64
+  },
+  "elapsed_sec": 40.304,
+  "preflight_errors": [],
+  "preflight_passed": true,
+  "json_output": "experiments/archive/representation_and_objectives/data/sgcr_uniform_control_preflight/sgcr_uniform_control_preflight.json",
+  "note": "research/notes/representation_and_objectives/sgcr_uniform_control_preflight.md"
+}

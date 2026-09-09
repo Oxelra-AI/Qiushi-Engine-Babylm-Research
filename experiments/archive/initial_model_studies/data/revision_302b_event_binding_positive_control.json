@@ -1,0 +1,108 @@
+{
+  "status": "STEP302B_EVENT_BINDING_POSITIVE_CONTROL_COMPLETE",
+  "design": {
+    "data": "deterministic synthetic diagnostic; no BabyLM evaluation data",
+    "cases": 420,
+    "common_cases": 420,
+    "arms": {
+      "causal": "swap target and distractor locations while preserving the complete word multiset",
+      "null": "swap two unrelated locations while preserving the target binding and complete word multiset"
+    },
+    "case_families": [
+      "initial binding",
+      "latest state after overwrite"
+    ],
+    "success_rule": "leader and leader-minus-protected CI95 lower bounds > 0 and leader positive fraction >= 0.60"
+  },
+  "provenance": {
+    "script": "experiments/archive/initial_model_studies/scripts/revision_302b_event_binding_positive_control.py",
+    "script_sha256": "7e71935027c881e64e9056b92963795b117d97bafdac3b1f9c91e3c5535fde6e",
+    "scorer": "experiments/archive/initial_model_studies/scripts/leader_causal_use_gap.py",
+    "scorer_sha256": "dfc9ae07bf43f5a52fec0bfb4c03ab950f9ca8d1fb541f9bd84d605c6103854a",
+    "case_seed": 3021,
+    "bootstrap_seed": 3022,
+    "device": "cpu"
+  },
+  "models": {
+    "protected_wwm42_100M": {
+      "identity": {
+        "direct_path": "experiments/archive/initial_model_studies/training/runs/babylm_fullcycle_debertav2_8x480_wwm_seed42_100M_b256/hf_model/chck_100M",
+        "weight_sha256": "487913f66c008036941bfce9d5529e19dceed6c5eba76fe904f508e8eef5d6f3",
+        "weight_bytes": 137890400,
+        "parameter_count": 34467424,
+        "tokenizer_size": 16384
+      }
+    },
+    "public_leader": {
+      "identity": {
+        "direct_path": "experiments/archive/initial_model_studies/data/leader_package_revision_124/model_side/local",
+        "weight_sha256": "cebc35d41825c2c17234ecf7de014020ee91879517a92ee912483ca130b6e120",
+        "weight_bytes": 69380232,
+        "parameter_count": 34677952,
+        "tokenizer_size": 40000
+      }
+    }
+  },
+  "statistics": {
+    "protected": {
+      "n": 420,
+      "mean": 0.0877900187813016,
+      "median": 0.037740211431176424,
+      "fraction_positive": 0.6142857142857143,
+      "bootstrap_ci95": [
+        0.06238795473138519,
+        0.11408576842644857
+      ]
+    },
+    "leader": {
+      "n": 420,
+      "mean": 0.3018543836033031,
+      "median": 0.15429352863277446,
+      "fraction_positive": 0.638095238095238,
+      "bootstrap_ci95": [
+        0.2245262379032973,
+        0.3802442038474665
+      ]
+    },
+    "leader_minus_protected": {
+      "n": 420,
+      "mean": 0.21406436482200153,
+      "median": 0.10495043430069223,
+      "fraction_positive": 0.580952380952381,
+      "bootstrap_ci95": [
+        0.12216657487623318,
+        0.30461301088396514
+      ]
+    },
+    "cross_model_spearman_rho": -0.4092313448488936
+  },
+  "descriptive_by_family": {
+    "protected_wwm42_100M": {
+      "synthetic_initial_binding": {
+        "n": 210,
+        "mean": 0.1480275996208692,
+        "fraction_positive": 0.638095238095238
+      },
+      "synthetic_latest_update_binding": {
+        "n": 210,
+        "mean": 0.027552437941734023,
+        "fraction_positive": 0.5904761904761905
+      }
+    },
+    "public_leader": {
+      "synthetic_initial_binding": {
+        "n": 210,
+        "mean": 0.4948205702502938,
+        "fraction_positive": 0.7095238095238096
+      },
+      "synthetic_latest_update_binding": {
+        "n": 210,
+        "mean": 0.10888819695631237,
+        "fraction_positive": 0.5666666666666667
+      }
+    }
+  },
+  "decision": "H2_LINKED_TO_LEADER_ADVANTAGE",
+  "next_action": "Design a single unavoidable-history objective with matched controls.",
+  "elapsed_sec": 38.32060241699219
+}

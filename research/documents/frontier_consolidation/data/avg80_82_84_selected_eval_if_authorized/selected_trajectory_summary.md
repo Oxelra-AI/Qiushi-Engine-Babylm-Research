@@ -1,0 +1,4 @@
+# Selected MLM trajectory eval: reference_scale1p75_seed43022_avg80_82_84_uniform
+
+
+JSON: `experiments/archive/frontier_consolidation/data/avg80_82_84_selected_eval_if_authorized/selected_trajectory_summary.json`

@@ -1,0 +1,170 @@
+{
+  "status": "PAIR_AGREEMENT_SIGNAL_PROBE",
+  "started_utc": "2026-08-27T11:00:05Z",
+  "non_leakage_statement": "Uses only research selected training original-Qwen rewrite pairs and submitted-model representations; no official AoA/CDI items, child curves, AoA scores, SuperGLUE labels, or downstream eval outputs are used.",
+  "purpose": "Minimal falsifying probe for a possible pair-agreement objective: require aligned positive representations to separate from shuffled rewrites, and preferably stronger separation in clean-Qwen than in official/shuffled controls, before any weight-changing objective experiment.",
+  "pair_file": "experiments/archive/compact_experience/data/qwen_clean_aligned/selected_pairs.jsonl",
+  "sample_pair_ids": [
+    "rw2s0_014647",
+    "rw2s1_032264",
+    "rw_037973",
+    "rw2s0_004851",
+    "rw_017526",
+    "rw_037840",
+    "rw2s1_008993",
+    "rw2s1_005047",
+    "rw2s0_024403",
+    "rw_031310"
+  ],
+  "args": {
+    "pairs": "experiments/archive/compact_experience/data/qwen_clean_aligned/selected_pairs.jsonl",
+    "max_pairs": 256,
+    "seed": 41041,
+    "max_len": 96,
+    "batch_size": 32,
+    "temperature": 0.07,
+    "bootstrap": 400,
+    "device": "cuda",
+    "models": []
+  },
+  "models": [
+    {
+      "model": "clean_qwen_seed43022_100M",
+      "path": "experiments/archive/compact_experience/training/runs/qwen_clean_aligned_16k_seed43022/hf_model/chck_100M",
+      "available": true,
+      "device": "cuda",
+      "n_pairs": 256,
+      "max_len": 96,
+      "elapsed_sec": 1.117,
+      "positive_cosine": {
+        "mean": 0.8896095752716064,
+        "std": 0.08484765142202377,
+        "min": 0.6006583571434021,
+        "p10": 0.7597517967224121,
+        "median": 0.9148504734039307,
+        "p90": 0.9798203706741333,
+        "max": 0.9980122447013855
+      },
+      "shuffled_negative_cosine": {
+        "mean": 0.525022029876709,
+        "std": 0.08863431960344315,
+        "min": 0.30612727999687195,
+        "p10": 0.4067324995994568,
+        "median": 0.5197241306304932,
+        "p90": 0.6446055173873901,
+        "max": 0.7727689743041992
+      },
+      "positive_minus_negative_margin": {
+        "mean": 0.36458757519721985,
+        "std": 0.11389512568712234,
+        "min": 0.046183109283447266,
+        "p10": 0.21251754462718964,
+        "median": 0.3690977394580841,
+        "p90": 0.5195597410202026,
+        "max": 0.6591426134109497
+      },
+      "margin_bootstrap_ci90": [
+        0.3519325783709064,
+        0.3755700297188014
+      ],
+      "inbatch_retrieval_top1": 0.96875,
+      "inbatch_infonce_loss": 1.3677481412887573
+    },
+    {
+      "model": "official_lengthmatched_seed43022_100M",
+      "path": "experiments/archive/compact_experience/training/runs/official_lengthmatched_16k_seed43022/hf_model/chck_100M",
+      "available": true,
+      "device": "cuda",
+      "n_pairs": 256,
+      "max_len": 96,
+      "elapsed_sec": 0.265,
+      "positive_cosine": {
+        "mean": 0.8802419304847717,
+        "std": 0.09061414748430252,
+        "min": 0.5207245349884033,
+        "p10": 0.7492280006408691,
+        "median": 0.9040733575820923,
+        "p90": 0.9771904349327087,
+        "max": 0.9957276582717896
+      },
+      "shuffled_negative_cosine": {
+        "mean": 0.5175181031227112,
+        "std": 0.09037120640277863,
+        "min": 0.20298022031784058,
+        "p10": 0.40442633628845215,
+        "median": 0.5155219435691833,
+        "p90": 0.6391454339027405,
+        "max": 0.7190635204315186
+      },
+      "positive_minus_negative_margin": {
+        "mean": 0.36272382736206055,
+        "std": 0.12096433341503143,
+        "min": -0.09788447618484497,
+        "p10": 0.20754781365394592,
+        "median": 0.3740431070327759,
+        "p90": 0.5091419219970703,
+        "max": 0.6638208627700806
+      },
+      "margin_bootstrap_ci90": [
+        0.3493028233060613,
+        0.3739400644553825
+      ],
+      "inbatch_retrieval_top1": 0.94140625,
+      "inbatch_infonce_loss": 1.4182488918304443
+    },
+    {
+      "model": "qwen_shuffled_seed43022_100M",
+      "path": "experiments/archive/compact_experience/training/runs/qwen_shuffled_control_16k_seed43022/hf_model/chck_100M",
+      "available": true,
+      "device": "cuda",
+      "n_pairs": 256,
+      "max_len": 96,
+      "elapsed_sec": 0.26,
+      "positive_cosine": {
+        "mean": 0.8752208948135376,
+        "std": 0.09356515854597092,
+        "min": 0.5459851026535034,
+        "p10": 0.747393012046814,
+        "median": 0.8963775634765625,
+        "p90": 0.9771508574485779,
+        "max": 0.9980525970458984
+      },
+      "shuffled_negative_cosine": {
+        "mean": 0.5046728253364563,
+        "std": 0.08973919600248337,
+        "min": 0.2592315375804901,
+        "p10": 0.3843071460723877,
+        "median": 0.5094594359397888,
+        "p90": 0.6246286630630493,
+        "max": 0.7426774501800537
+      },
+      "positive_minus_negative_margin": {
+        "mean": 0.3705481290817261,
+        "std": 0.12199683487415314,
+        "min": 0.07075169682502747,
+        "p10": 0.2173156440258026,
+        "median": 0.36443638801574707,
+        "p90": 0.5213251709938049,
+        "max": 0.7039268016815186
+      },
+      "margin_bootstrap_ci90": [
+        0.35715698485728353,
+        0.3821088020922616
+      ],
+      "inbatch_retrieval_top1": 0.94921875,
+      "inbatch_infonce_loss": 1.3742855787277222
+    }
+  ],
+  "contrasts": [
+    {
+      "contrast": "clean_qwen_seed43022_100M_minus_official_lengthmatched_seed43022_100M",
+      "delta_mean_margin": 0.0018637478351593018,
+      "delta_retrieval_top1": 0.02734375
+    },
+    {
+      "contrast": "clean_qwen_seed43022_100M_minus_qwen_shuffled_seed43022_100M",
+      "delta_mean_margin": -0.005960553884506226,
+      "delta_retrieval_top1": 0.01953125
+    }
+  ]
+}

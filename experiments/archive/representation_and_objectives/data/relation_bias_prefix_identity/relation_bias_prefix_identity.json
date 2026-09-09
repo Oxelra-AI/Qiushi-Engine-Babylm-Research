@@ -1,0 +1,146 @@
+{
+  "status": "RELATION_BIAS_PREFIX_IDENTITY",
+  "created_utc": "2026-08-30T05:44:51Z",
+  "elapsed_sec": 3.4,
+  "purpose": "Exact no-model check that the 100M launch stream first 10M charged-word pass is a permutation of the audited legal 10M pool.",
+  "inputs": {
+    "pool10": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "pool10_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "expected_pool10_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "stream100": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "stream100_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "expected_stream100_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "target_prefix_words": 10000000
+  },
+  "pool10": {
+    "rows": 64740,
+    "words": 10000000,
+    "source_words": {
+      "cleanqwen_fineweb_compact_view_reinvest": 423511,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9,
+      "qwen_pair_packed": 1656800,
+      "childes": 2574880,
+      "gutenberg": 1859360,
+      "open_subtitles": 1829440,
+      "simple_wiki": 1059040,
+      "bnc_spoken": 575840,
+      "switchboard": 21120
+    },
+    "source_rows": {
+      "cleanqwen_fineweb_compact_view_reinvest": 3005,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 1,
+      "qwen_pair_packed": 12236,
+      "childes": 16093,
+      "gutenberg": 11621,
+      "open_subtitles": 11434,
+      "simple_wiki": 6619,
+      "bnc_spoken": 3599,
+      "switchboard": 132
+    },
+    "sample": [
+      {
+        "words": 135,
+        "example_id": 950000,
+        "source": "cleanqwen_fineweb_compact_view_reinvest"
+      },
+      {
+        "words": 144,
+        "example_id": 950001,
+        "source": "cleanqwen_fineweb_compact_view_reinvest"
+      },
+      {
+        "words": 160,
+        "example_id": 950002,
+        "source": "cleanqwen_fineweb_compact_view_reinvest"
+      },
+      {
+        "words": 124,
+        "example_id": 950003,
+        "source": "cleanqwen_fineweb_compact_view_reinvest"
+      },
+      {
+        "words": 159,
+        "example_id": 950004,
+        "source": "cleanqwen_fineweb_compact_view_reinvest"
+      }
+    ]
+  },
+  "stream_prefix": {
+    "rows": 64740,
+    "words": 10000000,
+    "source_words": {
+      "childes": 2574880,
+      "qwen_pair_packed": 1656800,
+      "simple_wiki": 1059040,
+      "open_subtitles": 1829440,
+      "bnc_spoken": 575840,
+      "gutenberg": 1859360,
+      "cleanqwen_fineweb_compact_view_reinvest": 423511,
+      "switchboard": 21120,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+    },
+    "source_rows": {
+      "childes": 16093,
+      "qwen_pair_packed": 12236,
+      "simple_wiki": 6619,
+      "open_subtitles": 11434,
+      "bnc_spoken": 3599,
+      "gutenberg": 11621,
+      "cleanqwen_fineweb_compact_view_reinvest": 3005,
+      "switchboard": 132,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 1
+    },
+    "sample": [
+      {
+        "words": 160,
+        "example_id": 10289,
+        "source": "childes"
+      },
+      {
+        "words": 160,
+        "example_id": 14184,
+        "source": "childes"
+      },
+      {
+        "words": 96,
+        "example_id": 300801,
+        "source": "qwen_pair_packed"
+      },
+      {
+        "words": 134,
+        "example_id": 308289,
+        "source": "qwen_pair_packed"
+      },
+      {
+        "words": 160,
+        "example_id": 57335,
+        "source": "simple_wiki"
+      }
+    ],
+    "first_overrun": null
+  },
+  "row_multiset_equal": true,
+  "row_multiset_sha_pool10": "ec8d2fd64aa2ccbb41cce3303babc75699079f531feb74b8b0bb0211e2b634a8",
+  "row_multiset_sha_stream_prefix": "ec8d2fd64aa2ccbb41cce3303babc75699079f531feb74b8b0bb0211e2b634a8",
+  "stream_minus_pool_row_count": 0,
+  "pool_minus_stream_row_count": 0,
+  "stream_only_fingerprints_sample": [],
+  "pool_only_fingerprints_sample": [],
+  "source_words_equal": true,
+  "source_rows_equal": true,
+  "checks": {
+    "pool10_sha_matches": true,
+    "stream100_sha_matches": true,
+    "pool_counts_64740_10M": true,
+    "prefix_counts_64740_10M": true,
+    "row_multiset_equal": true,
+    "source_words_equal": true
+  },
+  "files": {
+    "json": "experiments/archive/representation_and_objectives/data/relation_bias_prefix_identity/relation_bias_prefix_identity.json",
+    "note": "research/notes/representation_and_objectives/relation_bias_prefix_identity.md"
+  },
+  "interpretation": [
+    "The 100M launch stream first 10M charged words are exactly a row-object multiset permutation of the audited 10M pool; research full-pool relation-dose statistics describe the actual first training pass, though not its sequence order."
+  ]
+}

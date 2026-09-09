@@ -1,0 +1,49 @@
+{
+  "status": "ACS_SCREEN_RUNNING",
+  "created_utc": "2026-08-31T18:46:38Z",
+  "purpose": "Paired ACS mechanism screen: treatment uses Auxiliary Contrastive Softmax focusing MLM gradient on the K hardest competitors; control uses standard MLM only.  Both arms share weights, stream, tokenizer, masking/dropout seeds.",
+  "mode_label": "acs_alpha0.5_topk8",
+  "mechanism": {
+    "name": "Auxiliary Contrastive Softmax (ACS)",
+    "acs_alpha": 0.5,
+    "acs_topk": 8,
+    "loss_formula": "L = L_CE + alpha * L_ACS",
+    "acs_description": "For each masked position, compute a (K+1)-way contrastive loss between the correct token and the K tokens the model currently ranks highest (excluding the correct one).  Selection uses detached logits; loss flows through live logits.  This concentrates gradient on the context-dependent decision boundary."
+  },
+  "pairing_contract": {
+    "same_source_checkpoint": true,
+    "same_tail_rows": true,
+    "same_mask_rng_seed": 53023,
+    "same_dropout_seed": 53023,
+    "fresh_adamw_moments": true,
+    "only_intended_difference": "ACS alpha=0.5 topk=8 vs standard MLM"
+  },
+  "source_checkpoint": {
+    "name": "chck_80M",
+    "path": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+    "consumed_words": 80034368,
+    "source_step": 2024
+  },
+  "stream": {
+    "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "tail_start_row": 518144,
+    "tail_examples": 129256,
+    "continuation_words": 19965632
+  },
+  "training": {
+    "total_tail_steps": 505,
+    "final_global_step": 2529,
+    "batch_size": 256,
+    "micro_batch_size": 64,
+    "max_seq_length": 256,
+    "mask_prob": 0.15,
+    "optimizer": "AdamW_fresh_state",
+    "reheat_peak_lr": 0.0003,
+    "reheat_warmup_fraction": 0.06,
+    "reheat_warmup_steps": 30,
+    "first_update_lr": 0.0,
+    "last_update_lr": 3.2807429663106456e-09,
+    "seed": 43,
+    "train_rng_seed": 53023
+  }
+}

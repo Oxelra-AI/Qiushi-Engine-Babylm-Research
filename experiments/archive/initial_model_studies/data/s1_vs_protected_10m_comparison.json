@@ -1,0 +1,119 @@
+{
+  "status": "S1_VS_PROTECTED_10M_COMPARISON",
+  "s1_file": "experiments/archive/initial_model_studies/data/s1_10m_available_coordinate.json",
+  "protected_10m_file": "experiments/archive/initial_model_studies/data/protected_8x480_10m_available_coordinate.json",
+  "protected_100m_file": "experiments/archive/initial_model_studies/data/debertav2_b256_true_9of9_coordinate.json",
+  "rows": [
+    {
+      "key": "blimp",
+      "label": "BLiMP",
+      "s1_12x384_10m": 53.37,
+      "protected_8x480_10m": 54.17,
+      "delta_s1_minus_protected10m": -0.8,
+      "protected_8x480_100m": 66.76,
+      "protected_gain_10m_to_100m": 12.59
+    },
+    {
+      "key": "supplement",
+      "label": "Supplement",
+      "s1_12x384_10m": 52.34,
+      "protected_8x480_10m": 53.41,
+      "delta_s1_minus_protected10m": -1.07,
+      "protected_8x480_100m": 59.88,
+      "protected_gain_10m_to_100m": 6.47
+    },
+    {
+      "key": "entity_tracking",
+      "label": "Entity",
+      "s1_12x384_10m": 17.73,
+      "protected_8x480_10m": 17.44,
+      "delta_s1_minus_protected10m": 0.29,
+      "protected_8x480_100m": 22.62,
+      "protected_gain_10m_to_100m": 5.18
+    },
+    {
+      "key": "comps",
+      "label": "COMPS",
+      "s1_12x384_10m": 50.34,
+      "protected_8x480_10m": 49.95,
+      "delta_s1_minus_protected10m": 0.39,
+      "protected_8x480_100m": 52.19,
+      "protected_gain_10m_to_100m": 2.24
+    },
+    {
+      "key": "global_piqa_parallel",
+      "label": "GlobalPIQA parallel",
+      "s1_12x384_10m": 19.42,
+      "protected_8x480_10m": 15.53,
+      "delta_s1_minus_protected10m": 3.89,
+      "protected_8x480_100m": 24.27,
+      "protected_gain_10m_to_100m": 8.74
+    },
+    {
+      "key": "global_piqa_nonparallel",
+      "label": "GlobalPIQA nonparallel",
+      "s1_12x384_10m": 51.0,
+      "protected_8x480_10m": 46.0,
+      "delta_s1_minus_protected10m": 5.0,
+      "protected_8x480_100m": 47.0,
+      "protected_gain_10m_to_100m": 1.0
+    },
+    {
+      "key": "global_piqa_mean",
+      "label": "GlobalPIQA mean",
+      "s1_12x384_10m": 35.21,
+      "protected_8x480_10m": 30.765,
+      "delta_s1_minus_protected10m": 4.445,
+      "protected_8x480_100m": 35.635,
+      "protected_gain_10m_to_100m": 4.87
+    },
+    {
+      "key": "reading_eye_tracking",
+      "label": "Reading eye",
+      "s1_12x384_10m": 11.69,
+      "protected_8x480_10m": 11.45,
+      "delta_s1_minus_protected10m": 0.24,
+      "protected_8x480_100m": 9.95,
+      "protected_gain_10m_to_100m": -1.5
+    },
+    {
+      "key": "reading_self_paced",
+      "label": "Reading self-paced",
+      "s1_12x384_10m": 5.01,
+      "protected_8x480_10m": 5.0,
+      "delta_s1_minus_protected10m": 0.01,
+      "protected_8x480_100m": 5.29,
+      "protected_gain_10m_to_100m": 0.29
+    },
+    {
+      "key": "reading_mean",
+      "label": "Reading mean",
+      "s1_12x384_10m": 8.35,
+      "protected_8x480_10m": 8.225,
+      "delta_s1_minus_protected10m": 0.125,
+      "protected_8x480_100m": 7.62,
+      "protected_gain_10m_to_100m": -0.605
+    }
+  ],
+  "target_cluster_mean_delta_s1_minus_protected10m_entity_comps_globalpiqa": 1.7083333333333333,
+  "guard_cluster_mean_delta_s1_minus_protected10m_blimp_supp_reading": -0.5816666666666658,
+  "same_gain_projection_not_claim": {
+    "blimp": 65.96,
+    "supplement": 58.81,
+    "entity_tracking": 22.91,
+    "comps": 52.58,
+    "global_piqa_parallel": 28.16,
+    "global_piqa_nonparallel": 52.0,
+    "global_piqa_mean": 40.08,
+    "reading_eye_tracking": 10.19,
+    "reading_self_paced": 5.3,
+    "reading_mean": 7.745
+  },
+  "interpretation": [
+    "S1 shape alone is not a broad 10M winner: it loses BLiMP (-0.80) and Supplement (-1.07) versus protected 8x480 at the same 10M exposure.",
+    "S1 has a meaningful target-cluster sign at 10M: GlobalPIQA mean +4.445, Entity +0.29, COMPS +0.39, and Reading mean +0.125 versus protected 8x480 10M.",
+    "The GlobalPIQA 10M gain is almost as large as the protected 8x480 model's entire 10M-to-100M GlobalPIQA gain (+4.87), so 12x384 allocation changes the physical/commonsense profile rather than merely noise.",
+    "Entity remains weak: +0.29 at 10M does not approach the leader gap. Shape alone probably does not reproduce the leader package, but it may be a useful base for curriculum/tokenizer/data factors.",
+    "A same-gain extrapolation is only a route heuristic, not evidence; it suggests S1 could reach strong GlobalPIQA (~40.08) while still needing help on Entity and grammar/supplement. Full S1 100M evidence is scientifically worthwhile before closing the shape branch."
+  ]
+}

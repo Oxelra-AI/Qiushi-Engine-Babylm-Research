@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-09-01T00:00:15Z",
+  "purpose": "Check that the preserved chck_82M snapshot is a standalone loadable HF-style masked-LM carrier without touching the score-bearing evaluation.",
+  "snapshot": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M",
+  "manifest": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/manifest.json",
+  "expected_model_sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3",
+  "files": {
+    "config.json": {
+      "path": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M/config.json",
+      "exists": true,
+      "size_bytes": 1043,
+      "sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0"
+    },
+    "model.safetensors": {
+      "path": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M/model.safetensors",
+      "exists": true,
+      "size_bytes": 141878192,
+      "sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3"
+    },
+    "tokenizer.json": {
+      "path": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M/tokenizer.json",
+      "exists": true,
+      "size_bytes": 1135681,
+      "sha256": "a9cbb830495cb92bbb2996adc256207746282ee67f4f8d40a4f646a634ec139a"
+    },
+    "tokenizer_config.json": {
+      "path": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M/tokenizer_config.json",
+      "exists": true,
+      "size_bytes": 1161,
+      "sha256": "488d9617b98746cfdb862c62e02c2935bb086a2d0620307e75b9bac967d26d01"
+    },
+    "special_tokens_map.json": {
+      "path": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M/special_tokens_map.json",
+      "exists": true,
+      "size_bytes": 122,
+      "sha256": "2be97b602cd0e4a6c2874cbf03c0d1025b3af5474666da931bc04f6c23a9a39d"
+    },
+    "adapter_scaled_modeling.py": {
+      "path": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M/adapter_scaled_modeling.py",
+      "exists": true,
+      "size_bytes": 4341,
+      "sha256": "9fd4ef104f5f8e7d458c7ed10b996d238a6af53a866e8dea907a3cc0e4e156d2"
+    }
+  },
+  "manifest_core": {
+    "status": "CHCK82_ENDPOINT_SNAPSHOT",
+    "candidate_model_sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3",
+    "source_checkpoint": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+    "snapshot_checkpoint": "experiments/archive/representation_and_objectives/data/chck82_endpoint_snapshot/checkpoint/chck_82M",
+    "checkpoint_exposure": {
+      "target_word_exposure": 82000000,
+      "actual_cumulative_word_exposure": 82012495
+    }
+  },
+  "config_core": {
+    "architectures": [
+      "AdapterDebertaV2ForMaskedLM"
+    ],
+    "auto_map": {
+      "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+    },
+    "model_type": "deberta-v2",
+    "vocab_size": 16384,
+    "hidden_size": 480,
+    "num_hidden_layers": 8,
+    "num_attention_heads": 8,
+    "intermediate_size": 1920,
+    "adapter_scale": 1.75,
+    "adapter_bottleneck": 128
+  },
+  "tokenizer_config_core": {
+    "tokenizer_class": "PreTrainedTokenizerFast",
+    "model_max_length": 1000000000000000019884624838656,
+    "mask_token": "<mask>"
+  },
+  "special_tokens": {
+    "bos_token": "<s>",
+    "eos_token": "</s>",
+    "mask_token": "<mask>",
+    "pad_token": "<pad>",
+    "unk_token": "<unk>"
+  },
+  "load_record": {
+    "attempted": true,
+    "ok": true,
+    "config_class": "DebertaV2Config",
+    "model_class": "AdapterDebertaV2ForMaskedLM",
+    "tokenizer_class": "PreTrainedTokenizerFast",
+    "parameter_count": 35463008,
+    "trainable_parameter_count_if_unfrozen": 35463008,
+    "vocab_size_from_tokenizer": 16384,
+    "mask_token": "<mask>",
+    "model_device": "cpu"
+  },
+  "forward_record": {
+    "attempted": true,
+    "ok": true,
+    "input_text": "The child put the <mask> in the box.",
+    "input_ids_shape": [
+      1,
+      13
+    ],
+    "logits_shape": [
+      1,
+      13,
+      16384
+    ],
+    "all_logits_finite": true,
+    "mask_position_count": 1,
+    "mask_top10": [
+      {
+        "token_id": 249,
+        "token": "'s",
+        "logit": 8.476884841918945
+      },
+      {
+        "token_id": 195,
+        "token": "Ġthe",
+        "logit": 8.460197448730469
+      },
+      {
+        "token_id": 21,
+        "token": "1",
+        "logit": 8.325780868530273
+      },
+      {
+        "token_id": 23,
+        "token": "3",
+        "logit": 8.134051322937012
+      },
+      {
+        "token_id": 18,
+        "token": ".",
+        "logit": 7.9437150955200195
+      },
+      {
+        "token_id": 223,
+        "token": "Ġand",
+        "logit": 7.903998851776123
+      },
+      {
+        "token_id": 22,
+        "token": "2",
+        "logit": 7.828413486480713
+      },
+      {
+        "token_id": 213,
+        "token": "Ġto",
+        "logit": 7.693367004394531
+      },
+      {
+        "token_id": 228,
+        "token": "Ġof",
+        "logit": 7.631184101104736
+      },
+      {
+        "token_id": 994,
+        "token": "Ġnumber",
+        "logit": 7.245349884033203
+      }
+    ]
+  },
+  "warnings": [],
+  "errors": [],
+  "ready_as_standalone_hf_snapshot": true,
+  "not_resolved_by_this_check": [
+    "This does not establish training reproducibility; it only checks the preserved snapshot carrier.",
+    "This does not materialize official --fast checkpoint predictions; research full task and verifier must still pass.",
+    "This does not solve the separate context-conditioned alternative-binding mechanism problem."
+  ]
+}

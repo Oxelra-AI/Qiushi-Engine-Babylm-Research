@@ -1,0 +1,50 @@
+{
+  "status": "STATIC_PRIOR_TRAINER_GENERATED",
+  "created_utc": "2026-08-30T04:39:25Z",
+  "purpose": "Prepare but do not launch a learning-signal repair that changes only which WWM groups receive prediction pressure under the legal research tokenizer.",
+  "base_trainer": "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+  "generated_trainer": "experiments/archive/frontier_consolidation/scripts/masking_curriculum_trainer_static_prior.py",
+  "generated_trainer_sha256": "18f6975a9f931b6962a93bf23dbc0a9ea1d40c5346ac99da278b8f1aedabb4a2",
+  "prior_info": {
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "vocab_size": 16384,
+    "schemes": [
+      "relation_info_v1",
+      "relation_only_v1"
+    ],
+    "prior_sha256": "9e60a9bb50a6956d8312f72050b0901c2d02702ec31ebc43687d05c675a4de76"
+  },
+  "train_100m_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+  "unit_validation": {
+    "returncode": 0,
+    "stdout_tail": "{\n  \"status\": \"STATIC_PRIOR_UNIT_OK\",\n  \"selected_tokens\": 3,\n  \"candidate_tokens\": 30,\n  \"selected_effective_rate\": 0.1,\n  \"selected_token_strings\": [\n    \"ĠThe\",\n    \"Ġtable\",\n    \"ĠA\"\n  ],\n  \"selected_mean_prior\": 0.9517986178398132,\n  \"candidate_mean_prior\": 1.0338637828826904\n}\n",
+    "stderr_tail": "",
+    "out_json": "experiments/archive/frontier_consolidation/data/static_prior_trainer_validation/static_prior_unit_validation.json",
+    "payload": {
+      "status": "STATIC_PRIOR_UNIT_OK",
+      "selected_tokens": 3,
+      "candidate_tokens": 30,
+      "selected_effective_rate": 0.1,
+      "selected_token_strings": [
+        "ĠThe",
+        "Ġtable",
+        "ĠA"
+      ],
+      "selected_mean_prior": 0.9517986178398132,
+      "candidate_mean_prior": 1.0338637828826904
+    }
+  },
+  "recipe_preserved": {
+    "architecture": "DeBERTa-v2 masked LM 8x480 n_head=8 ffn_mult=4",
+    "optimizer": "AdamW lr 0.001 weight_decay 0.01 warmup_fraction 0.06",
+    "batch_size": 256,
+    "seq_length": 256,
+    "mask_prob": 0.15,
+    "seeds": "seed=43 extra_init_seed=43022 train_rng_seed=43023",
+    "exposure": "existing launcher controls max_word_exposure"
+  },
+  "launch_guard": [
+    "Do not launch from this asset until the mature legal-tokenizer clean-control comparison indicates that learning-signal repair is scientifically warranted.",
+    "If launched, use the same frozen corpus, tokenizer, seeds, architecture, optimizer, batch geometry, exposure accounting, and official-compatible evaluation path; the only change should be masking_curriculum=wwm_static_prior plus this prior JSON."
+  ]
+}

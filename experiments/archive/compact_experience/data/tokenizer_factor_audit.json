@@ -1,0 +1,582 @@
+{
+  "status": "TOKENIZER_FACTOR_AUDIT",
+  "purpose": "Audit whether 40k vocabulary is a plausible isolated next factor after MNTP failed, without using eval/AoA/CDI signals.",
+  "tokenizers": {
+    "baseline16k": {
+      "path": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+      "vocab_size": 16384
+    },
+    "official_shared40k": {
+      "path": "experiments/archive/compact_experience/data/shared_tokenizer/hf_tokenizer_40k_shared",
+      "vocab_size": 40000
+    }
+  },
+  "inputs": {
+    "qwen_10M": {
+      "path": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3"
+    },
+    "official_10M": {
+      "path": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/official_only_10M.jsonl",
+      "sha256": "a4894f92b9d809865123bca058dfc1f361865e02fb500bf5f028f09ac7540cc2"
+    }
+  },
+  "max_rows": null,
+  "audits": {
+    "baseline16k": {
+      "qwen_aligned_10M": {
+        "rows_seen": 64381,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 229.95599633432224,
+          "median": 226.0,
+          "p05": 168.0,
+          "p95": 293.0,
+          "p99": 324.0,
+          "min": 63,
+          "max": 784
+        },
+        "tokens_per_word": {
+          "n": 64381,
+          "mean": 1.4771180644960558,
+          "median": 1.4375,
+          "p05": 1.20625,
+          "p95": 1.83125,
+          "p99": 2.025,
+          "min": 1.05,
+          "max": 4.9
+        },
+        "over_counts": {
+          ">256": 16630,
+          ">384": 154,
+          ">512": 25
+        },
+        "over256_rate": 0.2583060219630015,
+        "qwen_pair_rows": {
+          "token_lengths": {
+            "n": 12236,
+            "mean": 184.82657731284735,
+            "median": 186.0,
+            "p05": 132.0,
+            "p95": 231.0,
+            "p99": 254.64999999999964,
+            "min": 63,
+            "max": 363
+          },
+          "tokens_per_word": {
+            "n": 12236,
+            "mean": 1.3650677803465647,
+            "median": 1.3432104184957565,
+            "p05": 1.1884057971014492,
+            "p95": 1.6067094017094017,
+            "p99": 1.7904642545771579,
+            "min": 1.0675675675675675,
+            "max": 2.26875
+          },
+          "over256_rate": 0.008662961752206603,
+          "examples": [
+            {
+              "row": 6,
+              "words": 129,
+              "tokens": 187,
+              "tokens_per_word": 1.449612403100775,
+              "text_head": "Some of the most famous paintings in the museum include: Las Meninas, The Garden of Earthly Delights, The Third of May 1808, and La Maja Desnuda. The museum features some of the most famous paintings, including Las Menin"
+            },
+            {
+              "row": 9,
+              "words": 136,
+              "tokens": 237,
+              "tokens_per_word": 1.7426470588235294,
+              "text_head": "There is no teacher like Mother Nature, and the attempt to reproduce a living tree, or a house, on paper will do you more good than a hundred copies. No teacher compares to Mother Nature, and trying to replicate a living"
+            },
+            {
+              "row": 15,
+              "words": 129,
+              "tokens": 166,
+              "tokens_per_word": 1.2868217054263567,
+              "text_head": "And Finola took her younger brothers under her great white wings, and they were comforted and rested in that warm shelter. Under her expansive white wings, Finola sheltered her younger brothers, providing them with a war"
+            },
+            {
+              "row": 18,
+              "words": 135,
+              "tokens": 187,
+              "tokens_per_word": 1.385185185185185,
+              "text_head": "On the night of May 26, 1637, the Colonial forces arrived outside the Pequot village near the Mystic River. On the night of May 26, 1637, Colonial forces reached the area outside the Pequot village near the Mystic River."
+            },
+            {
+              "row": 22,
+              "words": 132,
+              "tokens": 173,
+              "tokens_per_word": 1.3106060606060606,
+              "text_head": "I had already commanded the slaves to cease from rowing, lest the sound of their oars should acquaint the enemy with our movement. I had already ordered the slaves to stop rowing so that the noise of their oars would not"
+            },
+            {
+              "row": 24,
+              "words": 119,
+              "tokens": 175,
+              "tokens_per_word": 1.4705882352941178,
+              "text_head": "In 881, Alfonso took the offensive, leading an army deep into the Lower March, crossing the Tagus River to approach Mérida. In 881, Alfonso led an army deep into the Lower March, crossing the Tagus River to approach Méri"
+            },
+            {
+              "row": 25,
+              "words": 152,
+              "tokens": 177,
+              "tokens_per_word": 1.1644736842105263,
+              "text_head": "They've had to do it during the weekend, a distance of eighty five miles, and it goes across five counties. They've had to cover a distance of eighty five miles across five counties during the weekend. He would look at h"
+            },
+            {
+              "row": 26,
+              "words": 148,
+              "tokens": 192,
+              "tokens_per_word": 1.2972972972972974,
+              "text_head": "The curtains were drawn, the fire blazed brightly, the lamp on the _console_ at the side of the room threw a soft pleasant glow on the dainty table set out temptingly for \"afternoon tea,\" which, notwithstanding their lon"
+            }
+          ]
+        },
+        "by_source": {
+          "childes": {
+            "rows": 16954,
+            "words": 2712640,
+            "tokens": 4518710,
+            "over256": 11465,
+            "tokens_per_word": 1.6657978943022296,
+            "over256_rate": 0.6762415949038575
+          },
+          "open_subtitles": {
+            "rows": 12045,
+            "words": 1927200,
+            "tokens": 2796344,
+            "over256": 1247,
+            "tokens_per_word": 1.4509879618098795,
+            "over256_rate": 0.10352843503528435
+          },
+          "bnc_spoken": {
+            "rows": 3791,
+            "words": 606560,
+            "tokens": 761054,
+            "over256": 8,
+            "tokens_per_word": 1.2547052228963333,
+            "over256_rate": 0.0021102611448166712
+          },
+          "gutenberg": {
+            "rows": 12243,
+            "words": 1958880,
+            "tokens": 2636869,
+            "over256": 383,
+            "tokens_per_word": 1.3461105325492118,
+            "over256_rate": 0.03128318222657845
+          },
+          "qwen_pair_packed": {
+            "rows": 12236,
+            "words": 1656800,
+            "tokens": 2261538,
+            "over256": 106,
+            "tokens_per_word": 1.3650036214389183,
+            "over256_rate": 0.008662961752206603
+          },
+          "simple_wiki": {
+            "rows": 6973,
+            "words": 1115680,
+            "tokens": 1798735,
+            "over256": 3421,
+            "tokens_per_word": 1.612232002007744,
+            "over256_rate": 0.4906066255557149
+          },
+          "switchboard": {
+            "rows": 139,
+            "words": 22240,
+            "tokens": 31547,
+            "over256": 0,
+            "tokens_per_word": 1.4184802158273382,
+            "over256_rate": 0.0
+          }
+        }
+      },
+      "official_only_10M": {
+        "rows_seen": 64381,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 231.38329631412995,
+          "median": 227.0,
+          "p05": 177.0,
+          "p95": 292.0,
+          "p99": 322.0,
+          "min": 68,
+          "max": 724
+        },
+        "tokens_per_word": {
+          "n": 64381,
+          "mean": 1.489727510571102,
+          "median": 1.4525547445255473,
+          "p05": 1.2125,
+          "p95": 1.84375,
+          "p99": 2.04375,
+          "min": 1.0375,
+          "max": 5.569230769230769
+        },
+        "over_counts": {
+          ">256": 16265,
+          ">384": 145,
+          ">512": 25
+        },
+        "over256_rate": 0.252636647458101,
+        "qwen_pair_rows": {
+          "token_lengths": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p05": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "tokens_per_word": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p05": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "over256_rate": 0.0,
+          "examples": []
+        },
+        "by_source": {
+          "official_lengthmatched::bnc_spoken": {
+            "rows": 4892,
+            "words": 762205,
+            "tokens": 956743,
+            "over256": 8,
+            "tokens_per_word": 1.2552305482120951,
+            "over256_rate": 0.001635322976287817
+          },
+          "official_lengthmatched::childes": {
+            "rows": 18291,
+            "words": 2841101,
+            "tokens": 4722627,
+            "over256": 10503,
+            "tokens_per_word": 1.6622524155248264,
+            "over256_rate": 0.5742168279481712
+          },
+          "official_lengthmatched::gutenberg": {
+            "rows": 16468,
+            "words": 2557706,
+            "tokens": 3423954,
+            "over256": 401,
+            "tokens_per_word": 1.3386816154788705,
+            "over256_rate": 0.024350255040077727
+          },
+          "official_lengthmatched::open_subtitles": {
+            "rows": 14709,
+            "words": 2282927,
+            "tokens": 3298794,
+            "over256": 1259,
+            "tokens_per_word": 1.4449844432169754,
+            "over256_rate": 0.08559385410293018
+          },
+          "official_lengthmatched::simple_wiki": {
+            "rows": 9863,
+            "words": 1531517,
+            "tokens": 2459783,
+            "over256": 4094,
+            "tokens_per_word": 1.6061088450209824,
+            "over256_rate": 0.41508668762039946
+          },
+          "official_lengthmatched::switchboard": {
+            "rows": 158,
+            "words": 24544,
+            "tokens": 34787,
+            "over256": 0,
+            "tokens_per_word": 1.4173321382007822,
+            "over256_rate": 0.0
+          }
+        }
+      }
+    },
+    "official_shared40k": {
+      "qwen_aligned_10M": {
+        "rows_seen": 64381,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 222.9094763983163,
+          "median": 220.0,
+          "p05": 158.0,
+          "p95": 290.0,
+          "p99": 313.0,
+          "min": 62,
+          "max": 678
+        },
+        "tokens_per_word": {
+          "n": 64381,
+          "mean": 1.430379665104847,
+          "median": 1.3875,
+          "p05": 1.1586206896551725,
+          "p95": 1.8125,
+          "p99": 1.95625,
+          "min": 0.90625,
+          "max": 4.2375
+        },
+        "over_counts": {
+          ">256": 14455,
+          ">384": 77,
+          ">512": 17
+        },
+        "over256_rate": 0.2245227629269505,
+        "qwen_pair_rows": {
+          "token_lengths": {
+            "n": 12236,
+            "mean": 172.46927100359594,
+            "median": 174.0,
+            "p05": 124.0,
+            "p95": 213.0,
+            "p99": 233.64999999999964,
+            "min": 62,
+            "max": 334
+          },
+          "tokens_per_word": {
+            "n": 12236,
+            "mean": 1.273640648015296,
+            "median": 1.254631217838765,
+            "p05": 1.13111927642736,
+            "p95": 1.483484420801216,
+            "p99": 1.6345734126984124,
+            "min": 1.0459770114942528,
+            "max": 2.0875
+          },
+          "over256_rate": 0.002043151356652501,
+          "examples": [
+            {
+              "row": 6,
+              "words": 129,
+              "tokens": 178,
+              "tokens_per_word": 1.37984496124031,
+              "text_head": "Some of the most famous paintings in the museum include: Las Meninas, The Garden of Earthly Delights, The Third of May 1808, and La Maja Desnuda. The museum features some of the most famous paintings, including Las Menin"
+            },
+            {
+              "row": 9,
+              "words": 136,
+              "tokens": 217,
+              "tokens_per_word": 1.5955882352941178,
+              "text_head": "There is no teacher like Mother Nature, and the attempt to reproduce a living tree, or a house, on paper will do you more good than a hundred copies. No teacher compares to Mother Nature, and trying to replicate a living"
+            },
+            {
+              "row": 15,
+              "words": 129,
+              "tokens": 151,
+              "tokens_per_word": 1.1705426356589148,
+              "text_head": "And Finola took her younger brothers under her great white wings, and they were comforted and rested in that warm shelter. Under her expansive white wings, Finola sheltered her younger brothers, providing them with a war"
+            },
+            {
+              "row": 18,
+              "words": 135,
+              "tokens": 183,
+              "tokens_per_word": 1.3555555555555556,
+              "text_head": "On the night of May 26, 1637, the Colonial forces arrived outside the Pequot village near the Mystic River. On the night of May 26, 1637, Colonial forces reached the area outside the Pequot village near the Mystic River."
+            },
+            {
+              "row": 22,
+              "words": 132,
+              "tokens": 162,
+              "tokens_per_word": 1.2272727272727273,
+              "text_head": "I had already commanded the slaves to cease from rowing, lest the sound of their oars should acquaint the enemy with our movement. I had already ordered the slaves to stop rowing so that the noise of their oars would not"
+            },
+            {
+              "row": 24,
+              "words": 119,
+              "tokens": 165,
+              "tokens_per_word": 1.3865546218487395,
+              "text_head": "In 881, Alfonso took the offensive, leading an army deep into the Lower March, crossing the Tagus River to approach Mérida. In 881, Alfonso led an army deep into the Lower March, crossing the Tagus River to approach Méri"
+            },
+            {
+              "row": 25,
+              "words": 152,
+              "tokens": 175,
+              "tokens_per_word": 1.1513157894736843,
+              "text_head": "They've had to do it during the weekend, a distance of eighty five miles, and it goes across five counties. They've had to cover a distance of eighty five miles across five counties during the weekend. He would look at h"
+            },
+            {
+              "row": 26,
+              "words": 148,
+              "tokens": 178,
+              "tokens_per_word": 1.2027027027027026,
+              "text_head": "The curtains were drawn, the fire blazed brightly, the lamp on the _console_ at the side of the room threw a soft pleasant glow on the dainty table set out temptingly for \"afternoon tea,\" which, notwithstanding their lon"
+            }
+          ]
+        },
+        "by_source": {
+          "childes": {
+            "rows": 16954,
+            "words": 2712640,
+            "tokens": 4537408,
+            "over256": 11818,
+            "tokens_per_word": 1.6726908104282174,
+            "over256_rate": 0.6970626400849357
+          },
+          "open_subtitles": {
+            "rows": 12045,
+            "words": 1927200,
+            "tokens": 2755887,
+            "over256": 953,
+            "tokens_per_word": 1.4299953300124533,
+            "over256_rate": 0.07911996679119966
+          },
+          "bnc_spoken": {
+            "rows": 3791,
+            "words": 606560,
+            "tokens": 757502,
+            "over256": 3,
+            "tokens_per_word": 1.248849248219467,
+            "over256_rate": 0.0007913479293062516
+          },
+          "gutenberg": {
+            "rows": 12243,
+            "words": 1958880,
+            "tokens": 2511625,
+            "over256": 249,
+            "tokens_per_word": 1.2821739973862616,
+            "over256_rate": 0.020338152413624112
+          },
+          "qwen_pair_packed": {
+            "rows": 12236,
+            "words": 1656800,
+            "tokens": 2110334,
+            "over256": 25,
+            "tokens_per_word": 1.273740946402704,
+            "over256_rate": 0.002043151356652501
+          },
+          "simple_wiki": {
+            "rows": 6973,
+            "words": 1115680,
+            "tokens": 1646227,
+            "over256": 1405,
+            "tokens_per_word": 1.475536892298867,
+            "over256_rate": 0.20149146708733687
+          },
+          "switchboard": {
+            "rows": 139,
+            "words": 22240,
+            "tokens": 32152,
+            "over256": 2,
+            "tokens_per_word": 1.44568345323741,
+            "over256_rate": 0.014388489208633094
+          }
+        }
+      },
+      "official_only_10M": {
+        "rows_seen": 64381,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 225.03081654525403,
+          "median": 221.0,
+          "p05": 171.0,
+          "p95": 288.0,
+          "p99": 311.0,
+          "min": 63,
+          "max": 644
+        },
+        "tokens_per_word": {
+          "n": 64381,
+          "mean": 1.448810656615486,
+          "median": 1.4125,
+          "p05": 1.16875,
+          "p95": 1.81875,
+          "p99": 1.9625,
+          "min": 1.025,
+          "max": 4.869230769230769
+        },
+        "over_counts": {
+          ">256": 13707,
+          ">384": 80,
+          ">512": 15
+        },
+        "over256_rate": 0.212904428325127,
+        "qwen_pair_rows": {
+          "token_lengths": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p05": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "tokens_per_word": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p05": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "over256_rate": 0.0,
+          "examples": []
+        },
+        "by_source": {
+          "official_lengthmatched::bnc_spoken": {
+            "rows": 4892,
+            "words": 762205,
+            "tokens": 949985,
+            "over256": 4,
+            "tokens_per_word": 1.2463641671203942,
+            "over256_rate": 0.0008176614881439084
+          },
+          "official_lengthmatched::childes": {
+            "rows": 18291,
+            "words": 2841101,
+            "tokens": 4741192,
+            "over256": 10941,
+            "tokens_per_word": 1.6687868541104312,
+            "over256_rate": 0.5981630309988519
+          },
+          "official_lengthmatched::gutenberg": {
+            "rows": 16468,
+            "words": 2557706,
+            "tokens": 3258734,
+            "over256": 234,
+            "tokens_per_word": 1.2740846680580176,
+            "over256_rate": 0.01420937575904785
+          },
+          "official_lengthmatched::open_subtitles": {
+            "rows": 14709,
+            "words": 2282927,
+            "tokens": 3250766,
+            "over256": 900,
+            "tokens_per_word": 1.423946538807417,
+            "over256_rate": 0.061187028349989805
+          },
+          "official_lengthmatched::simple_wiki": {
+            "rows": 9863,
+            "words": 1531517,
+            "tokens": 2251563,
+            "over256": 1624,
+            "tokens_per_word": 1.4701521432671005,
+            "over256_rate": 0.1646557842441448
+          },
+          "official_lengthmatched::switchboard": {
+            "rows": 158,
+            "words": 24544,
+            "tokens": 35469,
+            "over256": 4,
+            "tokens_per_word": 1.4451189700130378,
+            "over256_rate": 0.02531645569620253
+          }
+        }
+      }
+    }
+  },
+  "direct_comparison": {
+    "qwen_all_mean_tokens_per_word_40k_over_16k": 0.9683583861611263,
+    "official_all_mean_tokens_per_word_40k_over_16k": 0.9725340012416565,
+    "qwen_pair_mean_tokens_per_word_40k_over_16k": 0.9330237416430288,
+    "qwen_pair_over256_rate_16k": 0.008662961752206603,
+    "qwen_pair_over256_rate_40k": 0.002043151356652501,
+    "all_qwen_over256_rate_16k": 0.2583060219630015,
+    "all_qwen_over256_rate_40k": 0.2245227629269505
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "status": "ROWCHUNK_PAIRFIT_MATCHED_SCREEN_DONE",
+  "created_utc": "2026-08-29T09:25:39Z",
+  "question": "Does restoring original+rewrite joint visibility inside the same 12x384/40k/LAMB stagewise curriculum produce a large official-task gain over row-chunked stagewise clean-Qwen?",
+  "result_summary_path": "experiments/archive/frontier_consolidation/data/repaired_pilot_eval/repaired_pilot_eval_summary.json",
+  "rowchunk_target": "stagewise_qwen10_12x384_40k_seed44011",
+  "pairfit_target": "pairfit_qwen10_12x384_40k_seed44011",
+  "fast_official_compatible_columns_note": "BLiMP/Supp/EWoK/Entity fast/full/COMPS/GPIQA fast/Reading fast; SuperGLUE and AoA not included.",
+  "scores": {
+    "stagewise_qwen10_12x384_40k_seed44011": {
+      "BLiMP": 53.95,
+      "Supplement": 55.6,
+      "EWoK": 48.18,
+      "Entity": 17.29,
+      "Entity_full": 16.35,
+      "COMPS": 49.44,
+      "GlobalPIQA_parallel": 24.27,
+      "GlobalPIQA_nonparallel": 47.0,
+      "GlobalPIQA_mean": 35.635,
+      "Reading": 6.795,
+      "Reading_eye": 9.09,
+      "Reading_self_paced": 4.5,
+      "equal7_mean": 38.12714285714286,
+      "equal7_full_entity": 37.99285714285714
+    },
+    "pairfit_qwen10_12x384_40k_seed44011": {
+      "BLiMP": 54.86,
+      "Supplement": 56.8,
+      "EWoK": 48.36,
+      "Entity": 17.3,
+      "Entity_full": 17.43,
+      "COMPS": 49.39,
+      "GlobalPIQA_parallel": 18.45,
+      "GlobalPIQA_nonparallel": 49.0,
+      "GlobalPIQA_mean": 33.725,
+      "Reading": 6.75,
+      "Reading_eye": 9.3,
+      "Reading_self_paced": 4.2,
+      "equal7_mean": 38.169285714285714,
+      "equal7_full_entity": 38.18785714285714
+    }
+  },
+  "pairfit_minus_rowchunk": {
+    "BLiMP": 0.91,
+    "Supplement": 1.2,
+    "EWoK": 0.18,
+    "Entity": 0.01,
+    "Entity_full": 1.08,
+    "COMPS": -0.05,
+    "GlobalPIQA_parallel": -5.82,
+    "GlobalPIQA_nonparallel": 2.0,
+    "GlobalPIQA_mean": -1.91,
+    "Reading": -0.045,
+    "Reading_eye": 0.21,
+    "Reading_self_paced": -0.3,
+    "equal7_mean": 0.042143,
+    "equal7_full_entity": 0.195
+  },
+  "training": {
+    "stagewise_qwen10_12x384_40k_seed44011": {
+      "parameter_count": 34677184,
+      "word_exposure": 10000000,
+      "actual_training_steps": 612,
+      "loss_first": 10.72382926940918,
+      "loss_last": 3.9473845958709717,
+      "elapsed_sec": 1515.5,
+      "optimizer": "lamb",
+      "learning_rate": 0.007,
+      "mask_switch_words": 7000000,
+      "amp_dtype": "bf16",
+      "saved_checkpoints": [
+        {
+          "name": "chck_10M",
+          "target_word_exposure": 10000000,
+          "actual_cumulative_word_exposure": 10000000,
+          "path": "experiments/archive/frontier_consolidation/training/runs/qwen10_stagewise_rowchunk_40k_12x384_lamb_bf16_seed44011/hf_model/chck_10M"
+        }
+      ]
+    },
+    "pairfit_qwen10_12x384_40k_seed44011": {
+      "parameter_count": 34677184,
+      "word_exposure": 10000000,
+      "actual_training_steps": 585,
+      "loss_first": 10.724832534790039,
+      "loss_last": 3.879544258117676,
+      "elapsed_sec": 433.6,
+      "optimizer": "lamb",
+      "learning_rate": 0.007,
+      "mask_switch_words": 7000000,
+      "amp_dtype": "bf16",
+      "saved_checkpoints": [
+        {
+          "name": "chck_10M",
+          "target_word_exposure": 10000000,
+          "actual_cumulative_word_exposure": 10000000,
+          "path": "experiments/archive/frontier_consolidation/training/runs/qwen10_stagewise_pairfit_40k_12x384_lamb_bf16_seed44011/hf_model/chck_10M"
+        }
+      ]
+    }
+  },
+  "mechanism": {
+    "rowchunk_complete_pair_joint_visibility_rate": 0.572006,
+    "pairfit_complete_pair_joint_visibility_rate": 1.0,
+    "pairfit_pairs_present_once": true,
+    "pairfit_qwen_pair_words_preserved": 1656800,
+    "pairfit_truncating_pair_examples": 0,
+    "visibility_audit_path": "experiments/archive/frontier_consolidation/data/pair_joint_visibility/pair_joint_visibility_audit.json",
+    "pairfit_contract_path": "experiments/archive/frontier_consolidation/data/pairfit_contract/pairfit_joint_visibility_contract.json"
+  },
+  "interpretation": "Pairfit is mechanistically cleaner and modestly improves several syntactic/semantic columns, but the matched 10M official-task gain is too small (+0.042 equal7 fast, +0.195 equal7 full-Entity) and includes a GlobalPIQA mean decline (-1.91). This weakens further investment in this secondary curriculum arm and supports returning to denser faithful second-view construction.",
+  "note_path": "research/notes/frontier_consolidation/rowchunk_pairfit_screen_and_route_decision.md"
+}

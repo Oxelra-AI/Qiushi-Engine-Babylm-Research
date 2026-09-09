@@ -1,0 +1,527 @@
+{
+  "status": "ROLE_COORDINATE_COLLISION_PARTIAL",
+  "created": "2026-09-04T10:39:00Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/rolecoord_unique_canonical2",
+    "arms": "unique_tag_direct",
+    "n_seeds": 1,
+    "seed_base": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "unique_tag_direct": {
+      "arm_name": "unique_tag_direct",
+      "ctx_mode": "unique",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=unique|q=direct_tag": 2560,
+          "base_stable_train|ctx=unique|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=unique|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=unique|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "unique_tag_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "unique_tag_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "unique_tag_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    }
+  },
+  "token_audit": {
+    "train_all": {
+      "n": 5632,
+      "min": 78,
+      "p50": 85.0,
+      "p90": 89.0,
+      "p99": 93.0,
+      "max": 97,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 3840,
+      "min": 80,
+      "p50": 86.0,
+      "p90": 91.0,
+      "p99": 95.0,
+      "max": 97,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "summary": {
+    "unique_tag_direct": {
+      "best_train_acc": 0.9998224973678589,
+      "train_fit": {
+        "overall": 0.9998224431818182,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=unique|q=direct_tag": 0.999609375,
+          "base_stable_train|ctx=unique|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=unique|q=direct_tag": 1.0,
+          "sparse_stable_focal|ctx=unique|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 0.99921875,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 0.9998139880952381,
+          "True": 1.0
+        }
+      },
+      "evals": {
+        "unique_tag_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 24.665757417678833,
+            "focal_after": 25.180952310562134,
+            "secondary_before": 24.358046054840088,
+            "secondary_after": 24.62201166152954
+          },
+          "standard_acc": 0.9984375
+        },
+        "unique_tag_direct_heldStable_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 25.635318279266357,
+            "focal_after": 25.753788709640503,
+            "secondary_before": 25.708935260772705,
+            "secondary_after": 25.616502285003662
+          },
+          "standard_acc": 1.0
+        },
+        "unique_tag_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 24.97449564933777,
+            "focal_after": 24.754051446914673,
+            "secondary_before": 25.195313453674316,
+            "secondary_after": 25.31317663192749
+          },
+          "standard_acc": 1.0
+        }
+      }
+    }
+  },
+  "per_seed": {
+    "unique_tag_direct": [
+      {
+        "arm": "unique_tag_direct",
+        "seed": 26700,
+        "best_train_acc": 0.9998224973678589,
+        "train_fit": {
+          "overall": 0.9998224431818182,
+          "by_train_kind": {
+            "base_stable_anchor|ctx=unique|q=direct_tag": 0.999609375,
+            "base_stable_train|ctx=unique|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=unique|q=direct_tag": 1.0,
+            "sparse_stable_focal|ctx=unique|q=direct_tag": 1.0
+          },
+          "by_query_family": {
+            "focal_after": 1.0,
+            "focal_before": 1.0,
+            "secondary_after": 0.99921875,
+            "secondary_before": 1.0
+          },
+          "by_changed_focal": {
+            "False": 0.9998139880952381,
+            "True": 1.0
+          }
+        },
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.4836707958391509,
+            "train_acc": 0.9387429356575012
+          },
+          {
+            "epoch": 2,
+            "loss": 0.11054444013951649,
+            "train_acc": 0.9884588122367859
+          },
+          {
+            "epoch": 3,
+            "loss": 0.08177683964944488,
+            "train_acc": 0.9932528734207153
+          },
+          {
+            "epoch": 4,
+            "loss": 0.06066713675009148,
+            "train_acc": 0.9985795617103577
+          },
+          {
+            "epoch": 5,
+            "loss": 0.04291675839556126,
+            "train_acc": 0.997691810131073
+          },
+          {
+            "epoch": 6,
+            "loss": 0.04501093239303344,
+            "train_acc": 0.999644935131073
+          },
+          {
+            "epoch": 7,
+            "loss": 0.04252165373767391,
+            "train_acc": 0.9982244372367859
+          },
+          {
+            "epoch": 8,
+            "loss": 0.03778003512481443,
+            "train_acc": 0.9984019994735718
+          },
+          {
+            "epoch": 9,
+            "loss": 0.03627338066542284,
+            "train_acc": 0.999644935131073
+          },
+          {
+            "epoch": 10,
+            "loss": 0.03438549425622432,
+            "train_acc": 0.9998224973678589
+          }
+        ],
+        "evals": {
+          "unique_tag_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.9984375,
+              "by_query_family": {
+                "focal_before": 1.0,
+                "focal_after": 0.99375,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 0.9984375
+              },
+              "by_stable_secondary": {
+                "True": 0.9984375
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 24.665757417678833,
+                "focal_after": 25.180952310562134,
+                "secondary_before": 24.358046054840088,
+                "secondary_after": 24.62201166152954
+              },
+              "by_changed_focal": {
+                "True": 1.0
+              },
+              "margin_mean": 24.70669186115265
+            }
+          },
+          "unique_tag_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 1.0,
+              "by_query_family": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "True": 1.0
+              },
+              "by_stable_secondary": {
+                "True": 1.0
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 24.97449564933777,
+                "focal_after": 24.754051446914673,
+                "secondary_before": 25.195313453674316,
+                "secondary_after": 25.31317663192749
+              },
+              "by_changed_focal": {
+                "True": 1.0
+              },
+              "margin_mean": 25.059259295463562
+            }
+          },
+          "unique_tag_direct_heldStable_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 1.0,
+              "by_query_family": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "by_stable_secondary": {
+                "True": 1.0
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 25.635318279266357,
+                "focal_after": 25.753788709640503,
+                "secondary_before": 25.708935260772705,
+                "secondary_after": 25.616502285003662
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "margin_mean": 25.678636133670807
+            }
+          }
+        }
+      }
+    ]
+  },
+  "boundary": "Small bridge probe; fit-first interpretation."
+}

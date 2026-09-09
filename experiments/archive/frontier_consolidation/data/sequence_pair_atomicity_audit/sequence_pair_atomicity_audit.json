@@ -1,0 +1,1413 @@
+{
+  "status": "SEQUENCE_PAIR_ATOMICITY_AUDIT",
+  "created_utc": "2026-08-30T10:24:40Z",
+  "purpose": "Measure whether current prefix slicing, naive faithful word chunks, or pair-atomic chunks preserve compact source+rewrite same-window structure under short sequence lengths.",
+  "sha256": {
+    "pool_expected": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "pool_actual": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "pool_matches": true
+  },
+  "inputs": {
+    "pool_10m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "pair_span_map": "experiments/archive/frontier_consolidation/data/pair_span_map/pair_span_map.jsonl",
+    "tokenizers": {
+      "legal16k": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+      "minfreq50_supportfloor": "experiments/archive/frontier_consolidation/data/supportfloor_tokenizers/legal_byte_bpe_40k_minfreq50"
+    }
+  },
+  "pair_map_rows": 3005,
+  "tokenizer_results": {
+    "legal16k": {
+      "tokenizer": "legal16k",
+      "changed_rows": 3005,
+      "pairs": 12155,
+      "changed_words": 423511,
+      "raw_tokens_in_changed_rows": 607898,
+      "unassigned_offsets": 5197,
+      "pair_token_stats": {
+        "source_tokens": {
+          "min": 11.0,
+          "p10": 17.0,
+          "median": 27.0,
+          "p90": 45.0,
+          "p95": 51.0,
+          "max": 90.0,
+          "mean": 29.40534759358289
+        },
+        "rewrite_tokens": {
+          "min": 6.0,
+          "p10": 11.0,
+          "median": 19.0,
+          "p90": 31.0,
+          "p95": 35.0,
+          "max": 71.0,
+          "mean": 20.179267791032498
+        },
+        "source_plus_rewrite_tokens": {
+          "min": 17.0,
+          "p10": 28.0,
+          "median": 46.0,
+          "p90": 76.0,
+          "p95": 86.0,
+          "max": 157.0,
+          "mean": 49.58461538461538
+        }
+      },
+      "by_length": {
+        "64": {
+          "L": 64,
+          "pairs": 12155,
+          "prefix_counts": {
+            "source_rewrite_full_visible": 2272,
+            "source_only": 1752,
+            "invisible": 6940,
+            "source_rewrite_partial_cooccur": 1191
+          },
+          "prefix_full_source_rewrite_fraction": 0.18691896338955163,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.2849033319621555,
+          "greedy_word_chunk_counts": {
+            "source_rewrite_full_same_chunk": 4756,
+            "source_rewrite_partial_cochunk": 7111,
+            "split_between_source_and_rewrite": 288
+          },
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.39127930892636775,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9763060468942822,
+          "pair_atomic_counts": {
+            "source_rewrite_full_same_chunk": 9789,
+            "overlong_cannot_full_fit": 2366
+          },
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.8053475935828877,
+          "pair_atomic_overlong_fraction": 0.1946524064171123,
+          "greedy_chunks_in_changed_rows": 10999,
+          "pair_atomic_chunks_in_changed_rows": 11520,
+          "greedy_overlong_words": 0,
+          "pair_atomic_overlong_pairs": 2366,
+          "sample_overlong_pairs": [
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_035003",
+              "pair_words": 57,
+              "pair_tokens": 70,
+              "source_tokens": 43,
+              "rewrite_tokens": 27
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_037105",
+              "pair_words": 48,
+              "pair_tokens": 73,
+              "source_tokens": 43,
+              "rewrite_tokens": 30
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_013869",
+              "pair_words": 51,
+              "pair_tokens": 76,
+              "source_tokens": 43,
+              "rewrite_tokens": 33
+            },
+            {
+              "row_index": 4,
+              "example_id": 950003,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014872",
+              "pair_words": 45,
+              "pair_tokens": 71,
+              "source_tokens": 45,
+              "rewrite_tokens": 26
+            },
+            {
+              "row_index": 5,
+              "example_id": 950004,
+              "pair_id": "frontier_consolidation_fwcompact_medium_019309",
+              "pair_words": 69,
+              "pair_tokens": 103,
+              "source_tokens": 62,
+              "rewrite_tokens": 41
+            },
+            {
+              "row_index": 5,
+              "example_id": 950004,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014997",
+              "pair_words": 51,
+              "pair_tokens": 66,
+              "source_tokens": 41,
+              "rewrite_tokens": 25
+            },
+            {
+              "row_index": 7,
+              "example_id": 950006,
+              "pair_id": "frontier_consolidation_fwcompact_medium_028521",
+              "pair_words": 75,
+              "pair_tokens": 103,
+              "source_tokens": 59,
+              "rewrite_tokens": 44
+            },
+            {
+              "row_index": 8,
+              "example_id": 950007,
+              "pair_id": "frontier_consolidation_fwcompact_medium_046432",
+              "pair_words": 69,
+              "pair_tokens": 106,
+              "source_tokens": 58,
+              "rewrite_tokens": 48
+            }
+          ],
+          "sample_greedy_splits": [
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_030624",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 24,
+              "rewrite_words": 15,
+              "pair_tokens": 48,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_035003",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 36,
+              "rewrite_words": 21,
+              "pair_tokens": 70,
+              "source_chunks": [
+                1,
+                2
+              ],
+              "rewrite_chunks": [
+                2
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_015071",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 23,
+              "rewrite_words": 11,
+              "pair_tokens": 63,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_056778",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 21,
+              "rewrite_words": 13,
+              "pair_tokens": 50,
+              "source_chunks": [
+                1,
+                2
+              ],
+              "rewrite_chunks": [
+                2
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_005391",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 27,
+              "rewrite_words": 20,
+              "pair_tokens": 60,
+              "source_chunks": [
+                2,
+                3
+              ],
+              "rewrite_chunks": [
+                3
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_037105",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 29,
+              "rewrite_words": 19,
+              "pair_tokens": 73,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_012608",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 17,
+              "rewrite_words": 11,
+              "pair_tokens": 41,
+              "source_chunks": [
+                1,
+                2
+              ],
+              "rewrite_chunks": [
+                2
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_013869",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 31,
+              "rewrite_words": 20,
+              "pair_tokens": 76,
+              "source_chunks": [
+                2,
+                3
+              ],
+              "rewrite_chunks": [
+                3
+              ]
+            }
+          ]
+        },
+        "128": {
+          "L": 128,
+          "pairs": 12155,
+          "prefix_counts": {
+            "source_rewrite_full_visible": 6100,
+            "source_only": 1796,
+            "invisible": 3118,
+            "source_rewrite_partial_cooccur": 1141
+          },
+          "prefix_full_source_rewrite_fraction": 0.5018510900863842,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.5957219251336898,
+          "greedy_word_chunk_counts": {
+            "source_rewrite_full_same_chunk": 9217,
+            "source_rewrite_partial_cochunk": 2823,
+            "split_between_source_and_rewrite": 115
+          },
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.758288770053476,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9905388728918141,
+          "pair_atomic_counts": {
+            "source_rewrite_full_same_chunk": 12135,
+            "overlong_cannot_full_fit": 20
+          },
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.9983545865898807,
+          "pair_atomic_overlong_fraction": 0.0016454134101192926,
+          "greedy_chunks_in_changed_rows": 6042,
+          "pair_atomic_chunks_in_changed_rows": 6560,
+          "greedy_overlong_words": 0,
+          "pair_atomic_overlong_pairs": 20,
+          "sample_overlong_pairs": [
+            {
+              "row_index": 170,
+              "example_id": 950169,
+              "pair_id": "frontier_consolidation_fwcompact_medium_021969",
+              "pair_words": 67,
+              "pair_tokens": 130,
+              "source_tokens": 72,
+              "rewrite_tokens": 58
+            },
+            {
+              "row_index": 219,
+              "example_id": 950218,
+              "pair_id": "frontier_consolidation_fwcompact_medium_006871",
+              "pair_words": 55,
+              "pair_tokens": 130,
+              "source_tokens": 75,
+              "rewrite_tokens": 55
+            },
+            {
+              "row_index": 333,
+              "example_id": 950332,
+              "pair_id": "frontier_consolidation_fwcompact_medium_004922",
+              "pair_words": 78,
+              "pair_tokens": 132,
+              "source_tokens": 77,
+              "rewrite_tokens": 55
+            },
+            {
+              "row_index": 361,
+              "example_id": 950360,
+              "pair_id": "frontier_consolidation_fwcompact_medium_011448",
+              "pair_words": 74,
+              "pair_tokens": 144,
+              "source_tokens": 79,
+              "rewrite_tokens": 65
+            },
+            {
+              "row_index": 484,
+              "example_id": 950483,
+              "pair_id": "frontier_consolidation_fwcompact_medium_005960",
+              "pair_words": 63,
+              "pair_tokens": 155,
+              "source_tokens": 90,
+              "rewrite_tokens": 65
+            },
+            {
+              "row_index": 840,
+              "example_id": 950839,
+              "pair_id": "frontier_consolidation_fwcompact_medium_031427",
+              "pair_words": 79,
+              "pair_tokens": 131,
+              "source_tokens": 74,
+              "rewrite_tokens": 57
+            },
+            {
+              "row_index": 892,
+              "example_id": 950891,
+              "pair_id": "frontier_consolidation_fwcompact_medium_059210",
+              "pair_words": 83,
+              "pair_tokens": 144,
+              "source_tokens": 80,
+              "rewrite_tokens": 64
+            },
+            {
+              "row_index": 1020,
+              "example_id": 951019,
+              "pair_id": "frontier_consolidation_fwcompact_medium_028214",
+              "pair_words": 65,
+              "pair_tokens": 132,
+              "source_tokens": 73,
+              "rewrite_tokens": 59
+            }
+          ],
+          "sample_greedy_splits": [
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_035003",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 36,
+              "rewrite_words": 21,
+              "pair_tokens": 70,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_056778",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 21,
+              "rewrite_words": 13,
+              "pair_tokens": 50,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_012608",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 17,
+              "rewrite_words": 11,
+              "pair_tokens": 41,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 4,
+              "example_id": 950003,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014872",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 29,
+              "rewrite_words": 16,
+              "pair_tokens": 71,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 5,
+              "example_id": 950004,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014997",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 33,
+              "rewrite_words": 18,
+              "pair_tokens": 66,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 6,
+              "example_id": 950005,
+              "pair_id": "frontier_consolidation_fwcompact_medium_004790",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 21,
+              "rewrite_words": 16,
+              "pair_tokens": 44,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 7,
+              "example_id": 950006,
+              "pair_id": "frontier_consolidation_fwcompact_medium_028521",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 46,
+              "rewrite_words": 29,
+              "pair_tokens": 103,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 8,
+              "example_id": 950007,
+              "pair_id": "frontier_consolidation_fwcompact_medium_029146",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 26,
+              "rewrite_words": 20,
+              "pair_tokens": 60,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            }
+          ]
+        },
+        "256": {
+          "L": 256,
+          "pairs": 12155,
+          "prefix_counts": {
+            "source_rewrite_full_visible": 12117,
+            "source_rewrite_partial_cooccur": 32,
+            "invisible": 3,
+            "source_only": 3
+          },
+          "prefix_full_source_rewrite_fraction": 0.9968737145207733,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.9995063759769642,
+          "greedy_word_chunk_counts": {
+            "source_rewrite_full_same_chunk": 12120,
+            "source_rewrite_partial_cochunk": 32,
+            "split_between_source_and_rewrite": 3
+          },
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.9971205265322912,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9997531879884821,
+          "pair_atomic_counts": {
+            "source_rewrite_full_same_chunk": 12155
+          },
+          "pair_atomic_fittable_full_same_chunk_fraction": 1.0,
+          "pair_atomic_overlong_fraction": 0.0,
+          "greedy_chunks_in_changed_rows": 3040,
+          "pair_atomic_chunks_in_changed_rows": 3040,
+          "greedy_overlong_words": 0,
+          "pair_atomic_overlong_pairs": 0,
+          "sample_overlong_pairs": [],
+          "sample_greedy_splits": [
+            {
+              "row_index": 202,
+              "example_id": 950201,
+              "pair_id": "frontier_consolidation_fwcompact_medium_048618",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 11,
+              "rewrite_words": 6,
+              "pair_tokens": 36,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 217,
+              "example_id": 950216,
+              "pair_id": "frontier_consolidation_fwcompact_medium_050034",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 24,
+              "rewrite_words": 14,
+              "pair_tokens": 54,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 473,
+              "example_id": 950472,
+              "pair_id": "frontier_consolidation_fwcompact_medium_008070",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 39,
+              "rewrite_words": 19,
+              "pair_tokens": 92,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 484,
+              "example_id": 950483,
+              "pair_id": "frontier_consolidation_fwcompact_medium_005960",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 41,
+              "rewrite_words": 22,
+              "pair_tokens": 155,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 535,
+              "example_id": 950534,
+              "pair_id": "frontier_consolidation_fwcompact_medium_011277",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 30,
+              "rewrite_words": 18,
+              "pair_tokens": 103,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 830,
+              "example_id": 950829,
+              "pair_id": "frontier_consolidation_fwcompact_medium_017295",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 34,
+              "rewrite_words": 19,
+              "pair_tokens": 124,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 877,
+              "example_id": 950876,
+              "pair_id": "frontier_consolidation_fwcompact_medium_041084",
+              "visibility": "split_between_source_and_rewrite",
+              "source_words": 31,
+              "rewrite_words": 15,
+              "pair_tokens": 84,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 1104,
+              "example_id": 951103,
+              "pair_id": "frontier_consolidation_fwcompact_medium_016000",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 42,
+              "rewrite_words": 22,
+              "pair_tokens": 128,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "epochs_by_length": {
+            "64": 3,
+            "128": 4,
+            "256": 3
+          },
+          "pair_occurrences": 121550,
+          "prefix_full_source_rewrite_fraction": 0.5558782394076511,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.6236116824352118,
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.7198354586589881,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9890333196215549,
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.9409461127108186,
+          "pair_atomic_overlong_fraction": 0.05905388728918141
+        },
+        "64x7_256x3": {
+          "epochs_by_length": {
+            "64": 7,
+            "128": 0,
+            "256": 3
+          },
+          "pair_occurrences": 121550,
+          "prefix_full_source_rewrite_fraction": 0.42990538872891815,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.4992842451665981,
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.5730316742081448,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9833401892225422,
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.8637433155080214,
+          "pair_atomic_overlong_fraction": 0.1362566844919786
+        }
+      }
+    },
+    "minfreq50_supportfloor": {
+      "tokenizer": "minfreq50_supportfloor",
+      "changed_rows": 3005,
+      "pairs": 12155,
+      "changed_words": 423511,
+      "raw_tokens_in_changed_rows": 592605,
+      "unassigned_offsets": 5161,
+      "pair_token_stats": {
+        "source_tokens": {
+          "min": 11.0,
+          "p10": 16.0,
+          "median": 27.0,
+          "p90": 44.0,
+          "p95": 50.0,
+          "max": 87.0,
+          "mean": 28.733360756890168
+        },
+        "rewrite_tokens": {
+          "min": 6.0,
+          "p10": 11.0,
+          "median": 18.0,
+          "p90": 30.0,
+          "p95": 34.0,
+          "max": 70.0,
+          "mean": 19.596051007815714
+        },
+        "source_plus_rewrite_tokens": {
+          "min": 17.0,
+          "p10": 28.0,
+          "median": 45.0,
+          "p90": 73.60000000000036,
+          "p95": 83.0,
+          "max": 153.0,
+          "mean": 48.32941176470588
+        }
+      },
+      "by_length": {
+        "64": {
+          "L": 64,
+          "pairs": 12155,
+          "prefix_counts": {
+            "source_rewrite_full_visible": 2375,
+            "source_only": 1770,
+            "invisible": 6841,
+            "source_rewrite_partial_cooccur": 1169
+          },
+          "prefix_full_source_rewrite_fraction": 0.195392842451666,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.2915672562731386,
+          "greedy_word_chunk_counts": {
+            "source_rewrite_full_same_chunk": 4931,
+            "source_rewrite_partial_cochunk": 6963,
+            "split_between_source_and_rewrite": 261
+          },
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.40567667626491155,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9785273549979432,
+          "pair_atomic_counts": {
+            "source_rewrite_full_same_chunk": 10011,
+            "overlong_cannot_full_fit": 2144
+          },
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.8236116824352119,
+          "pair_atomic_overlong_fraction": 0.17638831756478815,
+          "greedy_chunks_in_changed_rows": 10760,
+          "pair_atomic_chunks_in_changed_rows": 11433,
+          "greedy_overlong_words": 0,
+          "pair_atomic_overlong_pairs": 2144,
+          "sample_overlong_pairs": [
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_035003",
+              "pair_words": 57,
+              "pair_tokens": 69,
+              "source_tokens": 42,
+              "rewrite_tokens": 27
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_037105",
+              "pair_words": 48,
+              "pair_tokens": 69,
+              "source_tokens": 41,
+              "rewrite_tokens": 28
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_013869",
+              "pair_words": 51,
+              "pair_tokens": 70,
+              "source_tokens": 40,
+              "rewrite_tokens": 30
+            },
+            {
+              "row_index": 4,
+              "example_id": 950003,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014872",
+              "pair_words": 45,
+              "pair_tokens": 69,
+              "source_tokens": 43,
+              "rewrite_tokens": 26
+            },
+            {
+              "row_index": 5,
+              "example_id": 950004,
+              "pair_id": "frontier_consolidation_fwcompact_medium_019309",
+              "pair_words": 69,
+              "pair_tokens": 100,
+              "source_tokens": 60,
+              "rewrite_tokens": 40
+            },
+            {
+              "row_index": 7,
+              "example_id": 950006,
+              "pair_id": "frontier_consolidation_fwcompact_medium_028521",
+              "pair_words": 75,
+              "pair_tokens": 98,
+              "source_tokens": 56,
+              "rewrite_tokens": 42
+            },
+            {
+              "row_index": 8,
+              "example_id": 950007,
+              "pair_id": "frontier_consolidation_fwcompact_medium_046432",
+              "pair_words": 69,
+              "pair_tokens": 104,
+              "source_tokens": 57,
+              "rewrite_tokens": 47
+            },
+            {
+              "row_index": 10,
+              "example_id": 950009,
+              "pair_id": "frontier_consolidation_fwcompact_medium_034918",
+              "pair_words": 58,
+              "pair_tokens": 85,
+              "source_tokens": 51,
+              "rewrite_tokens": 34
+            }
+          ],
+          "sample_greedy_splits": [
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_030624",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 24,
+              "rewrite_words": 15,
+              "pair_tokens": 48,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_035003",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 36,
+              "rewrite_words": 21,
+              "pair_tokens": 69,
+              "source_chunks": [
+                1,
+                2
+              ],
+              "rewrite_chunks": [
+                2
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_015071",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 23,
+              "rewrite_words": 11,
+              "pair_tokens": 60,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_056778",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 21,
+              "rewrite_words": 13,
+              "pair_tokens": 50,
+              "source_chunks": [
+                1,
+                2
+              ],
+              "rewrite_chunks": [
+                2
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_005391",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 27,
+              "rewrite_words": 20,
+              "pair_tokens": 60,
+              "source_chunks": [
+                2
+              ],
+              "rewrite_chunks": [
+                2,
+                3
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_037105",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 29,
+              "rewrite_words": 19,
+              "pair_tokens": 69,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_012608",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 17,
+              "rewrite_words": 11,
+              "pair_tokens": 39,
+              "source_chunks": [
+                1,
+                2
+              ],
+              "rewrite_chunks": [
+                2
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_013869",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 31,
+              "rewrite_words": 20,
+              "pair_tokens": 70,
+              "source_chunks": [
+                2
+              ],
+              "rewrite_chunks": [
+                2,
+                3
+              ]
+            }
+          ]
+        },
+        "128": {
+          "L": 128,
+          "pairs": 12155,
+          "prefix_counts": {
+            "source_rewrite_full_visible": 6299,
+            "source_only": 1791,
+            "invisible": 2916,
+            "source_rewrite_partial_cooccur": 1149
+          },
+          "prefix_full_source_rewrite_fraction": 0.5182229535170711,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.6127519539284245,
+          "greedy_word_chunk_counts": {
+            "source_rewrite_full_same_chunk": 9219,
+            "source_rewrite_partial_cochunk": 2833,
+            "split_between_source_and_rewrite": 103
+          },
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.7584533113944879,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9915261209378856,
+          "pair_atomic_counts": {
+            "source_rewrite_full_same_chunk": 12143,
+            "overlong_cannot_full_fit": 12
+          },
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.9990127519539285,
+          "pair_atomic_overlong_fraction": 0.0009872480460715754,
+          "greedy_chunks_in_changed_rows": 6025,
+          "pair_atomic_chunks_in_changed_rows": 6427,
+          "greedy_overlong_words": 0,
+          "pair_atomic_overlong_pairs": 12,
+          "sample_overlong_pairs": [
+            {
+              "row_index": 219,
+              "example_id": 950218,
+              "pair_id": "frontier_consolidation_fwcompact_medium_006871",
+              "pair_words": 55,
+              "pair_tokens": 130,
+              "source_tokens": 75,
+              "rewrite_tokens": 55
+            },
+            {
+              "row_index": 333,
+              "example_id": 950332,
+              "pair_id": "frontier_consolidation_fwcompact_medium_004922",
+              "pair_words": 78,
+              "pair_tokens": 132,
+              "source_tokens": 77,
+              "rewrite_tokens": 55
+            },
+            {
+              "row_index": 361,
+              "example_id": 950360,
+              "pair_id": "frontier_consolidation_fwcompact_medium_011448",
+              "pair_words": 74,
+              "pair_tokens": 140,
+              "source_tokens": 77,
+              "rewrite_tokens": 63
+            },
+            {
+              "row_index": 484,
+              "example_id": 950483,
+              "pair_id": "frontier_consolidation_fwcompact_medium_005960",
+              "pair_words": 63,
+              "pair_tokens": 149,
+              "source_tokens": 87,
+              "rewrite_tokens": 62
+            },
+            {
+              "row_index": 892,
+              "example_id": 950891,
+              "pair_id": "frontier_consolidation_fwcompact_medium_059210",
+              "pair_words": 83,
+              "pair_tokens": 137,
+              "source_tokens": 76,
+              "rewrite_tokens": 61
+            },
+            {
+              "row_index": 1350,
+              "example_id": 951349,
+              "pair_id": "frontier_consolidation_fwcompact_medium_038434",
+              "pair_words": 79,
+              "pair_tokens": 153,
+              "source_tokens": 84,
+              "rewrite_tokens": 69
+            },
+            {
+              "row_index": 1638,
+              "example_id": 951637,
+              "pair_id": "frontier_consolidation_fwcompact_medium_052650",
+              "pair_words": 84,
+              "pair_tokens": 153,
+              "source_tokens": 83,
+              "rewrite_tokens": 70
+            },
+            {
+              "row_index": 1729,
+              "example_id": 951728,
+              "pair_id": "frontier_consolidation_fwcompact_medium_057377",
+              "pair_words": 85,
+              "pair_tokens": 148,
+              "source_tokens": 78,
+              "rewrite_tokens": 70
+            }
+          ],
+          "sample_greedy_splits": [
+            {
+              "row_index": 1,
+              "example_id": 950000,
+              "pair_id": "frontier_consolidation_fwcompact_medium_035003",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 36,
+              "rewrite_words": 21,
+              "pair_tokens": 69,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 2,
+              "example_id": 950001,
+              "pair_id": "frontier_consolidation_fwcompact_medium_056778",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 21,
+              "rewrite_words": 13,
+              "pair_tokens": 50,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 3,
+              "example_id": 950002,
+              "pair_id": "frontier_consolidation_fwcompact_medium_012608",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 17,
+              "rewrite_words": 11,
+              "pair_tokens": 39,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 4,
+              "example_id": 950003,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014872",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 29,
+              "rewrite_words": 16,
+              "pair_tokens": 69,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 5,
+              "example_id": 950004,
+              "pair_id": "frontier_consolidation_fwcompact_medium_014997",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 33,
+              "rewrite_words": 18,
+              "pair_tokens": 60,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 6,
+              "example_id": 950005,
+              "pair_id": "frontier_consolidation_fwcompact_medium_004790",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 21,
+              "rewrite_words": 16,
+              "pair_tokens": 43,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 7,
+              "example_id": 950006,
+              "pair_id": "frontier_consolidation_fwcompact_medium_028521",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 46,
+              "rewrite_words": 29,
+              "pair_tokens": 98,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 8,
+              "example_id": 950007,
+              "pair_id": "frontier_consolidation_fwcompact_medium_029146",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 26,
+              "rewrite_words": 20,
+              "pair_tokens": 59,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            }
+          ]
+        },
+        "256": {
+          "L": 256,
+          "pairs": 12155,
+          "prefix_counts": {
+            "source_rewrite_full_visible": 12133,
+            "source_only": 3,
+            "source_rewrite_partial_cooccur": 18,
+            "invisible": 1
+          },
+          "prefix_full_source_rewrite_fraction": 0.9981900452488688,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.9996709173179762,
+          "greedy_word_chunk_counts": {
+            "source_rewrite_full_same_chunk": 12134,
+            "source_rewrite_partial_cochunk": 21
+          },
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.9982723159193747,
+          "greedy_any_source_rewrite_cochunk_fraction": 1.0,
+          "pair_atomic_counts": {
+            "source_rewrite_full_same_chunk": 12155
+          },
+          "pair_atomic_fittable_full_same_chunk_fraction": 1.0,
+          "pair_atomic_overlong_fraction": 0.0,
+          "greedy_chunks_in_changed_rows": 3026,
+          "pair_atomic_chunks_in_changed_rows": 3026,
+          "greedy_overlong_words": 0,
+          "pair_atomic_overlong_pairs": 0,
+          "sample_overlong_pairs": [],
+          "sample_greedy_splits": [
+            {
+              "row_index": 202,
+              "example_id": 950201,
+              "pair_id": "frontier_consolidation_fwcompact_medium_061266",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 13,
+              "rewrite_words": 8,
+              "pair_tokens": 24,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 217,
+              "example_id": 950216,
+              "pair_id": "frontier_consolidation_fwcompact_medium_050034",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 24,
+              "rewrite_words": 14,
+              "pair_tokens": 50,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 484,
+              "example_id": 950483,
+              "pair_id": "frontier_consolidation_fwcompact_medium_053357",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 20,
+              "rewrite_words": 12,
+              "pair_tokens": 59,
+              "source_chunks": [
+                0,
+                1
+              ],
+              "rewrite_chunks": [
+                1
+              ]
+            },
+            {
+              "row_index": 877,
+              "example_id": 950876,
+              "pair_id": "frontier_consolidation_fwcompact_medium_041084",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 31,
+              "rewrite_words": 15,
+              "pair_tokens": 80,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 1408,
+              "example_id": 951407,
+              "pair_id": "frontier_consolidation_fwcompact_medium_001168",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 16,
+              "rewrite_words": 9,
+              "pair_tokens": 47,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 1506,
+              "example_id": 951505,
+              "pair_id": "frontier_consolidation_fwcompact_medium_008378",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 31,
+              "rewrite_words": 25,
+              "pair_tokens": 82,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 1530,
+              "example_id": 951529,
+              "pair_id": "frontier_consolidation_fwcompact_medium_033386",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 10,
+              "rewrite_words": 5,
+              "pair_tokens": 26,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            },
+            {
+              "row_index": 1587,
+              "example_id": 951586,
+              "pair_id": "frontier_consolidation_fwcompact_medium_028849",
+              "visibility": "source_rewrite_partial_cochunk",
+              "source_words": 14,
+              "rewrite_words": 10,
+              "pair_tokens": 48,
+              "source_chunks": [
+                0
+              ],
+              "rewrite_chunks": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "epochs_by_length": {
+            "64": 3,
+            "128": 4,
+            "256": 3
+          },
+          "pair_occurrences": 121550,
+          "prefix_full_source_rewrite_fraction": 0.5653640477169889,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.6324722336487042,
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.7245660222130811,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9901686548745372,
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.946688605512135,
+          "pair_atomic_overlong_fraction": 0.05331139448786507
+        },
+        "64x7_256x3": {
+          "epochs_by_length": {
+            "64": 7,
+            "128": 0,
+            "256": 3
+          },
+          "pair_occurrences": 121550,
+          "prefix_full_source_rewrite_fraction": 0.43623200329082684,
+          "prefix_any_source_rewrite_cooccur_fraction": 0.5039983545865899,
+          "greedy_full_source_rewrite_same_chunk_fraction": 0.5834553681612505,
+          "greedy_any_source_rewrite_cochunk_fraction": 0.9849691484985602,
+          "pair_atomic_fittable_full_same_chunk_fraction": 0.8765281777046483,
+          "pair_atomic_overlong_fraction": 0.12347182229535171
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "prefix_path": "Measures current local seq_len_schedule behavior: tokens after L are absent from masking/loss, regardless of the charged row words.",
+    "greedy_word_chunking": "Measures a faithful word-budget chunk stream that exposes suffix words but does not protect source+rewrite boundaries.",
+    "pair_atomic_chunking": "Measures a changed-row chunk stream that packs each source+rewrite pair as an atom when its tokenized length fits the stage length."
+  },
+  "elapsed_sec": 4.599
+}

@@ -1,0 +1,145 @@
+{
+  "status": "PACKED_TARGETSELECT_SIGNATURE_V2_FAILED",
+  "integrity": {
+    "drop_abs": {
+      "run_dir": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast",
+      "metrics_path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast/scientific_metrics.json",
+      "metrics_exists": true,
+      "model_dir": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast/hf_model/chck_100M",
+      "model_dir_exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true,
+      "ok": true,
+      "problems": [],
+      "metrics": {
+        "status": "PACKED_TARGET_SELECTIVE_FAST_DROP_ABS_CONTENT",
+        "target_mode": "drop_abs_content",
+        "script": "experiments/archive/representation_and_objectives/scripts/packed_target_selective_trainer_fast.py",
+        "parameter_count": 34467424,
+        "init_sha": "f13f1f85923a6e04d033f755a180f8755be7247005dca327be01c7461493d509",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_last": 2.550947,
+        "stratum_masked_counts": {
+          "filler": 20666911,
+          "source": 549768,
+          "rw_copied": 320137,
+          "rw_abs_content": 48105,
+          "rw_abs_other": 9187
+        },
+        "total_dropped_counts": {
+          "dropped_abs_content": 48105,
+          "kept_filler": 20666911,
+          "kept_source": 549768,
+          "kept_rw_copied": 320137,
+          "kept_rw_abs_other": 9187
+        },
+        "saved_checkpoints": [
+          {
+            "name": "chck_100M",
+            "target": 100000000,
+            "actual": 100000000,
+            "step": 2529,
+            "path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast/hf_model/chck_100M"
+          }
+        ],
+        "elapsed_sec": 3875.2
+      },
+      "expected_drop_key": "dropped_abs_content",
+      "expected_drop_bpe": 48105,
+      "actual_drop_bpe": 48105,
+      "drop_bpe_delta_actual_minus_expected": 0
+    },
+    "drop_copied_word": {
+      "run_dir": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast",
+      "metrics_path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast/scientific_metrics.json",
+      "metrics_exists": true,
+      "model_dir": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast/hf_model/chck_100M",
+      "model_dir_exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true,
+      "ok": true,
+      "problems": [],
+      "metrics": {
+        "status": "PACKED_TARGET_SELECTIVE_FAST_DROP_COPIED_CONTENT_WHOLEWORD",
+        "target_mode": "drop_copied_content_wholeword",
+        "script": "experiments/archive/representation_and_objectives/scripts/packed_target_selective_trainer_fast.py",
+        "parameter_count": 34467424,
+        "init_sha": "f13f1f85923a6e04d033f755a180f8755be7247005dca327be01c7461493d509",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_last": 2.55346,
+        "stratum_masked_counts": {
+          "filler": 20666911,
+          "source": 549768,
+          "rw_copied": 320137,
+          "rw_abs_content": 48105,
+          "rw_abs_other": 9187
+        },
+        "total_dropped_counts": {
+          "dropped_copied_wholeword": 48387,
+          "kept_filler": 20666911,
+          "kept_source": 549768,
+          "kept_rw_copied": 271750,
+          "kept_rw_abs_content": 48105,
+          "kept_rw_abs_other": 9187
+        },
+        "saved_checkpoints": [
+          {
+            "name": "chck_100M",
+            "target": 100000000,
+            "actual": 100000000,
+            "step": 2529,
+            "path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast/hf_model/chck_100M"
+          }
+        ],
+        "elapsed_sec": 4011.0
+      },
+      "expected_drop_key": "dropped_copied_wholeword",
+      "expected_drop_bpe": 48387,
+      "actual_drop_bpe": 48387,
+      "drop_bpe_delta_actual_minus_expected": 0
+    }
+  },
+  "eval": {
+    "cmd": [
+      "data/external/python",
+      "-B",
+      "experiments/archive/representation_and_objectives/scripts/eval_packed_targetselect_100M.py",
+      "--drop_abs_run",
+      "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast",
+      "--drop_copied_run",
+      "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast",
+      "--out_root",
+      "experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/endpoint_eval",
+      "--gpus",
+      "0,1",
+      "--skip-signature",
+      "--force"
+    ],
+    "returncode": 0,
+    "elapsed_sec": 1011.5,
+    "log": "experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/logs/endpoint_eval.log"
+  },
+  "signature_v2": {
+    "cmd": [
+      "data/external/python",
+      "-B",
+      "experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py",
+      "--full-json",
+      "experiments/archive/representation_and_objectives/data/compact_triangle_noaoa_eval/per_target/compact_view_reinvest.json",
+      "--arm-json",
+      "drop_abs=experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/endpoint_eval/drop_abs/per_target/dropabs100.json",
+      "--arm-json",
+      "drop_copied_word=experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/endpoint_eval/drop_copied_word/per_target/dropcopied_word100.json",
+      "--output_dir",
+      "experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/signature_v2"
+    ],
+    "returncode": 1,
+    "elapsed_sec": 0.1,
+    "log": "experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/logs/signature_v2.log",
+    "log_tail": "RUN data/external/python -B experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py --full-json experiments/archive/representation_and_objectives/data/compact_triangle_noaoa_eval/per_target/compact_view_reinvest.json --arm-json drop_abs=experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/endpoint_eval/drop_abs/per_target/dropabs100.json --arm-json drop_copied_word=experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/endpoint_eval/drop_copied_word/per_target/dropcopied_word100.json --output_dir experiments/archive/representation_and_objectives/data/packed_targetselect_postrun_readout/signature_v2\nTraceback (most recent call last):\n  File \"experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py\", line 538, in <module>\n    main()\n  File \"experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py\", line 408, in main\n    items = build_items(arms)\n            ^^^^^^^^^^^^^^^^^\n  File \"experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py\", line 207, in build_items\n    out[task][arm] = fn(pred_from_payload(payload, task))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py\", line 197, in <lambda>\n    \"Supplement\": lambda p: score_blimp_like(p, OFFICIAL_FULL / \"supplement_filtered\"),\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"experiments/archive/representation_and_objectives/scripts/packed_targetselect_endpoint_signature_v2.py\", line 136, in score_blimp_like\n    raise ValueError(f\"{pred_path}: {sub} pred {len(preds)} != gold {len(rows)}\")\nValueError: experiments/archive/frontier_consolidation/data/density_noaoa_eval_reinvest/eval_outputs/density_reinvest_noaoa/compact_view_reinvest/Supplement/chck_100M/compact_view_reinvest_Supplement/zero_shot/mlm/blimp/supplement_fast/predictions.json: hypernym pred 50 != gold 842\n"
+  }
+}

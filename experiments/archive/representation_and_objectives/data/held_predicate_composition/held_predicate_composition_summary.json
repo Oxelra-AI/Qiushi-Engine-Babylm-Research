@@ -1,0 +1,1058 @@
+{
+  "status": "HELD_PREDICATE_COMPOSITION",
+  "created_utc": "2026-09-03T22:45:14Z",
+  "config": {
+    "train_fams": 24,
+    "held_fams": 12,
+    "held_domain_fams": 12,
+    "epochs": 26,
+    "lr": 0.002,
+    "lam": 0.35,
+    "cap": 11520,
+    "seeds": "254,255,256",
+    "modes": "standard,equivariant,shuffled_any"
+  },
+  "design": {
+    "held_domain": "football",
+    "domain_counts": {
+      "tennis": 350,
+      "football": 50,
+      "badminton": 100
+    },
+    "family_counts": {
+      "train": 24,
+      "held": 12,
+      "held_domain": 12
+    },
+    "seen_predicates": [
+      "defeated",
+      "beat",
+      "lost_to",
+      "was_beaten"
+    ],
+    "held_composition_predicates": [
+      "overcame",
+      "fell_to",
+      "prevailed",
+      "was_defeated"
+    ],
+    "train_pair_cells": 16,
+    "row_counts": {
+      "train_total": 3840,
+      "support": 2304,
+      "composition_train": 1536,
+      "seen_comp_held_family": 768,
+      "heldpred_hyp_only": 768,
+      "heldpred_ctx_only": 768,
+      "heldpred_both": 768,
+      "heldpred_both_held_domain": 768
+    },
+    "design_note": "Held-composition predicates appear only in role-word support rows, so their word meaning is learnable but their use in composition is genuinely new."
+  },
+  "audits": {
+    "seen_comp_held_family": {
+      "name": "seen_comp_held_family",
+      "n": 768,
+      "label_counts": {
+        "1": 384,
+        "0": 384
+      },
+      "label_fraction_true": 0.5,
+      "source_label_counts": {
+        "eval_seen_comp_held_family": {
+          "1": 384,
+          "0": 384
+        }
+      },
+      "n_pair_cells": 16,
+      "pair_cell_unbalanced_examples": [],
+      "duplicate_text_conflicts": 0,
+      "duplicate_text_conflict_examples": []
+    },
+    "heldpred_hyp_only": {
+      "name": "heldpred_hyp_only",
+      "n": 768,
+      "label_counts": {
+        "0": 384,
+        "1": 384
+      },
+      "label_fraction_true": 0.5,
+      "source_label_counts": {
+        "eval_heldpred_hyp_only": {
+          "0": 384,
+          "1": 384
+        }
+      },
+      "n_pair_cells": 16,
+      "pair_cell_unbalanced_examples": [],
+      "duplicate_text_conflicts": 0,
+      "duplicate_text_conflict_examples": []
+    },
+    "heldpred_ctx_only": {
+      "name": "heldpred_ctx_only",
+      "n": 768,
+      "label_counts": {
+        "1": 384,
+        "0": 384
+      },
+      "label_fraction_true": 0.5,
+      "source_label_counts": {
+        "eval_heldpred_ctx_only": {
+          "1": 384,
+          "0": 384
+        }
+      },
+      "n_pair_cells": 16,
+      "pair_cell_unbalanced_examples": [],
+      "duplicate_text_conflicts": 0,
+      "duplicate_text_conflict_examples": []
+    },
+    "heldpred_both": {
+      "name": "heldpred_both",
+      "n": 768,
+      "label_counts": {
+        "0": 384,
+        "1": 384
+      },
+      "label_fraction_true": 0.5,
+      "source_label_counts": {
+        "eval_heldpred_both": {
+          "0": 384,
+          "1": 384
+        }
+      },
+      "n_pair_cells": 16,
+      "pair_cell_unbalanced_examples": [],
+      "duplicate_text_conflicts": 0,
+      "duplicate_text_conflict_examples": []
+    },
+    "heldpred_both_held_domain": {
+      "name": "heldpred_both_held_domain",
+      "n": 768,
+      "label_counts": {
+        "0": 384,
+        "1": 384
+      },
+      "label_fraction_true": 0.5,
+      "source_label_counts": {
+        "eval_heldpred_both_held_domain": {
+          "0": 384,
+          "1": 384
+        }
+      },
+      "n_pair_cells": 16,
+      "pair_cell_unbalanced_examples": [],
+      "duplicate_text_conflicts": 0,
+      "duplicate_text_conflict_examples": []
+    },
+    "train_rows": {
+      "name": "train_rows",
+      "n": 3840,
+      "label_counts": {
+        "1": 1920,
+        "0": 1920
+      },
+      "label_fraction_true": 0.5,
+      "source_label_counts": {
+        "composition_train_pair": {
+          "1": 768,
+          "0": 768
+        },
+        "semantic_support_context_predicate": {
+          "1": 768,
+          "0": 768
+        },
+        "semantic_support_hypothesis_predicate": {
+          "1": 384,
+          "0": 384
+        }
+      },
+      "n_pair_cells": 40,
+      "pair_cell_unbalanced_examples": [],
+      "duplicate_text_conflicts": 0,
+      "duplicate_text_conflict_examples": []
+    }
+  },
+  "aggregates": {
+    "shuffled_any": {
+      "n_runs": 3,
+      "n_converged": 3,
+      "raw": {
+        "seen_comp_held_family": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_hyp_only": {
+          "mean": 0.9635416666666666,
+          "seeds": [
+            1.0,
+            0.890625,
+            1.0
+          ]
+        },
+        "heldpred_ctx_only": {
+          "mean": 0.984375,
+          "seeds": [
+            1.0,
+            0.953125,
+            1.0
+          ]
+        },
+        "heldpred_both": {
+          "mean": 0.921875,
+          "seeds": [
+            0.96875,
+            0.84375,
+            0.953125
+          ]
+        },
+        "heldpred_both_held_domain": {
+          "mean": 0.9244791666666666,
+          "seeds": [
+            0.96875,
+            0.84375,
+            0.9609375
+          ]
+        }
+      },
+      "converged_only": {
+        "seen_comp_held_family": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_hyp_only": {
+          "mean": 0.9635416666666666,
+          "seeds": [
+            1.0,
+            0.890625,
+            1.0
+          ]
+        },
+        "heldpred_ctx_only": {
+          "mean": 0.984375,
+          "seeds": [
+            1.0,
+            0.953125,
+            1.0
+          ]
+        },
+        "heldpred_both": {
+          "mean": 0.921875,
+          "seeds": [
+            0.96875,
+            0.84375,
+            0.953125
+          ]
+        },
+        "heldpred_both_held_domain": {
+          "mean": 0.9244791666666666,
+          "seeds": [
+            0.96875,
+            0.84375,
+            0.9609375
+          ]
+        }
+      },
+      "train_acc": {
+        "mean": 1.0,
+        "seeds": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "standard": {
+      "n_runs": 3,
+      "n_converged": 3,
+      "raw": {
+        "seen_comp_held_family": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_hyp_only": {
+          "mean": 0.9270833333333334,
+          "seeds": [
+            0.9375,
+            0.84375,
+            1.0
+          ]
+        },
+        "heldpred_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_both": {
+          "mean": 0.9375,
+          "seeds": [
+            0.90625,
+            0.90625,
+            1.0
+          ]
+        },
+        "heldpred_both_held_domain": {
+          "mean": 0.9375,
+          "seeds": [
+            0.90625,
+            0.90625,
+            1.0
+          ]
+        }
+      },
+      "converged_only": {
+        "seen_comp_held_family": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_hyp_only": {
+          "mean": 0.9270833333333334,
+          "seeds": [
+            0.9375,
+            0.84375,
+            1.0
+          ]
+        },
+        "heldpred_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_both": {
+          "mean": 0.9375,
+          "seeds": [
+            0.90625,
+            0.90625,
+            1.0
+          ]
+        },
+        "heldpred_both_held_domain": {
+          "mean": 0.9375,
+          "seeds": [
+            0.90625,
+            0.90625,
+            1.0
+          ]
+        }
+      },
+      "train_acc": {
+        "mean": 1.0,
+        "seeds": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "equivariant": {
+      "n_runs": 3,
+      "n_converged": 2,
+      "raw": {
+        "seen_comp_held_family": {
+          "mean": 0.8355034722222222,
+          "seeds": [
+            1.0,
+            1.0,
+            0.5065104166666666
+          ]
+        },
+        "heldpred_hyp_only": {
+          "mean": 0.806857638888889,
+          "seeds": [
+            0.9153645833333334,
+            1.0,
+            0.5052083333333334
+          ]
+        },
+        "heldpred_ctx_only": {
+          "mean": 0.7686631944444445,
+          "seeds": [
+            0.828125,
+            0.97265625,
+            0.5052083333333334
+          ]
+        },
+        "heldpred_both": {
+          "mean": 0.7291666666666666,
+          "seeds": [
+            0.7408854166666666,
+            0.953125,
+            0.4934895833333333
+          ]
+        },
+        "heldpred_both_held_domain": {
+          "mean": 0.734375,
+          "seeds": [
+            0.75,
+            0.953125,
+            0.5
+          ]
+        }
+      },
+      "converged_only": {
+        "seen_comp_held_family": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0
+          ]
+        },
+        "heldpred_hyp_only": {
+          "mean": 0.9576822916666667,
+          "seeds": [
+            0.9153645833333334,
+            1.0
+          ]
+        },
+        "heldpred_ctx_only": {
+          "mean": 0.900390625,
+          "seeds": [
+            0.828125,
+            0.97265625
+          ]
+        },
+        "heldpred_both": {
+          "mean": 0.8470052083333333,
+          "seeds": [
+            0.7408854166666666,
+            0.953125
+          ]
+        },
+        "heldpred_both_held_domain": {
+          "mean": 0.8515625,
+          "seeds": [
+            0.75,
+            0.953125
+          ]
+        }
+      },
+      "train_acc": {
+        "mean": 0.8336805555555555,
+        "seeds": [
+          1.0,
+          1.0,
+          0.5010416666666667
+        ]
+      }
+    }
+  },
+  "cases": [
+    {
+      "mode": "standard",
+      "seed": 254,
+      "pairs": 0,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 0.9375,
+        "heldpred_ctx_only": 1.0,
+        "heldpred_both": 0.90625,
+        "heldpred_both_held_domain": 0.90625
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.4947916666666667,
+          "heldpred_both": 0.5,
+          "seconds": 0.9029850959777832
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 1.637693166732788
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 2.399548053741455
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 3.1376335620880127
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5294270833333333,
+          "heldpred_both": 0.484375,
+          "seconds": 4.56538724899292
+        },
+        {
+          "epoch": 8,
+          "train_acc": 1.0,
+          "heldpred_both": 0.90625,
+          "seconds": 5.940878391265869
+        }
+      ]
+    },
+    {
+      "mode": "standard",
+      "seed": 255,
+      "pairs": 0,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 0.84375,
+        "heldpred_ctx_only": 1.0,
+        "heldpred_both": 0.90625,
+        "heldpred_both_held_domain": 0.90625
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.49895833333333334,
+          "heldpred_both": 0.5,
+          "seconds": 0.7822775840759277
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 1.6938426494598389
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5104166666666666,
+          "heldpred_both": 0.5,
+          "seconds": 2.584686279296875
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 3.3630049228668213
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 4.7282185554504395
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.5010416666666667,
+          "heldpred_both": 0.5,
+          "seconds": 6.075697183609009
+        },
+        {
+          "epoch": 10,
+          "train_acc": 0.496875,
+          "heldpred_both": 0.5,
+          "seconds": 7.404356479644775
+        },
+        {
+          "epoch": 12,
+          "train_acc": 0.79375,
+          "heldpred_both": 0.671875,
+          "seconds": 8.790005207061768
+        },
+        {
+          "epoch": 14,
+          "train_acc": 1.0,
+          "heldpred_both": 0.90625,
+          "seconds": 10.367615222930908
+        }
+      ]
+    },
+    {
+      "mode": "standard",
+      "seed": 256,
+      "pairs": 0,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 1.0,
+        "heldpred_ctx_only": 1.0,
+        "heldpred_both": 1.0,
+        "heldpred_both_held_domain": 1.0
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 0.8554575443267822
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 1.7087163925170898
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 2.570571184158325
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 3.4255785942077637
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 5.08344841003418
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 6.743703365325928
+        },
+        {
+          "epoch": 10,
+          "train_acc": 0.49765625,
+          "heldpred_both": 0.4856770833333333,
+          "seconds": 8.395968914031982
+        },
+        {
+          "epoch": 12,
+          "train_acc": 0.6567708333333333,
+          "heldpred_both": 0.609375,
+          "seconds": 10.055047750473022
+        },
+        {
+          "epoch": 14,
+          "train_acc": 1.0,
+          "heldpred_both": 1.0,
+          "seconds": 11.705153942108154
+        }
+      ]
+    },
+    {
+      "mode": "equivariant",
+      "seed": 254,
+      "pairs": 2304,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 0.9153645833333334,
+        "heldpred_ctx_only": 0.828125,
+        "heldpred_both": 0.7408854166666666,
+        "heldpred_both_held_domain": 0.75
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.5010416666666667,
+          "heldpred_both": 0.4986979166666667,
+          "seconds": 2.427203893661499
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 4.823395013809204
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.509375,
+          "heldpred_both": 0.5,
+          "seconds": 7.207744836807251
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 9.650701999664307
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5145833333333333,
+          "heldpred_both": 0.5,
+          "seconds": 14.364276647567749
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.48723958333333334,
+          "heldpred_both": 0.46484375,
+          "seconds": 19.086969137191772
+        },
+        {
+          "epoch": 10,
+          "train_acc": 1.0,
+          "heldpred_both": 0.7408854166666666,
+          "seconds": 23.790184020996094
+        }
+      ]
+    },
+    {
+      "mode": "equivariant",
+      "seed": 255,
+      "pairs": 2304,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 1.0,
+        "heldpred_ctx_only": 0.97265625,
+        "heldpred_both": 0.953125,
+        "heldpred_both_held_domain": 0.953125
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.5010416666666667,
+          "heldpred_both": 0.5,
+          "seconds": 2.4322996139526367
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5010416666666667,
+          "heldpred_both": 0.5,
+          "seconds": 4.84305477142334
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 7.218533515930176
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 9.58805227279663
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.7203125,
+          "heldpred_both": 0.6015625,
+          "seconds": 14.200106859207153
+        },
+        {
+          "epoch": 8,
+          "train_acc": 1.0,
+          "heldpred_both": 0.953125,
+          "seconds": 18.874354362487793
+        }
+      ]
+    },
+    {
+      "mode": "equivariant",
+      "seed": 256,
+      "pairs": 2304,
+      "final_train_acc": 0.5010416666666667,
+      "converged": false,
+      "eval": {
+        "seen_comp_held_family": 0.5065104166666666,
+        "heldpred_hyp_only": 0.5052083333333334,
+        "heldpred_ctx_only": 0.5052083333333334,
+        "heldpred_both": 0.4934895833333333,
+        "heldpred_both_held_domain": 0.5
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 2.407195806503296
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5010416666666667,
+          "heldpred_both": 0.4934895833333333,
+          "seconds": 4.824338436126709
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 7.229721546173096
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 9.644587755203247
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 14.33972978591919
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 19.03461718559265
+        },
+        {
+          "epoch": 10,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 23.74644947052002
+        },
+        {
+          "epoch": 12,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 28.449862003326416
+        },
+        {
+          "epoch": 14,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 33.13964104652405
+        },
+        {
+          "epoch": 16,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 37.82607555389404
+        },
+        {
+          "epoch": 18,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 42.53325438499451
+        },
+        {
+          "epoch": 20,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 47.236191749572754
+        },
+        {
+          "epoch": 22,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 51.72138690948486
+        },
+        {
+          "epoch": 24,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 55.58544611930847
+        },
+        {
+          "epoch": 26,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 59.82240653038025
+        }
+      ]
+    },
+    {
+      "mode": "shuffled_any",
+      "seed": 254,
+      "pairs": 11520,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 1.0,
+        "heldpred_ctx_only": 1.0,
+        "heldpred_both": 0.96875,
+        "heldpred_both_held_domain": 0.96875
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.49895833333333334,
+          "heldpred_both": 0.49609375,
+          "seconds": 2.28076434135437
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 4.559887409210205
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.49713541666666666,
+          "heldpred_both": 0.4908854166666667,
+          "seconds": 6.833544969558716
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5239583333333333,
+          "heldpred_both": 0.5,
+          "seconds": 9.088715553283691
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.8908854166666667,
+          "heldpred_both": 0.7447916666666666,
+          "seconds": 13.490148782730103
+        },
+        {
+          "epoch": 8,
+          "train_acc": 1.0,
+          "heldpred_both": 0.96875,
+          "seconds": 17.98002815246582
+        }
+      ]
+    },
+    {
+      "mode": "shuffled_any",
+      "seed": 255,
+      "pairs": 11520,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 0.890625,
+        "heldpred_ctx_only": 0.953125,
+        "heldpred_both": 0.84375,
+        "heldpred_both_held_domain": 0.84375
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.5010416666666667,
+          "heldpred_both": 0.5,
+          "seconds": 2.230952262878418
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.48854166666666665,
+          "heldpred_both": 0.5,
+          "seconds": 4.471269845962524
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 6.751543045043945
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 9.005831003189087
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 13.472525119781494
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 17.906641960144043
+        },
+        {
+          "epoch": 10,
+          "train_acc": 0.5239583333333333,
+          "heldpred_both": 0.5,
+          "seconds": 22.283069372177124
+        },
+        {
+          "epoch": 12,
+          "train_acc": 0.99765625,
+          "heldpred_both": 0.8502604166666666,
+          "seconds": 26.66460347175598
+        },
+        {
+          "epoch": 14,
+          "train_acc": 1.0,
+          "heldpred_both": 0.84375,
+          "seconds": 31.068507194519043
+        }
+      ]
+    },
+    {
+      "mode": "shuffled_any",
+      "seed": 256,
+      "pairs": 11520,
+      "final_train_acc": 1.0,
+      "converged": true,
+      "eval": {
+        "seen_comp_held_family": 1.0,
+        "heldpred_hyp_only": 1.0,
+        "heldpred_ctx_only": 1.0,
+        "heldpred_both": 0.953125,
+        "heldpred_both_held_domain": 0.9609375
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 2.252492904663086
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5013020833333334,
+          "seconds": 4.490139484405518
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 6.7413716316223145
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 9.012598276138306
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 13.40642261505127
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.5,
+          "heldpred_both": 0.5,
+          "seconds": 17.836268186569214
+        },
+        {
+          "epoch": 10,
+          "train_acc": 0.6544270833333333,
+          "heldpred_both": 0.5364583333333334,
+          "seconds": 22.33370327949524
+        },
+        {
+          "epoch": 12,
+          "train_acc": 1.0,
+          "heldpred_both": 0.953125,
+          "seconds": 26.68274211883545
+        }
+      ]
+    }
+  ],
+  "interpretation_boundary": "Composition surfaces here use predicates that never appear in composition training, so a converged-only difference between standard and equivariant learning is a genuine objective effect. A null converged-only difference means role-composition transfer is not created by this matching objective at this scale."
+}

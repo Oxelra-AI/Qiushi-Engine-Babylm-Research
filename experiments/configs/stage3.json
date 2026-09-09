@@ -1,0 +1,44 @@
+{
+  "record_type": "documented_experiment_conditions_not_executable_trainer",
+  "parent": "models/frontier",
+  "representative_model": "models/principle_guided",
+  "continuation_seeds": [62064, 62065],
+  "shared_pretrained_parent": true,
+  "updates": 80,
+  "trainable_parameters": 995584,
+  "trainable_tensors": 48,
+  "trainable_parameter_pattern": ".private_adapter.",
+  "private_adapter_scale": 0.75,
+  "acquisition": {
+    "data": "existing_source_rewrite_pairs_and_ordinary_rows",
+    "source_visible": true,
+    "input_masking": "dense_in_rewrite",
+    "focused_targets": "selected_sparse_positions",
+    "focused_mean_cross_entropy_weight": 0.15,
+    "ordinary_mean_cross_entropy_weight": 0.85,
+    "loss_reduction": "separate_means_then_weighted_sum",
+    "counted_words": 3162742
+  },
+  "preservation": {
+    "input": "ordinary_whole_word_masking_on_paired_rows",
+    "teacher": "same_frozen_parent",
+    "divergence": "KL(parent || student)",
+    "coefficient": 1.0,
+    "temperature": 1.0,
+    "dropout_enabled": false,
+    "rng_state_restored": true,
+    "additional_counted_words": 517332
+  },
+  "parent_counted_words": 86005295,
+  "acquisition_only_total_words": 89168037,
+  "full_strategy_total_words": 89685369,
+  "complete_evaluation_components": ["BLiMP", "Supplement", "EWoK", "Entity", "COMPS", "SuperGLUE", "GlobalPIQA", "Reading", "AoA"],
+  "results": "results/training_strategy_comparison.csv",
+  "comparison_scope": "complete_strategy_vs_ordinary; preservation_adds_presentations_and_compute",
+  "material_locations": {
+    "original_training_entrypoint": "experiments/archive/functional_learning/scripts/clean_preservation_train.py",
+    "recorded_run_configurations": "experiments/configs/executed_stage3.json",
+    "input_construction_chain": "data/RECONSTRUCTION.md",
+    "source_identities": "evidence/materials_manifest.json"
+  }
+}

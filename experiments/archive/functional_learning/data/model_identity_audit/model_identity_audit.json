@@ -1,0 +1,149 @@
+{
+  "status": "MODEL_IDENTITY_AUDIT",
+  "model_path": "models/frontier",
+  "config_architectures": [
+    "FrozenSlowPrivateDebertaV2ForMaskedLM"
+  ],
+  "config_auto_map": {
+    "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+  },
+  "config_private_adapter_scale": 0.75,
+  "config_adapter_scale": 1.75,
+  "state_dict_tensor_count": 266,
+  "state_dict_private_key_count": 48,
+  "state_dict_private_key_examples": [
+    "deberta.encoder.layer.0.private_adapter.down.bias",
+    "deberta.encoder.layer.0.private_adapter.down.weight",
+    "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+    "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+    "deberta.encoder.layer.0.private_adapter.up.bias",
+    "deberta.encoder.layer.0.private_adapter.up.weight",
+    "deberta.encoder.layer.7.private_adapter.down.bias",
+    "deberta.encoder.layer.7.private_adapter.down.weight",
+    "deberta.encoder.layer.7.private_adapter.layer_norm.bias",
+    "deberta.encoder.layer.7.private_adapter.layer_norm.weight",
+    "deberta.encoder.layer.7.private_adapter.up.bias",
+    "deberta.encoder.layer.7.private_adapter.up.weight"
+  ],
+  "generic_auto_no_trust": {
+    "trust_remote_code": false,
+    "class": "DebertaV2ForMaskedLM",
+    "module": "transformers.models.deberta_v2.modeling_deberta_v2",
+    "total_tensors": 170,
+    "total_params": 34467424,
+    "private_tensor_count": 0,
+    "private_param_count": 0,
+    "trainable_tensor_count_default": 170,
+    "trainable_param_count_default": 34467424,
+    "private_name_examples": [],
+    "has_set_private_enabled": false,
+    "has_private_adapter_rms": false,
+    "executed_private_scales": [],
+    "loading_info": {
+      "missing_keys_count": 0,
+      "unexpected_keys_count": 96,
+      "mismatched_keys_count": 0,
+      "error_msgs_count": 0,
+      "missing_private_count": 0,
+      "unexpected_private_count": 48,
+      "missing_first20": [],
+      "unexpected_first20": [
+        "deberta.encoder.layer.0.adapter.down.bias",
+        "deberta.encoder.layer.0.adapter.down.weight",
+        "deberta.encoder.layer.0.adapter.layer_norm.bias",
+        "deberta.encoder.layer.0.adapter.layer_norm.weight",
+        "deberta.encoder.layer.0.adapter.up.bias",
+        "deberta.encoder.layer.0.adapter.up.weight",
+        "deberta.encoder.layer.0.private_adapter.down.bias",
+        "deberta.encoder.layer.0.private_adapter.down.weight",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+        "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+        "deberta.encoder.layer.0.private_adapter.up.bias",
+        "deberta.encoder.layer.0.private_adapter.up.weight",
+        "deberta.encoder.layer.1.adapter.down.bias",
+        "deberta.encoder.layer.1.adapter.down.weight",
+        "deberta.encoder.layer.1.adapter.layer_norm.bias",
+        "deberta.encoder.layer.1.adapter.layer_norm.weight",
+        "deberta.encoder.layer.1.adapter.up.bias",
+        "deberta.encoder.layer.1.adapter.up.weight",
+        "deberta.encoder.layer.1.private_adapter.down.bias",
+        "deberta.encoder.layer.1.private_adapter.down.weight"
+      ]
+    }
+  },
+  "generic_auto_trust_remote_code": {
+    "trust_remote_code": true,
+    "error": "OSError(30, 'Read-only file system')"
+  },
+  "trusted_loader": {
+    "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+    "module": "frozen82_private_modeling",
+    "total_tensors": 266,
+    "total_params": 36458592,
+    "private_tensor_count": 48,
+    "private_param_count": 995584,
+    "trainable_tensor_count_default": 266,
+    "trainable_param_count_default": 36458592,
+    "private_name_examples": [
+      "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+      "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+      "deberta.encoder.layer.0.private_adapter.down.weight",
+      "deberta.encoder.layer.0.private_adapter.down.bias",
+      "deberta.encoder.layer.7.private_adapter.down.weight",
+      "deberta.encoder.layer.7.private_adapter.down.bias",
+      "deberta.encoder.layer.7.private_adapter.up.weight",
+      "deberta.encoder.layer.7.private_adapter.up.bias"
+    ],
+    "has_set_private_enabled": true,
+    "has_private_adapter_rms": true,
+    "executed_private_scales": [
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75
+    ],
+    "all_scales_0p75": true,
+    "missing_count": 2,
+    "unexpected_count": 0,
+    "missing_private_count": 0,
+    "unexpected_private_count": 0,
+    "missing_first20": [
+      "cls.predictions.decoder.weight",
+      "cls.predictions.decoder.bias"
+    ],
+    "unexpected_first20": [],
+    "after_private_freeze_trainable_tensor_count": 48,
+    "after_private_freeze_trainable_param_count": 995584,
+    "after_private_freeze_nonprivate_trainable_count": 0
+  },
+  "script_issues": {
+    "experiments/archive/functional_learning/scripts/revision_039b_robust_scorer.py": {
+      "uses_generic_auto_model": true,
+      "uses_trust_remote_code": false,
+      "uses_model_parameters_optimizer": false,
+      "has_token_search_fallback_drops_first_token": true,
+      "uses_individual_position_scoring_loop": true,
+      "constructs_distinct_new_values": false
+    },
+    "experiments/archive/functional_learning/scripts/revision_039d_answer_only_training.py": {
+      "uses_generic_auto_model": true,
+      "uses_trust_remote_code": false,
+      "uses_model_parameters_optimizer": true,
+      "has_token_search_fallback_drops_first_token": true,
+      "uses_individual_position_scoring_loop": true,
+      "constructs_distinct_new_values": false
+    },
+    "experiments/archive/functional_learning/scripts/relation_first_constructor.py": {
+      "uses_generic_auto_model": true,
+      "uses_trust_remote_code": false,
+      "uses_model_parameters_optimizer": false,
+      "has_token_search_fallback_drops_first_token": false,
+      "uses_individual_position_scoring_loop": false,
+      "constructs_distinct_new_values": true
+    }
+  }
+}

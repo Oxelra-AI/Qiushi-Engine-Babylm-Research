@@ -1,0 +1,55 @@
+{
+  "status": "PROBE_PLAN",
+  "created_utc": "2026-09-06T06:15:43Z",
+  "arms": [
+    "D_C_43222"
+  ],
+  "checkpoints": [
+    "chck_80M",
+    "chck_90M",
+    "chck_100M"
+  ],
+  "record_counts": {
+    "heldout_natural_source_repeat": 4000,
+    "heldout_rewrite_content_conditioning": 11784,
+    "entity_gold_stale_cue_ablation": 9768,
+    "total": 25552
+  },
+  "pair_counts": {
+    "heldout_copy_pairs": 2000,
+    "rewrite_conditioning_pairs": 5892,
+    "entity_candidate_pairs": 4884
+  },
+  "copy_stats": {
+    "seen": 1000,
+    "made_span_1": 1000,
+    "made_span_4": 1000
+  },
+  "rewrite_stats": {
+    "pairs_used": 1626,
+    "pairs_with_nonoverlap": 1465,
+    "pairs_with_overlap": 1619,
+    "unselected_pairs_loaded": 1626
+  },
+  "entity_stats": {
+    "items": 1221,
+    "by_relevant_updates": {
+      "1": 16,
+      "2": 489,
+      "3": 296,
+      "4": 326,
+      "5": 94
+    }
+  },
+  "inputs": {
+    "heldout_rows": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/heldout_cleanqwen_rows.jsonl",
+    "all_accepted_pairs": "experiments/archive/frontier_consolidation/data/expansion_analysis/combined_all_accepted_pairs.jsonl",
+    "selected_max_pairs_excluded": "experiments/archive/frontier_consolidation/data/dose_distribution_select/selected_matched_max_pairs.jsonl",
+    "entity_dir": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/entity_tracking"
+  },
+  "scoring": {
+    "copy_gain": "NLL(unrepeated/corrupted source) - NLL(repeated/source-present)",
+    "rewrite_gain": "NLL(unrelated length-matched source) - NLL(true source)",
+    "entity_margin": "gold answer logprob sum - stale-initial answer logprob sum under each ablated context"
+  }
+}

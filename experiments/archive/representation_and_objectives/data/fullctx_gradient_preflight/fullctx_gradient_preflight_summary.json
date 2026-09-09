@@ -1,0 +1,339 @@
+{
+  "status": "FULLCTX_GRADIENT_PREFLIGHT",
+  "created_utc": "2026-08-31T02:52:16Z",
+  "runtime_sec": 228.44,
+  "device": "cuda",
+  "purpose": "no-update gradient preflight for full-context masked-consequence pivot substitution objective",
+  "checkpoint": "experiments/archive/representation_and_objectives/training/runs/standard_legacy_70M_to_80M_seed43022/hf_model/chck_80M",
+  "hashes": {
+    "tail_sha256": "19304f23a57a3809b50af496a99068a03417cb27886796604da5e755bf004675",
+    "labels_sha256": "39ed2b8eec610cb9f5e6456695d1b92057d6bb2af9fad0369790f1295589306a",
+    "tokenizer_sha256": "e70d167f620668130f88744998bd1bacbe05f6d0735012144fe501b271b04366"
+  },
+  "segment": {
+    "tail_path": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/compact_tail_70M_100M.jsonl",
+    "labels_path": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/pvdm_strict_tail_70M_100M_labels.jsonl",
+    "start_tail_row": 64255,
+    "expected_start_tail_words": 10011326,
+    "skipped_words": 10011326,
+    "selected_rows": 64000,
+    "selected_words": 9971308,
+    "first_tail_row": 64255,
+    "last_tail_row": 128254,
+    "max_rows_mode": true
+  },
+  "args": {
+    "output_dir": "experiments/archive/representation_and_objectives/data/fullctx_gradient_preflight",
+    "note_path": "research/notes/representation_and_objectives/fullctx_gradient_preflight.md",
+    "init_checkpoint": "experiments/archive/representation_and_objectives/training/runs/standard_legacy_70M_to_80M_seed43022/hf_model/chck_80M",
+    "tail_jsonl": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/compact_tail_70M_100M.jsonl",
+    "labels_jsonl": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/pvdm_strict_tail_70M_100M_labels.jsonl",
+    "tokenizer_path": "experiments/archive/representation_and_objectives/data/shared_tokenizer/shared_16k_tokenizer",
+    "batch_size": 256,
+    "micro_batch_size": 8,
+    "seq_length": 256,
+    "grad_batches": 4,
+    "view_batch_size": 96,
+    "margin": 0.2,
+    "aux_weight": 0.03,
+    "max_control_distance_abs_diff": 8,
+    "max_control_freq_bin_abs_diff": 2,
+    "max_target_token_len": 6,
+    "seed": 43,
+    "train_rng_seed": 43023,
+    "num_workers": 0
+  },
+  "summary_by_key": {
+    "mlm": {
+      "model_l2": {
+        "n": 4,
+        "mean": 0.7080778098432083,
+        "median": 0.7020365497834742,
+        "min": 0.6990647329940232,
+        "max": 0.7291734068118618
+      },
+      "encoder_l2": {
+        "n": 4,
+        "mean": 0.5665236338336781,
+        "median": 0.5612586969006357,
+        "min": 0.5551636145404433,
+        "max": 0.5884135269929975
+      },
+      "loss": {
+        "n": 4,
+        "mean": 2.685988807401847,
+        "median": 2.6741755837502144,
+        "min": 2.6476775045666106,
+        "max": 2.7479265575403495
+      }
+    },
+    "true_vs_shuffle": {
+      "model_l2": {
+        "n": 4,
+        "mean": 0.10639315022866268,
+        "median": 0.10440279825046579,
+        "min": 0.08975622154062414,
+        "max": 0.127010782873095
+      },
+      "encoder_l2": {
+        "n": 4,
+        "mean": 0.0901744880074909,
+        "median": 0.08857146048251335,
+        "min": 0.07457958690694051,
+        "max": 0.10897544415799638
+      },
+      "ratio_model": {
+        "n": 4,
+        "mean": 0.14999693335310743,
+        "median": 0.14870420286551356,
+        "min": 0.12839472126738158,
+        "max": 0.17418460641402103
+      },
+      "ratio_encoder": {
+        "n": 4,
+        "mean": 0.15882560566671317,
+        "median": 0.1587227962062972,
+        "min": 0.13265469067242416,
+        "max": 0.185202139581834
+      },
+      "cosine_with_mlm": {
+        "n": 4,
+        "mean": 0.003003337105405696,
+        "median": 0.0038097900897294795,
+        "min": -0.0036712010329836967,
+        "max": 0.008064969275147521
+      },
+      "raw_loss": {
+        "n": 4,
+        "mean": 0.6948026269674301,
+        "median": 0.7117719650268555,
+        "min": 0.5918487906455994,
+        "max": 0.7638177871704102
+      },
+      "events_used": {
+        "n": 4,
+        "mean": 43.5,
+        "median": 42.5,
+        "min": 41.0,
+        "max": 48.0
+      }
+    },
+    "true_vs_anchor": {
+      "model_l2": {
+        "n": 4,
+        "mean": 0.11760071221801224,
+        "median": 0.11035941521026409,
+        "min": 0.09791553668403619,
+        "max": 0.15176848176748467
+      },
+      "encoder_l2": {
+        "n": 4,
+        "mean": 0.09969993858742572,
+        "median": 0.09251079642667567,
+        "min": 0.08436584745397405,
+        "max": 0.12941231404237752
+      },
+      "ratio_model": {
+        "n": 4,
+        "mean": 0.1661151706239685,
+        "median": 0.15438016101404528,
+        "min": 0.1393944703993282,
+        "max": 0.21630589006845524
+      },
+      "ratio_encoder": {
+        "n": 4,
+        "mean": 0.17622941019768149,
+        "median": 0.16062039543565865,
+        "min": 0.1505702293612455,
+        "max": 0.23310662055816325
+      },
+      "cosine_with_mlm": {
+        "n": 4,
+        "mean": 0.009678149989693376,
+        "median": 0.009110788175458307,
+        "min": 0.0021330308370083213,
+        "max": 0.01835799277084857
+      },
+      "raw_loss": {
+        "n": 4,
+        "mean": 0.6415608450770378,
+        "median": 0.6808773875236511,
+        "min": 0.49185749888420105,
+        "max": 0.712631106376648
+      },
+      "events_used": {
+        "n": 4,
+        "mean": 43.5,
+        "median": 42.5,
+        "min": 41.0,
+        "max": 48.0
+      }
+    },
+    "true_vs_pivotmasked": {
+      "model_l2": {
+        "n": 4,
+        "mean": 0.1116170324692511,
+        "median": 0.11011372780459536,
+        "min": 0.10308994538240172,
+        "max": 0.12315072888541193
+      },
+      "encoder_l2": {
+        "n": 4,
+        "mean": 0.09420588771683316,
+        "median": 0.09290380935186687,
+        "min": 0.08725707233633212,
+        "max": 0.10375885982726679
+      },
+      "ratio_model": {
+        "n": 4,
+        "mean": 0.1577228863618022,
+        "median": 0.15395216099984746,
+        "min": 0.14746838242129304,
+        "max": 0.1755188410262209
+      },
+      "ratio_encoder": {
+        "n": 4,
+        "mean": 0.1665090787828709,
+        "median": 0.16299302709043695,
+        "min": 0.153152458015241,
+        "max": 0.18689780293536876
+      },
+      "cosine_with_mlm": {
+        "n": 4,
+        "mean": -0.003224195185378048,
+        "median": -0.0018312037020748336,
+        "min": -0.023797825452408147,
+        "max": 0.014563452115045625
+      },
+      "raw_loss": {
+        "n": 4,
+        "mean": 0.7046402394771576,
+        "median": 0.7211087048053741,
+        "min": 0.6117416024208069,
+        "max": 0.7646019458770752
+      },
+      "events_used": {
+        "n": 4,
+        "mean": 43.5,
+        "median": 42.5,
+        "min": 41.0,
+        "max": 48.0
+      }
+    },
+    "placebo_shuffle_vs_anchor": {
+      "model_l2": {
+        "n": 4,
+        "mean": 0.14779904167894792,
+        "median": 0.14750012257935158,
+        "min": 0.11486115457047097,
+        "max": 0.18133476698661766
+      },
+      "encoder_l2": {
+        "n": 4,
+        "mean": 0.12436006599848501,
+        "median": 0.12404704999290038,
+        "min": 0.09308747427609584,
+        "max": 0.1562586897320434
+      },
+      "ratio_model": {
+        "n": 4,
+        "mean": 0.20920123651637487,
+        "median": 0.21056540855516345,
+        "min": 0.15752241304667733,
+        "max": 0.2581517159084952
+      },
+      "ratio_encoder": {
+        "n": 4,
+        "mean": 0.22036520024614908,
+        "median": 0.2221902561663565,
+        "min": 0.1582007720859273,
+        "max": 0.278879516565956
+      },
+      "cosine_with_mlm": {
+        "n": 4,
+        "mean": -0.002646529443371954,
+        "median": -0.0031535567917464822,
+        "min": -0.007900398210838449,
+        "max": 0.0036213940208435964
+      },
+      "raw_loss": {
+        "n": 4,
+        "mean": 0.8222649097442627,
+        "median": 0.7965780198574066,
+        "min": 0.6751027703285217,
+        "max": 1.0208008289337158
+      },
+      "events_used": {
+        "n": 4,
+        "mean": 43.5,
+        "median": 42.5,
+        "min": 41.0,
+        "max": 48.0
+      }
+    },
+    "true_nll": {
+      "model_l2": {
+        "n": 4,
+        "mean": 0.2416563661332948,
+        "median": 0.24370414761756443,
+        "min": 0.2132745785014805,
+        "max": 0.26594259079656984
+      },
+      "encoder_l2": {
+        "n": 4,
+        "mean": 0.18728618273025402,
+        "median": 0.1854413580547027,
+        "min": 0.16728963887622253,
+        "max": 0.21097237593538817
+      },
+      "ratio_model": {
+        "n": 4,
+        "mean": 0.3413642868098935,
+        "median": 0.3408852440235135,
+        "min": 0.3050855928435227,
+        "max": 0.37860106634902435
+      },
+      "ratio_encoder": {
+        "n": 4,
+        "mean": 0.33094925817995174,
+        "median": 0.32485517179839407,
+        "min": 0.297558034553308,
+        "max": 0.3765286545697108
+      },
+      "cosine_with_mlm": {
+        "n": 4,
+        "mean": 0.01837816710951033,
+        "median": 0.018272191965877684,
+        "min": 0.0031084328840744425,
+        "max": 0.0338598516222115
+      },
+      "raw_loss": {
+        "n": 4,
+        "mean": 3.498611271381378,
+        "median": 3.539501190185547,
+        "min": 3.13811993598938,
+        "max": 3.777322769165039
+      },
+      "events_used": {
+        "n": 4,
+        "mean": 43.5,
+        "median": 42.5,
+        "min": 41.0,
+        "max": 48.0
+      }
+    }
+  },
+  "aggregate_event_categories": {
+    "temporal": 32,
+    "comparative": 14,
+    "physical_change": 32,
+    "negation": 32,
+    "causal_connector": 32,
+    "spatial": 32
+  },
+  "artifacts": {
+    "summary": "experiments/archive/representation_and_objectives/data/fullctx_gradient_preflight/fullctx_gradient_preflight_summary.json",
+    "records": "experiments/archive/representation_and_objectives/data/fullctx_gradient_preflight/gradient_records.jsonl",
+    "note": "research/notes/representation_and_objectives/fullctx_gradient_preflight.md"
+  }
+}

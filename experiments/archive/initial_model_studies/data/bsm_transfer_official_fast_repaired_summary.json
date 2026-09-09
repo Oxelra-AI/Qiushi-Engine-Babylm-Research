@@ -1,0 +1,36 @@
+{
+  "status": "BSM_TRANSFER_OFFICIAL_FAST_REPAIRED_SUMMARY",
+  "diagnostic_only_non_compliant": true,
+  "reason_non_compliant": "The BSM model starts from the protected 100M checkpoint and receives additional binding exposure, so it exceeds the Strict-Small total exposure budget and cannot be a submission coordinate.",
+  "baseline_model": "experiments/archive/initial_model_studies/training/runs/babylm_fullcycle_debertav2_8x480_wwm_seed42_100M_b256/hf_model/chck_100M",
+  "bsm_model": "experiments/archive/initial_model_studies/training/runs/bsm_transfer_diagnostic/hf_model",
+  "scores": {
+    "entity_tracking_fast": {
+      "baseline": 22.4,
+      "bsm": 23.91,
+      "delta_bsm_minus_baseline": 1.51
+    },
+    "ewok_fast": {
+      "baseline": 53.45,
+      "bsm": 51.91,
+      "delta_bsm_minus_baseline": -1.54
+    },
+    "blimp_fast": {
+      "baseline": 67.01,
+      "bsm": 66.92,
+      "delta_bsm_minus_baseline": -0.09
+    },
+    "supplement_fast": {
+      "baseline": 58.0,
+      "bsm": 58.0,
+      "delta_bsm_minus_baseline": 0.0
+    }
+  },
+  "ewok_repair": {
+    "initial_failure": "The first wrapper used evaluation_data/fast_eval/ewok_fast, which is absent in this repo layout.",
+    "corrected_path": "evaluation_data/fast_eval/evaluation_data/fast_eval/ewok_fast",
+    "baseline_stdout_score_line": "1.0\t53.45",
+    "bsm_stdout_score_line": "1.0\t51.91"
+  },
+  "scientific_interpretation": "The non-compliant mature-checkpoint BSM adaptation transfers positively to fast Entity Tracking (+1.51) while leaving BLiMP nearly unchanged and Supplement unchanged, but it damages fast EWoK (-1.54). This supports that the synthetic binding signal touches an Entity-like capability, but not a joint Entity/EWoK relation-knowledge improvement. A legal route must integrate natural high-fidelity binding experience within <=100M from scratch and must explicitly protect EWoK/Supplement/Reading; optimizing this over-budget mature adaptation is not a valid submission path."
+}

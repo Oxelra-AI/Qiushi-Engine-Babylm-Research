@@ -1,0 +1,58 @@
+{
+  "variant": "masking_curriculum_wwm_to_token",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "parameter_count": 34467424,
+  "vocab_size": 16384,
+  "tokenizer_label": "baseline16k",
+  "word_exposure": 200000,
+  "loss_first": 9.78470516204834,
+  "loss_last": 6.702259063720703,
+  "actual_training_steps": 20,
+  "masking_curriculum": "wwm_to_token",
+  "mask_prob_start": 0.15,
+  "mask_prob_end": 0.15,
+  "switch_frac": 0.7,
+  "amlm_window": null,
+  "n_amlm_updates": 0,
+  "hidden_size": 480,
+  "n_layer": 8,
+  "n_head": 8,
+  "ffn_mult": 4,
+  "seed": 43,
+  "seq_length": 256,
+  "max_seq_length": 256,
+  "seq_len_schedule": "0.0:64,0.5:128,0.8:256",
+  "saved_checkpoints": [
+    {
+      "name": "chck_1M",
+      "target_word_exposure": 100000,
+      "actual_cumulative_word_exposure": 102400,
+      "path": "hf_model/chck_1M"
+    },
+    {
+      "name": "chck_1M",
+      "target_word_exposure": 200000,
+      "actual_cumulative_word_exposure": 200000,
+      "path": "hf_model/chck_1M"
+    }
+  ],
+  "dynamics_traces_file": "dynamics_traces.jsonl",
+  "source_words_consumed": {
+    "epoch1::open_subtitles.train.txt": 51360,
+    "epoch1::gutenberg.train.txt": 49280,
+    "epoch1::childes.train.txt": 52800,
+    "epoch1::simple_wiki.train.txt": 30720,
+    "epoch1::bnc_spoken.train.txt": 15200,
+    "epoch1::switchboard.train.txt": 640
+  },
+  "data_source_type": "official_corpus_fullcycle",
+  "selection_epochs": [
+    {
+      "epoch_index": 1,
+      "shuffle_seed": 43,
+      "words_added": 200000,
+      "examples_added": 1250
+    }
+  ]
+}

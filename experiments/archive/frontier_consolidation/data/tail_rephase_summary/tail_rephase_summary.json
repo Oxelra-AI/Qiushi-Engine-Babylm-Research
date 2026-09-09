@@ -1,0 +1,334 @@
+{
+  "status": "TAIL_REPHASE_SUMMARY",
+  "created_utc": "2026-08-30T18:24:18Z",
+  "score_rows": [
+    {
+      "label": "legal100M_ref",
+      "BLiMP": 65.8707,
+      "Supplement": 61.1657,
+      "EWoK": 50.3932,
+      "Entity": 27.4008,
+      "COMPS": 52.0083,
+      "GlobalPIQA": 36.065,
+      "Reading": 8.14,
+      "cheap7": 43.00624285714286,
+      "delta_vs_legal100M_cheap7": 0.0,
+      "delta_vs_continuous90M_cheap7": -0.07375714285713997
+    },
+    {
+      "label": "continuous_90M",
+      "path": "experiments/archive/frontier_consolidation/data/rephase_eval/per_target/continuous_chck_90M.json",
+      "BLiMP": 66.13,
+      "Supplement": 61.4,
+      "EWoK": 50.22,
+      "Entity": 27.76,
+      "COMPS": 51.9,
+      "GlobalPIQA_parallel": 29.13,
+      "GlobalPIQA_nonparallel": 43.0,
+      "GlobalPIQA": 36.065,
+      "Reading": 8.085,
+      "cheap7": 43.08,
+      "delta_vs_legal100M_cheap7": 0.07375714285713997,
+      "delta_vs_continuous90M_cheap7": 0.0
+    },
+    {
+      "label": "matched_lr_chunkshuffle_90M",
+      "path": "experiments/archive/frontier_consolidation/data/rephase_eval/per_target/matched_lr_chck_90M.json",
+      "BLiMP": 66.48,
+      "Supplement": 60.7,
+      "EWoK": 51.02,
+      "Entity": 27.4,
+      "COMPS": 51.84,
+      "GlobalPIQA_parallel": 30.1,
+      "GlobalPIQA_nonparallel": 44.0,
+      "GlobalPIQA": 37.05,
+      "Reading": 8.635,
+      "cheap7": 43.30357142857143,
+      "delta_vs_legal100M_cheap7": 0.2973285714285723,
+      "delta_vs_continuous90M_cheap7": 0.2235714285714323
+    },
+    {
+      "label": "base_lr_chunkshuffle_90M",
+      "path": "experiments/archive/frontier_consolidation/data/rephase_eval/per_target/base_lr_chck_90M.json",
+      "BLiMP": 65.89,
+      "Supplement": 59.29,
+      "EWoK": 51.68,
+      "Entity": 27.44,
+      "COMPS": 52.03,
+      "GlobalPIQA_parallel": 30.1,
+      "GlobalPIQA_nonparallel": 45.0,
+      "GlobalPIQA": 37.55,
+      "Reading": 7.665,
+      "cheap7": 43.07785714285715,
+      "delta_vs_legal100M_cheap7": 0.07161428571428985,
+      "delta_vs_continuous90M_cheap7": -0.0021428571428501186
+    },
+    {
+      "label": "matched_lr_original_tail_90M",
+      "path": "experiments/archive/frontier_consolidation/data/tail_replay_eval/per_target/tail_replay_matched_lr_chck_90M.json",
+      "BLiMP": 65.84,
+      "Supplement": 61.24,
+      "EWoK": 50.53,
+      "Entity": 28.13,
+      "COMPS": 51.66,
+      "GlobalPIQA_parallel": 29.13,
+      "GlobalPIQA_nonparallel": 43.0,
+      "GlobalPIQA": 36.065,
+      "Reading": 8.17,
+      "cheap7": 43.090714285714284,
+      "delta_vs_legal100M_cheap7": 0.08447142857142609,
+      "delta_vs_continuous90M_cheap7": 0.01071428571428612
+    }
+  ],
+  "scientific_reading": {
+    "matched_lr_chunkshuffle_movement": 0.2973285714285723,
+    "matched_lr_original_tail_movement": 0.08447142857142609,
+    "original_tail_vs_continuous90M": 0.01071428571428612,
+    "base_lr_chunkshuffle_movement": 0.07161428571428985,
+    "reading": "The only large-ish restart movement appears in the research token-chunk shuffle presentation. It is not reproduced when the matched-LR restart consumes the original post-80M row stream. The optimizer-state/tail-LR package is therefore not a route to the legal SOTA gap."
+  },
+  "probe_confounds": [
+    {
+      "axis": "post_80M_text_order",
+      "original_continuous": "fixed order from frozen 100M stream after the batch that saved chck_80M",
+      "restart": "fresh random shuffle of token chunks from the 10M pool for each continuation pass, train_rng_seed=43044",
+      "scientific_consequence": "a score movement cannot by itself be assigned to optimizer-state reset"
+    },
+    {
+      "axis": "training_unit",
+      "original_continuous": "one JSONL row is one example, tokenized then truncated/padded to length 256",
+      "restart": "all rows are concatenated into a token buffer and split into length-256 chunks",
+      "scientific_consequence": "context boundaries, truncation, and source/rewrite adjacency differ from the original run"
+    },
+    {
+      "axis": "word_accounting",
+      "original_continuous": "batch word exposure is the sum of row word counts",
+      "restart": "batch word exposure is approximated from selected token-chunk fraction of the 10M pool",
+      "scientific_consequence": "nominal total exposure is close, but row/source composition around each checkpoint differs"
+    },
+    {
+      "axis": "gradient_step_update",
+      "original_continuous": "AdamW plus gradient clipping at norm 1.0",
+      "restart": "AdamW without gradient clipping",
+      "scientific_consequence": "large-update behavior is not identical, especially for base-LR restart"
+    },
+    {
+      "axis": "learning_rate_schedule",
+      "original_continuous": "single 2529-step cosine schedule, LR about 1.07e-4 at 80M and decaying to zero by 100M",
+      "matched_lr": "fresh 20M cosine tail starting near 1.08e-4 with no warmup",
+      "base_lr": "fresh 20M cosine tail at peak 1e-3 with warmup 0.06",
+      "scientific_consequence": "matched-LR is closer to the inherited COMPACT_EXPERIENCE restart; base-LR is a separate late-schedule perturbation"
+    }
+  ],
+  "original_tail_segment": {
+    "row_start_index0": 518144,
+    "tail_rows": 129256,
+    "tail_words": 19965632,
+    "pass_rows": {
+      "9": 64516,
+      "10": 64740
+    },
+    "pass_words": {
+      "9": 9965632,
+      "10": 10000000
+    },
+    "first_tail_rows_no_text": [
+      {
+        "words": 160,
+        "example_id": 12380,
+        "source": "childes",
+        "global_row_index0": 518144,
+        "pass_index1": 9
+      },
+      {
+        "words": 160,
+        "example_id": 46575,
+        "source": "open_subtitles",
+        "global_row_index0": 518145,
+        "pass_index1": 9
+      },
+      {
+        "words": 158,
+        "example_id": 304690,
+        "source": "qwen_pair_packed",
+        "global_row_index0": 518146,
+        "pass_index1": 9
+      },
+      {
+        "words": 160,
+        "example_id": 27673,
+        "source": "gutenberg",
+        "global_row_index0": 518147,
+        "pass_index1": 9
+      },
+      {
+        "words": 148,
+        "example_id": 310525,
+        "source": "qwen_pair_packed",
+        "global_row_index0": 518148,
+        "pass_index1": 9
+      }
+    ],
+    "last_tail_rows_no_text": [
+      {
+        "words": 160,
+        "example_id": 18897,
+        "source": "childes",
+        "global_row_index0": 647395,
+        "pass_index1": 10
+      },
+      {
+        "words": 160,
+        "example_id": 57382,
+        "source": "simple_wiki",
+        "global_row_index0": 647396,
+        "pass_index1": 10
+      },
+      {
+        "words": 148,
+        "example_id": 305591,
+        "source": "qwen_pair_packed",
+        "global_row_index0": 647397,
+        "pass_index1": 10
+      },
+      {
+        "words": 160,
+        "example_id": 38797,
+        "source": "open_subtitles",
+        "global_row_index0": 647398,
+        "pass_index1": 10
+      },
+      {
+        "words": 160,
+        "example_id": 40450,
+        "source": "open_subtitles",
+        "global_row_index0": 647399,
+        "pass_index1": 10
+      }
+    ]
+  },
+  "experience_utilization_dryruns": {
+    "U256": {
+      "path": "experiments/archive/frontier_consolidation/data/experience_utilization_dryruns/U256/dryrun_metrics.json",
+      "total_steps_executed": 2530,
+      "total_charged_words": 100000000,
+      "raw_tokens_per_epoch": 14664519,
+      "verification": {
+        "completed_epochs": 10,
+        "total_steps_executed": 2530,
+        "total_charged_words": 100000000,
+        "steps_match_expected": true,
+        "words_match_100M": true,
+        "all_epoch_words_10M": true,
+        "all_epoch_steps_253": true,
+        "active_tokens_per_epoch": [
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519
+        ],
+        "checkpoint_count": 100
+      },
+      "stage_records": [
+        {
+          "stage_idx": 0,
+          "length": 256,
+          "num_epochs": 10,
+          "chunks_per_epoch": 79882,
+          "charged_words_per_epoch": 10000000,
+          "active_tokens_per_epoch": 14664519,
+          "rows": 64740,
+          "words": 10000000,
+          "tokens": 14664519,
+          "chunks": 79882,
+          "overlong_words": 0,
+          "continuation_chunks": 0
+        }
+      ]
+    },
+    "U64_128_256": {
+      "path": "experiments/archive/frontier_consolidation/data/experience_utilization_dryruns/U64_128_256/dryrun_metrics.json",
+      "total_steps_executed": 2530,
+      "total_charged_words": 100000000,
+      "raw_tokens_per_epoch": 14664519,
+      "verification": {
+        "completed_epochs": 10,
+        "total_steps_executed": 2530,
+        "total_charged_words": 100000000,
+        "steps_match_expected": true,
+        "words_match_100M": true,
+        "all_epoch_words_10M": true,
+        "all_epoch_steps_253": true,
+        "active_tokens_per_epoch": [
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519,
+          14664519
+        ],
+        "checkpoint_count": 100
+      },
+      "stage_records": [
+        {
+          "stage_idx": 0,
+          "length": 64,
+          "num_epochs": 3,
+          "chunks_per_epoch": 264593,
+          "charged_words_per_epoch": 10000000,
+          "active_tokens_per_epoch": 14664519,
+          "rows": 64740,
+          "words": 10000000,
+          "tokens": 14664519,
+          "chunks": 264593,
+          "overlong_words": 5,
+          "continuation_chunks": 5
+        },
+        {
+          "stage_idx": 1,
+          "length": 128,
+          "num_epochs": 4,
+          "chunks_per_epoch": 144471,
+          "charged_words_per_epoch": 10000000,
+          "active_tokens_per_epoch": 14664519,
+          "rows": 64740,
+          "words": 10000000,
+          "tokens": 14664519,
+          "chunks": 144471,
+          "overlong_words": 0,
+          "continuation_chunks": 0
+        },
+        {
+          "stage_idx": 2,
+          "length": 256,
+          "num_epochs": 3,
+          "chunks_per_epoch": 79882,
+          "charged_words_per_epoch": 10000000,
+          "active_tokens_per_epoch": 14664519,
+          "rows": 64740,
+          "words": 10000000,
+          "tokens": 14664519,
+          "chunks": 79882,
+          "overlong_words": 0,
+          "continuation_chunks": 0
+        }
+      ]
+    }
+  },
+  "next_route_candidate": {
+    "name": "faithful word-boundary experience utilization on the protected legal16 compact-view reinvest stream",
+    "why_distinct": "It changes which charged corpus tokens are visible and predictable under the same word budget, rather than changing mask rate, optimizer, benchmark-specific targets, or final-task engineering.",
+    "current_cpu_status": "A01 trainer runs successfully on A02 legal16 pool in dry-run mode for U256 and U64_128_256, both with 100M charged words and 2,530 steps.",
+    "not_yet_gpu_authorized": "Conditional on the completed SGCR endpoint: a one-arm U64_128_256 or paired U256/U64_128_256 comparison remains proposed, depending on the scientific contrast needed."
+  }
+}

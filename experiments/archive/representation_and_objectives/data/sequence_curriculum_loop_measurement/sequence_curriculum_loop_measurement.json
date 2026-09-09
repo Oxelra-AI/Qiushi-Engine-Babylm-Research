@@ -1,0 +1,885 @@
+{
+  "status": "SEQUENCE_CURRICULUM_LOOP_MEASUREMENT",
+  "purpose": "Turn research code reading into a direct current-loop measurement and define a compliant faithful 64/128/256 chunk-stream regime without model training.",
+  "input_files": {
+    "train_10M": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "train_10M_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "train_100M": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "train_100M_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691"
+  },
+  "tokenizers": {
+    "legal40k": {
+      "path": "experiments/archive/representation_and_objectives/data/legal_representation_route_map/tokenizers/legal_byte_bpe_40k",
+      "tokenizer_json_sha256": "94b44bcf5901d097e20294e8220740758eac29af3ec20d58d8da867c85197758",
+      "vocab_size": 40000,
+      "len_tokenizer": 40000,
+      "is_fast": true,
+      "mask_token_id": 4
+    },
+    "minfreq25": {
+      "path": "experiments/archive/representation_and_objectives/data/tokenizer_support_spectrum/tokenizers/legal_byte_bpe_40k_minfreq25",
+      "tokenizer_json_sha256": "311e7a20cd8b20f512ab574b8d62b574b5106408e742c32b0bce152dfe8162e0",
+      "vocab_size": 29529,
+      "len_tokenizer": 29529,
+      "is_fast": true,
+      "mask_token_id": 4
+    }
+  },
+  "current_loop_first_step": {
+    "legal40k": {
+      "tokenizer": "legal40k",
+      "first_effective_batch_rows": 256,
+      "first_effective_batch_debited_words": 39370,
+      "first_effective_batch_full256_tokens": 53967,
+      "first_effective_batch_full256_word_groups": 38915,
+      "measurement_path_matches_step65_lines": "research lines 731-747 pop full batch words before slicing input_ids/attention_mask/word_group to cur_len; this record uses the same dataset, 64-row microbatches, 4-microbatch combine, and WWM mask function, without model forward/backward.",
+      "rng_note": "Visibility and word debit are deterministic. Mask sample uses the same algorithm and seed on CPU; GPU random placement in a real trainer may differ, but the visibility/debit result does not depend on random masking.",
+      "by_length": {
+        "64": {
+          "rows": 256,
+          "charged_words_debited_by_current_loop": 39370,
+          "visible_tokens_entering_loss_candidates": 16384,
+          "full256_tokens_in_same_rows": 53967,
+          "visible_token_fraction_vs_full256": 0.303592936424111,
+          "visible_word_groups_entering_loss_candidates": 12119,
+          "full256_word_groups_in_same_rows": 38915,
+          "visible_word_group_fraction_vs_full256": 0.3114223307208017,
+          "word_groups_hidden_but_charged_vs_full256": 26796,
+          "hidden_group_fraction_vs_full256": 0.6885776692791983,
+          "masked_tokens_sampled_wwm015_cpu_rng": 2436,
+          "selected_word_groups_sampled_wwm015_cpu_rng": 1781,
+          "selected_groups_per_visible_group": 0.14695932007591386,
+          "masked_tokens_per_visible_token": 0.148681640625,
+          "visible_groups_per_debited_word": 0.3078232156464313,
+          "visible_tokens_per_debited_word": 0.4161544323088646,
+          "row_visible_group_quantiles": {
+            "min": 29.0,
+            "p10": 37.0,
+            "median": 48.0,
+            "p90": 56.0,
+            "max": 61.0,
+            "mean": 47.33984375
+          },
+          "row_selected_group_quantiles": {
+            "min": 0.0,
+            "p10": 4.0,
+            "median": 7.0,
+            "p90": 10.0,
+            "max": 14.0,
+            "mean": 6.95703125
+          }
+        },
+        "128": {
+          "rows": 256,
+          "charged_words_debited_by_current_loop": 39370,
+          "visible_tokens_entering_loss_candidates": 32614,
+          "full256_tokens_in_same_rows": 53967,
+          "visible_token_fraction_vs_full256": 0.6043322771323216,
+          "visible_word_groups_entering_loss_candidates": 24113,
+          "full256_word_groups_in_same_rows": 38915,
+          "visible_word_group_fraction_vs_full256": 0.6196325324425029,
+          "word_groups_hidden_but_charged_vs_full256": 14802,
+          "hidden_group_fraction_vs_full256": 0.3803674675574971,
+          "masked_tokens_sampled_wwm015_cpu_rng": 4699,
+          "selected_word_groups_sampled_wwm015_cpu_rng": 3541,
+          "selected_groups_per_visible_group": 0.14685024675486252,
+          "masked_tokens_per_visible_token": 0.14407922977862267,
+          "visible_groups_per_debited_word": 0.6124714249428499,
+          "visible_tokens_per_debited_word": 0.8283972567945136,
+          "row_visible_group_quantiles": {
+            "min": 56.0,
+            "p10": 77.0,
+            "median": 96.5,
+            "p90": 110.0,
+            "max": 117.0,
+            "mean": 94.19140625
+          },
+          "row_selected_group_quantiles": {
+            "min": 5.0,
+            "p10": 9.0,
+            "median": 14.0,
+            "p90": 19.0,
+            "max": 26.0,
+            "mean": 13.83203125
+          }
+        },
+        "256": {
+          "rows": 256,
+          "charged_words_debited_by_current_loop": 39370,
+          "visible_tokens_entering_loss_candidates": 53967,
+          "full256_tokens_in_same_rows": 53967,
+          "visible_token_fraction_vs_full256": 1.0,
+          "visible_word_groups_entering_loss_candidates": 38915,
+          "full256_word_groups_in_same_rows": 38915,
+          "visible_word_group_fraction_vs_full256": 1.0,
+          "word_groups_hidden_but_charged_vs_full256": 0,
+          "hidden_group_fraction_vs_full256": 0.0,
+          "masked_tokens_sampled_wwm015_cpu_rng": 8043,
+          "selected_word_groups_sampled_wwm015_cpu_rng": 5783,
+          "selected_groups_per_visible_group": 0.14860593601439034,
+          "masked_tokens_per_visible_token": 0.14903552170771026,
+          "visible_groups_per_debited_word": 0.9884429768859537,
+          "visible_tokens_per_debited_word": 1.370764541529083,
+          "row_visible_group_quantiles": {
+            "min": 69.0,
+            "p10": 133.5,
+            "median": 160.0,
+            "p90": 160.0,
+            "max": 160.0,
+            "mean": 152.01171875
+          },
+          "row_selected_group_quantiles": {
+            "min": 9.0,
+            "p10": 17.0,
+            "median": 22.5,
+            "p90": 29.0,
+            "max": 39.0,
+            "mean": 22.58984375
+          }
+        }
+      }
+    },
+    "minfreq25": {
+      "tokenizer": "minfreq25",
+      "first_effective_batch_rows": 256,
+      "first_effective_batch_debited_words": 39370,
+      "first_effective_batch_full256_tokens": 54617,
+      "first_effective_batch_full256_word_groups": 38848,
+      "measurement_path_matches_step65_lines": "research lines 731-747 pop full batch words before slicing input_ids/attention_mask/word_group to cur_len; this record uses the same dataset, 64-row microbatches, 4-microbatch combine, and WWM mask function, without model forward/backward.",
+      "rng_note": "Visibility and word debit are deterministic. Mask sample uses the same algorithm and seed on CPU; GPU random placement in a real trainer may differ, but the visibility/debit result does not depend on random masking.",
+      "by_length": {
+        "64": {
+          "rows": 256,
+          "charged_words_debited_by_current_loop": 39370,
+          "visible_tokens_entering_loss_candidates": 16384,
+          "full256_tokens_in_same_rows": 54617,
+          "visible_token_fraction_vs_full256": 0.2999798597506271,
+          "visible_word_groups_entering_loss_candidates": 11976,
+          "full256_word_groups_in_same_rows": 38848,
+          "visible_word_group_fraction_vs_full256": 0.3082784184514003,
+          "word_groups_hidden_but_charged_vs_full256": 26872,
+          "hidden_group_fraction_vs_full256": 0.6917215815485996,
+          "masked_tokens_sampled_wwm015_cpu_rng": 2368,
+          "selected_word_groups_sampled_wwm015_cpu_rng": 1757,
+          "selected_groups_per_visible_group": 0.14671008684034736,
+          "masked_tokens_per_visible_token": 0.14453125,
+          "visible_groups_per_debited_word": 0.30419100838201674,
+          "visible_tokens_per_debited_word": 0.4161544323088646,
+          "row_visible_group_quantiles": {
+            "min": 29.0,
+            "p10": 37.0,
+            "median": 48.0,
+            "p90": 56.0,
+            "max": 61.0,
+            "mean": 46.78125
+          },
+          "row_selected_group_quantiles": {
+            "min": 1.0,
+            "p10": 3.0,
+            "median": 7.0,
+            "p90": 10.0,
+            "max": 17.0,
+            "mean": 6.86328125
+          }
+        },
+        "128": {
+          "rows": 256,
+          "charged_words_debited_by_current_loop": 39370,
+          "visible_tokens_entering_loss_candidates": 32624,
+          "full256_tokens_in_same_rows": 54617,
+          "visible_token_fraction_vs_full256": 0.5973231777651646,
+          "visible_word_groups_entering_loss_candidates": 23764,
+          "full256_word_groups_in_same_rows": 38848,
+          "visible_word_group_fraction_vs_full256": 0.6117174629324547,
+          "word_groups_hidden_but_charged_vs_full256": 15084,
+          "hidden_group_fraction_vs_full256": 0.3882825370675453,
+          "masked_tokens_sampled_wwm015_cpu_rng": 4707,
+          "selected_word_groups_sampled_wwm015_cpu_rng": 3489,
+          "selected_groups_per_visible_group": 0.14681871738764518,
+          "masked_tokens_per_visible_token": 0.14428028445316332,
+          "visible_groups_per_debited_word": 0.6036068072136145,
+          "visible_tokens_per_debited_word": 0.8286512573025147,
+          "row_visible_group_quantiles": {
+            "min": 55.0,
+            "p10": 76.0,
+            "median": 95.0,
+            "p90": 108.0,
+            "max": 115.0,
+            "mean": 92.828125
+          },
+          "row_selected_group_quantiles": {
+            "min": 4.0,
+            "p10": 8.5,
+            "median": 13.0,
+            "p90": 18.0,
+            "max": 26.0,
+            "mean": 13.62890625
+          }
+        },
+        "256": {
+          "rows": 256,
+          "charged_words_debited_by_current_loop": 39370,
+          "visible_tokens_entering_loss_candidates": 54617,
+          "full256_tokens_in_same_rows": 54617,
+          "visible_token_fraction_vs_full256": 1.0,
+          "visible_word_groups_entering_loss_candidates": 38848,
+          "full256_word_groups_in_same_rows": 38848,
+          "visible_word_group_fraction_vs_full256": 1.0,
+          "word_groups_hidden_but_charged_vs_full256": 0,
+          "hidden_group_fraction_vs_full256": 0.0,
+          "masked_tokens_sampled_wwm015_cpu_rng": 8109,
+          "selected_word_groups_sampled_wwm015_cpu_rng": 5771,
+          "selected_groups_per_visible_group": 0.14855333607907742,
+          "masked_tokens_per_visible_token": 0.14847025651353973,
+          "visible_groups_per_debited_word": 0.9867411734823469,
+          "visible_tokens_per_debited_word": 1.387274574549149,
+          "row_visible_group_quantiles": {
+            "min": 69.0,
+            "p10": 132.0,
+            "median": 160.0,
+            "p90": 160.0,
+            "max": 160.0,
+            "mean": 151.75
+          },
+          "row_selected_group_quantiles": {
+            "min": 7.0,
+            "p10": 17.0,
+            "median": 23.0,
+            "p90": 28.5,
+            "max": 39.0,
+            "mean": 22.54296875
+          }
+        }
+      }
+    }
+  },
+  "faithful_streaming_chunking": {
+    "legal40k": {
+      "tokenizer": "legal40k",
+      "rows": 64740,
+      "words": 10000000,
+      "raw_tokens_untruncated": 13942644,
+      "raw_tokens_per_word": 1.3942644,
+      "unassigned_token_offsets": 0,
+      "row_token_len_sample_quantiles": {
+        "min": 107.0,
+        "p10": 152.0,
+        "median": 182.0,
+        "p90": 210.0,
+        "max": 269.0,
+        "mean": 181.534
+      },
+      "row_word_sample_quantiles": {
+        "min": 83.0,
+        "p10": 122.0,
+        "median": 142.0,
+        "p90": 157.0,
+        "max": 160.0,
+        "mean": 140.589
+      },
+      "by_length": {
+        "64": {
+          "stage_length": 64,
+          "inverse_scaled_row_batch": 1024,
+          "prefix_rows_per_epoch_current_loop": 64740,
+          "prefix_steps_per_epoch_current_loop_batch256": 253,
+          "prefix_words_debited_per_epoch": 10000000,
+          "prefix_active_tokens_per_epoch": 4143297,
+          "prefix_visible_whitespace_words_per_epoch": 3064708,
+          "prefix_hidden_whitespace_words_but_debited": 6935292,
+          "prefix_hidden_whitespace_word_fraction": 0.6935292,
+          "faithful_chunks_per_epoch": 252269,
+          "faithful_words_charged_per_epoch": 10000000,
+          "faithful_active_tokens_per_epoch": 13942644,
+          "faithful_steps_per_epoch_inverse_batch": 247,
+          "faithful_active_token_ratio_vs_prefix": 3.3651085114101162,
+          "faithful_step_ratio_vs_prefix": 0.9762845849802372,
+          "faithful_overlong_words": 1,
+          "faithful_zero_token_words": 0,
+          "chunk_words_quantiles": {
+            "min": 1.0,
+            "p10": 15.0,
+            "median": 43.0,
+            "p90": 54.0,
+            "max": 64.0,
+            "mean": 39.64022531504069
+          },
+          "sample_chunks": [
+            {
+              "row_index": 0,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 135,
+              "row_tokens": 154,
+              "chunks_from_this_row": 3,
+              "chunk_word_counts_head": [
+                55,
+                58,
+                22
+              ]
+            },
+            {
+              "row_index": 1,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 144,
+              "row_tokens": 201,
+              "chunks_from_this_row": 4,
+              "chunk_word_counts_head": [
+                44,
+                43,
+                47,
+                10
+              ]
+            },
+            {
+              "row_index": 2,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 160,
+              "row_tokens": 201,
+              "chunks_from_this_row": 4,
+              "chunk_word_counts_head": [
+                53,
+                50,
+                51,
+                6
+              ]
+            },
+            {
+              "row_index": 3,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 124,
+              "row_tokens": 157,
+              "chunks_from_this_row": 3,
+              "chunk_word_counts_head": [
+                55,
+                49,
+                20
+              ]
+            },
+            {
+              "row_index": 4,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 159,
+              "row_tokens": 181,
+              "chunks_from_this_row": 3,
+              "chunk_word_counts_head": [
+                51,
+                59,
+                49
+              ]
+            }
+          ]
+        },
+        "128": {
+          "stage_length": 128,
+          "inverse_scaled_row_batch": 512,
+          "prefix_rows_per_epoch_current_loop": 64740,
+          "prefix_steps_per_epoch_current_loop_batch256": 253,
+          "prefix_words_debited_per_epoch": 10000000,
+          "prefix_active_tokens_per_epoch": 8272692,
+          "prefix_visible_whitespace_words_per_epoch": 6083342,
+          "prefix_hidden_whitespace_words_but_debited": 3916658,
+          "prefix_hidden_whitespace_word_fraction": 0.3916658,
+          "faithful_chunks_per_epoch": 140303,
+          "faithful_words_charged_per_epoch": 10000000,
+          "faithful_active_tokens_per_epoch": 13942644,
+          "faithful_steps_per_epoch_inverse_batch": 275,
+          "faithful_active_token_ratio_vs_prefix": 1.6853817354737732,
+          "faithful_step_ratio_vs_prefix": 1.0869565217391304,
+          "faithful_overlong_words": 0,
+          "faithful_zero_token_words": 0,
+          "chunk_words_quantiles": {
+            "min": 1.0,
+            "p10": 24.0,
+            "median": 75.0,
+            "p90": 106.0,
+            "max": 127.0,
+            "mean": 71.2743134501757
+          },
+          "sample_chunks": [
+            {
+              "row_index": 0,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 135,
+              "row_tokens": 154,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                113,
+                22
+              ]
+            },
+            {
+              "row_index": 1,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 144,
+              "row_tokens": 201,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                87,
+                57
+              ]
+            },
+            {
+              "row_index": 2,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 160,
+              "row_tokens": 201,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                103,
+                57
+              ]
+            },
+            {
+              "row_index": 3,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 124,
+              "row_tokens": 157,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                104,
+                20
+              ]
+            },
+            {
+              "row_index": 4,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 159,
+              "row_tokens": 181,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                111,
+                48
+              ]
+            }
+          ]
+        },
+        "256": {
+          "stage_length": 256,
+          "inverse_scaled_row_batch": 256,
+          "prefix_rows_per_epoch_current_loop": 64740,
+          "prefix_steps_per_epoch_current_loop_batch256": 253,
+          "prefix_words_debited_per_epoch": 10000000,
+          "prefix_active_tokens_per_epoch": 13706162,
+          "prefix_visible_whitespace_words_per_epoch": 9871336,
+          "prefix_hidden_whitespace_words_but_debited": 128664,
+          "prefix_hidden_whitespace_word_fraction": 0.0128664,
+          "faithful_chunks_per_epoch": 76164,
+          "faithful_words_charged_per_epoch": 10000000,
+          "faithful_active_tokens_per_epoch": 13942644,
+          "faithful_steps_per_epoch_inverse_batch": 298,
+          "faithful_active_token_ratio_vs_prefix": 1.0172536994674366,
+          "faithful_step_ratio_vs_prefix": 1.1778656126482214,
+          "faithful_overlong_words": 0,
+          "faithful_zero_token_words": 0,
+          "chunk_words_quantiles": {
+            "min": 1.0,
+            "p10": 14.0,
+            "median": 160.0,
+            "p90": 160.0,
+            "max": 160.0,
+            "mean": 131.29562522976735
+          },
+          "sample_chunks": [
+            {
+              "row_index": 0,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 135,
+              "row_tokens": 154,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                135
+              ]
+            },
+            {
+              "row_index": 1,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 144,
+              "row_tokens": 201,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                144
+              ]
+            },
+            {
+              "row_index": 2,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 160,
+              "row_tokens": 201,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                160
+              ]
+            },
+            {
+              "row_index": 3,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 124,
+              "row_tokens": 157,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                124
+              ]
+            },
+            {
+              "row_index": 4,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 159,
+              "row_tokens": 181,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                159
+              ]
+            }
+          ]
+        }
+      },
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "epochs_by_length": {
+            "64": 3,
+            "128": 4,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 86639145,
+          "faithful_active_tokens_total": 139426440,
+          "faithful_active_token_ratio_vs_prefix": 1.6092776538826647,
+          "prefix_optimizer_steps_total": 2530,
+          "faithful_optimizer_steps_total_inverse_batch": 2735,
+          "faithful_step_ratio_vs_prefix": 1.0810276679841897
+        },
+        "64x7_256x3": {
+          "epochs_by_length": {
+            "64": 7,
+            "128": 0,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 70121565,
+          "faithful_active_tokens_total": 139426440,
+          "faithful_active_token_ratio_vs_prefix": 1.9883532262863786,
+          "prefix_optimizer_steps_total": 2530,
+          "faithful_optimizer_steps_total_inverse_batch": 2623,
+          "faithful_step_ratio_vs_prefix": 1.0367588932806324
+        }
+      },
+      "compliance_regime": "Each stage epoch partitions the same 10M training words into word-boundary chunks at the stage length; every whitespace word is charged exactly once per epoch, so a 10-epoch 64/128/256 curriculum remains 100M charged-word exposure. Extra target tokens come from revealing suffix words that prefix slicing hid, not from adding new words or extra epochs."
+    },
+    "minfreq25": {
+      "tokenizer": "minfreq25",
+      "rows": 64740,
+      "words": 10000000,
+      "raw_tokens_untruncated": 14138512,
+      "raw_tokens_per_word": 1.4138512,
+      "unassigned_token_offsets": 0,
+      "row_token_len_sample_quantiles": {
+        "min": 112.0,
+        "p10": 157.0,
+        "median": 187.0,
+        "p90": 217.0,
+        "max": 287.0,
+        "mean": 187.01
+      },
+      "row_word_sample_quantiles": {
+        "min": 83.0,
+        "p10": 122.0,
+        "median": 142.0,
+        "p90": 157.0,
+        "max": 160.0,
+        "mean": 140.589
+      },
+      "by_length": {
+        "64": {
+          "stage_length": 64,
+          "inverse_scaled_row_batch": 1024,
+          "prefix_rows_per_epoch_current_loop": 64740,
+          "prefix_steps_per_epoch_current_loop_batch256": 253,
+          "prefix_words_debited_per_epoch": 10000000,
+          "prefix_active_tokens_per_epoch": 4143302,
+          "prefix_visible_whitespace_words_per_epoch": 3022295,
+          "prefix_hidden_whitespace_words_but_debited": 6977705,
+          "prefix_hidden_whitespace_word_fraction": 0.6977705,
+          "faithful_chunks_per_epoch": 255774,
+          "faithful_words_charged_per_epoch": 10000000,
+          "faithful_active_tokens_per_epoch": 14138512,
+          "faithful_steps_per_epoch_inverse_batch": 250,
+          "faithful_active_token_ratio_vs_prefix": 3.4123778570811396,
+          "faithful_step_ratio_vs_prefix": 0.9881422924901185,
+          "faithful_overlong_words": 1,
+          "faithful_zero_token_words": 0,
+          "chunk_words_quantiles": {
+            "min": 1.0,
+            "p10": 15.0,
+            "median": 42.0,
+            "p90": 53.0,
+            "max": 64.0,
+            "mean": 39.09701533384941
+          },
+          "sample_chunks": [
+            {
+              "row_index": 0,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 135,
+              "row_tokens": 159,
+              "chunks_from_this_row": 3,
+              "chunk_word_counts_head": [
+                54,
+                56,
+                25
+              ]
+            },
+            {
+              "row_index": 1,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 144,
+              "row_tokens": 205,
+              "chunks_from_this_row": 4,
+              "chunk_word_counts_head": [
+                42,
+                43,
+                47,
+                12
+              ]
+            },
+            {
+              "row_index": 2,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 160,
+              "row_tokens": 207,
+              "chunks_from_this_row": 4,
+              "chunk_word_counts_head": [
+                53,
+                48,
+                48,
+                11
+              ]
+            },
+            {
+              "row_index": 3,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 124,
+              "row_tokens": 167,
+              "chunks_from_this_row": 3,
+              "chunk_word_counts_head": [
+                53,
+                45,
+                26
+              ]
+            },
+            {
+              "row_index": 4,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 159,
+              "row_tokens": 187,
+              "chunks_from_this_row": 3,
+              "chunk_word_counts_head": [
+                48,
+                58,
+                53
+              ]
+            }
+          ]
+        },
+        "128": {
+          "stage_length": 128,
+          "inverse_scaled_row_batch": 512,
+          "prefix_rows_per_epoch_current_loop": 64740,
+          "prefix_steps_per_epoch_current_loop_batch256": 253,
+          "prefix_words_debited_per_epoch": 10000000,
+          "prefix_active_tokens_per_epoch": 8274284,
+          "prefix_visible_whitespace_words_per_epoch": 5997401,
+          "prefix_hidden_whitespace_words_but_debited": 4002599,
+          "prefix_hidden_whitespace_word_fraction": 0.4002599,
+          "faithful_chunks_per_epoch": 141373,
+          "faithful_words_charged_per_epoch": 10000000,
+          "faithful_active_tokens_per_epoch": 14138512,
+          "faithful_steps_per_epoch_inverse_batch": 277,
+          "faithful_active_token_ratio_vs_prefix": 1.7087293595433757,
+          "faithful_step_ratio_vs_prefix": 1.0948616600790513,
+          "faithful_overlong_words": 0,
+          "faithful_zero_token_words": 0,
+          "chunk_words_quantiles": {
+            "min": 1.0,
+            "p10": 23.0,
+            "median": 75.0,
+            "p90": 104.0,
+            "max": 126.0,
+            "mean": 70.73486450736704
+          },
+          "sample_chunks": [
+            {
+              "row_index": 0,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 135,
+              "row_tokens": 159,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                110,
+                25
+              ]
+            },
+            {
+              "row_index": 1,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 144,
+              "row_tokens": 205,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                85,
+                59
+              ]
+            },
+            {
+              "row_index": 2,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 160,
+              "row_tokens": 207,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                101,
+                59
+              ]
+            },
+            {
+              "row_index": 3,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 124,
+              "row_tokens": 167,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                99,
+                25
+              ]
+            },
+            {
+              "row_index": 4,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 159,
+              "row_tokens": 187,
+              "chunks_from_this_row": 2,
+              "chunk_word_counts_head": [
+                106,
+                53
+              ]
+            }
+          ]
+        },
+        "256": {
+          "stage_length": 256,
+          "inverse_scaled_row_batch": 256,
+          "prefix_rows_per_epoch_current_loop": 64740,
+          "prefix_steps_per_epoch_current_loop_batch256": 253,
+          "prefix_words_debited_per_epoch": 10000000,
+          "prefix_active_tokens_per_epoch": 13871340,
+          "prefix_visible_whitespace_words_per_epoch": 9855127,
+          "prefix_hidden_whitespace_words_but_debited": 144873,
+          "prefix_hidden_whitespace_word_fraction": 0.0144873,
+          "faithful_chunks_per_epoch": 77092,
+          "faithful_words_charged_per_epoch": 10000000,
+          "faithful_active_tokens_per_epoch": 14138512,
+          "faithful_steps_per_epoch_inverse_batch": 302,
+          "faithful_active_token_ratio_vs_prefix": 1.0192607203053201,
+          "faithful_step_ratio_vs_prefix": 1.1936758893280632,
+          "faithful_overlong_words": 0,
+          "faithful_zero_token_words": 0,
+          "chunk_words_quantiles": {
+            "min": 1.0,
+            "p10": 13.0,
+            "median": 159.0,
+            "p90": 160.0,
+            "max": 160.0,
+            "mean": 129.7151455403933
+          },
+          "sample_chunks": [
+            {
+              "row_index": 0,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 135,
+              "row_tokens": 159,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                135
+              ]
+            },
+            {
+              "row_index": 1,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 144,
+              "row_tokens": 205,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                144
+              ]
+            },
+            {
+              "row_index": 2,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 160,
+              "row_tokens": 207,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                160
+              ]
+            },
+            {
+              "row_index": 3,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 124,
+              "row_tokens": 167,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                124
+              ]
+            },
+            {
+              "row_index": 4,
+              "source": "cleanqwen_fineweb_compact_view_reinvest",
+              "row_words": 159,
+              "row_tokens": 187,
+              "chunks_from_this_row": 1,
+              "chunk_word_counts_head": [
+                159
+              ]
+            }
+          ]
+        }
+      },
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "epochs_by_length": {
+            "64": 3,
+            "128": 4,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 87141062,
+          "faithful_active_tokens_total": 141385120,
+          "faithful_active_token_ratio_vs_prefix": 1.622485619925082,
+          "prefix_optimizer_steps_total": 2530,
+          "faithful_optimizer_steps_total_inverse_batch": 2764,
+          "faithful_step_ratio_vs_prefix": 1.092490118577075
+        },
+        "64x7_256x3": {
+          "epochs_by_length": {
+            "64": 7,
+            "128": 0,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 70617134,
+          "faithful_active_tokens_total": 141385120,
+          "faithful_active_token_ratio_vs_prefix": 2.002136195445145,
+          "prefix_optimizer_steps_total": 2530,
+          "faithful_optimizer_steps_total_inverse_batch": 2656,
+          "faithful_step_ratio_vs_prefix": 1.049802371541502
+        }
+      },
+      "compliance_regime": "Each stage epoch partitions the same 10M training words into word-boundary chunks at the stage length; every whitespace word is charged exactly once per epoch, so a 10-epoch 64/128/256 curriculum remains 100M charged-word exposure. Extra target tokens come from revealing suffix words that prefix slicing hid, not from adding new words or extra epochs."
+    }
+  },
+  "conclusion": {
+    "current_seq_len_schedule_confirmed_as_prefix_slicing_with_full_word_debit": true,
+    "faithful_chunking_compliance_regime": "same 10M whitespace words per epoch, partitioned into stage-length word-boundary chunks; 10 epochs = 100M charged words",
+    "expensive_work_status": "No new GPU work launched. Use this measurement only to design a future sequence-curriculum route after the running depth result and A02 support-floor evidence are read."
+  }
+}

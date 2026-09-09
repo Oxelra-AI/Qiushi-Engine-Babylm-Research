@@ -1,0 +1,48 @@
+{
+  "adapter_activation": "gelu",
+  "adapter_bottleneck": 128,
+  "adapter_enabled": false,
+  "adapter_scale": 1.0,
+  "architectures": [
+    "AdapterDebertaV2ForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "auto_map": {
+    "AutoModelForMaskedLM": "adapter_modeling.AdapterDebertaV2ForMaskedLM"
+  },
+  "bos_token_id": 1,
+  "dtype": "float32",
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 480,
+  "initializer_range": 0.02,
+  "intermediate_size": 1920,
+  "layer_norm_eps": 1e-07,
+  "legacy": true,
+  "max_position_embeddings": 512,
+  "max_relative_positions": 256,
+  "model_type": "deberta-v2",
+  "num_attention_heads": 8,
+  "num_hidden_layers": 8,
+  "pad_token_id": 3,
+  "pooler_dropout": 0,
+  "pooler_hidden_act": "gelu",
+  "pooler_hidden_size": 480,
+  "pos_att_type": [
+    "p2c",
+    "c2p"
+  ],
+  "position_biased_input": true,
+  "position_buckets": 256,
+  "relative_attention": true,
+  "transformers_version": "4.57.6",
+  "type_vocab_size": 0,
+  "vocab_size": 16384,
+  "inference_ablation": {
+    "source_checkpoint": "experiments/archive/frontier_consolidation/training/runs/coupled_sparse20_aligned_20M_seed43022/hf_model/final",
+    "changed_config_field": "adapter_enabled true->false",
+    "adapter_scale_warning": "research sparse20 modeling ignores config.adapter_scale; disabling uses adapter.enabled branch, which is active.",
+    "scientific_purpose": "zero-training broad check: does coupled-trajectory hard-surface repair survive while broad damage is removed when live adapter output is disabled?"
+  }
+}

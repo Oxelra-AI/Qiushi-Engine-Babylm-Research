@@ -1,0 +1,179 @@
+# earlier analysis — Common R1 interface comparison design after layer mixing learning response result
+
+## Scientific scope
+
+layer mixing learning response result excluded the transferability of the **current layer-mixing readout**:
+
+- frozen encoder + trained layer-mixing readout: held-out both_correct 0.0;
+- unfrozen encoder + trained layer-mixing readout: train both_correct 0.76, held-out 0.12.
+
+This does **not** replace the still-unexecuted bidirectional dense intermediate-supervision control and does **not** prove all bidirectional routes fail. The next experiment may advance the causal/recursive branch, but it must keep the bidirectional intermediate-supervision arm under the same R1 budget so the interface change is supported by transferable mechanism evidence, not architecture intuition.
+
+## Current evidence state
+
+### What is closed
+
+- Ordinary WWM on R1 ordered-dynamic data did not learn state/order dependence (r1 learning response result).
+- Final-answer SCMLM-R ranking did not break the mirror (earlier analysis).
+- Capacity probe with final-answer ranking did not memorize the pair task (earlier analysis).
+- Corrected A/B joint gradient probe shows weak local leverage for final-answer MLM ranking in the R1 chck_5M checkpoint (corrected order gradient probe result).
+- Frozen layer-mixing readout cannot extract usable order information from the R1 chck_5M encoder (layer mixing learning response result).
+
+### What remains open
+
+- Whether **explicit intermediate state/order supervision** can train a bidirectional encoder to preserve and transfer the order/state mechanism.
+- Whether a **causal prefix interface** learns the same R1 mechanism more readily than bidirectional intermediate supervision.
+- Whether **recursive causal computation** adds anything beyond dense causal next-token conditioning.
+- Whether any R1 success transfers to official BabyLM columns (Entity/EWoK/COMPS/GlobalPIQA/Reading), rather than merely solving a synthetic micro-world.
+
+## Common R1 budget: required comparison
+
+Use one generated R1 train/dev/test family with held-out entity/location/template/operation combinations as far as the current generator supports.
+
+- Train split: train item/location vocabulary, many templates/seeds.
+- Dev split: train vocabulary but held-out seeds/operation orders.
+- Test split: held-out item/location vocabulary, as in layer mixing learning response result.
+- All arms get the same number of R1 scenarios/pairs and the same number of gradient updates.
+- Report train/dev/test separately to expose memorization.
+
+### Shared evaluation metrics
+
+For every arm:
+
+1. Counterfactual final-answer ranking:
+   - `both_correct`;
+   - `m_A`, `m_B`;
+   - paired `I = m_A + m_B`;
+   - same-candidate A/B score difference.
+2. Train-vs-held-out gap.
+3. Layer/depth A/B query hidden differences before and after training when applicable.
+4. If feasible, gradient/alignment summary after training.
+5. Small official-compatible probes if the arm produces a HF model:
+   - BLiMP, Supplement, Entity, COMPS, GlobalPIQA, Reading, EWoK if runtime permits.
+
+A mechanism arm is not scale-worthy unless it shows held-out R1 transfer **and** at least neutral/sensible movement on official-compatible probes.
+
+## Arm A — Bidirectional dense intermediate-supervision control
+
+This is the critical missing control.
+
+### Model
+
+Start from the same DeBERTa-v2 R1 chck_5M checkpoint used in counterfactual order diagnosis, or from the protected architecture initialized equivalently if a cleaner train-from-scratch R1 screen is needed.
+
+### Supervision signals
+
+Use metadata already available in `r1_generator_v3.py`:
+
+- `Scenario.init_loc`: initial entity/location assignments.
+- `Scenario.operations`: each operation has resolved `obj`, `src`, `dst`, `text`, and `ref_by_loc`.
+- `Scenario.final_loc`: final state.
+- `Scenario.query_obj`, `answer`.
+
+Construct dense intermediate state examples:
+
+1. **Operation-local state query**
+
+After each prefix consisting of initial statements plus operations up to step t, add a masked query:
+
+`After this change, <object> is in [MASKS].`
+
+Targets:
+
+- affected object’s current location after operation t;
+- optionally one random unaffected object’s current location to prevent solving only affected-object updates.
+
+2. **Indirect-reference resolution query**
+
+For indirect operations, add:
+
+`The item in <source location> was <object>.`
+
+with the object masked. This directly trains the address recovery that WESS failed to obtain from unlabeled inputs.
+
+3. **Final counterfactual pair loss**
+
+Keep the final paired A/B objective from corrected order gradient probe result for comparability, but it must not be the only signal.
+
+4. **Noncausal swap control**
+
+Use pairs where operation order is swapped but final answer should remain the same when operations commute; the model should not learn “any swap means flip answer.” This can be generated by retaining pairs with no final-state difference or by explicitly creating commutative swaps.
+
+### Success signal
+
+A meaningful success requires:
+
+- held-out vocabulary test both_correct ≥ 0.30 on the final counterfactual pairs;
+- intermediate state-query accuracy on held-out entities/locations clearly above chance;
+- train/test gap not dominated by memorization;
+- a post-training probe showing order/state signal persists beyond early layers or is readable by the trained head.
+
+If this arm succeeds, bidirectional repair remains live. If it fails under a reasonable dense supervision budget while causal succeeds, the causal interface becomes the stronger route.
+
+## Arm B — Dense causal prefix control
+
+### Model
+
+Use a compact HF causal LM first, not full RecGPT:
+
+- GPT-2 style or small custom causal Transformer;
+- parameter scale should be similar enough to the bidirectional R1 screen for mechanism comparison, not necessarily 34M yet;
+- tokenizer can reuse the baseline16k tokenizer for the R1 mechanism screen to avoid tokenization confounds.
+
+### Training signal
+
+Two options, both acceptable if recorded clearly:
+
+1. Next-token language modeling on the same R1 scenario texts plus explicit query/answer sentences.
+2. Causal answer ranking objective: score the correct location continuation after a prefix ending in `... is in` against counterfactual location continuations.
+
+The first tests ordinary causal pretraining; the second isolates whether prefix-conditioned scoring solves the state task.
+
+### Success signal
+
+- held-out vocabulary R1 both_correct ≥ 0.30;
+- train/test gap smaller than the unfrozen bidirectional layer-mix arm;
+- if exported as HF causal model, small official-compatible columns should be run with `--backend causal`.
+
+## Arm C — Lightweight recursive causal screen
+
+Do not start with full RecGPT reproduction unless it can be implemented cleanly.
+
+The first recursive arm should isolate recursion beyond dense causal:
+
+- shared causal block applied recurrently for a small number of iterations (e.g. 4–8, not immediately 16);
+- same tokenizer and R1 data as Arm B;
+- same update count;
+- compare against Arm B directly.
+
+Only if recursive causal > dense causal on held-out R1 and/or official probes should the full RecGPT package (factorized embeddings, 32k BPE, Muon/AdamW split, auxiliary hidden loss) be rebuilt.
+
+## RecGPT local phenotype verification
+
+This can run in parallel or shortly after the R1 comparison, but it must not substitute for the mechanism comparison.
+
+Useful action:
+
+- download/load public RecGPT-10M HF checkpoint if not already staged;
+- run local official-compatible evaluator with `--backend causal` for at least BLiMP, Supplement, Entity, COMPS, GlobalPIQA, Reading, EWoK;
+- confirm the model-card phenotype under the same local harness used for the protected model.
+
+Purpose:
+
+- verify that the public RecGPT score shape is real locally;
+- establish whether local evaluator, tokenizer, and trust_remote_code can handle RecGPT;
+- provide a reference target for any freshly trained causal/recursive candidate.
+
+But RecGPT’s weak Entity (16.59) means pure reproduction is not enough for the highest goal.
+
+## Decision logic after the next comparison
+
+- If dense intermediate-supervision bidirectional succeeds and causal does not, develop the bidirectional repair and test official transfer.
+- If dense causal succeeds and bidirectional dense supervision fails, prioritize causal interface.
+- If recursive causal beats dense causal, recursion/weight sharing is load-bearing and a RecGPT-style branch is justified.
+- If all R1 arms succeed but official probes do not move, R1 is not an official-capability proxy; choose route from direct official scores.
+- If all arms fail R1 held-out transfer, rebuild the experience structure rather than scaling any route.
+
+## Immediate executable next step
+
+The proposed implementation is `scripts/common_r1_interface_comparison.py` or equivalent. Start with Arm A and Arm B in one shared data/evaluation harness; add Arm C only if the first script structure is stable. Keep the result machine-readable and do not launch any 100M BabyLM training from these arms until a mechanism arm proves held-out transfer and nonnegative official-compatible movement.

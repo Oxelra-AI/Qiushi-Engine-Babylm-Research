@@ -1,0 +1,744 @@
+{
+  "status": "EXCHANGE_GRADIENT_ANATOMY_SCORE",
+  "created_utc": "2026-08-31T13:06:05Z",
+  "scientific_question": "Would centered exchange supervision produce contextual gradient distinct from ordinary CE/fixed-packet CE?",
+  "stage": "score",
+  "args": {
+    "stage": "score",
+    "targets": [
+      "anchor_80M",
+      "reheat_100M"
+    ],
+    "out_root": "experiments/archive/representation_and_objectives/data/exchange_gradient_anatomy",
+    "max_per_group": 6,
+    "seed": 150031,
+    "include_temporal": false,
+    "max_len": 128,
+    "margin": 1.0,
+    "device": "cuda",
+    "gpu": 0
+  },
+  "readiness": {
+    "targets": {
+      "anchor_80M": {
+        "model_root": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+        "tokenizer_root": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+        "model_ready": true,
+        "tokenizer_ready": true,
+        "description": "legal40k fixed-256 compact-view anchor, 80M"
+      },
+      "reheat_100M": {
+        "model_root": "experiments/archive/representation_and_objectives/training/runs/tail_reheat_cosine_freshmom_from_chck80M/hf_model/chck_100M",
+        "tokenizer_root": "experiments/archive/representation_and_objectives/training/runs/tail_reheat_cosine_freshmom_from_chck80M/hf_model/chck_100M",
+        "model_ready": true,
+        "tokenizer_ready": true,
+        "description": "reheat-cosine 100M broad-learning reference"
+      }
+    },
+    "layer_script": "experiments/archive/representation_and_objectives/scripts/layerwise_packet_M_decomposition.py",
+    "layer_script_ready": true,
+    "selected_ready": true
+  },
+  "target_summaries": {
+    "anchor_80M": {
+      "target": "anchor_80M",
+      "description": "legal40k fixed-256 compact-view anchor, 80M",
+      "model_root": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+      "tokenizer_root": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+      "subset": {
+        "selection": {
+          "n_input_pairs": 1560,
+          "n_selected_pairs": 54,
+          "max_per_group": 6,
+          "seed": 150031,
+          "one_token_only": false,
+          "include_temporal": false,
+          "group_sizes": {
+            "comparative::held_out": {
+              "available": 60,
+              "selected": 6
+            },
+            "comparative::train": {
+              "available": 180,
+              "selected": 6
+            },
+            "container::held_out": {
+              "available": 180,
+              "selected": 6
+            },
+            "spatial::held_out": {
+              "available": 120,
+              "selected": 6
+            },
+            "spatial::train": {
+              "available": 240,
+              "selected": 6
+            },
+            "state_change::held_out": {
+              "available": 60,
+              "selected": 6
+            },
+            "state_change::train": {
+              "available": 180,
+              "selected": 6
+            },
+            "transfer::held_out": {
+              "available": 60,
+              "selected": 6
+            },
+            "transfer::train": {
+              "available": 180,
+              "selected": 6
+            }
+          },
+          "rejected": {
+            "temporal_excluded": 300
+          },
+          "alt_leading_space_token_len_hist": {
+            "2,2": 1179,
+            "2,3": 75,
+            "3,2": 6
+          }
+        },
+        "cases_original": {
+          "n_cases": 324,
+          "n_failures": 0,
+          "failures_head": [],
+          "n_complete_pairs": 54,
+          "n_incomplete_pairs": 0,
+          "case_seq_len": {
+            "n": 324,
+            "min": 7.0,
+            "mean": 15.86111111111111,
+            "median": 18.0,
+            "max": 29.0
+          },
+          "target_token_len_hist": {
+            "1": 309,
+            "2": 15
+          }
+        },
+        "n_pairs_for_gradient": 54,
+        "n_cases_for_gradient": 216,
+        "family_counts": {
+          "comparative": 12,
+          "container": 6,
+          "spatial": 12,
+          "state_change": 12,
+          "transfer": 12
+        },
+        "style_counts": {
+          "held_out": 30,
+          "train": 24
+        }
+      },
+      "score_summary": {
+        "n_pairs": 54,
+        "M_mean": 4.292568206787109,
+        "M_pos_frac": 0.7592592835426331,
+        "margin_AB_mean": 1.9359315633773804,
+        "margin_BA_mean": 2.3566365242004395,
+        "both_correct": 0.3888888888888889,
+        "exchange_loss_value": 1.575823426246643,
+        "correct_ce_value": 4.734580993652344,
+        "fixed_ce_value": 5.5849151611328125
+      },
+      "loss_values": {
+        "exchange": 1.575823426246643,
+        "correct_ce": 4.734580993652344,
+        "fixed_ce": 5.5849151611328125
+      },
+      "gradient_groups": {
+        "exchange": {
+          "embeddings": {
+            "norm": 9.502393539823286,
+            "numel": 19446720,
+            "fraction_total_norm2": 0.19536367532436236
+          },
+          "encoder_layer_00": {
+            "norm": 4.903408461596713,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.0520204297802206
+          },
+          "encoder_layer_01": {
+            "norm": 5.552725745695731,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.0667098922485828
+          },
+          "encoder_layer_02": {
+            "norm": 5.310288122014939,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06101181747463485
+          },
+          "encoder_layer_03": {
+            "norm": 6.3982104672702755,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.08857167045825945
+          },
+          "encoder_layer_04": {
+            "norm": 7.339429116119087,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.11654733638934535
+          },
+          "encoder_layer_05": {
+            "norm": 8.211775438717584,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.14589886744602293
+          },
+          "encoder_layer_06": {
+            "norm": 8.146948860226301,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.14360440832209462
+          },
+          "encoder_layer_07": {
+            "norm": 7.467682484116476,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.12065615453439928
+          },
+          "mlm_head_biases": {
+            "norm": 0.039103063369146006,
+            "numel": 40960,
+            "fraction_total_norm2": 3.308257875866123e-06
+          },
+          "mlm_head_weights": {
+            "norm": 0.999367825866387,
+            "numel": 230880,
+            "fraction_total_norm2": 0.0021608693948388085
+          },
+          "other": {
+            "norm": 2.377725543085187,
+            "numel": 245760,
+            "fraction_total_norm2": 0.012232106063607662
+          },
+          "_total": {
+            "norm": 21.498645782470703,
+            "numel": 45826720,
+            "zero_grad_param_count": 0
+          }
+        },
+        "correct_ce": {
+          "embeddings": {
+            "norm": 19.537617554863147,
+            "numel": 19446720,
+            "fraction_total_norm2": 0.2201873895396774
+          },
+          "encoder_layer_00": {
+            "norm": 10.8124783904711,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06743723251411712
+          },
+          "encoder_layer_01": {
+            "norm": 11.830392505221456,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.08073234025826088
+          },
+          "encoder_layer_02": {
+            "norm": 10.597337426303135,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06478027092364405
+          },
+          "encoder_layer_03": {
+            "norm": 12.081884765518431,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.08420126434876264
+          },
+          "encoder_layer_04": {
+            "norm": 12.782894482394594,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.09425570419523001
+          },
+          "encoder_layer_05": {
+            "norm": 13.701880778960358,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.10829529861474406
+          },
+          "encoder_layer_06": {
+            "norm": 14.783175235047707,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.12606214259275972
+          },
+          "encoder_layer_07": {
+            "norm": 15.270133785171303,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.13450391281908092
+          },
+          "mlm_head_biases": {
+            "norm": 0.411937499250054,
+            "numel": 40960,
+            "fraction_total_norm2": 9.788404112172034e-05
+          },
+          "mlm_head_weights": {
+            "norm": 5.9499625729112,
+            "numel": 230880,
+            "fraction_total_norm2": 0.020421032767927953
+          },
+          "other": {
+            "norm": 2.8287566939007984,
+            "numel": 245760,
+            "fraction_total_norm2": 0.004615730288964669
+          },
+          "_total": {
+            "norm": 41.63661193847656,
+            "numel": 45826720,
+            "zero_grad_param_count": 0
+          }
+        },
+        "fixed_ce": {
+          "embeddings": {
+            "norm": 17.364393030880922,
+            "numel": 19446720,
+            "fraction_total_norm2": 0.2386245132214883
+          },
+          "encoder_layer_00": {
+            "norm": 9.619135866796338,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.07322644644421265
+          },
+          "encoder_layer_01": {
+            "norm": 10.167314912113559,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.081810376500297
+          },
+          "encoder_layer_02": {
+            "norm": 8.901470851811156,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.0627074858958039
+          },
+          "encoder_layer_03": {
+            "norm": 9.845981999584096,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.07672094011943074
+          },
+          "encoder_layer_04": {
+            "norm": 10.272746854831741,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.08351587072804206
+          },
+          "encoder_layer_05": {
+            "norm": 11.237829901048022,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.09994492568995218
+          },
+          "encoder_layer_06": {
+            "norm": 12.52495154513009,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.12415035045037998
+          },
+          "encoder_layer_07": {
+            "norm": 12.722252076891618,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.12809253888475672
+          },
+          "mlm_head_biases": {
+            "norm": 0.45539551010299534,
+            "numel": 40960,
+            "fraction_total_norm2": 0.00016412446744918573
+          },
+          "mlm_head_weights": {
+            "norm": 6.517722998435888,
+            "numel": 230880,
+            "fraction_total_norm2": 0.033619220471941005
+          },
+          "other": {
+            "norm": 2.0971959921548815,
+            "numel": 245760,
+            "fraction_total_norm2": 0.0034807583943818926
+          },
+          "_total": {
+            "norm": 35.54692840576172,
+            "numel": 45826720,
+            "zero_grad_param_count": 0
+          }
+        }
+      },
+      "pairwise_gradient_cosine": {
+        "exchange__correct_ce": 0.0678504646260129,
+        "exchange__fixed_ce": -0.014993059178218091,
+        "correct_ce__fixed_ce": 0.9396824113063493
+      },
+      "exchange_group_cosine_with_controls": {
+        "exchange__correct_ce": {
+          "embeddings": 0.14424092458450208,
+          "encoder_layer_00": 0.012844929257158355,
+          "encoder_layer_01": -0.013689504237795956,
+          "encoder_layer_02": -0.01209158648244518,
+          "encoder_layer_03": 0.026931859747786748,
+          "encoder_layer_04": 0.13311889692312154,
+          "encoder_layer_05": 0.13784487371195495,
+          "encoder_layer_06": 0.08091015291093079,
+          "encoder_layer_07": -0.05431919406626014,
+          "other": 0.1431668851062725,
+          "mlm_head_biases": 0.08717313754772701,
+          "mlm_head_weights": 0.045635019761325314
+        },
+        "exchange__fixed_ce": {
+          "embeddings": 0.04535733239384174,
+          "encoder_layer_00": -0.07984192917095427,
+          "encoder_layer_01": -0.11033240474383356,
+          "encoder_layer_02": -0.09089616513636725,
+          "encoder_layer_03": -0.05480307402579462,
+          "encoder_layer_04": 0.04630588191566789,
+          "encoder_layer_05": 0.0521779614408836,
+          "encoder_layer_06": -0.0029847260054410713,
+          "encoder_layer_07": -0.09996370042518242,
+          "other": 0.03387674265482082,
+          "mlm_head_biases": 0.06662696382524275,
+          "mlm_head_weights": 0.017295815798816356
+        }
+      },
+      "row_metrics_path": "experiments/archive/representation_and_objectives/data/exchange_gradient_anatomy/targets/anchor_80M_row_metrics.jsonl",
+      "tokenizer_json_sha256": "e6c98b339c6583ea2d8721e6c736572d43b7f7b418203a5f3c84198698f9a0f3"
+    },
+    "reheat_100M": {
+      "target": "reheat_100M",
+      "description": "reheat-cosine 100M broad-learning reference",
+      "model_root": "experiments/archive/representation_and_objectives/training/runs/tail_reheat_cosine_freshmom_from_chck80M/hf_model/chck_100M",
+      "tokenizer_root": "experiments/archive/representation_and_objectives/training/runs/tail_reheat_cosine_freshmom_from_chck80M/hf_model/chck_100M",
+      "subset": {
+        "selection": {
+          "n_input_pairs": 1560,
+          "n_selected_pairs": 54,
+          "max_per_group": 6,
+          "seed": 150031,
+          "one_token_only": false,
+          "include_temporal": false,
+          "group_sizes": {
+            "comparative::held_out": {
+              "available": 60,
+              "selected": 6
+            },
+            "comparative::train": {
+              "available": 180,
+              "selected": 6
+            },
+            "container::held_out": {
+              "available": 180,
+              "selected": 6
+            },
+            "spatial::held_out": {
+              "available": 120,
+              "selected": 6
+            },
+            "spatial::train": {
+              "available": 240,
+              "selected": 6
+            },
+            "state_change::held_out": {
+              "available": 60,
+              "selected": 6
+            },
+            "state_change::train": {
+              "available": 180,
+              "selected": 6
+            },
+            "transfer::held_out": {
+              "available": 60,
+              "selected": 6
+            },
+            "transfer::train": {
+              "available": 180,
+              "selected": 6
+            }
+          },
+          "rejected": {
+            "temporal_excluded": 300
+          },
+          "alt_leading_space_token_len_hist": {
+            "2,2": 1179,
+            "2,3": 75,
+            "3,2": 6
+          }
+        },
+        "cases_original": {
+          "n_cases": 324,
+          "n_failures": 0,
+          "failures_head": [],
+          "n_complete_pairs": 54,
+          "n_incomplete_pairs": 0,
+          "case_seq_len": {
+            "n": 324,
+            "min": 7.0,
+            "mean": 15.86111111111111,
+            "median": 18.0,
+            "max": 29.0
+          },
+          "target_token_len_hist": {
+            "1": 309,
+            "2": 15
+          }
+        },
+        "n_pairs_for_gradient": 54,
+        "n_cases_for_gradient": 216,
+        "family_counts": {
+          "comparative": 12,
+          "container": 6,
+          "spatial": 12,
+          "state_change": 12,
+          "transfer": 12
+        },
+        "style_counts": {
+          "held_out": 30,
+          "train": 24
+        }
+      },
+      "score_summary": {
+        "n_pairs": 54,
+        "M_mean": 4.434515476226807,
+        "M_pos_frac": 0.7592592835426331,
+        "margin_AB_mean": 2.0925912857055664,
+        "margin_BA_mean": 2.341923952102661,
+        "both_correct": 0.48148148148148145,
+        "exchange_loss_value": 1.655849575996399,
+        "correct_ce_value": 4.3870110511779785,
+        "fixed_ce_value": 5.216928482055664
+      },
+      "loss_values": {
+        "exchange": 1.655849575996399,
+        "correct_ce": 4.3870110511779785,
+        "fixed_ce": 5.216928482055664
+      },
+      "gradient_groups": {
+        "exchange": {
+          "embeddings": {
+            "norm": 9.996886965743592,
+            "numel": 19446720,
+            "fraction_total_norm2": 0.20979229148658812
+          },
+          "encoder_layer_00": {
+            "norm": 4.967862718222126,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.05180827538451519
+          },
+          "encoder_layer_01": {
+            "norm": 5.70526196252533,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06832995645505177
+          },
+          "encoder_layer_02": {
+            "norm": 5.511436653935898,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.0637660629869418
+          },
+          "encoder_layer_03": {
+            "norm": 6.8641072565629315,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.09890724056508908
+          },
+          "encoder_layer_04": {
+            "norm": 7.446162559122604,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.11639249820174671
+          },
+          "encoder_layer_05": {
+            "norm": 8.54976733606394,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.15345058781583698
+          },
+          "encoder_layer_06": {
+            "norm": 7.954016449407337,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.13281065942589024
+          },
+          "encoder_layer_07": {
+            "norm": 6.638562507300537,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.0925141283019323
+          },
+          "mlm_head_biases": {
+            "norm": 0.0438411983927481,
+            "numel": 40960,
+            "fraction_total_norm2": 4.0348258770091146e-06
+          },
+          "mlm_head_weights": {
+            "norm": 1.092589853675652,
+            "numel": 230880,
+            "fraction_total_norm2": 0.002505960895360645
+          },
+          "other": {
+            "norm": 2.6364177164671583,
+            "numel": 245760,
+            "fraction_total_norm2": 0.01459111250930007
+          },
+          "_total": {
+            "norm": 21.82579231262207,
+            "numel": 45826720,
+            "zero_grad_param_count": 0
+          }
+        },
+        "correct_ce": {
+          "embeddings": {
+            "norm": 18.328289974344976,
+            "numel": 19446720,
+            "fraction_total_norm2": 0.20535333923229743
+          },
+          "encoder_layer_00": {
+            "norm": 9.75845982289788,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.05821306036773702
+          },
+          "encoder_layer_01": {
+            "norm": 11.047156570977055,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.07460344684783358
+          },
+          "encoder_layer_02": {
+            "norm": 10.251411271889326,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06424290765318456
+          },
+          "encoder_layer_03": {
+            "norm": 12.210886312506807,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.09114907178860822
+          },
+          "encoder_layer_04": {
+            "norm": 12.796634216548323,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.10010352872064035
+          },
+          "encoder_layer_05": {
+            "norm": 13.935308704833743,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.11871102712297675
+          },
+          "encoder_layer_06": {
+            "norm": 14.969592969701326,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.13698652800756092
+          },
+          "encoder_layer_07": {
+            "norm": 14.673500928489338,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.13162105346789174
+          },
+          "mlm_head_biases": {
+            "norm": 0.4020048793063957,
+            "numel": 40960,
+            "fraction_total_norm2": 9.879171469628048e-05
+          },
+          "mlm_head_weights": {
+            "norm": 5.761933341475238,
+            "numel": 230880,
+            "fraction_total_norm2": 0.020295246671717043
+          },
+          "other": {
+            "norm": 2.6050404621284047,
+            "numel": 245760,
+            "fraction_total_norm2": 0.004148459181633628
+          },
+          "_total": {
+            "norm": 40.445579528808594,
+            "numel": 45826720,
+            "zero_grad_param_count": 0
+          }
+        },
+        "fixed_ce": {
+          "embeddings": {
+            "norm": 15.675528719379622,
+            "numel": 19446720,
+            "fraction_total_norm2": 0.2075504980055793
+          },
+          "encoder_layer_00": {
+            "norm": 8.21310983393572,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.05697635273954008
+          },
+          "encoder_layer_01": {
+            "norm": 9.034111303323836,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06893666311208782
+          },
+          "encoder_layer_02": {
+            "norm": 8.72406527473066,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.06428611730405263
+          },
+          "encoder_layer_03": {
+            "norm": 10.230055334072063,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.08839655689512518
+          },
+          "encoder_layer_04": {
+            "norm": 10.60689083711165,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.09502887374679578
+          },
+          "encoder_layer_05": {
+            "norm": 11.760358402575116,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.1168208866736577
+          },
+          "encoder_layer_06": {
+            "norm": 12.895943574916531,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.14047066297991365
+          },
+          "encoder_layer_07": {
+            "norm": 12.32749961832393,
+            "numel": 3232800,
+            "fraction_total_norm2": 0.1283599026909117
+          },
+          "mlm_head_biases": {
+            "norm": 0.4477773554162227,
+            "numel": 40960,
+            "fraction_total_norm2": 0.00016935718945307627
+          },
+          "mlm_head_weights": {
+            "norm": 6.360464631863024,
+            "numel": 230880,
+            "fraction_total_norm2": 0.03417095115997723
+          },
+          "other": {
+            "norm": 2.2998843039562824,
+            "numel": 245760,
+            "fraction_total_norm2": 0.004467775706284491
+          },
+          "_total": {
+            "norm": 34.4080696105957,
+            "numel": 45826720,
+            "zero_grad_param_count": 0
+          }
+        }
+      },
+      "pairwise_gradient_cosine": {
+        "exchange__correct_ce": 0.03906611340503434,
+        "exchange__fixed_ce": -0.041540000955152485,
+        "correct_ce__fixed_ce": 0.9200402981965369
+      },
+      "exchange_group_cosine_with_controls": {
+        "exchange__correct_ce": {
+          "embeddings": 0.07992533684009001,
+          "encoder_layer_00": -0.05329436595812342,
+          "encoder_layer_01": -0.11094697052980958,
+          "encoder_layer_02": -0.05538028394435534,
+          "encoder_layer_03": -0.007122805867921743,
+          "encoder_layer_04": 0.11958655717833794,
+          "encoder_layer_05": 0.14119032830941688,
+          "encoder_layer_06": 0.07242991511709754,
+          "encoder_layer_07": -0.04918350032311536,
+          "other": 0.1005937852939333,
+          "mlm_head_biases": 0.08819024699268019,
+          "mlm_head_weights": 0.06516254176129527
+        },
+        "exchange__fixed_ce": {
+          "embeddings": -0.021869161683212048,
+          "encoder_layer_00": -0.14985329163177322,
+          "encoder_layer_01": -0.20283372895167978,
+          "encoder_layer_02": -0.1355446842963495,
+          "encoder_layer_03": -0.08450813390591798,
+          "encoder_layer_04": 0.04064369622286801,
+          "encoder_layer_05": 0.056142680602580604,
+          "encoder_layer_06": -0.00653181758229236,
+          "encoder_layer_07": -0.09333694805449999,
+          "other": 0.08161450309811766,
+          "mlm_head_biases": 0.06177363224602641,
+          "mlm_head_weights": 0.027701716705802817
+        }
+      },
+      "row_metrics_path": "experiments/archive/representation_and_objectives/data/exchange_gradient_anatomy/targets/reheat_100M_row_metrics.jsonl",
+      "tokenizer_json_sha256": "e6c98b339c6583ea2d8721e6c736572d43b7f7b418203a5f3c84198698f9a0f3"
+    }
+  },
+  "elapsed_sec": 6.6805853843688965,
+  "code_hash": "5dfefd55b1b7c6d80b8f19943f400191ed446b190172de03f2d8d6a4c301f9ad"
+}

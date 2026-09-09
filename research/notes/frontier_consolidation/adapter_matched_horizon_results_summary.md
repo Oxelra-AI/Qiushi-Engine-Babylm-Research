@@ -1,0 +1,9 @@
+# Matched-horizon adapter results
+
+The earlier adapter failure at 20M words was largely caused by compressing the learning-rate schedule into 20M words. However, jointly trained adapters still redistributed capabilities under a matched training schedule. The 128-dimensional adapter and its disabled control were trained on the same compact-view stream with the permitted 16K tokenizer and the original 100M-word learning-rate horizon (`lr_total_steps=2529`). Both stopped at the reference checkpoint's exact exposure of 20,008,711 words.
+
+The disabled control reproduces the compact-view reference exactly: loss, learning rate, masks, and Cheap7 are identical, with zero base-model parameter displacement. The enabled adapter's loss also recovers (3.756545 versus the reference's 3.755582; the compressed schedule had yielded approximately 6.88). The adapter branch is active, with mean root-mean-square activation 0.05657 and up-projection norm 28.23. Nevertheless, Cheap7 is 39.389 versus the reference's 39.664. Component differences are BLiMP +0.69, Supplement +0.78, COMPS +0.18, EWoK -1.24, GlobalPIQA -1.97, Reading -0.36, and Entity 0.
+
+For the complete base-model parameter vector, the enabled-versus-disabled comparison gives cosine similarity 0.890 and relative L2 displacement 0.468, comparable to the reference model's change between 20M and 50M words. Parameter displacement alone therefore does not establish a harmful mechanism; the measured tradeoff between capabilities is the important observation. The earlier compressed-schedule result does not by itself justify changing the curriculum, seed, or model family. The remaining adapter-coupling question calls for inference-time ablation at 20M, continued adapter training to 50M on the same schedule, or a stop-gradient branch with a frozen base model.
+
+Further analysis: [adapter-route decision](final_adapter_route_decision.md).

@@ -1,0 +1,97 @@
+{
+  "status": "CUSTOM_CORPUS",
+  "total_target": 10000000,
+  "custom_fraction": 0.35,
+  "actual_total_words": 10000000,
+  "composition": {
+    "official_retained": {
+      "words": 6500000,
+      "meta": {
+        "sources": {
+          "bnc_spoken.train.txt": 495347,
+          "childes.train.txt": 1846717,
+          "gutenberg.train.txt": 1662518,
+          "open_subtitles.train.txt": 1483870,
+          "simple_wiki.train.txt": 995434,
+          "switchboard.train.txt": 16114
+        },
+        "total": 6500000,
+        "truncated": true,
+        "target": 6500000
+      }
+    },
+    "simple_wiki_added": {
+      "words": 2450000,
+      "meta": {
+        "source": "wikimedia/wikipedia:20231101.simple",
+        "articles_available": 10550,
+        "articles_selected": 7013,
+        "words": 2450000,
+        "target_words": 2450000,
+        "seed": 217,
+        "min_article_words": 50,
+        "max_article_words": 800
+      }
+    },
+    "gem_simplified_added": {
+      "words": 1050000,
+      "meta": {
+        "source": "GEM/wiki_auto_asset_turk:train:target",
+        "sentences_available": 62736,
+        "sentences_selected": 48249,
+        "words": 1050000,
+        "target_words": 1050000,
+        "seed": 217
+      }
+    }
+  },
+  "control": {
+    "words": 10000000,
+    "meta": {
+      "sources": {
+        "bnc_spoken.train.txt": 762073,
+        "childes.train.txt": 2841101,
+        "gutenberg.train.txt": 2557721,
+        "open_subtitles.train.txt": 2282877,
+        "simple_wiki.train.txt": 1531437,
+        "switchboard.train.txt": 24791
+      },
+      "total": 10000000,
+      "truncated": false
+    }
+  },
+  "files": {
+    "custom_mix": "experiments/archive/initial_model_studies/data/custom_corpus/custom_mix_10M.txt",
+    "official_only": "experiments/archive/initial_model_studies/data/custom_corpus/official_only_10M.txt"
+  },
+  "legality": {
+    "all_sources_public": true,
+    "no_gated_data": true,
+    "no_llm_generation": true,
+    "total_within_10M_budget": true,
+    "provenance": [
+      "BabyLM-community/BabyLM-2026-Strict-Small (MIT license)",
+      "wikimedia/wikipedia:20231101.simple (CC BY-SA 3.0)",
+      "GEM/wiki_auto_asset_turk (CC BY-SA 4.0 via Wikipedia)"
+    ]
+  },
+  "screen_spec": {
+    "arms": [
+      "official_only",
+      "custom_mix"
+    ],
+    "model": "protected DeBERTa-v2 8x480 baseline16k WWM",
+    "exposure": "10M first, 20M if signal, 100M only after clear Overall gain",
+    "columns_required": [
+      "BLiMP",
+      "Supplement",
+      "Entity",
+      "EWoK",
+      "COMPS",
+      "GlobalPIQA",
+      "Reading"
+    ],
+    "success_criterion": "Entity/EWoK movement OR broad BLiMP/COMPS/Reading gain; not GlobalPIQA alone",
+    "protect": "Supplement (59.88) and Reading (7.62) must not collapse"
+  }
+}

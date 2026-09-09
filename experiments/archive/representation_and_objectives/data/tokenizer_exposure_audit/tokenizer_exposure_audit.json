@@ -1,0 +1,114 @@
+{
+  "status": "TOKENIZER_EXPOSURE_AUDIT",
+  "tokenizer": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+  "seq_len": 256,
+  "treatment": {
+    "agg": {
+      "rows": 75339,
+      "words": 10000000,
+      "tokens_raw": 14883103,
+      "tokens_seen": 14524924,
+      "truncated_tokens": 358179,
+      "rows_truncated": 13937,
+      "tokens_per_word_raw": 1.4883103,
+      "tokens_per_word_seen": 1.4524924,
+      "truncation_frac_tokens": 0.024066150721391903,
+      "truncation_frac_rows": 0.18499050956343993
+    },
+    "by_source": {
+      "qwen_pair_packed": {
+        "rows": 12236,
+        "words": 1656800,
+        "tokens_raw": 2286010,
+        "tokens_seen": 2284181,
+        "truncated_tokens": 1829,
+        "rows_truncated": 123,
+        "tokens_per_word_raw": 1.3797742636407533,
+        "tokens_per_word_seen": 1.3786703283437953
+      },
+      "fineweb_edu_random_quality_single_doc_seqsafe_cached_initial_model_studies": {
+        "rows": 21916,
+        "words": 1753280,
+        "tokens_raw": 2609469,
+        "tokens_seen": 2608436,
+        "truncated_tokens": 1033,
+        "rows_truncated": 35,
+        "tokens_per_word_raw": 1.4883355767475817,
+        "tokens_per_word_seen": 1.4877463953276144
+      },
+      "official_identical_tail_after_seqsafe_fineweb_block": {
+        "rows": 41187,
+        "words": 6589920,
+        "tokens_raw": 9987624,
+        "tokens_seen": 9632307,
+        "truncated_tokens": 355317,
+        "rows_truncated": 13779,
+        "tokens_per_word_raw": 1.5155910845655183,
+        "tokens_per_word_seen": 1.4616728275912303
+      }
+    }
+  },
+  "control": {
+    "agg": {
+      "rows": 75339,
+      "words": 10000000,
+      "tokens_raw": 14955475,
+      "tokens_seen": 14596271,
+      "truncated_tokens": 359204,
+      "rows_truncated": 13932,
+      "tokens_per_word_raw": 1.4955475,
+      "tokens_per_word_seen": 1.4596271,
+      "truncation_frac_tokens": 0.024018227438446456,
+      "truncation_frac_rows": 0.18492414287420858
+    },
+    "by_source": {
+      "qwen_pair_packed": {
+        "rows": 12236,
+        "words": 1656800,
+        "tokens_raw": 2286010,
+        "tokens_seen": 2284181,
+        "truncated_tokens": 1829,
+        "rows_truncated": 123,
+        "tokens_per_word_raw": 1.3797742636407533,
+        "tokens_per_word_seen": 1.3786703283437953
+      },
+      "official_lengthmatched_to_seqsafe_fineweb": {
+        "rows": 21916,
+        "words": 1753280,
+        "tokens_raw": 2681841,
+        "tokens_seen": 2679783,
+        "truncated_tokens": 2058,
+        "rows_truncated": 30,
+        "tokens_per_word_raw": 1.529613638437671,
+        "tokens_per_word_seen": 1.5284398384741742
+      },
+      "official_identical_tail_after_seqsafe_fineweb_block": {
+        "rows": 41187,
+        "words": 6589920,
+        "tokens_raw": 9987624,
+        "tokens_seen": 9632307,
+        "truncated_tokens": 355317,
+        "rows_truncated": 13779,
+        "tokens_per_word_raw": 1.5155910845655183,
+        "tokens_per_word_seen": 1.4616728275912303
+      }
+    }
+  },
+  "delta": {
+    "tokens_seen_treat_minus_ctrl": -71347,
+    "tokens_seen_rel_pct": -0.48880292781628953,
+    "tokens_per_word_seen_treat_minus_ctrl": -0.00713470000000016,
+    "truncation_frac_tokens_treat_minus_ctrl": 4.792328294544665e-05
+  },
+  "changed_block_source_keys": {
+    "fineweb_keys": [
+      "fineweb_edu_random_quality_single_doc_seqsafe_cached_initial_model_studies",
+      "official_identical_tail_after_seqsafe_fineweb_block"
+    ],
+    "official_filler_keys": [
+      "official_lengthmatched_to_seqsafe_fineweb",
+      "official_identical_tail_after_seqsafe_fineweb_block"
+    ]
+  },
+  "interpretation": "If tokens_seen_rel_pct is small (|.|<~1%) and tokens_per_word delta is small, the seqsafe96 arms are token-matched and the downstream contrast is a clean source-breadth contrast. A large positive treatment token surplus would mean FineWeb injection also increased the real gradient/prediction budget, confounding source breadth with token exposure."
+}

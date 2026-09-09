@@ -1,0 +1,383 @@
+{
+  "status": "FULL_PRESERVATION_STANDARD_APPLIED",
+  "created_utc": "2026-08-30T17:37:31Z",
+  "tag": "full26k",
+  "standard": {
+    "name": "fw_compact_preservation_standard_v1_step100",
+    "inherited_standard_file": "experiments/archive/representation_and_objectives/data/fw_preservation_standard/preservation_standard_v1.json",
+    "hard_failure_rules": [
+      "empty or malformed non-sentence output",
+      "rewrite/source whitespace-word ratio <0.33 or >1.25",
+      "exact copy of source text",
+      "any missing source number or any new number",
+      "any missing real named entity after sentence-starter false positives are trimmed",
+      "content recall <0.28 for sources with at least 14 words or content overlap <0.10 for sources with at least 10 words",
+      "negative polarity in source lost, or explicit negative polarity introduced when source has none",
+      "explicit modality/hedge in source lost, or introduced when source has none",
+      "causal relation in source lost unless a light causal bridge preserves both sides; new strong causal relation introduced when source has none",
+      "comparison/order direction in source not retained; new up/down/before/after direction introduced when source has none"
+    ]
+  },
+  "inputs": {
+    "frozen_sources": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_frozen_sources.jsonl",
+    "frozen_sources_sha256": "d113cc91a84cd779313228556bb80b9bcf38eb9c15fdf4ede1331ece600df216",
+    "prompts": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_compact_prompts.jsonl",
+    "prompts_sha256": "b22e933922754168a1f2acececda3733924f16699290ce85df2a2fcea8f898bf",
+    "outputs": "experiments/archive/representation_and_objectives/training/runs/qwen35_fw_compact_full_26015/outputs.jsonl",
+    "outputs_sha256": "cc49cbcbbb6a457fd363a94041d20d579554ae8f450cffbd95283e7d7587cfc5",
+    "n_prompts": 26015,
+    "n_outputs": 26015
+  },
+  "summary": {
+    "overall": {
+      "n": 38167,
+      "usable": 22820,
+      "usable_rate": 0.5978987083082243,
+      "source_words": 875891,
+      "usable_source_words": 494154,
+      "usable_rewrite_words": 318851,
+      "usable_pair_words": 813005,
+      "usable_rewrite_to_source_ratio": 0.6452462187900938,
+      "length_ratio": {
+        "n": 38167,
+        "min": 0.2413793103448276,
+        "p05": 0.46153846153846156,
+        "mean": 0.6356081561179613,
+        "median": 0.6296296296296297,
+        "p95": 0.8285714285714286,
+        "max": 1.4,
+        "sum": 24259.25649455423
+      },
+      "content_recall": {
+        "n": 38167,
+        "min": 0.0,
+        "p05": 0.4,
+        "mean": 0.6423387305180062,
+        "median": 0.6363636363636364,
+        "p95": 0.8888888888888888,
+        "max": 1.0,
+        "sum": 24516.14232768074
+      },
+      "content_overlap": {
+        "n": 38167,
+        "min": 0.0,
+        "p05": 0.32142857142857145,
+        "mean": 0.5795653965245516,
+        "median": 0.5714285714285714,
+        "p95": 0.875,
+        "max": 1.0,
+        "sum": 22120.27248915256
+      },
+      "with_negative_source": 5311,
+      "negative_source_usable_rate": 0.45113914517040105,
+      "with_modality_source": 7354,
+      "modality_source_usable_rate": 0.369730758770737,
+      "with_causal_source": 7018,
+      "causal_source_usable_rate": 0.4555428897121687,
+      "with_comparison_source": 9345,
+      "comparison_source_usable_rate": 0.42536115569823435
+    },
+    "by_source_kind": {
+      "existing_a02_qwen35": {
+        "n": 12152,
+        "usable": 8386,
+        "usable_rate": 0.6900921658986175,
+        "source_words": 261730,
+        "usable_source_words": 171346,
+        "usable_rewrite_words": 107782,
+        "usable_pair_words": 279128,
+        "usable_rewrite_to_source_ratio": 0.6290313167509017,
+        "length_ratio": {
+          "n": 12152,
+          "min": 0.35,
+          "p05": 0.4642857142857143,
+          "mean": 0.6247295311520908,
+          "median": 0.625,
+          "p95": 0.7916666666666666,
+          "max": 0.85,
+          "sum": 7591.713262560208
+        },
+        "content_recall": {
+          "n": 12152,
+          "min": 0.3333333333333333,
+          "p05": 0.47619047619047616,
+          "mean": 0.6604062744135092,
+          "median": 0.65,
+          "p95": 0.875,
+          "max": 1.0,
+          "sum": 8025.257046672963
+        },
+        "content_overlap": {
+          "n": 12152,
+          "min": 0.25,
+          "p05": 0.38461538461538464,
+          "mean": 0.5941727527798782,
+          "median": 0.5714285714285714,
+          "p95": 0.8571428571428571,
+          "max": 1.0,
+          "sum": 7220.38729178108
+        },
+        "with_negative_source": 1798,
+        "negative_source_usable_rate": 0.5150166852057843,
+        "with_modality_source": 2986,
+        "modality_source_usable_rate": 0.4306764902880107,
+        "with_causal_source": 2017,
+        "causal_source_usable_rate": 0.5141298958849777,
+        "with_comparison_source": 2832,
+        "comparison_source_usable_rate": 0.4841101694915254
+      },
+      "new_qwen35_full26k": {
+        "n": 26015,
+        "usable": 14434,
+        "usable_rate": 0.554833749759754,
+        "source_words": 614161,
+        "usable_source_words": 322808,
+        "usable_rewrite_words": 211069,
+        "usable_pair_words": 533877,
+        "usable_rewrite_to_source_ratio": 0.6538530643602389,
+        "length_ratio": {
+          "n": 26015,
+          "min": 0.2413793103448276,
+          "p05": 0.4583333333333333,
+          "mean": 0.6406897263883921,
+          "median": 0.631578947368421,
+          "p95": 0.857142857142857,
+          "max": 1.4,
+          "sum": 16667.54323199402
+        },
+        "content_recall": {
+          "n": 26015,
+          "min": 0.0,
+          "p05": 0.375,
+          "mean": 0.6338991074767548,
+          "median": 0.631578947368421,
+          "p95": 0.8999999999999999,
+          "max": 1.0,
+          "sum": 16490.885281007777
+        },
+        "content_overlap": {
+          "n": 26015,
+          "min": 0.0,
+          "p05": 0.3,
+          "mean": 0.5727420794684406,
+          "median": 0.5625,
+          "p95": 0.8830316742081431,
+          "max": 1.0,
+          "sum": 14899.88519737148
+        },
+        "with_negative_source": 3513,
+        "negative_source_usable_rate": 0.4184457728437233,
+        "with_modality_source": 4368,
+        "modality_source_usable_rate": 0.32806776556776557,
+        "with_causal_source": 5001,
+        "causal_source_usable_rate": 0.4319136172765447,
+        "with_comparison_source": 6513,
+        "comparison_source_usable_rate": 0.3998157531091663
+      }
+    },
+    "hard_reason_prefixes": [
+      [
+        "missing_entities",
+        4618
+      ],
+      [
+        "modality",
+        4248
+      ],
+      [
+        "comparison_direction",
+        4075
+      ],
+      [
+        "causal_relation",
+        3231
+      ],
+      [
+        "polarity",
+        1519
+      ],
+      [
+        "missing_numbers",
+        1171
+      ],
+      [
+        "new_numbers",
+        578
+      ],
+      [
+        "low_content_recall",
+        254
+      ],
+      [
+        "exact_copy",
+        71
+      ],
+      [
+        "length_ratio",
+        36
+      ],
+      [
+        "low_content_overlap",
+        34
+      ],
+      [
+        "explanatory_expansion",
+        24
+      ],
+      [
+        "bad_output_pattern",
+        21
+      ],
+      [
+        "many_sentences",
+        17
+      ],
+      [
+        "bad_start",
+        10
+      ],
+      [
+        "new_entity_like",
+        5
+      ],
+      [
+        "bad_end",
+        3
+      ]
+    ],
+    "soft_flag_prefixes": [
+      [
+        "near_copy_view",
+        603
+      ],
+      [
+        "comparison_relation_added_contrast",
+        62
+      ],
+      [
+        "comparison_relation_added_similarity",
+        11
+      ],
+      [
+        "not_compact_ratio_1.08",
+        8
+      ],
+      [
+        "not_compact_ratio_1.09",
+        8
+      ],
+      [
+        "not_compact_ratio_1.10",
+        6
+      ],
+      [
+        "not_compact_ratio_1.06",
+        3
+      ],
+      [
+        "not_compact_ratio_1.15",
+        2
+      ],
+      [
+        "not_compact_ratio_1.18",
+        2
+      ],
+      [
+        "not_compact_ratio_1.07",
+        2
+      ],
+      [
+        "not_compact_ratio_1.19",
+        1
+      ],
+      [
+        "not_compact_ratio_1.12",
+        1
+      ],
+      [
+        "not_compact_ratio_1.05",
+        1
+      ],
+      [
+        "not_compact_ratio_1.17",
+        1
+      ]
+    ]
+  },
+  "arm_source_set_comparison": {
+    "n_sources": 22820,
+    "compact_pair_words": 813005,
+    "source_repeat_pair_words": 812966,
+    "word_totals_match": false,
+    "source_hashes_match_records": 22820,
+    "weighted_compact_rewrite_to_source_ratio": 0.6452462187900938,
+    "examples": [
+      {
+        "norm_hash": "7af26113897fadbcee1f9418120bb165",
+        "source_words": 19,
+        "companion_words": 14,
+        "compact": "In England, a baby girl was born at Steventon Rectory one cold December day.",
+        "repeat_prefix": "In the mother country, one day in that same cold December a baby girl"
+      },
+      {
+        "norm_hash": "cccd241492297507e4edd4f41eb069fd",
+        "source_words": 26,
+        "companion_words": 20,
+        "compact": "People she helped as children during the war years invited her, as her efforts helped them survive the Nazi Holocaust.",
+        "repeat_prefix": "Those inviting her were other people she had helped as children during the war years, when her efforts helped them,"
+      },
+      {
+        "norm_hash": "18965bbd7a5391fd472647675521577f",
+        "source_words": 23,
+        "companion_words": 12,
+        "compact": "The court must accommodate special needs because the judicial system is intimidating.",
+        "repeat_prefix": "Due to the intimidating nature of the judicial system, it is important"
+      },
+      {
+        "norm_hash": "5e4d9131b9bc657d6569b48c6dc4ad23",
+        "source_words": 14,
+        "companion_words": 8,
+        "compact": "Chinese sailors from Shanghai settled in Pennyfields, Poplar.",
+        "repeat_prefix": "The other was in Pennyfields in Poplar, where"
+      },
+      {
+        "norm_hash": "038e31b7dbf74cb6f2ba1f5c1af19d51",
+        "source_words": 17,
+        "companion_words": 12,
+        "compact": "Aboriginal people came from creation beings who created life, knowledge, and law.",
+        "repeat_prefix": "The Aboriginal people themselves came from the creation beings that created life"
+      },
+      {
+        "norm_hash": "7acb198d3d12e0a84727a54ac9fff3c1",
+        "source_words": 17,
+        "companion_words": 10,
+        "compact": "Besides Karoon, other rivers include Shour, Tambi, and Cham Asiyab.",
+        "repeat_prefix": "Besides Karoon, there are some other rivers in the city"
+      },
+      {
+        "norm_hash": "07f32cabe2ace9bec73c7de155075f63",
+        "source_words": 18,
+        "companion_words": 15,
+        "compact": "Barry, a Mexican War veteran, supplied cotton to Union ships in the Gulf of Mexico.",
+        "repeat_prefix": "Barry, was a Mexican War veteran who was providing cotton to Union ships in the"
+      },
+      {
+        "norm_hash": "18036c8a595d6b1cb523c6abc2dedac4",
+        "source_words": 15,
+        "companion_words": 11,
+        "compact": "By December 1864, Corpus Christi suffered war effects and high tensions.",
+        "repeat_prefix": "By December 1864 Corpus Christi was suffering the effects of war,"
+      }
+    ]
+  },
+  "files": {
+    "existing_rows": "experiments/archive/representation_and_objectives/data/fw_full_preservation/full26k_existing_a02_rows.jsonl",
+    "new_rows": "experiments/archive/representation_and_objectives/data/fw_full_preservation/full26k_new_rows.jsonl",
+    "all_rows": "experiments/archive/representation_and_objectives/data/fw_full_preservation/full26k_all_preservation_rows.jsonl",
+    "usable_pairs": "experiments/archive/representation_and_objectives/data/fw_full_preservation/full26k_usable_pairs_for_materializer.jsonl",
+    "summary": "experiments/archive/representation_and_objectives/data/fw_full_preservation/full26k_standard_summary.json",
+    "review_samples": "experiments/archive/representation_and_objectives/data/fw_full_preservation/full26k_review_samples.json",
+    "note": "research/notes/representation_and_objectives/fw_full_preservation_application.md"
+  },
+  "elapsed_sec": 16.63
+}

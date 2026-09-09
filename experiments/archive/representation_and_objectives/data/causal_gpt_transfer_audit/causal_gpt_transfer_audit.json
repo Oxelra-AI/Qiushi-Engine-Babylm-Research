@@ -1,0 +1,461 @@
+{
+  "status": "A02_CAUSAL_GPT_TRANSFER_AUDIT",
+  "created_utc": "2026-09-01T13:29:19Z",
+  "purpose": "Read-only A01 audit of A02 research causal-GPT compact-view transfer scaffold before expensive/interpretive use.",
+  "missing_required_paths": [],
+  "data_audit": {
+    "manifest": {
+      "status": "CAUSAL_TRANSFER_SCAFFOLD_BUILT",
+      "created_utc": "2026-09-01T12:57:51Z",
+      "elapsed_sec": 15.2,
+      "strategist_corrections": {
+        "tokenizer_neutrality": "BPE trained on common filler only (identical between arms)",
+        "order_balance": "50/50 source-first/view-first (seed 171043): 6031/6124"
+      },
+      "tokenizer": {
+        "vocab_size": 16384,
+        "training_data": "filler_text_for_tokenizer.txt",
+        "training_words": 9576489,
+        "dir": "data/causal_transfer_scaffold/neutral_tokenizer",
+        "tokenizer_json_sha256": "e6723383f9642945134a09a9641d52e595624d3c5a99622e2a47e4d912378102"
+      },
+      "pools": {
+        "compact_view": {
+          "path": "data/causal_transfer_scaffold/causal_compact_10M.jsonl",
+          "rows": 73890,
+          "words": 10000000,
+          "sha256": "fa2216ce8f376767f900447e1e44e1932177583229119223d0554a78414af1ed",
+          "pair_items": 12155,
+          "est_tok_word_ratio": 1.4451
+        },
+        "repeat": {
+          "path": "data/causal_transfer_scaffold/causal_repeat_10M.jsonl",
+          "rows": 73890,
+          "words": 10000000,
+          "sha256": "e40b3a8978a00897020e1075557b658196c1aeb2a0136b4cba871ccdc334a61d",
+          "pair_items": 12155,
+          "est_tok_word_ratio": 1.4414
+        }
+      },
+      "filler": {
+        "rows": 61735,
+        "words": 9576489,
+        "sha256": "01ddc430cd656d7303feed36b778102f2bbdb110290292ae56e6bd8f962bb7cf"
+      },
+      "pairs": {
+        "total": 12155,
+        "total_pair_words": 423511,
+        "source_file": "data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl"
+      },
+      "source_pool_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+      "order_seed": 171043,
+      "est_total_tokens": 14432539,
+      "est_seqs_per_epoch": 56377
+    },
+    "expected_hashes": {
+      "compact_pool": "fa2216ce8f376767f900447e1e44e1932177583229119223d0554a78414af1ed",
+      "repeat_pool": "e40b3a8978a00897020e1075557b658196c1aeb2a0136b4cba871ccdc334a61d",
+      "filler_rows": "01ddc430cd656d7303feed36b778102f2bbdb110290292ae56e6bd8f962bb7cf",
+      "tokenizer_json": "e6723383f9642945134a09a9641d52e595624d3c5a99622e2a47e4d912378102"
+    },
+    "actual_hashes": {
+      "compact_pool": "fa2216ce8f376767f900447e1e44e1932177583229119223d0554a78414af1ed",
+      "repeat_pool": "e40b3a8978a00897020e1075557b658196c1aeb2a0136b4cba871ccdc334a61d",
+      "filler_rows": "01ddc430cd656d7303feed36b778102f2bbdb110290292ae56e6bd8f962bb7cf",
+      "tokenizer_json": "e6723383f9642945134a09a9641d52e595624d3c5a99622e2a47e4d912378102"
+    },
+    "hash_ok": {
+      "compact_pool": true,
+      "repeat_pool": true,
+      "filler_rows": true,
+      "tokenizer_json": true
+    },
+    "totals": {
+      "compact_rows": 73890,
+      "repeat_rows": 73890,
+      "compact_words": 10000000,
+      "repeat_words": 10000000,
+      "pair_source_rows_compact": 12155,
+      "pair_source_rows_repeat": 12155,
+      "same_row_count": true
+    },
+    "alignment": {
+      "pair_positions": 12155,
+      "filler_mismatch_count": 0,
+      "row_alignment_mismatch_examples": [],
+      "row_word_mismatch_count": 0,
+      "row_word_mismatch_examples": []
+    },
+    "order_balance": {
+      "counts": {
+        "source_first": 6031,
+        "view_first": 6124
+      },
+      "word_mass": {
+        "source_first": 210807,
+        "view_first": 212704
+      },
+      "source_words_by_order": {
+        "source_first": 130470,
+        "view_first": 131333
+      },
+      "rewrite_words_by_order": {
+        "source_first": 80337,
+        "view_first": 81371
+      },
+      "source_first_pair_word_fraction": 0.49776038875023315
+    },
+    "pair_length_stats": {
+      "source_words": {
+        "n": 12155,
+        "mean": 21.538708350473055,
+        "median": 20,
+        "p10": 12.0,
+        "p90": 33.0,
+        "min": 10,
+        "max": 48
+      },
+      "rewrite_words": {
+        "n": 12155,
+        "mean": 13.303825586178528,
+        "median": 13,
+        "p10": 8.0,
+        "p90": 20.0,
+        "min": 4,
+        "max": 39
+      },
+      "pair_words": {
+        "n": 12155,
+        "mean": 34.842533936651584,
+        "median": 33,
+        "p10": 20.0,
+        "p90": 52.0,
+        "min": 14,
+        "max": 86
+      }
+    },
+    "causal_artifact_metrics": {
+      "repeat_exact_prefix_rows": 12155,
+      "repeat_exact_prefix_fraction": 1.0,
+      "compact_rewrite_equals_source_prefix_rows": 1,
+      "compact_rewrite_equals_source_prefix_fraction": 8.227067050596462e-05,
+      "repeat_boundary_suffix_prefix_overlap_words": {
+        "n": 12155,
+        "mean": 6.66869600987248,
+        "median": 5,
+        "p10": 0.0,
+        "p90": 17.0,
+        "min": 0,
+        "max": 32
+      },
+      "compact_boundary_suffix_prefix_overlap_words": {
+        "n": 12155,
+        "mean": 0.0029617441382147267,
+        "median": 0,
+        "p10": 0.0,
+        "p90": 0.0,
+        "min": 0,
+        "max": 9
+      },
+      "rewrite_vs_source_prefix_word_prefix_overlap_fraction": {
+        "n": 12155,
+        "mean": 0.0765822695097526,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.25,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "interpretation": "Repeat rows are an exact source-prefix replay in every pair, so causal next-token learning across the side boundary has a copy/restart artifact not present in compact semantic rewrites. A compact>repeat result would still be strong; repeat≈compact or repeat>compact would not by itself refute compact-view density/consolidation under MLM."
+    },
+    "tokenization_pair_stats": {
+      "compact_pair_tok_per_word": {
+        "n": 12155,
+        "mean": 1.4618893576065057,
+        "median": 1.421875,
+        "p10": 1.2,
+        "p90": 1.7647058823529411,
+        "min": 1.0434782608695652,
+        "max": 3.1052631578947367
+      },
+      "repeat_pair_tok_per_word": {
+        "n": 12155,
+        "mean": 1.3810385757057095,
+        "median": 1.3448275862068966,
+        "p10": 1.1416498993963784,
+        "p90": 1.6666666666666667,
+        "min": 1.0,
+        "max": 2.8333333333333335
+      },
+      "compact_pair_total_tokens": 615821,
+      "repeat_pair_total_tokens": 583677,
+      "compact_minus_repeat_pair_tokens": 32144,
+      "compact_minus_repeat_pair_tokens_pct_of_repeat": 5.507155498674781
+    },
+    "filler_mix_top_by_words": [
+      [
+        "childes",
+        2574880
+      ],
+      [
+        "gutenberg",
+        1859360
+      ],
+      [
+        "open_subtitles",
+        1829440
+      ],
+      [
+        "qwen_pair_packed",
+        1656800
+      ],
+      [
+        "simple_wiki",
+        1059040
+      ],
+      [
+        "bnc_spoken",
+        575840
+      ],
+      [
+        "switchboard",
+        21120
+      ],
+      [
+        "neutral_cleanqwen_topup_compact_reinvest",
+        9
+      ]
+    ],
+    "filler_rows_top_by_count": [
+      [
+        "childes",
+        16093
+      ],
+      [
+        "qwen_pair_packed",
+        12236
+      ],
+      [
+        "gutenberg",
+        11621
+      ],
+      [
+        "open_subtitles",
+        11434
+      ],
+      [
+        "simple_wiki",
+        6619
+      ],
+      [
+        "bnc_spoken",
+        3599
+      ],
+      [
+        "switchboard",
+        132
+      ],
+      [
+        "neutral_cleanqwen_topup_compact_reinvest",
+        1
+      ]
+    ],
+    "examples": [
+      {
+        "pair_idx": 0,
+        "row": 4,
+        "order": "source_first",
+        "source_words": 24,
+        "rewrite_words": 15,
+        "source_first_80chars": "Based on the home's plans, the Home Energy Rater uses an energy efficiency softw",
+        "rewrite_first_80chars": "The Home Energy Rater uses software to analyze the home's design based on its pl",
+        "repeat_first_80chars": "Based on the home's plans, the Home Energy Rater uses an energy efficiency softw"
+      },
+      {
+        "pair_idx": 1,
+        "row": 10,
+        "order": "view_first",
+        "source_words": 24,
+        "rewrite_words": 15,
+        "source_first_80chars": "Just like the physical environment, the virtual environment has become polluted ",
+        "rewrite_first_80chars": "Like the physical environment, the virtual environment is polluted, with some ar",
+        "repeat_first_80chars": "Just like the physical environment, the virtual environment has become polluted "
+      },
+      {
+        "pair_idx": 2,
+        "row": 16,
+        "order": "source_first",
+        "source_words": 36,
+        "rewrite_words": 21,
+        "source_first_80chars": "The polar regions become much colder than they are presently and there are notic",
+        "rewrite_first_80chars": "Polar regions become much colder than now, with large temperature differences fr",
+        "repeat_first_80chars": "The polar regions become much colder than they are presently and there are notic"
+      },
+      {
+        "pair_idx": 3,
+        "row": 22,
+        "order": "source_first",
+        "source_words": 19,
+        "rewrite_words": 10,
+        "source_first_80chars": "Rather, they were extended objects originally hypothesized to be clouds of gas (",
+        "rewrite_first_80chars": "They were gas clouds (nebulae) in our Milky Way galaxy.",
+        "repeat_first_80chars": "Rather, they were extended objects originally hypothesized to be clouds"
+      }
+    ]
+  },
+  "static_script_audit": {
+    "script_hashes": {
+      "causal_data_and_tokenizer.py": "9b8a36aa2bf58ac22ffe1f3b4c8433cc5831a987c127f35ef3d2c886986dcc2d",
+      "causal_gpt_trainer.py": "f4e3888f7bb32ae4cb4bfdc743114cd21661ff76098e3980638024e87b806c57",
+      "causal_cheap7_eval.py": "33b2cce69b005f827f955e30dbf960693787da81b47484e9141debaa13876804"
+    },
+    "ast_parse_ok": {
+      "causal_data_and_tokenizer.py": true,
+      "causal_gpt_trainer.py": true,
+      "causal_cheap7_eval.py": true
+    },
+    "static_issues": [
+      {
+        "severity": "blocking_for_cheap7_comparability",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "A02 reading runner passes --test_path and no --backend, but official reading/run.py requires --data_path and --backend.",
+        "consequence": "Reading returns None; cheap7 becomes a 6-column average and is not comparable with prior cheap7/official readouts."
+      },
+      {
+        "severity": "blocking_for_globalpiqa",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "GlobalPIQA scoring compares prediction text to the label field instead of solution{label} text.",
+        "consequence": "GlobalPIQA can be scored near-zero or otherwise incorrectly even if official predictions are valid."
+      },
+      {
+        "severity": "blocking_for_entity_tracking",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "Entity scoring does not skip gold rows whose options contain 'nothing', while official prediction generation skips them.",
+        "consequence": "Prediction/gold alignment drifts; Entity score is not official-compatible."
+      },
+      {
+        "severity": "blocking_for_missing_column_detection",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "cheap7 averages over present columns instead of failing when any required column is missing.",
+        "consequence": "Failed tasks can silently inflate or deflate mechanism comparisons."
+      },
+      {
+        "severity": "repair_recommended",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "Evaluation task failures are converted to None and hidden in captured stderr snippets.",
+        "consequence": "A full transfer run can look finished while key official columns are absent or mis-scored."
+      },
+      {
+        "severity": "operational_cwd_risk",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_data_and_tokenizer.py",
+        "issue": "Data script hardcodes a session-relative root and is safe only from the user root, not after cd into a session/workspace directory.",
+        "consequence": "Managed background calls must set cwd='' or use fully relative paths consistently."
+      },
+      {
+        "severity": "design_note_not_blocking",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_gpt_trainer.py",
+        "issue": "Pair sides inside a treatment row have no explicit side boundary; only row/doc EOS is appended after the whole pair item.",
+        "consequence": "Causal training tests directional continuation through the source/view boundary rather than a bidirectional same-row co-training signal like MLM."
+      },
+      {
+        "severity": "stale_smoke_test",
+        "where": "experiments/archive/frontier_consolidation/data/causal_transfer_scaffold/smoke_test/training_manifest.json",
+        "issue": "Existing A02 smoke manifest lacks current trainer fields such as legal_charged_words, active_tokens_per_epoch, and dropped_tail_tokens_per_epoch.",
+        "consequence": "The smoke run appears to predate later exposure-counter edits; current trainer should be smoke-tested before full H100 spend."
+      }
+    ],
+    "existing_smoke_manifest": {
+      "status": "CAUSAL_GPT_TRAINING_COMPLETE",
+      "created_utc": "2026-09-01T13:00:43Z",
+      "elapsed_sec": 34.4,
+      "args": {
+        "pool": "experiments/archive/frontier_consolidation/data/causal_transfer_scaffold/causal_compact_10M.jsonl",
+        "tokenizer": "experiments/archive/frontier_consolidation/data/causal_transfer_scaffold/neutral_tokenizer",
+        "run_dir": "experiments/archive/frontier_consolidation/data/causal_transfer_scaffold/smoke_test",
+        "gpu": 0,
+        "seed": 43022,
+        "total_words": 10000000,
+        "checkpoint_interval": 10000000,
+        "seq_len": 256,
+        "batch_size": 4,
+        "lr": 0.0006,
+        "warmup_frac": 0.05,
+        "weight_decay": 0.1,
+        "hidden": 480,
+        "layers": 8,
+        "heads": 8,
+        "max_grad_norm": 1.0,
+        "smoke": true
+      },
+      "model": {
+        "type": "GPT2LMHeadModel",
+        "layers": 8,
+        "hidden": 480,
+        "heads": 8,
+        "vocab_size": 16384,
+        "params": 30156480,
+        "trainable": 30156480
+      },
+      "training": {
+        "total_words": 1404,
+        "total_steps": 2,
+        "total_epochs": 1,
+        "words_per_token": 0.685496,
+        "tokens_per_epoch": 14587904,
+        "final_loss": 9.729513
+      },
+      "pool_sha256": "fa2216ce8f376767f900447e1e44e1932177583229119223d0554a78414af1ed",
+      "tokenizer_sha256": "e6723383f9642945134a09a9641d52e595624d3c5a99622e2a47e4d912378102",
+      "checkpoints": [
+        {
+          "name": "final",
+          "words": 1403,
+          "step": 2,
+          "loss": 9.729513,
+          "params": 30156480,
+          "model_sha256": "989da718ba00da6d3a95c21c01711f0f0d323a5e92ab39bb9b481ebaa72ead3a"
+        }
+      ]
+    }
+  },
+  "scientific_readout": {
+    "data_scaffold_ok_for_aligned_pool_contrast": true,
+    "current_eval_script_ok_for_mechanism_readout": false,
+    "blocking_static_issues": [
+      {
+        "severity": "blocking_for_cheap7_comparability",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "A02 reading runner passes --test_path and no --backend, but official reading/run.py requires --data_path and --backend.",
+        "consequence": "Reading returns None; cheap7 becomes a 6-column average and is not comparable with prior cheap7/official readouts."
+      },
+      {
+        "severity": "blocking_for_globalpiqa",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "GlobalPIQA scoring compares prediction text to the label field instead of solution{label} text.",
+        "consequence": "GlobalPIQA can be scored near-zero or otherwise incorrectly even if official predictions are valid."
+      },
+      {
+        "severity": "blocking_for_entity_tracking",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "Entity scoring does not skip gold rows whose options contain 'nothing', while official prediction generation skips them.",
+        "consequence": "Prediction/gold alignment drifts; Entity score is not official-compatible."
+      },
+      {
+        "severity": "blocking_for_missing_column_detection",
+        "where": "experiments/archive/frontier_consolidation/scripts/causal_cheap7_eval.py",
+        "issue": "cheap7 averages over present columns instead of failing when any required column is missing.",
+        "consequence": "Failed tasks can silently inflate or deflate mechanism comparisons."
+      }
+    ],
+    "recommended_before_h100_or_interpretation": [
+      "Repair causal cheap7 evaluation to use official reading --data_path/--backend causal, official GlobalPIQA solution-text comparison, Entity 'nothing' filtering, and fail-closed all-7-column collation.",
+      "Run a fresh current-script smoke/short run after the exposure-counter edits; the existing A02 smoke manifest appears stale relative to the current trainer fields.",
+      "If full causal-GPT training is launched, interpret it as architecture/objective transfer only with this caveat: causal repeat rows provide exact source-prefix replay, so repeat arm has a directional copy/restart advantage absent from compact semantic rewrites.",
+      "Prefer additional local readouts over endpoint-only cheap7: pair-row validation perplexity separated into treatment-side vs filler-side and boundary-position loss, compact vs repeat prediction turnover on the same official tasks, and comparison to A01 masked-triangle result."
+    ],
+    "bottom_line": "The A02 data/tokenizer scaffold is hash-consistent and row-aligned, but the current evaluation script is not official-compatible and the causal objective changes the meaning of the compact/repeat contrast. Do not trust a research cheap7 table until scoring is repaired; do not read repeat>=compact as falsifying the masked compact-view principle without accounting for the exact-prefix replay artifact."
+  },
+  "elapsed_sec": 14.001,
+  "out_json": "experiments/archive/representation_and_objectives/data/causal_gpt_transfer_audit/causal_gpt_transfer_audit.json",
+  "out_md": "research/notes/representation_and_objectives/causal_gpt_transfer_audit.md"
+}

@@ -1,0 +1,2452 @@
+{
+  "status": "LEADER_CAUSAL_USE_GAP_COMPLETE",
+  "design": {
+    "data": "official Strict-Small training text only",
+    "cases": 300,
+    "common_cases_across_tokenizers": 297,
+    "primary_measure": "(entity-history counterfactual loss effect - matched unrelated-history effect) divided by within-model content loss scale",
+    "positive_control": "public 41.80 leader versus protected 40.53 WWM baseline",
+    "success_rule": "Leader effect and leader-minus-protected gap must both have bootstrap CI95 lower bound > 0; leader positive fraction >= 0.55."
+  },
+  "provenance": {
+    "script": "experiments/archive/initial_model_studies/scripts/corrected_history_content_probe.py",
+    "script_sha256": "4aa0919db0f7fc7918f7da39b42b0b01862f612b0eb1248b1c6bf11388d98b96",
+    "raw_dir": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/raw_dataset",
+    "base_tokenizer": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model/chck_80M",
+    "device": "cpu"
+  },
+  "models": {
+    "protected_wwm42_100M": {
+      "identity": {
+        "direct_path": "experiments/archive/initial_model_studies/training/runs/babylm_fullcycle_debertav2_8x480_wwm_seed42_100M_b256/hf_model/chck_100M",
+        "weight_sha256": "487913f66c008036941bfce9d5529e19dceed6c5eba76fe904f508e8eef5d6f3",
+        "weight_bytes": 137890400,
+        "parameter_count": 34467424,
+        "tokenizer_size": 16384
+      }
+    },
+    "public_leader": {
+      "identity": {
+        "direct_path": "experiments/archive/initial_model_studies/data/leader_package_revision_124/model_side/local",
+        "weight_sha256": "cebc35d41825c2c17234ecf7de014020ee91879517a92ee912483ca130b6e120",
+        "weight_bytes": 69380232,
+        "parameter_count": 34677952,
+        "tokenizer_size": 40000
+      }
+    }
+  },
+  "statistics": {
+    "protected": {
+      "n": 297,
+      "mean": -0.0002756686507944316,
+      "median": 0.0,
+      "fraction_positive": 0.24242424242424243,
+      "bootstrap_ci95": [
+        -0.004471384546424252,
+        0.003940379081059018
+      ]
+    },
+    "leader": {
+      "n": 297,
+      "mean": -0.0032753236443579608,
+      "median": 0.0,
+      "fraction_positive": 0.2222222222222222,
+      "bootstrap_ci95": [
+        -0.007915686268990108,
+        0.0007165503410837356
+      ]
+    },
+    "leader_minus_protected": {
+      "n": 297,
+      "mean": -0.0029996549935635292,
+      "median": 0.0,
+      "fraction_positive": 0.24579124579124578,
+      "bootstrap_ci95": [
+        -0.008145837251516323,
+        0.0015696840683301553
+      ]
+    },
+    "cross_model_spearman_rho": -0.05253006818355774
+  },
+  "common_rows": [
+    {
+      "case_index": 0,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 1,
+      "target_word": "room",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 2,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 3,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0191632357014956,
+      "leader_normalized_extra": -0.04543914789847164,
+      "leader_minus_protected": -0.06460238359996723
+    },
+    {
+      "case_index": 4,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0006956637202792435,
+      "leader_normalized_extra": -0.010806609068807014,
+      "leader_minus_protected": -0.011502272789086257
+    },
+    {
+      "case_index": 5,
+      "target_word": "goin",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 6,
+      "target_word": "think",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.000548330944041472,
+      "leader_normalized_extra": 0.000733793712210617,
+      "leader_minus_protected": 0.000185462768169145
+    },
+    {
+      "case_index": 7,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 8,
+      "target_word": "never",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.014670660305791521,
+      "leader_normalized_extra": -0.016752083297048775,
+      "leader_minus_protected": -0.031422743602840295
+    },
+    {
+      "case_index": 9,
+      "target_word": "long",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 10,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.02342411516415957,
+      "leader_normalized_extra": -0.05640637598257642,
+      "leader_minus_protected": -0.07983049114673599
+    },
+    {
+      "case_index": 11,
+      "target_word": "time",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.00272449685508333,
+      "leader_normalized_extra": -0.021341838644007412,
+      "leader_minus_protected": -0.024066335499090742
+    },
+    {
+      "case_index": 12,
+      "target_word": "dead",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 13,
+      "target_word": "felt",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 14,
+      "target_word": "away",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0014153768599898696,
+      "leader_normalized_extra": -0.013895366754520324,
+      "leader_minus_protected": -0.015310743614510194
+    },
+    {
+      "case_index": 15,
+      "target_word": "fought",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0007334730874174353,
+      "leader_normalized_extra": -0.010346467125235417,
+      "leader_minus_protected": -0.009612994037817983
+    },
+    {
+      "case_index": 16,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 17,
+      "target_word": "long",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.008483814084539416,
+      "leader_normalized_extra": -0.0031960901566301754,
+      "leader_minus_protected": -0.011679904241169593
+    },
+    {
+      "case_index": 18,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 19,
+      "target_word": "brought",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 20,
+      "target_word": "farm",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 21,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 22,
+      "target_word": "busy",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 23,
+      "target_word": "best",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 24,
+      "target_word": "came",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.007947454874288521,
+      "leader_normalized_extra": -0.016966624479312704,
+      "leader_minus_protected": -0.009019169605024182
+    },
+    {
+      "case_index": 25,
+      "target_word": "home",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.01312197236883948,
+      "leader_normalized_extra": -0.009552455665843236,
+      "leader_minus_protected": -0.02267442803468272
+    },
+    {
+      "case_index": 26,
+      "target_word": "bill",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.012226409446620328,
+      "leader_normalized_extra": 0.015717654417735982,
+      "leader_minus_protected": 0.02794406386435631
+    },
+    {
+      "case_index": 27,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.1757650153110077,
+      "leader_normalized_extra": 0.08126788401506994,
+      "leader_minus_protected": -0.09449713129593774
+    },
+    {
+      "case_index": 28,
+      "target_word": "work",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 29,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.023242392744527926,
+      "leader_normalized_extra": -0.025365987879204778,
+      "leader_minus_protected": -0.002123595134676852
+    },
+    {
+      "case_index": 30,
+      "target_word": "thought",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 31,
+      "target_word": "except",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.015053792644851549,
+      "leader_normalized_extra": 0.008806470201855229,
+      "leader_minus_protected": -0.00624732244299632
+    },
+    {
+      "case_index": 32,
+      "target_word": "table",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 33,
+      "target_word": "nice",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.06452233034716445,
+      "leader_normalized_extra": -0.0449905105515729,
+      "leader_minus_protected": 0.01953181979559155
+    },
+    {
+      "case_index": 34,
+      "target_word": "teach",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.008608544749623115,
+      "leader_normalized_extra": 0.021903125918672172,
+      "leader_minus_protected": 0.030511670668295285
+    },
+    {
+      "case_index": 35,
+      "target_word": "teach",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 36,
+      "target_word": "mind",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 37,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.016140752525774626,
+      "leader_normalized_extra": 0.03760473476468692,
+      "leader_minus_protected": 0.053745487290461545
+    },
+    {
+      "case_index": 38,
+      "target_word": "keep",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0013842756126191196,
+      "leader_normalized_extra": 0.009784366055388915,
+      "leader_minus_protected": 0.008400090442769795
+    },
+    {
+      "case_index": 39,
+      "target_word": "tell",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.004330057023781253,
+      "leader_normalized_extra": -0.0039771819508644755,
+      "leader_minus_protected": 0.00035287507291677754
+    },
+    {
+      "case_index": 40,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 41,
+      "target_word": "never",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 42,
+      "target_word": "speech",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 43,
+      "target_word": "came",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 44,
+      "target_word": "natural",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 45,
+      "target_word": "know",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.004380773302902998,
+      "leader_normalized_extra": -0.01879495591795895,
+      "leader_minus_protected": -0.02317572922086195
+    },
+    {
+      "case_index": 46,
+      "target_word": "always",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 47,
+      "target_word": "things",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.003483422205593111,
+      "leader_normalized_extra": -0.010347501757175115,
+      "leader_minus_protected": -0.0068640795515820035
+    },
+    {
+      "case_index": 48,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.044354289504456516,
+      "leader_normalized_extra": 0.010200345935892507,
+      "leader_minus_protected": -0.03415394356856401
+    },
+    {
+      "case_index": 49,
+      "target_word": "asked",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.11474847519692218,
+      "leader_normalized_extra": -0.017624424338821526,
+      "leader_minus_protected": 0.09712405085810065
+    },
+    {
+      "case_index": 50,
+      "target_word": "want",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 51,
+      "target_word": "once",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0012791566109065945,
+      "leader_normalized_extra": 0.0046918295384221695,
+      "leader_minus_protected": 0.003412672927515575
+    },
+    {
+      "case_index": 52,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.030643912844664885,
+      "leader_normalized_extra": 0.010379633002413376,
+      "leader_minus_protected": 0.04102354584707826
+    },
+    {
+      "case_index": 53,
+      "target_word": "cuninghame",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 54,
+      "target_word": "lagoon",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 55,
+      "target_word": "lake",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 56,
+      "target_word": "regatta",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.013216206896506114,
+      "leader_normalized_extra": -0.013331901944090407,
+      "leader_minus_protected": -0.00011569504758429314
+    },
+    {
+      "case_index": 57,
+      "target_word": "weather",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 58,
+      "target_word": "rain",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0061003151282708196,
+      "leader_normalized_extra": 0.07999854537392491,
+      "leader_minus_protected": 0.07389823024565409
+    },
+    {
+      "case_index": 59,
+      "target_word": "enough",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.007184119107623695,
+      "leader_normalized_extra": 0.015045981447866437,
+      "leader_minus_protected": 0.022230100555490132
+    },
+    {
+      "case_index": 60,
+      "target_word": "early",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 61,
+      "target_word": "never",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 62,
+      "target_word": "regatta",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 63,
+      "target_word": "young",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 64,
+      "target_word": "connors",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 65,
+      "target_word": "soon",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.008656799810008872,
+      "leader_normalized_extra": 0.0023982462252178796,
+      "leader_minus_protected": 0.011055046035226751
+    },
+    {
+      "case_index": 66,
+      "target_word": "bare",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 67,
+      "target_word": "people",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 68,
+      "target_word": "ready",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 69,
+      "target_word": "best",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 70,
+      "target_word": "themselves",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 71,
+      "target_word": "begin",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.009857609297510358,
+      "leader_normalized_extra": -0.003204563530608603,
+      "leader_minus_protected": -0.013062172828118961
+    },
+    {
+      "case_index": 72,
+      "target_word": "until",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 73,
+      "target_word": "visitors",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 74,
+      "target_word": "hummocks",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 75,
+      "target_word": "lived",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.005476481087135096,
+      "leader_normalized_extra": -0.012010943706401706,
+      "leader_minus_protected": -0.0174874247935368
+    },
+    {
+      "case_index": 76,
+      "target_word": "existence",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0010470528802950638,
+      "leader_normalized_extra": -0.018876355580180644,
+      "leader_minus_protected": -0.019923408460475706
+    },
+    {
+      "case_index": 77,
+      "target_word": "breakers",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 78,
+      "target_word": "part",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 79,
+      "target_word": "lake",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.006066494550409655,
+      "leader_normalized_extra": -0.1567132065898545,
+      "leader_minus_protected": -0.16277970114026416
+    },
+    {
+      "case_index": 80,
+      "target_word": "never",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 81,
+      "target_word": "connor",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 82,
+      "target_word": "nick",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 83,
+      "target_word": "figure",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0024656566118610073,
+      "leader_normalized_extra": 0.004020011427890568,
+      "leader_minus_protected": 0.0015543548160295607
+    },
+    {
+      "case_index": 84,
+      "target_word": "suit",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 85,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.009027464210685131,
+      "leader_normalized_extra": -0.012844041137716485,
+      "leader_minus_protected": -0.003816576927031353
+    },
+    {
+      "case_index": 86,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.034321626445766786,
+      "leader_normalized_extra": -0.033618988439220426,
+      "leader_minus_protected": -0.0679406148849872
+    },
+    {
+      "case_index": 87,
+      "target_word": "found",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.010531675596009078,
+      "leader_normalized_extra": -0.007609660913354675,
+      "leader_minus_protected": -0.018141336509363754
+    },
+    {
+      "case_index": 88,
+      "target_word": "excursionists",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 89,
+      "target_word": "came",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 90,
+      "target_word": "across",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.00043533478986679914,
+      "leader_normalized_extra": -0.01101385307867847,
+      "leader_minus_protected": -0.010578518288811671
+    },
+    {
+      "case_index": 91,
+      "target_word": "steamer",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.010272477643631983,
+      "leader_normalized_extra": 0.028556368819317182,
+      "leader_minus_protected": 0.038828846462949165
+    },
+    {
+      "case_index": 92,
+      "target_word": "people",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0008808856317272968,
+      "leader_normalized_extra": 0.009706803748459341,
+      "leader_minus_protected": 0.010587689380186638
+    },
+    {
+      "case_index": 93,
+      "target_word": "beach",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 94,
+      "target_word": "long",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 95,
+      "target_word": "summer",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.014349756240215434,
+      "leader_normalized_extra": -0.009273730212994508,
+      "leader_minus_protected": 0.005076026027220926
+    },
+    {
+      "case_index": 96,
+      "target_word": "water",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0035291057479641804,
+      "leader_normalized_extra": 0.01717275113459447,
+      "leader_minus_protected": 0.020701856882558652
+    },
+    {
+      "case_index": 97,
+      "target_word": "boat",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 98,
+      "target_word": "fellow",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0001818910631425119,
+      "leader_normalized_extra": 0.00402255236250881,
+      "leader_minus_protected": 0.003840661299366298
+    },
+    {
+      "case_index": 99,
+      "target_word": "father",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.012246509665705788,
+      "leader_normalized_extra": -0.009854566442005446,
+      "leader_minus_protected": -0.022101076107711233
+    },
+    {
+      "case_index": 100,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0014248531939087992,
+      "leader_normalized_extra": -0.08345760738599475,
+      "leader_minus_protected": -0.08488246057990355
+    },
+    {
+      "case_index": 101,
+      "target_word": "find",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 102,
+      "target_word": "later",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 103,
+      "target_word": "victory",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 104,
+      "target_word": "spectators",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0032996700159880392,
+      "leader_normalized_extra": -0.050114146220891956,
+      "leader_minus_protected": -0.05341381623688
+    },
+    {
+      "case_index": 105,
+      "target_word": "feet",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 106,
+      "target_word": "water",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 107,
+      "target_word": "caused",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 108,
+      "target_word": "ball",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.00033917443225849384,
+      "leader_normalized_extra": 0.014828226036648788,
+      "leader_minus_protected": 0.014489051604390294
+    },
+    {
+      "case_index": 109,
+      "target_word": "rocked",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 110,
+      "target_word": "race",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 111,
+      "target_word": "steeds",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.011937957119455537,
+      "leader_normalized_extra": -0.02415967911867349,
+      "leader_minus_protected": -0.012221721999217955
+    },
+    {
+      "case_index": 112,
+      "target_word": "umbrella",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.02286016603084476,
+      "leader_normalized_extra": -0.01709694597662288,
+      "leader_minus_protected": 0.00576322005422188
+    },
+    {
+      "case_index": 113,
+      "target_word": "dinghy",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 114,
+      "target_word": "smith",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.04585563265229015,
+      "leader_normalized_extra": -0.03151299273175043,
+      "leader_minus_protected": -0.07736862538404057
+    },
+    {
+      "case_index": 115,
+      "target_word": "right",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.009113955424325613,
+      "leader_normalized_extra": 0.0028211260590719606,
+      "leader_minus_protected": -0.006292829365253652
+    },
+    {
+      "case_index": 116,
+      "target_word": "boats",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.006611510553791928,
+      "leader_normalized_extra": 0.004804589077865626,
+      "leader_minus_protected": 0.011416099631657555
+    },
+    {
+      "case_index": 117,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.029520913187091363,
+      "leader_normalized_extra": 0.04188809209238955,
+      "leader_minus_protected": 0.012367178905298187
+    },
+    {
+      "case_index": 118,
+      "target_word": "polly",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 119,
+      "target_word": "dinghy",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.01105794023964811,
+      "leader_normalized_extra": 0.0430219183553251,
+      "leader_minus_protected": 0.03196397811567699
+    },
+    {
+      "case_index": 120,
+      "target_word": "umbrella",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.022665548456833412,
+      "leader_normalized_extra": 0.0012235597422905644,
+      "leader_minus_protected": -0.021441988714542847
+    },
+    {
+      "case_index": 121,
+      "target_word": "smith",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.00023655322336941988,
+      "leader_normalized_extra": 0.01428993503278922,
+      "leader_minus_protected": 0.014053381809419799
+    },
+    {
+      "case_index": 122,
+      "target_word": "wonder",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.05834403551921533,
+      "leader_normalized_extra": -0.007405233948236444,
+      "leader_minus_protected": 0.05093880157097889
+    },
+    {
+      "case_index": 123,
+      "target_word": "occasionally",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 124,
+      "target_word": "sent",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0024177726476832654,
+      "leader_normalized_extra": 0.020382595786455376,
+      "leader_minus_protected": 0.022800368434138643
+    },
+    {
+      "case_index": 125,
+      "target_word": "altogether",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.009693088631743384,
+      "leader_normalized_extra": 0.017931775506051684,
+      "leader_minus_protected": 0.027624864137795066
+    },
+    {
+      "case_index": 126,
+      "target_word": "polly",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0019404431883317196,
+      "leader_normalized_extra": -0.0642376430502715,
+      "leader_minus_protected": -0.06617808623860323
+    },
+    {
+      "case_index": 127,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.011756424934392336,
+      "leader_normalized_extra": -0.013874886897250664,
+      "leader_minus_protected": -0.025631311831643
+    },
+    {
+      "case_index": 128,
+      "target_word": "girls",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.005448473712279888,
+      "leader_normalized_extra": -0.004685181133307376,
+      "leader_minus_protected": 0.0007632925789725128
+    },
+    {
+      "case_index": 129,
+      "target_word": "starter",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.008352176174305318,
+      "leader_normalized_extra": 0.009435791941390633,
+      "leader_minus_protected": 0.01778796811569595
+    },
+    {
+      "case_index": 130,
+      "target_word": "boats",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 131,
+      "target_word": "umbrellas",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0033642272164994985,
+      "leader_normalized_extra": -0.02019972580063686,
+      "leader_minus_protected": -0.02356395301713636
+    },
+    {
+      "case_index": 132,
+      "target_word": "pistol",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0036436532092177488,
+      "leader_normalized_extra": 0.005310705101678841,
+      "leader_minus_protected": 0.00895435831089659
+    },
+    {
+      "case_index": 133,
+      "target_word": "five",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.025526292143811753,
+      "leader_normalized_extra": 0.019361839051236972,
+      "leader_minus_protected": 0.044888131195048725
+    },
+    {
+      "case_index": 134,
+      "target_word": "moment",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 135,
+      "target_word": "ready",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.05660764678968926,
+      "leader_normalized_extra": -0.009520675248737894,
+      "leader_minus_protected": -0.06612832203842715
+    },
+    {
+      "case_index": 136,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 137,
+      "target_word": "quite",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.010651607248171107,
+      "leader_normalized_extra": 0.006730026022973763,
+      "leader_minus_protected": -0.003921581225197345
+    },
+    {
+      "case_index": 138,
+      "target_word": "boats",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.016882215297564385,
+      "leader_normalized_extra": -0.0033696438292658087,
+      "leader_minus_protected": 0.013512571468298576
+    },
+    {
+      "case_index": 139,
+      "target_word": "umbrella",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.03782986714371678,
+      "leader_normalized_extra": 0.004111491180768471,
+      "leader_minus_protected": 0.04194135832448525
+    },
+    {
+      "case_index": 140,
+      "target_word": "never",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 141,
+      "target_word": "breeze",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 142,
+      "target_word": "parker",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 143,
+      "target_word": "umbrella",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 144,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 145,
+      "target_word": "ahead",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 146,
+      "target_word": "boats",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.03813636692840967,
+      "leader_normalized_extra": 0.0021285902196405,
+      "leader_minus_protected": 0.04026495714805017
+    },
+    {
+      "case_index": 147,
+      "target_word": "polly",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.006071391119242984,
+      "leader_normalized_extra": -0.05300433308612751,
+      "leader_minus_protected": -0.059075724205370495
+    },
+    {
+      "case_index": 148,
+      "target_word": "slowly",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 149,
+      "target_word": "forward",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0043502106444515635,
+      "leader_normalized_extra": -0.015020430559288355,
+      "leader_minus_protected": -0.019370641203739918
+    },
+    {
+      "case_index": 150,
+      "target_word": "line",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 151,
+      "target_word": "shore",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 152,
+      "target_word": "well",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 153,
+      "target_word": "flossie",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.014849595225443385,
+      "leader_normalized_extra": -0.04807927789897678,
+      "leader_minus_protected": -0.03322968267353339
+    },
+    {
+      "case_index": 154,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.02306789068625016,
+      "leader_normalized_extra": 0.02980523665100078,
+      "leader_minus_protected": 0.05287312733725094
+    },
+    {
+      "case_index": 155,
+      "target_word": "answered",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.02993283996648086,
+      "leader_normalized_extra": -0.01018905952344034,
+      "leader_minus_protected": 0.01974378044304052
+    },
+    {
+      "case_index": 156,
+      "target_word": "weighs",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.00984980574846333,
+      "leader_normalized_extra": 0.03373418079942799,
+      "leader_minus_protected": 0.023884375050964662
+    },
+    {
+      "case_index": 157,
+      "target_word": "herself",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 158,
+      "target_word": "shore",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 159,
+      "target_word": "down",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 160,
+      "target_word": "wharf",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.00792391598119111,
+      "leader_normalized_extra": -0.008501687312593377,
+      "leader_minus_protected": -0.000577771331402268
+    },
+    {
+      "case_index": 161,
+      "target_word": "turned",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.00746160321946284,
+      "leader_normalized_extra": 0.003026883589344303,
+      "leader_minus_protected": -0.004434719630118537
+    },
+    {
+      "case_index": 162,
+      "target_word": "people",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.000849365075832543,
+      "leader_normalized_extra": 0.0034193764460408657,
+      "leader_minus_protected": 0.004268741521873409
+    },
+    {
+      "case_index": 163,
+      "target_word": "pole",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 164,
+      "target_word": "water",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 165,
+      "target_word": "surface",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 166,
+      "target_word": "steps",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 167,
+      "target_word": "melbourne",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0027009471797288295,
+      "leader_normalized_extra": 0.0072702802362563795,
+      "leader_minus_protected": 0.009971227415985209
+    },
+    {
+      "case_index": 168,
+      "target_word": "pole",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 169,
+      "target_word": "down",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.006072428013863441,
+      "leader_normalized_extra": -0.009868429250682242,
+      "leader_minus_protected": -0.015940857264545683
+    },
+    {
+      "case_index": 170,
+      "target_word": "along",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.19353108859765678,
+      "leader_normalized_extra": 0.058029639252679385,
+      "leader_minus_protected": -0.13550144934497738
+    },
+    {
+      "case_index": 171,
+      "target_word": "falling",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.007595130340779733,
+      "leader_normalized_extra": 0.009715423244949676,
+      "leader_minus_protected": 0.01731055358572941
+    },
+    {
+      "case_index": 172,
+      "target_word": "smith",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.022528987597762288,
+      "leader_normalized_extra": 0.014157464160151243,
+      "leader_minus_protected": 0.03668645175791353
+    },
+    {
+      "case_index": 173,
+      "target_word": "umbrella",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 174,
+      "target_word": "didn",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0035969199554377633,
+      "leader_normalized_extra": 0.005560944668045654,
+      "leader_minus_protected": 0.001964024712607891
+    },
+    {
+      "case_index": 175,
+      "target_word": "well",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.07134705804919396,
+      "leader_normalized_extra": -0.0004247265164899502,
+      "leader_minus_protected": 0.07092233153270401
+    },
+    {
+      "case_index": 176,
+      "target_word": "nick",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.05413187515187291,
+      "leader_normalized_extra": -0.050686430574246315,
+      "leader_minus_protected": -0.10481830572611922
+    },
+    {
+      "case_index": 177,
+      "target_word": "sure",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.018074349578809656,
+      "leader_normalized_extra": 0.06789918561906497,
+      "leader_minus_protected": 0.04982483604025531
+    },
+    {
+      "case_index": 178,
+      "target_word": "smith",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 179,
+      "target_word": "mistakes",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 180,
+      "target_word": "think",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0046746815013927225,
+      "leader_normalized_extra": -0.05904492203589976,
+      "leader_minus_protected": -0.06371960353729249
+    },
+    {
+      "case_index": 181,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.09459978130815914,
+      "leader_normalized_extra": -0.11050461196172372,
+      "leader_minus_protected": -0.015904830653564572
+    },
+    {
+      "case_index": 182,
+      "target_word": "macleod",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 183,
+      "target_word": "know",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.01054346752083572,
+      "leader_normalized_extra": 0.004659913844566156,
+      "leader_minus_protected": -0.005883553676269565
+    },
+    {
+      "case_index": 184,
+      "target_word": "well",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 185,
+      "target_word": "nervous",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.001659186739228968,
+      "leader_normalized_extra": -0.009899442205572484,
+      "leader_minus_protected": -0.011558628944801452
+    },
+    {
+      "case_index": 186,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.005648145651943995,
+      "leader_normalized_extra": 0.011967207166633811,
+      "leader_minus_protected": 0.006319061514689817
+    },
+    {
+      "case_index": 187,
+      "target_word": "sight",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 188,
+      "target_word": "roany",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 189,
+      "target_word": "took",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 190,
+      "target_word": "know",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 191,
+      "target_word": "hurry",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 192,
+      "target_word": "bundles",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 193,
+      "target_word": "come",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.04170450679238675,
+      "leader_normalized_extra": -0.011015445023940288,
+      "leader_minus_protected": -0.052719951816327035
+    },
+    {
+      "case_index": 194,
+      "target_word": "gave",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 195,
+      "target_word": "night",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.04176713642728843,
+      "leader_normalized_extra": 0.03029437101970807,
+      "leader_minus_protected": 0.07206150744699649
+    },
+    {
+      "case_index": 196,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.00025419427668854985,
+      "leader_normalized_extra": 0.007280946807167007,
+      "leader_minus_protected": 0.007535141083855557
+    },
+    {
+      "case_index": 197,
+      "target_word": "buggy",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 198,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 199,
+      "target_word": "room",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.006213337138938454,
+      "leader_normalized_extra": 0.02227910943512147,
+      "leader_minus_protected": 0.028492446574059922
+    },
+    {
+      "case_index": 200,
+      "target_word": "days",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 201,
+      "target_word": "looked",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 202,
+      "target_word": "needn",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 203,
+      "target_word": "look",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.007225170544416194,
+      "leader_normalized_extra": -0.05388944764863066,
+      "leader_minus_protected": -0.04666427710421447
+    },
+    {
+      "case_index": 204,
+      "target_word": "come",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.007290550999490167,
+      "leader_normalized_extra": 0.04398877620928007,
+      "leader_minus_protected": 0.05127932720877024
+    },
+    {
+      "case_index": 205,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.008726339831781364,
+      "leader_normalized_extra": 0.02054178714565308,
+      "leader_minus_protected": 0.029268126977434444
+    },
+    {
+      "case_index": 206,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 207,
+      "target_word": "come",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 208,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.009859276543239062,
+      "leader_normalized_extra": -0.004962326242428388,
+      "leader_minus_protected": -0.01482160278566745
+    },
+    {
+      "case_index": 209,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.008932303625769952,
+      "leader_normalized_extra": 0.06233233757846997,
+      "leader_minus_protected": 0.053400033952700016
+    },
+    {
+      "case_index": 210,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0010192826446706806,
+      "leader_normalized_extra": -0.01591999249901179,
+      "leader_minus_protected": -0.01490070985434111
+    },
+    {
+      "case_index": 211,
+      "target_word": "afternoon",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 212,
+      "target_word": "removed",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 213,
+      "target_word": "kitchen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 214,
+      "target_word": "visitor",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 215,
+      "target_word": "warm",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 216,
+      "target_word": "sheep",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.009004889106899831,
+      "leader_normalized_extra": 0.008032867486876401,
+      "leader_minus_protected": 0.01703775659377623
+    },
+    {
+      "case_index": 217,
+      "target_word": "showed",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 218,
+      "target_word": "crops",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 219,
+      "target_word": "winter",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.012699266701605644,
+      "leader_normalized_extra": 0.015434432266817661,
+      "leader_minus_protected": 0.0027351655652120173
+    },
+    {
+      "case_index": 220,
+      "target_word": "vegetables",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 221,
+      "target_word": "until",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 222,
+      "target_word": "ready",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 223,
+      "target_word": "garden",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.008836412841729634,
+      "leader_normalized_extra": -0.0013353208650777534,
+      "leader_minus_protected": -0.010171733706807387
+    },
+    {
+      "case_index": 224,
+      "target_word": "possum",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.01315369837682126,
+      "leader_normalized_extra": -0.01380313802906082,
+      "leader_minus_protected": -0.0006494396522395592
+    },
+    {
+      "case_index": 225,
+      "target_word": "rode",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.016080776762705255,
+      "leader_normalized_extra": 0.003500410606506437,
+      "leader_minus_protected": 0.019581187369211692
+    },
+    {
+      "case_index": 226,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.332294181420959,
+      "leader_normalized_extra": -0.0666806598602181,
+      "leader_minus_protected": -0.3989748412811771
+    },
+    {
+      "case_index": 227,
+      "target_word": "well",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.024798734003142895,
+      "leader_normalized_extra": -0.004597742016603235,
+      "leader_minus_protected": -0.02939647601974613
+    },
+    {
+      "case_index": 228,
+      "target_word": "garth",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 229,
+      "target_word": "well",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 230,
+      "target_word": "thing",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.007697396334703523,
+      "leader_normalized_extra": 0.044880025201746554,
+      "leader_minus_protected": 0.03718262886704303
+    },
+    {
+      "case_index": 231,
+      "target_word": "season",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0021460835046228552,
+      "leader_normalized_extra": -0.020230918965830427,
+      "leader_minus_protected": -0.018084835461207573
+    },
+    {
+      "case_index": 232,
+      "target_word": "haven",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.02964399195515177,
+      "leader_normalized_extra": 0.005049057477460124,
+      "leader_minus_protected": 0.034693049432611894
+    },
+    {
+      "case_index": 233,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 234,
+      "target_word": "going",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 235,
+      "target_word": "melbourne",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.01794551699866146,
+      "leader_normalized_extra": -0.04426736770768503,
+      "leader_minus_protected": -0.06221288470634649
+    },
+    {
+      "case_index": 236,
+      "target_word": "doctor",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 237,
+      "target_word": "looked",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 238,
+      "target_word": "well",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 239,
+      "target_word": "back",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 240,
+      "target_word": "know",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 241,
+      "target_word": "think",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 242,
+      "target_word": "never",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 243,
+      "target_word": "knew",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.004482985420499544,
+      "leader_normalized_extra": -0.0026285752871257457,
+      "leader_minus_protected": 0.0018544101333737985
+    },
+    {
+      "case_index": 244,
+      "target_word": "want",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.009900271000983656,
+      "leader_normalized_extra": -0.005259474146114863,
+      "leader_minus_protected": -0.01515974514709852
+    },
+    {
+      "case_index": 245,
+      "target_word": "think",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.3227641162826716,
+      "leader_normalized_extra": -0.17605178690464013,
+      "leader_minus_protected": 0.14671232937803147
+    },
+    {
+      "case_index": 246,
+      "target_word": "melbourne",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.025865706227886316,
+      "leader_normalized_extra": -0.008972866349897817,
+      "leader_minus_protected": 0.0168928398779885
+    },
+    {
+      "case_index": 247,
+      "target_word": "part",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.05766110941363654,
+      "leader_normalized_extra": 0.018167839069721053,
+      "leader_minus_protected": -0.03949327034391548
+    },
+    {
+      "case_index": 248,
+      "target_word": "world",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.020722414520437285,
+      "leader_normalized_extra": 0.007481802587613284,
+      "leader_minus_protected": 0.02820421710805057
+    },
+    {
+      "case_index": 249,
+      "target_word": "aileen",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 250,
+      "target_word": "book",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 252,
+      "target_word": "coloured",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.00323197380353997,
+      "leader_normalized_extra": -0.002257230866553805,
+      "leader_minus_protected": -0.005489204670093775
+    },
+    {
+      "case_index": 253,
+      "target_word": "plates",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.06010341451406877,
+      "leader_normalized_extra": 0.0034159696942913697,
+      "leader_minus_protected": 0.06351938420836013
+    },
+    {
+      "case_index": 254,
+      "target_word": "hundreds",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.00946892701464337,
+      "leader_normalized_extra": 0.006562983359014771,
+      "leader_minus_protected": 0.016031910373658143
+    },
+    {
+      "case_index": 255,
+      "target_word": "children",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0019439212420051977,
+      "leader_normalized_extra": -0.021231237268852562,
+      "leader_minus_protected": -0.019287316026847363
+    },
+    {
+      "case_index": 256,
+      "target_word": "stories",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.015631849877166808,
+      "leader_normalized_extra": 0.016352734128153048,
+      "leader_minus_protected": 0.03198458400531985
+    },
+    {
+      "case_index": 257,
+      "target_word": "young",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 259,
+      "target_word": "book",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 261,
+      "target_word": "volume",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 262,
+      "target_word": "coloured",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 263,
+      "target_word": "plates",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 264,
+      "target_word": "wonder",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 265,
+      "target_word": "naval",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.04221272617631987,
+      "leader_normalized_extra": -0.031565584161044186,
+      "leader_minus_protected": -0.07377831033736405
+    },
+    {
+      "case_index": 266,
+      "target_word": "pictures",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.00892891442375469,
+      "leader_normalized_extra": -0.020312588138493248,
+      "leader_minus_protected": -0.011383673714738557
+    },
+    {
+      "case_index": 267,
+      "target_word": "life",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.02018283302228033,
+      "leader_normalized_extra": 0.025769311103227308,
+      "leader_minus_protected": 0.04595214412550764
+    },
+    {
+      "case_index": 268,
+      "target_word": "peace",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.021567654771781797,
+      "leader_normalized_extra": -0.0005264783687001136,
+      "leader_minus_protected": 0.021041176403081684
+    },
+    {
+      "case_index": 269,
+      "target_word": "army",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.02465466786205069,
+      "leader_normalized_extra": -0.02375573556388189,
+      "leader_minus_protected": 0.0008989322981688003
+    },
+    {
+      "case_index": 270,
+      "target_word": "both",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.0042928782649603835,
+      "leader_normalized_extra": -0.03178359693654189,
+      "leader_minus_protected": -0.027490718671581506
+    },
+    {
+      "case_index": 271,
+      "target_word": "wonder",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.10226480536485894,
+      "leader_normalized_extra": -0.45506594512956094,
+      "leader_minus_protected": -0.352801139764702
+    },
+    {
+      "case_index": 272,
+      "target_word": "book",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.02015909745799773,
+      "leader_normalized_extra": 0.05328653885010766,
+      "leader_minus_protected": 0.03312744139210993
+    },
+    {
+      "case_index": 273,
+      "target_word": "world",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 274,
+      "target_word": "importance",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 275,
+      "target_word": "empire",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 276,
+      "target_word": "interest",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.004603247833052285,
+      "leader_normalized_extra": -0.0116824175376893,
+      "leader_minus_protected": -0.007079169704637015
+    },
+    {
+      "case_index": 277,
+      "target_word": "wonder",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 278,
+      "target_word": "book",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 279,
+      "target_word": "children",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 280,
+      "target_word": "illustrations",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 281,
+      "target_word": "melbourne",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 282,
+      "target_word": "story",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.004590304355957085,
+      "leader_normalized_extra": -0.0010494516467378764,
+      "leader_minus_protected": -0.0056397560026949616
+    },
+    {
+      "case_index": 283,
+      "target_word": "isabel",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 284,
+      "target_word": "maud",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 285,
+      "target_word": "friend",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.1049922154730936,
+      "leader_normalized_extra": 0.23107712774123818,
+      "leader_minus_protected": 0.12608491226814456
+    },
+    {
+      "case_index": 286,
+      "target_word": "phil",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.007635138208349062,
+      "leader_normalized_extra": -0.01446681907024413,
+      "leader_minus_protected": -0.022101957278593192
+    },
+    {
+      "case_index": 287,
+      "target_word": "reader",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.006945970573372915,
+      "leader_normalized_extra": -0.021298620076162813,
+      "leader_minus_protected": -0.014352649502789899
+    },
+    {
+      "case_index": 288,
+      "target_word": "large",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.010009694647558442,
+      "leader_normalized_extra": -0.0017139702639059112,
+      "leader_minus_protected": -0.011723664911464354
+    },
+    {
+      "case_index": 289,
+      "target_word": "coloured",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 290,
+      "target_word": "plates",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 291,
+      "target_word": "stories",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.005522146075414599,
+      "leader_normalized_extra": 0.018594344576469895,
+      "leader_minus_protected": 0.024116490651884495
+    },
+    {
+      "case_index": 292,
+      "target_word": "child",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.020381905480801425,
+      "leader_normalized_extra": -0.004577493722332029,
+      "leader_minus_protected": 0.015804411758469396
+    },
+    {
+      "case_index": 293,
+      "target_word": "hold",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 294,
+      "target_word": "bruce",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.012268325571194059,
+      "leader_normalized_extra": -0.029738597350039517,
+      "leader_minus_protected": -0.017470271778845456
+    },
+    {
+      "case_index": 295,
+      "target_word": "makes",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.003168679204149796,
+      "leader_normalized_extra": 0.010370701908680316,
+      "leader_minus_protected": 0.013539381112830113
+    },
+    {
+      "case_index": 296,
+      "target_word": "life",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.005322602430288719,
+      "leader_normalized_extra": -0.010575333665880354,
+      "leader_minus_protected": -0.015897936096169074
+    },
+    {
+      "case_index": 297,
+      "target_word": "bush",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.005702378861943157,
+      "leader_normalized_extra": -0.0016918592113774045,
+      "leader_minus_protected": -0.0073942380733205615
+    },
+    {
+      "case_index": 298,
+      "target_word": "story",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": 0.0,
+      "leader_normalized_extra": 0.0,
+      "leader_minus_protected": 0.0
+    },
+    {
+      "case_index": 299,
+      "target_word": "australian",
+      "source": "gutenberg.train.txt",
+      "protected_normalized_extra": -0.05076944457634741,
+      "leader_normalized_extra": -0.015070525780403169,
+      "leader_minus_protected": 0.035698918795944244
+    }
+  ],
+  "decision": "H2_POSITIVE_CONTROL_INCONCLUSIVE",
+  "next_action": "Permit one stronger event-typed positive-control probe only; otherwise move to H1.",
+  "elapsed_sec": 51.17879939079285
+}

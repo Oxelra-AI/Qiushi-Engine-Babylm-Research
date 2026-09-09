@@ -1,0 +1,551 @@
+{
+  "status": "CROSS_REALIZATION_PROBE_AUDIT",
+  "meaning": "Construction/balance audit plus pair/doc-cluster robustness for research saved-checkpoint probe.",
+  "construction_checks": {
+    "events_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_preflight/cross_realization_probe_preflight_events.jsonl",
+    "events_sha256": "9e24915d1ddd2e73ea425fc0db645ee3bff744592a2d595a1c00351ed898c858",
+    "event_count": 4500,
+    "unique_event_uid_count": 4500,
+    "all_counterfactual_context_no_target_before_insert": true,
+    "all_bpe_ids_identical_flag_present": true,
+    "all_target_absent_flag_present": true,
+    "same_doc_rejected_flag_count": 4500,
+    "diag_counts": {
+      "abs_compact_counterfactual_relpos_delta": 4500,
+      "abs_compact_counterfactual_wordlen_delta": 4500,
+      "same_doc_rejected": 4500,
+      "target_absent_from_counterfactual_context_before_insert": 4500,
+      "bpe_ids_identical_across_source_compact_counterfactual": 4500
+    },
+    "eval_set_counts": {
+      "doc_disjoint_all_accepted": 1485,
+      "doc_disjoint_quality": 726,
+      "source_disjoint_quality": 1547,
+      "train_fixed_probe": 742
+    },
+    "pair_count": 2009,
+    "doc_count": 1021,
+    "counterfactual_pair_count": 3523,
+    "counterfactual_doc_count": 2449,
+    "doc_overlap_target_vs_counterfactual_count": 0,
+    "pair_overlap_target_vs_counterfactual_count": 0
+  },
+  "counterfactual_balance": {
+    "compact_minus_counterfactual_context_tokens": {
+      "n": 4500,
+      "min": -33.0,
+      "p05": -10.0,
+      "p25": -3.0,
+      "mean": 0.20555555555555555,
+      "median": 0.0,
+      "p75": 4.0,
+      "p95": 10.0,
+      "max": 31.0
+    },
+    "source_minus_compact_context_tokens": {
+      "n": 4500,
+      "min": -4.0,
+      "p05": 1.0,
+      "p25": 4.0,
+      "mean": 8.539555555555555,
+      "median": 7.0,
+      "p75": 12.0,
+      "p95": 22.0,
+      "max": 44.0
+    },
+    "compact_counterfactual_abs_relpos_delta": {
+      "n": 4500,
+      "min": 0.0,
+      "p05": 0.0,
+      "p25": 0.0,
+      "mean": 0.000752208448378956,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 0.10000000000000009
+    },
+    "compact_counterfactual_abs_word_index_delta": {
+      "n": 4500,
+      "min": 0.0,
+      "p05": 0.0,
+      "p25": 0.0,
+      "mean": 0.06755555555555555,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 10.0
+    },
+    "target_pieces": {
+      "n": 4500,
+      "min": 1.0,
+      "p05": 1.0,
+      "p25": 1.0,
+      "mean": 1.7144444444444444,
+      "median": 1.0,
+      "p75": 2.0,
+      "p95": 4.0,
+      "max": 8.0
+    },
+    "counterfactual_match_score": {
+      "n": 4500,
+      "min": 0.0,
+      "p05": 0.0,
+      "p25": 0.0,
+      "mean": 0.003001097337267845,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 0.2832076984763433
+    }
+  },
+  "by_eval_set_balance": {
+    "doc_disjoint_all_accepted": {
+      "n": 1485,
+      "pair_count": 436,
+      "doc_count": 315,
+      "compact_minus_counterfactual_tokens_mean": 0.2175084175084175,
+      "compact_counterfactual_abs_relpos_delta_mean": 0.0006459814758601336
+    },
+    "doc_disjoint_quality": {
+      "n": 726,
+      "pair_count": 105,
+      "doc_count": 91,
+      "compact_minus_counterfactual_tokens_mean": 0.4325068870523416,
+      "compact_counterfactual_abs_relpos_delta_mean": 0.0015710696878754496
+    },
+    "source_disjoint_quality": {
+      "n": 1547,
+      "pair_count": 918,
+      "doc_count": 766,
+      "compact_minus_counterfactual_tokens_mean": 0.11053652230122818,
+      "compact_counterfactual_abs_relpos_delta_mean": 0.0007340646532325718
+    },
+    "train_fixed_probe": {
+      "n": 742,
+      "pair_count": 721,
+      "doc_count": 1,
+      "compact_minus_counterfactual_tokens_mean": 0.15768194070080863,
+      "compact_counterfactual_abs_relpos_delta_mean": 0.0002014298033755237
+    }
+  },
+  "loss_checks": {
+    "loss_paths": {
+      "full_compact_100M": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/full_compact_100M_event_losses.jsonl",
+      "drop_abs_100M": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_abs_100M_event_losses.jsonl",
+      "drop_copied_word_100M": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_copied_word_100M_event_losses.jsonl",
+      "repeat_100M": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu1/repeat_100M_event_losses.jsonl",
+      "adjbreak_100M": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu1/adjbreak_100M_event_losses.jsonl"
+    },
+    "loss_sha256": {
+      "full_compact_100M": "b66ca7e78847a825ea36f05c08a0d7481715016eff891e86f5de373efb7e7e28",
+      "drop_abs_100M": "b39cad74abad0c949885c0d48858fe30df04810e16e35b5c3beef39bfe84c45f",
+      "drop_copied_word_100M": "4f205c66f7aa2be666cf010d0768e35330f134b0b57a21168ac9a3f676f4cf81",
+      "repeat_100M": "147195d73f5b3f5629ff28bfc5b1447bd04c9d8324163e8f0ac25da7a6ebe73b",
+      "adjbreak_100M": "3b89cb01b3a7e5f38c44999946babf8d9fa9f91fab42e3e457c8361d890fd7ce"
+    },
+    "loss_event_counts": {
+      "full_compact_100M": 4500,
+      "drop_abs_100M": 4500,
+      "drop_copied_word_100M": 4500,
+      "repeat_100M": 4500,
+      "adjbreak_100M": 4500
+    },
+    "loss_unique_event_counts": {
+      "full_compact_100M": 4500,
+      "drop_abs_100M": 4500,
+      "drop_copied_word_100M": 4500,
+      "repeat_100M": 4500,
+      "adjbreak_100M": 4500
+    },
+    "common_loss_event_count": 4500,
+    "all_losses_cover_all_events": true
+  },
+  "robust_contrasts": {
+    "drop_abs_minus_repeat": {
+      "compact_context_advantage_nats": {
+        "contrast": "drop_abs_minus_repeat",
+        "field": "compact_context_advantage_nats",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.02694673795187852,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.040905646550859404,
+            "p50": 0.02841297911706017,
+            "p975": 0.09099075796227642,
+            "fraction_gt0": 0.7995,
+            "fraction_lt0": 0.2005
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.03451000898462318,
+            "p50": 0.029241048221647747,
+            "p975": 0.0888819253747808,
+            "fraction_gt0": 0.8185,
+            "fraction_lt0": 0.1815
+          }
+        }
+      },
+      "rep_source_compact_advantage": {
+        "contrast": "drop_abs_minus_repeat",
+        "field": "rep_source_compact_advantage",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.0066811596768910015,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": 0.003281501679091837,
+            "p50": 0.006735838598719163,
+            "p975": 0.010263191396849418,
+            "fraction_gt0": 1.0,
+            "fraction_lt0": 0.0
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": 0.0030480038399358935,
+            "p50": 0.0066425702308619905,
+            "p975": 0.010212621080028992,
+            "fraction_gt0": 0.999,
+            "fraction_lt0": 0.001
+          }
+        }
+      }
+    },
+    "drop_copied_word_minus_repeat": {
+      "compact_context_advantage_nats": {
+        "contrast": "drop_copied_word_minus_repeat",
+        "field": "compact_context_advantage_nats",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.03157088272007966,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.02713641605739358,
+            "p50": 0.03292324743907503,
+            "p975": 0.08937179862525034,
+            "fraction_gt0": 0.8635,
+            "fraction_lt0": 0.1365
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.02436380476521828,
+            "p50": 0.03243909603480096,
+            "p975": 0.09296236059818112,
+            "fraction_gt0": 0.8525,
+            "fraction_lt0": 0.1475
+          }
+        }
+      },
+      "rep_source_compact_advantage": {
+        "contrast": "drop_copied_word_minus_repeat",
+        "field": "rep_source_compact_advantage",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.0014558848019566191,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.001698091806309018,
+            "p50": 0.0015798406559648962,
+            "p975": 0.004849793874003641,
+            "fraction_gt0": 0.818,
+            "fraction_lt0": 0.182
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.0017579514978482557,
+            "p50": 0.0013187335570280978,
+            "p975": 0.004739613310235687,
+            "fraction_gt0": 0.7845,
+            "fraction_lt0": 0.2155
+          }
+        }
+      }
+    },
+    "full_minus_drop_abs": {
+      "compact_context_advantage_nats": {
+        "contrast": "full_minus_drop_abs",
+        "field": "compact_context_advantage_nats",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.012735637308267982,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.04633869742452541,
+            "p50": 0.012641447901125463,
+            "p975": 0.0693889645756724,
+            "fraction_gt0": 0.6715,
+            "fraction_lt0": 0.3285
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.04958378281323203,
+            "p50": 0.012142045082712426,
+            "p975": 0.0687920106243772,
+            "fraction_gt0": 0.6625,
+            "fraction_lt0": 0.3375
+          }
+        }
+      },
+      "rep_source_compact_advantage": {
+        "contrast": "full_minus_drop_abs",
+        "field": "rep_source_compact_advantage",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": -0.002138634225714539,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.005311889370314588,
+            "p50": -0.0021931660391646055,
+            "p975": 0.0009769317954238194,
+            "fraction_gt0": 0.0985,
+            "fraction_lt0": 0.9015
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.005505154482110845,
+            "p50": -0.0021908580611441505,
+            "p975": 0.001006052249955923,
+            "fraction_gt0": 0.1095,
+            "fraction_lt0": 0.8905
+          }
+        }
+      }
+    },
+    "full_minus_drop_copied_word": {
+      "compact_context_advantage_nats": {
+        "contrast": "full_minus_drop_copied_word",
+        "field": "compact_context_advantage_nats",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.00811149254006684,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.043802419693679984,
+            "p50": 0.00848921428745808,
+            "p975": 0.059521151630644684,
+            "fraction_gt0": 0.604,
+            "fraction_lt0": 0.396
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.04683805782309399,
+            "p50": 0.00727456747680097,
+            "p975": 0.060922560188561944,
+            "fraction_gt0": 0.612,
+            "fraction_lt0": 0.388
+          }
+        }
+      },
+      "rep_source_compact_advantage": {
+        "contrast": "full_minus_drop_copied_word",
+        "field": "rep_source_compact_advantage",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.003086640649219843,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.00015423447117737712,
+            "p50": 0.0031057499094854528,
+            "p975": 0.006294945926038089,
+            "fraction_gt0": 0.9665,
+            "fraction_lt0": 0.0335
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -1.974421819496564e-05,
+            "p50": 0.0031274960313997153,
+            "p975": 0.0062436311387541795,
+            "fraction_gt0": 0.973,
+            "fraction_lt0": 0.027
+          }
+        }
+      }
+    },
+    "full_minus_repeat": {
+      "compact_context_advantage_nats": {
+        "contrast": "full_minus_repeat",
+        "field": "compact_context_advantage_nats",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.0396823752601465,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.02196567586631432,
+            "p50": 0.040191937079391324,
+            "p975": 0.10046883711048975,
+            "fraction_gt0": 0.8945,
+            "fraction_lt0": 0.1055
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.019114793774188576,
+            "p50": 0.040584922058492796,
+            "p975": 0.10169841030797673,
+            "fraction_gt0": 0.9075,
+            "fraction_lt0": 0.0925
+          }
+        }
+      },
+      "rep_source_compact_advantage": {
+        "contrast": "full_minus_repeat",
+        "field": "rep_source_compact_advantage",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.004542525451176462,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": 0.0012772583354676902,
+            "p50": 0.004466257943863955,
+            "p975": 0.007900473629127974,
+            "fraction_gt0": 0.9955,
+            "fraction_lt0": 0.0045
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": 0.0013630044211073848,
+            "p50": 0.004570802168444823,
+            "p975": 0.0077629308584817895,
+            "fraction_gt0": 0.9965,
+            "fraction_lt0": 0.0035
+          }
+        }
+      }
+    },
+    "adjbreak_minus_repeat": {
+      "compact_context_advantage_nats": {
+        "contrast": "adjbreak_minus_repeat",
+        "field": "compact_context_advantage_nats",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": -0.005124132077337007,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.06026509455579175,
+            "p50": -0.005566590954633926,
+            "p975": 0.052783149187902376,
+            "fraction_gt0": 0.427,
+            "fraction_lt0": 0.573
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.05745856830904867,
+            "p50": -0.004979755448931533,
+            "p975": 0.04908114144859721,
+            "fraction_gt0": 0.419,
+            "fraction_lt0": 0.581
+          }
+        }
+      },
+      "rep_source_compact_advantage": {
+        "contrast": "adjbreak_minus_repeat",
+        "field": "rep_source_compact_advantage",
+        "n_events": 4500,
+        "n_pairs": 2009,
+        "n_docs": 1021,
+        "target_pieces": 7715,
+        "mean": 0.0014073500831624129,
+        "by_cluster": {
+          "pair_id": {
+            "cluster_field": "pair_id",
+            "n_clusters": 2009,
+            "n_boot": 2000,
+            "p025": -0.0019325080254835373,
+            "p50": 0.0013821129393600767,
+            "p975": 0.0049007350367042245,
+            "fraction_gt0": 0.7835,
+            "fraction_lt0": 0.2165
+          },
+          "doc_id": {
+            "cluster_field": "doc_id",
+            "n_clusters": 1741,
+            "n_boot": 2000,
+            "p025": -0.002102438414394201,
+            "p50": 0.001379708364075757,
+            "p975": 0.004839202600858168,
+            "fraction_gt0": 0.783,
+            "fraction_lt0": 0.217
+          }
+        }
+      }
+    }
+  },
+  "scientific_reading": "The audit can strengthen or weaken the local-mechanistic interpretation, but cannot turn local NLL/cosine into selected downstream evidence.",
+  "no_training_official_eval_upload_aoa_or_leaderboard": true
+}

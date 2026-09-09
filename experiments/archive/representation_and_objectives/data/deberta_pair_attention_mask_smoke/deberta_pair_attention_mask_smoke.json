@@ -1,0 +1,23 @@
+{
+  "status": "DEBERTA_PAIR_ATTENTION_MASK_SMOKE",
+  "purpose": "Verify that MLM cross-view boundary blocking can be implemented by giving embeddings a 2D padding mask and the encoder a 3D pairwise mask.",
+  "standard_vs_custom_full_visible": {
+    "max_abs_logit_delta": 0.0,
+    "loss_delta": 0.0,
+    "pass": true
+  },
+  "blocked_changes_logits": {
+    "max_abs_logit_delta_full_vs_blocked": 0.007668159902095795,
+    "masked_positions_max_abs_delta": 0.004486188292503357,
+    "pass": true
+  },
+  "gradient_smoke": {
+    "loss": 5.614614963531494,
+    "n_tensors_with_grad": 50,
+    "grad_norm": 8.843181242078604,
+    "all_finite": true,
+    "pass": true
+  },
+  "implementation_note": "Do not pass a 3D/4D mask into DebertaV2ForMaskedLM.forward; wrap the MLM head or trainer so embeddings receive the ordinary 2D padding mask and encoder receives the pairwise reachability mask.",
+  "pass": true
+}

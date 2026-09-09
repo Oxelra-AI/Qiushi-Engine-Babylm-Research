@@ -1,0 +1,282 @@
+{
+  "status": "GATED_RESIDUAL_S1_SWEEP",
+  "description": "S1-depth (12×384) WESS with gated residual fusion (h + gate*proj(slot), gate init 0) and 25% episode ratio. Tests whether preserving MLM representation fixes S1 scaling failure.",
+  "configs": [
+    {
+      "name": "s1_gated_lr1e3_500",
+      "lr": 0.001,
+      "steps": 500
+    },
+    {
+      "name": "s1_gated_lr5e4_500",
+      "lr": 0.0005,
+      "steps": 500
+    },
+    {
+      "name": "s1_gated_lr5e4_1000",
+      "lr": 0.0005,
+      "steps": 1000
+    }
+  ],
+  "arms": [
+    "plain_mlm",
+    "no_address",
+    "wess_gold",
+    "wess_eventwise_random"
+  ],
+  "shortcut_audit": {
+    "first_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "last_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "nearest_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "majority_fixed_first_visible": {
+      "example_acc": 0.25,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "prev_query_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    }
+  },
+  "results": {
+    "s1_gated_lr1e3_500": {
+      "plain_mlm": {
+        "binding": {
+          "example_acc": 0.1125,
+          "pair_acc": 0.0,
+          "mean_logodds": 2.483526865641276e-08,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 5.216493844985962,
+        "loss_last": 4.184168815612793,
+        "loss_mean_last20": 4.186412751674652,
+        "params": 30807041
+      },
+      "no_address": {
+        "binding": {
+          "example_acc": 0.1125,
+          "pair_acc": 0.0,
+          "mean_logodds": 3.5762786865234374e-08,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 5.45344603061676,
+        "loss_last": 4.4442267417907715,
+        "loss_mean_last20": 4.440260744094848,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 0.0,
+          "swap_top1_to_other": 0.1125,
+          "ablation_logodds_delta_prev_minus_answer": -1.9073486328125e-07,
+          "ablation_top1_to_prev": 0.0625
+        },
+        "learned_gate": -0.054482366889715195
+      },
+      "wess_gold": {
+        "binding": {
+          "example_acc": 0.1125,
+          "pair_acc": 0.0,
+          "mean_logodds": -9.934107462565104e-09,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 5.458509922027588,
+        "loss_last": 4.393254280090332,
+        "loss_mean_last20": 4.44297776222229,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": -4.1723251342773435e-08,
+          "swap_top1_to_other": 0.1125,
+          "ablation_logodds_delta_prev_minus_answer": -7.62939453125e-07,
+          "ablation_top1_to_prev": 0.0625
+        },
+        "learned_gate": -0.0463738776743412
+      },
+      "wess_eventwise_random": {
+        "binding": {
+          "example_acc": 0.10833333333333334,
+          "pair_acc": 0.0,
+          "mean_logodds": -3.2067298889160155e-06,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 4.443764686584473,
+        "loss_last": 3.8130624294281006,
+        "loss_mean_last20": 3.689271903038025,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": -0.024891412258148192,
+          "swap_top1_to_other": 0.05,
+          "ablation_logodds_delta_prev_minus_answer": -0.0033149480819702148,
+          "ablation_top1_to_prev": 0.125
+        },
+        "learned_gate": -0.037329237908124924
+      }
+    },
+    "s1_gated_lr5e4_500": {
+      "plain_mlm": {
+        "binding": {
+          "example_acc": 0.12916666666666668,
+          "pair_acc": 0.008333333333333333,
+          "mean_logodds": -0.0007084429264068604,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.673843502998352,
+        "loss_last": 3.3241662979125977,
+        "loss_mean_last20": 3.180065906047821,
+        "params": 30807041
+      },
+      "no_address": {
+        "binding": {
+          "example_acc": 0.22083333333333333,
+          "pair_acc": 0.004166666666666667,
+          "mean_logodds": 0.00018595183889071146,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.644438624382019,
+        "loss_last": 3.304532527923584,
+        "loss_mean_last20": 3.134382152557373,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 0.0,
+          "swap_top1_to_other": 0.23125,
+          "ablation_logodds_delta_prev_minus_answer": 0.11274343580007554,
+          "ablation_top1_to_prev": 0.0625
+        },
+        "learned_gate": -0.030924687162041664
+      },
+      "wess_gold": {
+        "binding": {
+          "example_acc": 0.17083333333333334,
+          "pair_acc": 0.0,
+          "mean_logodds": -0.00039173091451327003,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.674288511276245,
+        "loss_last": 3.32594633102417,
+        "loss_mean_last20": 3.1665629982948302,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 0.0028647199273109437,
+          "swap_top1_to_other": 0.14375,
+          "ablation_logodds_delta_prev_minus_answer": -1.1175870895385742e-08,
+          "ablation_top1_to_prev": 0.0875
+        },
+        "learned_gate": -0.02293229103088379
+      },
+      "wess_eventwise_random": {
+        "binding": {
+          "example_acc": 0.47708333333333336,
+          "pair_acc": 0.0,
+          "mean_logodds": -0.00019012118379275005,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.6441653966903687,
+        "loss_last": 3.2405028343200684,
+        "loss_mean_last20": 3.0619086146354677,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 0.0022136598825454714,
+          "swap_top1_to_other": 0.4875,
+          "ablation_logodds_delta_prev_minus_answer": 6.779134273529052e-05,
+          "ablation_top1_to_prev": 0.0125
+        },
+        "learned_gate": -0.024907829239964485
+      }
+    },
+    "s1_gated_lr5e4_1000": {
+      "plain_mlm": {
+        "binding": {
+          "example_acc": 0.22916666666666666,
+          "pair_acc": 0.0,
+          "mean_logodds": 0.005130938688913981,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.3688140511512756,
+        "loss_last": 3.298297882080078,
+        "loss_mean_last20": 2.941887301206589,
+        "params": 30807041
+      },
+      "no_address": {
+        "binding": {
+          "example_acc": 0.3416666666666667,
+          "pair_acc": 0.008333333333333333,
+          "mean_logodds": 0.005943480382363002,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.3608075380325317,
+        "loss_last": 3.213925838470459,
+        "loss_mean_last20": 2.880658710002899,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 0.0,
+          "swap_top1_to_other": 0.31875,
+          "ablation_logodds_delta_prev_minus_answer": -7.562339305877686e-07,
+          "ablation_top1_to_prev": 0.06875
+        },
+        "learned_gate": -0.03186732158064842
+      },
+      "wess_gold": {
+        "binding": {
+          "example_acc": 0.4708333333333333,
+          "pair_acc": 0.1375,
+          "mean_logodds": 1.8494148882726829,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.2816749215126038,
+        "loss_last": 3.0949180126190186,
+        "loss_mean_last20": 2.7632047116756437,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 3.08683335930109,
+          "swap_top1_to_other": 0.31875,
+          "ablation_logodds_delta_prev_minus_answer": 2.0125383641570807,
+          "ablation_top1_to_prev": 0.125
+        },
+        "learned_gate": -0.05210637301206589
+      },
+      "wess_eventwise_random": {
+        "binding": {
+          "example_acc": 0.21041666666666667,
+          "pair_acc": 0.0,
+          "mean_logodds": 1.545920968055725e-05,
+          "n_pairs": 240,
+          "n_examples": 480
+        },
+        "official_mlm_loss": 3.3247491121292114,
+        "loss_last": 3.223222255706787,
+        "loss_mean_last20": 2.933386331796646,
+        "params": 30807041,
+        "interventions": {
+          "swap_logodds_delta_other_minus_answer": 0.0024289876222610475,
+          "swap_top1_to_other": 0.19375,
+          "ablation_logodds_delta_prev_minus_answer": -0.0014843285083770753,
+          "ablation_top1_to_prev": 0.1125
+        },
+        "learned_gate": 0.02368096634745598
+      }
+    }
+  },
+  "elapsed_sec": 507.2
+}

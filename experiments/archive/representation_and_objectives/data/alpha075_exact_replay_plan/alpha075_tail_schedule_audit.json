@@ -1,0 +1,138 @@
+{
+  "status": "ALPHA075_TAIL_SCHEDULE_AUDIT",
+  "purpose": "Plan exact 82M-anchor replay; do not resume optimizer from alpha0.75 final. Known 83-86 states must be reproduced before extending to 90/100.",
+  "stream": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "initial_consumed_words": 82012495,
+  "full_cap_words": 100000000,
+  "remaining_tail_word_cap": 17987505,
+  "skip_rows": 530944,
+  "batch_size": 256,
+  "row_level_selected_tail_words": 17987505,
+  "row_level_total_after_selected": 100000000,
+  "row_level_rows": 116456,
+  "first_tail_row": 530944,
+  "last_in_cap_row": 647399,
+  "next_row_would_exceed": null,
+  "num_batches_if_full_replay": 455,
+  "schedule_total_original": 455,
+  "schedule_total_matches_full_batches": true,
+  "known_step150_log_rows": 101,
+  "known_step150_final_batch_from_audit": {
+    "update": 101,
+    "source_row_start": 556544,
+    "source_row_end": 556799,
+    "batch_words": 39969,
+    "tail_main_words": 3994234,
+    "total_consumed_words": 86006729
+  },
+  "known_step150_prefix_batch_schedule_matches": false,
+  "known_step150_prefix_mismatches": [
+    {
+      "update": 101,
+      "mismatches": {
+        "source_row_end": [
+          556790,
+          556799
+        ],
+        "batch_words": [
+          38535,
+          39969
+        ],
+        "tail_main_words": [
+          3992800,
+          3994234
+        ],
+        "total_consumed_words": [
+          86005295,
+          86006729
+        ]
+      }
+    }
+  ],
+  "known_tail_crossings": {
+    "tail_1000000": {
+      "target_tail_words": 1000000,
+      "crossing": {
+        "update": 26,
+        "source_row_start": 537344,
+        "source_row_end": 537599,
+        "batch_words": 39641,
+        "tail_main_words": 1027604,
+        "total_consumed_words": 83040099
+      }
+    },
+    "tail_2000000": {
+      "target_tail_words": 2000000,
+      "crossing": {
+        "update": 51,
+        "source_row_start": 543744,
+        "source_row_end": 543999,
+        "batch_words": 39829,
+        "tail_main_words": 2015910,
+        "total_consumed_words": 84028405
+      }
+    },
+    "tail_3000000": {
+      "target_tail_words": 3000000,
+      "crossing": {
+        "update": 76,
+        "source_row_start": 550144,
+        "source_row_end": 550399,
+        "batch_words": 39507,
+        "tail_main_words": 3005331,
+        "total_consumed_words": 85017826
+      }
+    }
+  },
+  "official_target_crossings": {
+    "chck_90M": {
+      "target_tail_words": 7987505,
+      "crossing": {
+        "update": 203,
+        "source_row_start": 582656,
+        "source_row_end": 582911,
+        "batch_words": 39567,
+        "tail_main_words": 8026476,
+        "total_consumed_words": 90038971
+      }
+    },
+    "chck_100M": {
+      "target_tail_words": 17987505,
+      "crossing": {
+        "update": 455,
+        "source_row_start": 647168,
+        "source_row_end": 647399,
+        "batch_words": 35791,
+        "tail_main_words": 17987505,
+        "total_consumed_words": 100000000,
+        "partial_batch_rows": 232
+      }
+    }
+  },
+  "known_source_hashes": {
+    "tail_1M": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_83012495w",
+      "model_safetensors_sha256": "257e8f5c890482c8da0ac3da36c7a28e62d449cba5dc4be30a46edc25bec7a10",
+      "config_sha256": "69ecbc420c93ce6228571899e70b0be783c81bc7bae5cc2f0a0c4fb474ebe690"
+    },
+    "tail_2M": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_84012495w",
+      "model_safetensors_sha256": "b6cf92d92c9d5304374d491cb0e963a9d2250cf5e07a0977b6a531167fd4efa0",
+      "config_sha256": "69ecbc420c93ce6228571899e70b0be783c81bc7bae5cc2f0a0c4fb474ebe690"
+    },
+    "tail_3M": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_85012495w",
+      "model_safetensors_sha256": "9c8c63aa9489292f555353136f2c4eb98e34bf4098d87204c173d7c6e2dd9c5d",
+      "config_sha256": "69ecbc420c93ce6228571899e70b0be783c81bc7bae5cc2f0a0c4fb474ebe690"
+    },
+    "tail_3992800_final86": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/final",
+      "model_safetensors_sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8",
+      "config_sha256": "69ecbc420c93ce6228571899e70b0be783c81bc7bae5cc2f0a0c4fb474ebe690"
+    }
+  },
+  "tail_replay_policy": {
+    "phase1_decision_test": "Run deterministic 82M->known86 replay in a fresh A01 dir, comparing tail_1M/2M/3M and final86 weights to these hashes. If any mismatch, stop and do not extend.",
+    "phase2_extension": "Use the same deterministic algorithm from 82M through the full remaining tail with the original 455-step LR schedule; save official chck_90M at first row/batch crossing 90M and chck_100M at the final <=100M row boundary; materialize alpha0.75 only after training for evaluation."
+  }
+}

@@ -1,0 +1,1487 @@
+{
+  "status": "CHECKPOINT_COMPLETE",
+  "run_name": "wwm_seed43_60M",
+  "identity": {
+    "direct_path": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model/chck_60M",
+    "weight_sha256": "55891e834ae6f507aef125e2ace0b552e557d36b61cfe0f1ab410f4d09f2dd67",
+    "tokenizer_sha256": "9cc4f9073675da3f817a6020e7b0833cf3234c0131515d68f4065b00f14933ac",
+    "parameter_count": 34467424,
+    "updated_parameter_count": 3481024
+  },
+  "design": {
+    "official_training_only": true,
+    "babylm_evaluation_data_used": false,
+    "passage_count": 40,
+    "max_length": 128,
+    "whole_word_groups_per_view": 7,
+    "a_b_target_word_types_disjoint": true,
+    "a_b_target_token_ids_disjoint": true,
+    "same_bag_control": "exact token/word groups, three-block cyclic reorder",
+    "cross_passage_control": "fixed half-sample derangement",
+    "updated_parameters": "last encoder layer plus MLM head",
+    "learning_rate": 0.01,
+    "gradient_clip_norm": 1.0,
+    "device": "cpu"
+  },
+  "statistics": {
+    "aligned": {
+      "n": 40,
+      "mean": 0.0021865248680114748,
+      "median": 0.0018718242645263672,
+      "fraction_positive": 0.775,
+      "bootstrap_ci95": [
+        0.001160228103399277,
+        0.003282785564661026
+      ]
+    },
+    "same_bag": {
+      "n": 40,
+      "mean": 0.0023437082767486573,
+      "median": 0.002016305923461914,
+      "fraction_positive": 0.775,
+      "bootstrap_ci95": [
+        0.0013315066695213317,
+        0.0034066323935985562
+      ]
+    },
+    "cross_passage": {
+      "n": 40,
+      "mean": 0.0009447574615478515,
+      "median": 0.0007374286651611328,
+      "fraction_positive": 0.75,
+      "bootstrap_ci95": [
+        0.00042445197701454165,
+        0.0014882636070251464
+      ]
+    }
+  },
+  "contrasts": {
+    "aligned_minus_same_bag": {
+      "n": 40,
+      "mean": -0.0001571834087371826,
+      "median": -4.410743713378906e-05,
+      "fraction_positive": 0.475,
+      "bootstrap_ci95": [
+        -0.0004270036518573761,
+        0.00010637715458869933
+      ]
+    },
+    "aligned_minus_cross_passage": {
+      "n": 40,
+      "mean": 0.0012417674064636231,
+      "median": 0.0011844635009765625,
+      "fraction_positive": 0.65,
+      "bootstrap_ci95": [
+        3.581032156944275e-05,
+        0.002513761073350906
+      ]
+    }
+  },
+  "predictors": {
+    "raw_source_loss_spearman_with_aligned_transfer": 0.1951219512195122,
+    "gradient_norm_spearman_with_aligned_transfer": 0.018011257035647283
+  },
+  "rows": [
+    {
+      "pool_index": 46777,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "1adf6892b13ff5be4d663e55f03f39bc86dbd7730253458705e5e565b98eaa25",
+      "mask_a_words": [
+        "don't",
+        "only",
+        "play",
+        "girlfriend",
+        "it's",
+        "beat",
+        "dropped"
+      ],
+      "mask_b_words": [
+        "given",
+        "turned",
+        "dumped",
+        "young",
+        "like",
+        "know",
+        "small"
+      ],
+      "source_loss": 2.7308995723724365,
+      "gradient_norm": 7.587399959564209,
+      "baseline_loss": {
+        "aligned": 4.531601905822754,
+        "same_bag": 4.570270538330078,
+        "cross_passage": 6.407158374786377
+      },
+      "transfer_gain": {
+        "aligned": 0.0009350776672363281,
+        "same_bag": 0.0014047622680664062,
+        "cross_passage": -0.0011453628540039062
+      }
+    },
+    {
+      "pool_index": 27497,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "8e2b1e636ca68ad91eeaa9bfce1c517891bb84f8572026014881f448ee769cac",
+      "mask_a_words": [
+        "going",
+        "much",
+        "drew",
+        "perfect",
+        "fever",
+        "nevertheless",
+        "possess"
+      ],
+      "mask_b_words": [
+        "winning",
+        "must",
+        "whole",
+        "different",
+        "dress",
+        "made",
+        "beautifully"
+      ],
+      "source_loss": 6.099931240081787,
+      "gradient_norm": 11.915029525756836,
+      "baseline_loss": {
+        "aligned": 4.294800281524658,
+        "same_bag": 4.320648670196533,
+        "cross_passage": 6.663753986358643
+      },
+      "transfer_gain": {
+        "aligned": 0.0050945281982421875,
+        "same_bag": 0.004823207855224609,
+        "cross_passage": 0.0012731552124023438
+      }
+    },
+    {
+      "pool_index": 115,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "4ab61e430ba67522fb5df39831d833e596befce2063869ed560a140f1beb8771",
+      "mask_a_words": [
+        "replacement",
+        "external",
+        "control",
+        "response",
+        "shift",
+        "it's",
+        "selectively"
+      ],
+      "mask_b_words": [
+        "don't",
+        "internal",
+        "concentration",
+        "carrying",
+        "carried",
+        "comes",
+        "nernst"
+      ],
+      "source_loss": 6.575180530548096,
+      "gradient_norm": 8.651565551757812,
+      "baseline_loss": {
+        "aligned": 5.164635181427002,
+        "same_bag": 5.2027764320373535,
+        "cross_passage": 5.990830421447754
+      },
+      "transfer_gain": {
+        "aligned": -4.38690185546875e-05,
+        "same_bag": -0.0002903938293457031,
+        "cross_passage": 0.004669189453125
+      }
+    },
+    {
+      "pool_index": 48761,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "673de9194db343e7ae5730e3c8a6d72b89ba88420cf68429ef5353628cd216c1",
+      "mask_a_words": [
+        "money",
+        "american",
+        "luxury",
+        "wireless",
+        "always",
+        "wouldn't",
+        "speaking"
+      ],
+      "mask_b_words": [
+        "little",
+        "give",
+        "existed",
+        "years",
+        "it's",
+        "good",
+        "rather"
+      ],
+      "source_loss": 6.278258800506592,
+      "gradient_norm": 10.127152442932129,
+      "baseline_loss": {
+        "aligned": 2.8546953201293945,
+        "same_bag": 2.7618813514709473,
+        "cross_passage": 4.765389919281006
+      },
+      "transfer_gain": {
+        "aligned": -0.002200603485107422,
+        "same_bag": -0.0024352073669433594,
+        "cross_passage": 0.004585742950439453
+      }
+    },
+    {
+      "pool_index": 15359,
+      "source": "childes.train.txt",
+      "text_sha256": "72af9ded9dcf25e55b3646aa47ad1c702cca4a617ba32a7bda7f590ddacf0c28",
+      "mask_a_words": [
+        "kids's",
+        "sort",
+        "morning",
+        "going",
+        "inside",
+        "barn",
+        "ready"
+      ],
+      "mask_b_words": [
+        "know",
+        "anything",
+        "only",
+        "little",
+        "tomorrow",
+        "okay",
+        "help"
+      ],
+      "source_loss": 3.621297836303711,
+      "gradient_norm": 10.33687973022461,
+      "baseline_loss": {
+        "aligned": 2.712451696395874,
+        "same_bag": 3.548146963119507,
+        "cross_passage": 5.7356648445129395
+      },
+      "transfer_gain": {
+        "aligned": -0.0018813610076904297,
+        "same_bag": -0.0014231204986572266,
+        "cross_passage": -0.0001678466796875
+      }
+    },
+    {
+      "pool_index": 54359,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "0b11dc0cbed1b7462618a93cd9ac036ec3d559190149c5c76ee224cf21eb93a4",
+      "mask_a_words": [
+        "helping",
+        "enough",
+        "nazi",
+        "criticisms",
+        "continues",
+        "developed",
+        "modernisation"
+      ],
+      "mask_b_words": [
+        "save",
+        "hundreds",
+        "commentators",
+        "debate",
+        "reformation",
+        "intended",
+        "continuation"
+      ],
+      "source_loss": 8.013821601867676,
+      "gradient_norm": 10.575183868408203,
+      "baseline_loss": {
+        "aligned": 7.11199951171875,
+        "same_bag": 7.093475818634033,
+        "cross_passage": 7.441324710845947
+      },
+      "transfer_gain": {
+        "aligned": 0.003395557403564453,
+        "same_bag": 0.002995014190673828,
+        "cross_passage": 0.0017480850219726562
+      }
+    },
+    {
+      "pool_index": 44063,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "4969ab1e01401abcdffbcf01a681474759cfaa7f4055d6b1e22ad2f772ad5b24",
+      "mask_a_words": [
+        "destroy",
+        "great",
+        "power",
+        "i've",
+        "brotherhood",
+        "empire",
+        "will"
+      ],
+      "mask_b_words": [
+        "believe",
+        "bijou",
+        "within",
+        "enough",
+        "countries",
+        "destroyed",
+        "like"
+      ],
+      "source_loss": 6.165613174438477,
+      "gradient_norm": 11.562699317932129,
+      "baseline_loss": {
+        "aligned": 5.273118495941162,
+        "same_bag": 5.296160697937012,
+        "cross_passage": 5.073275566101074
+      },
+      "transfer_gain": {
+        "aligned": 0.0007386207580566406,
+        "same_bag": 0.0007328987121582031,
+        "cross_passage": -0.0003361701965332031
+      }
+    },
+    {
+      "pool_index": 55394,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "b1e4c053ebba5dd4be54bf86a5e7a19cdb50b10a237edec0c6c7565ef220d2bc",
+      "mask_a_words": [
+        "papua",
+        "carl",
+        "sands",
+        "mighty",
+        "face",
+        "purple",
+        "sheen"
+      ],
+      "mask_b_words": [
+        "song",
+        "lovely",
+        "mountain",
+        "golden",
+        "stand",
+        "upon",
+        "pride"
+      ],
+      "source_loss": 7.348390102386475,
+      "gradient_norm": 9.382135391235352,
+      "baseline_loss": {
+        "aligned": 6.709524631500244,
+        "same_bag": 6.538700580596924,
+        "cross_passage": 4.149728298187256
+      },
+      "transfer_gain": {
+        "aligned": 0.012056827545166016,
+        "same_bag": 0.012371540069580078,
+        "cross_passage": 0.0010194778442382812
+      }
+    },
+    {
+      "pool_index": 39686,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "7b39a0826bcdb0d2a07557fc04d29ad4982f934194ef90163ff84e9b7976c7e7",
+      "mask_a_words": [
+        "blonde",
+        "witness",
+        "hold",
+        "door",
+        "open",
+        "hinder",
+        "potholes"
+      ],
+      "mask_b_words": [
+        "earth",
+        "journalist's",
+        "first",
+        "many",
+        "filled",
+        "you're",
+        "know"
+      ],
+      "source_loss": 7.315958023071289,
+      "gradient_norm": 9.52952766418457,
+      "baseline_loss": {
+        "aligned": 5.444845199584961,
+        "same_bag": 5.4951324462890625,
+        "cross_passage": 6.006279468536377
+      },
+      "transfer_gain": {
+        "aligned": -1.9073486328125e-05,
+        "same_bag": -0.0002474784851074219,
+        "cross_passage": 0.004750728607177734
+      }
+    },
+    {
+      "pool_index": 2347,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "ce9d4758313efb203d0ee860f239fe4790dad66dc95c08f3bfd3b257b6ac335a",
+      "mask_a_words": [
+        "road",
+        "don't",
+        "there's",
+        "remind",
+        "morning",
+        "drying",
+        "can't"
+      ],
+      "mask_b_words": [
+        "people",
+        "dreams",
+        "terrorists",
+        "anything",
+        "i'll",
+        "lovely",
+        "good"
+      ],
+      "source_loss": 4.366552352905273,
+      "gradient_norm": 8.302449226379395,
+      "baseline_loss": {
+        "aligned": 5.212983131408691,
+        "same_bag": 5.231075763702393,
+        "cross_passage": 5.634483337402344
+      },
+      "transfer_gain": {
+        "aligned": 0.0020470619201660156,
+        "same_bag": 0.001956462860107422,
+        "cross_passage": 0.0034089088439941406
+      }
+    },
+    {
+      "pool_index": 633,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "a7455198a3a6e7a1bc31f09b6c4964bd3e0fcd463a7330d7437ad33d3d9c36c5",
+      "mask_a_words": [
+        "were",
+        "early",
+        "it's",
+        "actually",
+        "last",
+        "coming",
+        "till"
+      ],
+      "mask_b_words": [
+        "left",
+        "stop",
+        "stops",
+        "ever",
+        "earlies",
+        "morning",
+        "eleven"
+      ],
+      "source_loss": 3.5252602100372314,
+      "gradient_norm": 11.032941818237305,
+      "baseline_loss": {
+        "aligned": 5.0550665855407715,
+        "same_bag": 4.967831134796143,
+        "cross_passage": 5.413227081298828
+      },
+      "transfer_gain": {
+        "aligned": -0.00013971328735351562,
+        "same_bag": 0.0010428428649902344,
+        "cross_passage": -0.0007309913635253906
+      }
+    },
+    {
+      "pool_index": 32341,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "e7ac7282469b3fefde32851c1513f48eb76fdb3a968cbca9097a4970b5d9f0b5",
+      "mask_a_words": [
+        "possibility",
+        "swollen",
+        "little",
+        "eleven",
+        "readiness",
+        "remembered",
+        "risks"
+      ],
+      "mask_b_words": [
+        "came",
+        "mind",
+        "fellow",
+        "slight",
+        "delicate",
+        "sooner",
+        "difficulties"
+      ],
+      "source_loss": 6.62455940246582,
+      "gradient_norm": 8.999804496765137,
+      "baseline_loss": {
+        "aligned": 5.471255779266357,
+        "same_bag": 5.518282413482666,
+        "cross_passage": 7.359743595123291
+      },
+      "transfer_gain": {
+        "aligned": 0.0006198883056640625,
+        "same_bag": 0.0006742477416992188,
+        "cross_passage": 0.0008740425109863281
+      }
+    },
+    {
+      "pool_index": 38407,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "6f7ef7bffe1200ea43e37763a444d1a0e6a986fa9e00f7aab383585e8d688c32",
+      "mask_a_words": [
+        "loved",
+        "irishmen",
+        "secret",
+        "mentioned",
+        "never",
+        "once",
+        "orphan"
+      ],
+      "mask_b_words": [
+        "spoken",
+        "entirely",
+        "reserved",
+        "name",
+        "presence",
+        "behind",
+        "amounted"
+      ],
+      "source_loss": 6.72395133972168,
+      "gradient_norm": 11.414582252502441,
+      "baseline_loss": {
+        "aligned": 5.552892208099365,
+        "same_bag": 5.483495712280273,
+        "cross_passage": 6.727090835571289
+      },
+      "transfer_gain": {
+        "aligned": 0.0009012222290039062,
+        "same_bag": 0.0008921623229980469,
+        "cross_passage": 0.0021610260009765625
+      }
+    },
+    {
+      "pool_index": 31495,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "912ba545602b86ac0a13285956e60a6f3022eab24fc1bdc794879546d45ee858",
+      "mask_a_words": [
+        "cried",
+        "wearing",
+        "nothing",
+        "shirt",
+        "approached",
+        "bowing",
+        "knees"
+      ],
+      "mask_b_words": [
+        "come",
+        "peasant's",
+        "yard",
+        "middle-aged",
+        "trousers",
+        "fell",
+        "kissed"
+      ],
+      "source_loss": 5.937083721160889,
+      "gradient_norm": 12.118911743164062,
+      "baseline_loss": {
+        "aligned": 6.132512092590332,
+        "same_bag": 6.1560187339782715,
+        "cross_passage": 5.253094673156738
+      },
+      "transfer_gain": {
+        "aligned": 0.0036821365356445312,
+        "same_bag": 0.0027036666870117188,
+        "cross_passage": 0.0023522377014160156
+      }
+    },
+    {
+      "pool_index": 48386,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "4a58ec76979300ac8059024b31b1933f045cba2ea9ebf0aed04e2fed65f1df62",
+      "mask_a_words": [
+        "need",
+        "blood",
+        "filter",
+        "want",
+        "without",
+        "sarah",
+        "first"
+      ],
+      "mask_b_words": [
+        "impurities",
+        "fringe",
+        "benefit",
+        "jogging",
+        "bionic",
+        "eyes",
+        "only"
+      ],
+      "source_loss": 5.436537265777588,
+      "gradient_norm": 9.583895683288574,
+      "baseline_loss": {
+        "aligned": 6.641105651855469,
+        "same_bag": 6.8181376457214355,
+        "cross_passage": 5.049388408660889
+      },
+      "transfer_gain": {
+        "aligned": 0.004593372344970703,
+        "same_bag": 0.005702018737792969,
+        "cross_passage": 0.0011210441589355469
+      }
+    },
+    {
+      "pool_index": 26312,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "83e56fcdf8c3837782c6a105066c155a76ccf6eb1a35422a33ce0dd9ba7cd5dd",
+      "mask_a_words": [
+        "justice",
+        "john",
+        "books",
+        "will",
+        "accurate",
+        "pictures",
+        "life"
+      ],
+      "mask_b_words": [
+        "court",
+        "united",
+        "color",
+        "standard",
+        "later",
+        "always",
+        "pioneer"
+      ],
+      "source_loss": 6.3918328285217285,
+      "gradient_norm": 10.015238761901855,
+      "baseline_loss": {
+        "aligned": 5.813788414001465,
+        "same_bag": 5.716762542724609,
+        "cross_passage": 6.048707008361816
+      },
+      "transfer_gain": {
+        "aligned": 0.0037689208984375,
+        "same_bag": 0.0030298233032226562,
+        "cross_passage": 8.96453857421875e-05
+      }
+    },
+    {
+      "pool_index": 42079,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "f03bd51592de93eecfb836b9b57f2ea4463adeef07b346ed79808a15f235204f",
+      "mask_a_words": [
+        "nancy",
+        "make",
+        "single",
+        "wanna",
+        "drive",
+        "still",
+        "lives"
+      ],
+      "mask_b_words": [
+        "name",
+        "collect",
+        "korean",
+        "movies",
+        "pilates",
+        "changed",
+        "sail"
+      ],
+      "source_loss": 6.322595119476318,
+      "gradient_norm": 11.840219497680664,
+      "baseline_loss": {
+        "aligned": 7.800699234008789,
+        "same_bag": 7.676553249359131,
+        "cross_passage": 6.701576232910156
+      },
+      "transfer_gain": {
+        "aligned": 0.007358551025390625,
+        "same_bag": 0.007473468780517578,
+        "cross_passage": 0.0011320114135742188
+      }
+    },
+    {
+      "pool_index": 30757,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "2cb45a661caa71eae3b7b38b581fc049bafcc479f0491b828b79589282bf6768",
+      "mask_a_words": [
+        "replied",
+        "city",
+        "hope",
+        "wooden",
+        "whatever",
+        "meaning",
+        "meant"
+      ],
+      "mask_b_words": [
+        "athens",
+        "saved",
+        "case",
+        "seemed",
+        "knew",
+        "working",
+        "fleet"
+      ],
+      "source_loss": 6.051971435546875,
+      "gradient_norm": 12.609947204589844,
+      "baseline_loss": {
+        "aligned": 4.390629768371582,
+        "same_bag": 4.239240646362305,
+        "cross_passage": 3.975041151046753
+      },
+      "transfer_gain": {
+        "aligned": 0.0016870498657226562,
+        "same_bag": 0.0017557144165039062,
+        "cross_passage": -0.002005338668823242
+      }
+    },
+    {
+      "pool_index": 3325,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "37ecc887edc681078ec08cb1bbca0769015edd70f409e36fb18c31cc254c71e7",
+      "mask_a_words": [
+        "people's",
+        "phase",
+        "like",
+        "close",
+        "tablets",
+        "myself",
+        "parent"
+      ],
+      "mask_b_words": [
+        "animals",
+        "change",
+        "think",
+        "behind",
+        "recent",
+        "recently",
+        "lost"
+      ],
+      "source_loss": 6.662899971008301,
+      "gradient_norm": 10.331119537353516,
+      "baseline_loss": {
+        "aligned": 8.251507759094238,
+        "same_bag": 8.292012214660645,
+        "cross_passage": 6.321653366088867
+      },
+      "transfer_gain": {
+        "aligned": 0.010306358337402344,
+        "same_bag": 0.009690284729003906,
+        "cross_passage": -0.0024847984313964844
+      }
+    },
+    {
+      "pool_index": 56258,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "9c2a630edfdacd793d98a293b9da176982bbb0c8e904b1cfff0a45af0b7081d5",
+      "mask_a_words": [
+        "released",
+        "known",
+        "post-rock",
+        "usually",
+        "lario",
+        "province",
+        "region"
+      ],
+      "mask_b_words": [
+        "ideas",
+        "often",
+        "puts",
+        "monologues",
+        "album",
+        "polaris",
+        "como"
+      ],
+      "source_loss": 4.809975624084473,
+      "gradient_norm": 9.316286087036133,
+      "baseline_loss": {
+        "aligned": 7.335214614868164,
+        "same_bag": 7.171258926391602,
+        "cross_passage": 6.357297897338867
+      },
+      "transfer_gain": {
+        "aligned": 0.0013365745544433594,
+        "same_bag": 0.0012354850769042969,
+        "cross_passage": 0.0007290840148925781
+      }
+    },
+    {
+      "pool_index": 1379,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "6d7a4e055846ee97802131fbdad73cefcf5b6041d212b2cb0cf454d73ca90363",
+      "mask_a_words": [
+        "given",
+        "memories",
+        "haven't",
+        "happy",
+        "saying",
+        "that's",
+        "thing"
+      ],
+      "mask_b_words": [
+        "twenty-five",
+        "years",
+        "memory",
+        "things",
+        "worked",
+        "nice",
+        "you've"
+      ],
+      "source_loss": 3.1917643547058105,
+      "gradient_norm": 8.67900276184082,
+      "baseline_loss": {
+        "aligned": 6.407158374786377,
+        "same_bag": 6.401312828063965,
+        "cross_passage": 4.531601905822754
+      },
+      "transfer_gain": {
+        "aligned": 0.0021076202392578125,
+        "same_bag": 0.0020761489868164062,
+        "cross_passage": 0.002582073211669922
+      }
+    },
+    {
+      "pool_index": 34567,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "5247e25ff6f901bbfebe39294fbbe1519cead0cef0e181f811af3339a8bfffc7",
+      "mask_a_words": [
+        "christian",
+        "come",
+        "took",
+        "matter",
+        "conform",
+        "minutely",
+        "well"
+      ],
+      "mask_b_words": [
+        "name",
+        "constitute",
+        "heard",
+        "woven",
+        "possible",
+        "canons",
+        "rubrics"
+      ],
+      "source_loss": 5.470852851867676,
+      "gradient_norm": 9.464038848876953,
+      "baseline_loss": {
+        "aligned": 6.663753986358643,
+        "same_bag": 6.646869659423828,
+        "cross_passage": 4.294800281524658
+      },
+      "transfer_gain": {
+        "aligned": 0.0038509368896484375,
+        "same_bag": 0.0034809112548828125,
+        "cross_passage": 0.00032806396484375
+      }
+    },
+    {
+      "pool_index": 4602,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "92a0dbd774a789a65f07baaf13c0c8356b1e7652c7ee326e18b511bfa44d296c",
+      "mask_a_words": [
+        "bomb",
+        "brought",
+        "virtually",
+        "anywhere",
+        "whatsoever",
+        "doors",
+        "system"
+      ],
+      "mask_b_words": [
+        "appreciate",
+        "stop",
+        "example",
+        "evening",
+        "group",
+        "open",
+        "allow"
+      ],
+      "source_loss": 7.4134321212768555,
+      "gradient_norm": 10.510260581970215,
+      "baseline_loss": {
+        "aligned": 5.990830421447754,
+        "same_bag": 5.968676567077637,
+        "cross_passage": 5.164635181427002
+      },
+      "transfer_gain": {
+        "aligned": 0.003380298614501953,
+        "same_bag": 0.004784107208251953,
+        "cross_passage": 0.0007457733154296875
+      }
+    },
+    {
+      "pool_index": 3249,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "cc6bc13a407382895941f1f2209d4d00dc69997058bda9a8bb0323c8c8707857",
+      "mask_a_words": [
+        "only",
+        "need",
+        "mentioned",
+        "seven",
+        "fifty",
+        "pounds",
+        "pound"
+      ],
+      "mask_b_words": [
+        "won't",
+        "fact",
+        "assignments",
+        "gives",
+        "something",
+        "week",
+        "cost"
+      ],
+      "source_loss": 4.634696960449219,
+      "gradient_norm": 12.7446928024292,
+      "baseline_loss": {
+        "aligned": 4.765389919281006,
+        "same_bag": 4.3403472900390625,
+        "cross_passage": 2.8546953201293945
+      },
+      "transfer_gain": {
+        "aligned": 0.006066799163818359,
+        "same_bag": 0.0034584999084472656,
+        "cross_passage": 0.0003845691680908203
+      }
+    },
+    {
+      "pool_index": 24887,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "db69cd3de6970e09ae4917952770f5e69b59919a267319e629d5dd92adcba829",
+      "mask_a_words": [
+        "remember",
+        "christian",
+        "bred",
+        "kindred",
+        "honor",
+        "kurdish",
+        "founder"
+      ],
+      "mask_b_words": [
+        "beautiful",
+        "parents",
+        "fellow",
+        "given",
+        "first",
+        "enrolled",
+        "turkish"
+      ],
+      "source_loss": 6.778289794921875,
+      "gradient_norm": 10.535669326782227,
+      "baseline_loss": {
+        "aligned": 5.7356648445129395,
+        "same_bag": 5.932334899902344,
+        "cross_passage": 2.712451696395874
+      },
+      "transfer_gain": {
+        "aligned": 0.00020837783813476562,
+        "same_bag": 0.0035338401794433594,
+        "cross_passage": 0.0006756782531738281
+      }
+    },
+    {
+      "pool_index": 29290,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "ac2ea10809d5ed029f4ba2154160171aeec33465543feda1c8dc997ff61b618f",
+      "mask_a_words": [
+        "chance",
+        "thus",
+        "brought",
+        "existence",
+        "people",
+        "methods",
+        "burning"
+      ],
+      "mask_b_words": [
+        "bear",
+        "upon",
+        "mere",
+        "insuring",
+        "business",
+        "slaughtering",
+        "silly"
+      ],
+      "source_loss": 4.704869747161865,
+      "gradient_norm": 9.997010231018066,
+      "baseline_loss": {
+        "aligned": 7.441324710845947,
+        "same_bag": 7.6983184814453125,
+        "cross_passage": 7.11199951171875
+      },
+      "transfer_gain": {
+        "aligned": -0.001873016357421875,
+        "same_bag": -0.0022187232971191406,
+        "cross_passage": 0.0003933906555175781
+      }
+    },
+    {
+      "pool_index": 4337,
+      "source": "bnc_spoken.train.txt",
+      "text_sha256": "c796bb9428c20bc5db37faf42119645278a391b22a0d7217eb03eac5229a62e8",
+      "mask_a_words": [
+        "working",
+        "looked",
+        "first",
+        "were",
+        "advanced",
+        "capitalism",
+        "longer"
+      ],
+      "mask_b_words": [
+        "initially",
+        "we'd",
+        "need",
+        "precisely",
+        "problem",
+        "necessarily",
+        "mao's"
+      ],
+      "source_loss": 5.7421722412109375,
+      "gradient_norm": 9.656529426574707,
+      "baseline_loss": {
+        "aligned": 5.073275566101074,
+        "same_bag": 5.030948638916016,
+        "cross_passage": 5.273118495941162
+      },
+      "transfer_gain": {
+        "aligned": 0.0003604888916015625,
+        "same_bag": -0.000255584716796875,
+        "cross_passage": -0.0012178421020507812
+      }
+    },
+    {
+      "pool_index": 39644,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "9f8bb58cc05227d99b4a87797db3b4a2671c3385bf503b5dd5ee84bd466b1820",
+      "mask_a_words": [
+        "front",
+        "return",
+        "talking",
+        "know",
+        "years",
+        "murphy",
+        "amy's"
+      ],
+      "mask_b_words": [
+        "mess-",
+        "won't",
+        "don't",
+        "open",
+        "went",
+        "checked",
+        "yeah"
+      ],
+      "source_loss": 6.152564525604248,
+      "gradient_norm": 12.07078742980957,
+      "baseline_loss": {
+        "aligned": 4.149728298187256,
+        "same_bag": 4.406371593475342,
+        "cross_passage": 6.709524631500244
+      },
+      "transfer_gain": {
+        "aligned": 0.002090930938720703,
+        "same_bag": 0.0029573440551757812,
+        "cross_passage": 0.002799510955810547
+      }
+    },
+    {
+      "pool_index": 23519,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "209fec4e1b47c442766522b37beb88535ce6738aec3bb9049c521c80d337d0be",
+      "mask_a_words": [
+        "broken",
+        "much",
+        "dark",
+        "hiding",
+        "sweet",
+        "fairy",
+        "tell"
+      ],
+      "mask_b_words": [
+        "ever",
+        "believe",
+        "feel",
+        "great",
+        "barnyard",
+        "crawl",
+        "come"
+      ],
+      "source_loss": 4.682933330535889,
+      "gradient_norm": 10.65015697479248,
+      "baseline_loss": {
+        "aligned": 6.006279468536377,
+        "same_bag": 6.60241174697876,
+        "cross_passage": 5.444845199584961
+      },
+      "transfer_gain": {
+        "aligned": 0.002483367919921875,
+        "same_bag": 0.002403736114501953,
+        "cross_passage": -0.0003638267517089844
+      }
+    },
+    {
+      "pool_index": 57322,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "5de671e0e38835f63951a5daa61f52ed694ee8615efcba8a93b76c8f7badad4b",
+      "mask_a_words": [
+        "flew",
+        "navy",
+        "upon",
+        "plans",
+        "united",
+        "west",
+        "stationed"
+      ],
+      "mask_b_words": [
+        "pilot",
+        "flying",
+        "numerous",
+        "august",
+        "tactical",
+        "time",
+        "forest"
+      ],
+      "source_loss": 5.596320152282715,
+      "gradient_norm": 12.85930061340332,
+      "baseline_loss": {
+        "aligned": 5.634483337402344,
+        "same_bag": 5.596730709075928,
+        "cross_passage": 5.212983131408691
+      },
+      "transfer_gain": {
+        "aligned": 0.0032258033752441406,
+        "same_bag": 0.0036377906799316406,
+        "cross_passage": 0.00013446807861328125
+      }
+    },
+    {
+      "pool_index": 25610,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "1f2444416d33177572f89d996c32f015b9e3bb1fd6a44249430c6602fa47e11b",
+      "mask_a_words": [
+        "name",
+        "exiles",
+        "feast",
+        "reddened",
+        "anger",
+        "break",
+        "even"
+      ],
+      "mask_b_words": [
+        "opposite",
+        "sons",
+        "fergus",
+        "sight",
+        "knowing",
+        "well",
+        "treachery"
+      ],
+      "source_loss": 6.578019142150879,
+      "gradient_norm": 9.158415794372559,
+      "baseline_loss": {
+        "aligned": 5.413227081298828,
+        "same_bag": 5.669532775878906,
+        "cross_passage": 5.0550665855407715
+      },
+      "transfer_gain": {
+        "aligned": 0.006899356842041016,
+        "same_bag": 0.0069332122802734375,
+        "cross_passage": 0.00141143798828125
+      }
+    },
+    {
+      "pool_index": 57014,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "ebe96f0aa4f82bba50a066a41ae98f2a9c49e76b77aa5ca1ebc31de91193c9cd",
+      "mask_a_words": [
+        "annual",
+        "north",
+        "paphos",
+        "above",
+        "nearby",
+        "armou",
+        "southwest"
+      ],
+      "mask_b_words": [
+        "temperature",
+        "lies",
+        "villages",
+        "polemi",
+        "south",
+        "village",
+        "agios"
+      ],
+      "source_loss": 5.927840709686279,
+      "gradient_norm": 9.382651329040527,
+      "baseline_loss": {
+        "aligned": 7.359743595123291,
+        "same_bag": 7.148937702178955,
+        "cross_passage": 5.471255779266357
+      },
+      "transfer_gain": {
+        "aligned": 0.00402069091796875,
+        "same_bag": 0.004909038543701172,
+        "cross_passage": 0.0006594657897949219
+      }
+    },
+    {
+      "pool_index": 48214,
+      "source": "open_subtitles.train.txt",
+      "text_sha256": "8f6fa51d9ad8913e4736220d3aa6cf65d6db41b82c6ff83b925566c0fde234fa",
+      "mask_a_words": [
+        "what's",
+        "errands",
+        "must",
+        "mean",
+        "certainly",
+        "playing",
+        "stand"
+      ],
+      "mask_b_words": [
+        "stay",
+        "important",
+        "merci",
+        "monsieur",
+        "left",
+        "we're",
+        "doll"
+      ],
+      "source_loss": 5.764711856842041,
+      "gradient_norm": 11.307583808898926,
+      "baseline_loss": {
+        "aligned": 6.727090835571289,
+        "same_bag": 6.736893653869629,
+        "cross_passage": 5.552892208099365
+      },
+      "transfer_gain": {
+        "aligned": 0.000652313232421875,
+        "same_bag": 0.0004754066467285156,
+        "cross_passage": -0.0005345344543457031
+      }
+    },
+    {
+      "pool_index": 56368,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "3c271bb08fe7e267390cee323e9c90d21e13a50ce105822b4aa01581e0896f6e",
+      "mask_a_words": [
+        "standing",
+        "meters",
+        "awarded",
+        "thomas",
+        "henry",
+        "writer",
+        "family"
+      ],
+      "mask_b_words": [
+        "throwing",
+        "official",
+        "result",
+        "match",
+        "charles",
+        "born",
+        "december"
+      ],
+      "source_loss": 5.21747350692749,
+      "gradient_norm": 13.929330825805664,
+      "baseline_loss": {
+        "aligned": 5.253094673156738,
+        "same_bag": 5.301340579986572,
+        "cross_passage": 6.132512092590332
+      },
+      "transfer_gain": {
+        "aligned": 0.0022263526916503906,
+        "same_bag": 0.0027489662170410156,
+        "cross_passage": -0.001300811767578125
+      }
+    },
+    {
+      "pool_index": 9606,
+      "source": "childes.train.txt",
+      "text_sha256": "057f15ae7be2edc9733112cd026ffa53fb36e45153e1e171325b3c5eec7ef9d1",
+      "mask_a_words": [
+        "black",
+        "something",
+        "follow",
+        "placed",
+        "stick",
+        "like",
+        "open"
+      ],
+      "mask_b_words": [
+        "you're",
+        "making",
+        "ouch",
+        "original",
+        "continues",
+        "play",
+        "puts"
+      ],
+      "source_loss": 3.9991402626037598,
+      "gradient_norm": 12.588287353515625,
+      "baseline_loss": {
+        "aligned": 5.049388408660889,
+        "same_bag": 5.085247993469238,
+        "cross_passage": 6.641105651855469
+      },
+      "transfer_gain": {
+        "aligned": -0.00360107421875,
+        "same_bag": -0.0034389495849609375,
+        "cross_passage": 0.00029468536376953125
+      }
+    },
+    {
+      "pool_index": 56430,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "8662e4ccbae943b593adaef982d7faa913ebfd1628f496fc1272a1a68f737e58",
+      "mask_a_words": [
+        "beautiful",
+        "place",
+        "calmness",
+        "delicious",
+        "food",
+        "corner",
+        "municipalities"
+      ],
+      "mask_b_words": [
+        "fruits",
+        "gathered",
+        "range",
+        "everywhere",
+        "known",
+        "every",
+        "stores"
+      ],
+      "source_loss": 6.469307899475098,
+      "gradient_norm": 12.029867172241211,
+      "baseline_loss": {
+        "aligned": 6.048707008361816,
+        "same_bag": 6.90293550491333,
+        "cross_passage": 5.813788414001465
+      },
+      "transfer_gain": {
+        "aligned": -0.0016894340515136719,
+        "same_bag": -0.0011301040649414062,
+        "cross_passage": 0.000759124755859375
+      }
+    },
+    {
+      "pool_index": 56213,
+      "source": "simple_wiki.train.txt",
+      "text_sha256": "a279584d4a5e0fb7f97b7f18150db7404901420971bd8d6b0d86dffbb23a0adf",
+      "mask_a_words": [
+        "whilst",
+        "cyprus",
+        "successful",
+        "invasion",
+        "preventing",
+        "international",
+        "points"
+      ],
+      "mask_b_words": [
+        "division",
+        "throughout",
+        "played",
+        "moving",
+        "defending",
+        "mountains",
+        "seen"
+      ],
+      "source_loss": 5.9603352546691895,
+      "gradient_norm": 9.183697700500488,
+      "baseline_loss": {
+        "aligned": 6.701576232910156,
+        "same_bag": 6.6395063400268555,
+        "cross_passage": 7.800699234008789
+      },
+      "transfer_gain": {
+        "aligned": 0.0009250640869140625,
+        "same_bag": 0.0018811225891113281,
+        "cross_passage": 0.00040912628173828125
+      }
+    },
+    {
+      "pool_index": 12988,
+      "source": "childes.train.txt",
+      "text_sha256": "3259408895ea2558ad63d7be610a9a9fc7903162322bc5c3a0a4779df64e75b3",
+      "mask_a_words": [
+        "watch",
+        "television",
+        "everybody",
+        "fork",
+        "gonna",
+        "alright",
+        "hafta"
+      ],
+      "mask_b_words": [
+        "finished",
+        "just",
+        "clean",
+        "sing",
+        "first",
+        "gotta",
+        "brian"
+      ],
+      "source_loss": 5.415847301483154,
+      "gradient_norm": 12.27757740020752,
+      "baseline_loss": {
+        "aligned": 3.975041151046753,
+        "same_bag": 4.225676536560059,
+        "cross_passage": 4.390629768371582
+      },
+      "transfer_gain": {
+        "aligned": -0.0055615901947021484,
+        "same_bag": -0.0048313140869140625,
+        "cross_passage": 0.0010418891906738281
+      }
+    },
+    {
+      "pool_index": 37025,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "1e7431510807ac5a14ee2c16cfa676000179ccec8b0ad534ceb7866c1bdc9a77",
+      "mask_a_words": [
+        "worn",
+        "sixteen",
+        "bowed",
+        "since",
+        "leave",
+        "sense",
+        "duty"
+      ],
+      "mask_b_words": [
+        "professor",
+        "ethel",
+        "refused",
+        "asked",
+        "happy",
+        "reverie",
+        "gentleman"
+      ],
+      "source_loss": 5.843539714813232,
+      "gradient_norm": 12.550861358642578,
+      "baseline_loss": {
+        "aligned": 6.321653366088867,
+        "same_bag": 6.3664655685424805,
+        "cross_passage": 8.251507759094238
+      },
+      "transfer_gain": {
+        "aligned": 0.005753993988037109,
+        "same_bag": 0.006447792053222656,
+        "cross_passage": 0.0045719146728515625
+      }
+    },
+    {
+      "pool_index": 29876,
+      "source": "gutenberg.train.txt",
+      "text_sha256": "f739fbc8823bc780564a451b6bea65d1228ec6aacad84974b41e113256df687a",
+      "mask_a_words": [
+        "blade",
+        "faithful",
+        "edward",
+        "recovered",
+        "king",
+        "sent",
+        "began"
+      ],
+      "mask_b_words": [
+        "better",
+        "surgeon",
+        "wholesome",
+        "nursed",
+        "sucked",
+        "lips",
+        "soon"
+      ],
+      "source_loss": 6.3628129959106445,
+      "gradient_norm": 12.387521743774414,
+      "baseline_loss": {
+        "aligned": 6.357297897338867,
+        "same_bag": 6.403591632843018,
+        "cross_passage": 7.335214614868164
+      },
+      "transfer_gain": {
+        "aligned": 0.0016965866088867188,
+        "same_bag": 0.0018076896667480469,
+        "cross_passage": 0.0009722709655761719
+      }
+    }
+  ],
+  "elapsed_sec": 17.437662839889526
+}

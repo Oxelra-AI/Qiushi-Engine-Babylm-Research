@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper,fontset=none]{ctexart}
+\usepackage[inner=2.5cm,outer=2.5cm,top=2.6cm,bottom=2.7cm,headheight=24pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\setsansfont{TeX Gyre Heros}
+\usepackage{amsmath,amssymb,booktabs,longtable,array,tabularx,multirow}
+\usepackage{graphicx,xcolor,enumitem,placeins,float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks,breaklinks]{hyperref}
+\usepackage{xurl}
+\input{latex/preparation-header}
+\input{latex/authors-zh}
+\captionsetup[figure]{font=small,labelfont=bf,labelsep=quad,justification=raggedright,singlelinecheck=false,skip=7pt}
+\setlist{nosep,leftmargin=2em,topsep=0.3em}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.18}
+\newcommand{\chapterstart}[1]{\FloatBarrier\clearpage\section{#1}}
+\newcommand{\Frontier}{\textit{Frontier}}
+\newcommand{\Guided}{\textit{Principle-guided}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\CE}{\operatorname{CE}}
+\title{数据高效语言建模：\\从前沿突破到原理指导的模型改进\\[2mm]{\large\normalfont Qiushi Engine 在 BabyLM 2026 Strict-Small 上的端到端自主研究}}
+\date{2026年9月8日}
+\hypersetup{pdftitle={数据高效语言建模：从前沿突破到原理指导的模型改进},pdfauthor={Qiushi Engine Team},pdfsubject={Qiushi Engine 在 BabyLM 2026 Strict-Small 上的端到端自主研究}}
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+\begin{abstract}
+在有限数据下，语言模型的进步不仅取决于接触多少文本，还取决于怎样利用其中的信息，以及所学能力能否用于新输入并在后续学习中保留下来。我们报告 Qiushi Engine 在 BabyLM 2026 Strict-Small 上完成的一项长程端到端自主研究。在单个模型至多使用一千万词语料、累计训练曝光不超过一亿词的约束下，Qiushi Engine 贯通前沿突破、原理发现与原理指导的模型改进三个完整研究过程，自主开展文献研究、方法构造、实验执行、评测分析与成果整合。第一阶段联合探索数据、表示、架构和训练，将紧凑重述、预算再分配与残差增量学习结合，建立第一代前沿模型。第二阶段研究经验组织、监督分配、能力复用与保持、学习动力学和测量方法，发现逐字重复与对齐重述会塑造不同的上下文使用方式，其效果取决于目标关系与预测窗口；在受控任务中，熟悉表现的恢复也不保证新输入仍能使用已学计算。这些结果支持一项数据高效学习设计原则：围绕目标预测需要利用的上下文信息及其关系组织经验，分别设计可见信息、监督目标与功能保持，检验模型是否学会所需能力、能否用于新输入，以及继续学习后是否仍然有效。第三阶段据此保留来源文本，扩大局部遮盖，只监督选定目标，并在普通输入上保持已有功能。同一母模型的两次续训在完整九项评测的 Overall 上均优于普通续训。两代模型的 Overall 从 42.02 提高至 42.25，第二代取得 2026 年 9 月 8 日 Strict-Small 公开榜单的最高 Overall。经验压缩、关系锚点、表示共享和测量控制等研究还形成了可独立使用的发现与方法。模型见 Hugging Face，方法代码、数据构造、评测结果与科研记录见配套 GitHub 工程。这项研究展示了 Research RSI——科研过程的递归自我改进——的一个具体实例：Qiushi Engine 将自身研究形成的科学认识、方法创新与实验经验用于后续问题选择和方法创造，再以新的实践检验和修正这些积累。一次前沿突破由此既产生更好的模型，也改变下一次研究从何处出发、如何探索与判断。
+\end{abstract}
+\vspace{1mm}
+{\small\noindent\textbf{关键词}\quad 数据高效语言建模；BabyLM；上下文信息利用；能力保持；自主科研；递归自我改进}
+{\setstretch{1.15}\tableofcontents\par}
+\input{chapters/01_background}
+\input{chapters/03_frontier}
+\input{chapters/04_principles}
+\input{chapters/05_guided_improvement}
+\input{chapters/06_research_lineage}
+\input{chapters/07_discussion}
+\input{chapters/08_conclusion}
+\FloatBarrier\clearpage
+\appendix
+\input{chapters/appendices}
+\input{chapters/research_catalog}
+\FloatBarrier\clearpage
+\begingroup\small\setstretch{1.0}\setlength{\bibsep}{2pt}
+\bibliographystyle{unsrtnat}
+\bibliography{../references}
+\endgroup
+\end{document}

@@ -1,0 +1,101 @@
+{
+  "status": "PIPELINE_DONE",
+  "created_utc": "2026-09-07T12:19:29Z",
+  "train_root": "experiments/archive/functional_learning/data/unchanged_dense_focus_train",
+  "eval_root": "experiments/archive/functional_learning/data/unchanged_dense_focus_eval",
+  "pipeline_dir": "experiments/archive/functional_learning/data/unchanged_dense_focus_pipeline",
+  "objectives": [
+    "correspondence_focus_weighted"
+  ],
+  "parameters": {
+    "max_updates": 80,
+    "focus_prob": 1.0,
+    "max_focus_groups_per_row": 128,
+    "focus_lambda": 0.15,
+    "train_seed": 62064,
+    "gpu": 1
+  },
+  "train_cmd": [
+    "data/external/python",
+    "experiments/archive/functional_learning/scripts/real_stream_train_weighted.py",
+    "--out-dir",
+    "experiments/archive/functional_learning/data/unchanged_dense_focus_train",
+    "--objectives",
+    "correspondence_focus_weighted",
+    "--max-updates",
+    "80",
+    "--focus-prob",
+    "1.0",
+    "--max-focus-groups-per-row",
+    "128",
+    "--focus-lambda",
+    "0.15",
+    "--train-seed",
+    "62064",
+    "--gpu",
+    "1"
+  ],
+  "eval_cmd": [
+    "data/external/python",
+    "experiments/archive/functional_learning/scripts/evaluate_unchanged_focus.py",
+    "--train-root",
+    "experiments/archive/functional_learning/data/unchanged_dense_focus_train",
+    "--out-root",
+    "experiments/archive/functional_learning/data/unchanged_dense_focus_eval",
+    "--objectives",
+    "correspondence_focus_weighted",
+    "--update",
+    "80",
+    "--gpu",
+    "1",
+    "--force"
+  ],
+  "train_result": {
+    "cmd": [
+      "data/external/python",
+      "experiments/archive/functional_learning/scripts/real_stream_train_weighted.py",
+      "--out-dir",
+      "experiments/archive/functional_learning/data/unchanged_dense_focus_train",
+      "--objectives",
+      "correspondence_focus_weighted",
+      "--max-updates",
+      "80",
+      "--focus-prob",
+      "1.0",
+      "--max-focus-groups-per-row",
+      "128",
+      "--focus-lambda",
+      "0.15",
+      "--train-seed",
+      "62064",
+      "--gpu",
+      "1"
+    ],
+    "returncode": 0,
+    "elapsed_sec": 781.0,
+    "stdout_tail": "didate_kind_counts\": {\n      \"unchanged_inherited_current\": 1416\n    },\n    \"loss_mode\": \"explicit_focus_lambda\",\n    \"lambda_focus\": 0.15,\n    \"lambda_ordinary\": 0.85,\n    \"focus_loss\": 3.9609043336162286,\n    \"ordinary_loss\": 2.504062931564161,\n    \"pooled_loss\": 2.8322514922678477,\n    \"optimized_loss\": 2.722589141871971,\n    \"grad_norm_preclip\": 0.08274076133966446,\n    \"elapsed_sec\": 767.6\n  },\n  \"checkpoints\": [\n    {\n      \"update\": 40,\n      \"path\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0040\",\n      \"optimized_loss\": 2.8431823424852367,\n      \"pooled_loss\": 2.976422853388609\n    },\n    {\n      \"update\": 80,\n      \"path\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\",\n      \"optimized_loss\": 2.722589141871971,\n      \"pooled_loss\": 2.8322514922678477\n    }\n  ],\n  \"elapsed_sec\": 767.8,\n  \"model_identity\": {\n    \"class\": \"FrozenSlowPrivateDebertaV2ForMaskedLM\",\n    \"module\": \"frozen82_private_modeling\",\n    \"total_params\": 36458592,\n    \"private_adapter_tensors\": 48,\n    \"private_adapter_params\": 995584,\n    \"executed_private_scales\": [\n      0.75,\n      0.75,\n      0.75,\n      0.75,\n      0.75,\n      0.75,\n      0.75,\n      0.75\n    ]\n  },\n  \"scientific_status\": \"early unchanged-text real-stream objective test; not a BabyLM endpoint; evaluate broad profile and trained-pair readouts before longer continuation\"\n}\n{\n  \"status\": \"REAL_STREAM_WEIGHTED_COMPARISON_DONE\",\n  \"created_utc\": \"2026-09-07T12:32:29Z\",\n  \"plan\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_train/plan.json\",\n  \"summaries\": [\n    {\n      \"status\": \"REAL_STREAM_WEIGHTED_TRAIN_DONE\",\n      \"objective\": \"correspondence_focus_weighted\",\n      \"out_dir\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted\",\n      \"tail_jsonl\": \"experiments/archive/functional_learning/data/unchanged_pair_segments_tail/reference_tail_unchanged_qwen_segments.jsonl\",\n      \"prefix_info\": {\n        \"tail_jsonl\": \"experiments/archive/functional_learning/data/unchanged_pair_segments_tail/reference_tail_unchanged_qwen_segments.jsonl\",\n        \"requested_max_updates\": 80,\n        \"words_per_update\": 39533,\n        \"prefix_rows\": 20475,\n        \"prefix_words\": 3162742,\n        \"target_prefix_words\": 3162640,\n        \"qwen_rows\": 3831,\n        \"qwen_pair_segments\": 11778,\n        \"compact_modified_rows\": 0,\n        \"compact_modified_pair_occurrences\": 0,\n        \"topup_rows\": 0,\n        \"source_rows\": {\n          \"gutenberg\": 3635,\n          \"simple_wiki\": 2063,\n          \"qwen_pair_packed\": 3831,\n          \"open_subtitles\": 3684,\n          \"childes\": 5173,\n          \"cleanqwen_fineweb_compact_view_reinvest\": 940,\n          \"bnc_spoken\": 1108,\n          \"switchboard\": 41\n        }\n      },\n      \"completed_updates\": 80,\n      \"total_words_consumed\": 3162742,\n      \"total_targets\": 769465,\n      \"total_focus_targets\": 176607,\n      \"total_ordinary_targets\": 592858,\n      \"aggregate_focus_target_fraction\": 0.22951921140012865,\n      \"loss_mode\": \"explicit_focus_lambda\",\n      \"focus_lambda_arg\": 0.15,\n      \"mean_lambda_focus_optimized\": 0.15,\n      \"mean_focus_target_fraction\": 0.22920189572319982,\n      \"focus_selected_groups_total\": 132283,\n      \"focus_candidate_groups_total\": 132283,\n      \"focus_selected_pair_refs_total\": 11778,\n      \"final_update\": {\n        \"update\": 80,\n        \"schedule_idx\": 180,\n        \"lr\": 3.4055239095742064e-05,\n        \"rows\": 217,\n        \"words\": 33586,\n        \"cum_words\": 3162742,\n        \"targets\": 8119,\n        \"ordinary_target_tokens\": 6290,\n        \"focus_target_tokens\": 1829,\n        \"focus_target_fraction\": 0.22527404852814387,\n        \"qwen_rows\": 41,\n        \"qwen_focus_rows\": 41,\n        \"qwen_wwm_rows\": 0,\n        \"ordinary_wwm_rows\": 176,\n        \"compact_modified_rows\": 0,\n        \"topup_rows\": 0,\n        \"zero_label_rows\": 0,\n        \"focus_selected_groups\": 1416,\n        \"focus_candidate_groups\": 1416,\n        \"focus_selected_pair_count\": 127,\n        \"focus_selected_candidate_kind_counts\": {\n          \"unchanged_inherited_current\": 1416\n        },\n        \"loss_mode\": \"explicit_focus_lambda\",\n        \"lambda_focus\": 0.15,\n        \"lambda_ordinary\": 0.85,\n        \"focus_loss\": 3.9609043336162286,\n        \"ordinary_loss\": 2.504062931564161,\n        \"pooled_loss\": 2.8322514922678477,\n        \"optimized_loss\": 2.722589141871971,\n        \"grad_norm_preclip\": 0.08274076133966446,\n        \"elapsed_sec\": 767.6\n      },\n      \"checkpoints\": [\n        {\n          \"update\": 40,\n          \"path\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0040\",\n          \"optimized_loss\": 2.8431823424852367,\n          \"pooled_loss\": 2.976422853388609\n        },\n        {\n          \"update\": 80,\n          \"path\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\",\n          \"optimized_loss\": 2.722589141871971,\n          \"pooled_loss\": 2.8322514922678477\n        }\n      ],\n      \"elapsed_sec\": 767.8,\n      \"model_identity\": {\n        \"class\": \"FrozenSlowPrivateDebertaV2ForMaskedLM\",\n        \"module\": \"frozen82_private_modeling\",\n        \"total_params\": 36458592,\n        \"private_adapter_tensors\": 48,\n        \"private_adapter_params\": 995584,\n        \"executed_private_scales\": [\n          0.75,\n          0.75,\n          0.75,\n          0.75,\n          0.75,\n          0.75,\n          0.75,\n          0.75\n        ]\n      },\n      \"scientific_status\": \"early unchanged-text real-stream objective test; not a BabyLM endpoint; evaluate broad profile and trained-pair readouts before longer continuation\"\n    }\n  ],\n  \"scientific_status\": \"training complete; evaluate broad profile and mechanistic readouts before interpreting practical value\"\n}\n",
+    "stderr_tail": ""
+  },
+  "eval_result": {
+    "cmd": [
+      "data/external/python",
+      "experiments/archive/functional_learning/scripts/evaluate_unchanged_focus.py",
+      "--train-root",
+      "experiments/archive/functional_learning/data/unchanged_dense_focus_train",
+      "--out-root",
+      "experiments/archive/functional_learning/data/unchanged_dense_focus_eval",
+      "--objectives",
+      "correspondence_focus_weighted",
+      "--update",
+      "80",
+      "--gpu",
+      "1",
+      "--force"
+    ],
+    "returncode": 0,
+    "elapsed_sec": 1796.0,
+    "stdout_tail": "n          },\\n          \\\"Reading\\\": {\\n            \\\"Reading_eye\\\": 10.7,\\n            \\\"Reading_self_paced\\\": 5.74,\\n            \\\"Reading\\\": 8.219999999999999,\\n            \\\"returncode\\\": 0,\\n            \\\"elapsed_sec\\\": 214.4,\\n            \\\"data_path\\\": \\\"evaluation_data/fast_eval/reading/reading_data.csv\\\"\\n          },\\n          \\\"scores\\\": {\\n            \\\"BLiMP\\\": 68.62,\\n            \\\"Supplement\\\": 66.0,\\n            \\\"EWoK\\\": 50.18,\\n            \\\"Entity\\\": 28.44,\\n            \\\"COMPS\\\": 52.15,\\n            \\\"GlobalPIQA_parallel\\\": 30.1,\\n            \\\"GlobalPIQA_nonparallel\\\": 50.0,\\n            \\\"Reading\\\": 8.219999999999999,\\n            \\\"Reading_eye\\\": 10.7,\\n            \\\"Reading_self_paced\\\": 5.74,\\n            \\\"GlobalPIQA_mean\\\": 40.05,\\n            \\\"equal_valid_mean\\\": 44.80857142857143,\\n            \\\"n_valid_equal_columns\\\": 7\\n          }\\n        },\\n        \\\"scores\\\": {\\n          \\\"BLiMP\\\": 68.62,\\n          \\\"Supplement\\\": 66.0,\\n          \\\"EWoK\\\": 50.18,\\n          \\\"Entity\\\": 28.44,\\n          \\\"COMPS\\\": 52.15,\\n          \\\"GlobalPIQA_parallel\\\": 30.1,\\n          \\\"GlobalPIQA_nonparallel\\\": 50.0,\\n          \\\"Reading\\\": 8.219999999999999,\\n          \\\"Reading_eye\\\": 10.7,\\n          \\\"Reading_self_paced\\\": 5.74,\\n          \\\"GlobalPIQA_mean\\\": 40.05,\\n          \\\"equal_valid_mean\\\": 44.80857142857143,\\n          \\\"n_valid_equal_columns\\\": 7\\n        },\\n        \\\"stdout_tail\\\": \\\"\\\\n{\\\\\\\"event\\\\\\\": \\\\\\\"column_done\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"column\\\\\\\": \\\\\\\"EWoK\\\\\\\", \\\\\\\"score\\\\\\\": 50.18, \\\\\\\"returncode\\\\\\\": 0}\\\\n[update_0080] Evaluating Entity on experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\\\\n{\\\\\\\"event\\\\\\\": \\\\\\\"column_done\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"column\\\\\\\": \\\\\\\"Entity\\\\\\\", \\\\\\\"score\\\\\\\": 28.44, \\\\\\\"returncode\\\\\\\": 0}\\\\n[update_0080] Evaluating COMPS on experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\\\\n{\\\\\\\"event\\\\\\\": \\\\\\\"column_done\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"column\\\\\\\": \\\\\\\"COMPS\\\\\\\", \\\\\\\"score\\\\\\\": 52.15, \\\\\\\"returncode\\\\\\\": 0}\\\\n[update_0080] Evaluating GlobalPIQA_parallel on experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\\\\n{\\\\\\\"event\\\\\\\": \\\\\\\"column_done\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"column\\\\\\\": \\\\\\\"GlobalPIQA_parallel\\\\\\\", \\\\\\\"score\\\\\\\": 30.1, \\\\\\\"returncode\\\\\\\": 0}\\\\n[update_0080] Evaluating GlobalPIQA_nonparallel on experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\\\\n{\\\\\\\"event\\\\\\\": \\\\\\\"column_done\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"column\\\\\\\": \\\\\\\"GlobalPIQA_nonparallel\\\\\\\", \\\\\\\"score\\\\\\\": 50.0, \\\\\\\"returncode\\\\\\\": 0}\\\\n[update_0080] Evaluating Reading on experiments/archive/functional_learning/data/unchanged_dense_focus_train/correspondence_focus_weighted/checkpoints/update_0080\\\\n{\\\\\\\"event\\\\\\\": \\\\\\\"column_done\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"column\\\\\\\": \\\\\\\"Reading\\\\\\\", \\\\\\\"score\\\\\\\": 8.219999999999999, \\\\\\\"returncode\\\\\\\": 0}\\\\n{\\\\\\\"status\\\\\\\": \\\\\\\"EVAL_DONE\\\\\\\", \\\\\\\"tag\\\\\\\": \\\\\\\"update_0080\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"experiments/archive/functional_learning/data/unchanged_dense_focus_eval/cheap7/unchanged_correspondence_focus_weighted_u0080/cheap7/update_0080_eval.json\\\\\\\", \\\\\\\"scores\\\\\\\": {\\\\\\\"BLiMP\\\\\\\": 68.62, \\\\\\\"Supplement\\\\\\\": 66.0, \\\\\\\"EWoK\\\\\\\": 50.18, \\\\\\\"Entity\\\\\\\": 28.44, \\\\\\\"COMPS\\\\\\\": 52.15, \\\\\\\"GlobalPIQA_parallel\\\\\\\": 30.1, \\\\\\\"GlobalPIQA_nonparallel\\\\\\\": 50.0, \\\\\\\"Reading\\\\\\\": 8.219999999999999, \\\\\\\"Reading_eye\\\\\\\": 10.7, \\\\\\\"Reading_self_paced\\\\\\\": 5.74, \\\\\\\"GlobalPIQA_mean\\\\\\\": 40.05, \\\\\\\"equal_valid_mean\\\\\\\": 44.80857142857143, \\\\\\\"n_valid_equal_columns\\\\\\\": 7}}\\\\n\\\",\\n        \\\"stderr_tail\\\": \\\"data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\\\\n  warnings.warn(\\\\n\\\"\\n      },\\n      \\\"elapsed_sec\\\": 1742.5\\n    }\\n  ]\\n}\\n\",\n        \"stderr_tail\": \"data/external/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.\\n  warnings.warn(\\n\"\n      },\n      \"scores\": {\n        \"BLiMP\": 68.62,\n        \"Supplement\": 66.0,\n        \"EWoK\": 50.18,\n        \"Entity\": 28.44,\n        \"COMPS\": 52.15,\n        \"GlobalPIQA_parallel\": 30.1,\n        \"GlobalPIQA_nonparallel\": 50.0,\n        \"Reading\": 8.219999999999999,\n        \"Reading_eye\": 10.7,\n        \"Reading_self_paced\": 5.74,\n        \"GlobalPIQA_mean\": 40.05,\n        \"equal_valid_mean\": 44.80857142857143,\n        \"n_valid_equal_columns\": 7\n      },\n      \"summary_path\": \"experiments/archive/functional_learning/data/unchanged_dense_focus_eval/cheap7/unchanged_correspondence_focus_weighted_u0080/bridge_eval_summary.json\"\n    }\n  ],\n  \"reference_tail_cheap7_scores\": {\n    \"BLiMP\": 69.12,\n    \"Supplement\": 66.4,\n    \"EWoK\": 49.82,\n    \"Entity\": 26.94,\n    \"COMPS\": 51.99,\n    \"GlobalPIQA_parallel\": 31.07,\n    \"GlobalPIQA_nonparallel\": 48.0,\n    \"Reading\": 8.23,\n    \"Reading_eye\": 10.85,\n    \"Reading_self_paced\": 5.61,\n    \"GlobalPIQA_mean\": 39.535,\n    \"equal_valid_mean\": 44.57642857142857,\n    \"n_valid_equal_columns\": 7\n  },\n  \"coherent86_fast_reference\": {\n    \"equal_valid_mean\": 44.56428571428571,\n    \"Entity\": 27.78\n  },\n  \"interpretation\": \"Unchanged-tail prefix readout. Use Cheap7 and qwen trained-material probes together with common-target; the common-target bank constrains one transfer mechanism but is not the only signal of practical competence.\"\n}\n",
+    "stderr_tail": ""
+  },
+  "finished_utc": "2026-09-07T13:02:26Z"
+}

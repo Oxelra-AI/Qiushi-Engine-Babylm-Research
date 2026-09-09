@@ -1,0 +1,227 @@
+{
+  "status": "SOURCE_FREE_TRANSFER_TEST",
+  "created_utc": "2026-08-31T19:35:41Z",
+  "purpose": "Test whether source-conditioned training transfers to source-free evaluation under document-disjoint splits",
+  "args": {
+    "out_dir": "experiments/archive/frontier_consolidation/data/transfer_pilot",
+    "max_items": 128,
+    "max_length": 256,
+    "seed": 8123,
+    "doc_test_frac": 0.3,
+    "require_source_absent": false,
+    "device": "cpu",
+    "forward_batch": 16,
+    "probe_dim": 16,
+    "probe_epochs": 5,
+    "probe_batch": 32,
+    "probe_lr": 0.001,
+    "probe_wd": 0.001,
+    "probe_dropout": 0.15,
+    "delta_l2": 1e-05,
+    "grad_clip": 2.0,
+    "torch_threads": 8,
+    "n_probe_seeds": 1
+  },
+  "doc_split": {
+    "total_docs": 4529,
+    "train_docs": 3171,
+    "test_docs": 1358
+  },
+  "items": {
+    "total": 128,
+    "train": 86,
+    "test": 42,
+    "source_absent": 63,
+    "skip": {
+      "no_changed_span": 220,
+      "no_candidate_target": 91
+    }
+  },
+  "raw_frozen_nll": {
+    "free": {
+      "train_nll_mean": 7.082787036895752,
+      "test_nll_mean": 7.100218296051025
+    },
+    "true": {
+      "train_nll_mean": 4.223763465881348,
+      "test_nll_mean": 4.1248579025268555
+    },
+    "shuffled": {
+      "train_nll_mean": 6.970947265625,
+      "test_nll_mean": 6.9944305419921875
+    },
+    "true_vs_shuffled_test": -2.869572639465332
+  },
+  "baseline_test_nll": 7.100218296051025,
+  "aggregated_conditions": {
+    "true_conditioned": {
+      "n_seeds": 1,
+      "per_seed_eval_nll": [
+        7.087752342224121
+      ],
+      "mean_eval_nll": 7.087752342224121,
+      "std_eval_nll": 0.0,
+      "pooled_bootstrap": {
+        "mean": 7.087752550042102,
+        "ci05": 6.307016056208384,
+        "ci95": 7.827041194552467,
+        "n": 42
+      }
+    },
+    "shuffled_conditioned": {
+      "n_seeds": 1,
+      "per_seed_eval_nll": [
+        7.085310935974121
+      ],
+      "mean_eval_nll": 7.085310935974121,
+      "std_eval_nll": 0.0,
+      "pooled_bootstrap": {
+        "mean": 7.0853113650920845,
+        "ci05": 6.302860599365973,
+        "ci95": 7.82894818662178,
+        "n": 42
+      }
+    },
+    "source_free": {
+      "n_seeds": 1,
+      "per_seed_eval_nll": [
+        7.074298858642578
+      ],
+      "mean_eval_nll": 7.074298858642578,
+      "std_eval_nll": 0.0,
+      "pooled_bootstrap": {
+        "mean": 7.074298922504697,
+        "ci05": 6.296333173910777,
+        "ci95": 7.811178918395724,
+        "n": 42
+      }
+    },
+    "shared_true": {
+      "n_seeds": 1,
+      "per_seed_eval_nll": [
+        7.083257675170898
+      ],
+      "mean_eval_nll": 7.083257675170898,
+      "std_eval_nll": 0.0,
+      "pooled_bootstrap": {
+        "mean": 7.083257491966443,
+        "ci05": 6.30123164655552,
+        "ci95": 7.826374050983715,
+        "n": 42
+      }
+    },
+    "shared_shuffled": {
+      "n_seeds": 1,
+      "per_seed_eval_nll": [
+        7.075348854064941
+      ],
+      "mean_eval_nll": 7.075348854064941,
+      "std_eval_nll": 0.0,
+      "pooled_bootstrap": {
+        "mean": 7.0753490981158045,
+        "ci05": 6.295204312939729,
+        "ci95": 7.813840805065064,
+        "n": 42
+      }
+    }
+  },
+  "decisive_comparison": {
+    "true_mean": 7.087752342224121,
+    "shuffled_mean": 7.085310935974121,
+    "delta_true_minus_shuffled": 0.00244140625,
+    "interpretation": "negative delta means true-aligned transfers better (lower NLL)",
+    "paired_bootstrap_s0": {
+      "mean": 0.002441184950016794,
+      "ci05": -0.004788990354254132,
+      "ci95": 0.009765532754716418,
+      "n": 42
+    }
+  },
+  "elapsed_sec": 6.608929634094238,
+  "per_seed_results": {
+    "true_cond_s0": {
+      "label": "true_conditioned_seed0",
+      "n_train": 86,
+      "n_eval": 42,
+      "train_nll_mean": 6.964271068572998,
+      "eval_nll_mean": 7.087752342224121,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 7.082980473836263,
+          "eval_nll_mean": 7.098994731903076
+        },
+        {
+          "epoch": 3,
+          "train_loss": 7.116582711537679,
+          "eval_nll_mean": 7.094257831573486
+        },
+        {
+          "epoch": 5,
+          "train_loss": 6.929051240285237,
+          "eval_nll_mean": 7.087752342224121
+        }
+      ]
+    },
+    "shuffled_cond_s0": {
+      "label": "shuffled_conditioned_seed0",
+      "n_train": 86,
+      "n_eval": 42,
+      "train_nll_mean": 6.946160793304443,
+      "eval_nll_mean": 7.085310935974121,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 7.096227486928304,
+          "eval_nll_mean": 7.098944664001465
+        },
+        {
+          "epoch": 3,
+          "train_loss": 7.004571596781413,
+          "eval_nll_mean": 7.094064712524414
+        },
+        {
+          "epoch": 5,
+          "train_loss": 7.042881965637207,
+          "eval_nll_mean": 7.085310935974121
+        }
+      ]
+    },
+    "free_s0": {
+      "label": "source_free_seed0",
+      "n_train": 86,
+      "n_eval": 42,
+      "train_nll_mean": 6.949523448944092,
+      "eval_nll_mean": 7.074298858642578,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 7.09892733891805,
+          "eval_nll_mean": 7.098280906677246
+        },
+        {
+          "epoch": 3,
+          "train_loss": 7.038424173990886,
+          "eval_nll_mean": 7.090038299560547
+        },
+        {
+          "epoch": 5,
+          "train_loss": 6.988914966583252,
+          "eval_nll_mean": 7.074298858642578
+        }
+      ]
+    },
+    "shared_true_s0": {
+      "label": "shared_true_seed0",
+      "n_train": 86,
+      "n_eval": 42,
+      "eval_nll_mean": 7.083257675170898
+    },
+    "shared_shuffled_s0": {
+      "label": "shared_shuffled_seed0",
+      "n_train": 86,
+      "n_eval": 42,
+      "eval_nll_mean": 7.075348854064941
+    }
+  }
+}

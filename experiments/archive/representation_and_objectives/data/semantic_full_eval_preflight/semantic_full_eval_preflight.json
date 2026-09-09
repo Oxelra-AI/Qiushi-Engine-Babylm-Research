@@ -1,0 +1,118 @@
+{
+  "status": "SEMANTIC_FULL_EVAL_PREFLIGHT",
+  "all_ok": true,
+  "python_ast_checks": {
+    "prefill_semantic_view_full_eval_from_noaoa.py": {
+      "path": "experiments/archive/representation_and_objectives/training/scripts/prefill_semantic_view_full_eval_from_noaoa.py",
+      "exists": true,
+      "ok": true
+    },
+    "semantic_view_full_eval_runner.py": {
+      "path": "experiments/archive/representation_and_objectives/training/scripts/semantic_view_full_eval_runner.py",
+      "exists": true,
+      "ok": true
+    },
+    "summarize_semantic_view_full_eval.py": {
+      "path": "experiments/archive/representation_and_objectives/training/scripts/summarize_semantic_view_full_eval.py",
+      "exists": true,
+      "ok": true
+    },
+    "full_overall_eval_runner.py": {
+      "path": "experiments/archive/compact_experience/scripts/full_overall_eval_runner.py",
+      "exists": true,
+      "ok": true
+    },
+    "babylm_official_scoring.py": {
+      "path": "experiments/archive/compact_experience/scripts/babylm_official_scoring.py",
+      "exists": true,
+      "ok": true
+    },
+    "aoa_local_ckpts_for_model.py": {
+      "path": "experiments/archive/compact_experience/scripts/aoa_local_ckpts_for_model.py",
+      "exists": true,
+      "ok": true
+    }
+  },
+  "bash_syntax_checks": {
+    "launch_semantic_view_full_eval_selected.sh": {
+      "path": "experiments/archive/representation_and_objectives/training/scripts/launch_semantic_view_full_eval_selected.sh",
+      "exists": true,
+      "ok": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "checkpoint_checks": {
+    "semantic_view_treatment": {
+      "run": "experiments/archive/representation_and_objectives/training/runs/semantic_view_treatment_8x480_16k_wwm_seed43022",
+      "model_root": "experiments/archive/representation_and_objectives/training/runs/semantic_view_treatment_8x480_16k_wwm_seed43022/hf_model",
+      "metrics_exists": true,
+      "metrics_summary": {
+        "word_exposure": 100000000,
+        "actual_training_steps": 2665,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "baseline16k",
+        "loss_last": 2.5477638244628906,
+        "example_jsonl": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast_capped1/semantic_view_treatment_100M.jsonl"
+      },
+      "checkpoint_dir_count": 100,
+      "all_1M_to_100M_complete": true,
+      "aoa_19_step_ladder_complete": true,
+      "missing_all_required": [],
+      "missing_aoa_required": []
+    },
+    "original_packet_local": {
+      "run": "experiments/archive/representation_and_objectives/training/runs/original_packet_local_8x480_16k_wwm_seed43022",
+      "model_root": "experiments/archive/representation_and_objectives/training/runs/original_packet_local_8x480_16k_wwm_seed43022/hf_model",
+      "metrics_exists": true,
+      "metrics_summary": {
+        "word_exposure": 100000000,
+        "actual_training_steps": 2665,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "baseline16k",
+        "loss_last": 2.4126060009002686,
+        "example_jsonl": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast_capped1/original_packet_local_100M.jsonl"
+      },
+      "checkpoint_dir_count": 100,
+      "all_1M_to_100M_complete": true,
+      "aoa_19_step_ladder_complete": true,
+      "missing_all_required": [],
+      "missing_aoa_required": []
+    }
+  },
+  "scoring_self_test": {
+    "ok": true,
+    "result": {
+      "leaderboard_row_calc": 40.62222222222223,
+      "expected": 40.62,
+      "raw_0p229_scaled": 22.900000000000002
+    },
+    "official_keys": [
+      "BLiMP",
+      "Supplement",
+      "EWoK",
+      "Entity",
+      "COMPS",
+      "SuperGLUE",
+      "GlobalPIQA",
+      "Reading",
+      "AoA"
+    ],
+    "aoa_scale": 100.0
+  },
+  "structural_checks": {
+    "prefill_overrides_base_out_root": true,
+    "prefill_records_noaoa_source": true,
+    "runner_overrides_base_targets": true,
+    "runner_has_columns_subset": true,
+    "compact_experience_repaired_aoa_helper_available": true
+  },
+  "full_eval_if_noaoa_positive": {
+    "launcher": "experiments/archive/representation_and_objectives/training/scripts/launch_semantic_view_full_eval_selected.sh",
+    "output_root": "experiments/archive/representation_and_objectives/data/semantic_view_full_eval",
+    "recommended_endpoint_policy": "If no-AoA delta is meaningful, evaluate the treatment endpoint selected by no-AoA and the packet-local control at the same endpoint for causal full-Overall delta; if the treatment's no-AoA maximum is at another endpoint, consider an additional treatment-only full eval only after the first full measurement."
+  }
+}

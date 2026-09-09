@@ -1,0 +1,366 @@
+{
+  "status": "SEQUENCE_CURRICULUM_ACCOUNTING_AUDIT",
+  "pool_10m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+  "pool_rows": 64740,
+  "pool_words": 10000000,
+  "published_leader_factor": "sequence length curriculum 64->256, batch size scaled inversely with sequence length (model card lines 203 and 213)",
+  "current_trainer_finding": "research/research seq_len_schedule slices max-256 tokenized rows to the current short prefix but still charges full row words; this hides suffix word-groups during short phases while counting them in word exposure.",
+  "mask_prob_assumed_for_target_accounting": 0.15,
+  "tokenizer_summaries": {
+    "legal40k": {
+      "label": "legal40k",
+      "tokenizer_path": "experiments/archive/representation_and_objectives/data/legal_representation_route_map/tokenizers/legal_byte_bpe_40k",
+      "vocab_size": 40000,
+      "len_tokenizer": 40000,
+      "pool_rows": 64740,
+      "pool_words": 10000000,
+      "total_token_word_groups": 10000000,
+      "total_tokens_no_trunc": 13942644,
+      "tokens_per_word": 1.3942644,
+      "groups_per_whitespace_word": 1.0,
+      "elapsed_sec": 50.22,
+      "lengths": {
+        "64": {
+          "current_prefix_slicing_fixed_row_batch": {
+            "visible_groups": 3064708.0,
+            "visible_tokens": 4143297.0,
+            "charged_words": 10000000.0,
+            "rows": 64740.0,
+            "truncated_rows": 64735.0,
+            "visible_group_fraction_vs_full": 0.3064708,
+            "visible_token_fraction_vs_full": 0.29716723743358864,
+            "charged_words_per_visible_group": 3.262953599494634,
+            "truncated_row_fraction": 0.9999227679950572,
+            "expected_wwm_target_tokens": 621494.5499999999,
+            "fixed_row_steps_per_10M_epoch": 253
+          },
+          "faithful_word_boundary_chunking_inverse_batch": {
+            "chunks": 252269.0,
+            "visible_groups": 10000000.0,
+            "visible_tokens": 13942644.0,
+            "charged_groups": 10000000.0,
+            "max_group_tokens_max": 97,
+            "rows_per_step_inverse_scaled": 1024,
+            "steps_per_10M_epoch_inverse_scaled": 247,
+            "padded_token_slots_per_epoch": 16145216.0,
+            "mean_chunk_fill": 0.8635774213240628,
+            "expected_wwm_target_tokens": 2091396.5999999999,
+            "visible_group_fraction_vs_full": 1.0,
+            "visible_token_fraction_vs_full": 1.0
+          }
+        },
+        "128": {
+          "current_prefix_slicing_fixed_row_batch": {
+            "visible_groups": 6083342.0,
+            "visible_tokens": 8272692.0,
+            "charged_words": 10000000.0,
+            "rows": 64740.0,
+            "truncated_rows": 63844.0,
+            "visible_group_fraction_vs_full": 0.6083342,
+            "visible_token_fraction_vs_full": 0.5933373899527234,
+            "charged_words_per_visible_group": 1.6438332745388966,
+            "truncated_row_fraction": 0.9861600247142416,
+            "expected_wwm_target_tokens": 1240903.8,
+            "fixed_row_steps_per_10M_epoch": 253
+          },
+          "faithful_word_boundary_chunking_inverse_batch": {
+            "chunks": 140303.0,
+            "visible_groups": 10000000.0,
+            "visible_tokens": 13942644.0,
+            "charged_groups": 10000000.0,
+            "max_group_tokens_max": 97,
+            "rows_per_step_inverse_scaled": 512,
+            "steps_per_10M_epoch_inverse_scaled": 275,
+            "padded_token_slots_per_epoch": 17958784.0,
+            "mean_chunk_fill": 0.7763690459220401,
+            "expected_wwm_target_tokens": 2091396.5999999999,
+            "visible_group_fraction_vs_full": 1.0,
+            "visible_token_fraction_vs_full": 1.0
+          }
+        },
+        "256": {
+          "current_prefix_slicing_fixed_row_batch": {
+            "visible_groups": 9871336.0,
+            "visible_tokens": 13706162.0,
+            "charged_words": 10000000.0,
+            "rows": 64740.0,
+            "truncated_rows": 11407.0,
+            "visible_group_fraction_vs_full": 0.9871336,
+            "visible_token_fraction_vs_full": 0.9830389415379178,
+            "charged_words_per_visible_group": 1.0130341019695814,
+            "truncated_row_fraction": 0.17619709607661416,
+            "expected_wwm_target_tokens": 2055924.2999999998,
+            "fixed_row_steps_per_10M_epoch": 253
+          },
+          "faithful_word_boundary_chunking_inverse_batch": {
+            "chunks": 76164.0,
+            "visible_groups": 10000000.0,
+            "visible_tokens": 13942644.0,
+            "charged_groups": 10000000.0,
+            "max_group_tokens_max": 97,
+            "rows_per_step_inverse_scaled": 256,
+            "steps_per_10M_epoch_inverse_scaled": 298,
+            "padded_token_slots_per_epoch": 19497984.0,
+            "mean_chunk_fill": 0.7150813130219001,
+            "expected_wwm_target_tokens": 2091396.5999999999,
+            "visible_group_fraction_vs_full": 1.0,
+            "visible_token_fraction_vs_full": 1.0
+          }
+        }
+      },
+      "schedules": {
+        "two_stage_64x7_256x3": {
+          "stages_epochs_length": [
+            [
+              7,
+              64
+            ],
+            [
+              3,
+              256
+            ]
+          ],
+          "current_prefix_visible_group_fraction_over_10_epochs": 0.51066964,
+          "current_prefix_visible_token_fraction_over_10_epochs": 0.5029287486648873,
+          "current_prefix_missing_group_fraction_over_10_epochs": 0.48933035999999996,
+          "current_prefix_expected_wwm_target_tokens_10ep": 10518234.75,
+          "current_prefix_optimizer_steps_10ep_fixed_batch256": 2530,
+          "faithful_visible_group_fraction_over_10_epochs": 1.0,
+          "faithful_visible_token_fraction_over_10_epochs": 1.0,
+          "faithful_expected_wwm_target_tokens_10ep": 20913966.0,
+          "faithful_optimizer_steps_10ep_inverse_batch": 2623,
+          "optimizer_step_ratio_faithful_vs_current_prefix": 1.0367588932806324,
+          "target_token_ratio_faithful_vs_current_prefix": 1.9883532262863786
+        },
+        "three_stage_64x3_128x4_256x3": {
+          "stages_epochs_length": [
+            [
+              3,
+              64
+            ],
+            [
+              4,
+              128
+            ],
+            [
+              3,
+              256
+            ]
+          ],
+          "current_prefix_visible_group_fraction_over_10_epochs": 0.631415,
+          "current_prefix_visible_token_fraction_over_10_epochs": 0.6213968096725413,
+          "current_prefix_missing_group_fraction_over_10_epochs": 0.36858500000000005,
+          "current_prefix_expected_wwm_target_tokens_10ep": 12995871.75,
+          "current_prefix_optimizer_steps_10ep_fixed_batch256": 2530,
+          "faithful_visible_group_fraction_over_10_epochs": 1.0,
+          "faithful_visible_token_fraction_over_10_epochs": 1.0,
+          "faithful_expected_wwm_target_tokens_10ep": 20913966.0,
+          "faithful_optimizer_steps_10ep_inverse_batch": 2735,
+          "optimizer_step_ratio_faithful_vs_current_prefix": 1.0810276679841897,
+          "target_token_ratio_faithful_vs_current_prefix": 1.6092776538826647
+        },
+        "mild_128x7_256x3": {
+          "stages_epochs_length": [
+            [
+              7,
+              128
+            ],
+            [
+              3,
+              256
+            ]
+          ],
+          "current_prefix_visible_group_fraction_over_10_epochs": 0.72197402,
+          "current_prefix_visible_token_fraction_over_10_epochs": 0.7102478554282817,
+          "current_prefix_missing_group_fraction_over_10_epochs": 0.27802598,
+          "current_prefix_expected_wwm_target_tokens_10ep": 14854099.5,
+          "current_prefix_optimizer_steps_10ep_fixed_batch256": 2530,
+          "faithful_visible_group_fraction_over_10_epochs": 1.0,
+          "faithful_visible_token_fraction_over_10_epochs": 1.0,
+          "faithful_expected_wwm_target_tokens_10ep": 20913966.0,
+          "faithful_optimizer_steps_10ep_inverse_batch": 2819,
+          "optimizer_step_ratio_faithful_vs_current_prefix": 1.1142292490118577,
+          "target_token_ratio_faithful_vs_current_prefix": 1.407959196718724
+        }
+      }
+    },
+    "minfreq25": {
+      "label": "minfreq25",
+      "tokenizer_path": "experiments/archive/representation_and_objectives/data/tokenizer_support_spectrum/tokenizers/legal_byte_bpe_40k_minfreq25",
+      "vocab_size": 29529,
+      "len_tokenizer": 29529,
+      "pool_rows": 64740,
+      "pool_words": 10000000,
+      "total_token_word_groups": 10000000,
+      "total_tokens_no_trunc": 14138512,
+      "tokens_per_word": 1.4138512,
+      "groups_per_whitespace_word": 1.0,
+      "elapsed_sec": 49.97,
+      "lengths": {
+        "64": {
+          "current_prefix_slicing_fixed_row_batch": {
+            "visible_groups": 3022295.0,
+            "visible_tokens": 4143302.0,
+            "charged_words": 10000000.0,
+            "rows": 64740.0,
+            "truncated_rows": 64736.0,
+            "visible_group_fraction_vs_full": 0.3022295,
+            "visible_token_fraction_vs_full": 0.2930507821473717,
+            "charged_words_per_visible_group": 3.30874385194033,
+            "truncated_row_fraction": 0.9999382143960457,
+            "expected_wwm_target_tokens": 621495.2999999999,
+            "fixed_row_steps_per_10M_epoch": 253
+          },
+          "faithful_word_boundary_chunking_inverse_batch": {
+            "chunks": 255774.0,
+            "visible_groups": 10000000.0,
+            "visible_tokens": 14138512.0,
+            "charged_groups": 10000000.0,
+            "max_group_tokens_max": 99,
+            "rows_per_step_inverse_scaled": 1024,
+            "steps_per_10M_epoch_inverse_scaled": 250,
+            "padded_token_slots_per_epoch": 16369536.0,
+            "mean_chunk_fill": 0.8637087819715843,
+            "expected_wwm_target_tokens": 2120776.8,
+            "visible_group_fraction_vs_full": 1.0,
+            "visible_token_fraction_vs_full": 1.0
+          }
+        },
+        "128": {
+          "current_prefix_slicing_fixed_row_batch": {
+            "visible_groups": 5997401.0,
+            "visible_tokens": 8274284.0,
+            "charged_words": 10000000.0,
+            "rows": 64740.0,
+            "truncated_rows": 63952.0,
+            "visible_group_fraction_vs_full": 0.5997401,
+            "visible_token_fraction_vs_full": 0.5852301854678909,
+            "charged_words_per_visible_group": 1.6673889239688993,
+            "truncated_row_fraction": 0.9878282360210071,
+            "expected_wwm_target_tokens": 1241142.5999999999,
+            "fixed_row_steps_per_10M_epoch": 253
+          },
+          "faithful_word_boundary_chunking_inverse_batch": {
+            "chunks": 141373.0,
+            "visible_groups": 10000000.0,
+            "visible_tokens": 14138512.0,
+            "charged_groups": 10000000.0,
+            "max_group_tokens_max": 99,
+            "rows_per_step_inverse_scaled": 512,
+            "steps_per_10M_epoch_inverse_scaled": 277,
+            "padded_token_slots_per_epoch": 18095744.0,
+            "mean_chunk_fill": 0.7813169770748304,
+            "expected_wwm_target_tokens": 2120776.8,
+            "visible_group_fraction_vs_full": 1.0,
+            "visible_token_fraction_vs_full": 1.0
+          }
+        },
+        "256": {
+          "current_prefix_slicing_fixed_row_batch": {
+            "visible_groups": 9855127.0,
+            "visible_tokens": 13871340.0,
+            "charged_words": 10000000.0,
+            "rows": 64740.0,
+            "truncated_rows": 12335.0,
+            "visible_group_fraction_vs_full": 0.9855127,
+            "visible_token_fraction_vs_full": 0.9811032448110523,
+            "charged_words_per_visible_group": 1.0147002671807273,
+            "truncated_row_fraction": 0.1905313561940068,
+            "expected_wwm_target_tokens": 2080701.0,
+            "fixed_row_steps_per_10M_epoch": 253
+          },
+          "faithful_word_boundary_chunking_inverse_batch": {
+            "chunks": 77092.0,
+            "visible_groups": 10000000.0,
+            "visible_tokens": 14138512.0,
+            "charged_groups": 10000000.0,
+            "max_group_tokens_max": 99,
+            "rows_per_step_inverse_scaled": 256,
+            "steps_per_10M_epoch_inverse_scaled": 302,
+            "padded_token_slots_per_epoch": 19735552.0,
+            "mean_chunk_fill": 0.7163981022674207,
+            "expected_wwm_target_tokens": 2120776.8,
+            "visible_group_fraction_vs_full": 1.0,
+            "visible_token_fraction_vs_full": 1.0
+          }
+        }
+      },
+      "schedules": {
+        "two_stage_64x7_256x3": {
+          "stages_epochs_length": [
+            [
+              7,
+              64
+            ],
+            [
+              3,
+              256
+            ]
+          ],
+          "current_prefix_visible_group_fraction_over_10_epochs": 0.50721446,
+          "current_prefix_visible_token_fraction_over_10_epochs": 0.4994665209464758,
+          "current_prefix_missing_group_fraction_over_10_epochs": 0.49278553999999997,
+          "current_prefix_expected_wwm_target_tokens_10ep": 10592570.1,
+          "current_prefix_optimizer_steps_10ep_fixed_batch256": 2530,
+          "faithful_visible_group_fraction_over_10_epochs": 1.0,
+          "faithful_visible_token_fraction_over_10_epochs": 1.0,
+          "faithful_expected_wwm_target_tokens_10ep": 21207768.0,
+          "faithful_optimizer_steps_10ep_inverse_batch": 2656,
+          "optimizer_step_ratio_faithful_vs_current_prefix": 1.049802371541502,
+          "target_token_ratio_faithful_vs_current_prefix": 2.002136195445145
+        },
+        "three_stage_64x3_128x4_256x3": {
+          "stages_epochs_length": [
+            [
+              3,
+              64
+            ],
+            [
+              4,
+              128
+            ],
+            [
+              3,
+              256
+            ]
+          ],
+          "current_prefix_visible_group_fraction_over_10_epochs": 0.6262187,
+          "current_prefix_visible_token_fraction_over_10_epochs": 0.6163382822746835,
+          "current_prefix_missing_group_fraction_over_10_epochs": 0.3737813,
+          "current_prefix_expected_wwm_target_tokens_10ep": 13071159.299999999,
+          "current_prefix_optimizer_steps_10ep_fixed_batch256": 2530,
+          "faithful_visible_group_fraction_over_10_epochs": 1.0,
+          "faithful_visible_token_fraction_over_10_epochs": 1.0,
+          "faithful_expected_wwm_target_tokens_10ep": 21207768.0,
+          "faithful_optimizer_steps_10ep_inverse_batch": 2764,
+          "optimizer_step_ratio_faithful_vs_current_prefix": 1.092490118577075,
+          "target_token_ratio_faithful_vs_current_prefix": 1.622485619925082
+        },
+        "mild_128x7_256x3": {
+          "stages_epochs_length": [
+            [
+              7,
+              128
+            ],
+            [
+              3,
+              256
+            ]
+          ],
+          "current_prefix_visible_group_fraction_over_10_epochs": 0.71547188,
+          "current_prefix_visible_token_fraction_over_10_epochs": 0.7039921032708393,
+          "current_prefix_missing_group_fraction_over_10_epochs": 0.28452812000000005,
+          "current_prefix_expected_wwm_target_tokens_10ep": 14930101.2,
+          "current_prefix_optimizer_steps_10ep_fixed_batch256": 2530,
+          "faithful_visible_group_fraction_over_10_epochs": 1.0,
+          "faithful_visible_token_fraction_over_10_epochs": 1.0,
+          "faithful_expected_wwm_target_tokens_10ep": 21207768.0,
+          "faithful_optimizer_steps_10ep_inverse_batch": 2845,
+          "optimizer_step_ratio_faithful_vs_current_prefix": 1.1245059288537549,
+          "target_token_ratio_faithful_vs_current_prefix": 1.4204704787935396
+        }
+      }
+    }
+  },
+  "scientific_reading": "A faithful sequence curriculum should be implemented as stage-length tokenization/streaming or word-boundary chunking with inverse row-batch scaling, not as prefix slicing of max-256 rows. The audit quantifies how much prefix slicing under-exposes word-groups and target tokens for proposed schedules."
+}

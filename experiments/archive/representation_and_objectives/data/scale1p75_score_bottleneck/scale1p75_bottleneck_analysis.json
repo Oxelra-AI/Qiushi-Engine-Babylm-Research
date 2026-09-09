@@ -1,0 +1,112 @@
+{
+  "created_utc": "2026-08-31T16:41:27Z",
+  "scale1p75_80M": {
+    "scores": {
+      "BLiMP": 68.11,
+      "Supplement": 62.62,
+      "EWoK": 49.24,
+      "Entity": 28.2,
+      "COMPS": 52.11,
+      "SuperGLUE": 69.25971446477669,
+      "GlobalPIQA": 38.105000000000004,
+      "Reading": 8.3,
+      "AoA": 0.0
+    },
+    "score_report": {
+      "overall": 41.77163494053074,
+      "margin_vs_41p8": -0.028365059469258824,
+      "points_needed_in_one_column": 0.2552855352233294,
+      "required_superglue_for_41p8": 69.51499999999999
+    },
+    "superglue_task_primary_scores": {
+      "boolq": {
+        "metric": "accuracy",
+        "score": 68.07339449541284
+      },
+      "multirc": {
+        "metric": "accuracy",
+        "score": 67.53300330033002
+      },
+      "rte": {
+        "metric": "accuracy",
+        "score": 61.87050359712231
+      },
+      "wsc": {
+        "metric": "accuracy",
+        "score": 67.3076923076923
+      },
+      "mrpc": {
+        "metric": "f1",
+        "score": 88.66666666666667
+      },
+      "qqp": {
+        "metric": "f1",
+        "score": 71.52566509159169
+      },
+      "mnli": {
+        "metric": "accuracy",
+        "score": 59.84107579462103
+      }
+    }
+  },
+  "scale1p75_100M_current": {
+    "scores": {
+      "BLiMP": 68.63,
+      "Supplement": 62.9,
+      "EWoK": 49.08,
+      "Entity": 27.46,
+      "COMPS": 52.3,
+      "SuperGLUE": null,
+      "GlobalPIQA": 36.105000000000004,
+      "Reading": 8.32,
+      "AoA": 0.0
+    },
+    "score_report": {
+      "overall": null,
+      "margin_vs_41p8": null,
+      "points_needed_in_one_column": null,
+      "required_superglue_for_41p8": 71.40499999999997
+    }
+  },
+  "fixed_column_delta_100M_minus_80M_without_superglue": {
+    "BLiMP": 0.519999999999996,
+    "Supplement": 0.28000000000000114,
+    "EWoK": -0.1600000000000037,
+    "Entity": -0.7399999999999984,
+    "COMPS": 0.18999999999999773,
+    "GlobalPIQA": -2.0,
+    "Reading": 0.019999999999999574,
+    "AoA": 0.0
+  },
+  "fixed_sum_delta_100M_minus_80M_without_superglue": -1.8900000000000077,
+  "reference_100M_ref": {
+    "Overall": 41.257770896404615,
+    "BLiMP": 65.8707181799453,
+    "Supplement": 61.16566092036889,
+    "EWoK": 50.39323748109589,
+    "Entity": 27.400833994026197,
+    "COMPS": 52.00834536316919,
+    "SuperGLUE": 70.27986764740969,
+    "GlobalPIQA": 36.0631067961165,
+    "Reading": 8.13816768550987,
+    "AoA": 0.0
+  },
+  "scale1p75_100M_if_SuperGLUE_equals_step35_100M": 41.674985294156635,
+  "scale1p75_100M_superglue_needed_above_step35_100M": 1.1251323525902848,
+  "matched_ewok": {
+    "scale1p75_80M_accuracy": 0.4927802572853767,
+    "legal16k_80M_accuracy": 0.5091887634549751,
+    "scale1p75_100M_accuracy": 0.49645576266736674,
+    "legal16k_100M_accuracy": 0.5074822788133369,
+    "scale1p75_80M_stable_failure": 2677,
+    "legal16k_80M_stable_failure": 2484,
+    "scale1p75_100M_stable_failure": 2681,
+    "legal16k_100M_stable_failure": 2517
+  },
+  "globalpiqa_100M_matched_warning_path": "experiments/archive/representation_and_objectives/data/scale1p75_100m_globalpiqa_hard_surface/scale1p75_100m_globalpiqa_summary.json",
+  "interpretation": {
+    "score": "80M scale1.75 is a real near-miss but below the public 41.80 frontier; 100M cannot be judged until SuperGLUE completes and needs a much stronger SuperGLUE than either 80M scale1.75 or research 100M.",
+    "mechanism": "Matched legal16k EWoK and GlobalPIQA hard-surface readouts do not support scale1.75 as a binding repair. It is broad-score evidence with EWoK/hard-binding tradeoffs.",
+    "next_if_100M_fails": "Do not spend on exposure-only scale1.75 variants. Build a representation/signal change that keeps the scale1.75 broad BLiMP/Supp/Entity improvements while restoring matched EWoK and GlobalPIQA hard-row margins."
+  }
+}

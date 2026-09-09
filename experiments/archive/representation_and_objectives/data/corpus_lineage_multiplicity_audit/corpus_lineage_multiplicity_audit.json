@@ -1,0 +1,1263 @@
+{
+  "status": "CORPUS_LINEAGE_MULTIPLICITY_AUDIT",
+  "purpose": "Verify active compliant-tokenizer endpoint corpus lineage and 10M-to-100M multiplicity while official evaluations run.",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "checks": {
+    "active_10M_sha_matches_expected": true,
+    "active_100M_sha_matches_expected": true,
+    "active_10M_rows_exact": true,
+    "active_10M_words_exact": true,
+    "active_100M_rows_exact": true,
+    "active_100M_words_exact": true,
+    "active_100M_is_exact_10x_multiset": true,
+    "each_100M_tenth_is_pool_permutation": true,
+    "common_filler_rows_exact": true,
+    "common_filler_words_exact": true,
+    "changed_rows_exact": true,
+    "changed_words_exact": true,
+    "changed_pair_refs_exact": true,
+    "compact_selected_pairs_exact": true,
+    "compact_selected_pair_words_exact": true,
+    "compact_selected_source_words_exact": true,
+    "compact_selected_rewrite_words_exact": true,
+    "compact_selected_ids_all_in_changed_meta": true,
+    "changed_meta_ids_all_in_compact_selected": true,
+    "compact_selected_ids_all_in_accepted_pool": true,
+    "qwen_pair_rows_exact": true,
+    "qwen_pair_words_exact": true,
+    "active_10M_qwen_pair_rows_exact": true,
+    "active_10M_qwen_pair_words_exact": true,
+    "qwen_packed_ids_subset_selected_pairs": true,
+    "compact_outputs_all_qwen35_9b": true,
+    "compact_selected_subset_of_accepted": true,
+    "compact_accepted_subset_of_prompts": true,
+    "tokenizer_manifest_uses_active_10M": true,
+    "train_commands_use_active_100M": true,
+    "training_completion_exact_100M_both_seeds": true
+  },
+  "expected": {
+    "active_10M_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "active_100M_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "rows_10M": 64740,
+    "words_10M": 10000000,
+    "rows_100M": 647400,
+    "words_100M": 100000000,
+    "changed_rows": 3006,
+    "changed_pair_rows": 3005,
+    "compact_pairs": 12155,
+    "compact_pair_words": 423511,
+    "compact_source_words": 261803,
+    "compact_rewrite_words": 161708,
+    "compact_neutral_topup_words": 9,
+    "qwen_pair_rows": 12236,
+    "qwen_pair_words": 1656800,
+    "common_filler_rows": 61734,
+    "common_filler_words": 9576480,
+    "passes": 10
+  },
+  "active_10M_corpus": {
+    "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "rows": 64740,
+    "whitespace_words_declared_sum": 10000000,
+    "source_rows": {
+      "cleanqwen_fineweb_compact_view_reinvest": 3005,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 1,
+      "qwen_pair_packed": 12236,
+      "childes": 16093,
+      "gutenberg": 11621,
+      "open_subtitles": 11434,
+      "simple_wiki": 6619,
+      "bnc_spoken": 3599,
+      "switchboard": 132
+    },
+    "source_words": {
+      "cleanqwen_fineweb_compact_view_reinvest": 423511,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9,
+      "qwen_pair_packed": 1656800,
+      "childes": 2574880,
+      "gutenberg": 1859360,
+      "open_subtitles": 1829440,
+      "simple_wiki": 1059040,
+      "bnc_spoken": 575840,
+      "switchboard": 21120
+    },
+    "source_class_rows": {
+      "fineweb_source_qwen_compact_rewrite_pair_row": 3005,
+      "neutral_topup_from_heldout_official_row": 1,
+      "inherited_official_source_qwen_paraphrase_pair_row": 12236,
+      "official_babylm_source_row": 49498
+    },
+    "source_class_words": {
+      "fineweb_source_qwen_compact_rewrite_pair_row": 423511,
+      "neutral_topup_from_heldout_official_row": 9,
+      "inherited_official_source_qwen_paraphrase_pair_row": 1656800,
+      "official_babylm_source_row": 7919680
+    },
+    "word_mismatch_count_sampled": 0,
+    "word_mismatch_examples": [],
+    "unique_row_keys": 64740,
+    "duplicate_row_keys": 0,
+    "duplicate_row_excess": 0
+  },
+  "active_100M_stream": {
+    "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "rows": 647400,
+    "whitespace_words_declared_sum": 100000000,
+    "source_rows": {
+      "childes": 160930,
+      "qwen_pair_packed": 122360,
+      "simple_wiki": 66190,
+      "open_subtitles": 114340,
+      "bnc_spoken": 35990,
+      "gutenberg": 116210,
+      "cleanqwen_fineweb_compact_view_reinvest": 30050,
+      "switchboard": 1320,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 10
+    },
+    "source_words": {
+      "childes": 25748800,
+      "qwen_pair_packed": 16568000,
+      "simple_wiki": 10590400,
+      "open_subtitles": 18294400,
+      "bnc_spoken": 5758400,
+      "gutenberg": 18593600,
+      "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+      "switchboard": 211200,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+    },
+    "source_class_rows": {
+      "official_babylm_source_row": 494980,
+      "inherited_official_source_qwen_paraphrase_pair_row": 122360,
+      "fineweb_source_qwen_compact_rewrite_pair_row": 30050,
+      "neutral_topup_from_heldout_official_row": 10
+    },
+    "source_class_words": {
+      "official_babylm_source_row": 79196800,
+      "inherited_official_source_qwen_paraphrase_pair_row": 16568000,
+      "fineweb_source_qwen_compact_rewrite_pair_row": 4235110,
+      "neutral_topup_from_heldout_official_row": 90
+    },
+    "word_mismatch_count_sampled": 0,
+    "word_mismatch_examples": [],
+    "unique_row_keys": 64740,
+    "duplicate_row_keys": 64740,
+    "duplicate_row_excess": 582660,
+    "pass_source_words": [
+      {
+        "childes": 2574880,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "open_subtitles": 1829440,
+        "bnc_spoken": 575840,
+        "gutenberg": 1859360,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "simple_wiki": 1059040,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "childes": 2574880,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "qwen_pair_packed": 1656800,
+        "bnc_spoken": 575840,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "qwen_pair_packed": 1656800,
+        "bnc_spoken": 575840,
+        "gutenberg": 1859360,
+        "childes": 2574880,
+        "simple_wiki": 1059040,
+        "open_subtitles": 1829440,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "open_subtitles": 1829440,
+        "gutenberg": 1859360,
+        "childes": 2574880,
+        "bnc_spoken": 575840,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "childes": 2574880,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "qwen_pair_packed": 1656800,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "childes": 2574880,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "qwen_pair_packed": 1656800,
+        "childes": 2574880,
+        "simple_wiki": 1059040,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "bnc_spoken": 575840,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "simple_wiki": 1059040,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "qwen_pair_packed": 1656800,
+        "open_subtitles": 1829440,
+        "bnc_spoken": 575840,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "open_subtitles": 1829440,
+        "gutenberg": 1859360,
+        "qwen_pair_packed": 1656800,
+        "childes": 2574880,
+        "bnc_spoken": 575840,
+        "simple_wiki": 1059040,
+        "switchboard": 21120,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      {
+        "qwen_pair_packed": 1656800,
+        "childes": 2574880,
+        "simple_wiki": 1059040,
+        "open_subtitles": 1829440,
+        "gutenberg": 1859360,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      }
+    ]
+  },
+  "multiplicity_10M_to_100M": {
+    "overall_multiset_is_10x_10M_pool": true,
+    "overall_mismatched_10M_keys": 0,
+    "overall_excess_100M_key_sample_count": 0,
+    "overall_missing_or_count_mismatch_samples": [],
+    "overall_excess_samples": [],
+    "each_100M_tenth_is_permutation_of_10M_pool": true,
+    "per_pass": [
+      {
+        "pass_index_0based": 0,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 1,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 2,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 3,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 4,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 5,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 6,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 7,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 8,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      },
+      {
+        "pass_index_0based": 9,
+        "rows": 64740,
+        "unique_row_keys": 64740,
+        "is_exact_permutation_of_10M_pool": true,
+        "diff_key_count": 0,
+        "diff_samples": []
+      }
+    ]
+  },
+  "common_filler_rows": {
+    "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/common_filler_rows.jsonl",
+    "sha256": "bc0236f67d29b28fd353ea964cc143d961d29049d28c6b2f8e97bbb75286fa81",
+    "rows": 61734,
+    "whitespace_words_declared_sum": 9576480,
+    "source_rows": {
+      "qwen_pair_packed": 12236,
+      "childes": 16093,
+      "gutenberg": 11621,
+      "open_subtitles": 11434,
+      "simple_wiki": 6619,
+      "bnc_spoken": 3599,
+      "switchboard": 132
+    },
+    "source_words": {
+      "qwen_pair_packed": 1656800,
+      "childes": 2574880,
+      "gutenberg": 1859360,
+      "open_subtitles": 1829440,
+      "simple_wiki": 1059040,
+      "bnc_spoken": 575840,
+      "switchboard": 21120
+    },
+    "source_class_rows": {
+      "inherited_official_source_qwen_paraphrase_pair_row": 12236,
+      "official_babylm_source_row": 49498
+    },
+    "source_class_words": {
+      "inherited_official_source_qwen_paraphrase_pair_row": 1656800,
+      "official_babylm_source_row": 7919680
+    },
+    "word_mismatch_count_sampled": 0,
+    "word_mismatch_examples": [],
+    "unique_row_keys": 61734,
+    "duplicate_row_keys": 0,
+    "duplicate_row_excess": 0
+  },
+  "heldout_cleanqwen_rows": {
+    "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+    "sha256": "5b56a820783963a3da33785b8dd7a7478c95e08f72d27ec4af2d3947f1d67c6d",
+    "rows": 2647,
+    "whitespace_words_declared_sum": 423520,
+    "source_rows": {
+      "open_subtitles": 611,
+      "gutenberg": 622,
+      "childes": 861,
+      "simple_wiki": 354,
+      "bnc_spoken": 192,
+      "switchboard": 7
+    },
+    "source_words": {
+      "open_subtitles": 97760,
+      "gutenberg": 99520,
+      "childes": 137760,
+      "simple_wiki": 56640,
+      "bnc_spoken": 30720,
+      "switchboard": 1120
+    },
+    "source_class_rows": {
+      "official_babylm_source_row": 2647
+    },
+    "source_class_words": {
+      "official_babylm_source_row": 423520
+    },
+    "word_mismatch_count_sampled": 0,
+    "word_mismatch_examples": [],
+    "unique_row_keys": 2647,
+    "duplicate_row_keys": 0,
+    "duplicate_row_excess": 0
+  },
+  "changed_block_and_compact_pairs": {
+    "changed_meta_rows": 3006,
+    "changed_meta_words": 423520,
+    "changed_meta_pair_refs": 12155,
+    "changed_meta_unique_pair_ids": 12155,
+    "changed_meta_pair_duplicate_ref_count": 0,
+    "changed_meta_component_words": {
+      "science_physical": 61669,
+      "no_domain": 227057,
+      "causal_relational": 57737,
+      "quant_numeric": 38894,
+      "geography_places": 30507,
+      "institutions_society": 34235,
+      "people_history": 14116,
+      "media_culture": 14240,
+      "open_subtitles": 9
+    },
+    "changed_first_rows_in_10M_rows": 3006,
+    "changed_first_rows_in_10M_words": 423520,
+    "changed_first_rows_sources_words": {
+      "cleanqwen_fineweb_compact_view_reinvest": 423511,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+    },
+    "changed_first_rows_source_class_words": {
+      "fineweb_source_qwen_compact_rewrite_pair_row": 423511,
+      "neutral_topup_from_heldout_official_row": 9
+    },
+    "changed_metadata_alignment_error_count_sampled": 0,
+    "changed_metadata_alignment_errors_sample": [],
+    "compact_selected_pair_stats": {
+      "path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+      "rows": 12155,
+      "unique_ids": 12155,
+      "id_duplicates": 0,
+      "source_words": 261803,
+      "rewrite_words": 161708,
+      "pair_words": 423511,
+      "domain_row_hits": {
+        "science_physical": 1589,
+        "no_domain": 6975,
+        "causal_relational": 1537,
+        "quant_numeric": 974,
+        "geography_places": 772,
+        "institutions_society": 862,
+        "people_history": 358,
+        "media_culture": 370
+      },
+      "examples": [
+        {
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_046028",
+          "key": "sid:46028|doc:4526",
+          "sentence_id": "46028",
+          "doc_id": "4526",
+          "source_words": 24,
+          "rewrite_words": 15,
+          "pair_words": 39,
+          "content_recall": 0.6923076923076923,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_030624",
+          "key": "sid:30624|doc:10861",
+          "sentence_id": "30624",
+          "doc_id": "10861",
+          "source_words": 24,
+          "rewrite_words": 15,
+          "pair_words": 39,
+          "content_recall": 0.6153846153846154,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_035003",
+          "key": "sid:35003|doc:4709",
+          "sentence_id": "35003",
+          "doc_id": "4709",
+          "source_words": 36,
+          "rewrite_words": 21,
+          "pair_words": 57,
+          "content_recall": 0.6470588235294118,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_031347",
+          "key": "sid:31347|doc:14654",
+          "sentence_id": "31347",
+          "doc_id": "14654",
+          "source_words": 19,
+          "rewrite_words": 10,
+          "pair_words": 29,
+          "content_recall": 0.46153846153846156,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_015071",
+          "key": "sid:15071|doc:11237",
+          "sentence_id": "15071",
+          "doc_id": "11237",
+          "source_words": 23,
+          "rewrite_words": 11,
+          "pair_words": 34,
+          "content_recall": 0.46153846153846156,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        }
+      ]
+    },
+    "compact_accepted_pair_stats": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_accepted_rewrites.jsonl",
+      "rows": 18682,
+      "unique_ids": 18682,
+      "id_duplicates": 0,
+      "source_words": 400665,
+      "rewrite_words": 244568,
+      "pair_words": 645233,
+      "domain_row_hits": {
+        "causal_relational": 2199,
+        "institutions_society": 1237,
+        "media_culture": 528,
+        "science_physical": 2228,
+        "geography_places": 1097,
+        "quant_numeric": 1365,
+        "people_history": 527,
+        "no_domain": 11309
+      },
+      "examples": [
+        {
+          "prompt_id": "frontier_consolidation_fwcompact_medium_030667",
+          "sentence_id": 30667,
+          "doc_id": "13305",
+          "source_words": 41,
+          "rewrite_words": 23,
+          "pair_words": 64,
+          "content_recall": 0.6470588235294118,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "prompt_id": "frontier_consolidation_fwcompact_medium_023983",
+          "sentence_id": 23983,
+          "doc_id": "1687",
+          "source_words": 28,
+          "rewrite_words": 15,
+          "pair_words": 43,
+          "content_recall": 0.75,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "prompt_id": "frontier_consolidation_fwcompact_medium_051907",
+          "sentence_id": 51907,
+          "doc_id": "2512",
+          "source_words": 28,
+          "rewrite_words": 17,
+          "pair_words": 45,
+          "content_recall": 0.55,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "prompt_id": "frontier_consolidation_fwcompact_medium_020958",
+          "sentence_id": 20958,
+          "doc_id": "5534",
+          "source_words": 28,
+          "rewrite_words": 16,
+          "pair_words": 44,
+          "content_recall": 0.6666666666666666,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        },
+        {
+          "prompt_id": "frontier_consolidation_fwcompact_medium_052596",
+          "sentence_id": 52596,
+          "doc_id": "1140",
+          "source_words": 29,
+          "rewrite_words": 12,
+          "pair_words": 41,
+          "content_recall": 0.625,
+          "entity_recall": 1.0,
+          "number_recall": 1.0
+        }
+      ]
+    },
+    "pair_id_coverage": {
+      "missing_meta_ids_in_selected_sample": [],
+      "selected_ids_missing_from_meta_sample": [],
+      "selected_not_in_accepted_after_prefix_strip_sample": [],
+      "all_meta_ids_in_selected": true,
+      "all_selected_ids_in_meta": true,
+      "all_selected_ids_in_accepted_pool": true
+    },
+    "neutral_topup_rows": [
+      {
+        "row_index": 3005,
+        "example_id": 1050000,
+        "words": 9,
+        "pair_ids": [],
+        "component_sources": {
+          "open_subtitles": 9
+        }
+      }
+    ]
+  },
+  "inherited_qwen_pair_packed_block": {
+    "qwen_pair_meta_rows": 12236,
+    "qwen_pair_meta_words": 1656800,
+    "qwen_pair_meta_refs": 37594,
+    "qwen_pair_meta_unique_pair_ids": 37594,
+    "qwen_pair_meta_duplicate_refs": 0,
+    "qwen_selected_pair_stats": {
+      "path": "experiments/archive/compact_experience/data/qwen_clean_aligned/selected_pairs.jsonl",
+      "rows": 37594,
+      "unique_ids": 37594,
+      "id_duplicates": 0,
+      "source_words": 849013,
+      "rewrite_words": 807787,
+      "pair_words": 1656800,
+      "domain_row_hits": {
+        "no_domain": 37594
+      },
+      "examples": [
+        {
+          "pair_id": "rw2s0_022604",
+          "source": "simple_wiki",
+          "example_id": 56495,
+          "rewrite_words": 22,
+          "pair_words": 44,
+          "entity_recall": 1.0
+        },
+        {
+          "pair_id": "rw2s0_012612",
+          "source": "open_subtitles",
+          "example_id": 44787,
+          "rewrite_words": 15,
+          "pair_words": 35,
+          "entity_recall": 1.0
+        },
+        {
+          "pair_id": "rw2s0_009731",
+          "source": "gutenberg",
+          "example_id": 30413,
+          "rewrite_words": 29,
+          "pair_words": 58,
+          "entity_recall": 1.0
+        },
+        {
+          "pair_id": "rw2s1_010097",
+          "source": "gutenberg",
+          "example_id": 24731,
+          "rewrite_words": 22,
+          "pair_words": 44,
+          "entity_recall": 0.75
+        },
+        {
+          "pair_id": "rw2s1_014136",
+          "source": "simple_wiki",
+          "example_id": 53509,
+          "rewrite_words": 29,
+          "pair_words": 57,
+          "entity_recall": 1.0
+        }
+      ]
+    },
+    "pair_id_coverage": {
+      "missing_qwen_meta_ids_in_selected_sample": [],
+      "selected_ids_missing_from_packed_meta_sample": [],
+      "all_qwen_meta_ids_in_selected": true,
+      "all_selected_ids_in_qwen_packed_meta": true
+    },
+    "active_10M_qwen_pair_packed_rows": 12236,
+    "active_10M_qwen_pair_packed_words": 1656800,
+    "clean_qwen_generation_summary": {
+      "generation_output_records": 110608,
+      "source_sentences": 110608,
+      "clean_pairs_available": 37704,
+      "selected_pairs": 37594,
+      "selected_pair_words": 1656800,
+      "selected_pair_source_pairs": {
+        "simple_wiki": 10822,
+        "open_subtitles": 7278,
+        "gutenberg": 13725,
+        "bnc_spoken": 3504,
+        "childes": 2214,
+        "switchboard": 51
+      },
+      "selected_pair_source_words": {
+        "simple_wiki": 463379,
+        "open_subtitles": 249118,
+        "gutenberg": 704709,
+        "bnc_spoken": 162137,
+        "childes": 75334,
+        "switchboard": 2123
+      },
+      "validation_thresholds": {
+        "min_rewrite_words": 6,
+        "max_rewrite_words": 70,
+        "len_ratio": [
+          0.45,
+          2.1
+        ],
+        "content_overlap": [
+          0.14,
+          0.94
+        ],
+        "entity_recall_small": 1.0,
+        "entity_recall_large": 0.75,
+        "target_pair_word_fraction_cap": 0.25
+      },
+      "files": {
+        "clean_pairs": "experiments/archive/compact_experience/data/qwen_clean_aligned/clean_pairs.jsonl",
+        "selected_pairs": "experiments/archive/compact_experience/data/qwen_clean_aligned/selected_pairs.jsonl",
+        "accepted_spotcheck": "experiments/archive/compact_experience/data/qwen_clean_aligned/accepted_spotcheck.json",
+        "rejected_spotcheck": "experiments/archive/compact_experience/data/qwen_clean_aligned/rejected_spotcheck.json",
+        "packed_pair_rows_meta": "experiments/archive/compact_experience/data/qwen_clean_aligned/qwen_pair_packed_rows_meta.jsonl",
+        "official_only_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/official_only_10M.jsonl",
+        "qwen_aligned_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+        "official_only_training": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/official_only_100M.jsonl",
+        "qwen_aligned_training": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_100M.jsonl"
+      },
+      "sha256": {
+        "official_only_10M.jsonl": "a4894f92b9d809865123bca058dfc1f361865e02fb500bf5f028f09ac7540cc2",
+        "qwen_aligned_10M.jsonl": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+        "official_only_100M.jsonl": "312629a8f64498007cdc235a97528a7394dea32b08fc55828f94ee9724d4867c",
+        "qwen_aligned_100M.jsonl": "728192f8e8c5855aaa52a6b6940ff3a4fd6aa8f87c98aca4ff018dbc04cb0345",
+        "clean_pairs.jsonl": "682ec9f8d08ee4f0cf5888d18142bd13624364e4cdfd54763d7774e7768cae32",
+        "selected_pairs.jsonl": "5edec9a76470036f3ae06f9ed3c53f060ad7811b20697fddf0034cc24f11b53c"
+      }
+    },
+    "clean_qwen_pretrain_audit_excerpt": {
+      "status": "CLEAN_CORPUS_PREFLIGHT_AUDIT",
+      "selected_pair_words": 1656800,
+      "row_length_sequence_matched": true,
+      "qwen_treatment_source_words": {
+        "open_subtitles": 1927200,
+        "bnc_spoken": 606560,
+        "qwen_pair_packed": 1656800,
+        "childes": 2712640,
+        "simple_wiki": 1115680,
+        "gutenberg": 1958880,
+        "switchboard": 22240
+      },
+      "actual_sha256": {
+        "official_only_10M.jsonl": "a4894f92b9d809865123bca058dfc1f361865e02fb500bf5f028f09ac7540cc2",
+        "qwen_aligned_10M.jsonl": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+        "official_only_100M.jsonl": "312629a8f64498007cdc235a97528a7394dea32b08fc55828f94ee9724d4867c",
+        "qwen_aligned_100M.jsonl": "728192f8e8c5855aaa52a6b6940ff3a4fd6aa8f87c98aca4ff018dbc04cb0345"
+      },
+      "sha256_match_metadata": {
+        "official_only_10M.jsonl": true,
+        "qwen_aligned_10M.jsonl": true,
+        "official_only_100M.jsonl": true,
+        "qwen_aligned_100M.jsonl": true
+      }
+    },
+    "qwen_generation_artifacts": {
+      "base_outputs": {
+        "path": "experiments/archive/compact_experience/training/runs/qwen_rewrites_full/outputs.jsonl",
+        "exists": true,
+        "bytes": 21420010,
+        "rows": 45000,
+        "sha256": "b03d1310b84a155a954bd6834386a3615593eb9b4db15ae1c662fd4520409655"
+      },
+      "base_metrics": {
+        "run_id": "qwen_rewrites_full",
+        "returncode": 0,
+        "output_jsonl": "experiments/archive/compact_experience/training/runs/qwen_rewrites_full/outputs.jsonl",
+        "status": "ok",
+        "model": "Qwen/Qwen3.5-9B",
+        "adapter": "",
+        "requested_device": "auto",
+        "device": "cuda",
+        "actual_device": "cuda:0",
+        "dtype": "torch.bfloat16",
+        "cuda_available": true,
+        "cuda_device_count": 2,
+        "cuda_device_name": "NVIDIA H100",
+        "cuda_max_memory_allocated_mb": 21151.202,
+        "prompts": 45000,
+        "batch_size": 64,
+        "generated_tokens": 2559576,
+        "seconds": 1740.173,
+        "aggregate_tok_s": 1470.87,
+        "result_kind": "unscored_generation",
+        "result_validation": {
+          "schema": "qiushi.ai_lab.result_validation.v2",
+          "run_id": "qwen_rewrites_full",
+          "action": "infer",
+          "ok": true,
+          "process_returncode": 0,
+          "required_artifacts": [
+            "outputs.jsonl",
+            "metrics.json"
+          ],
+          "scientific_outputs": [
+            {
+              "field": "artifacts",
+              "path": "training/runs/qwen_rewrites_full/outputs.jsonl",
+              "kind": "file",
+              "bytes": 21420010,
+              "sha256": "b03d1310b84a155a954bd6834386a3615593eb9b4db15ae1c662fd4520409655"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "extra_shard0_outputs": {
+        "path": "experiments/archive/compact_experience/training/runs/extra_qwen2_shard0/outputs.jsonl",
+        "exists": true,
+        "bytes": 23388220,
+        "rows": 32804,
+        "sha256": "bf6fe5ccf8566eeb13f9c6f122cad8daa786ff7bf71cc5707b8fc6be3430fa1b"
+      },
+      "extra_shard1_outputs": {
+        "path": "experiments/archive/compact_experience/training/runs/extra_qwen2_shard1/outputs.jsonl",
+        "exists": true,
+        "bytes": 23381107,
+        "rows": 32804,
+        "sha256": "8a7d8adc8bfde6d2d1e225898836dffd54b03b8862731c5b077b3eb652bb4ccd"
+      }
+    }
+  },
+  "compact_fineweb_generation_provenance": {
+    "prompts": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+      "exists": true,
+      "bytes": 31319259,
+      "rows": 21465,
+      "sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807"
+    },
+    "outputs": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/medium_compact_qwen_all/outputs.jsonl",
+      "exists": true,
+      "bytes": 15182718,
+      "rows": 21465,
+      "sha256": "85660e4af2179e38003a95942a01dc0bbac7d6a6a76ca8991bff3d80bc406cc5"
+    },
+    "accepted_rewrites": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_accepted_rewrites.jsonl",
+      "exists": true,
+      "bytes": 12229492,
+      "rows": 18682,
+      "sha256": "3565a130e2396ecc80291a91ca1f43f0f2fa8814c8915af9de581384b7154e9b"
+    },
+    "output_model_counts": {
+      "Qwen/Qwen3.5-9B": 21465
+    },
+    "output_generated_tokens_sum": 754777,
+    "prompt_id_count": 21465,
+    "accepted_prompt_id_count": 18682,
+    "selected_prompt_id_count": 12155,
+    "selected_ids_subset_of_accepted": true,
+    "accepted_ids_subset_of_prompts": true,
+    "prompt_source_assets": {
+      "peer_step010_strict_factual": 12801,
+      "peer_step010_balanced": 8664
+    },
+    "prompt_source_tiers": {
+      "medium": 21465
+    },
+    "analysis_summary_excerpt": {
+      "status": "GENERATION_DENSITY_ANALYZED",
+      "label": "medium_compact_ws",
+      "prompts_sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807",
+      "outputs_sha256": "85660e4af2179e38003a95942a01dc0bbac7d6a6a76ca8991bff3d80bc406cc5",
+      "word_accounting": "Canonical source_words/rewrite_words/pair_words in rows and accepted JSONL are whitespace counts, matching BabyLM corpus accounting; lexical counts are auxiliary only.",
+      "overall": {
+        "n": 21465,
+        "accepted": 18682,
+        "accepted_rate": 0.8703470766363848,
+        "source_words_whitespace": 469887,
+        "accepted_source_words_whitespace": 400665,
+        "accepted_rewrite_words_whitespace": 244568,
+        "accepted_pair_words_whitespace": 645233,
+        "weighted_rewrite_to_source_ratio_whitespace": 0.610405201352751,
+        "length_ratio_stats": {
+          "n": 21465,
+          "min": 0.18181818181818182,
+          "p05": 0.44,
+          "mean": 0.6144652095109683,
+          "median": 0.6071428571428571,
+          "p95": 0.812162162162161,
+          "max": 1.2727272727272727,
+          "sum": 13189.495722152935
+        },
+        "content_recall_stats": {
+          "n": 21465,
+          "min": 0.0,
+          "p05": 0.35,
+          "mean": 0.6199460442176835,
+          "median": 0.625,
+          "p95": 0.8888888888888888,
+          "max": 1.0,
+          "sum": 13307.141839132577
+        },
+        "entity_recall_stats": {
+          "n": 21465,
+          "min": 0.0,
+          "p05": 0.5,
+          "mean": 0.9364196976251483,
+          "median": 1.0,
+          "p95": 1.0,
+          "max": 1.0,
+          "sum": 20100.248809523808
+        },
+        "number_recall_stats": {
+          "n": 21465,
+          "min": 0.0,
+          "p05": 1.0,
+          "mean": 0.9805342029660689,
+          "median": 1.0,
+          "p95": 1.0,
+          "max": 1.0,
+          "sum": 21047.166666666668
+        }
+      },
+      "top_hard_reason_prefixes": [
+        [
+          "entity_recall",
+          1953
+        ],
+        [
+          "number_recall",
+          523
+        ],
+        [
+          "low_content_recall",
+          272
+        ],
+        [
+          "new_numbers",
+          232
+        ],
+        [
+          "length_ratio",
+          103
+        ],
+        [
+          "low_overlap",
+          44
+        ],
+        [
+          "explanatory_expansion",
+          18
+        ],
+        [
+          "many_sentences",
+          12
+        ],
+        [
+          "bad_output_pattern",
+          12
+        ],
+        [
+          "bad_start",
+          5
+        ]
+      ],
+      "top_soft_flags": [
+        [
+          "source_risk_long_parenthetical",
+          637
+        ],
+        [
+          "source_risk_deictic_time",
+          365
+        ],
+        [
+          "source_risk_apostle_or_title_apposition",
+          276
+        ],
+        [
+          "source_risk_heading_dash_chain",
+          240
+        ],
+        [
+          "source_risk_probability_hedge",
+          159
+        ],
+        [
+          "near_copy_view",
+          143
+        ],
+        [
+          "source_risk_web_or_reference_phrase",
+          14
+        ],
+        [
+          "source_risk_angle_heading",
+          6
+        ],
+        [
+          "not_shorter_than_source",
+          4
+        ]
+      ]
+    }
+  },
+  "metadata_cross_checks": {
+    "overlay_status": "DENSITY_CLEANQWEN_ROWHOLDOUT_OVERLAY_MATERIALIZED",
+    "overlay_inputs": {
+      "density_metadata": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/density_core_reinvestment_metadata.json",
+      "density_metadata_sha256": "d1cb4893a2282c55bcde67daf1f59503295dd0644cd3036c802c83ad4272ed68",
+      "base_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "base_pool_sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+      "preserve_source": "qwen_pair_packed"
+    },
+    "overlay_base_split": {
+      "base_source_counts": {
+        "childes": 2712640,
+        "open_subtitles": 1927200,
+        "bnc_spoken": 606560,
+        "gutenberg": 1958880,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1115680,
+        "switchboard": 22240
+      },
+      "row_holdout": {
+        "target_rows": 2647,
+        "preserved_source": "qwen_pair_packed",
+        "protected_rows": 12236,
+        "protected_words": 1656800,
+        "noncandidate_rows": 0,
+        "candidate_rows_by_source": {
+          "childes": 16954,
+          "open_subtitles": 12045,
+          "bnc_spoken": 3791,
+          "gutenberg": 12243,
+          "simple_wiki": 6973,
+          "switchboard": 139
+        },
+        "heldout_rows_by_source": {
+          "childes": 861,
+          "gutenberg": 622,
+          "open_subtitles": 611,
+          "simple_wiki": 354,
+          "bnc_spoken": 192,
+          "switchboard": 7
+        },
+        "heldout_words_by_source": {
+          "childes": 137760,
+          "gutenberg": 99520,
+          "open_subtitles": 97760,
+          "simple_wiki": 56640,
+          "bnc_spoken": 30720,
+          "switchboard": 1120
+        }
+      },
+      "changed_block_budget_words": 423520,
+      "heldout_words": 423520,
+      "heldout_rows": 2647,
+      "common_filler_words": 9576480,
+      "common_filler_rows": 61734,
+      "common_filler_source_counts": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "switchboard": 21120
+      }
+    },
+    "overlay_compact_reinvest_family": {
+      "family_name": "compact_reinvest",
+      "arm_names": {
+        "cleanqwen_lengthmatched": "cleanqwen_lengthmatched_compact_reinvest",
+        "repeat": "cleanqwen_fineweb_repeat_compact_reinvest",
+        "view": "cleanqwen_fineweb_compact_view_reinvest"
+      },
+      "pair_rows": 3005,
+      "changed_block_rows": 3006,
+      "pair_words": 423511,
+      "neutral_cleanqwen_topup_words_inside_changed_block": 9,
+      "changed_block_budget_words": 423520,
+      "row_length_sequence_identical_within_family": true,
+      "repeat_view_suffix_identical_after_pair_rows": true,
+      "common_filler_rows": 61734,
+      "common_filler_words": 9576480,
+      "word_totals": {
+        "cleanqwen_lengthmatched_compact_reinvest": 10000000,
+        "cleanqwen_fineweb_repeat_compact_reinvest": 10000000,
+        "cleanqwen_fineweb_compact_view_reinvest": 10000000
+      },
+      "row_counts": {
+        "cleanqwen_lengthmatched_compact_reinvest": 64740,
+        "cleanqwen_fineweb_repeat_compact_reinvest": 64740,
+        "cleanqwen_fineweb_compact_view_reinvest": 64740
+      }
+    },
+    "overlay_audit": {
+      "all_pool_word_totals": {
+        "cleanqwen_lengthmatched_near_core": 10000000,
+        "cleanqwen_fineweb_repeat_near_core": 10000000,
+        "cleanqwen_fineweb_near_view_core": 10000000,
+        "cleanqwen_lengthmatched_compact_core_neutral": 10000000,
+        "cleanqwen_fineweb_repeat_compact_core_neutral": 10000000,
+        "cleanqwen_fineweb_compact_view_core_neutral": 10000000,
+        "cleanqwen_lengthmatched_compact_reinvest": 10000000,
+        "cleanqwen_fineweb_repeat_compact_reinvest": 10000000,
+        "cleanqwen_fineweb_compact_view_reinvest": 10000000
+      },
+      "all_exact_10M": true,
+      "common_filler_shared_by_all_arms": true,
+      "all_inherited_qwen_pair_words_preserved_in_common_filler": 1656800,
+      "nonheldout_base_rows_preserved_coherently": true,
+      "heldout_rows_are_intact_160_word_base_rows_before_changed_block_repacking": true
+    },
+    "overlay_source_word_counts_active_arm": {
+      "childes": 2574880,
+      "gutenberg": 1859360,
+      "open_subtitles": 1829440,
+      "qwen_pair_packed": 1656800,
+      "simple_wiki": 1059040,
+      "bnc_spoken": 575840,
+      "cleanqwen_fineweb_compact_view_reinvest": 423511,
+      "switchboard": 21120,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+    },
+    "density_status": "DENSITY_CORE_REINVESTMENT_MATERIALIZED",
+    "density_inputs": {
+      "near_rows": "experiments/archive/frontier_consolidation/data/medium_near_analysis/medium_near_ws_rows.jsonl",
+      "near_rows_sha256": "1d87f95737437ec0e344fd83e83aa3293c0bbb9a27664bf06826225a762c563a",
+      "compact_rows": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_rows.jsonl",
+      "compact_rows_sha256": "4768758e4b1a41e71105e0b60a344eb8fff8e3db5e6fcd5f7c41bf08a68370c7",
+      "official_pool": "experiments/archive/compact_experience/data/mixture/official_pool.jsonl",
+      "official_pool_sha256": "072eb2a9ecb52e6e6022d46d233c99c2ad9758843c2ae29f4eb653fb38902f02"
+    },
+    "density_selection": {
+      "core_sources": 10094,
+      "compact_added_sources": 2061,
+      "near_core_pair_words": 423503,
+      "compact_core_pair_words": 353945,
+      "saved_words_from_compact_core_vs_near_core_budget": 69575,
+      "compact_added_pair_words": 69566,
+      "compact_reinvest_pair_words": 423511,
+      "near_neutral_topup_words": 17,
+      "compact_core_neutral_topup_words": 69575,
+      "compact_reinvest_neutral_topup_words": 9,
+      "compact_reinvest_sources_total": 12155,
+      "source_multiplier_compact_reinvest_vs_near_core": 1.2041807014067762,
+      "added_source_fraction_of_reinvest": 0.1695598519127931
+    },
+    "density_compact_reinvest_summary": {
+      "pairs": 12155,
+      "source_words": 261803,
+      "rewrite_words": 161708,
+      "pair_words": 423511,
+      "neutral_official_topup_words_inside_changed_block": 9,
+      "changed_block_budget_words": 423520,
+      "unique_docs": 4529,
+      "rewrite_to_source_ratio_weighted": 0.6176705385346998,
+      "rewrite_to_source_ratio_stats": {
+        "n": 12155,
+        "mean": 0.6247153875185093,
+        "median": 0.625,
+        "min": 0.35,
+        "max": 0.85
+      },
+      "content_recall_stats": {
+        "n": 12155,
+        "mean": 0.6631212351812201,
+        "median": 0.6666666666666666,
+        "min": 0.45,
+        "max": 1.0
+      },
+      "entity_recall_stats": {
+        "n": 12155,
+        "mean": 0.9960414095708213,
+        "median": 1.0,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "number_recall_stats": {
+        "n": 12155,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "domain_hit_counts": {
+        "no_domain": 6975,
+        "science_physical": 1589,
+        "causal_relational": 1537,
+        "quant_numeric": 974,
+        "institutions_society": 862,
+        "geography_places": 772,
+        "media_culture": 370,
+        "people_history": 358
+      },
+      "near_copy_like_soft_count": 30
+    }
+  },
+  "tokenizer_and_training_links": {
+    "tokenizer_training_source_path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "tokenizer_training_source_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "tokenizer_json_sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+    "model_training_source_path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "model_training_source_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "strict_small_accounting": {
+      "tokenizer_language_training_words": 10000000,
+      "model_training_corpus_unique_words": 10000000,
+      "model_training_exposure_words": 100000000,
+      "same_10M_pool_for_tokenizer_and_model": true,
+      "same_100M_stream_hash_as_previous_reinvest": true
+    },
+    "training_completion_status": "STRICTSMALLTOK_TRAINING_COMPLETION_SUMMARY",
+    "training_completion_seeds_excerpt": {
+      "43022": {
+        "exit_code": null,
+        "word_exposure_final": null,
+        "final_checkpoint_exists": null,
+        "checkpoint_count": null,
+        "tokenizer_sha256_final": null,
+        "train_file_sha256": null
+      },
+      "43122": {
+        "exit_code": null,
+        "word_exposure_final": null,
+        "final_checkpoint_exists": null,
+        "checkpoint_count": null,
+        "tokenizer_sha256_final": null,
+        "train_file_sha256": null
+      }
+    }
+  },
+  "interpretation": [
+    "This audit establishes file-level and row-level corpus accounting for the active corrected-tokenizer compact_view_reinvest endpoint, not an endpoint score.",
+    "If all checks pass, the 100M training stream is exactly ten presentations of the 10M pool: every one-tenth chunk is a permutation of the 64,740-row pool and the full 100M multiset is 10x the 10M row multiset.",
+    "The 10M pool source classes separate official BabyLM rows, inherited official-source Qwen paraphrase pair rows, FineWeb source plus Qwen compact rewrite pair rows, and a 9-word neutral official top-up.",
+    "Compact FineWeb provenance is tied to A02 medium FineWeb prompt rows and Qwen/Qwen3.5-9B outputs, selected from accepted rewrites; the audit checks selected ids are contained in both changed-row metadata and accepted rewrite pool.",
+    "Inherited qwen_pair_packed provenance is tied to COMPACT_EXPERIENCE research selected pairs and generation artifacts; this part is inherited evidence, not newly regenerated here.",
+    "This audit does not prove semantic faithfulness beyond the recorded filters and samples; semantic risk remains a scientific interpretation matter, while official legality depends on exact data budget, allowed sources, teacher approval, and reproducible lineage."
+  ],
+  "artifacts": {
+    "source_word_breakdown_csv": "experiments/archive/representation_and_objectives/data/corpus_lineage_multiplicity_audit/source_word_breakdown_10M.csv",
+    "source_class_word_breakdown_csv": "experiments/archive/representation_and_objectives/data/corpus_lineage_multiplicity_audit/source_class_word_breakdown_10M.csv",
+    "compact_examples_csv": "experiments/archive/representation_and_objectives/data/corpus_lineage_multiplicity_audit/compact_changed_block_examples.csv",
+    "note": "research/notes/representation_and_objectives/corpus_lineage_multiplicity_audit.md"
+  }
+}

@@ -1,0 +1,888 @@
+{
+  "status": "EXPERIENCE_UTILIZATION_EXPERIMENT_DESIGN",
+  "purpose": "Separate recovered charged-word visibility from 64->256 ordering after research showed the current prefix schedule debits unseen words.",
+  "input_measurement": "experiments/archive/representation_and_objectives/data/sequence_curriculum_loop_measurement/sequence_curriculum_loop_measurement.json",
+  "baseline_step_scale": {
+    "rows_per_10M": 64740,
+    "words_per_epoch": 10000000,
+    "epochs_total": 10,
+    "base_row_batch": 256,
+    "current_100M_continuous_row_steps": 2529,
+    "current_per_epoch_row_steps": 253,
+    "current_10_epoch_stage_reset_steps": 2530,
+    "base_mask_prob": 0.15
+  },
+  "tokenizers": {
+    "legal40k": {
+      "raw_tokens_per_word": 1.3942644,
+      "current_row256_baseline": {
+        "label": "current_row256_truncate_mask015",
+        "description": "existing fixed-256 row-truncating route: one original row per example, full row word debit, suffix words beyond max_seq_length hidden",
+        "charged_words_total": 100000000,
+        "active_tokens_total": 137061620,
+        "visible_words_total": 98713360,
+        "hidden_words_but_debited_total": 1286640,
+        "hidden_word_fraction": 0.0128664,
+        "examples_total": 647400,
+        "steps_total_continuous_stream": 2529,
+        "steps_total_stage_reset": 2530,
+        "mask_prob": 0.15,
+        "expected_masked_target_tokens": 20559243.0,
+        "mean_active_tokens_per_continuous_update": 54195.97469355477,
+        "mean_active_tokens_per_stage_reset_update": 54174.55335968379
+      },
+      "mask_prob_to_match_current_row256_targets": 0.14745584123068767,
+      "broken_prefix_schedule_reference": {
+        "label": "current_prefix_64x3_128x4_256x3_do_not_use_as_leader_factor",
+        "description": "what the existing seq_len_schedule path would do: slice original rows to L64/L128/L256 while still charging all row words",
+        "charged_words_total": 100000000,
+        "active_tokens_total": 86639145,
+        "active_token_ratio_vs_current_row256": 0.6321182034766553,
+        "hidden_words_weighted_fraction": 0.368585,
+        "mask_prob": 0.15,
+        "expected_masked_target_tokens": 12995871.75,
+        "expected_target_ratio_vs_current_row256_mask015": 0.6321182034766553,
+        "steps_total_stage_reset": 2530
+      },
+      "arms": {
+        "U256_chunked_visibility_mask015": {
+          "label": "U256_chunked_visibility_mask015",
+          "tokenizer": "legal40k",
+          "description": "fixed-256 word-boundary chunks, every charged word visible once per epoch, no short-to-long order; mask probability unchanged",
+          "comparison_role": "experience utilization at fixed sequence length",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 139426440,
+          "active_token_ratio_vs_current_row256": 1.0172536994674366,
+          "mask_prob": 0.15,
+          "expected_masked_target_tokens": 20913966.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0172536994674366,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55109.264822134384,
+          "max_nominal_token_slots_per_update": 77312,
+          "nominal_token_slots_total": 194979840,
+          "schedule_plan": {
+            "schedule": {
+              "256": 10
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 761640,
+            "active_tokens_total": 139426440,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55109.264822134384,
+            "nominal_token_slots_total": 194979840,
+            "mean_nominal_token_slots_per_update": 77067.13043478261,
+            "max_nominal_token_slots_per_update": 77312,
+            "per_stage": {
+              "256": {
+                "length": 256,
+                "epochs": 10,
+                "chunks_per_epoch": 76164,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 76164,
+                  "steps": 253,
+                  "base_items_per_step": 301,
+                  "steps_with_base_plus_one": 11,
+                  "steps_with_base": 242,
+                  "max_items_per_step": 302,
+                  "mean_items_per_step": 301.04347826086956,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 77312,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U256_chunked_visibility_targetmatched": {
+          "label": "U256_chunked_visibility_targetmatched",
+          "tokenizer": "legal40k",
+          "description": "same as U256 but mask probability is reduced so expected masked-target count equals the current row256 baseline",
+          "comparison_role": "experience utilization without extra expected target count",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 139426440,
+          "active_token_ratio_vs_current_row256": 1.0172536994674366,
+          "mask_prob": 0.14745584123068767,
+          "expected_masked_target_tokens": 20559243.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55109.264822134384,
+          "max_nominal_token_slots_per_update": 77312,
+          "nominal_token_slots_total": 194979840,
+          "schedule_plan": {
+            "schedule": {
+              "256": 10
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 761640,
+            "active_tokens_total": 139426440,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55109.264822134384,
+            "nominal_token_slots_total": 194979840,
+            "mean_nominal_token_slots_per_update": 77067.13043478261,
+            "max_nominal_token_slots_per_update": 77312,
+            "per_stage": {
+              "256": {
+                "length": 256,
+                "epochs": 10,
+                "chunks_per_epoch": 76164,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 76164,
+                  "steps": 253,
+                  "base_items_per_step": 301,
+                  "steps_with_base_plus_one": 11,
+                  "steps_with_base": 242,
+                  "max_items_per_step": 302,
+                  "mean_items_per_step": 301.04347826086956,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 77312,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U64_128_256_chunked_order_mask015": {
+          "label": "U64_128_256_chunked_order_mask015",
+          "tokenizer": "legal40k",
+          "description": "word-boundary chunks with 3 epochs at 64, 4 at 128, 3 at 256; every charged word visible in every epoch; same mask probability as U256",
+          "comparison_role": "length ordering after recovered visibility",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 139426440,
+          "active_token_ratio_vs_current_row256": 1.0172536994674366,
+          "mask_prob": 0.15,
+          "expected_masked_target_tokens": 20913966.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0172536994674366,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55109.264822134384,
+          "max_nominal_token_slots_per_update": 77312,
+          "nominal_token_slots_total": 178764736,
+          "schedule_plan": {
+            "schedule": {
+              "64": 3,
+              "128": 4,
+              "256": 3
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 1546511,
+            "active_tokens_total": 139426440,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55109.264822134384,
+            "nominal_token_slots_total": 178764736,
+            "mean_nominal_token_slots_per_update": 70657.99841897233,
+            "max_nominal_token_slots_per_update": 77312,
+            "per_stage": {
+              "64": {
+                "length": 64,
+                "epochs": 3,
+                "chunks_per_epoch": 252269,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 252269,
+                  "steps": 253,
+                  "base_items_per_step": 997,
+                  "steps_with_base_plus_one": 28,
+                  "steps_with_base": 225,
+                  "max_items_per_step": 998,
+                  "mean_items_per_step": 997.1106719367589,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 16
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 63872,
+                "microbatch_nominal_slots": 4096
+              },
+              "128": {
+                "length": 128,
+                "epochs": 4,
+                "chunks_per_epoch": 140303,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 140303,
+                  "steps": 253,
+                  "base_items_per_step": 554,
+                  "steps_with_base_plus_one": 141,
+                  "steps_with_base": 112,
+                  "max_items_per_step": 555,
+                  "mean_items_per_step": 554.5573122529644,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 9
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 71040,
+                "microbatch_nominal_slots": 8192
+              },
+              "256": {
+                "length": 256,
+                "epochs": 3,
+                "chunks_per_epoch": 76164,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 76164,
+                  "steps": 253,
+                  "base_items_per_step": 301,
+                  "steps_with_base_plus_one": 11,
+                  "steps_with_base": 242,
+                  "max_items_per_step": 302,
+                  "mean_items_per_step": 301.04347826086956,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 77312,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U64_128_256_chunked_order_targetmatched": {
+          "label": "U64_128_256_chunked_order_targetmatched",
+          "tokenizer": "legal40k",
+          "description": "same schedule as U64_128_256 but with mask probability matched to current row256 expected target count",
+          "comparison_role": "length ordering after recovered visibility without extra expected target count",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 139426440,
+          "active_token_ratio_vs_current_row256": 1.0172536994674366,
+          "mask_prob": 0.14745584123068767,
+          "expected_masked_target_tokens": 20559243.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55109.264822134384,
+          "max_nominal_token_slots_per_update": 77312,
+          "nominal_token_slots_total": 178764736,
+          "schedule_plan": {
+            "schedule": {
+              "64": 3,
+              "128": 4,
+              "256": 3
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 1546511,
+            "active_tokens_total": 139426440,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55109.264822134384,
+            "nominal_token_slots_total": 178764736,
+            "mean_nominal_token_slots_per_update": 70657.99841897233,
+            "max_nominal_token_slots_per_update": 77312,
+            "per_stage": {
+              "64": {
+                "length": 64,
+                "epochs": 3,
+                "chunks_per_epoch": 252269,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 252269,
+                  "steps": 253,
+                  "base_items_per_step": 997,
+                  "steps_with_base_plus_one": 28,
+                  "steps_with_base": 225,
+                  "max_items_per_step": 998,
+                  "mean_items_per_step": 997.1106719367589,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 16
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 63872,
+                "microbatch_nominal_slots": 4096
+              },
+              "128": {
+                "length": 128,
+                "epochs": 4,
+                "chunks_per_epoch": 140303,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 140303,
+                  "steps": 253,
+                  "base_items_per_step": 554,
+                  "steps_with_base_plus_one": 141,
+                  "steps_with_base": 112,
+                  "max_items_per_step": 555,
+                  "mean_items_per_step": 554.5573122529644,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 9
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 71040,
+                "microbatch_nominal_slots": 8192
+              },
+              "256": {
+                "length": 256,
+                "epochs": 3,
+                "chunks_per_epoch": 76164,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 76164,
+                  "steps": 253,
+                  "base_items_per_step": 301,
+                  "steps_with_base_plus_one": 11,
+                  "steps_with_base": 242,
+                  "max_items_per_step": 302,
+                  "mean_items_per_step": 301.04347826086956,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 77312,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U64x7_256x3_chunked_order_mask015": {
+          "label": "U64x7_256x3_chunked_order_mask015",
+          "tokenizer": "legal40k",
+          "description": "more aggressive short-context version: 7 epochs at 64 and 3 at 256, all words visible each epoch",
+          "comparison_role": "longer early local-context order after recovered visibility",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 139426440,
+          "active_token_ratio_vs_current_row256": 1.0172536994674366,
+          "mask_prob": 0.15,
+          "expected_masked_target_tokens": 20913966.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0172536994674366,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55109.264822134384,
+          "max_nominal_token_slots_per_update": 77312,
+          "nominal_token_slots_total": 171510464,
+          "schedule_plan": {
+            "schedule": {
+              "64": 7,
+              "128": 0,
+              "256": 3
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 1994375,
+            "active_tokens_total": 139426440,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55109.264822134384,
+            "nominal_token_slots_total": 171510464,
+            "mean_nominal_token_slots_per_update": 67790.69723320159,
+            "max_nominal_token_slots_per_update": 77312,
+            "per_stage": {
+              "64": {
+                "length": 64,
+                "epochs": 7,
+                "chunks_per_epoch": 252269,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 252269,
+                  "steps": 253,
+                  "base_items_per_step": 997,
+                  "steps_with_base_plus_one": 28,
+                  "steps_with_base": 225,
+                  "max_items_per_step": 998,
+                  "mean_items_per_step": 997.1106719367589,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 16
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 63872,
+                "microbatch_nominal_slots": 4096
+              },
+              "256": {
+                "length": 256,
+                "epochs": 3,
+                "chunks_per_epoch": 76164,
+                "active_tokens_per_epoch": 13942644,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 76164,
+                  "steps": 253,
+                  "base_items_per_step": 301,
+                  "steps_with_base_plus_one": 11,
+                  "steps_with_base": 242,
+                  "max_items_per_step": 302,
+                  "mean_items_per_step": 301.04347826086956,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55109.264822134384,
+                "max_nominal_token_slots_per_update": 77312,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        }
+      },
+      "recommended_first_wave_if_route_selected": {
+        "paired_arms": [
+          "U256_chunked_visibility_mask015",
+          "U64_128_256_chunked_order_mask015"
+        ],
+        "reason": "They share charged words, active tokens, mask probability, and stage-reset update count; their difference is short-to-long context/order after word visibility is restored. U256 vs current row256 reads the visibility-utilization effect.",
+        "stronger_target_control": [
+          "U256_chunked_visibility_targetmatched",
+          "U64_128_256_chunked_order_targetmatched"
+        ],
+        "when_to_use_target_control": "Use if the first wave improves but the interpretation hinges on whether the 1.7-1.9 percent extra visible target-token count, rather than recovered suffix visibility and contexts, accounts for the gain."
+      }
+    },
+    "minfreq25": {
+      "raw_tokens_per_word": 1.4138512,
+      "current_row256_baseline": {
+        "label": "current_row256_truncate_mask015",
+        "description": "existing fixed-256 row-truncating route: one original row per example, full row word debit, suffix words beyond max_seq_length hidden",
+        "charged_words_total": 100000000,
+        "active_tokens_total": 138713400,
+        "visible_words_total": 98551270,
+        "hidden_words_but_debited_total": 1448730,
+        "hidden_word_fraction": 0.0144873,
+        "examples_total": 647400,
+        "steps_total_continuous_stream": 2529,
+        "steps_total_stage_reset": 2530,
+        "mask_prob": 0.15,
+        "expected_masked_target_tokens": 20807010.0,
+        "mean_active_tokens_per_continuous_update": 54849.1103202847,
+        "mean_active_tokens_per_stage_reset_update": 54827.43083003953
+      },
+      "mask_prob_to_match_current_row256_targets": 0.14716548672165783,
+      "broken_prefix_schedule_reference": {
+        "label": "current_prefix_64x3_128x4_256x3_do_not_use_as_leader_factor",
+        "description": "what the existing seq_len_schedule path would do: slice original rows to L64/L128/L256 while still charging all row words",
+        "charged_words_total": 100000000,
+        "active_tokens_total": 87141062,
+        "active_token_ratio_vs_current_row256": 0.6282094015430376,
+        "hidden_words_weighted_fraction": 0.3737813,
+        "mask_prob": 0.15,
+        "expected_masked_target_tokens": 13071159.299999999,
+        "expected_target_ratio_vs_current_row256_mask015": 0.6282094015430376,
+        "steps_total_stage_reset": 2530
+      },
+      "arms": {
+        "U256_chunked_visibility_mask015": {
+          "label": "U256_chunked_visibility_mask015",
+          "tokenizer": "minfreq25",
+          "description": "fixed-256 word-boundary chunks, every charged word visible once per epoch, no short-to-long order; mask probability unchanged",
+          "comparison_role": "experience utilization at fixed sequence length",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 141385120,
+          "active_token_ratio_vs_current_row256": 1.0192607203053201,
+          "mask_prob": 0.15,
+          "expected_masked_target_tokens": 21207768.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0192607203053201,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55883.44664031621,
+          "max_nominal_token_slots_per_update": 78080,
+          "nominal_token_slots_total": 197355520,
+          "schedule_plan": {
+            "schedule": {
+              "256": 10
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 770920,
+            "active_tokens_total": 141385120,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55883.44664031621,
+            "nominal_token_slots_total": 197355520,
+            "mean_nominal_token_slots_per_update": 78006.13438735178,
+            "max_nominal_token_slots_per_update": 78080,
+            "per_stage": {
+              "256": {
+                "length": 256,
+                "epochs": 10,
+                "chunks_per_epoch": 77092,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 77092,
+                  "steps": 253,
+                  "base_items_per_step": 304,
+                  "steps_with_base_plus_one": 180,
+                  "steps_with_base": 73,
+                  "max_items_per_step": 305,
+                  "mean_items_per_step": 304.7114624505929,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 78080,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U256_chunked_visibility_targetmatched": {
+          "label": "U256_chunked_visibility_targetmatched",
+          "tokenizer": "minfreq25",
+          "description": "same as U256 but mask probability is reduced so expected masked-target count equals the current row256 baseline",
+          "comparison_role": "experience utilization without extra expected target count",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 141385120,
+          "active_token_ratio_vs_current_row256": 1.0192607203053201,
+          "mask_prob": 0.14716548672165783,
+          "expected_masked_target_tokens": 20807010.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55883.44664031621,
+          "max_nominal_token_slots_per_update": 78080,
+          "nominal_token_slots_total": 197355520,
+          "schedule_plan": {
+            "schedule": {
+              "256": 10
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 770920,
+            "active_tokens_total": 141385120,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55883.44664031621,
+            "nominal_token_slots_total": 197355520,
+            "mean_nominal_token_slots_per_update": 78006.13438735178,
+            "max_nominal_token_slots_per_update": 78080,
+            "per_stage": {
+              "256": {
+                "length": 256,
+                "epochs": 10,
+                "chunks_per_epoch": 77092,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 77092,
+                  "steps": 253,
+                  "base_items_per_step": 304,
+                  "steps_with_base_plus_one": 180,
+                  "steps_with_base": 73,
+                  "max_items_per_step": 305,
+                  "mean_items_per_step": 304.7114624505929,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 78080,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U64_128_256_chunked_order_mask015": {
+          "label": "U64_128_256_chunked_order_mask015",
+          "tokenizer": "minfreq25",
+          "description": "word-boundary chunks with 3 epochs at 64, 4 at 128, 3 at 256; every charged word visible in every epoch; same mask probability as U256",
+          "comparison_role": "length ordering after recovered visibility",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 141385120,
+          "active_token_ratio_vs_current_row256": 1.0192607203053201,
+          "mask_prob": 0.15,
+          "expected_masked_target_tokens": 21207768.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0192607203053201,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55883.44664031621,
+          "max_nominal_token_slots_per_update": 78080,
+          "nominal_token_slots_total": 180698240,
+          "schedule_plan": {
+            "schedule": {
+              "64": 3,
+              "128": 4,
+              "256": 3
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 1564090,
+            "active_tokens_total": 141385120,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55883.44664031621,
+            "nominal_token_slots_total": 180698240,
+            "mean_nominal_token_slots_per_update": 71422.22924901186,
+            "max_nominal_token_slots_per_update": 78080,
+            "per_stage": {
+              "64": {
+                "length": 64,
+                "epochs": 3,
+                "chunks_per_epoch": 255774,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 255774,
+                  "steps": 253,
+                  "base_items_per_step": 1010,
+                  "steps_with_base_plus_one": 244,
+                  "steps_with_base": 9,
+                  "max_items_per_step": 1011,
+                  "mean_items_per_step": 1010.9644268774704,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 16
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 64704,
+                "microbatch_nominal_slots": 4096
+              },
+              "128": {
+                "length": 128,
+                "epochs": 4,
+                "chunks_per_epoch": 141373,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 141373,
+                  "steps": 253,
+                  "base_items_per_step": 558,
+                  "steps_with_base_plus_one": 199,
+                  "steps_with_base": 54,
+                  "max_items_per_step": 559,
+                  "mean_items_per_step": 558.7865612648221,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 9
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 71552,
+                "microbatch_nominal_slots": 8192
+              },
+              "256": {
+                "length": 256,
+                "epochs": 3,
+                "chunks_per_epoch": 77092,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 77092,
+                  "steps": 253,
+                  "base_items_per_step": 304,
+                  "steps_with_base_plus_one": 180,
+                  "steps_with_base": 73,
+                  "max_items_per_step": 305,
+                  "mean_items_per_step": 304.7114624505929,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 78080,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U64_128_256_chunked_order_targetmatched": {
+          "label": "U64_128_256_chunked_order_targetmatched",
+          "tokenizer": "minfreq25",
+          "description": "same schedule as U64_128_256 but with mask probability matched to current row256 expected target count",
+          "comparison_role": "length ordering after recovered visibility without extra expected target count",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 141385120,
+          "active_token_ratio_vs_current_row256": 1.0192607203053201,
+          "mask_prob": 0.14716548672165783,
+          "expected_masked_target_tokens": 20807010.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55883.44664031621,
+          "max_nominal_token_slots_per_update": 78080,
+          "nominal_token_slots_total": 180698240,
+          "schedule_plan": {
+            "schedule": {
+              "64": 3,
+              "128": 4,
+              "256": 3
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 1564090,
+            "active_tokens_total": 141385120,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55883.44664031621,
+            "nominal_token_slots_total": 180698240,
+            "mean_nominal_token_slots_per_update": 71422.22924901186,
+            "max_nominal_token_slots_per_update": 78080,
+            "per_stage": {
+              "64": {
+                "length": 64,
+                "epochs": 3,
+                "chunks_per_epoch": 255774,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 255774,
+                  "steps": 253,
+                  "base_items_per_step": 1010,
+                  "steps_with_base_plus_one": 244,
+                  "steps_with_base": 9,
+                  "max_items_per_step": 1011,
+                  "mean_items_per_step": 1010.9644268774704,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 16
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 64704,
+                "microbatch_nominal_slots": 4096
+              },
+              "128": {
+                "length": 128,
+                "epochs": 4,
+                "chunks_per_epoch": 141373,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 141373,
+                  "steps": 253,
+                  "base_items_per_step": 558,
+                  "steps_with_base_plus_one": 199,
+                  "steps_with_base": 54,
+                  "max_items_per_step": 559,
+                  "mean_items_per_step": 558.7865612648221,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 9
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 71552,
+                "microbatch_nominal_slots": 8192
+              },
+              "256": {
+                "length": 256,
+                "epochs": 3,
+                "chunks_per_epoch": 77092,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 77092,
+                  "steps": 253,
+                  "base_items_per_step": 304,
+                  "steps_with_base_plus_one": 180,
+                  "steps_with_base": 73,
+                  "max_items_per_step": 305,
+                  "mean_items_per_step": 304.7114624505929,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 78080,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        },
+        "U64x7_256x3_chunked_order_mask015": {
+          "label": "U64x7_256x3_chunked_order_mask015",
+          "tokenizer": "minfreq25",
+          "description": "more aggressive short-context version: 7 epochs at 64 and 3 at 256, all words visible each epoch",
+          "comparison_role": "longer early local-context order after recovered visibility",
+          "charged_words_total": 100000000,
+          "active_tokens_total": 141385120,
+          "active_token_ratio_vs_current_row256": 1.0192607203053201,
+          "mask_prob": 0.15,
+          "expected_masked_target_tokens": 21207768.0,
+          "expected_target_ratio_vs_current_row256_mask015": 1.0192607203053201,
+          "steps_total_stage_reset": 2530,
+          "step_ratio_vs_current_row_stage_reset": 1.0,
+          "mean_active_tokens_per_update": 55883.44664031621,
+          "max_nominal_token_slots_per_update": 78080,
+          "nominal_token_slots_total": 173793408,
+          "schedule_plan": {
+            "schedule": {
+              "64": 7,
+              "128": 0,
+              "256": 3
+            },
+            "charged_words_total": 100000000,
+            "chunks_total": 2021694,
+            "active_tokens_total": 141385120,
+            "steps_total_stage_reset": 2530,
+            "mean_active_tokens_per_update": 55883.44664031621,
+            "nominal_token_slots_total": 173793408,
+            "mean_nominal_token_slots_per_update": 68693.0466403162,
+            "max_nominal_token_slots_per_update": 78080,
+            "per_stage": {
+              "64": {
+                "length": 64,
+                "epochs": 7,
+                "chunks_per_epoch": 255774,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 255774,
+                  "steps": 253,
+                  "base_items_per_step": 1010,
+                  "steps_with_base_plus_one": 244,
+                  "steps_with_base": 9,
+                  "max_items_per_step": 1011,
+                  "mean_items_per_step": 1010.9644268774704,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 16
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 64704,
+                "microbatch_nominal_slots": 4096
+              },
+              "256": {
+                "length": 256,
+                "epochs": 3,
+                "chunks_per_epoch": 77092,
+                "active_tokens_per_epoch": 14138512,
+                "words_charged_per_epoch": 10000000,
+                "target_steps_per_epoch": 253,
+                "batch_distribution_per_epoch": {
+                  "items": 77092,
+                  "steps": 253,
+                  "base_items_per_step": 304,
+                  "steps_with_base_plus_one": 180,
+                  "steps_with_base": 73,
+                  "max_items_per_step": 305,
+                  "mean_items_per_step": 304.7114624505929,
+                  "microbatch_size": 64,
+                  "max_accumulation_microbatches": 5
+                },
+                "mean_active_tokens_per_update": 55883.44664031621,
+                "max_nominal_token_slots_per_update": 78080,
+                "microbatch_nominal_slots": 16384
+              }
+            }
+          }
+        }
+      },
+      "recommended_first_wave_if_route_selected": {
+        "paired_arms": [
+          "U256_chunked_visibility_mask015",
+          "U64_128_256_chunked_order_mask015"
+        ],
+        "reason": "They share charged words, active tokens, mask probability, and stage-reset update count; their difference is short-to-long context/order after word visibility is restored. U256 vs current row256 reads the visibility-utilization effect.",
+        "stronger_target_control": [
+          "U256_chunked_visibility_targetmatched",
+          "U64_128_256_chunked_order_targetmatched"
+        ],
+        "when_to_use_target_control": "Use if the first wave improves but the interpretation hinges on whether the 1.7-1.9 percent extra visible target-token count, rather than recovered suffix visibility and contexts, accounts for the gain."
+      }
+    }
+  },
+  "comparison_logic": {
+    "row256_current_to_U256": "fixed length 256; restores hidden suffix words by word-boundary chunking while keeping the same 10M words per epoch. This measures charged-word experience utilization without a short-to-long order.",
+    "U256_to_U64_128_256": "both arms expose every tokenized word once per epoch and use the same expected target tokens when mask_prob is shared. This isolates context/order/locality after visibility is restored.",
+    "target_matched_mask": "lower the chunked-arm mask probability to match the expected masked-target count of the current row256 baseline, so the comparison is not explained by a larger target count.",
+    "broken_prefix_schedule": "kept only as an ablation of the existing prefix-slice path: it charges the same words but hides large fractions of them during short-length epochs, so it should not be used as the leader-style factor."
+  },
+  "expensive_work_position": "These arms remain conditional on completion of depth training. If depth leaves a gap, a paired U256 vs U64_128_256 wave is the cleanest way to test the experience-utilization principle and the extra value of length ordering."
+}

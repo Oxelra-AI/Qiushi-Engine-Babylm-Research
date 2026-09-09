@@ -1,0 +1,101 @@
+{
+  "status": "ROBERTA_ACCUM_TRAINING_DONE",
+  "variant": "roberta_wwm_microbatch_accum",
+  "backend": "mlm",
+  "model_family": "roberta_ForMaskedLM",
+  "parameter_count": 30528064,
+  "vocab_size": 16384,
+  "tokenizer_label": "compliant16k_reinvest10M",
+  "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "word_exposure": 99999910,
+  "target_word_exposure": 99999910,
+  "loss_first": 9.813689639453315,
+  "loss_last": 4.995437916302048,
+  "actual_training_steps": 2529,
+  "planned_training_steps": 2529,
+  "optimizer_steps": 2529,
+  "optimizer": "AdamW betas=(0.9,0.98)",
+  "learning_rate": 0.001,
+  "weight_decay": 0.01,
+  "warmup_fraction": 0.06,
+  "lr_total_steps": 2529,
+  "masking_curriculum": "wwm_fixed",
+  "mask_generation": "CPU full optimizer batch before microbatch split",
+  "mask_prob_start": 0.15,
+  "mask_prob_end": 0.15,
+  "seed": 43,
+  "extra_init_seed": 43022,
+  "train_rng_seed": 43023,
+  "seq_length": 256,
+  "max_seq_length": 256,
+  "batch_size": 256,
+  "effective_optimizer_batch_size": 256,
+  "micro_batch_size": 16,
+  "loss_scaling": "active-label weighted microbatch mean",
+  "hidden_size": 480,
+  "n_layer": 8,
+  "n_head": 8,
+  "ffn_mult": 4,
+  "gradient_checkpointing": true,
+  "saved_checkpoints": [
+    {
+      "name": "chck_20M",
+      "target_word_exposure": 20000000,
+      "actual_cumulative_word_exposure": 20007900,
+      "path": "experiments/archive/representation_and_objectives/training/runs/factorial_hs_roberta_100M_accum_mb16/hf_model/chck_20M",
+      "final_alias": false
+    },
+    {
+      "name": "chck_40M",
+      "target_word_exposure": 40000000,
+      "actual_cumulative_word_exposure": 40015541,
+      "path": "experiments/archive/representation_and_objectives/training/runs/factorial_hs_roberta_100M_accum_mb16/hf_model/chck_40M",
+      "final_alias": false
+    },
+    {
+      "name": "chck_60M",
+      "target_word_exposure": 60000000,
+      "actual_cumulative_word_exposure": 60023390,
+      "path": "experiments/archive/representation_and_objectives/training/runs/factorial_hs_roberta_100M_accum_mb16/hf_model/chck_60M",
+      "final_alias": false
+    },
+    {
+      "name": "chck_80M",
+      "target_word_exposure": 80000000,
+      "actual_cumulative_word_exposure": 80031235,
+      "path": "experiments/archive/representation_and_objectives/training/runs/factorial_hs_roberta_100M_accum_mb16/hf_model/chck_80M",
+      "final_alias": false
+    },
+    {
+      "name": "chck_100M",
+      "target_word_exposure": 99999910,
+      "actual_cumulative_word_exposure": 99999910,
+      "path": "experiments/archive/representation_and_objectives/training/runs/factorial_hs_roberta_100M_accum_mb16/hf_model/chck_100M",
+      "final_alias": true
+    }
+  ],
+  "source_words_consumed": {
+    "factorial_hs_compact_reinvest": 4235110,
+    "qwen_pair_packed": 16568000,
+    "childes": 25748800,
+    "gutenberg": 18593600,
+    "open_subtitles": 18294400,
+    "simple_wiki": 10590400,
+    "bnc_spoken": 5758400,
+    "switchboard": 211200
+  },
+  "data_source_type": "example_jsonl",
+  "example_jsonl": "experiments/archive/representation_and_objectives/data/factorial_streams/factorial_hs_100M.jsonl",
+  "example_jsonl_label": "factorial_hs_compact_same_anchors_accum_mb16",
+  "elapsed_sec": 4239.9,
+  "cuda_memory_final": {
+    "device": "cuda",
+    "cuda_visible_devices": "0",
+    "free_bytes": 77977092096,
+    "total_bytes": 85019590656,
+    "allocated_bytes": 557703680,
+    "reserved_bytes": 1965031424
+  },
+  "base_trainer": "experiments/archive/frontier_consolidation/scripts/roberta_mlm_transfer_trainer.py",
+  "scientific_note": "Preserves 256-example optimizer-step geometry and 2529-update LR horizon while reducing memory through microbatch accumulation; not bit-equivalent to the failed full-batch GPU-masking trainer."
+}

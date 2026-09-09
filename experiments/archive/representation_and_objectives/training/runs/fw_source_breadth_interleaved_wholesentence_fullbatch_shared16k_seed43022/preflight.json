@@ -1,0 +1,73 @@
+{
+  "status": "PREFLIGHT_OK",
+  "created_utc": "2026-08-30T18:56:02Z",
+  "errors": [],
+  "interleaved_breadth_run_dir": "experiments/archive/representation_and_objectives/training/runs/fw_source_breadth_interleaved_wholesentence_fullbatch_shared16k_seed43022",
+  "interleaved_stream": "experiments/archive/representation_and_objectives/data/fw_source_breadth_interleaved_wholesentence_arm/fw_preserved_source_breadth_interleaved_wholesentence_100M.jsonl",
+  "tokenizer": "experiments/archive/representation_and_objectives/data/shared_tokenizer/shared_16k_tokenizer",
+  "a02_compact_anchor": {
+    "run_dir": "experiments/archive/frontier_consolidation/training/runs/fw_compact_view_shared16k_seed43022",
+    "preflight_exists": true,
+    "scientific_metrics_exists": false,
+    "train_result_exists": false,
+    "last_training_record": {
+      "step": 500,
+      "loss": 3.7687926292419434,
+      "lr": 0.000946616830366238,
+      "batch_words": 39704,
+      "cumulative_word_exposure": 19943030,
+      "seq_len": 256,
+      "masked_tokens": 8300,
+      "effective_mask_rate": 0.1459,
+      "mask_mode": "wwm",
+      "mask_prob_nominal": 0.15,
+      "elapsed_sec": 865.0
+    },
+    "ready": false,
+    "failed": false,
+    "reason": "compact training not complete yet",
+    "preflight_status": "PREFLIGHT_OK",
+    "preflight_compact_stream_sha256": "c8d7f24b5edd2dad21f589c8cde72671d0b76038d9632fcd3d6c79178a24be68",
+    "preflight_tokenizer_sha256": "e70d167f620668130f88744998bd1bacbe05f6d0735012144fe501b271b04366"
+  },
+  "recipe": {
+    "hidden_size": 480,
+    "n_layer": 8,
+    "n_head": 8,
+    "ffn_mult": 4,
+    "batch_size": 256,
+    "seq_length": 256,
+    "learning_rate": 0.001,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "masking_curriculum": "wwm_fixed",
+    "mask_prob_start": 0.15,
+    "mask_prob_end": 0.15,
+    "checkpoint_words": 1000000,
+    "max_word_exposure": 100000000
+  },
+  "seed": {
+    "seed": 43,
+    "extra_init_seed": 43022,
+    "train_rng_seed": 43023
+  },
+  "info": {
+    "stream_sha256": "1758508e3bfae8bda8d4d66409ebd695499552a495e93d8327be8aa0d9182c44",
+    "stream_bytes": 600042790,
+    "stream_words": 100000000,
+    "stream_rows": 641830,
+    "tokenizer_sha256": "e70d167f620668130f88744998bd1bacbe05f6d0735012144fe501b271b04366",
+    "trainer": "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+    "trainer_sha256": "d3cd4a46c0dd28b5dbc3443e564b72879c393d6c7e5212590764aa7786fbd5d4",
+    "run_dir_existing_entries": [],
+    "tokenizer_functional": {
+      "is_fast": true,
+      "vocab_size": 16384
+    }
+  },
+  "scientific_reason": {
+    "compact_anchor": "A02 is training the exact compact stream with the exact shared tokenizer, recipe, seeds, and 100M exposure; repeating compact in A01 would add little once the interleaved arm is moved onto the same full-batch coordinate.",
+    "this_run_decides": "Whether the layout-matched interleaved independent FineWeb breadth arm beats or trails A02's compact same-proposition recurrence anchor under the same full-batch training coordinate.",
+    "why_one_run_only": "The cancelled A01 pair would duplicate the compact arm. One interleaved breadth run supplies the missing comparison point while preserving compute for later SOTA-directed work."
+  }
+}

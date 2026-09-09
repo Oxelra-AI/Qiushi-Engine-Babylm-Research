@@ -1,0 +1,590 @@
+[
+  {
+    "rank_model": "wwm_curriculum_simplification_40k",
+    "repo": "go76dof/wwm_curriculum_simplification_40k",
+    "overall": 41.8,
+    "nlp": 52.97,
+    "human_like": 2.71,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 200,
+        "chars_saved": 7277
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 932
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 1287
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 286
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": "---\nlanguage:\n- en\nlicense: other\nlibrary_name: transformers\npipeline_tag: fill-mask\ntags:\n- babylm\n- babylm-2026\n- strict-small\n- deberta-v2\n- masked-language-modeling\n- whole-word-masking\n- simplification\n- sample-efficient-pretraining\ndatasets:\n- go76dof/Fineweb_simplification_pairs\n---\n\n# Model Card for WWM Curriculum Simplification 40k\n\nA 34.7M-parameter DeBERTa-style masked language model trained on 10M words of FineWeb simplification pairs for the BabyLM 2026 strict-small track.\n\n## Table of Contents\n\n- [Model Details](#model-details)\n  - [Model Description](#model-description)\n- [Uses](#uses)\n- [Training Details](#training-details)\n  - [Training Data](#training-data)\n  - [Hyperparameters](#hyperparameters)\n  - [Training Procedure](#training-procedure)\n  - [Size and Checkpoints](#size-and-checkpoints)\n- [Evaluation](#evaluation)\n  - [Testing Data and Metrics](#testing-data-and-metrics)\n  - [Results](#results)\n- [Technical Specifications](#technical-specifications)\n  - [Model Architecture and Objective](#model-architecture-and-objective)\n  - [Software](#software)\n- [Limitations](#limitations)\n- [Citation](#citation)\n- [Model Card Authors](#model-card-authors)\n\n## Model Details\n\n### Model Description\n\nThis model is a BabyLM 2026 strict-small submission trained with meaning-preserving simplification pairs and a whole-word-masking curriculum.\n\nThe model is trained on original FineWeb sentences paired with simplified rewrites. During masked language model pretraining, these paired examples expose the model to two aligned ways of expressing similar content. The goal is to improve sample efficiency under the 10M-word BabyLM strict-small budget.\n\n- Developed by: Shaoxiang Wu\n- Model type: masked language model\n- Architecture: DeBERTa-v2 style encoder\n- Language(s): English\n- Model repo: `go76dof/wwm_curriculum_simplification_40k`\n- Training data: `go76dof/Fineweb_simplification_pairs`\n- License: other\n\n## Uses\n\nThis is a pretrained masked language model. It can be used for:\n\n- BabyLM-style zero-shot evaluation with masked-token scoring.\n- Fine-tuning on classification or sentence-pair understanding tasks by adding a task head.\n- Research on small-data language model pretraining.\n- Research on meaning-preserving rewrite pairing, simplification, and whole-word-masking curricula.\n\nThis model is not intended as a general-purpose production language model. It is small and trained on only 10M words.\n\nExample loading code:\n\n```python\nfrom transformers import AutoModelForMaskedLM, AutoTokenizer\n\nmodel_name = \"go76dof/wwm_curriculum_simplification_40k\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForMaskedLM.from_pretrained(model_name)\n```\n\n## Training Details\n\n### Training Data\n\nThe model was trained on FineWeb sentence-level simplification pairs:\n\n- Dataset: `go76dof/Fineweb_simplification_pairs`\n- Training file: `FineWeb_simplification_pairs.train`\n- Size: 9,999,969 whitespace-counted words\n- Format: original FineWeb sentence followed by simplified rewrite\n\nEach pair is stored as an original sentence followed by its simplified rewrite, with blank lines separating pairs.\n\nExample:\n\n```text\nEnlightenment thinkers proposed that human reason coupled with empirical study of the physical world would lead to progress---namely, the advancement of science and the improvement of the human condition.\nEnlightenment thinkers believed that using reason and studying the world would lead to scientific progress and better living conditions.\n```\n\nThe tokenizer is a 40k SentencePiece BPE tokenizer trained for this data condition:\n\n- `tokenizer/FineWeb_simplification_pairs_40k.model`\n- `tokenizer/FineWeb_simplification_pairs_40k.vocab`\n\n### Hyperparameters\n\n| Hyperparameter | Value |\n|---|---:|\n| Architecture | DeBERTa-v2 style encoder |\n| Hidden size | 384 |\n| Intermediate size | 1280 |\n| Number of layers | 12 |\n| Number of attention heads | 12 |\n| Dropout | 0.1 |\n| Vocabulary size | 40,000 |\n| Objective | Masked language modeling |\n| Optimizer | LAMB |\n| Learning rate schedule | cosine |\n| Max learning rate | 0.007 |\n| Training epochs | 10 |\n| Sequence length curriculum | 64 -> 256 |\n| Masking curriculum | WWM7 -> Token3 |\n\n### Training Procedure\n\nThe model uses a whole-word-masking curriculum:\n\n- Epochs 1-7: whole-word masking, where all subword pieces belonging to a selected word are masked together.\n- Epochs 8-10: standard token-level masking.\n\nThe sequence length also follows a curriculum. Training starts with shorter sequences and later switches to longer sequences, while batch size is scaled inversely with sequence length.\n\n### Size and Checkpoints\n\nThe model has 34,677,952 parameters. The final checkpoint corresponds to the end of the 10-epoch training run on the 10M-word strict-small training budget.\n\n## Evaluation\n\nThis model was evaluated with the BabyLM 2026 strict-small evaluation pipeline. The reported submission scores are leaderboard scores for the strict-small track.\n\n### Testing Data and M"
+  },
+  {
+    "rank_model": "RecGPT-10M",
+    "repo": "Serdar404/RecGPT-10M",
+    "overall": 41.53,
+    "nlp": 52.4,
+    "human_like": 3.46,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 200,
+        "chars_saved": 2174
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 565
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 200
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": "---\nlanguage:\n- en\nlicense: mit\nlibrary_name: transformers\npipeline_tag: text-generation\ntags:\n- babylm\n- babylm-2026\n- strict-small\n- custom_code\n---\n\n# BabyLM Challenge 2026 submission | RecGPT-10M\n\nRecGPT-10M is a 34.17M-parameter recursive causal language model trained for the BabyLM 2026 Strict-Small track. It was trained for 10 epochs on a custom 10M-word English corpus using a 32,768-token BPE vocabulary.\n\nThe model applies a shared Transformer block recursively for 16 iterations. Its hidden size is 768, embedding size is 192, and feed-forward intermediate size is 12,288. Training used Muon for the recursive block and AdamW for the embedding-related parameters, with a token batch size of 32,768 and sequence length 256.\n\n## Usage\n\nThis repository contains custom Transformers code, so loading requires `trust_remote_code=True`:\n\n```python\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nmodel_id = \"Serdar404/RecGPT-10M\"\ntokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)\nmodel = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True)\n```\n\nThe model is intended for scoring text as a causal language model. KV-cache generation is not currently implemented.\n\n## BabyLM 2026 evaluation\n\nFinal-checkpoint results before leaderboard collation:\n\n| Evaluation | Score |\n|---|---:|\n| BLiMP | 73.11 |\n| BLiMP Supplement | 61.73 |\n| EWoK | 52.62 |\n| Entity Tracking | 16.59 |\n| COMPS | 55.43 |\n| GlobalPIQA | 40.68 |\n| (Super)GLUE | 66.64 |\n| NLP Average | 52.40 |\n\nIntermediate Strict-Small checkpoints are published as Hub revisions named `chck_1M` through `chck_100M` using the official BabyLM checkpoint schedule.\n\n## Resources\n\n- Training code: https://github.com/serdardoesml/bblm26-recgpt\n- Dataset construction: https://github.com/serdardoesml/bblm26-dataset\n- Evaluation fork: https://github.com/serdardoesml/babylm-eval\n\n## Limitations\n\nThis is a small research model trained under the BabyLM data constraint. It is not intended for production deployment, factual question answering, or safety-critical use. Its outputs may contain inaccuracies or undesirable content inherited from its training data.\n"
+  },
+  {
+    "rank_model": "Wordpiece-24-4",
+    "repo": "Wector1/Wordpiece-24-4",
+    "overall": 41.31,
+    "nlp": 52.85,
+    "human_like": 0.92,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 1985
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 269
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": ""
+  },
+  {
+    "rank_model": "Bb26_claim_compagg_v22_v15_relay_synp050_synkeep010_s0",
+    "repo": "gyaudhw/bb26_claim_compagg_v22_v15_relay_synp050_synkeep010",
+    "overall": 40.94,
+    "nlp": 51.81,
+    "human_like": 2.92,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      },
+      {
+        "file": "config.json",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      },
+      {
+        "file": "training_args.bin",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      },
+      {
+        "file": "all_results.json",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 401,
+        "error": "HTTPError: HTTP Error 401: Unauthorized"
+      }
+    ],
+    "readme_excerpt": ""
+  },
+  {
+    "rank_model": "bb26_claim_compagg_v22_v15_relay_synp050_synkeep010_s0",
+    "repo": "gyaudhw/bb26_claim_compagg_v22_v15_relay_synp050_synkeep010_s0",
+    "overall": 40.93,
+    "nlp": 51.79,
+    "human_like": 2.92,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 929
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 1287
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 286
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": ""
+  },
+  {
+    "rank_model": "BabySteps_MurphysLaw-10M-mixed",
+    "repo": "svsatheesh/BabySteps_MurphysLaw-10M-mixed",
+    "overall": 40.86,
+    "nlp": 53.59,
+    "human_like": -3.72,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 200,
+        "chars_saved": 4992
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 666
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 1202
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 167
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": "---\nlanguage:\n- en\nlicense: mit\nlibrary_name: transformers\ntags:\n- babylm\n- babylm-2026\n- strict-small\n- gpt-bert\n- muon\n- adamuon\n- sample-efficient-pretraining\ndatasets:\n- babylm/babylm-2026-strict-small\npipeline_tag: fill-mask\n---\n\n# BabySteps MurphysLaw 10M (mixed)\n\n**BabyLM 2026 Challenge — strict-small track submission (Team BabySteps)**\n\nA GPT-BERT hybrid masked/causal language model trained on the official BabyLM 2026\nstrict-small corpus (10M words), using the **AdaMuon** optimizer with a tuned learning\nrate and tail-weight averaging over the final 20% of training.\n\nOur central finding: after data-centric experimentation (curriculum-ordered\ncorpora, story and textbook corpora, synthetic data generation, teacher-supervised\nobjectives), **none of those interventions beat a faithful GPT-BERT reconstruction trained\non the official corpus with a Muon-family optimizer and a careful learning-rate sweep.**\n\n## Model details\n\n| | |\n|---|---|\n| Architecture | GPT-BERT (hybrid masked + causal objective, single transformer stack) |\n| Parameters | 39,337,540 |\n| Hidden size | 384 |\n| Layers | 12 |\n| Attention heads | 6 |\n| Intermediate size | 1280 |\n| Vocabulary | 16,384 (BabyLM GPT-BERT baseline BPE) |\n| Training sequence length | 128 (architecture supports 512) |\n| Position embeddings | relative, bucket size 32 |\n| Precision | bf16 |\n\n## Training\n\n| | |\n|---|---|\n| Corpus | Official BabyLM 2026 **strict-small** (10M words), unmodified |\n| Objective | mixed (causal_per_masked = 1, masked_per_causal = 0) |\n| Optimizer | **AdaMuon** (matrix params) + AdamW-style auxiliary (embeddings, norms, head) |\n| Learning rate | 0.02 (matrix) / 0.006 (auxiliary) |\n| Schedule | linear warmup (1.6%) + two-phase decay |\n| Weight decay | 0.1 · grad clip 2.0 · z-loss 1e-4 |\n| Steps × tokens/step | 9,914 × 16,384 (≈10 epochs) |\n| Seed | 42 |\n| Final weights | **tail average over the last 20% of training steps** |\n| Hardware | 1 × NVIDIA RTX 5090, ~30 mins training time |\n\nTail averaging left zero-shot scores essentially unchanged (±0.3 BLiMP) but improved\nfinetuned SuperGLUE by ≈1.6 points on the development twin of this configuration.\n\n## Checkpoints\n\nIntermediate checkpoints are published as **branches** following the challenge's naming\nconvention, covering the strict-small milestone schedule (1M–10M words in 1M steps, then\n10M–100M in 10M steps — 19 checkpoints total):\n\n```python\nfrom transformers import AutoModelForMaskedLM\nmodel = AutoModelForMaskedLM.from_pretrained(\n    \"svsatheesh/BabySteps_MurphysLaw-10M-mixed\",\n    revision=\"chck_7M\",           # any of chck_1M ... chck_100M\n    trust_remote_code=True,\n)\n```\n\n## Usage\n\n```python\nfrom transformers import AutoModelForMaskedLM, AutoTokenizer\n\ntok = AutoTokenizer.from_pretrained(\"svsatheesh/BabySteps_MurphysLaw-10M-mixed\")\nmodel = AutoModelForMaskedLM.from_pretrained(\n    \"svsatheesh/BabySteps_MurphysLaw-10M-mixed\", trust_remote_code=True\n)\n```\n\n`trust_remote_code=True` is required — the GPT-BERT modeling code ships with the repo\n(`modeling_gpt_bert.py`, `configuration_gpt_bert.py`). The model can be loaded as\n`AutoModelForMaskedLM` or `AutoModelForCausalLM`; all reported results use **MNTP**\n(masked-next-token-prediction) evaluation, which outperformed pure-causal and pure-masked\nevaluation on the aggregate in our sweeps.\n\n## Results (official BabyLM 2026 evaluation pipeline, MNTP)\n\n| Task | Score |\n|---|---|\n| BLiMP | 71.59 |\n| BLiMP Supplement | 63.93 |\n| EWoK | 51.94 |\n| Entity Tracking | 27.95 |\n| COMPS | ≈54.3 |\n| Global PIQA | ≈35 |\n| SuperGLUE (finetuned avg) | ≈69.9 |\n| AoA correlation (CDI) | −0.151 |\n\nSuperGLUE finetuning used the official pipeline at learning rate 8–9e-5, seed 44.\nSuperGLUE convention: F1 for MRPC and QQP, accuracy elsewhere.\n\n## Training data\n\nOnly the official BabyLM 2026 strict-small corpus was used — no custom data, no synthetic\ndata augmentation, no teacher models, no external pretraining. The model is fully compliant\nwith the strict-small track's data budget.\n\n## Limitations\n\nThis is a deliberately small model trained on a developmentally plausible data budget. It is\na research artifact for studying sample-efficient pretraining, not a general-purpose language\nmodel: it has limited world knowledge, produces low-quality free-form generation, and inherits\nwhatever biases exist in the BabyLM corpus (CHILDES, Project Gutenberg, OpenSubtitles, Simple\nWikipedia, BNC, Switchboard). It should not be deployed in any user-facing application.\n\nReported scores are from a single training run.\n\n## Citation\n\n```bibtex\n@inproceedings{satheesh2026babysteps,\n  title  = {BabySteps at BabyLM 2026: Optimizer Choice and Hyperparameter Tuning\n            Beat Data Interventions for Sample-Efficient GPT-BERT Pretraining},\n  author = {Satheesh, Siddhi and Murillo, Jorge},\n  booktitle = {Proceedings of the BabyLM Challenge 2026},\n  year   = {2026}\n}\n```\n\nBuilt on GPT-BERT (Charpentier & Samuel, 2024), Muon (Jordan et al., 2024), and\nAdaMuon (Si et al., 2025)."
+  },
+  {
+    "rank_model": "instanton-hybrid",
+    "repo": "qyxu1994/instanton-hybrid",
+    "overall": 40.78,
+    "nlp": 51.53,
+    "human_like": 3.18,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 200,
+        "chars_saved": 4195
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 649
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 215
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 167
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": "---\nlicense: mit\nlanguage:\n  - en\ntags:\n  - babylm\n  - babylm-2026\n  - strict-small\n  - gpt-bert\n  - masked-lm\n  - causal-lm\n  - sample-efficient-pretraining\npipeline_tag: fill-mask\n---\n\n# instanton-hybrid\n\nA 40.2M-parameter **GPT-BERT masked–causal hybrid** trained entirely from\nscratch on the official **BabyLM 2026 Strict-Small** corpus (≤10M words).\n\nPart of the `instanton` family — small models trained in minutes-to-hours,\nsubmitted to the [BabyLM 2026 Challenge](https://babylm.github.io/).\n\n| | |\n|---|---|\n| Parameters | 40,170,648 |\n| Architecture | GPT-BERT (8 layers, 512 hidden, 8 heads, 1706 FFN) |\n| Vocabulary | 16,384 (byte-level BPE, trained only on the in-budget corpus) |\n| Training data | Official BabyLM 2026 Strict-Small, 9,972,806 words |\n| Word exposure | 10 epochs ≈ 99.7M words (165.3M subword tokens) |\n| Pretrained weights used | **None** — random init, per challenge rules |\n\n## Training objective\n\nFollowing [Charpentier & Samuel (2024), *BERT or GPT: why not both?*](https://aclanthology.org/2024.conll-babylm.24/),\nthe model is trained on a 50/50 blend of masked- and causal-LM objectives.\nUpstream splits the two objectives **across DDP ranks**; this model was trained\non a single GPU, so the blend is reproduced in-process: half the micro-batches\nof each optimizer step come from a masked dataset and half from a causal\ndataset, gradients accumulate, then one step is taken.\n\n## Recipe\n\nLAMB, max lr 0.007, cosine schedule with 1.6% warmup / 1.6% cooldown, weight\ndecay 0.1, grad clip 2.0, z-loss 1e-4, mask ratio 0.30→0.15, sequence length\nramped 128→256→512 at 70%/90% of training, 16,384 tokens per step, seed 42,\nbf16. ~2 hours on one A100-80GB.\n\n## Checkpoints\n\nNineteen word-exposure revisions are published as git branches, as required by\nthe challenge: `chck_1M` … `chck_9M`, `chck_10M`, `chck_20M` … `chck_100M`,\nplus `main` (final). Load any of them with `revision=`.\n\n## Usage\n\nThe repository ships a vendored modelling wrapper, so `trust_remote_code=True`\nis required. It loads under `transformers` 4.51.x; **5.x is not supported**.\n\n```python\nfrom transformers import AutoTokenizer, AutoModelForMaskedLM\n\ntok = AutoTokenizer.from_pretrained(\"qyxu1994/instanton-hybrid\", trust_remote_code=True)\nmodel = AutoModelForMaskedLM.from_pretrained(\n    \"qyxu1994/instanton-hybrid\", trust_remote_code=True)          # or revision=\"chck_10M\"\n```\n\n`AutoModelForCausalLM` also works and is what the age-of-acquisition evaluation\nuses. Everything else should be scored as a **masked LM** (pseudo-log-likelihood\n/ `mntp`), which is how the numbers below were produced.\n\n## Evaluation\n\nOfficial BabyLM 2026 pipeline, `mntp` backend for zero-shot / GLUE / reading and\n`causal` for AoA.\n\n| Task | Score |\n|---|---|\n| BLiMP | 72.13 |\n| BLiMP supplement | 60.86 |\n| EWoK | 50.15 |\n| Entity tracking (filtered) | 19.87 |\n| COMPS | 52.96 |\n| Global-PIQA | 37.14 |\n| (Super)GLUE | 67.58 |\n| Reading | 6.35 |\n| Age of acquisition | 0 (r = −0.11, p = 0.081) |\n| **Leaderboard NLP average** | **51.53** |\n| **Leaderboard Overall** | **40.78** |\n\nFor comparison, the best causal decoder in this family (27M-parameter GPT-2,\nsame 10M-word budget) reaches BLiMP 67.29 and GLUE 63.01 — the hybrid objective\nis worth roughly +4.8 BLiMP and +4.6 GLUE.\n\n### Known limitation\n\nLike every model in this family, `instanton-hybrid` correlates **negatively**\nwith children's age-of-acquisition ordering, so it scores 0 on that benchmark.\nThis is a property of the model rather than of the measurement: the checkpoint\nsweep is complete (19/19, 152,095 surprisal observations) and tokenizer\nfragmentation was ruled out (215 of 237 scored CDI words are single tokens, and\ncontrolling for subword count leaves the correlation unchanged).\n\n## Intended use\n\nA research artifact for studying sample-efficient language acquisition. It is\nsmall, trained on <10M words, and is **not** suitable for deployment or for\ngenerating text people will rely on.\n\n## Citation\n\nData mixture and recipe are described in the accompanying BabyLM 2026 report,\n*Reweighting Child-Directed and Conversational Data for Sample-Efficient BabyLM\nPretraining*. The architecture is from Charpentier & Samuel (2024).\n"
+  },
+  {
+    "rank_model": "bb26_claim_agg_synonly_s0",
+    "repo": "gyaudhw/bb26_claim_agg_synonly_s0",
+    "overall": 40.67,
+    "nlp": 51.46,
+    "human_like": 2.91,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 929
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 1287
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 286
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": ""
+  },
+  {
+    "rank_model": "deberta-base-75k-sam_ext-s1",
+    "repo": "augustinian-babylm/deberta-base-75k-sam_ext-s1",
+    "overall": 40.62,
+    "nlp": 48.74,
+    "human_like": 12.19,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 200,
+        "chars_saved": 1729
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 987
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 319
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "training_args.bin",
+        "status": 200,
+        "chars_saved": 5197
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": "---\nlicense: apache-2.0\nlanguage: en\ntags: [babylm, babylm-2026, strict-small, deberta, vision-initialized, synthetic-grounding]\n---\n# deberta-base-75k-sam_ext-s1 — BabyLM 2026 strict-small\n\nDeBERTa-v3-base, identical recipe to\n[`deberta-base-75k-sam`](https://huggingface.co/augustinian-babylm/deberta-base-75k-sam),\nwith **extended vision initialization**: in addition to 21,134 tokens\nseeded from real grounding data (Flickr30k Entities, RefCOCO/g/+, THINGS;\nSAM ViT-B features), 737 further tokens covering 1,151 concrete\nzero-support words were seeded via a synthetic pipeline (LLM-written\nscene descriptions → SDXL-Turbo images ×3 → OWLv2 open-vocabulary\ndetection → SAM features pooled in detected boxes, through the same\nextraction code). Total seeded: 21,871/75,000. The synthetic pipeline\naffects **embedding initialization only** — no synthetic images or\ndescriptions enter the training text.\n\n**Training data**: custom ~9.9M-word corpus (`bb24.train`) from our BabyLM\n2024 submission ([Edman et al. 2024, \"Are BabyLMs Second Language\nLearners?\"](https://aclanthology.org/2024.conll-babylm.14/)) — a mixture\nof LLM-synthesized paraphrase/contrastive data (SynCSE-partial; Zhang et\nal. 2021) and portions of the official BabyLM corpus (Simple Wikipedia,\nGutenberg, Switchboard). Within the strict-small 10M-word budget.\n\nOn a purpose-built visual-property benchmark, the synthetically grounded\nwords show a seeded-like advantage over the non-extended model in 3/3\ntraining seeds; real-grounded words and general linguistic performance\nare unaffected.\n\nIntermediate checkpoints: `chck_1M` … `chck_100M`, `research` …\n`research`; `main` = final. Code, benchmark, analyses:\nhttps://github.com/bylinina/augustinian_babylm\n"
+  },
+  {
+    "rank_model": "bb26_claim_compagg_clean_union_s1",
+    "repo": "gyaudhw/bb26_claim_compagg_clean_union_s1",
+    "overall": 40.59,
+    "nlp": 51.3,
+    "human_like": 3.09,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 929
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 1287
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 286
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": ""
+  },
+  {
+    "rank_model": "leviosa-baseline-medium",
+    "repo": "GorkaUrbizu/baseline-medium",
+    "overall": 40.55,
+    "nlp": 51.39,
+    "human_like": 2.6,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 570
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 230
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 150
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": ""
+  },
+  {
+    "rank_model": "bb26_claim_compagg_w025_synp_w025_s0",
+    "repo": "gyaudhw/bb26_claim_compagg_w025_synp_w025_s0",
+    "overall": 40.52,
+    "nlp": 51.14,
+    "human_like": 3.33,
+    "api_status": 400,
+    "api_error": "HTTPError: HTTP Error 400: Bad Request",
+    "siblings_count": 0,
+    "siblings_head": [],
+    "fetched_files": [
+      {
+        "file": "README.md",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "config.json",
+        "status": 200,
+        "chars_saved": 929
+      },
+      {
+        "file": "tokenizer_config.json",
+        "status": 200,
+        "chars_saved": 1287
+      },
+      {
+        "file": "special_tokens_map.json",
+        "status": 200,
+        "chars_saved": 286
+      },
+      {
+        "file": "training_args.bin",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "all_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      {
+        "file": "eval_results.json",
+        "status": 404,
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      }
+    ],
+    "readme_excerpt": ""
+  }
+]

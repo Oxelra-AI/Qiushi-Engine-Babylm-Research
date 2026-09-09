@@ -1,0 +1,3693 @@
+{
+  "status": "FACTORIZED_ROLE_ANCHOR",
+  "created_utc": "2026-09-03T23:40:35Z",
+  "config": {
+    "comp_cases": 4,
+    "anchor_cases": 2,
+    "sparse_cases": 1,
+    "epochs": 400,
+    "lr": 0.08,
+    "seeds": "11,12,13,14,15",
+    "arms": "noheld_filler,exposure_only,true_anchor,shuffled_anchor,sparse_ctx_coverage,sparse_hyp_coverage"
+  },
+  "seen": [
+    "dax",
+    "feg",
+    "mip",
+    "lor"
+  ],
+  "held": [
+    "zup",
+    "niv",
+    "kem",
+    "rox"
+  ],
+  "role_map": {
+    "dax": 1,
+    "feg": 1,
+    "mip": -1,
+    "lor": -1,
+    "zup": 1,
+    "niv": 1,
+    "kem": -1,
+    "rox": -1
+  },
+  "equations": {
+    "p_A_positive": "sigmoid(theta_pred * orient_factor)",
+    "composition_prob": "p_ctx*p_hyp + (1-p_ctx)*(1-p_hyp)",
+    "anchor_prob": "probability queried entity has requested role under predicate coordinate"
+  },
+  "train_audits": {
+    "noheld_filler": {
+      "name": "noheld_filler",
+      "n": 384,
+      "label_counts": {
+        "0": 192,
+        "1": 192
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "seen_composition": {
+          "0": 128,
+          "1": 128
+        },
+        "seen_anchor": {
+          "0": 32,
+          "1": 32
+        },
+        "matched_filler": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "exposure_only": {
+      "name": "exposure_only",
+      "n": 384,
+      "label_counts": {
+        "0": 192,
+        "1": 192
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "seen_composition": {
+          "0": 128,
+          "1": 128
+        },
+        "seen_anchor": {
+          "0": 32,
+          "1": 32
+        },
+        "held_exposure_only": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "true_anchor": {
+      "name": "true_anchor",
+      "n": 384,
+      "label_counts": {
+        "0": 192,
+        "1": 192
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "seen_composition": {
+          "0": 128,
+          "1": 128
+        },
+        "seen_anchor": {
+          "0": 32,
+          "1": 32
+        },
+        "held_true_anchor": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "shuffled_anchor": {
+      "name": "shuffled_anchor",
+      "n": 384,
+      "label_counts": {
+        "0": 192,
+        "1": 192
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "seen_composition": {
+          "0": 128,
+          "1": 128
+        },
+        "seen_anchor": {
+          "0": 32,
+          "1": 32
+        },
+        "held_shuffled_anchor": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "sparse_ctx_coverage": {
+      "name": "sparse_ctx_coverage",
+      "n": 384,
+      "label_counts": {
+        "0": 192,
+        "1": 192
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "seen_composition": {
+          "0": 128,
+          "1": 128
+        },
+        "seen_anchor": {
+          "0": 32,
+          "1": 32
+        },
+        "held_sparse_ctx_composition": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "sparse_hyp_coverage": {
+      "name": "sparse_hyp_coverage",
+      "n": 384,
+      "label_counts": {
+        "0": 192,
+        "1": 192
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "seen_composition": {
+          "0": 128,
+          "1": 128
+        },
+        "seen_anchor": {
+          "0": 32,
+          "1": 32
+        },
+        "held_sparse_hyp_composition": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    }
+  },
+  "eval_audits": {
+    "seen_comp": {
+      "name": "seen_comp",
+      "n": 64,
+      "label_counts": {
+        "0": 32,
+        "1": 32
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "eval_seen_comp": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "held_hyp_only": {
+      "name": "held_hyp_only",
+      "n": 64,
+      "label_counts": {
+        "0": 32,
+        "1": 32
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "eval_held_hyp_only": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "held_ctx_only": {
+      "name": "held_ctx_only",
+      "n": 64,
+      "label_counts": {
+        "0": 32,
+        "1": 32
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "eval_held_ctx_only": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    },
+    "held_both": {
+      "name": "held_both",
+      "n": 64,
+      "label_counts": {
+        "0": 32,
+        "1": 32
+      },
+      "true_frac": 0.5,
+      "kind_label_counts": {
+        "eval_held_both": {
+          "0": 32,
+          "1": 32
+        }
+      }
+    }
+  },
+  "aggregates": {
+    "noheld_filler": {
+      "n": 5,
+      "n_fit": 0,
+      "train_acc": {
+        "mean": 0.9166666666666666,
+        "seeds": [
+          0.9166666666666666,
+          0.9166666666666666,
+          0.9166666666666666,
+          0.9166666666666666,
+          0.9166666666666666
+        ]
+      },
+      "eval_fit": {
+        "seen_comp": {
+          "mean": NaN,
+          "seeds": []
+        },
+        "held_hyp_only": {
+          "mean": NaN,
+          "seeds": []
+        },
+        "held_ctx_only": {
+          "mean": NaN,
+          "seeds": []
+        },
+        "held_both": {
+          "mean": NaN,
+          "seeds": []
+        }
+      },
+      "eval_raw": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 0.55,
+          "seeds": [
+            0.0,
+            0.75,
+            0.5,
+            0.5,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 0.55,
+          "seeds": [
+            0.0,
+            0.75,
+            0.5,
+            0.5,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 0.725,
+          "seeds": [
+            1.0,
+            0.625,
+            0.5,
+            0.5,
+            1.0
+          ]
+        }
+      },
+      "held_sign_accuracy_fit": NaN
+    },
+    "exposure_only": {
+      "n": 5,
+      "n_fit": 0,
+      "train_acc": {
+        "mean": 0.9166666666666666,
+        "seeds": [
+          0.9166666666666666,
+          0.9166666666666666,
+          0.9166666666666666,
+          0.9166666666666666,
+          0.9166666666666666
+        ]
+      },
+      "eval_fit": {
+        "seen_comp": {
+          "mean": NaN,
+          "seeds": []
+        },
+        "held_hyp_only": {
+          "mean": NaN,
+          "seeds": []
+        },
+        "held_ctx_only": {
+          "mean": NaN,
+          "seeds": []
+        },
+        "held_both": {
+          "mean": NaN,
+          "seeds": []
+        }
+      },
+      "eval_raw": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 0.55,
+          "seeds": [
+            0.0,
+            0.75,
+            0.5,
+            0.5,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 0.55,
+          "seeds": [
+            0.0,
+            0.75,
+            0.5,
+            0.5,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 0.725,
+          "seeds": [
+            1.0,
+            0.625,
+            0.5,
+            0.5,
+            1.0
+          ]
+        }
+      },
+      "held_sign_accuracy_fit": NaN
+    },
+    "true_anchor": {
+      "n": 5,
+      "n_fit": 5,
+      "train_acc": {
+        "mean": 1.0,
+        "seeds": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "eval_fit": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "eval_raw": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "held_sign_accuracy_fit": 1.0
+    },
+    "shuffled_anchor": {
+      "n": 5,
+      "n_fit": 5,
+      "train_acc": {
+        "mean": 1.0,
+        "seeds": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "eval_fit": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 0.0,
+          "seeds": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 0.0,
+          "seeds": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "eval_raw": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 0.0,
+          "seeds": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 0.0,
+          "seeds": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "held_sign_accuracy_fit": 0.0
+    },
+    "sparse_ctx_coverage": {
+      "n": 5,
+      "n_fit": 5,
+      "train_acc": {
+        "mean": 1.0,
+        "seeds": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "eval_fit": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "eval_raw": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "held_sign_accuracy_fit": 1.0
+    },
+    "sparse_hyp_coverage": {
+      "n": 5,
+      "n_fit": 5,
+      "train_acc": {
+        "mean": 1.0,
+        "seeds": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "eval_fit": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "eval_raw": {
+        "seen_comp": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_hyp_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_ctx_only": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "held_both": {
+          "mean": 1.0,
+          "seeds": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "held_sign_accuracy_fit": 1.0
+    }
+  },
+  "cases": [
+    {
+      "arm": "noheld_filler",
+      "seed": 11,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "matched_filler": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 6.4827985763549805,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.490830898284912,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.482547760009766,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.486550807952881,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -0.005132622085511684,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -0.0026961953844875097,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 0.002461846452206373,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 0.004839252680540085,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6921516060829163,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6842816472053528,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6745877265930176,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6499888300895691,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5640066862106323,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3681858479976654,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16201098263263702,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.1315193474292755,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175283581018448,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781742423772812,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "noheld_filler",
+      "seed": 12,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "matched_filler": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.75,
+        "held_ctx_only": 0.75,
+        "held_both": 0.625
+      },
+      "params": {
+        "dax": {
+          "theta": 6.487936973571777,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.480218887329102,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.489718914031982,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.486358165740967,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 0.007858303375542164,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -0.010884376242756844,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -0.005598795134574175,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -0.00933622196316719,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6935585141181946,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6860759854316711,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6767637133598328,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6528787612915039,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5680516362190247,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.37133124470710754,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16218557953834534,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.1315212994813919,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175118923187256,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781658977270126,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "noheld_filler",
+      "seed": 13,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "matched_filler": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.5,
+        "held_ctx_only": 0.5,
+        "held_both": 0.5
+      },
+      "params": {
+        "dax": {
+          "theta": 6.492136001586914,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.4852705001831055,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.483516216278076,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.4838151931762695,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 0.011205719783902168,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -0.009622362442314625,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -0.003391095669940114,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 0.007329881191253662,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6939731240272522,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6866095066070557,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6774147152900696,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6537513136863708,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.569290041923523,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3723064363002777,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16223926842212677,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.13152170181274414,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.1217506006360054,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781630665063858,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "noheld_filler",
+      "seed": 14,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "matched_filler": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.5,
+        "held_ctx_only": 0.5,
+        "held_both": 0.5
+      },
+      "params": {
+        "dax": {
+          "theta": 6.478831768035889,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.483084678649902,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.490545272827148,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.491283893585205,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -0.003270355984568596,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 0.005212001036852598,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 0.01262210588902235,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -0.014680098742246628,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6931011080741882,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6854897141456604,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6760503649711609,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6519270539283752,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5667106509208679,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.37028273940086365,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16212762892246246,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.13152076303958893,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175175547599792,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781689524650574,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "noheld_filler",
+      "seed": 15,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "matched_filler": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 6.481943607330322,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.49110221862793,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.490246772766113,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.480588436126709,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 0.01068195328116417,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 0.001423932146281004,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -0.012753723189234734,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -0.0017689070664346218,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6932308673858643,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6856558918952942,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6762521862983704,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6521958708763123,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5670886039733887,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3705774247646332,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16214393079280853,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.13152091205120087,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175159901380539,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781677603721619,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "exposure_only",
+      "seed": 11,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "held_exposure_only": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 6.4827985763549805,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.490830898284912,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.482547760009766,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.486550807952881,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -0.005132622085511684,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -0.0026961953844875097,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 0.002461846452206373,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 0.004839252680540085,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6921516060829163,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6842816472053528,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6745877265930176,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6499888300895691,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5640066862106323,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3681858479976654,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16201098263263702,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.1315193474292755,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175283581018448,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781742423772812,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "exposure_only",
+      "seed": 12,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "held_exposure_only": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.75,
+        "held_ctx_only": 0.75,
+        "held_both": 0.625
+      },
+      "params": {
+        "dax": {
+          "theta": 6.487936973571777,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.480218887329102,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.489718914031982,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.486358165740967,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 0.007858303375542164,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -0.010884376242756844,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -0.005598795134574175,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -0.00933622196316719,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6935585141181946,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6860759854316711,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6767637133598328,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6528787612915039,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5680516362190247,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.37133124470710754,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16218557953834534,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.1315212994813919,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175118923187256,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781658977270126,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "exposure_only",
+      "seed": 13,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "held_exposure_only": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.5,
+        "held_ctx_only": 0.5,
+        "held_both": 0.5
+      },
+      "params": {
+        "dax": {
+          "theta": 6.492136001586914,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.4852705001831055,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.483516216278076,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.4838151931762695,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 0.011205719783902168,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -0.009622362442314625,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -0.003391095669940114,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 0.007329881191253662,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6939731240272522,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6866095066070557,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6774147152900696,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6537513136863708,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.569290041923523,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3723064363002777,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16223926842212677,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.13152170181274414,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.1217506006360054,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781630665063858,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "exposure_only",
+      "seed": 14,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "held_exposure_only": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.5,
+        "held_ctx_only": 0.5,
+        "held_both": 0.5
+      },
+      "params": {
+        "dax": {
+          "theta": 6.478831768035889,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.483084678649902,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.490545272827148,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.491283893585205,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -0.003270355984568596,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 0.005212001036852598,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 0.01262210588902235,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -0.014680098742246628,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6931011080741882,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6854897141456604,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6760503649711609,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6519270539283752,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5667106509208679,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.37028273940086365,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16212762892246246,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.13152076303958893,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175175547599792,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781689524650574,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "exposure_only",
+      "seed": 15,
+      "train_acc": 0.9166666666666666,
+      "train_kind_acc": {
+        "held_exposure_only": 0.5,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 6.481943607330322,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 6.49110221862793,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -6.490246772766113,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -6.480588436126709,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 0.01068195328116417,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 0.001423932146281004,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -0.012753723189234734,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -0.0017689070664346218,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6932308673858643,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6856558918952942,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6762521862983704,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6521958708763123,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5670886039733887,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3705774247646332,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 50,
+          "loss": 0.16214393079280853,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 100,
+          "loss": 0.13152091205120087,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 200,
+          "loss": 0.12175159901380539,
+          "train_acc": 0.9166666666666666
+        },
+        {
+          "epoch": 400,
+          "loss": 0.11781677603721619,
+          "train_acc": 0.9166666666666666
+        }
+      ]
+    },
+    {
+      "arm": "true_anchor",
+      "seed": 11,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_true_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6619973182678223,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.673774242401123,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.661625862121582,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6675007343292236,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4863499402999878,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4886856079101562,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4889103174209595,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4866312742233276,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.692467212677002,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.678051233291626,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6620853543281555,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6257756352424622,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5153457522392273,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.28865697979927063,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "true_anchor",
+      "seed": 12,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_true_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6537896394729614,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6424381732940674,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6564069986343384,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6514716148376465,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4988036155700684,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4808366298675537,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4966375827789307,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.500220775604248,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6933119297027588,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6793060302734375,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6637441515922546,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6281928420066833,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5190222859382629,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.29159286618232727,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "true_anchor",
+      "seed": 13,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_true_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6550812721252441,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.64499831199646,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6424168348312378,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6428548097610474,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.502013087272644,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4820466041564941,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4945212602615356,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4842438697814941,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.694023609161377,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.680124819278717,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.664668619632721,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6293153166770935,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.520455539226532,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.2926788926124573,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "true_anchor",
+      "seed": 14,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_true_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.645650029182434,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6519099473953247,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.662865161895752,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6639440059661865,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4881353378295898,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4962667226791382,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4791711568832397,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.5053439140319824,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6930198073387146,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6788785457611084,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6631831526756287,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6273801922798157,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5177899599075317,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.29060614109039307,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "true_anchor",
+      "seed": 15,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_true_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6487537622451782,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6622065305709839,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.660951018333435,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6467546224594116,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.5015108585357666,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4926352500915527,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.5034973621368408,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4929662942886353,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6926774978637695,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6785914301872253,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6629505157470703,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6272518038749695,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5178580284118652,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.2907245457172394,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "shuffled_anchor",
+      "seed": 11,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_shuffled_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6619973182678223,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.673774242401123,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.661625862121582,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6675007343292236,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -1.4961907863616943,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -1.4938548803329468,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 1.4936304092407227,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 1.495909333229065,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6918366551399231,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6774459481239319,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6615052223205566,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6252451539039612,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5149322152137756,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.28842175006866455,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "shuffled_anchor",
+      "seed": 12,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_shuffled_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6537896394729614,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6424381732940674,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6564069986343384,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6514716148376465,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -1.4837372303009033,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -1.5017050504684448,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 1.4859031438827515,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 1.4823206663131714,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6938081383705139,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6797823905944824,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6642007231712341,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6286103129386902,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5193478465080261,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.29177799820899963,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "shuffled_anchor",
+      "seed": 13,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_shuffled_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6550812721252441,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.64499831199646,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6424168348312378,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6428548097610474,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -1.480528712272644,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -1.5004949569702148,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 1.4880194664001465,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 1.498297095298767,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6939255595207214,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6800306439399719,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6645782589912415,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6292327046394348,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5203911662101746,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.2926422655582428,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "shuffled_anchor",
+      "seed": 14,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_shuffled_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.645650029182434,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6519099473953247,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.662865161895752,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6639440059661865,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -1.4944055080413818,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -1.4862737655639648,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 1.503371000289917,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 1.4771983623504639,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6931865215301514,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6790385246276855,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.663336455821991,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6275203824043274,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5178993344306946,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.29066839814186096,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "shuffled_anchor",
+      "seed": 15,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_shuffled_anchor": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 0.0,
+        "held_ctx_only": 0.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6487537622451782,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6622065305709839,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.660951018333435,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6467546224594116,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": -1.481030821800232,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": -1.4899052381515503,
+          "learned_sign": -1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": 1.479044795036316,
+          "learned_sign": 1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": 1.4895745515823364,
+          "learned_sign": 1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6937869191169739,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.679656445980072,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6639713644981384,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6281852722167969,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.518585741519928,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.29113855957984924,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_ctx_coverage",
+      "seed": 11,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_ctx_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.663432002067566,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6752140522003174,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6630606651306152,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.668938159942627,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.598488450050354,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.6009063720703125,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.6011391878128052,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.5987794399261475,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6921534538269043,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.683991014957428,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6735906600952148,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6462454795837402,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5462504029273987,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.30934837460517883,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_ctx_coverage",
+      "seed": 12,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_ctx_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6569732427597046,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6456025838851929,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.659595251083374,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6546509265899658,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4293910264968872,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4107697010040283,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4271464347839355,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4308593273162842,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6935591101646423,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6863166689872742,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6768897175788879,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6514161229133606,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5548275113105774,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.31678101420402527,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_ctx_coverage",
+      "seed": 13,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_ctx_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6582660675048828,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6481659412384033,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6455802917480469,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6460189819335938,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4232523441314697,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.40255606174469,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.41548752784729,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4048343896865845,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6939727663993835,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6868443489074707,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6775869727134705,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6524479985237122,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5564731955528259,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3181972801685333,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_ctx_coverage",
+      "seed": 14,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_ctx_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.646939992904663,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6532024145126343,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6641613245010376,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6652408838272095,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.585895299911499,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.594308853149414,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.5766185522079468,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.603699803352356,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6931009292602539,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6852188110351562,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6751275658607483,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6483811736106873,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5494159460067749,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.31192025542259216,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_ctx_coverage",
+      "seed": 15,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_ctx_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6519325971603394,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.665408730506897,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6641508340835571,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6499296426773071,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4387531280517578,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.429557204246521,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.440811038017273,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.42989981174469,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.693230926990509,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6858970522880554,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6763374209403992,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6506032943725586,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5535412430763245,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.315682590007782,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_hyp_coverage",
+      "seed": 11,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_hyp_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.663432002067566,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6752140522003174,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6630606651306152,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.668938159942627,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.598488450050354,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.6009063720703125,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.6011391878128052,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.5987794399261475,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6921534538269043,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.683991014957428,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6735906004905701,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.646245539188385,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5462503433227539,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.30934837460517883,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_hyp_coverage",
+      "seed": 12,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_hyp_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6569732427597046,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6456025838851929,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.659595251083374,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6546509265899658,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4293911457061768,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4107697010040283,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4271464347839355,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4308593273162842,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6935591101646423,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6863166689872742,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6768897175788879,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6514161229133606,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5548275113105774,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.31678101420402527,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_hyp_coverage",
+      "seed": 13,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_hyp_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6582660675048828,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6481659412384033,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6455802917480469,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6460189819335938,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4232523441314697,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.4025561809539795,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.41548752784729,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.4048343896865845,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6939728260040283,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6868442893028259,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6775870323181152,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6524479985237122,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5564732551574707,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.3181973397731781,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_hyp_coverage",
+      "seed": 14,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_hyp_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.646939992904663,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.6532025337219238,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6641613245010376,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6652408838272095,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.585895299911499,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.594308853149414,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.5766185522079468,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.603699803352356,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6931009888648987,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 2,
+          "loss": 0.685218870639801,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6751275062561035,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6483811736106873,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5494160056114197,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.31192025542259216,
+          "train_acc": 1.0
+        }
+      ]
+    },
+    {
+      "arm": "sparse_hyp_coverage",
+      "seed": 15,
+      "train_acc": 1.0,
+      "train_kind_acc": {
+        "held_sparse_hyp_composition": 1.0,
+        "seen_anchor": 1.0,
+        "seen_composition": 1.0
+      },
+      "eval": {
+        "seen_comp": 1.0,
+        "held_hyp_only": 1.0,
+        "held_ctx_only": 1.0,
+        "held_both": 1.0
+      },
+      "params": {
+        "dax": {
+          "theta": 1.6519325971603394,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "feg": {
+          "theta": 1.665408730506897,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "mip": {
+          "theta": -1.6641508340835571,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "lor": {
+          "theta": -1.6499296426773071,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "zup": {
+          "theta": 1.4387531280517578,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "niv": {
+          "theta": 1.429557204246521,
+          "learned_sign": 1,
+          "true_sign": 1
+        },
+        "kem": {
+          "theta": -1.4408111572265625,
+          "learned_sign": -1,
+          "true_sign": -1
+        },
+        "rox": {
+          "theta": -1.42989981174469,
+          "learned_sign": -1,
+          "true_sign": -1
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.6932311058044434,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6858970522880554,
+          "train_acc": 0.8333333333333334
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6763373017311096,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6506032943725586,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5535412430763245,
+          "train_acc": 1.0
+        },
+        {
+          "epoch": 20,
+          "loss": 0.315682590007782,
+          "train_acc": 1.0
+        }
+      ]
+    }
+  ],
+  "interpretation": "If true_anchor fits and reaches held_hyp_only/held_ctx_only while exposure/noheld remain at chance and shuffled_anchor inverts mixed held-seen surfaces, flat role anchors are sufficient coordinates for compositional reuse in this factorized learner. Sparse coverage shows how ordinary composition rows compare when spent directly on held predicates."
+}

@@ -1,0 +1,129 @@
+{
+  "status": "FW_MECHANISM_SOURCE_SELECTION",
+  "created_utc": "2026-08-30T16:47:57Z",
+  "purpose": "CPU-only source selection and prompt preparation for mechanism-scale FineWeb source-compact family",
+  "no_training_or_eval_launched": true,
+  "source_pool_inputs": {
+    "v3_stable": {
+      "path": "experiments/archive/representation_and_objectives/data/live_fineweb_source_selector_v3/live_fineweb_selector_v3_stable.jsonl",
+      "rows": 23364,
+      "sha256": "3d16d62e327ecd34024f3e0cf4237c3e8415ec62f1240c51cb4f4eeca47353ba"
+    },
+    "v5_strictstable": {
+      "path": "experiments/archive/representation_and_objectives/data/live_fineweb_selector_v5_strictstable/live_fineweb_selector_v5_kept.jsonl",
+      "rows": 11415,
+      "sha256": "ecee352c9c5a720c6f759ecc1bf81af1dfd058597aaaaa0698f771932f19f72e"
+    },
+    "quality_v2_kept": {
+      "path": "experiments/archive/representation_and_objectives/data/live_fineweb_quality_tiers/live_fineweb_quality_v2_kept.jsonl",
+      "rows": 11564,
+      "sha256": "e78df7d0fa271d177655a4511e7afcbab8a2845a6afda191090a094ac7b987eb"
+    }
+  },
+  "a02_compact_pairs_input": {
+    "path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "pairs": 12152,
+    "sha256": "d2a3110c110e216180b632ce7a181acdf348b804ea19f172e16b5afeb0d8c9fc"
+  },
+  "union_summary": {
+    "unique_sources": 38167,
+    "total_source_words": 875891,
+    "sources_with_a02_rewrites": 12152
+  },
+  "selection_summary": {
+    "selected_sources": 38167,
+    "selected_source_words": 875891,
+    "source_word_stats": {
+      "n": 38167,
+      "sum": 875891.0,
+      "mean": 22.9489,
+      "median": 22.0,
+      "p05": 12.0,
+      "p90": 35.0,
+      "p95": 38.0,
+      "min": 10.0,
+      "max": 48.0
+    },
+    "unique_docs": 8558,
+    "domain_counts": {
+      "no_domain": 26395,
+      "geography": 4853,
+      "quant": 3754,
+      "history_society": 3653,
+      "science": 2486
+    },
+    "n_with_existing_rewrite": 12152,
+    "n_needing_new_rewrite": 26015
+  },
+  "budgets": {
+    "source_words_total": 875891,
+    "existing_rewrite_words": 161669,
+    "expected_new_rewrite_words": 456550,
+    "estimated_total_rewrite_words": 618219,
+    "estimated_pair_words": 1494110,
+    "n_with_existing_rewrite": 12152,
+    "n_needing_new_rewrite": 26015,
+    "retained_qwen_words": 586201,
+    "official_words": 7919680,
+    "neutral_topup": 9,
+    "total_10M": 10000000,
+    "shared_tokenizer_pool_words": 9381781
+  },
+  "prompt_summary": {
+    "n_prompts": 26015,
+    "prompt_source_words": 614161,
+    "prompt_target_words_sum": 456550,
+    "expected_ratio": 0.7434,
+    "prompt_file": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_compact_prompts.jsonl",
+    "prompt_file_sha256": "b22e933922754168a1f2acececda3733924f16699290ce85df2a2fcea8f898bf"
+  },
+  "arm_specifications": {
+    "compact_view": {
+      "description": "FineWeb source + compact rewrite pairs",
+      "fineweb_block_content": "source_sentence \\n compact_rewrite",
+      "companion_type": "compact_rewrite"
+    },
+    "source_repeat": {
+      "description": "Same FineWeb sources, deterministic source repetition filling same word budget",
+      "fineweb_block_content": "source_sentence \\n repeated_source_prefix",
+      "companion_type": "source_repeat"
+    },
+    "source_diversity": {
+      "description": "Same first-span sources, different FineWeb sources from held-out pool filling second span",
+      "fineweb_block_content": "source_sentence \\n different_source_sentence",
+      "companion_type": "diverse_source",
+      "note": "construct if feasible; train after compact/repeat comparison"
+    }
+  },
+  "common_across_arms": {
+    "official_babylm_words": 7919680,
+    "retained_qwen_words": 586201,
+    "neutral_topup_words": 9,
+    "fineweb_source_words": 875891,
+    "note": "All arms share the same official rows, retained Qwen rows, neutral topup, and FineWeb source sentences. They differ only in the companion text accompanying each source sentence."
+  },
+  "shared_tokenizer_specification": {
+    "description": "Shared compliant tokenizer trained on text common to all arms (~9.33M words)",
+    "components": {
+      "official_babylm": 7919680,
+      "retained_qwen_paraphrase": 586201,
+      "fineweb_source_spans": 875891,
+      "neutral_topup": 9
+    },
+    "total_words": 9381781,
+    "rationale": "separate arm-specific tokenizers would entangle compact alignment with segmentation, labels, and WWM geometry. First compare data effect under one representation; only after a real effect emerges should a treatment-specific tokenizer optimise the SOTA endpoint."
+  },
+  "outputs": {
+    "manifest": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_source_selection.json",
+    "frozen_sources": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_frozen_sources.jsonl",
+    "compact_prompts": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_compact_prompts.jsonl",
+    "note": "research/notes/representation_and_objectives/fw_mechanism_source_selection.md"
+  },
+  "generation_next_steps": {
+    "1_generate_compact_rewrites": "Run Qwen3.5-9B on 26015 prompts (614,161 source words → ~456,550 target words). Use research-style batch generation or training generate.",
+    "2_validate_rewrites": "Check entity/number/content recall on new rewrites against source text. Reject/regenerate failures.",
+    "3_materialize_arms": "Once rewrites are validated, build three matched 10M corpora (compact_view, source_repeat, source_diversity) with exact word counts.",
+    "4_train_shared_tokenizer": "Train one 16k BPE tokenizer on the ~9,381,781-word common pool text."
+  },
+  "elapsed_sec": 2.8
+}

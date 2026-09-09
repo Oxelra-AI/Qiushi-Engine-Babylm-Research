@@ -1,0 +1,205 @@
+{
+  "status": "STRICTSMALLTOK_SURFACE_FIRST_PREFLIGHT",
+  "seed": "43122",
+  "preflight": {
+    "created_utc": "2026-08-30T00:15:41Z",
+    "seed": "43122",
+    "run_dir": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122",
+      "exists": true,
+      "size_bytes": 99
+    },
+    "model_root": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/hf_model",
+      "exists": true,
+      "size_bytes": 4096
+    },
+    "chck_100M": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/hf_model/chck_100M",
+      "exists": false,
+      "size_bytes": null
+    },
+    "required_aoa_missing_steps": [
+      "chck_80M",
+      "chck_90M",
+      "chck_100M"
+    ],
+    "tokenizers": {
+      "chck_1M/tokenizer.json": {
+        "record": {
+          "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/hf_model/chck_1M/tokenizer.json",
+          "exists": true,
+          "size_bytes": 1131787
+        },
+        "sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+        "matches_expected": true
+      },
+      "chck_100M/tokenizer.json": {
+        "record": {
+          "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/hf_model/chck_100M/tokenizer.json",
+          "exists": false,
+          "size_bytes": null
+        },
+        "sha256": null,
+        "matches_expected": false
+      }
+    },
+    "example_order_manifest": {
+      "seed": 43,
+      "selected_for_training_words": 100000000,
+      "num_consumed_examples": 647400,
+      "masking_curriculum": "wwm_fixed",
+      "mask_prob_start": 0.15,
+      "mask_prob_end": 0.15,
+      "switch_frac": 0.7,
+      "source_words_consumed": {
+        "childes": 25748800,
+        "qwen_pair_packed": 16568000,
+        "simple_wiki": 10590400,
+        "open_subtitles": 18294400,
+        "bnc_spoken": 5758400,
+        "gutenberg": 18593600,
+        "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+        "switchboard": 211200,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+      },
+      "data_source_type": "example_jsonl",
+      "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "example_jsonl_label": "cleanqwen_fineweb_compact_view_reinvest_strictsmalltok"
+    },
+    "train_command": null,
+    "command_manifest_path": "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/train_command_seed43122.json",
+    "command_manifest": {
+      "status": "STRICTSMALLTOKENIZER_RETRAIN_COMMAND",
+      "seed_key": "43122",
+      "run_dir": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122",
+      "train_file": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "train_file_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+      "expected_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+      "hash_ok": true,
+      "tokenizer_path": "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer",
+      "tokenizer_manifest": "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer/strictsmall_tokenizer_manifest.json",
+      "tokenizer_sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+      "changed_factor": "tokenizer only: trained from the same 10M pool instead of inherited Strict-100M tokenizer",
+      "fixed_recipe": {
+        "model_family": "DeBERTa-v2 masked LM",
+        "hidden_size": 480,
+        "n_layer": 8,
+        "n_head": 8,
+        "ffn_mult": 4,
+        "seed": 43,
+        "extra_init_seed": 43122,
+        "train_rng_seed": 43123,
+        "batch_size": 256,
+        "seq_length": 256,
+        "max_seq_length": 256,
+        "learning_rate": 0.001,
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01,
+        "masking_curriculum": "wwm_fixed",
+        "mask_prob_start": 0.15,
+        "mask_prob_end": 0.15,
+        "checkpoint_words": 1000000,
+        "max_word_exposure": 100000000,
+        "num_workers": 0,
+        "log_every": 50,
+        "dynamics_trace_every": 200
+      },
+      "command": [
+        "data/external/python",
+        "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+        "--example_jsonl",
+        "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+        "--example_jsonl_label",
+        "cleanqwen_fineweb_compact_view_reinvest_strictsmalltok",
+        "--example_jsonl_meta",
+        "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+        "--output_dir",
+        "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122",
+        "--tokenizer_path",
+        "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer",
+        "--tokenizer_label",
+        "strictsmall_compact_reinvest_16k",
+        "--hidden_size",
+        "480",
+        "--n_layer",
+        "8",
+        "--n_head",
+        "8",
+        "--ffn_mult",
+        "4",
+        "--seed",
+        "43",
+        "--extra_init_seed",
+        "43122",
+        "--train_rng_seed",
+        "43123",
+        "--batch_size",
+        "256",
+        "--seq_length",
+        "256",
+        "--max_seq_length",
+        "256",
+        "--learning_rate",
+        "0.001",
+        "--warmup_fraction",
+        "0.06",
+        "--weight_decay",
+        "0.01",
+        "--masking_curriculum",
+        "wwm_fixed",
+        "--mask_prob_start",
+        "0.15",
+        "--mask_prob_end",
+        "0.15",
+        "--checkpoint_words",
+        "1000000",
+        "--max_word_exposure",
+        "100000000",
+        "--num_workers",
+        "0",
+        "--log_every",
+        "50",
+        "--dynamics_trace_every",
+        "200"
+      ],
+      "cuda_visible_devices": "1"
+    },
+    "stream_hash_seen_in_train_command": null,
+    "stream_hash_seen_in_command_manifest": true,
+    "training_summary": {
+      "training_log": {
+        "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/training_log.jsonl",
+        "exists": true,
+        "size_bytes": 527876
+      },
+      "training_log_records": 1953,
+      "last_training_record": {
+        "step": 1953,
+        "loss": 2.6287879943847656,
+        "lr": 0.00013791204470691505,
+        "batch_words": 39457,
+        "cumulative_word_exposure": 77225243,
+        "seq_len": 256,
+        "masked_tokens": 8433,
+        "effective_mask_rate": 0.1504,
+        "mask_mode": "wwm",
+        "mask_prob_nominal": 0.15,
+        "elapsed_sec": 2928.5
+      },
+      "scientific_metrics": null
+    },
+    "expected": {
+      "tokenizer_sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+      "train_stream_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+      "data_order_seed": 43,
+      "extra_init_seed": 43122,
+      "train_rng_seed": 43123
+    }
+  },
+  "preflight_errors": [
+    "missing chck_100M",
+    "missing AoA ladder steps: ['chck_80M', 'chck_90M', 'chck_100M']",
+    "tokenizer chck_100M/tokenizer.json does not match expected sha"
+  ]
+}

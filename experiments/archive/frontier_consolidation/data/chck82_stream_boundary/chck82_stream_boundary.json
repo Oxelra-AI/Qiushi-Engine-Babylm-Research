@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-31T23:40:10Z",
+  "run_dir": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder",
+  "training_log": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/training_log.jsonl",
+  "target_checkpoint": "chck_82M",
+  "target_word_exposure": 82000000,
+  "full_cap": 100000000,
+  "boundary_update_record": {
+    "step": 2074,
+    "loss": 2.5113165378570557,
+    "lr": 8.764404876736248e-05,
+    "batch_words": 39943,
+    "cumulative_word_exposure": 82012495,
+    "seq_len": 256,
+    "masked_tokens": 8372,
+    "effective_mask_rate": 0.1469,
+    "mask_mode": "wwm",
+    "mask_prob_nominal": 0.15,
+    "elapsed_sec": 3827.7
+  },
+  "previous_update_record": {
+    "step": 2073,
+    "loss": 2.3736379146575928,
+    "lr": 8.801798659222676e-05,
+    "batch_words": 39264,
+    "cumulative_word_exposure": 81972552,
+    "seq_len": 256,
+    "masked_tokens": 8305,
+    "effective_mask_rate": 0.1476,
+    "mask_mode": "wwm",
+    "mask_prob_nominal": 0.15,
+    "elapsed_sec": 3826.0
+  },
+  "boundary_update": 2074,
+  "boundary_loader_step": 2074,
+  "boundary_batch_words": 39943,
+  "actual_cumulative_words_after_boundary_batch": 82012495,
+  "previous_cumulative_words": 81972552,
+  "overshoot_words": 12495,
+  "remaining_legal_charged_words_after_chck82": 17987505,
+  "tail_start_loader_step_1indexed": 2075,
+  "tail_start_row_index_0based_if_batch256": 530944,
+  "tail_skip_rows_if_reusing_same_stream_batching": 530944,
+  "batch_size_assumed": 256,
+  "metrics_chck82_record": {
+    "name": "chck_82M",
+    "target_word_exposure": 82000000,
+    "actual_cumulative_word_exposure": 82012495,
+    "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M"
+  },
+  "checks": {
+    "boundary_matches_metrics_chck82_words": true,
+    "boundary_crosses_target_from_below": true,
+    "remaining_positive": true,
+    "remaining_within_cap": true,
+    "training_log_has_expected_updates": true,
+    "all_checks_passed": true
+  },
+  "scientific_reading": "For a frozen-82M tail, the slow function already consumed the full batch ending at the boundary update. Any remaining-exposure private training should start from the next stream batch/row and cap total new charged words at 17,987,505 so the full model remains at or below 100M counted-word exposure."
+}

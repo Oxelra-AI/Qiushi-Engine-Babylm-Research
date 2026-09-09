@@ -1,0 +1,144 @@
+{
+  "status": "DUALVIEW_TRAINING_TRAJECTORY_COMPARE",
+  "aligned_run": "experiments/archive/frontier_consolidation/training/runs/dualview_aligned_20M_seed43022",
+  "shuffled_run": "experiments/archive/frontier_consolidation/training/runs/dualview_shuffled_20M_seed43022",
+  "aligned_metrics": {
+    "status": "DUAL_VIEW_CORRECTED",
+    "mode": "aligned",
+    "aux_lambda": 1.0,
+    "aux_gradient": "adapter_only",
+    "aux_views": "conditioned_plus_source_free",
+    "max_word_exposure_is_charged": true,
+    "stopped_before_cap": true,
+    "updates": 481,
+    "schedule_total": 2529,
+    "total_main_word_exposure": 19021584,
+    "total_aux_word_exposure": 966720,
+    "total_charged_words": 19988304,
+    "total_params": 35463008,
+    "adapter_params": 995584,
+    "gradient_checkpointing": true,
+    "aux_micro_batch_size": 8,
+    "first_loss": 9.837543487548828,
+    "final_loss": 4.379467487335205,
+    "mean_loss": 5.580605917313986,
+    "mean_aux_loss": 7.470588489233876,
+    "aux_loss_batches": 481,
+    "elapsed_sec": 1015.04
+  },
+  "shuffled_metrics": {
+    "status": "DUAL_VIEW_CORRECTED",
+    "mode": "shuffled",
+    "aux_lambda": 1.0,
+    "aux_gradient": "adapter_only",
+    "aux_views": "conditioned_plus_source_free",
+    "max_word_exposure_is_charged": true,
+    "stopped_before_cap": true,
+    "updates": 481,
+    "schedule_total": 2529,
+    "total_main_word_exposure": 19021584,
+    "total_aux_word_exposure": 966720,
+    "total_charged_words": 19988304,
+    "total_params": 35463008,
+    "adapter_params": 995584,
+    "gradient_checkpointing": true,
+    "aux_micro_batch_size": 8,
+    "first_loss": 9.837543487548828,
+    "final_loss": 4.439597129821777,
+    "mean_loss": 5.612265186349468,
+    "mean_aux_loss": 7.532271432331365,
+    "aux_loss_batches": 481,
+    "elapsed_sec": 1822.2
+  },
+  "accounting": {
+    "n_aligned": 481,
+    "n_shuffled": 481,
+    "same_length": true,
+    "diff_counts": {
+      "update": 0,
+      "loader_step": 0,
+      "batch_words": 0,
+      "aux_words": 0,
+      "cumulative_main_words": 0,
+      "cumulative_aux_words": 0,
+      "cumulative_charged_words": 0,
+      "masked_tokens": 0,
+      "aux_targets": 0,
+      "aux_units": 0,
+      "aux_conditioned_views": 0,
+      "aux_free_views": 0,
+      "lr": 0
+    },
+    "first_diff": {},
+    "all_equal": true
+  },
+  "loss_comparison": {
+    "key": "loss",
+    "mean_aligned_minus_shuffled": -0.03165926903548211,
+    "stdev": 0.038219995826651386,
+    "min": -0.1481175422668457,
+    "max": 0.10889911651611328,
+    "final_aligned_minus_shuffled": -0.060129642486572266,
+    "aligned_lower_count": 380,
+    "aligned_higher_count": 98,
+    "zero_count": 3,
+    "windows": {
+      "1-50": {
+        "mean_aligned_minus_shuffled": -0.00011173248291015625
+      },
+      "51-100": {
+        "mean_aligned_minus_shuffled": 0.012378501892089843
+      },
+      "101-150": {
+        "mean_aligned_minus_shuffled": 0.0024766445159912108
+      },
+      "151-250": {
+        "mean_aligned_minus_shuffled": -0.03695815563201904
+      },
+      "251-350": {
+        "mean_aligned_minus_shuffled": -0.04191726207733154
+      },
+      "351-481": {
+        "mean_aligned_minus_shuffled": -0.06166211703351436
+      }
+    }
+  },
+  "aux_loss_comparison": {
+    "key": "aux_loss",
+    "mean_aligned_minus_shuffled": -0.06168294309748925,
+    "stdev": 0.08664762314571696,
+    "min": -0.31701690394703874,
+    "max": 0.20696051615589095,
+    "final_aligned_minus_shuffled": -0.0909158793929361,
+    "aligned_lower_count": 361,
+    "aligned_higher_count": 120,
+    "zero_count": 0,
+    "windows": {
+      "1-50": {
+        "mean_aligned_minus_shuffled": -0.0011292085204032353
+      },
+      "51-100": {
+        "mean_aligned_minus_shuffled": 0.00030225760963555005
+      },
+      "101-150": {
+        "mean_aligned_minus_shuffled": -0.033947905556140266
+      },
+      "151-250": {
+        "mean_aligned_minus_shuffled": -0.03452434276954924
+      },
+      "251-350": {
+        "mean_aligned_minus_shuffled": -0.094509207320975
+      },
+      "351-481": {
+        "mean_aligned_minus_shuffled": -0.11471296028621761
+      }
+    }
+  },
+  "loss_correlation": {
+    "main_loss_aligned_vs_shuffled": 0.9996735996943766,
+    "aux_loss_aligned_vs_shuffled": 0.994827676292182
+  },
+  "interpretation": "Aligned and shuffled have identical masks/targets/exposure. Lower aligned aux_loss means true source correspondence is useful to the private dual-view objective; official cheap7 and fragile-family results still decide whether this transfers to broad BabyLM competence.",
+  "out_json": "experiments/archive/frontier_consolidation/data/dualview_training_trajectory/aligned_vs_shuffled_training_trajectory.json",
+  "out_md": "research/documents/frontier_consolidation/data/dualview_training_trajectory/aligned_vs_shuffled_training_trajectory.md"
+}

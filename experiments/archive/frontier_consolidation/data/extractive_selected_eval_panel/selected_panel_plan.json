@@ -1,0 +1,130 @@
+{
+  "status": "EXTRACTIVE_SELECTED_PANEL_PLAN",
+  "created_utc": "2026-09-02T06:40:39Z",
+  "out_dir": "experiments/archive/frontier_consolidation/data/extractive_selected_eval_panel",
+  "wrapper": "experiments/archive/frontier_consolidation/scripts/eval_custom_checkpoint.py",
+  "manifest_100M": "experiments/archive/frontier_consolidation/data/extractive_view_100m_streams/extractive_100m_streams_manifest.json",
+  "preflight": "experiments/archive/frontier_consolidation/data/extractive_view_pool_preflight/extractive_view_pool_preflight.json",
+  "a01_repeat_position_context": "experiments/archive/representation_and_objectives/data/repeat_position_coverage_audit/repeat_position_coverage_audit.json",
+  "a01_triangle_context": "experiments/archive/representation_and_objectives/data/compact_triangle_noaoa_eval/triangle_noaoa_summary.json",
+  "arms": {
+    "extractive_balanced": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/extractive_balanced_deberta100M_seed43022",
+      "role": "density/token-mass-nearest source-only view",
+      "treatment": "source words in source order, compact-like density, higher source coverage, no source-absent content",
+      "matched_tokenizer_coordinate": true,
+      "metrics": {
+        "exists": false,
+        "path": "experiments/archive/frontier_consolidation/training/runs/extractive_balanced_deberta100M_seed43022/scientific_metrics.json"
+      },
+      "requested_endpoints": {
+        "chck_60M": false,
+        "chck_70M": false,
+        "chck_80M": false,
+        "chck_90M": false,
+        "chck_100M": false
+      },
+      "existing_per_target_reuse": {
+        "chck_60M": null,
+        "chck_70M": null,
+        "chck_80M": null,
+        "chck_90M": null,
+        "chck_100M": null
+      }
+    },
+    "extractive_wide": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/extractive_wide_deberta100M_seed43022",
+      "role": "coverage/content-maximized source-only view",
+      "treatment": "source words in source order, high density and near-complete source coverage, no source-absent content",
+      "matched_tokenizer_coordinate": true,
+      "metrics": {
+        "exists": false,
+        "path": "experiments/archive/frontier_consolidation/training/runs/extractive_wide_deberta100M_seed43022/scientific_metrics.json"
+      },
+      "requested_endpoints": {
+        "chck_60M": false,
+        "chck_70M": false,
+        "chck_80M": false,
+        "chck_90M": false,
+        "chck_100M": false
+      },
+      "existing_per_target_reuse": {
+        "chck_60M": null,
+        "chck_70M": null,
+        "chck_80M": null,
+        "chck_90M": null,
+        "chck_100M": null
+      }
+    },
+    "legal_compact": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "role": "natural generated compact-view legal reference under research stock DeBERTa recipe",
+      "treatment": "source plus generated compact views with saved words reinvested into additional legal rows",
+      "matched_tokenizer_coordinate": true,
+      "metrics": {
+        "exists": true,
+        "path": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/scientific_metrics.json",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_first": 9.837543487548828,
+        "loss_last": 2.5525617599487305,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "saved_checkpoint_count": 100
+      },
+      "requested_endpoints": {
+        "chck_60M": true,
+        "chck_70M": true,
+        "chck_80M": true,
+        "chck_90M": true,
+        "chck_100M": true
+      },
+      "existing_per_target_reuse": {
+        "chck_60M": null,
+        "chck_70M": "experiments/archive/frontier_consolidation/data/legal_mature_treatment_effect_eval/per_target/complianttok_reinvest_seed43022_70M.json",
+        "chck_80M": "experiments/archive/frontier_consolidation/data/legal_mature_treatment_effect_eval/per_target/complianttok_reinvest_seed43022_80M.json",
+        "chck_90M": null,
+        "chck_100M": "experiments/archive/frontier_consolidation/data/compliant_full_eval/per_target/complianttok_reinvest_seed43022.json"
+      }
+    }
+  },
+  "checkpoints": [
+    "chck_60M",
+    "chck_70M",
+    "chck_80M",
+    "chck_90M",
+    "chck_100M"
+  ],
+  "cheap_columns": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA",
+    "Reading"
+  ],
+  "primary_readout": {
+    "stable_columns": [
+      "cheap6_no_GlobalPIQA",
+      "cheap5_no_GlobalPIQA_Reading",
+      "EWoK_plus_Entity",
+      "Supplement",
+      "Entity",
+      "COMPS"
+    ],
+    "primary_reference": "legal_compact",
+    "secondary_control": "clean_qwen_control_optional_80M_only",
+    "interpretation": "source-only success means an extractive arm approaches legal_compact on stable late selected families; the existing clean-Qwen 80M arm is optional effect-size context, while compact superiority over both source-only arms remains a bundled natural-compact difference rather than an isolated single-factor proof"
+  },
+  "staged_execution": {
+    "stage1_checkpoints": [
+      "chck_80M",
+      "chck_100M"
+    ],
+    "why_stage1_is_lowest_cost_reliable_first_readout": "legal_compact per-target payloads already exist for both 80M and 100M, so only four extractive selected evaluations are needed to detect a clear source-only failure or near-compact signal before spending on the full 60/70/90M late band and new legal_compact 60/90 references",
+    "continue_to_full_late_band_if": "stage1 is ambiguous, a source-only arm is close to legal_compact on stable families, or the two checkpoints disagree enough that temporal redistribution could change the scientific interpretation"
+  },
+  "no_training_upload_superglue_aoa_or_leaderboard": true
+}

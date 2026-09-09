@@ -1,0 +1,115 @@
+{
+  "status": "ACCEPTED_SHARDS_PROBE_FILTERED",
+  "created_utc": "2026-09-07T00:45:28Z",
+  "elapsed_sec": 135.46,
+  "thresholds": {
+    "jaccard_threshold": 0.8,
+    "heldout_query_containment_threshold": 0.95
+  },
+  "reference_meta": {
+    "heldout6992_rows": 6992,
+    "heldout2647_rows": 2647,
+    "compact_probe_pairs": 1626,
+    "wiki_pairs": 1200,
+    "reference_texts": 225109,
+    "reference_texts_by_screen": {
+      "heldout6992": 158295,
+      "heldout2647": 59962,
+      "compact_probe1626": 3252,
+      "wikilarge_probe1200": 3600
+    }
+  },
+  "original_shard_stats": {
+    "shard1": {
+      "pairs": 10377,
+      "pair_words": 489669,
+      "source_counts": {
+        "childes": 2376,
+        "simple_wiki": 1544,
+        "gutenberg": 4038,
+        "open_subtitles": 1179,
+        "bnc_spoken": 1190,
+        "switchboard": 50
+      }
+    },
+    "shard0": {
+      "pairs": 10482,
+      "pair_words": 498109,
+      "source_counts": {
+        "bnc_spoken": 1126,
+        "gutenberg": 4176,
+        "open_subtitles": 1142,
+        "simple_wiki": 1537,
+        "childes": 2450,
+        "switchboard": 51
+      }
+    }
+  },
+  "leakage_hit_rows": 40503,
+  "leakage_pair_count": 2691,
+  "leakage_pair_count_by_shard": {
+    "shard0": 1357,
+    "shard1": 1334
+  },
+  "leakage_pair_words_by_shard": {
+    "shard0": 61613,
+    "shard1": 58602
+  },
+  "leakage_hits_by_screen": {
+    "heldout2647": 11020,
+    "heldout6992": 29483
+  },
+  "leakage_hits_by_type": {
+    "exact_norm": 4398,
+    "exact_token_subsequence": 12824,
+    "heldout_high_query_containment": 16216,
+    "high_jaccard": 7065
+  },
+  "clean_shard_stats": {
+    "shard1": {
+      "pairs": 9043,
+      "pair_words": 431067,
+      "source_counts": {
+        "childes": 1917,
+        "simple_wiki": 1381,
+        "gutenberg": 3621,
+        "open_subtitles": 1023,
+        "bnc_spoken": 1058,
+        "switchboard": 43
+      }
+    },
+    "shard0": {
+      "pairs": 9125,
+      "pair_words": 436496,
+      "source_counts": {
+        "gutenberg": 3742,
+        "open_subtitles": 1012,
+        "simple_wiki": 1386,
+        "childes": 1949,
+        "bnc_spoken": 994,
+        "switchboard": 42
+      }
+    }
+  },
+  "targets_available_after_filter": {
+    "dose21_target_words": 443200,
+    "dose25_topup_target_words": 400000,
+    "shard1_enough_for_dose21": false,
+    "shard0_enough_for_topup": true
+  },
+  "outputs": {
+    "clean_shard1": "experiments/archive/relation_learning/data/dose_leakage_audit/accepted_dose_arm_pairs_shard1_probe_clean.jsonl",
+    "clean_shard0": "experiments/archive/relation_learning/data/dose_leakage_audit/accepted_dose_arm_pairs_shard0_probe_clean.jsonl",
+    "hits_csv": "experiments/archive/relation_learning/data/dose_leakage_audit/accepted_shard_probe_leakage_hits.csv",
+    "hits_jsonl": "experiments/archive/relation_learning/data/dose_leakage_audit/accepted_shard_probe_leakage_hits.jsonl",
+    "exclude_pair_ids": "experiments/archive/relation_learning/data/dose_leakage_audit/accepted_shard_blocking_pair_ids_to_exclude.txt"
+  },
+  "input_sha256": {
+    "shard1": "733efd12bc46fdedc105c37c43a497f59d35400703d2322d3f86f9893354f9af",
+    "shard0": "534a962e6d6eb82717140acbc58f5d1747b6406aa70957344379ddddab057e79",
+    "heldout6992": "e1a28130141d52aaca34d752864cddc509bdc5a44a99994c44ca813db630fb0c",
+    "heldout2647": "5b56a820783963a3da33785b8dd7a7478c95e08f72d27ec4af2d3947f1d67c6d",
+    "wiki_pairs": "71d7399c02b9534fa342dbdd9f0f63fe2ac89ea1b7870ada21062dd53d6ad867"
+  },
+  "scientific_note": "These clean shard pools remove any accepted pair whose original or rewrite matched ordinary row-holdout, compact-probe, or WikiLarge-probe text under exact normalized, token-subsequence, high-Jaccard, or heldout high-containment screens. Use only these clean pools for GPU dose training."
+}

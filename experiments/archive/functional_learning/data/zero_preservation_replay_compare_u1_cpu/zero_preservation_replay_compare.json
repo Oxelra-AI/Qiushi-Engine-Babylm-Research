@@ -1,0 +1,116 @@
+{
+  "status": "ZERO_PRESERVATION_REPLAY_DIFFERS",
+  "created_utc": "2026-09-08T00:01:07Z",
+  "scientific_question": "Does the clean lambda=0 trainer reproduce the original (M,S) acquisition-only implementation on a short replay?",
+  "max_updates": 1,
+  "device_policy": "CPU/no CUDA",
+  "runs": {
+    "original_revision_075": {
+      "cmd": [
+        "data/external/python",
+        "experiments/archive/functional_learning/scripts/densemask_sparselabel_train.py",
+        "--objectives",
+        "correspondence_focus_weighted",
+        "--out-dir",
+        "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/original_revision_075",
+        "--max-updates",
+        "1",
+        "--checkpoint-every",
+        "1",
+        "--log-every",
+        "1",
+        "--train-seed",
+        "62064",
+        "--gpu",
+        "0"
+      ],
+      "returncode": 0,
+      "elapsed_sec": 177.5,
+      "stdout": "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/run_logs/original_stdout.log",
+      "stderr": "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/run_logs/original_stderr.log"
+    },
+    "clean_lambda0": {
+      "cmd": [
+        "data/external/python",
+        "experiments/archive/functional_learning/scripts/clean_preservation_train.py",
+        "--lambda-pres",
+        "0.0",
+        "--pres-student-mode",
+        "eval",
+        "--out-dir",
+        "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/clean_lambda0",
+        "--max-updates",
+        "1",
+        "--checkpoint-every",
+        "1",
+        "--log-every",
+        "1",
+        "--train-seed",
+        "62064",
+        "--gpu",
+        "0"
+      ],
+      "returncode": 0,
+      "elapsed_sec": 192.7,
+      "stdout": "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/run_logs/clean_stdout.log",
+      "stderr": "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/run_logs/clean_stderr.log"
+    }
+  },
+  "original_summary_path": "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/original_revision_075/correspondence_focus_weighted/train_summary.json",
+  "clean_summary_path": "experiments/archive/functional_learning/data/zero_preservation_replay_compare_u1_cpu/clean_lambda0/train_summary.json",
+  "original_completed_updates": 1,
+  "clean_completed_updates": 1,
+  "checkpoint_hashes": {
+    "original": "daabf480539502686c3227c5e1586a5011e2450685545593fb9795090db0a732",
+    "clean": "daabf480539502686c3227c5e1586a5011e2450685545593fb9795090db0a732",
+    "match": true
+  },
+  "log_diffs": [
+    {
+      "path": "update_1.pooled_loss",
+      "a": 2.6042266726684193,
+      "b": null
+    }
+  ],
+  "original_final_overlap": {
+    "update": 1,
+    "schedule_idx": 101,
+    "lr": 4.501593460398726e-05,
+    "rows": 252,
+    "words": 39652,
+    "cum_words": 39652,
+    "ordinary_target_tokens": 7894,
+    "focus_target_tokens": 247,
+    "qwen_rows": 33,
+    "qwen_focus_rows": 33,
+    "ordinary_wwm_rows": 219,
+    "focus_selected_groups": 184,
+    "focus_candidate_groups": 1217,
+    "focus_loss": 4.739164236586103,
+    "ordinary_loss": 2.537425357962609,
+    "pooled_loss": 2.6042266726684193,
+    "grad_norm_preclip": 0.20160141587257385,
+    "optimized_acquisition_loss": 2.8676861897561334
+  },
+  "clean_final_overlap": {
+    "update": 1,
+    "schedule_idx": 101,
+    "lr": 4.501593460398726e-05,
+    "rows": 252,
+    "words": 39652,
+    "cum_words": 39652,
+    "ordinary_target_tokens": 7894,
+    "focus_target_tokens": 247,
+    "qwen_rows": 33,
+    "qwen_focus_rows": 33,
+    "ordinary_wwm_rows": 219,
+    "focus_selected_groups": 184,
+    "focus_candidate_groups": 1217,
+    "focus_loss": 4.739164236586103,
+    "ordinary_loss": 2.537425357962609,
+    "pooled_loss": null,
+    "grad_norm_preclip": 0.20160141587257385,
+    "optimized_acquisition_loss": 2.8676861897561334
+  },
+  "interpretation": "A match supports using research clean trainer for controlled preservation tests. It does not validate nonzero preservation strength; that still needs direct training/evaluation."
+}

@@ -1,0 +1,32 @@
+{
+  "status": "BINDING_FACTORIAL_PLAN",
+  "created_utc": "2026-09-07T05:01:21Z",
+  "arm": "answer_clean",
+  "train_rows": "experiments/archive/relation_learning/data/recombination_rows/recombination_train.jsonl",
+  "heldout_rows": "experiments/archive/relation_learning/data/recombination_rows/recombination_heldout.jsonl",
+  "binding_pairs": "experiments/archive/relation_learning/data/recombination_rows/binding_pairs_heldout.jsonl",
+  "base_model": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_100M",
+  "source_sha256": {
+    "train": "c46367a8bb1088b2f3e7cf1b23cca5d713d77a06e504adb39ec4e9da265e2e14",
+    "heldout": "f3ab8d7e7df0c559fa85b65c30f3170a35613945fb568c45bb2eee91e6a88db7",
+    "binding_pairs": "812a20716778cc0040f10401faf7dee6ebf46b5cf0166105c4a25ae82822aee4"
+  },
+  "epochs": 20,
+  "batch_size": 16,
+  "eval_batch_size": 64,
+  "lr": 3e-05,
+  "weight_decay": 0.01,
+  "device_requested": "cuda:0",
+  "seed": 73073,
+  "max_length": 256,
+  "wwm_prob": 0.15,
+  "max_train_rows": 0,
+  "max_heldout_pairs": 0,
+  "out_dir": "experiments/archive/relation_learning/data/binding_factorial/answer_clean",
+  "design": {
+    "answer_clean": "answer tokens masked and labeled; source/update/query visible",
+    "uniform_wwm": "15% whole-word MLM over the same full rows; no forced answer target",
+    "answer_corrupt_update_state": "answer tokens masked/labeled; update-state evidence tokens masked in input only",
+    "readout": "margin-based source_state vs new_state PLL in the same final frame; joint correct requires both halves of each DISTRACTOR pair to have the correct margin sign"
+  }
+}

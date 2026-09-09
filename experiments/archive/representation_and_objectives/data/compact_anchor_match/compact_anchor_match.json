@@ -1,0 +1,163 @@
+{
+  "status": "A02_COMPACT_CAN_BE_USED_AS_FULLBATCH_ANCHOR",
+  "compact_stream": {
+    "a01_queued_path": "experiments/archive/representation_and_objectives/data/fw_source_breadth_arm/fw_preserved_compact_view_100M.jsonl",
+    "a02_path": "experiments/archive/representation_and_objectives/data/fw_source_breadth_arm/fw_preserved_compact_view_100M.jsonl",
+    "sha256": "c8d7f24b5edd2dad21f589c8cde72671d0b76038d9632fcd3d6c79178a24be68",
+    "expected_sha256": "c8d7f24b5edd2dad21f589c8cde72671d0b76038d9632fcd3d6c79178a24be68",
+    "same_path_and_sha": true
+  },
+  "tokenizer": {
+    "a01_queued_path": "experiments/archive/representation_and_objectives/data/shared_tokenizer/shared_16k_tokenizer",
+    "a02_tokenizer_sha256": "e70d167f620668130f88744998bd1bacbe05f6d0735012144fe501b271b04366",
+    "expected_sha256": "e70d167f620668130f88744998bd1bacbe05f6d0735012144fe501b271b04366",
+    "same": true
+  },
+  "recipe_match": {
+    "hidden_size": {
+      "a01_queued": "480",
+      "a02_compact": 480,
+      "same_string_value": true
+    },
+    "n_layer": {
+      "a01_queued": "8",
+      "a02_compact": 8,
+      "same_string_value": true
+    },
+    "n_head": {
+      "a01_queued": "8",
+      "a02_compact": 8,
+      "same_string_value": true
+    },
+    "ffn_mult": {
+      "a01_queued": "4",
+      "a02_compact": 4,
+      "same_string_value": true
+    },
+    "batch_size": {
+      "a01_queued": "256",
+      "a02_compact": 256,
+      "same_string_value": true
+    },
+    "seq_length": {
+      "a01_queued": "256",
+      "a02_compact": 256,
+      "same_string_value": true
+    },
+    "learning_rate": {
+      "a01_queued": "0.001",
+      "a02_compact": 0.001,
+      "same_string_value": true
+    },
+    "warmup_fraction": {
+      "a01_queued": "0.06",
+      "a02_compact": 0.06,
+      "same_string_value": true
+    },
+    "weight_decay": {
+      "a01_queued": "0.01",
+      "a02_compact": 0.01,
+      "same_string_value": true
+    },
+    "masking_curriculum": {
+      "a01_queued": "wwm_fixed",
+      "a02_compact": "wwm_fixed",
+      "same_string_value": true
+    },
+    "mask_prob_start": {
+      "a01_queued": "0.15",
+      "a02_compact": 0.15,
+      "same_string_value": true
+    },
+    "mask_prob_end": {
+      "a01_queued": "0.15",
+      "a02_compact": 0.15,
+      "same_string_value": true
+    },
+    "checkpoint_words": {
+      "a01_queued": "1000000",
+      "a02_compact": 1000000,
+      "same_string_value": true
+    },
+    "max_word_exposure": {
+      "a01_queued": "100000000",
+      "a02_compact": 100000000,
+      "same_string_value": true
+    }
+  },
+  "seed_match": {
+    "seed": {
+      "a01_queued": "43",
+      "a02_compact": 43,
+      "same_string_value": true
+    },
+    "extra_init_seed": {
+      "a01_queued": "43022",
+      "a02_compact": 43022,
+      "same_string_value": true
+    },
+    "train_rng_seed": {
+      "a01_queued": "43023",
+      "a02_compact": 43023,
+      "same_string_value": true
+    }
+  },
+  "a02_compact_manifest": {
+    "exists": true,
+    "selected_for_training_words": 100000000,
+    "num_consumed_examples": 641830,
+    "example_jsonl": "experiments/archive/representation_and_objectives/data/fw_source_breadth_arm/fw_preserved_compact_view_100M.jsonl",
+    "example_jsonl_label": "",
+    "source_words_consumed": {
+      "childes": 27126400,
+      "open_subtitles": 19272000,
+      "simple_wiki": 11156800,
+      "fw_preserved_compact_view": 8130050,
+      "gutenberg": 19588800,
+      "qwen_pair_packed": 8437750,
+      "bnc_spoken": 6065600,
+      "switchboard": 222400,
+      "neutral_topup_from_official": 200
+    },
+    "manifest_matches_expected_stream_words_rows": true
+  },
+  "a02_compact_progress": {
+    "training_log_exists": true,
+    "last_training_record": {
+      "step": 438,
+      "loss": 3.7484724521636963,
+      "lr": 0.0009636418201259489,
+      "batch_words": 40008,
+      "cumulative_word_exposure": 17470124,
+      "seq_len": 256,
+      "masked_tokens": 8561,
+      "effective_mask_rate": 0.1464,
+      "mask_mode": "wwm",
+      "mask_prob_nominal": 0.15,
+      "elapsed_sec": 761.6
+    },
+    "scientific_metrics_exists": false,
+    "train_result_exists": false
+  },
+  "trainer_difference": {
+    "a01_queued_trainer": "experiments/archive/representation_and_objectives/scripts/accumulated_masking_curriculum_trainer.py",
+    "a01_queued_trainer_sha256": "bcf717f148ad3da566a4357b55787f8e45c78697af627c2a8d6517d0ed050fee",
+    "a02_trainer": "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+    "a02_trainer_sha256": "d3cd4a46c0dd28b5dbc3443e564b72879c393d6c7e5212590764aa7786fbd5d4",
+    "meaning": "A02 uses the original full 256-row batch trainer. The cancelled A01 pair would have used a memory-splitting trainer with effective batch 256 and microbatch 64; this is not bit-identical because dropout is executed in smaller chunks, even though mask sampling and masked-token weighting are designed to preserve the effective update."
+  },
+  "non_training_differences": {
+    "a02_example_jsonl_label_blank": true,
+    "a01_would_record_label": "fw_preserved_compact_view_shared16k",
+    "a02_uses_default_tokenizer_label_in_output": true,
+    "a01_would_record_tokenizer_label": "shared_16k",
+    "meaning": "These affect metadata strings only, not tokenization, model parameters, batches, masks, optimizer steps, or text exposure."
+  },
+  "decision": {
+    "cancel_duplicate_compact": true,
+    "train_only_a01_interleaved_breadth": true,
+    "training_coordinate_for_interleaved_breadth": "Use the same COMPACT_EXPERIENCE full-batch trainer and same explicit arguments as A02, changing only the data stream and output directory.",
+    "reason": "A02 compact has the same stream, tokenizer, architecture, optimizer, masking, seeds, exposure, and row order needed as the compact anchor. The original A01 microbatch pair coordinate is different enough that sharing would not be exact there, so A01 should move its interleaved breadth arm onto the A02 full-batch coordinate rather than repeat compact."
+  },
+  "same_update_coordinate_if_interleaved_is_rebased_to_a02_fullbatch": true
+}

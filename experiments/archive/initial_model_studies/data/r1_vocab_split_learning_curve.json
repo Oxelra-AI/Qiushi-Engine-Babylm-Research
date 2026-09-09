@@ -1,0 +1,2269 @@
+{
+  "status": "R1_VOCAB_SPLIT_CURVE",
+  "readout": "pair-summed frozen MLM-head margin; both contexts must be correct for state-sensitive success",
+  "device": "cuda",
+  "n_pairs": 200,
+  "seed": 2000,
+  "splits": {
+    "train_vocab": {
+      "records_sample": [
+        {
+          "passage_a": "Initially, the statue is in the kitchen. Initially, the vase is in the attic. Initially, the plant is in the kitchen. Initially, the photo is in the kitchen. Someone took what was in the attic and placed it in the closet. Someone took what was in the closet and placed it in the kitchen. the statue was moved from the kitchen to the study. the statue ended up in the kitchen after being in the study. the photo ended up in the cellar after being in the kitchen. After all these changes, the statue is in the kitchen.",
+          "passage_b": "Initially, the statue is in the kitchen. Initially, the vase is in the attic. Initially, the plant is in the kitchen. Initially, the photo is in the kitchen. Someone took what was in the attic and placed it in the closet. Someone took what was in the closet and placed it in the kitchen. the statue ended up in the kitchen after being in the study. the statue was moved from the kitchen to the study. the photo ended up in the cellar after being in the kitchen. After all these changes, the statue is in the study.",
+          "answer_a": "the kitchen",
+          "answer_b": "the study",
+          "answer_token_len": 2,
+          "query_obj": "the statue",
+          "word_count_a": 98,
+          "word_count_b": 98
+        },
+        {
+          "passage_a": "Initially, the lamp is in the attic. Initially, the cushion is in the attic. Initially, the statue is in the porch. Initially, the basket is in the porch. the basket was moved from the porch to the garage. Someone took the basket from the garage and put it in the kitchen. the statue was moved from the porch to the kitchen. Someone took the cushion from the attic and put it in the porch. the cushion ended up in the kitchen after being in the porch. After all these changes, the basket is in the kitchen.",
+          "passage_b": "Initially, the lamp is in the attic. Initially, the cushion is in the attic. Initially, the statue is in the porch. Initially, the basket is in the porch. Someone took the basket from the garage and put it in the kitchen. the basket was moved from the porch to the garage. the statue was moved from the porch to the kitchen. Someone took the cushion from the attic and put it in the porch. the cushion ended up in the kitchen after being in the porch. After all these changes, the basket is in the garage.",
+          "answer_a": "the kitchen",
+          "answer_b": "the garage",
+          "answer_token_len": 2,
+          "query_obj": "the basket",
+          "word_count_a": 96,
+          "word_count_b": 96
+        },
+        {
+          "passage_a": "Initially, the blanket is in the kitchen. Initially, the candle is in the garage. Initially, the statue is in the attic. Initially, the painting is in the porch. Someone took the statue from the attic and put it in the closet. Someone took the candle from the garage and put it in the kitchen. Someone took the candle from the kitchen and put it in the attic. Whatever was in the closet got transferred to the garage. Someone took what was in the porch and placed it in the attic. After all these changes, the candle is in the attic.",
+          "passage_b": "Initially, the blanket is in the kitchen. Initially, the candle is in the garage. Initially, the statue is in the attic. Initially, the painting is in the porch. Someone took the statue from the attic and put it in the closet. Someone took the candle from the kitchen and put it in the attic. Someone took the candle from the garage and put it in the kitchen. Whatever was in the closet got transferred to the garage. Someone took what was in the porch and placed it in the attic. After all these changes, the candle is in the kitchen.",
+          "answer_a": "the attic",
+          "answer_b": "the kitchen",
+          "answer_token_len": 2,
+          "query_obj": "the candle",
+          "word_count_a": 100,
+          "word_count_b": 100
+        },
+        {
+          "passage_a": "Initially, the statue is in the cellar. Initially, the blanket is in the cellar. Initially, the candle is in the porch. Initially, the painting is in the garage. Someone took what was in the garage and placed it in the study. the candle was moved from the porch to the garage. the candle ended up in the cellar after being in the garage. The item in the study was moved to the cellar. the statue ended up in the study after being in the cellar. After all these changes, the candle is in the cellar.",
+          "passage_b": "Initially, the statue is in the cellar. Initially, the blanket is in the cellar. Initially, the candle is in the porch. Initially, the painting is in the garage. Someone took what was in the garage and placed it in the study. the candle ended up in the cellar after being in the garage. the candle was moved from the porch to the garage. The item in the study was moved to the cellar. the statue ended up in the study after being in the cellar. After all these changes, the candle is in the garage.",
+          "answer_a": "the cellar",
+          "answer_b": "the garage",
+          "answer_token_len": 2,
+          "query_obj": "the candle",
+          "word_count_a": 95,
+          "word_count_b": 95
+        },
+        {
+          "passage_a": "Initially, the vase is in the cellar. Initially, the photo is in the garage. Initially, the cushion is in the kitchen. Initially, the blanket is in the cellar. The item in the garage was moved to the cellar. Whatever was in the kitchen got transferred to the study. Someone took the blanket from the cellar and put it in the study. the vase ended up in the kitchen after being in the cellar. the vase was moved from the kitchen to the cellar. After all these changes, the vase is in the cellar.",
+          "passage_b": "Initially, the vase is in the cellar. Initially, the photo is in the garage. Initially, the cushion is in the kitchen. Initially, the blanket is in the cellar. The item in the garage was moved to the cellar. Whatever was in the kitchen got transferred to the study. Someone took the blanket from the cellar and put it in the study. the vase was moved from the kitchen to the cellar. the vase ended up in the kitchen after being in the cellar. After all these changes, the vase is in the kitchen.",
+          "answer_a": "the cellar",
+          "answer_b": "the kitchen",
+          "answer_token_len": 2,
+          "query_obj": "the vase",
+          "word_count_a": 93,
+          "word_count_b": 93
+        }
+      ],
+      "protected": {
+        "model_path": "experiments/archive/initial_model_studies/training/runs/babylm_fullcycle_debertav2_8x480_wwm_seed42_100M_b256/hf_model/chck_10M",
+        "n_pairs": 200,
+        "n_cases": 400,
+        "case_accuracy": 0.5,
+        "both_contexts_correct_pair_fraction": 0.0,
+        "exactly_one_context_correct_pair_fraction": 1.0,
+        "mean_case_margin": 0.0008456611633300781,
+        "mean_pair_sum_margin": 0.0016913223266601563,
+        "median_pair_sum_margin": 0.0013866424560546875,
+        "positive_pair_sum_fraction": 0.56,
+        "elapsed_sec": 7.9,
+        "sample_rows": [
+          {
+            "i": 0,
+            "answer_a": "the kitchen",
+            "answer_b": "the study",
+            "ma": 0.38466453552246094,
+            "mb": -0.38156604766845703,
+            "pair_sum": 0.0030984878540039062,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 1,
+            "answer_a": "the kitchen",
+            "answer_b": "the garage",
+            "ma": 1.7939472198486328,
+            "mb": -1.7728385925292969,
+            "pair_sum": 0.021108627319335938,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 2,
+            "answer_a": "the attic",
+            "answer_b": "the kitchen",
+            "ma": -3.0895633697509766,
+            "mb": 3.090425491333008,
+            "pair_sum": 0.00086212158203125,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 3,
+            "answer_a": "the cellar",
+            "answer_b": "the garage",
+            "ma": -0.8247547149658203,
+            "mb": 0.8285026550292969,
+            "pair_sum": 0.0037479400634765625,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 4,
+            "answer_a": "the cellar",
+            "answer_b": "the kitchen",
+            "ma": -2.774704933166504,
+            "mb": 2.771167755126953,
+            "pair_sum": -0.0035371780395507812,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 5,
+            "answer_a": "the closet",
+            "answer_b": "the kitchen",
+            "ma": -1.2349252700805664,
+            "mb": 1.2417898178100586,
+            "pair_sum": 0.0068645477294921875,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 6,
+            "answer_a": "the closet",
+            "answer_b": "the attic",
+            "ma": 1.4672908782958984,
+            "mb": -1.4634933471679688,
+            "pair_sum": 0.0037975311279296875,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 7,
+            "answer_a": "the attic",
+            "answer_b": "the cellar",
+            "ma": -0.0948038101196289,
+            "mb": 0.08973026275634766,
+            "pair_sum": -0.00507354736328125,
+            "ca": false,
+            "cb": true
+          }
+        ]
+      },
+      "ordered_dynamic": {
+        "chck_1M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_1M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -3.5762786865234374e-09,
+          "mean_pair_sum_margin": -7.152557373046875e-09,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.165,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.2938838005065918,
+              "mb": -0.2938838005065918,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": -0.1848444938659668,
+              "mb": 0.184844970703125,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.07128238677978516,
+              "mb": 0.07128286361694336,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": -0.18588829040527344,
+              "mb": 0.18588781356811523,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": -0.0010437965393066406,
+              "mb": 0.0010437965393066406,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": 0.004807472229003906,
+              "mb": -0.004806995391845703,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": 0.07608985900878906,
+              "mb": -0.07608985900878906,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.07023906707763672,
+              "mb": 0.07023906707763672,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_2M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_2M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 8.344650268554688e-09,
+          "mean_pair_sum_margin": 1.6689300537109377e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.245,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": -0.1294569969177246,
+              "mb": 0.12945795059204102,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.031464576721191406,
+              "mb": -0.031464576721191406,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": 0.09356117248535156,
+              "mb": -0.09356069564819336,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.0268402099609375,
+              "mb": -0.0268402099609375,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": -0.004624366760253906,
+              "mb": 0.004624843597412109,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": 0.21413421630859375,
+              "mb": -0.21413421630859375,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": 0.12057304382324219,
+              "mb": -0.12057352066040039,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": 0.09818553924560547,
+              "mb": -0.09818553924560547,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            }
+          ]
+        },
+        "chck_3M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_3M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 9.5367431640625e-09,
+          "mean_pair_sum_margin": 1.9073486328125e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.185,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.10114622116088867,
+              "mb": -0.10114574432373047,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.11920452117919922,
+              "mb": -0.11920452117919922,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.020218849182128906,
+              "mb": 0.020218849182128906,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.08535194396972656,
+              "mb": -0.08535194396972656,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": -0.033852577209472656,
+              "mb": 0.033852577209472656,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": 0.01814126968383789,
+              "mb": -0.018140792846679688,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": 0.038359642028808594,
+              "mb": -0.038359642028808594,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": 0.01363372802734375,
+              "mb": -0.01363372802734375,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            }
+          ]
+        },
+        "chck_4M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_4M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -1.1920928955078126e-08,
+          "mean_pair_sum_margin": -2.384185791015625e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.115,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.04604530334472656,
+              "mb": -0.04604530334472656,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": -0.019744396209716797,
+              "mb": 0.019744873046875,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": 0.015949249267578125,
+              "mb": -0.015949249267578125,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.08869457244873047,
+              "mb": -0.08869504928588867,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": 0.10843944549560547,
+              "mb": -0.10843944549560547,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": -0.002875804901123047,
+              "mb": 0.0028753280639648438,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": -0.01882457733154297,
+              "mb": 0.01882457733154297,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.09249019622802734,
+              "mb": 0.09249019622802734,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_5M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_5M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -4.76837158203125e-09,
+          "mean_pair_sum_margin": -9.5367431640625e-09,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.15,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": -0.010034561157226562,
+              "mb": 0.010035037994384766,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": -0.021802902221679688,
+              "mb": 0.021802425384521484,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": 0.02248525619506836,
+              "mb": -0.022484779357910156,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.04036426544189453,
+              "mb": -0.04036426544189453,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": 0.06216621398925781,
+              "mb": -0.06216621398925781,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": 0.07565593719482422,
+              "mb": -0.07565641403198242,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": 0.05317115783691406,
+              "mb": -0.05317115783691406,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.039681434631347656,
+              "mb": 0.039681434631347656,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        }
+      },
+      "static_indirect_control": {
+        "chck_1M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_1M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -3.5762786865234374e-09,
+          "mean_pair_sum_margin": -7.152557373046875e-09,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.105,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.7456741333007812,
+              "mb": -0.7456741333007812,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.3355112075805664,
+              "mb": -0.3355116844177246,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.42129039764404297,
+              "mb": 0.42129039764404297,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.09564447402954102,
+              "mb": -0.09564447402954102,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": -0.2398672103881836,
+              "mb": 0.2398672103881836,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": -0.24178791046142578,
+              "mb": 0.24178791046142578,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": 0.1795024871826172,
+              "mb": -0.1795024871826172,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.18142318725585938,
+              "mb": 0.18142318725585938,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_2M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_2M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 1.3113021850585938e-08,
+          "mean_pair_sum_margin": 2.6226043701171875e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.175,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.08557701110839844,
+              "mb": -0.08557701110839844,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.10964488983154297,
+              "mb": -0.10964488983154297,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.09209966659545898,
+              "mb": 0.09210014343261719,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.2290477752685547,
+              "mb": -0.2290477752685547,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": 0.11940288543701172,
+              "mb": -0.11940288543701172,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": -0.06299495697021484,
+              "mb": 0.06299495697021484,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": 0.02910470962524414,
+              "mb": -0.029104232788085938,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.2115025520324707,
+              "mb": 0.2115030288696289,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_3M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_3M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 9.5367431640625e-09,
+          "mean_pair_sum_margin": 1.9073486328125e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.175,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.20734167098999023,
+              "mb": -0.20734167098999023,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.12032604217529297,
+              "mb": -0.12032556533813477,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.20070934295654297,
+              "mb": 0.20070934295654297,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": -0.18558263778686523,
+              "mb": 0.18558263778686523,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": -0.3059086799621582,
+              "mb": 0.3059086799621582,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": -0.27428245544433594,
+              "mb": 0.27428245544433594,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": -0.07357311248779297,
+              "mb": 0.07357311248779297,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": 0.10519933700561523,
+              "mb": -0.10519933700561523,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            }
+          ]
+        },
+        "chck_4M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_4M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 9.5367431640625e-09,
+          "mean_pair_sum_margin": 1.9073486328125e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.24,
+          "elapsed_sec": 7.1,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.06551933288574219,
+              "mb": -0.06551933288574219,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.03678321838378906,
+              "mb": -0.03678321838378906,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.038290977478027344,
+              "mb": 0.038290977478027344,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.05296611785888672,
+              "mb": -0.052965641021728516,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": 0.016182422637939453,
+              "mb": -0.01618194580078125,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": -0.1423640251159668,
+              "mb": 0.1423640251159668,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": -0.10407304763793945,
+              "mb": 0.10407352447509766,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.054473876953125,
+              "mb": 0.054472923278808594,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_5M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_5M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -1.7881393432617187e-08,
+          "mean_pair_sum_margin": -3.5762786865234374e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.13,
+          "elapsed_sec": 7.0,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the kitchen",
+              "answer_b": "the study",
+              "ma": 0.060942649841308594,
+              "mb": -0.060942649841308594,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 1,
+              "answer_a": "the kitchen",
+              "answer_b": "the garage",
+              "ma": 0.03439140319824219,
+              "mb": -0.03439140319824219,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 2,
+              "answer_a": "the attic",
+              "answer_b": "the kitchen",
+              "ma": -0.07961654663085938,
+              "mb": 0.07961654663085938,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the cellar",
+              "answer_b": "the garage",
+              "ma": 0.05141019821166992,
+              "mb": -0.05141019821166992,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the cellar",
+              "answer_b": "the kitchen",
+              "ma": 0.017018795013427734,
+              "mb": -0.017019271850585938,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the closet",
+              "answer_b": "the kitchen",
+              "ma": -0.08710145950317383,
+              "mb": 0.08710193634033203,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the closet",
+              "answer_b": "the attic",
+              "ma": -0.007485389709472656,
+              "mb": 0.007485389709472656,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the attic",
+              "answer_b": "the cellar",
+              "ma": -0.09663534164428711,
+              "mb": 0.09663534164428711,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        }
+      },
+      "deltas_ordered_minus_static": {
+        "chck_1M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.06000000000000001
+        },
+        "chck_2M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -9.536743164062499e-09,
+          "positive_pair_sum_fraction": 0.07
+        },
+        "chck_3M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.010000000000000009
+        },
+        "chck_4M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -4.291534423828125e-08,
+          "positive_pair_sum_fraction": -0.12499999999999999
+        },
+        "chck_5M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": 2.6226043701171872e-08,
+          "positive_pair_sum_fraction": 0.01999999999999999
+        }
+      }
+    },
+    "heldout_vocab": {
+      "records_sample": [
+        {
+          "passage_a": "Initially, the radio is in the pantry. Initially, the stool is in the hallway. Initially, the broom is in the loft. Initially, the fan is in the loft. The item in the hallway was moved to the loft. Whatever was in the pantry got transferred to the loft. Someone took the broom from the loft and put it in the vault. the broom was moved from the vault to the pantry. the fan was moved from the loft to the shed. After all these changes, the broom is in the pantry.",
+          "passage_b": "Initially, the radio is in the pantry. Initially, the stool is in the hallway. Initially, the broom is in the loft. Initially, the fan is in the loft. The item in the hallway was moved to the loft. Whatever was in the pantry got transferred to the loft. the broom was moved from the vault to the pantry. Someone took the broom from the loft and put it in the vault. the fan was moved from the loft to the shed. After all these changes, the broom is in the vault.",
+          "answer_a": "the pantry",
+          "answer_b": "the vault",
+          "answer_token_len": 3,
+          "query_obj": "the broom",
+          "word_count_a": 91,
+          "word_count_b": 91
+        },
+        {
+          "passage_a": "Initially, the fan is in the loft. Initially, the broom is in the loft. Initially, the stool is in the loft. Initially, the radio is in the pantry. Someone took the radio from the pantry and put it in the vault. The item in the vault was moved to the loft. Someone took the radio from the loft and put it in the pantry. The item in the pantry was moved to the hallway. Someone took the radio from the hallway and put it in the pantry. After all these changes, the radio is in the pantry.",
+          "passage_b": "Initially, the fan is in the loft. Initially, the broom is in the loft. Initially, the stool is in the loft. Initially, the radio is in the pantry. Someone took the radio from the pantry and put it in the vault. The item in the vault was moved to the loft. Someone took the radio from the loft and put it in the pantry. Someone took the radio from the hallway and put it in the pantry. The item in the pantry was moved to the hallway. After all these changes, the radio is in the hallway.",
+          "answer_a": "the pantry",
+          "answer_b": "the hallway",
+          "answer_token_len": 3,
+          "query_obj": "the radio",
+          "word_count_a": 97,
+          "word_count_b": 97
+        },
+        {
+          "passage_a": "Initially, the hammer is in the pantry. Initially, the stool is in the loft. Initially, the fan is in the hallway. Initially, the broom is in the pantry. Someone took what was in the hallway and placed it in the loft. Someone took the broom from the pantry and put it in the loft. Whatever was in the pantry got transferred to the vault. the hammer ended up in the pantry after being in the vault. the stool was moved from the loft to the shed. After all these changes, the hammer is in the pantry.",
+          "passage_b": "Initially, the hammer is in the pantry. Initially, the stool is in the loft. Initially, the fan is in the hallway. Initially, the broom is in the pantry. Someone took what was in the hallway and placed it in the loft. Someone took the broom from the pantry and put it in the loft. the hammer ended up in the pantry after being in the vault. Whatever was in the pantry got transferred to the vault. the stool was moved from the loft to the shed. After all these changes, the hammer is in the vault.",
+          "answer_a": "the pantry",
+          "answer_b": "the vault",
+          "answer_token_len": 3,
+          "query_obj": "the hammer",
+          "word_count_a": 96,
+          "word_count_b": 96
+        },
+        {
+          "passage_a": "Initially, the hammer is in the vault. Initially, the radio is in the pantry. Initially, the broom is in the pantry. Initially, the fan is in the loft. Whatever was in the loft got transferred to the shed. Someone took the fan from the shed and put it in the hallway. Someone took the fan from the hallway and put it in the vault. the broom was moved from the pantry to the vault. Someone took what was in the pantry and placed it in the vault. After all these changes, the fan is in the vault.",
+          "passage_b": "Initially, the hammer is in the vault. Initially, the radio is in the pantry. Initially, the broom is in the pantry. Initially, the fan is in the loft. Whatever was in the loft got transferred to the shed. Someone took the fan from the hallway and put it in the vault. Someone took the fan from the shed and put it in the hallway. the broom was moved from the pantry to the vault. Someone took what was in the pantry and placed it in the vault. After all these changes, the fan is in the hallway.",
+          "answer_a": "the vault",
+          "answer_b": "the hallway",
+          "answer_token_len": 3,
+          "query_obj": "the fan",
+          "word_count_a": 97,
+          "word_count_b": 97
+        },
+        {
+          "passage_a": "Initially, the fan is in the shed. Initially, the hammer is in the shed. Initially, the broom is in the loft. Initially, the stool is in the shed. Someone took what was in the loft and placed it in the shed. Someone took the broom from the shed and put it in the loft. the hammer ended up in the hallway after being in the shed. Someone took what was in the hallway and placed it in the loft. the stool was moved from the shed to the hallway. After all these changes, the broom is in the loft.",
+          "passage_b": "Initially, the fan is in the shed. Initially, the hammer is in the shed. Initially, the broom is in the loft. Initially, the stool is in the shed. Someone took the broom from the shed and put it in the loft. Someone took what was in the loft and placed it in the shed. the hammer ended up in the hallway after being in the shed. Someone took what was in the hallway and placed it in the loft. the stool was moved from the shed to the hallway. After all these changes, the broom is in the shed.",
+          "answer_a": "the loft",
+          "answer_b": "the shed",
+          "answer_token_len": 2,
+          "query_obj": "the broom",
+          "word_count_a": 99,
+          "word_count_b": 99
+        }
+      ],
+      "protected": {
+        "model_path": "experiments/archive/initial_model_studies/training/runs/babylm_fullcycle_debertav2_8x480_wwm_seed42_100M_b256/hf_model/chck_10M",
+        "n_pairs": 200,
+        "n_cases": 400,
+        "case_accuracy": 0.5025,
+        "both_contexts_correct_pair_fraction": 0.01,
+        "exactly_one_context_correct_pair_fraction": 0.985,
+        "mean_case_margin": 0.0015178167819976808,
+        "mean_pair_sum_margin": 0.0030356335639953615,
+        "median_pair_sum_margin": 0.0012359619140625,
+        "positive_pair_sum_fraction": 0.53,
+        "elapsed_sec": 7.2,
+        "sample_rows": [
+          {
+            "i": 0,
+            "answer_a": "the pantry",
+            "answer_b": "the vault",
+            "ma": 2.920625686645508,
+            "mb": -2.9168386459350586,
+            "pair_sum": 0.0037870407104492188,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 1,
+            "answer_a": "the pantry",
+            "answer_b": "the hallway",
+            "ma": 3.033618927001953,
+            "mb": -3.0175909996032715,
+            "pair_sum": 0.01602792739868164,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 2,
+            "answer_a": "the pantry",
+            "answer_b": "the vault",
+            "ma": 3.0902609825134277,
+            "mb": -3.0832390785217285,
+            "pair_sum": 0.007021903991699219,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 3,
+            "answer_a": "the vault",
+            "answer_b": "the hallway",
+            "ma": -0.10550308227539062,
+            "mb": 0.09183216094970703,
+            "pair_sum": -0.013670921325683594,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 4,
+            "answer_a": "the loft",
+            "answer_b": "the shed",
+            "ma": -2.286698341369629,
+            "mb": 2.288723945617676,
+            "pair_sum": 0.002025604248046875,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 5,
+            "answer_a": "the loft",
+            "answer_b": "the shed",
+            "ma": -2.473111152648926,
+            "mb": 2.4809207916259766,
+            "pair_sum": 0.007809638977050781,
+            "ca": false,
+            "cb": true
+          },
+          {
+            "i": 6,
+            "answer_a": "the pantry",
+            "answer_b": "the hallway",
+            "ma": 2.656921863555908,
+            "mb": -2.6661019325256348,
+            "pair_sum": -0.009180068969726562,
+            "ca": true,
+            "cb": false
+          },
+          {
+            "i": 7,
+            "answer_a": "the loft",
+            "answer_b": "the shed",
+            "ma": -2.121119499206543,
+            "mb": 2.1350269317626953,
+            "pair_sum": 0.013907432556152344,
+            "ca": false,
+            "cb": true
+          }
+        ]
+      },
+      "ordered_dynamic": {
+        "chck_1M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_1M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -8.344650268554687e-08,
+          "mean_pair_sum_margin": -1.6689300537109374e-07,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.255,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.3769712448120117,
+              "mb": 3.3769702911376953,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -2.303229331970215,
+              "mb": 2.3032283782958984,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.3769707679748535,
+              "mb": 3.3769702911376953,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": 1.0737409591674805,
+              "mb": -1.073740005493164,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.1476716995239258,
+              "mb": 1.1476716995239258,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.1476726531982422,
+              "mb": 1.1476707458496094,
+              "pair_sum": -1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -2.3032302856445312,
+              "mb": 2.303229331970215,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.1476726531982422,
+              "mb": 1.1476716995239258,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_2M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_2M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -5.960464477539063e-09,
+          "mean_pair_sum_margin": -1.1920928955078126e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.26,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -2.138697624206543,
+              "mb": 2.138697624206543,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -4.693890571594238,
+              "mb": 4.693891525268555,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -2.138697624206543,
+              "mb": 2.138697624206543,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -2.5551929473876953,
+              "mb": 2.5551929473876953,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.29860973358154297,
+              "mb": -0.29860973358154297,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.29860877990722656,
+              "mb": -0.29860973358154297,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -4.693890571594238,
+              "mb": 4.693890571594238,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.29860973358154297,
+              "mb": -0.29860877990722656,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": true,
+              "cb": false
+            }
+          ]
+        },
+        "chck_3M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_3M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -2.0265579223632814e-08,
+          "mean_pair_sum_margin": -4.053115844726563e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.26,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.199963092803955,
+              "mb": 3.199963092803955,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.277292251586914,
+              "mb": 5.277291297912598,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.1999645233154297,
+              "mb": 3.1999645233154297,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -2.077326774597168,
+              "mb": 2.0773277282714844,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.2589235305786133,
+              "mb": 1.2589235305786133,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.2589244842529297,
+              "mb": 1.2589235305786133,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.277291297912598,
+              "mb": 5.277290344238281,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.2589244842529297,
+              "mb": 1.2589244842529297,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_4M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_4M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": -2.741813659667969e-08,
+          "mean_pair_sum_margin": -5.483627319335938e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.315,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.4736642837524414,
+              "mb": 3.473666191101074,
+              "pair_sum": 1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.202537536621094,
+              "mb": 5.202537536621094,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.473667621612549,
+              "mb": 3.473667621612549,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -1.7288703918457031,
+              "mb": 1.7288689613342285,
+              "pair_sum": -1.430511474609375e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.284677505493164,
+              "mb": 1.2846784591674805,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.2846784591674805,
+              "mb": 1.2846784591674805,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.202536582946777,
+              "mb": 5.202537536621094,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.284677505493164,
+              "mb": 1.2846794128417969,
+              "pair_sum": 1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_5M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_5M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 1.1920928955078126e-08,
+          "mean_pair_sum_margin": 2.384185791015625e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.255,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.5424394607543945,
+              "mb": 3.5424375534057617,
+              "pair_sum": -1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.136909484863281,
+              "mb": 5.136908531188965,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.5424394607543945,
+              "mb": 3.5424394607543945,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -1.5944709777832031,
+              "mb": 1.5944700241088867,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.263524055480957,
+              "mb": 1.2635231018066406,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.2635231018066406,
+              "mb": 1.263524055480957,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.136909484863281,
+              "mb": 5.136908531188965,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.263524055480957,
+              "mb": 1.263524055480957,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        }
+      },
+      "static_indirect_control": {
+        "chck_1M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_1M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 2.6226043701171875e-08,
+          "mean_pair_sum_margin": 5.245208740234375e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.31,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -1.6710186004638672,
+              "mb": 1.6710190773010254,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -3.3181848526000977,
+              "mb": 3.318182945251465,
+              "pair_sum": -1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -1.6710190773010254,
+              "mb": 1.6710195541381836,
+              "pair_sum": 4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -1.6471643447875977,
+              "mb": 1.647165298461914,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.27449607849121094,
+              "mb": -0.27449703216552734,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.27449703216552734,
+              "mb": -0.27449703216552734,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -3.318182945251465,
+              "mb": 3.3181848526000977,
+              "pair_sum": 1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.27449798583984375,
+              "mb": -0.27449703216552734,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": true,
+              "cb": false
+            }
+          ]
+        },
+        "chck_2M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_2M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 9.059906005859375e-08,
+          "mean_pair_sum_margin": 1.811981201171875e-07,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.325,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -1.978921890258789,
+              "mb": 1.978921890258789,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -6.190313339233398,
+              "mb": 6.190313339233398,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -1.978921890258789,
+              "mb": 1.9789237976074219,
+              "pair_sum": 1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -4.211389541625977,
+              "mb": 4.211389541625977,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.09294891357421875,
+              "mb": -0.09294891357421875,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.09295082092285156,
+              "mb": -0.09294891357421875,
+              "pair_sum": 1.9073486328125e-06,
+              "ca": true,
+              "cb": false
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -6.190313339233398,
+              "mb": 6.190312385559082,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": 0.09294891357421875,
+              "mb": -0.09294891357421875,
+              "pair_sum": 0.0,
+              "ca": true,
+              "cb": false
+            }
+          ]
+        },
+        "chck_3M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_3M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 1.5497207641601563e-08,
+          "mean_pair_sum_margin": 3.0994415283203126e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.175,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.689133644104004,
+              "mb": 3.689133644104004,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -6.508703231811523,
+              "mb": 6.508703231811523,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -3.6891326904296875,
+              "mb": 3.6891322135925293,
+              "pair_sum": -4.76837158203125e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -2.8195714950561523,
+              "mb": 2.819570541381836,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -0.6898660659790039,
+              "mb": 0.6898660659790039,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -0.6898660659790039,
+              "mb": 0.6898651123046875,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -6.508703231811523,
+              "mb": 6.508703231811523,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -0.6898651123046875,
+              "mb": 0.6898660659790039,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_4M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_4M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 2.2649765014648438e-08,
+          "mean_pair_sum_margin": 4.5299530029296876e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.25,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -2.797663688659668,
+              "mb": 2.7976627349853516,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.242203712463379,
+              "mb": 5.2422027587890625,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -2.797665596008301,
+              "mb": 2.797663688659668,
+              "pair_sum": -1.9073486328125e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -2.4445390701293945,
+              "mb": 2.444540023803711,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.588022232055664,
+              "mb": 1.588022232055664,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.5880212783813477,
+              "mb": 1.588022232055664,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.242203712463379,
+              "mb": 5.242203712463379,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.588022232055664,
+              "mb": 1.588022232055664,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        },
+        "chck_5M": {
+          "model_path": "experiments/archive/initial_model_studies/training/runs/r1_static_indirect_control_5M/hf_model/chck_5M",
+          "n_pairs": 200,
+          "n_cases": 400,
+          "case_accuracy": 0.5,
+          "both_contexts_correct_pair_fraction": 0.0,
+          "exactly_one_context_correct_pair_fraction": 1.0,
+          "mean_case_margin": 2.384185791015625e-08,
+          "mean_pair_sum_margin": 4.76837158203125e-08,
+          "median_pair_sum_margin": 0.0,
+          "positive_pair_sum_fraction": 0.26,
+          "elapsed_sec": 7.2,
+          "sample_rows": [
+            {
+              "i": 0,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -2.7636094093322754,
+              "mb": 2.763610363006592,
+              "pair_sum": 9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 1,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.189916610717773,
+              "mb": 5.189915657043457,
+              "pair_sum": -9.5367431640625e-07,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 2,
+              "answer_a": "the pantry",
+              "answer_b": "the vault",
+              "ma": -2.7636122703552246,
+              "mb": 2.7636098861694336,
+              "pair_sum": -2.384185791015625e-06,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 3,
+              "answer_a": "the vault",
+              "answer_b": "the hallway",
+              "ma": -2.4263052940368652,
+              "mb": 2.4263052940368652,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 4,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.698232650756836,
+              "mb": 1.698232650756836,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 5,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.698232650756836,
+              "mb": 1.698232650756836,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 6,
+              "answer_a": "the pantry",
+              "answer_b": "the hallway",
+              "ma": -5.189915657043457,
+              "mb": 5.189915657043457,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            },
+            {
+              "i": 7,
+              "answer_a": "the loft",
+              "answer_b": "the shed",
+              "ma": -1.698232650756836,
+              "mb": 1.698232650756836,
+              "pair_sum": 0.0,
+              "ca": false,
+              "cb": true
+            }
+          ]
+        }
+      },
+      "deltas_ordered_minus_static": {
+        "chck_1M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -2.1934509277343748e-07,
+          "positive_pair_sum_fraction": -0.05499999999999999
+        },
+        "chck_2M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -1.9311904907226564e-07,
+          "positive_pair_sum_fraction": -0.065
+        },
+        "chck_3M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -7.152557373046876e-08,
+          "positive_pair_sum_fraction": 0.08500000000000002
+        },
+        "chck_4M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -1.0013580322265626e-07,
+          "positive_pair_sum_fraction": 0.065
+        },
+        "chck_5M": {
+          "both_contexts_correct_pair_fraction": 0.0,
+          "mean_pair_sum_margin": -2.384185791015625e-08,
+          "positive_pair_sum_fraction": -0.0050000000000000044
+        }
+      }
+    }
+  }
+}

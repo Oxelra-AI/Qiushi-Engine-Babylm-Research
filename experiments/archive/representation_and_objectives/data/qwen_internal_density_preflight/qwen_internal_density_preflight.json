@@ -1,0 +1,3608 @@
+{
+  "status": "QWEN_INTERNAL_DENSITY_PREFLIGHT",
+  "created_utc": "2026-08-29T18:20:00Z",
+  "purpose": "CPU-only redesign preflight after compact FineWeb replacement core failed full evaluation: preserve the COMPACT_EXPERIENCE clean-Qwen developmental allocation, compact redundant generated rewrites inside the already-successful Qwen pair block, and use saved words for official relational/action-outcome rows selected without evaluation examples.",
+  "expensive_work_status": "no GPU, no generation, no evaluation, no 100M training launched; pending research reinvest results remain decisive before any expensive work",
+  "input_files": {
+    "selected_pairs": "experiments/archive/compact_experience/data/qwen_clean_aligned/selected_pairs.jsonl",
+    "qwen_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+    "official_pool": "experiments/archive/compact_experience/data/mixture/official_pool.jsonl",
+    "qwen_metadata": "experiments/archive/compact_experience/data/qwen_clean_aligned/clean_materialization_metadata.json",
+    "a02_loss_note": "research/notes/frontier_consolidation/compact_core_full_loss_anatomy.md",
+    "aoa_words_for_audit_only": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/aoa/cdi_childes.json"
+  },
+  "input_sha256": {
+    "selected_pairs.jsonl": "5edec9a76470036f3ae06f9ed3c53f060ad7811b20697fddf0034cc24f11b53c",
+    "qwen_aligned_10M.jsonl": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+    "official_pool.jsonl": "072eb2a9ecb52e6e6022d46d233c99c2ad9758843c2ae29f4eb653fb38902f02"
+  },
+  "clean_qwen_baseline": {
+    "selected_pairs": 37594,
+    "unique_selected_official_example_ids": 25486,
+    "pair_words": 1656800,
+    "pair_word_fraction": 0.16568,
+    "qwen_pool_rows": 64381,
+    "qwen_pool_words": 10000000,
+    "qwen_pair_packed_words": 1656800,
+    "official_filler_words_preserved_by_redesign": 8343200,
+    "current_qwen_source_words": {
+      "childes": 2712640,
+      "open_subtitles": 1927200,
+      "bnc_spoken": 606560,
+      "gutenberg": 1958880,
+      "qwen_pair_packed": 1656800,
+      "simple_wiki": 1115680,
+      "switchboard": 22240
+    },
+    "current_pair_words_by_original_source": {
+      "simple_wiki": 463379,
+      "open_subtitles": 249118,
+      "gutenberg": 704709,
+      "bnc_spoken": 162137,
+      "childes": 75334,
+      "switchboard": 2123
+    },
+    "current_pair_count_by_original_source": {
+      "simple_wiki": 10822,
+      "open_subtitles": 7278,
+      "gutenberg": 13725,
+      "bnc_spoken": 3504,
+      "childes": 2214,
+      "switchboard": 51
+    }
+  },
+  "missing_full_official_row_pool_for_reinvestment": {
+    "definition": "selected Qwen source example_ids whose full 160-word official row is not already present as an official filler row in qwen_aligned_10M",
+    "selected_ids": 25486,
+    "filler_ids": 52145,
+    "missing_selected_ids": 10355,
+    "candidate_rows": 10355,
+    "candidate_words": 1656800,
+    "source_words": {
+      "bnc_spoken": 155520,
+      "childes": 128480,
+      "gutenberg": 598880,
+      "open_subtitles": 355680,
+      "simple_wiki": 415840,
+      "switchboard": 2400
+    },
+    "source_rows": {
+      "bnc_spoken": 972,
+      "childes": 803,
+      "gutenberg": 3743,
+      "open_subtitles": 2223,
+      "simple_wiki": 2599,
+      "switchboard": 15
+    },
+    "relation_affordance_summary": {
+      "rows": 10355,
+      "words": 1656800,
+      "source_words": {
+        "bnc_spoken": 155520,
+        "childes": 128480,
+        "gutenberg": 598880,
+        "open_subtitles": 355680,
+        "simple_wiki": 415840,
+        "switchboard": 2400
+      },
+      "source_rows": {
+        "bnc_spoken": 972,
+        "childes": 803,
+        "gutenberg": 3743,
+        "open_subtitles": 2223,
+        "simple_wiki": 2599,
+        "switchboard": 15
+      },
+      "relation_affordance_score_stats": {
+        "n": 10355,
+        "min": 0.0,
+        "p05": 0.03786022709099632,
+        "mean": 0.13215253948435324,
+        "median": 0.13187500000000002,
+        "p95": 0.22874999999999995,
+        "max": 0.3775,
+        "sum": 1368.4395463604776
+      },
+      "action_count_stats": {
+        "n": 10355,
+        "min": 0,
+        "p05": 0.0,
+        "mean": 3.4653790439401257,
+        "median": 3,
+        "p95": 9.0,
+        "max": 26,
+        "sum": 35884
+      },
+      "causal_temporal_count_stats": {
+        "n": 10355,
+        "min": 0,
+        "p05": 0.0,
+        "mean": 3.336745533558667,
+        "median": 3,
+        "p95": 7.0,
+        "max": 15,
+        "sum": 34552
+      },
+      "physical_object_count_stats": {
+        "n": 10355,
+        "min": 0,
+        "p05": 0.0,
+        "mean": 1.293384838242395,
+        "median": 1,
+        "p95": 5.0,
+        "max": 17,
+        "sum": 13393
+      },
+      "spatial_state_count_stats": {
+        "n": 10355,
+        "min": 0,
+        "p05": 0.0,
+        "mean": 3.808884596813134,
+        "median": 3,
+        "p95": 9.0,
+        "max": 20,
+        "sum": 39441
+      },
+      "aoa_target_occurrences": 113745,
+      "top_examples": [
+        {
+          "example_id": 45900,
+          "source": "open_subtitles",
+          "score": 0.3775,
+          "feature_counts": {
+            "action_count": 20,
+            "causal_temporal_count": 6,
+            "physical_object_count": 7,
+            "spatial_state_count": 12,
+            "social_role_count": 8
+          },
+          "text_prefix": "We need to find something to stick under it to keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! –No. –No! No! Mitch, we got to be on the other side of that door! Nobody le"
+        },
+        {
+          "example_id": 45971,
+          "source": "open_subtitles",
+          "score": 0.3753,
+          "feature_counts": {
+            "action_count": 20,
+            "causal_temporal_count": 6,
+            "physical_object_count": 6,
+            "spatial_state_count": 11,
+            "social_role_count": 9
+          },
+          "text_prefix": "keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! - No. - No! No! Mitch, we got to be on the other side of that door! Nobody leaves unless I say so. That door is not gonna "
+        },
+        {
+          "example_id": 6202,
+          "source": "childes",
+          "score": 0.365,
+          "feature_counts": {
+            "action_count": 23,
+            "causal_temporal_count": 2,
+            "physical_object_count": 6,
+            "spatial_state_count": 7,
+            "social_role_count": 14
+          },
+          "text_prefix": "the paper so you can see them. *CHI: I see the x. *CHI: turn de over. *CHI: ups a daisy you run over like a egg. *MOT: let's put them on the paper. *CHI: I do 'nough tricks. *MOT: I do enough tricks. *CHI: I do 'nough tricks. *CHI: I think so I put dem in 'e b"
+        },
+        {
+          "example_id": 18351,
+          "source": "childes",
+          "score": 0.3594,
+          "feature_counts": {
+            "action_count": 12,
+            "causal_temporal_count": 8,
+            "physical_object_count": 11,
+            "spatial_state_count": 6,
+            "social_role_count": 13
+          },
+          "text_prefix": "I wouldn't hafta get a toy. *FAT: you wouldn't hafta get a toy that way. *FAT: and what if you couldn't go to my office? *FAT: then what would you do? *CHI: toy. *FAT: oh I see. *FAT: so which one did you wanna have happen? *CHI: not go. *FAT: umhum right. *CH"
+        },
+        {
+          "example_id": 19020,
+          "source": "childes",
+          "score": 0.3484,
+          "feature_counts": {
+            "action_count": 26,
+            "causal_temporal_count": 6,
+            "physical_object_count": 0,
+            "spatial_state_count": 5,
+            "social_role_count": 6
+          },
+          "text_prefix": "it you turn it. *CHI: okay. *CHI: what? *MAR: turn turn turn turn turn turn. *FAT: sorry about dropping that tape recorder. *MAR: turn turn turn turn turn turn turn turn turn turn turn. %int: 9-11 fall [aft walks back towards tape recorder] *MAR: whoa! *MAR: y"
+        },
+        {
+          "example_id": 45375,
+          "source": "open_subtitles",
+          "score": 0.3404,
+          "feature_counts": {
+            "action_count": 10,
+            "causal_temporal_count": 7,
+            "physical_object_count": 2,
+            "spatial_state_count": 8,
+            "social_role_count": 29
+          },
+          "text_prefix": "then? I mean, I tried calling you on your cell, I tried texting you, you didn't text me back. What did you want? What difference does it make what I wanted? That was yesterday. You have to tell people where you are. What if something happened to the kids? What"
+        },
+        {
+          "example_id": 26230,
+          "source": "gutenberg",
+          "score": 0.3398,
+          "feature_counts": {
+            "action_count": 16,
+            "causal_temporal_count": 7,
+            "physical_object_count": 2,
+            "spatial_state_count": 3,
+            "social_role_count": 19
+          },
+          "text_prefix": "so much money with you, then?\" asked Francois, doubtfully. \"See here!\" and Ben took out five napoleons, which he displayed in his open palm. The attendant's eyes sparkled. \"And you will give them to me, if perchance I set you free?\" \"Yes.\" \"Poor Francois,\" sai"
+        },
+        {
+          "example_id": 18546,
+          "source": "childes",
+          "score": 0.3362,
+          "feature_counts": {
+            "action_count": 14,
+            "causal_temporal_count": 6,
+            "physical_object_count": 4,
+            "spatial_state_count": 7,
+            "social_role_count": 16
+          },
+          "text_prefix": "at me so I shouldn't do that. *CHI: do you have a place where you put your little bag that you carry your your cards in? *CHI: you mean you carry it like this on here? *CHI: daddy how could I take Minerva Mouse to the airport with me. *CHI: daddy? *FAT: why do"
+        },
+        {
+          "example_id": 41859,
+          "source": "open_subtitles",
+          "score": 0.3294,
+          "feature_counts": {
+            "action_count": 14,
+            "causal_temporal_count": 5,
+            "physical_object_count": 2,
+            "spatial_state_count": 4,
+            "social_role_count": 26
+          },
+          "text_prefix": "over there. Just cross the river. It's okay, hurry up! Did my father really send you? Then you think I just came here because I have nothing else to do? Give that to me. Please stop the car! Stop the car! Dong-su, eat plenty. Eat as much as you can. Sis, he is"
+        },
+        {
+          "example_id": 1999,
+          "source": "bnc_spoken",
+          "score": 0.3289,
+          "feature_counts": {
+            "action_count": 10,
+            "causal_temporal_count": 9,
+            "physical_object_count": 3,
+            "spatial_state_count": 14,
+            "social_role_count": 9
+          },
+          "text_prefix": "Shall I write it down? Yes, it would be a good idea, wouldn't it? Mm. Do you want to write on the back of It would be because you've already got some in here haven't you? I think I probably Yeah. Actually I'll carr I'll carry on on And the date today is the Th"
+        },
+        {
+          "example_id": 43046,
+          "source": "open_subtitles",
+          "score": 0.3286,
+          "feature_counts": {
+            "action_count": 12,
+            "causal_temporal_count": 4,
+            "physical_object_count": 13,
+            "spatial_state_count": 8,
+            "social_role_count": 15
+          },
+          "text_prefix": "I know you want to know. I won't make you pay any fines. Other than money, the only good word that comes to mind when I think of Mr. Han Min Gook is ... Money is money. Money is still money. Money is money. How can money not be money? Here. Shall I give you so"
+        },
+        {
+          "example_id": 6702,
+          "source": "childes",
+          "score": 0.3281,
+          "feature_counts": {
+            "action_count": 24,
+            "causal_temporal_count": 1,
+            "physical_object_count": 3,
+            "spatial_state_count": 10,
+            "social_role_count": 8
+          },
+          "text_prefix": "*CHI: sit on your feet. [Baby whimpers and Adam runs into kitchen] [sits on Cromer's feet] *CHI: I listen. *MOT: okay? *CHI: [runs back into room and throws papers on the floor and kicks his shoe off]. *CHI: kick. *MOT: no I'll hafta put it up now Adam. *CHI: "
+        }
+      ]
+    }
+  },
+  "source_weighting": {
+    "official_source_weights": {
+      "bnc_spoken": 0.076208,
+      "childes": 0.284112,
+      "gutenberg": 0.255776,
+      "open_subtitles": 0.228288,
+      "simple_wiki": 0.153152,
+      "switchboard": 0.002464
+    },
+    "missing_candidate_source_weights": {
+      "bnc_spoken": 0.0938676967648479,
+      "childes": 0.07754707870593916,
+      "gutenberg": 0.3614678899082569,
+      "open_subtitles": 0.21467889908256882,
+      "simple_wiki": 0.25098985997102846,
+      "switchboard": 0.0014485755673587638
+    },
+    "mixed_preferred_weights": {
+      "simple_wiki": 0.20207092998551424,
+      "childes": 0.18082953935296958,
+      "bnc_spoken": 0.08503784838242395,
+      "switchboard": 0.001956287783679382,
+      "gutenberg": 0.3086219449541284,
+      "open_subtitles": 0.2214834495412844
+    },
+    "reason": "avoid replacing the clean-Qwen substrate; if saved words are reinvested, keep broad official-source coverage rather than selecting only one high-score source"
+  },
+  "scenarios": {
+    "all_pairs_r060": {
+      "pairs_to_compact": 36914,
+      "target_ratio": 0.6,
+      "current_rewrite_words_compacted_subset": 798752,
+      "target_compact_rewrite_words_subset": 514991,
+      "expected_saved_words": 283761,
+      "addable_full_official_160w_rows": 1773,
+      "slack_words_for_exact_materialization": 81,
+      "expected_saved_fraction_of_10M": 0.0283761,
+      "source_words_compacted_subset": 833579,
+      "source_counts_by_pair_words": {},
+      "rewrite_len_ratio_stats_before": {
+        "n": 36914,
+        "min": 0.625,
+        "p05": 0.75,
+        "mean": 0.9727690661202656,
+        "median": 0.9655172413793104,
+        "p95": 1.2222222222222223,
+        "max": 2.0,
+        "sum": 35908.79730676348
+      },
+      "content_overlap_stats": {
+        "n": 36914,
+        "min": 0.14285714285714285,
+        "p05": 0.2142857142857143,
+        "mean": 0.6336218481586482,
+        "median": 0.6666666666666666,
+        "p95": 0.9230769230769231,
+        "max": 1.0,
+        "sum": 23389.51690292834
+      },
+      "entity_recall_stats": {
+        "n": 36914,
+        "min": 0.75,
+        "p05": 1.0,
+        "mean": 0.9925823983923662,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 36640.186654255805
+      },
+      "expected_save_stats_per_pair": {
+        "n": 36914,
+        "min": 1,
+        "p05": 2.0,
+        "mean": 7.687083491358292,
+        "median": 7.0,
+        "p95": 14.0,
+        "max": 29,
+        "sum": 283761
+      },
+      "saved_words_by_pair_source": {
+        "open_subtitles": 44658,
+        "simple_wiki": 85892,
+        "bnc_spoken": 23652,
+        "gutenberg": 116682,
+        "childes": 12651,
+        "switchboard": 226
+      },
+      "topup_design": {
+        "selection_source": "official_pool rows whose official example_id appears in selected Qwen pairs but whose full 160-word row is not already in the clean-Qwen filler",
+        "selection_lexicon_version": "broad_action_relation_affordance_v1_not_eval_derived",
+        "eval_examples_used_for_selection": false,
+        "target_weighting": "0.5*official_source_distribution + 0.5*available_missing_selected_source_distribution, clipped to availability; rows sorted by broad relation/action-affordance score within source",
+        "quotas_rows": {
+          "bnc_spoken": 153,
+          "childes": 320,
+          "gutenberg": 547,
+          "open_subtitles": 392,
+          "simple_wiki": 358,
+          "switchboard": 3
+        },
+        "affordance_topup_summary": {
+          "rows": 1773,
+          "words": 283680,
+          "source_words": {
+            "bnc_spoken": 24480,
+            "childes": 51200,
+            "gutenberg": 87520,
+            "open_subtitles": 62720,
+            "simple_wiki": 57280,
+            "switchboard": 480
+          },
+          "source_rows": {
+            "bnc_spoken": 153,
+            "childes": 320,
+            "gutenberg": 547,
+            "open_subtitles": 392,
+            "simple_wiki": 358,
+            "switchboard": 3
+          },
+          "relation_affordance_score_stats": {
+            "n": 1773,
+            "min": 0.11806451612903227,
+            "p05": 0.12809451219512194,
+            "mean": 0.2089620469373881,
+            "median": 0.21234567901234566,
+            "p95": 0.27375,
+            "max": 0.3775,
+            "sum": 370.4897092199891
+          },
+          "action_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 2.0,
+            "mean": 6.591088550479413,
+            "median": 6,
+            "p95": 13.0,
+            "max": 26,
+            "sum": 11686
+          },
+          "causal_temporal_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 1.0,
+            "mean": 5.1184433164128595,
+            "median": 5,
+            "p95": 9.0,
+            "max": 15,
+            "sum": 9075
+          },
+          "physical_object_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 2.4184997179921037,
+            "median": 2,
+            "p95": 7.0,
+            "max": 17,
+            "sum": 4288
+          },
+          "spatial_state_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 1.0,
+            "mean": 5.196841511562324,
+            "median": 5,
+            "p95": 11.0,
+            "max": 19,
+            "sum": 9214
+          },
+          "aoa_target_occurrences": 26874,
+          "top_examples": [
+            {
+              "example_id": 45900,
+              "source": "open_subtitles",
+              "score": 0.3775,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 7,
+                "spatial_state_count": 12,
+                "social_role_count": 8
+              },
+              "text_prefix": "We need to find something to stick under it to keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! –No. –No! No! Mitch, we got to be on the other side of that door! Nobody le"
+            },
+            {
+              "example_id": 45971,
+              "source": "open_subtitles",
+              "score": 0.3753,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 6,
+                "spatial_state_count": 11,
+                "social_role_count": 9
+              },
+              "text_prefix": "keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! - No. - No! No! Mitch, we got to be on the other side of that door! Nobody leaves unless I say so. That door is not gonna "
+            },
+            {
+              "example_id": 6202,
+              "source": "childes",
+              "score": 0.365,
+              "feature_counts": {
+                "action_count": 23,
+                "causal_temporal_count": 2,
+                "physical_object_count": 6,
+                "spatial_state_count": 7,
+                "social_role_count": 14
+              },
+              "text_prefix": "the paper so you can see them. *CHI: I see the x. *CHI: turn de over. *CHI: ups a daisy you run over like a egg. *MOT: let's put them on the paper. *CHI: I do 'nough tricks. *MOT: I do enough tricks. *CHI: I do 'nough tricks. *CHI: I think so I put dem in 'e b"
+            },
+            {
+              "example_id": 18351,
+              "source": "childes",
+              "score": 0.3594,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 8,
+                "physical_object_count": 11,
+                "spatial_state_count": 6,
+                "social_role_count": 13
+              },
+              "text_prefix": "I wouldn't hafta get a toy. *FAT: you wouldn't hafta get a toy that way. *FAT: and what if you couldn't go to my office? *FAT: then what would you do? *CHI: toy. *FAT: oh I see. *FAT: so which one did you wanna have happen? *CHI: not go. *FAT: umhum right. *CH"
+            },
+            {
+              "example_id": 19020,
+              "source": "childes",
+              "score": 0.3484,
+              "feature_counts": {
+                "action_count": 26,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 5,
+                "social_role_count": 6
+              },
+              "text_prefix": "it you turn it. *CHI: okay. *CHI: what? *MAR: turn turn turn turn turn turn. *FAT: sorry about dropping that tape recorder. *MAR: turn turn turn turn turn turn turn turn turn turn turn. %int: 9-11 fall [aft walks back towards tape recorder] *MAR: whoa! *MAR: y"
+            },
+            {
+              "example_id": 45375,
+              "source": "open_subtitles",
+              "score": 0.3404,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 8,
+                "social_role_count": 29
+              },
+              "text_prefix": "then? I mean, I tried calling you on your cell, I tried texting you, you didn't text me back. What did you want? What difference does it make what I wanted? That was yesterday. You have to tell people where you are. What if something happened to the kids? What"
+            },
+            {
+              "example_id": 26230,
+              "source": "gutenberg",
+              "score": 0.3398,
+              "feature_counts": {
+                "action_count": 16,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 3,
+                "social_role_count": 19
+              },
+              "text_prefix": "so much money with you, then?\" asked Francois, doubtfully. \"See here!\" and Ben took out five napoleons, which he displayed in his open palm. The attendant's eyes sparkled. \"And you will give them to me, if perchance I set you free?\" \"Yes.\" \"Poor Francois,\" sai"
+            },
+            {
+              "example_id": 18546,
+              "source": "childes",
+              "score": 0.3362,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 6,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 16
+              },
+              "text_prefix": "at me so I shouldn't do that. *CHI: do you have a place where you put your little bag that you carry your your cards in? *CHI: you mean you carry it like this on here? *CHI: daddy how could I take Minerva Mouse to the airport with me. *CHI: daddy? *FAT: why do"
+            },
+            {
+              "example_id": 41859,
+              "source": "open_subtitles",
+              "score": 0.3294,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 5,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 26
+              },
+              "text_prefix": "over there. Just cross the river. It's okay, hurry up! Did my father really send you? Then you think I just came here because I have nothing else to do? Give that to me. Please stop the car! Stop the car! Dong-su, eat plenty. Eat as much as you can. Sis, he is"
+            },
+            {
+              "example_id": 1999,
+              "source": "bnc_spoken",
+              "score": 0.3289,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 9,
+                "physical_object_count": 3,
+                "spatial_state_count": 14,
+                "social_role_count": 9
+              },
+              "text_prefix": "Shall I write it down? Yes, it would be a good idea, wouldn't it? Mm. Do you want to write on the back of It would be because you've already got some in here haven't you? I think I probably Yeah. Actually I'll carr I'll carry on on And the date today is the Th"
+            },
+            {
+              "example_id": 43046,
+              "source": "open_subtitles",
+              "score": 0.3286,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 4,
+                "physical_object_count": 13,
+                "spatial_state_count": 8,
+                "social_role_count": 15
+              },
+              "text_prefix": "I know you want to know. I won't make you pay any fines. Other than money, the only good word that comes to mind when I think of Mr. Han Min Gook is ... Money is money. Money is still money. Money is money. How can money not be money? Here. Shall I give you so"
+            },
+            {
+              "example_id": 6702,
+              "source": "childes",
+              "score": 0.3281,
+              "feature_counts": {
+                "action_count": 24,
+                "causal_temporal_count": 1,
+                "physical_object_count": 3,
+                "spatial_state_count": 10,
+                "social_role_count": 8
+              },
+              "text_prefix": "*CHI: sit on your feet. [Baby whimpers and Adam runs into kitchen] [sits on Cromer's feet] *CHI: I listen. *MOT: okay? *CHI: [runs back into room and throws papers on the floor and kicks his shoe off]. *CHI: kick. *MOT: no I'll hafta put it up now Adam. *CHI: "
+            }
+          ]
+        },
+        "neutral_source_matched_summary": {
+          "rows": 1773,
+          "words": 283680,
+          "source_words": {
+            "bnc_spoken": 24480,
+            "childes": 51200,
+            "gutenberg": 87520,
+            "open_subtitles": 62720,
+            "simple_wiki": 57280,
+            "switchboard": 480
+          },
+          "source_rows": {
+            "bnc_spoken": 153,
+            "childes": 320,
+            "gutenberg": 547,
+            "open_subtitles": 392,
+            "simple_wiki": 358,
+            "switchboard": 3
+          },
+          "relation_affordance_score_stats": {
+            "n": 1773,
+            "min": 0.0,
+            "p05": 0.015345418912297893,
+            "mean": 0.07693534394870148,
+            "median": 0.07577639751552795,
+            "p95": 0.15125,
+            "max": 0.1675,
+            "sum": 136.40636482104773
+          },
+          "action_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 1.736604624929498,
+            "median": 1,
+            "p95": 6.0,
+            "max": 13,
+            "sum": 3079
+          },
+          "causal_temporal_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 1.7676254935138185,
+            "median": 1,
+            "p95": 5.0,
+            "max": 10,
+            "sum": 3134
+          },
+          "physical_object_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 0.7196841511562324,
+            "median": 0,
+            "p95": 3.0,
+            "max": 14,
+            "sum": 1276
+          },
+          "spatial_state_count_stats": {
+            "n": 1773,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 2.849971799210378,
+            "median": 2,
+            "p95": 7.0,
+            "max": 16,
+            "sum": 5053
+          },
+          "aoa_target_occurrences": 15854,
+          "top_examples": [
+            {
+              "example_id": 19239,
+              "source": "childes",
+              "score": 0.1675,
+              "feature_counts": {
+                "action_count": 6,
+                "causal_temporal_count": 4,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 10
+              },
+              "text_prefix": "kind of is weird feeling. *FAT: does it hurt or feel good? *MAR: well it's kind of weird when I blink it. *FAT: feel good or bad? *MAR: kinda weird. *FAT: kinda weird eh? *MAR: yeah. *MAR: Dad? *FAT: yes, love? *MAR: my throat's getting dry again. *FAT: excuse"
+            },
+            {
+              "example_id": 20556,
+              "source": "childes",
+              "score": 0.1675,
+              "feature_counts": {
+                "action_count": 5,
+                "causal_temporal_count": 2,
+                "physical_object_count": 3,
+                "spatial_state_count": 6,
+                "social_role_count": 13
+              },
+              "text_prefix": "had big thick sticks. *FAT: yeah. [Ross sniffs] *FAT: and what did they do with those big thick sticks? *CHI: well they knock things over knock people on the head with. *FAT: mhm [yes] know what those things were called? *CHI: what? *FAT: clubs. *CHI: clubs. *"
+            },
+            {
+              "example_id": 19969,
+              "source": "childes",
+              "score": 0.1675,
+              "feature_counts": {
+                "action_count": 8,
+                "causal_temporal_count": 2,
+                "physical_object_count": 0,
+                "spatial_state_count": 1,
+                "social_role_count": 16
+              },
+              "text_prefix": "a warm nice heart? *CHI: I don't have a warm heart but I have a nice one. *FAT: you don't to be a friend of brothers? *FAT: see I know you love brothers. *CHI: dad why do I hafta do this? *FAT: okay no more talking about it. *CHI: you're just trying to boss me"
+            },
+            {
+              "example_id": 11408,
+              "source": "childes",
+              "score": 0.1669,
+              "feature_counts": {
+                "action_count": 6,
+                "causal_temporal_count": 4,
+                "physical_object_count": 2,
+                "spatial_state_count": 6,
+                "social_role_count": 2
+              },
+              "text_prefix": "would be... *CHI: zzz. [laughs] *CHI: doesn't know what this is. [passes out the dishes] *MOT: no? *MOT: and the cups? *CHI: [starts to give each person a cup] *MOT: put all the same colors. *CHI: [starts to resort them so the cups and saucers have matching co"
+            },
+            {
+              "example_id": 19914,
+              "source": "childes",
+              "score": 0.1669,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 8,
+                "physical_object_count": 0,
+                "spatial_state_count": 1,
+                "social_role_count": 21
+              },
+              "text_prefix": "you? *CHI: he's my Daddy. *MOT: uh huh. *CHI: and my Daddy is my brother. *CHI: and you are my sis' you are my girlfriend and Marky is my Daddy. *CHI: and I'm my brother. *MOT: if Marky has... *MOT: and you're a brother. *MOT: does Marky have a Popeye shirt? *"
+            },
+            {
+              "example_id": 20810,
+              "source": "childes",
+              "score": 0.1669,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 9,
+                "physical_object_count": 0,
+                "spatial_state_count": 6,
+                "social_role_count": 6
+              },
+              "text_prefix": "At pilot. *FAT: there's a something pilot we're we're missing. *FAT: cloud something pilot. *CHI: you mean you mean um... *FAT: there some kind of other Imperial we're missing too. *CHI: cloud city... *CHI: cloud city what? *CHI: today we had real very much fu"
+            },
+            {
+              "example_id": 10250,
+              "source": "childes",
+              "score": 0.1662,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 4,
+                "physical_object_count": 1,
+                "spatial_state_count": 9,
+                "social_role_count": 5
+              },
+              "text_prefix": "like that. %int: under his breath [moves the silver man and tries to put its arm through one of the metal nuts] *MOT: yeah? %add: $=2 Bro *MOT: he [Bro's object] looks strong. *CHI: go... %int: under his breath [succeeds in getting the silver man's arm threade"
+            },
+            {
+              "example_id": 7270,
+              "source": "childes",
+              "score": 0.1656,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 2,
+                "physical_object_count": 2,
+                "spatial_state_count": 6,
+                "social_role_count": 12
+              },
+              "text_prefix": "Scout. *CHI: but there's no Boy Scouts there. *MOT: there's a picture on the wall of Boy Scouts at the Liberty Bell. *CHI: dat a totem pole. *CHI: the same like dis. *MOT: the same bell. *CHI: dis one same like dis. *MOT: Philadelphia. *CHI: Philadelphia. *CHI"
+            },
+            {
+              "example_id": 9093,
+              "source": "childes",
+              "score": 0.1656,
+              "feature_counts": {
+                "action_count": 5,
+                "causal_temporal_count": 4,
+                "physical_object_count": 2,
+                "spatial_state_count": 7,
+                "social_role_count": 8
+              },
+              "text_prefix": "cake one icecream cone one pickle on slice of swiss cheese one slice of salami one lollipop one piece of cherry pie one sausage one cupcake and one slice of watermelon. [Chi speeds through reading the list of food] *CHI: that night he had a stomachache. *CHI: "
+            },
+            {
+              "example_id": 9797,
+              "source": "childes",
+              "score": 0.1656,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 4,
+                "physical_object_count": 3,
+                "spatial_state_count": 11,
+                "social_role_count": 1
+              },
+              "text_prefix": "stick on the black base; it falls] *CHI: 'oops. %int: whispered *MOT: it's not magnetized. *CHI: 'oops. %int: whispered [takes penny off base; puts it on the table and holds the horseshoe magnet over it, then taps it with the horseshoe magnet] *CHI: [taps penn"
+            },
+            {
+              "example_id": 16943,
+              "source": "childes",
+              "score": 0.1656,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 1,
+                "social_role_count": 9
+              },
+              "text_prefix": "*MOT: he was... *FAT: no we kicked him aside and said George this is my ride. *MOT: George this is mine. *MOT: yeah no! *CHI: [laughs]. *MOT: George came along. *MOT: he was Georgie back then. *MOT: he was a little kid. *CHI: Georgie. %int: mocking voice *MOT:"
+            },
+            {
+              "example_id": 10027,
+              "source": "childes",
+              "score": 0.1652,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 1,
+                "physical_object_count": 10,
+                "spatial_state_count": 10,
+                "social_role_count": 3
+              },
+              "text_prefix": "[the magnet ball is the only object on the black base] *CHI: uh! *MOT: [laughs]. *CHI: okay. *CHI: that [nut] goes up there [on top of magnet ball]... *CHI: and... *CHI: that [silver stick] goes up... %int: whispered [attempts to balence the silver stick in th"
+            }
+          ]
+        },
+        "removed_rewrite_suffix_surrogate_summary": {
+          "surrogate": "current-rewrite suffix after target length; actual generated compact views must be audited before training",
+          "removed_words": 283761,
+          "removed_aoa_target_occurrences": 15840,
+          "removed_words_by_source": {
+            "open_subtitles": 44658,
+            "simple_wiki": 85892,
+            "bnc_spoken": 23652,
+            "gutenberg": 116682,
+            "childes": 12651,
+            "switchboard": 226
+          },
+          "examples": [
+            {
+              "pair_id": "rw2s0_000012",
+              "source": "bnc_spoken",
+              "example_id": 1596,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 17,
+              "removed_suffix_words": 10,
+              "rewrite_prefix_kept": "He possesses a cottage that is not in good enough condition to let, which he cannot afford",
+              "removed_suffix_prefix": "to renovate, and which does not quite qualify as decrepit."
+            },
+            {
+              "pair_id": "rw2s0_000027",
+              "source": "open_subtitles",
+              "example_id": 47077,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "I'm not ready to admit that the United States of America experienced an evil event that never should",
+              "removed_suffix_prefix": "have occurred, or even that it wasn't worth it."
+            },
+            {
+              "pair_id": "rw2s0_000034",
+              "source": "gutenberg",
+              "example_id": 25943,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "The vessel was driven straight to a location where she could rest safely, and",
+              "removed_suffix_prefix": "she certainly did her utmost to reach it."
+            },
+            {
+              "pair_id": "rw2s0_000038",
+              "source": "simple_wiki",
+              "example_id": 55547,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "It is also difficult to start and stop activities because a monotropic mind is",
+              "removed_suffix_prefix": "constantly drawn to concentrate on only a few things."
+            },
+            {
+              "pair_id": "rw2s0_000039",
+              "source": "open_subtitles",
+              "example_id": 39903,
+              "current_rewrite_words": 28,
+              "target_compact_rewrite_words": 16,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "This would be extremely useful, and perhaps far more so than Islam, which has been propagated",
+              "removed_suffix_prefix": "to billions, yet what are the chances that the seventeen demons exist?"
+            },
+            {
+              "pair_id": "rw2s0_000042",
+              "source": "gutenberg",
+              "example_id": 24071,
+              "current_rewrite_words": 21,
+              "target_compact_rewrite_words": 13,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "Still, it was hardly probable, since he must realize that by Saturday morning",
+              "removed_suffix_prefix": "his father would have discovered the missing sovereign."
+            },
+            {
+              "pair_id": "rw2s0_000044",
+              "source": "simple_wiki",
+              "example_id": 58660,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 13,
+              "removed_suffix_words": 10,
+              "rewrite_prefix_kept": "On the evening of March 13th, 2017, Prince Richard passed away at the",
+              "removed_suffix_prefix": "castle of Berleburg in Germany from a suspected heart attack."
+            },
+            {
+              "pair_id": "rw2s0_000046",
+              "source": "gutenberg",
+              "example_id": 22943,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "A page from 'Gift Series for Boys and Girls' has been relocated to its",
+              "removed_suffix_prefix": "correct position at the end of that section."
+            },
+            {
+              "pair_id": "rw2s0_000048",
+              "source": "gutenberg",
+              "example_id": 26875,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "Then you sat down, held it as tightly as possible, and wept over it until the fellows assisted",
+              "removed_suffix_prefix": "you to the pump to wash the blood off."
+            },
+            {
+              "pair_id": "rw2s0_000050",
+              "source": "simple_wiki",
+              "example_id": 55111,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 13,
+              "rewrite_prefix_kept": "The community's name stems from the fact that Colonists used the hill as an",
+              "removed_suffix_prefix": "important lookout point during the French and Indian War and the Revolutionary War."
+            }
+          ]
+        }
+      },
+      "topup_minus_removed_suffix_surrogate": {
+        "aoa_target_occurrence_delta": 11034,
+        "official_words_added_minus_rewrite_suffix_words_removed": -81,
+        "note": "Delta uses a suffix-removal surrogate for the old rewrite; actual generated compact text must be audited. Positive AoA occurrence delta means added official rows contain more CDI target occurrences than the removed rewrite suffix surrogate."
+      }
+    },
+    "len90_r060": {
+      "pairs_to_compact": 26567,
+      "target_ratio": 0.6,
+      "current_rewrite_words_compacted_subset": 592318,
+      "target_compact_rewrite_words_subset": 358415,
+      "expected_saved_words": 233903,
+      "addable_full_official_160w_rows": 1461,
+      "slack_words_for_exact_materialization": 143,
+      "expected_saved_fraction_of_10M": 0.0233903,
+      "source_words_compacted_subset": 579571,
+      "source_counts_by_pair_words": {},
+      "rewrite_len_ratio_stats_before": {
+        "n": 26567,
+        "min": 0.9,
+        "p05": 0.9130434782608695,
+        "mean": 1.0348541895560568,
+        "median": 1.0,
+        "p95": 1.25,
+        "max": 2.0,
+        "sum": 27492.971253935764
+      },
+      "content_overlap_stats": {
+        "n": 26567,
+        "min": 0.14285714285714285,
+        "p05": 0.23076923076923078,
+        "mean": 0.6606504143852533,
+        "median": 0.7142857142857143,
+        "p95": 0.9230769230769231,
+        "max": 0.9375,
+        "sum": 17551.499558973024
+      },
+      "entity_recall_stats": {
+        "n": 26567,
+        "min": 0.75,
+        "p05": 1.0,
+        "mean": 0.9928812434254016,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 26377.875994082642
+      },
+      "expected_save_stats_per_pair": {
+        "n": 26567,
+        "min": 3,
+        "p05": 4.0,
+        "mean": 8.804268453344374,
+        "median": 8,
+        "p95": 15.0,
+        "max": 29,
+        "sum": 233903
+      },
+      "saved_words_by_pair_source": {
+        "open_subtitles": 38232,
+        "bnc_spoken": 17281,
+        "simple_wiki": 76181,
+        "gutenberg": 91608,
+        "childes": 10462,
+        "switchboard": 139
+      },
+      "topup_design": {
+        "selection_source": "official_pool rows whose official example_id appears in selected Qwen pairs but whose full 160-word row is not already in the clean-Qwen filler",
+        "selection_lexicon_version": "broad_action_relation_affordance_v1_not_eval_derived",
+        "eval_examples_used_for_selection": false,
+        "target_weighting": "0.5*official_source_distribution + 0.5*available_missing_selected_source_distribution, clipped to availability; rows sorted by broad relation/action-affordance score within source",
+        "quotas_rows": {
+          "bnc_spoken": 124,
+          "childes": 264,
+          "gutenberg": 453,
+          "open_subtitles": 323,
+          "simple_wiki": 295,
+          "switchboard": 2
+        },
+        "affordance_topup_summary": {
+          "rows": 1461,
+          "words": 233760,
+          "source_words": {
+            "bnc_spoken": 19840,
+            "childes": 42240,
+            "gutenberg": 72480,
+            "open_subtitles": 51680,
+            "simple_wiki": 47200,
+            "switchboard": 320
+          },
+          "source_rows": {
+            "bnc_spoken": 124,
+            "childes": 264,
+            "gutenberg": 453,
+            "open_subtitles": 323,
+            "simple_wiki": 295,
+            "switchboard": 2
+          },
+          "relation_affordance_score_stats": {
+            "n": 1461,
+            "min": 0.12450331125827813,
+            "p05": 0.13354037267080743,
+            "mean": 0.2144936296420131,
+            "median": 0.21863354037267077,
+            "p95": 0.27735849056603773,
+            "max": 0.3775,
+            "sum": 313.3751929069811
+          },
+          "action_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 2,
+            "mean": 6.8904859685147155,
+            "median": 7,
+            "p95": 13,
+            "max": 26,
+            "sum": 10067
+          },
+          "causal_temporal_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 1,
+            "mean": 5.255304585900069,
+            "median": 5,
+            "p95": 10,
+            "max": 15,
+            "sum": 7678
+          },
+          "physical_object_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 0,
+            "mean": 2.518822724161533,
+            "median": 2,
+            "p95": 7,
+            "max": 17,
+            "sum": 3680
+          },
+          "spatial_state_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 1,
+            "mean": 5.195756331279945,
+            "median": 5,
+            "p95": 11,
+            "max": 19,
+            "sum": 7591
+          },
+          "aoa_target_occurrences": 22513,
+          "top_examples": [
+            {
+              "example_id": 45900,
+              "source": "open_subtitles",
+              "score": 0.3775,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 7,
+                "spatial_state_count": 12,
+                "social_role_count": 8
+              },
+              "text_prefix": "We need to find something to stick under it to keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! –No. –No! No! Mitch, we got to be on the other side of that door! Nobody le"
+            },
+            {
+              "example_id": 45971,
+              "source": "open_subtitles",
+              "score": 0.3753,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 6,
+                "spatial_state_count": 11,
+                "social_role_count": 9
+              },
+              "text_prefix": "keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! - No. - No! No! Mitch, we got to be on the other side of that door! Nobody leaves unless I say so. That door is not gonna "
+            },
+            {
+              "example_id": 6202,
+              "source": "childes",
+              "score": 0.365,
+              "feature_counts": {
+                "action_count": 23,
+                "causal_temporal_count": 2,
+                "physical_object_count": 6,
+                "spatial_state_count": 7,
+                "social_role_count": 14
+              },
+              "text_prefix": "the paper so you can see them. *CHI: I see the x. *CHI: turn de over. *CHI: ups a daisy you run over like a egg. *MOT: let's put them on the paper. *CHI: I do 'nough tricks. *MOT: I do enough tricks. *CHI: I do 'nough tricks. *CHI: I think so I put dem in 'e b"
+            },
+            {
+              "example_id": 18351,
+              "source": "childes",
+              "score": 0.3594,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 8,
+                "physical_object_count": 11,
+                "spatial_state_count": 6,
+                "social_role_count": 13
+              },
+              "text_prefix": "I wouldn't hafta get a toy. *FAT: you wouldn't hafta get a toy that way. *FAT: and what if you couldn't go to my office? *FAT: then what would you do? *CHI: toy. *FAT: oh I see. *FAT: so which one did you wanna have happen? *CHI: not go. *FAT: umhum right. *CH"
+            },
+            {
+              "example_id": 19020,
+              "source": "childes",
+              "score": 0.3484,
+              "feature_counts": {
+                "action_count": 26,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 5,
+                "social_role_count": 6
+              },
+              "text_prefix": "it you turn it. *CHI: okay. *CHI: what? *MAR: turn turn turn turn turn turn. *FAT: sorry about dropping that tape recorder. *MAR: turn turn turn turn turn turn turn turn turn turn turn. %int: 9-11 fall [aft walks back towards tape recorder] *MAR: whoa! *MAR: y"
+            },
+            {
+              "example_id": 45375,
+              "source": "open_subtitles",
+              "score": 0.3404,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 8,
+                "social_role_count": 29
+              },
+              "text_prefix": "then? I mean, I tried calling you on your cell, I tried texting you, you didn't text me back. What did you want? What difference does it make what I wanted? That was yesterday. You have to tell people where you are. What if something happened to the kids? What"
+            },
+            {
+              "example_id": 26230,
+              "source": "gutenberg",
+              "score": 0.3398,
+              "feature_counts": {
+                "action_count": 16,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 3,
+                "social_role_count": 19
+              },
+              "text_prefix": "so much money with you, then?\" asked Francois, doubtfully. \"See here!\" and Ben took out five napoleons, which he displayed in his open palm. The attendant's eyes sparkled. \"And you will give them to me, if perchance I set you free?\" \"Yes.\" \"Poor Francois,\" sai"
+            },
+            {
+              "example_id": 18546,
+              "source": "childes",
+              "score": 0.3362,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 6,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 16
+              },
+              "text_prefix": "at me so I shouldn't do that. *CHI: do you have a place where you put your little bag that you carry your your cards in? *CHI: you mean you carry it like this on here? *CHI: daddy how could I take Minerva Mouse to the airport with me. *CHI: daddy? *FAT: why do"
+            },
+            {
+              "example_id": 41859,
+              "source": "open_subtitles",
+              "score": 0.3294,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 5,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 26
+              },
+              "text_prefix": "over there. Just cross the river. It's okay, hurry up! Did my father really send you? Then you think I just came here because I have nothing else to do? Give that to me. Please stop the car! Stop the car! Dong-su, eat plenty. Eat as much as you can. Sis, he is"
+            },
+            {
+              "example_id": 1999,
+              "source": "bnc_spoken",
+              "score": 0.3289,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 9,
+                "physical_object_count": 3,
+                "spatial_state_count": 14,
+                "social_role_count": 9
+              },
+              "text_prefix": "Shall I write it down? Yes, it would be a good idea, wouldn't it? Mm. Do you want to write on the back of It would be because you've already got some in here haven't you? I think I probably Yeah. Actually I'll carr I'll carry on on And the date today is the Th"
+            },
+            {
+              "example_id": 43046,
+              "source": "open_subtitles",
+              "score": 0.3286,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 4,
+                "physical_object_count": 13,
+                "spatial_state_count": 8,
+                "social_role_count": 15
+              },
+              "text_prefix": "I know you want to know. I won't make you pay any fines. Other than money, the only good word that comes to mind when I think of Mr. Han Min Gook is ... Money is money. Money is still money. Money is money. How can money not be money? Here. Shall I give you so"
+            },
+            {
+              "example_id": 6702,
+              "source": "childes",
+              "score": 0.3281,
+              "feature_counts": {
+                "action_count": 24,
+                "causal_temporal_count": 1,
+                "physical_object_count": 3,
+                "spatial_state_count": 10,
+                "social_role_count": 8
+              },
+              "text_prefix": "*CHI: sit on your feet. [Baby whimpers and Adam runs into kitchen] [sits on Cromer's feet] *CHI: I listen. *MOT: okay? *CHI: [runs back into room and throws papers on the floor and kicks his shoe off]. *CHI: kick. *MOT: no I'll hafta put it up now Adam. *CHI: "
+            }
+          ]
+        },
+        "neutral_source_matched_summary": {
+          "rows": 1461,
+          "words": 233760,
+          "source_words": {
+            "bnc_spoken": 19840,
+            "childes": 42240,
+            "gutenberg": 72480,
+            "open_subtitles": 51680,
+            "simple_wiki": 47200,
+            "switchboard": 320
+          },
+          "source_rows": {
+            "bnc_spoken": 124,
+            "childes": 264,
+            "gutenberg": 453,
+            "open_subtitles": 323,
+            "simple_wiki": 295,
+            "switchboard": 2
+          },
+          "relation_affordance_score_stats": {
+            "n": 1461,
+            "min": 0.0,
+            "p05": 0.014189189189189187,
+            "mean": 0.07268928655172602,
+            "median": 0.07177914110429448,
+            "p95": 0.145,
+            "max": 0.156875,
+            "sum": 106.19904765207171
+          },
+          "action_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 0,
+            "mean": 1.6132785763175908,
+            "median": 1,
+            "p95": 5,
+            "max": 13,
+            "sum": 2357
+          },
+          "causal_temporal_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 0,
+            "mean": 1.673511293634497,
+            "median": 1,
+            "p95": 4,
+            "max": 10,
+            "sum": 2445
+          },
+          "physical_object_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 0,
+            "mean": 0.6646132785763176,
+            "median": 0,
+            "p95": 3,
+            "max": 14,
+            "sum": 971
+          },
+          "spatial_state_count_stats": {
+            "n": 1461,
+            "min": 0,
+            "p05": 0,
+            "mean": 2.7207392197125255,
+            "median": 2,
+            "p95": 7,
+            "max": 16,
+            "sum": 3975
+          },
+          "aoa_target_occurrences": 12747,
+          "top_examples": [
+            {
+              "example_id": 11899,
+              "source": "childes",
+              "score": 0.1569,
+              "feature_counts": {
+                "action_count": 6,
+                "causal_temporal_count": 1,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 6
+              },
+              "text_prefix": "the morning. *MOT: my night light is on in case I needta get up and go to the bathroom during the night. *MOT: my hockey stick is ready in case anybody comes and invites me to a midnight game of hockey. *MOT: and my rubber duckie. *MOT: my rubber duckie is. *M"
+            },
+            {
+              "example_id": 9986,
+              "source": "childes",
+              "score": 0.1562,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 4,
+                "physical_object_count": 4,
+                "spatial_state_count": 14,
+                "social_role_count": 0
+              },
+              "text_prefix": "and falls to the table] *CHI: [tries to affix the purple star to the far end again, and it falls to the table again] *CHI: why willn't it stick? [tries to affix the star again, and it falls again] *MOT: [laughs]. *CHI: [holds the purple staar against the far e"
+            },
+            {
+              "example_id": 15935,
+              "source": "childes",
+              "score": 0.1562,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 4,
+                "physical_object_count": 0,
+                "spatial_state_count": 9,
+                "social_role_count": 16
+              },
+              "text_prefix": "I was starting back through the town and those pants raced around the corner and they almost knocked me down. *MOT: I lost my Grinch spinach but I didn't even care. *MOT: I ran for home because believe me I had already had a scare. *MOT: now bicycles were neve"
+            },
+            {
+              "example_id": 17898,
+              "source": "childes",
+              "score": 0.1562,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 0,
+                "physical_object_count": 5,
+                "spatial_state_count": 11,
+                "social_role_count": 12
+              },
+              "text_prefix": "*MOT: well that's just what the book says. *CHI: in the light of the moon a little egg lay on a leaf. [MOT strokes Chi's hair] *CHI: w one Sunday morning the warm sun came up and pop out of the egg came a tiny and very hungry caterpillar. *CHI: he started to l"
+            },
+            {
+              "example_id": 8975,
+              "source": "childes",
+              "score": 0.1556,
+              "feature_counts": {
+                "action_count": 5,
+                "causal_temporal_count": 3,
+                "physical_object_count": 1,
+                "spatial_state_count": 7,
+                "social_role_count": 9
+              },
+              "text_prefix": "happened. *CHI: [using the yellow wand Chi lifts the black base magnet and all the nuts cling to the bottom of the base] *MOT: [laughs]. *MOT: you're gonna clean the slate here huh? [picks pieces off the base] *CHI: are you ready now? %add: EXP *MOT: why don't"
+            },
+            {
+              "example_id": 15231,
+              "source": "childes",
+              "score": 0.1555,
+              "feature_counts": {
+                "action_count": 7,
+                "causal_temporal_count": 0,
+                "physical_object_count": 4,
+                "spatial_state_count": 5,
+                "social_role_count": 12
+              },
+              "text_prefix": "= *MOT: you wanna play with some toys? *SIS2: yeah! *MOT: yeah! *INV1: yeah right! *MOT: I know you would. [MOT and EXP set up the table for toys.] *INV1: [dumps out toys] *MOT: come on! *MOT: Sis's going to. %int: taunting *INV1: yeah you can pick something t"
+            },
+            {
+              "example_id": 17307,
+              "source": "childes",
+              "score": 0.1553,
+              "feature_counts": {
+                "action_count": 8,
+                "causal_temporal_count": 2,
+                "physical_object_count": 0,
+                "spatial_state_count": 2,
+                "social_role_count": 11
+              },
+              "text_prefix": "me. *MOT: dear Marie how are you and Mike and Mat and Jesse I am doing fine love Chi and Brian Mama. *INV: oh. *INV: that's a nice letter. *INV: great job! = = = childes/CHILDES_NA/HSLLD/HV5/LW/terlw5.cha = = = [Home Visit 5] *INV: what we'd like you to do is."
+            },
+            {
+              "example_id": 20258,
+              "source": "childes",
+              "score": 0.1551,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 3,
+                "physical_object_count": 6,
+                "spatial_state_count": 8,
+                "social_role_count": 9
+              },
+              "text_prefix": "got the wrong story. *FAT: \" who's that that knocking at my door? \" *CHI: nope. *FAT: is that... *CHI: no no. *CHI: we won't let you in. *FAT: right. *CHI: yes I can. *CHI: I'm strong and I can knock it down. *CHI: and blow it down. *CHI: they ran away. *CHI: "
+            },
+            {
+              "example_id": 9074,
+              "source": "childes",
+              "score": 0.155,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 3,
+                "physical_object_count": 1,
+                "spatial_state_count": 1,
+                "social_role_count": 12
+              },
+              "text_prefix": "another member of the family falls off a chair] *MOT: is that colors? *CHI: yeah. *CHI: I forgot the o? *MOT: let's see now. *MOT: I'm trying to think of colors. *MOT: oh god. *MOT: tha that looks wrong. *MOT: and I'm gonna say it's wrong but... *CHI: isn't it"
+            },
+            {
+              "example_id": 11399,
+              "source": "childes",
+              "score": 0.155,
+              "feature_counts": {
+                "action_count": 13,
+                "causal_temporal_count": 2,
+                "physical_object_count": 0,
+                "spatial_state_count": 1,
+                "social_role_count": 3
+              },
+              "text_prefix": "tries to fit a piece into the wrong place] *MOT: no. *MOT: I don't think that goes there. *CHI: [Chi puts it into the puzzle] *MOT: oh. *MOT: there we go. *MOT: okay now... *CHI: piece. *CHI: here a piece. *CHI: this just gonna be... *MOT: here's the one. *MOT"
+            },
+            {
+              "example_id": 19402,
+              "source": "childes",
+              "score": 0.155,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 2,
+                "physical_object_count": 8,
+                "spatial_state_count": 2,
+                "social_role_count": 9
+              },
+              "text_prefix": "else is silverware? *CHI: and a fork. *FAT: a fork is silverware? *FAT: what else is silverware? *CHI: a glass. *FAT: a glass is silverware? *FAT: really? *CHI: really. *FAT: what else is silverware? *CHI: glass. *FAT: what about a spoon? *CHI: mm hm. [Marky c"
+            },
+            {
+              "example_id": 22308,
+              "source": "childes",
+              "score": 0.155,
+              "feature_counts": {
+                "action_count": 7,
+                "causal_temporal_count": 1,
+                "physical_object_count": 1,
+                "spatial_state_count": 2,
+                "social_role_count": 10
+              },
+              "text_prefix": "you see dogs at the park yesterday? *MOT: no? *CHI: no. *MOT: you didn't see any dogs at the park? *MOT: oh I guess there weren't any dogs yesterday were there? *CHI: no. [coughs] *CHI: that dog. *CHI: that is a dog. *CHI: that little dog. *MOT: yes. *CHI: tho"
+            }
+          ]
+        },
+        "removed_rewrite_suffix_surrogate_summary": {
+          "surrogate": "current-rewrite suffix after target length; actual generated compact views must be audited before training",
+          "removed_words": 233903,
+          "removed_aoa_target_occurrences": 12921,
+          "removed_words_by_source": {
+            "open_subtitles": 38232,
+            "bnc_spoken": 17281,
+            "simple_wiki": 76181,
+            "gutenberg": 91608,
+            "childes": 10462,
+            "switchboard": 139
+          },
+          "examples": [
+            {
+              "pair_id": "rw2s0_000012",
+              "source": "bnc_spoken",
+              "example_id": 1596,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 17,
+              "removed_suffix_words": 10,
+              "rewrite_prefix_kept": "He possesses a cottage that is not in good enough condition to let, which he cannot afford",
+              "removed_suffix_prefix": "to renovate, and which does not quite qualify as decrepit."
+            },
+            {
+              "pair_id": "rw2s0_000027",
+              "source": "open_subtitles",
+              "example_id": 47077,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "I'm not ready to admit that the United States of America experienced an evil event that never should",
+              "removed_suffix_prefix": "have occurred, or even that it wasn't worth it."
+            },
+            {
+              "pair_id": "rw2s0_000034",
+              "source": "gutenberg",
+              "example_id": 25943,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "The vessel was driven straight to a location where she could rest safely, and",
+              "removed_suffix_prefix": "she certainly did her utmost to reach it."
+            },
+            {
+              "pair_id": "rw2s0_000038",
+              "source": "simple_wiki",
+              "example_id": 55547,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "It is also difficult to start and stop activities because a monotropic mind is",
+              "removed_suffix_prefix": "constantly drawn to concentrate on only a few things."
+            },
+            {
+              "pair_id": "rw2s0_000039",
+              "source": "open_subtitles",
+              "example_id": 39903,
+              "current_rewrite_words": 28,
+              "target_compact_rewrite_words": 16,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "This would be extremely useful, and perhaps far more so than Islam, which has been propagated",
+              "removed_suffix_prefix": "to billions, yet what are the chances that the seventeen demons exist?"
+            },
+            {
+              "pair_id": "rw2s0_000042",
+              "source": "gutenberg",
+              "example_id": 24071,
+              "current_rewrite_words": 21,
+              "target_compact_rewrite_words": 13,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "Still, it was hardly probable, since he must realize that by Saturday morning",
+              "removed_suffix_prefix": "his father would have discovered the missing sovereign."
+            },
+            {
+              "pair_id": "rw2s0_000044",
+              "source": "simple_wiki",
+              "example_id": 58660,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 13,
+              "removed_suffix_words": 10,
+              "rewrite_prefix_kept": "On the evening of March 13th, 2017, Prince Richard passed away at the",
+              "removed_suffix_prefix": "castle of Berleburg in Germany from a suspected heart attack."
+            },
+            {
+              "pair_id": "rw2s0_000046",
+              "source": "gutenberg",
+              "example_id": 22943,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "A page from 'Gift Series for Boys and Girls' has been relocated to its",
+              "removed_suffix_prefix": "correct position at the end of that section."
+            },
+            {
+              "pair_id": "rw2s0_000048",
+              "source": "gutenberg",
+              "example_id": 26875,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "Then you sat down, held it as tightly as possible, and wept over it until the fellows assisted",
+              "removed_suffix_prefix": "you to the pump to wash the blood off."
+            },
+            {
+              "pair_id": "rw2s0_000050",
+              "source": "simple_wiki",
+              "example_id": 55111,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 13,
+              "rewrite_prefix_kept": "The community's name stems from the fact that Colonists used the hill as an",
+              "removed_suffix_prefix": "important lookout point during the French and Indian War and the Revolutionary War."
+            }
+          ]
+        }
+      },
+      "topup_minus_removed_suffix_surrogate": {
+        "aoa_target_occurrence_delta": 9592,
+        "official_words_added_minus_rewrite_suffix_words_removed": -143,
+        "note": "Delta uses a suffix-removal surrogate for the old rewrite; actual generated compact text must be audited. Positive AoA occurrence delta means added official rows contain more CDI target occurrences than the removed rewrite suffix surrogate."
+      }
+    },
+    "len90_r065": {
+      "pairs_to_compact": 26567,
+      "target_ratio": 0.65,
+      "current_rewrite_words_compacted_subset": 592318,
+      "target_compact_rewrite_words_subset": 388308,
+      "expected_saved_words": 204010,
+      "addable_full_official_160w_rows": 1275,
+      "slack_words_for_exact_materialization": 10,
+      "expected_saved_fraction_of_10M": 0.020401,
+      "source_words_compacted_subset": 579571,
+      "source_counts_by_pair_words": {},
+      "rewrite_len_ratio_stats_before": {
+        "n": 26567,
+        "min": 0.9,
+        "p05": 0.9130434782608695,
+        "mean": 1.0348541895560568,
+        "median": 1.0,
+        "p95": 1.25,
+        "max": 2.0,
+        "sum": 27492.971253935764
+      },
+      "content_overlap_stats": {
+        "n": 26567,
+        "min": 0.14285714285714285,
+        "p05": 0.23076923076923078,
+        "mean": 0.6606504143852533,
+        "median": 0.7142857142857143,
+        "p95": 0.9230769230769231,
+        "max": 0.9375,
+        "sum": 17551.499558973024
+      },
+      "entity_recall_stats": {
+        "n": 26567,
+        "min": 0.75,
+        "p05": 1.0,
+        "mean": 0.9928812434254016,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 26377.875994082642
+      },
+      "expected_save_stats_per_pair": {
+        "n": 26567,
+        "min": 3,
+        "p05": 4.0,
+        "mean": 7.679075544848873,
+        "median": 7,
+        "p95": 13.0,
+        "max": 27,
+        "sum": 204010
+      },
+      "saved_words_by_pair_source": {
+        "open_subtitles": 33800,
+        "bnc_spoken": 15018,
+        "simple_wiki": 66545,
+        "gutenberg": 79328,
+        "childes": 9200,
+        "switchboard": 119
+      },
+      "topup_design": {
+        "selection_source": "official_pool rows whose official example_id appears in selected Qwen pairs but whose full 160-word row is not already in the clean-Qwen filler",
+        "selection_lexicon_version": "broad_action_relation_affordance_v1_not_eval_derived",
+        "eval_examples_used_for_selection": false,
+        "target_weighting": "0.5*official_source_distribution + 0.5*available_missing_selected_source_distribution, clipped to availability; rows sorted by broad relation/action-affordance score within source",
+        "quotas_rows": {
+          "bnc_spoken": 108,
+          "childes": 230,
+          "gutenberg": 393,
+          "open_subtitles": 282,
+          "simple_wiki": 260,
+          "switchboard": 2
+        },
+        "affordance_topup_summary": {
+          "rows": 1275,
+          "words": 204000,
+          "source_words": {
+            "bnc_spoken": 17280,
+            "childes": 36800,
+            "gutenberg": 62880,
+            "open_subtitles": 45120,
+            "simple_wiki": 41600,
+            "switchboard": 320
+          },
+          "source_rows": {
+            "bnc_spoken": 108,
+            "childes": 230,
+            "gutenberg": 393,
+            "open_subtitles": 282,
+            "simple_wiki": 260,
+            "switchboard": 2
+          },
+          "relation_affordance_score_stats": {
+            "n": 1275,
+            "min": 0.129375,
+            "p05": 0.137,
+            "mean": 0.21813570569821786,
+            "median": 0.22249999999999998,
+            "p95": 0.28305070754716977,
+            "max": 0.3775,
+            "sum": 278.12302476522774
+          },
+          "action_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 2.0,
+            "mean": 7.043137254901961,
+            "median": 7,
+            "p95": 14.0,
+            "max": 26,
+            "sum": 8980
+          },
+          "causal_temporal_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 1.0,
+            "mean": 5.364705882352941,
+            "median": 5,
+            "p95": 10.0,
+            "max": 15,
+            "sum": 6840
+          },
+          "physical_object_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 2.590588235294118,
+            "median": 2,
+            "p95": 7.2999999999999545,
+            "max": 17,
+            "sum": 3303
+          },
+          "spatial_state_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 1.0,
+            "mean": 5.277647058823529,
+            "median": 5,
+            "p95": 11.0,
+            "max": 19,
+            "sum": 6729
+          },
+          "aoa_target_occurrences": 19888,
+          "top_examples": [
+            {
+              "example_id": 45900,
+              "source": "open_subtitles",
+              "score": 0.3775,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 7,
+                "spatial_state_count": 12,
+                "social_role_count": 8
+              },
+              "text_prefix": "We need to find something to stick under it to keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! –No. –No! No! Mitch, we got to be on the other side of that door! Nobody le"
+            },
+            {
+              "example_id": 45971,
+              "source": "open_subtitles",
+              "score": 0.3753,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 6,
+                "spatial_state_count": 11,
+                "social_role_count": 9
+              },
+              "text_prefix": "keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! - No. - No! No! Mitch, we got to be on the other side of that door! Nobody leaves unless I say so. That door is not gonna "
+            },
+            {
+              "example_id": 6202,
+              "source": "childes",
+              "score": 0.365,
+              "feature_counts": {
+                "action_count": 23,
+                "causal_temporal_count": 2,
+                "physical_object_count": 6,
+                "spatial_state_count": 7,
+                "social_role_count": 14
+              },
+              "text_prefix": "the paper so you can see them. *CHI: I see the x. *CHI: turn de over. *CHI: ups a daisy you run over like a egg. *MOT: let's put them on the paper. *CHI: I do 'nough tricks. *MOT: I do enough tricks. *CHI: I do 'nough tricks. *CHI: I think so I put dem in 'e b"
+            },
+            {
+              "example_id": 18351,
+              "source": "childes",
+              "score": 0.3594,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 8,
+                "physical_object_count": 11,
+                "spatial_state_count": 6,
+                "social_role_count": 13
+              },
+              "text_prefix": "I wouldn't hafta get a toy. *FAT: you wouldn't hafta get a toy that way. *FAT: and what if you couldn't go to my office? *FAT: then what would you do? *CHI: toy. *FAT: oh I see. *FAT: so which one did you wanna have happen? *CHI: not go. *FAT: umhum right. *CH"
+            },
+            {
+              "example_id": 19020,
+              "source": "childes",
+              "score": 0.3484,
+              "feature_counts": {
+                "action_count": 26,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 5,
+                "social_role_count": 6
+              },
+              "text_prefix": "it you turn it. *CHI: okay. *CHI: what? *MAR: turn turn turn turn turn turn. *FAT: sorry about dropping that tape recorder. *MAR: turn turn turn turn turn turn turn turn turn turn turn. %int: 9-11 fall [aft walks back towards tape recorder] *MAR: whoa! *MAR: y"
+            },
+            {
+              "example_id": 45375,
+              "source": "open_subtitles",
+              "score": 0.3404,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 8,
+                "social_role_count": 29
+              },
+              "text_prefix": "then? I mean, I tried calling you on your cell, I tried texting you, you didn't text me back. What did you want? What difference does it make what I wanted? That was yesterday. You have to tell people where you are. What if something happened to the kids? What"
+            },
+            {
+              "example_id": 26230,
+              "source": "gutenberg",
+              "score": 0.3398,
+              "feature_counts": {
+                "action_count": 16,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 3,
+                "social_role_count": 19
+              },
+              "text_prefix": "so much money with you, then?\" asked Francois, doubtfully. \"See here!\" and Ben took out five napoleons, which he displayed in his open palm. The attendant's eyes sparkled. \"And you will give them to me, if perchance I set you free?\" \"Yes.\" \"Poor Francois,\" sai"
+            },
+            {
+              "example_id": 18546,
+              "source": "childes",
+              "score": 0.3362,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 6,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 16
+              },
+              "text_prefix": "at me so I shouldn't do that. *CHI: do you have a place where you put your little bag that you carry your your cards in? *CHI: you mean you carry it like this on here? *CHI: daddy how could I take Minerva Mouse to the airport with me. *CHI: daddy? *FAT: why do"
+            },
+            {
+              "example_id": 41859,
+              "source": "open_subtitles",
+              "score": 0.3294,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 5,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 26
+              },
+              "text_prefix": "over there. Just cross the river. It's okay, hurry up! Did my father really send you? Then you think I just came here because I have nothing else to do? Give that to me. Please stop the car! Stop the car! Dong-su, eat plenty. Eat as much as you can. Sis, he is"
+            },
+            {
+              "example_id": 1999,
+              "source": "bnc_spoken",
+              "score": 0.3289,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 9,
+                "physical_object_count": 3,
+                "spatial_state_count": 14,
+                "social_role_count": 9
+              },
+              "text_prefix": "Shall I write it down? Yes, it would be a good idea, wouldn't it? Mm. Do you want to write on the back of It would be because you've already got some in here haven't you? I think I probably Yeah. Actually I'll carr I'll carry on on And the date today is the Th"
+            },
+            {
+              "example_id": 43046,
+              "source": "open_subtitles",
+              "score": 0.3286,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 4,
+                "physical_object_count": 13,
+                "spatial_state_count": 8,
+                "social_role_count": 15
+              },
+              "text_prefix": "I know you want to know. I won't make you pay any fines. Other than money, the only good word that comes to mind when I think of Mr. Han Min Gook is ... Money is money. Money is still money. Money is money. How can money not be money? Here. Shall I give you so"
+            },
+            {
+              "example_id": 6702,
+              "source": "childes",
+              "score": 0.3281,
+              "feature_counts": {
+                "action_count": 24,
+                "causal_temporal_count": 1,
+                "physical_object_count": 3,
+                "spatial_state_count": 10,
+                "social_role_count": 8
+              },
+              "text_prefix": "*CHI: sit on your feet. [Baby whimpers and Adam runs into kitchen] [sits on Cromer's feet] *CHI: I listen. *MOT: okay? *CHI: [runs back into room and throws papers on the floor and kicks his shoe off]. *CHI: kick. *MOT: no I'll hafta put it up now Adam. *CHI: "
+            }
+          ]
+        },
+        "neutral_source_matched_summary": {
+          "rows": 1275,
+          "words": 204000,
+          "source_words": {
+            "bnc_spoken": 17280,
+            "childes": 36800,
+            "gutenberg": 62880,
+            "open_subtitles": 45120,
+            "simple_wiki": 41600,
+            "switchboard": 320
+          },
+          "source_rows": {
+            "bnc_spoken": 108,
+            "childes": 230,
+            "gutenberg": 393,
+            "open_subtitles": 282,
+            "simple_wiki": 260,
+            "switchboard": 2
+          },
+          "relation_affordance_score_stats": {
+            "n": 1275,
+            "min": 0.0,
+            "p05": 0.012437150837988829,
+            "mean": 0.06977655097298475,
+            "median": 0.06871165644171778,
+            "p95": 0.140625,
+            "max": 0.15125,
+            "sum": 88.96510249055557
+          },
+          "action_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 1.515294117647059,
+            "median": 1,
+            "p95": 5.0,
+            "max": 10,
+            "sum": 1932
+          },
+          "causal_temporal_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 1.6125490196078431,
+            "median": 1,
+            "p95": 4.0,
+            "max": 10,
+            "sum": 2056
+          },
+          "physical_object_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 0.6321568627450981,
+            "median": 0,
+            "p95": 3.0,
+            "max": 14,
+            "sum": 806
+          },
+          "spatial_state_count_stats": {
+            "n": 1275,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 2.6298039215686275,
+            "median": 2,
+            "p95": 7.0,
+            "max": 16,
+            "sum": 3353
+          },
+          "aoa_target_occurrences": 10940,
+          "top_examples": [
+            {
+              "example_id": 15612,
+              "source": "childes",
+              "score": 0.1512,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 2,
+                "physical_object_count": 1,
+                "spatial_state_count": 13,
+                "social_role_count": 10
+              },
+              "text_prefix": "him in the window? *CHI: [shakes head no] *MOT: no? *MOT: on and on they flew up and up above the clouds past millions of stars until at last they landed on the moon. *MOT: there's nobody here said baby bear there are no trees said the owl. *MOT: it's kind of "
+            },
+            {
+              "example_id": 12887,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 5,
+                "causal_temporal_count": 5,
+                "physical_object_count": 0,
+                "spatial_state_count": 3,
+                "social_role_count": 9
+              },
+              "text_prefix": "of... *MOT: isn't it? *BRO: of it happening. *CHI: hm. *MOT: well it does happen. *CHI: odd odd even even. *MOT: you do end up sick in the hospital from time to time. *MOT: like everyone else. *BRO: who? *MOT: people hafta have medical tests and all that sort "
+            },
+            {
+              "example_id": 17110,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 2,
+                "physical_object_count": 4,
+                "spatial_state_count": 2,
+                "social_role_count": 12
+              },
+              "text_prefix": "grade! *MOT: no fifth grade I know. *MOT: doesn't fifth grade also go like to New Hampshire or something? *MOT: for a couple weeks? *CHI: I don't know. *MOT: I think that the science department takes them and they study plant life and... *CHI: yeah. *MOT: it's"
+            },
+            {
+              "example_id": 17834,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 5,
+                "physical_object_count": 1,
+                "spatial_state_count": 9,
+                "social_role_count": 11
+              },
+              "text_prefix": "on Friday he ate through five oranges but he was still hungry. *CHI: on Saturday he ate through a piece of chocolate cake one icecream cone one pickle one slice of Swiss cheese one slice of salami one lollipop one piece of cherry pie one sausage one cupcake an"
+            },
+            {
+              "example_id": 9448,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 2,
+                "physical_object_count": 2,
+                "spatial_state_count": 13,
+                "social_role_count": 3
+              },
+              "text_prefix": "Chi. [waves wand over objects again; two silver men and a ball stick to wand] *CHI: one two three! *CHI: tadah! [holds up wand with objects stuck to it] *CHI: hey mom. *CHI: watch this. *CHI: aren't you gonna clap? *MOT: oh yeah. *MOT: [claps]. *CHI: ah! [pull"
+            },
+            {
+              "example_id": 10018,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 2,
+                "physical_object_count": 0,
+                "spatial_state_count": 6,
+                "social_role_count": 3
+              },
+              "text_prefix": "to add a nut which causes all the men to fall] *CHI: oh! *CHI: no. *CHI: uh! *CHI: oh no. *CHI: okay. *MOT: try this one [yellow wand maybe]. [holds out yellow wand with some objects stuck to it] *MOT: this one [yellow wand] is stronger. [is probably comparing"
+            },
+            {
+              "example_id": 20189,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 8,
+                "causal_temporal_count": 3,
+                "physical_object_count": 1,
+                "spatial_state_count": 2,
+                "social_role_count": 6
+              },
+              "text_prefix": "being bad. *CHI: yeah. *FAT: what did she say? *CHI: she said bang. *FAT: and then what happened? *CHI: made me sit on the bench. *FAT: can you do Bobby Shafto? *CHI: yeah. *FAT: [receiting]. *CHI: no you do it. *CHI: rub a dub dub three men in a tub who might"
+            },
+            {
+              "example_id": 9169,
+              "source": "childes",
+              "score": 0.1506,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 3,
+                "physical_object_count": 6,
+                "spatial_state_count": 1,
+                "social_role_count": 8
+              },
+              "text_prefix": "like a g. *MOT: good spelling. *CHI: sincere sincere:ly Chi. [bef Mot and Chi are whispering something?] *MOT: good. [MOT is busy with her nephew] *CHI: I'm finished. *INV: you all done? *INV: you wanna read it? *CHI: okay. *CHI: dear Mr Carle... *CHI: hi we'v"
+            },
+            {
+              "example_id": 8426,
+              "source": "childes",
+              "score": 0.15,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 2,
+                "physical_object_count": 3,
+                "spatial_state_count": 4,
+                "social_role_count": 8
+              },
+              "text_prefix": "you bought this? *MOT: where'd I buy that? *CHI: yeah. *MOT: I think Esther gave it to you. *MOT: oh Sarah. *CHI: [opens the lollipop] *MOT: whyn't you sit up here and talk? *MOT: tell Kent about your new room. *CHI: want see my new room? *KEN: why don't you t"
+            },
+            {
+              "example_id": 9717,
+              "source": "childes",
+              "score": 0.15,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 2,
+                "physical_object_count": 4,
+                "spatial_state_count": 9,
+                "social_role_count": 7
+              },
+              "text_prefix": "and shakes it] *CHI: there should be... *CHI: somethin' metal in here [plastic turtle]. *CHI: can I make... *MOT: and I have this big circle. [places horseshoe magnet on the silver circle (which is on the table) and attempts to lift it; it lifts some and then "
+            },
+            {
+              "example_id": 10454,
+              "source": "childes",
+              "score": 0.15,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 2,
+                "physical_object_count": 1,
+                "spatial_state_count": 4,
+                "social_role_count": 15
+              },
+              "text_prefix": "where are we gonna put them? *CHI: n no I wanna get? *CHI: n nice turtle toys! *MOT: oh toys. *CHI: yeah nice turtle toys. *MOT: okay. *CHI: can I? *MOT: you know where there are any? *CHI: huh? *MOT: do you know where they are? *CHI: where? *MOT: I dunno. *CH"
+            },
+            {
+              "example_id": 12620,
+              "source": "childes",
+              "score": 0.15,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 5,
+                "physical_object_count": 0,
+                "spatial_state_count": 2,
+                "social_role_count": 13
+              },
+              "text_prefix": "he just burped. *FAT: I know. *MOT: say excuse me Max. *CHI: excuse me. *MOT: you're a good dog. *CHI: hey look. *MOT: I could give you another cookie Max that's about the size of it. *MOT: why don't you eat more Kibble honey. *MOT: here sit I'll get you anoth"
+            }
+          ]
+        },
+        "removed_rewrite_suffix_surrogate_summary": {
+          "surrogate": "current-rewrite suffix after target length; actual generated compact views must be audited before training",
+          "removed_words": 204010,
+          "removed_aoa_target_occurrences": 11391,
+          "removed_words_by_source": {
+            "open_subtitles": 33800,
+            "bnc_spoken": 15018,
+            "simple_wiki": 66545,
+            "gutenberg": 79328,
+            "childes": 9200,
+            "switchboard": 119
+          },
+          "examples": [
+            {
+              "pair_id": "rw2s0_000012",
+              "source": "bnc_spoken",
+              "example_id": 1596,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "He possesses a cottage that is not in good enough condition to let, which he cannot afford to",
+              "removed_suffix_prefix": "renovate, and which does not quite qualify as decrepit."
+            },
+            {
+              "pair_id": "rw2s0_000038",
+              "source": "simple_wiki",
+              "example_id": 55547,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 15,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "It is also difficult to start and stop activities because a monotropic mind is constantly",
+              "removed_suffix_prefix": "drawn to concentrate on only a few things."
+            },
+            {
+              "pair_id": "rw2s0_000039",
+              "source": "open_subtitles",
+              "example_id": 39903,
+              "current_rewrite_words": 28,
+              "target_compact_rewrite_words": 17,
+              "removed_suffix_words": 11,
+              "rewrite_prefix_kept": "This would be extremely useful, and perhaps far more so than Islam, which has been propagated to",
+              "removed_suffix_prefix": "billions, yet what are the chances that the seventeen demons exist?"
+            },
+            {
+              "pair_id": "rw2s0_000044",
+              "source": "simple_wiki",
+              "example_id": 58660,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "On the evening of March 13th, 2017, Prince Richard passed away at the castle",
+              "removed_suffix_prefix": "of Berleburg in Germany from a suspected heart attack."
+            },
+            {
+              "pair_id": "rw2s0_000048",
+              "source": "gutenberg",
+              "example_id": 26875,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 19,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "Then you sat down, held it as tightly as possible, and wept over it until the fellows assisted you",
+              "removed_suffix_prefix": "to the pump to wash the blood off."
+            },
+            {
+              "pair_id": "rw2s0_000050",
+              "source": "simple_wiki",
+              "example_id": 55111,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 15,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "The community's name stems from the fact that Colonists used the hill as an important",
+              "removed_suffix_prefix": "lookout point during the French and Indian War and the Revolutionary War."
+            },
+            {
+              "pair_id": "rw2s0_000075",
+              "source": "bnc_spoken",
+              "example_id": 1762,
+              "current_rewrite_words": 21,
+              "target_compact_rewrite_words": 12,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "Would you agree that any District Council member who is unable to",
+              "removed_suffix_prefix": "do that is irresponsible, as he has suggested himself?"
+            },
+            {
+              "pair_id": "rw2s0_000085",
+              "source": "gutenberg",
+              "example_id": 25814,
+              "current_rewrite_words": 37,
+              "target_compact_rewrite_words": 25,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "Sometimes they are found in large groups sleeping together in old caves, tree trunks, and similar places, and it may be that they half wake",
+              "removed_suffix_prefix": "up to talk to one another in order to pass the time."
+            },
+            {
+              "pair_id": "rw2s0_000103",
+              "source": "gutenberg",
+              "example_id": 25791,
+              "current_rewrite_words": 28,
+              "target_compact_rewrite_words": 19,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "The Polecat's mate emerged sneaking from the hollow, closely followed by four red-brown cubs that were loose-jointed yet muscular,",
+              "removed_suffix_prefix": "whimpering pettishly and mauling one another as they ran."
+            },
+            {
+              "pair_id": "rw2s0_000104",
+              "source": "gutenberg",
+              "example_id": 30549,
+              "current_rewrite_words": 26,
+              "target_compact_rewrite_words": 17,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "One would think that the implacable King might have been satisfied, given that the poor peasants had",
+              "removed_suffix_prefix": "been dispersed with great loss and their leaders taken."
+            }
+          ]
+        }
+      },
+      "topup_minus_removed_suffix_surrogate": {
+        "aoa_target_occurrence_delta": 8497,
+        "official_words_added_minus_rewrite_suffix_words_removed": -10,
+        "note": "Delta uses a suffix-removal surrogate for the old rewrite; actual generated compact text must be audited. Positive AoA occurrence delta means added official rows contain more CDI target occurrences than the removed rewrite suffix surrogate."
+      }
+    },
+    "len90_content80_r060": {
+      "pairs_to_compact": 10144,
+      "target_ratio": 0.6,
+      "current_rewrite_words_compacted_subset": 246670,
+      "target_compact_rewrite_words_subset": 150480,
+      "expected_saved_words": 96190,
+      "addable_full_official_160w_rows": 601,
+      "slack_words_for_exact_materialization": 30,
+      "expected_saved_fraction_of_10M": 0.009619,
+      "source_words_compacted_subset": 244353,
+      "source_counts_by_pair_words": {},
+      "rewrite_len_ratio_stats_before": {
+        "n": 10144,
+        "min": 0.9,
+        "p05": 0.9142857142857143,
+        "mean": 1.0167499769868005,
+        "median": 1.0,
+        "p95": 1.1666666666666667,
+        "max": 2.0,
+        "sum": 10313.911766554103
+      },
+      "content_overlap_stats": {
+        "n": 10144,
+        "min": 0.8,
+        "p05": 0.8,
+        "mean": 0.8791059248264644,
+        "median": 0.8888888888888888,
+        "p95": 0.9333333333333333,
+        "max": 0.9375,
+        "sum": 8917.650501439655
+      },
+      "entity_recall_stats": {
+        "n": 10144,
+        "min": 0.75,
+        "p05": 1.0,
+        "mean": 0.9933755333530224,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 10076.80141033306
+      },
+      "expected_save_stats_per_pair": {
+        "n": 10144,
+        "min": 3,
+        "p05": 6.0,
+        "mean": 9.482452681388013,
+        "median": 9.0,
+        "p95": 16.0,
+        "max": 29,
+        "sum": 96190
+      },
+      "saved_words_by_pair_source": {
+        "open_subtitles": 6902,
+        "bnc_spoken": 7574,
+        "simple_wiki": 42096,
+        "gutenberg": 36526,
+        "childes": 3045,
+        "switchboard": 47
+      },
+      "topup_design": {
+        "selection_source": "official_pool rows whose official example_id appears in selected Qwen pairs but whose full 160-word row is not already in the clean-Qwen filler",
+        "selection_lexicon_version": "broad_action_relation_affordance_v1_not_eval_derived",
+        "eval_examples_used_for_selection": false,
+        "target_weighting": "0.5*official_source_distribution + 0.5*available_missing_selected_source_distribution, clipped to availability; rows sorted by broad relation/action-affordance score within source",
+        "quotas_rows": {
+          "bnc_spoken": 51,
+          "childes": 110,
+          "gutenberg": 185,
+          "open_subtitles": 133,
+          "simple_wiki": 121,
+          "switchboard": 1
+        },
+        "affordance_topup_summary": {
+          "rows": 601,
+          "words": 96160,
+          "source_words": {
+            "bnc_spoken": 8160,
+            "childes": 17600,
+            "gutenberg": 29600,
+            "open_subtitles": 21280,
+            "simple_wiki": 19360,
+            "switchboard": 160
+          },
+          "source_rows": {
+            "bnc_spoken": 51,
+            "childes": 110,
+            "gutenberg": 185,
+            "open_subtitles": 133,
+            "simple_wiki": 121,
+            "switchboard": 1
+          },
+          "relation_affordance_score_stats": {
+            "n": 601,
+            "min": 0.15095541401273888,
+            "p05": 0.15827814569536422,
+            "mean": 0.2381351348991643,
+            "median": 0.24320987654320986,
+            "p95": 0.299375,
+            "max": 0.3775,
+            "sum": 143.11921607439774
+          },
+          "action_count_stats": {
+            "n": 601,
+            "min": 1,
+            "p05": 2,
+            "mean": 7.981697171381032,
+            "median": 8,
+            "p95": 15,
+            "max": 26,
+            "sum": 4797
+          },
+          "causal_temporal_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 2,
+            "mean": 5.961730449251248,
+            "median": 6,
+            "p95": 11,
+            "max": 15,
+            "sum": 3583
+          },
+          "physical_object_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 0,
+            "mean": 2.8552412645590683,
+            "median": 2,
+            "p95": 8,
+            "max": 17,
+            "sum": 1716
+          },
+          "spatial_state_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 1,
+            "mean": 5.632279534109817,
+            "median": 5,
+            "p95": 12,
+            "max": 19,
+            "sum": 3385
+          },
+          "aoa_target_occurrences": 9841,
+          "top_examples": [
+            {
+              "example_id": 45900,
+              "source": "open_subtitles",
+              "score": 0.3775,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 7,
+                "spatial_state_count": 12,
+                "social_role_count": 8
+              },
+              "text_prefix": "We need to find something to stick under it to keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! –No. –No! No! Mitch, we got to be on the other side of that door! Nobody le"
+            },
+            {
+              "example_id": 45971,
+              "source": "open_subtitles",
+              "score": 0.3753,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 6,
+                "spatial_state_count": 11,
+                "social_role_count": 9
+              },
+              "text_prefix": "keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! - No. - No! No! Mitch, we got to be on the other side of that door! Nobody leaves unless I say so. That door is not gonna "
+            },
+            {
+              "example_id": 6202,
+              "source": "childes",
+              "score": 0.365,
+              "feature_counts": {
+                "action_count": 23,
+                "causal_temporal_count": 2,
+                "physical_object_count": 6,
+                "spatial_state_count": 7,
+                "social_role_count": 14
+              },
+              "text_prefix": "the paper so you can see them. *CHI: I see the x. *CHI: turn de over. *CHI: ups a daisy you run over like a egg. *MOT: let's put them on the paper. *CHI: I do 'nough tricks. *MOT: I do enough tricks. *CHI: I do 'nough tricks. *CHI: I think so I put dem in 'e b"
+            },
+            {
+              "example_id": 18351,
+              "source": "childes",
+              "score": 0.3594,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 8,
+                "physical_object_count": 11,
+                "spatial_state_count": 6,
+                "social_role_count": 13
+              },
+              "text_prefix": "I wouldn't hafta get a toy. *FAT: you wouldn't hafta get a toy that way. *FAT: and what if you couldn't go to my office? *FAT: then what would you do? *CHI: toy. *FAT: oh I see. *FAT: so which one did you wanna have happen? *CHI: not go. *FAT: umhum right. *CH"
+            },
+            {
+              "example_id": 19020,
+              "source": "childes",
+              "score": 0.3484,
+              "feature_counts": {
+                "action_count": 26,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 5,
+                "social_role_count": 6
+              },
+              "text_prefix": "it you turn it. *CHI: okay. *CHI: what? *MAR: turn turn turn turn turn turn. *FAT: sorry about dropping that tape recorder. *MAR: turn turn turn turn turn turn turn turn turn turn turn. %int: 9-11 fall [aft walks back towards tape recorder] *MAR: whoa! *MAR: y"
+            },
+            {
+              "example_id": 45375,
+              "source": "open_subtitles",
+              "score": 0.3404,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 8,
+                "social_role_count": 29
+              },
+              "text_prefix": "then? I mean, I tried calling you on your cell, I tried texting you, you didn't text me back. What did you want? What difference does it make what I wanted? That was yesterday. You have to tell people where you are. What if something happened to the kids? What"
+            },
+            {
+              "example_id": 26230,
+              "source": "gutenberg",
+              "score": 0.3398,
+              "feature_counts": {
+                "action_count": 16,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 3,
+                "social_role_count": 19
+              },
+              "text_prefix": "so much money with you, then?\" asked Francois, doubtfully. \"See here!\" and Ben took out five napoleons, which he displayed in his open palm. The attendant's eyes sparkled. \"And you will give them to me, if perchance I set you free?\" \"Yes.\" \"Poor Francois,\" sai"
+            },
+            {
+              "example_id": 18546,
+              "source": "childes",
+              "score": 0.3362,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 6,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 16
+              },
+              "text_prefix": "at me so I shouldn't do that. *CHI: do you have a place where you put your little bag that you carry your your cards in? *CHI: you mean you carry it like this on here? *CHI: daddy how could I take Minerva Mouse to the airport with me. *CHI: daddy? *FAT: why do"
+            },
+            {
+              "example_id": 41859,
+              "source": "open_subtitles",
+              "score": 0.3294,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 5,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 26
+              },
+              "text_prefix": "over there. Just cross the river. It's okay, hurry up! Did my father really send you? Then you think I just came here because I have nothing else to do? Give that to me. Please stop the car! Stop the car! Dong-su, eat plenty. Eat as much as you can. Sis, he is"
+            },
+            {
+              "example_id": 1999,
+              "source": "bnc_spoken",
+              "score": 0.3289,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 9,
+                "physical_object_count": 3,
+                "spatial_state_count": 14,
+                "social_role_count": 9
+              },
+              "text_prefix": "Shall I write it down? Yes, it would be a good idea, wouldn't it? Mm. Do you want to write on the back of It would be because you've already got some in here haven't you? I think I probably Yeah. Actually I'll carr I'll carry on on And the date today is the Th"
+            },
+            {
+              "example_id": 43046,
+              "source": "open_subtitles",
+              "score": 0.3286,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 4,
+                "physical_object_count": 13,
+                "spatial_state_count": 8,
+                "social_role_count": 15
+              },
+              "text_prefix": "I know you want to know. I won't make you pay any fines. Other than money, the only good word that comes to mind when I think of Mr. Han Min Gook is ... Money is money. Money is still money. Money is money. How can money not be money? Here. Shall I give you so"
+            },
+            {
+              "example_id": 6702,
+              "source": "childes",
+              "score": 0.3281,
+              "feature_counts": {
+                "action_count": 24,
+                "causal_temporal_count": 1,
+                "physical_object_count": 3,
+                "spatial_state_count": 10,
+                "social_role_count": 8
+              },
+              "text_prefix": "*CHI: sit on your feet. [Baby whimpers and Adam runs into kitchen] [sits on Cromer's feet] *CHI: I listen. *MOT: okay? *CHI: [runs back into room and throws papers on the floor and kicks his shoe off]. *CHI: kick. *MOT: no I'll hafta put it up now Adam. *CHI: "
+            }
+          ]
+        },
+        "neutral_source_matched_summary": {
+          "rows": 601,
+          "words": 96160,
+          "source_words": {
+            "bnc_spoken": 8160,
+            "childes": 17600,
+            "gutenberg": 29600,
+            "open_subtitles": 21280,
+            "simple_wiki": 19360,
+            "switchboard": 160
+          },
+          "source_rows": {
+            "bnc_spoken": 51,
+            "childes": 110,
+            "gutenberg": 185,
+            "open_subtitles": 133,
+            "simple_wiki": 121,
+            "switchboard": 1
+          },
+          "relation_affordance_score_stats": {
+            "n": 601,
+            "min": 0.0,
+            "p05": 0.007547169811320755,
+            "mean": 0.056157091202276056,
+            "median": 0.0537037037037037,
+            "p95": 0.11937499999999998,
+            "max": 0.12732919254658384,
+            "sum": 33.75041181256791
+          },
+          "action_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 0,
+            "mean": 1.0931780366056572,
+            "median": 1,
+            "p95": 4,
+            "max": 7,
+            "sum": 657
+          },
+          "causal_temporal_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 0,
+            "mean": 1.286189683860233,
+            "median": 1,
+            "p95": 4,
+            "max": 10,
+            "sum": 773
+          },
+          "physical_object_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 0,
+            "mean": 0.5241264559068219,
+            "median": 0,
+            "p95": 3,
+            "max": 14,
+            "sum": 315
+          },
+          "spatial_state_count_stats": {
+            "n": 601,
+            "min": 0,
+            "p05": 0,
+            "mean": 2.2878535773710484,
+            "median": 2,
+            "p95": 6,
+            "max": 10,
+            "sum": 1375
+          },
+          "aoa_target_occurrences": 4704,
+          "top_examples": [
+            {
+              "example_id": 9463,
+              "source": "childes",
+              "score": 0.1273,
+              "feature_counts": {
+                "action_count": 6,
+                "causal_temporal_count": 3,
+                "physical_object_count": 0,
+                "spatial_state_count": 0,
+                "social_role_count": 13
+              },
+              "text_prefix": "black base] *CHI: look what this one's [silver man] using him [silver man] for a diving board. *CHI: tadah! *INV: you really like playing with that don't you Chi? *CHI: I love them. *CHI: I would like to buy 'em! [EXP, Chi, and Mot talk about buying the magnet"
+            },
+            {
+              "example_id": 11234,
+              "source": "childes",
+              "score": 0.1267,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 1,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 10
+              },
+              "text_prefix": "want it no no I don't want it no! *CHI: zzz! [laughing, squealing] *MOT: no it fell on the floor and it's got sugar on it and it's got milk on it and I don't want it 'ucky! %int: 1u loud, screeching, hysterical, rapid *MOT: I don't want any Chi. %int: 1u drops"
+            },
+            {
+              "example_id": 21121,
+              "source": "childes",
+              "score": 0.1264,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 0,
+                "physical_object_count": 3,
+                "spatial_state_count": 1,
+                "social_role_count": 17
+              },
+              "text_prefix": "= = [diary for nina35 nina did not sleep much last night. she has had a busy week. yesterday she went to visit the new school which she will be going to soon. nina is looking out the window of her mother's bed+room. she sees some horses grazing in a pasture.] "
+            },
+            {
+              "example_id": 17727,
+              "source": "childes",
+              "score": 0.1261,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 1,
+                "physical_object_count": 0,
+                "spatial_state_count": 9,
+                "social_role_count": 11
+              },
+              "text_prefix": "sorry he does that 'til he has xxx so he xxx. %add: EXs *INV2: well that's alright [laughing]. *CHI: on Wednesday he ate through three plums but he was still hungry. *INV2: that's okay. %int: sing song *CHI: on Thursday he ate through four strawberries but he "
+            },
+            {
+              "example_id": 20588,
+              "source": "childes",
+              "score": 0.1261,
+              "feature_counts": {
+                "action_count": 5,
+                "causal_temporal_count": 1,
+                "physical_object_count": 1,
+                "spatial_state_count": 1,
+                "social_role_count": 13
+              },
+              "text_prefix": "not big people. *CHI: if a kid gets a shock it'll really hurt. *FAT: okay would you eat some of your breakfast please? *CHI: [giggle]. *FAT: know what gesundheit means? *CHI: [laughs]. *FAT: know what gesundheit means? *CHI: what? *FAT: in what language? *FAT:"
+            },
+            {
+              "example_id": 8411,
+              "source": "childes",
+              "score": 0.1256,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 2,
+                "physical_object_count": 3,
+                "spatial_state_count": 4,
+                "social_role_count": 8
+              },
+              "text_prefix": "*GLO: read it to me. *CHI: alright. *MOT: that's the way. *CHI: yyy got it upside down. *GLO: you read it upside down? *MOT: what's his name what's that book what's that kitty's name? *CHI: huh? *MOT: what's that book what's that kitty's name? [for almost the "
+            },
+            {
+              "example_id": 9461,
+              "source": "childes",
+              "score": 0.1256,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 0,
+                "physical_object_count": 1,
+                "spatial_state_count": 10,
+                "social_role_count": 8
+              },
+              "text_prefix": "fourth man on a different part of the yellow wand] *CHI: ugh! *CHI: [vocalization]. *CHI: hey look at him [silver man]! *CHI: [vocalization]. [sounds like a trumpet] *CHI: hanging [the silver man is hanging] upside down! *CHI: look. *CHI: he's [silver man] hol"
+            },
+            {
+              "example_id": 16387,
+              "source": "childes",
+              "score": 0.1256,
+              "feature_counts": {
+                "action_count": 0,
+                "causal_temporal_count": 10,
+                "physical_object_count": 0,
+                "spatial_state_count": 3,
+                "social_role_count": 12
+              },
+              "text_prefix": "a story or uh... *CHI: once upon a time... *MOT: no but something that's happening. *MOT: let's see. *MOT: what can you think of? *CHI: no uh one thing we did was saying once upon a time though. *MOT: okay. *CHI: once time upon a time we did uh... *CHI: I got "
+            },
+            {
+              "example_id": 18956,
+              "source": "childes",
+              "score": 0.1256,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 1,
+                "physical_object_count": 1,
+                "spatial_state_count": 2,
+                "social_role_count": 14
+              },
+              "text_prefix": "*FAT: mhm [yes]. *MAR: that's xxx. *MAR: oh did it burn his foot? *MAR: zzz it gave him a black toe. [1 laughs] *FAT: mhm [yes]. *MAR: I thought it was black eyes, not black toe. *MAR: I never heard of a black toe. *FAT: well, in this case it was a black toe. "
+            },
+            {
+              "example_id": 22132,
+              "source": "childes",
+              "score": 0.1256,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 5,
+                "physical_object_count": 0,
+                "spatial_state_count": 2,
+                "social_role_count": 8
+              },
+              "text_prefix": "nice train. [nina is playing with the red engine of the train. she is sqeezing it trying to produce the squeak that it emits when it is squeezed hard.] *MOT: is that the engine? [nina protests because she can't manage to squeeze hard enough to get the engine t"
+            },
+            {
+              "example_id": 19825,
+              "source": "childes",
+              "score": 0.1256,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 3,
+                "physical_object_count": 0,
+                "spatial_state_count": 4,
+                "social_role_count": 7
+              },
+              "text_prefix": "Ya Ya doing? *CHI: he's playing in the snow and I'm standing in the snow. *CHI: and what's this? *FAT: that's Frederick Douglas Day a famous antislavery leader and orator who died in eighteen ninety five. *CHI: why? *FAT: oh I don't know. *CHI: what's that thi"
+            },
+            {
+              "example_id": 12878,
+              "source": "childes",
+              "score": 0.125,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 1,
+                "social_role_count": 9
+              },
+              "text_prefix": "already did. *MOT: oh. *MOT: I put yours with barbecue sauce it's on the stove. *MOT: you'll be able to tell easily which one is yours. *BRO: Steve did anyone call me when Ma wasn't home? *FAT: yeah. *BRO: who? *CHI: yeah. *FAT: what's her name who made the ca"
+            }
+          ]
+        },
+        "removed_rewrite_suffix_surrogate_summary": {
+          "surrogate": "current-rewrite suffix after target length; actual generated compact views must be audited before training",
+          "removed_words": 96190,
+          "removed_aoa_target_occurrences": 5722,
+          "removed_words_by_source": {
+            "open_subtitles": 6902,
+            "bnc_spoken": 7574,
+            "simple_wiki": 42096,
+            "gutenberg": 36526,
+            "childes": 3045,
+            "switchboard": 47
+          },
+          "examples": [
+            {
+              "pair_id": "rw2s0_000012",
+              "source": "bnc_spoken",
+              "example_id": 1596,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 17,
+              "removed_suffix_words": 10,
+              "rewrite_prefix_kept": "He possesses a cottage that is not in good enough condition to let, which he cannot afford",
+              "removed_suffix_prefix": "to renovate, and which does not quite qualify as decrepit."
+            },
+            {
+              "pair_id": "rw2s0_000027",
+              "source": "open_subtitles",
+              "example_id": 47077,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 9,
+              "rewrite_prefix_kept": "I'm not ready to admit that the United States of America experienced an evil event that never should",
+              "removed_suffix_prefix": "have occurred, or even that it wasn't worth it."
+            },
+            {
+              "pair_id": "rw2s0_000039",
+              "source": "open_subtitles",
+              "example_id": 39903,
+              "current_rewrite_words": 28,
+              "target_compact_rewrite_words": 16,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "This would be extremely useful, and perhaps far more so than Islam, which has been propagated",
+              "removed_suffix_prefix": "to billions, yet what are the chances that the seventeen demons exist?"
+            },
+            {
+              "pair_id": "rw2s0_000044",
+              "source": "simple_wiki",
+              "example_id": 58660,
+              "current_rewrite_words": 23,
+              "target_compact_rewrite_words": 13,
+              "removed_suffix_words": 10,
+              "rewrite_prefix_kept": "On the evening of March 13th, 2017, Prince Richard passed away at the",
+              "removed_suffix_prefix": "castle of Berleburg in Germany from a suspected heart attack."
+            },
+            {
+              "pair_id": "rw2s0_000046",
+              "source": "gutenberg",
+              "example_id": 22943,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "A page from 'Gift Series for Boys and Girls' has been relocated to its",
+              "removed_suffix_prefix": "correct position at the end of that section."
+            },
+            {
+              "pair_id": "rw2s0_000050",
+              "source": "simple_wiki",
+              "example_id": 55111,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 13,
+              "rewrite_prefix_kept": "The community's name stems from the fact that Colonists used the hill as an",
+              "removed_suffix_prefix": "important lookout point during the French and Indian War and the Revolutionary War."
+            },
+            {
+              "pair_id": "rw2s0_000071",
+              "source": "open_subtitles",
+              "example_id": 50664,
+              "current_rewrite_words": 20,
+              "target_compact_rewrite_words": 12,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "It wasn't until a month had passed that he opened his mouth",
+              "removed_suffix_prefix": "to say more than two words to somebody."
+            },
+            {
+              "pair_id": "rw2s0_000073",
+              "source": "simple_wiki",
+              "example_id": 53686,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "Josef Kaltenbrunner served as the second man behind Otto Noll on the national team",
+              "removed_suffix_prefix": "squad at the 1912 Olympic Games in Stockholm."
+            },
+            {
+              "pair_id": "rw2s0_000085",
+              "source": "gutenberg",
+              "example_id": 25814,
+              "current_rewrite_words": 37,
+              "target_compact_rewrite_words": 23,
+              "removed_suffix_words": 14,
+              "rewrite_prefix_kept": "Sometimes they are found in large groups sleeping together in old caves, tree trunks, and similar places, and it may be that they",
+              "removed_suffix_prefix": "half wake up to talk to one another in order to pass the time."
+            },
+            {
+              "pair_id": "rw2s0_000095",
+              "source": "gutenberg",
+              "example_id": 31218,
+              "current_rewrite_words": 22,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 8,
+              "rewrite_prefix_kept": "Hans put the wooden shoe from his left foot by the fireside, hoping the",
+              "removed_suffix_prefix": "Christ-child would remember him as he passed by."
+            }
+          ]
+        }
+      },
+      "topup_minus_removed_suffix_surrogate": {
+        "aoa_target_occurrence_delta": 4119,
+        "official_words_added_minus_rewrite_suffix_words_removed": -30,
+        "note": "Delta uses a suffix-removal surrogate for the old rewrite; actual generated compact text must be audited. Positive AoA occurrence delta means added official rows contain more CDI target occurrences than the removed rewrite suffix surrogate."
+      }
+    },
+    "pilot4096_len90_r060": {
+      "pairs_to_compact": 4096,
+      "target_ratio": 0.6,
+      "current_rewrite_words_compacted_subset": 143288,
+      "target_compact_rewrite_words_subset": 84121,
+      "expected_saved_words": 59167,
+      "addable_full_official_160w_rows": 369,
+      "slack_words_for_exact_materialization": 127,
+      "expected_saved_fraction_of_10M": 0.0059167,
+      "source_words_compacted_subset": 137684,
+      "source_counts_by_pair_words": {},
+      "rewrite_len_ratio_stats_before": {
+        "n": 4096,
+        "min": 0.9,
+        "p05": 0.925,
+        "mean": 1.0695431797695907,
+        "median": 1.0303030303030303,
+        "p95": 1.3529411764705883,
+        "max": 2.0,
+        "sum": 4380.848864336243
+      },
+      "content_overlap_stats": {
+        "n": 4096,
+        "min": 0.14285714285714285,
+        "p05": 0.3333333333333333,
+        "mean": 0.7420316515602823,
+        "median": 0.8,
+        "p95": 0.9333333333333333,
+        "max": 0.9375,
+        "sum": 3039.361644790916
+      },
+      "entity_recall_stats": {
+        "n": 4096,
+        "min": 0.75,
+        "p05": 0.8888888888888888,
+        "mean": 0.989259261807272,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 4052.005936362586
+      },
+      "expected_save_stats_per_pair": {
+        "n": 4096,
+        "min": 12,
+        "p05": 12.0,
+        "mean": 14.445068359375,
+        "median": 14.0,
+        "p95": 19.0,
+        "max": 29,
+        "sum": 59167
+      },
+      "saved_words_by_pair_source": {
+        "open_subtitles": 4025,
+        "simple_wiki": 16046,
+        "gutenberg": 33599,
+        "bnc_spoken": 4532,
+        "childes": 938,
+        "switchboard": 27
+      },
+      "topup_design": {
+        "selection_source": "official_pool rows whose official example_id appears in selected Qwen pairs but whose full 160-word row is not already in the clean-Qwen filler",
+        "selection_lexicon_version": "broad_action_relation_affordance_v1_not_eval_derived",
+        "eval_examples_used_for_selection": false,
+        "target_weighting": "0.5*official_source_distribution + 0.5*available_missing_selected_source_distribution, clipped to availability; rows sorted by broad relation/action-affordance score within source",
+        "quotas_rows": {
+          "bnc_spoken": 31,
+          "childes": 66,
+          "gutenberg": 117,
+          "open_subtitles": 81,
+          "simple_wiki": 74
+        },
+        "affordance_topup_summary": {
+          "rows": 369,
+          "words": 59040,
+          "source_words": {
+            "bnc_spoken": 4960,
+            "childes": 10560,
+            "gutenberg": 18720,
+            "open_subtitles": 12960,
+            "simple_wiki": 11840
+          },
+          "source_rows": {
+            "bnc_spoken": 31,
+            "childes": 66,
+            "gutenberg": 117,
+            "open_subtitles": 81,
+            "simple_wiki": 74
+          },
+          "relation_affordance_score_stats": {
+            "n": 369,
+            "min": 0.16274509803921566,
+            "p05": 0.1723150762281197,
+            "mean": 0.2501732089583046,
+            "median": 0.255,
+            "p95": 0.31472531847133745,
+            "max": 0.3775,
+            "sum": 92.3139141056144
+          },
+          "action_count_stats": {
+            "n": 369,
+            "min": 1,
+            "p05": 3.0,
+            "mean": 8.696476964769648,
+            "median": 8,
+            "p95": 16.0,
+            "max": 26,
+            "sum": 3209
+          },
+          "causal_temporal_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 2.0,
+            "mean": 6.208672086720867,
+            "median": 6,
+            "p95": 11.0,
+            "max": 15,
+            "sum": 2291
+          },
+          "physical_object_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 3.113821138211382,
+            "median": 2,
+            "p95": 8.0,
+            "max": 17,
+            "sum": 1149
+          },
+          "spatial_state_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 1.0,
+            "mean": 5.737127371273712,
+            "median": 5,
+            "p95": 12.0,
+            "max": 19,
+            "sum": 2117
+          },
+          "aoa_target_occurrences": 6263,
+          "top_examples": [
+            {
+              "example_id": 45900,
+              "source": "open_subtitles",
+              "score": 0.3775,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 7,
+                "spatial_state_count": 12,
+                "social_role_count": 8
+              },
+              "text_prefix": "We need to find something to stick under it to keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! –No. –No! No! Mitch, we got to be on the other side of that door! Nobody le"
+            },
+            {
+              "example_id": 45971,
+              "source": "open_subtitles",
+              "score": 0.3753,
+              "feature_counts": {
+                "action_count": 20,
+                "causal_temporal_count": 6,
+                "physical_object_count": 6,
+                "spatial_state_count": 11,
+                "social_role_count": 9
+              },
+              "text_prefix": "keep it open! No, if it's open, this tunnel will stay flooded. We've got to get to the other side and close the door. Patrick, Emily, go! - No. - No! No! Mitch, we got to be on the other side of that door! Nobody leaves unless I say so. That door is not gonna "
+            },
+            {
+              "example_id": 6202,
+              "source": "childes",
+              "score": 0.365,
+              "feature_counts": {
+                "action_count": 23,
+                "causal_temporal_count": 2,
+                "physical_object_count": 6,
+                "spatial_state_count": 7,
+                "social_role_count": 14
+              },
+              "text_prefix": "the paper so you can see them. *CHI: I see the x. *CHI: turn de over. *CHI: ups a daisy you run over like a egg. *MOT: let's put them on the paper. *CHI: I do 'nough tricks. *MOT: I do enough tricks. *CHI: I do 'nough tricks. *CHI: I think so I put dem in 'e b"
+            },
+            {
+              "example_id": 18351,
+              "source": "childes",
+              "score": 0.3594,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 8,
+                "physical_object_count": 11,
+                "spatial_state_count": 6,
+                "social_role_count": 13
+              },
+              "text_prefix": "I wouldn't hafta get a toy. *FAT: you wouldn't hafta get a toy that way. *FAT: and what if you couldn't go to my office? *FAT: then what would you do? *CHI: toy. *FAT: oh I see. *FAT: so which one did you wanna have happen? *CHI: not go. *FAT: umhum right. *CH"
+            },
+            {
+              "example_id": 19020,
+              "source": "childes",
+              "score": 0.3484,
+              "feature_counts": {
+                "action_count": 26,
+                "causal_temporal_count": 6,
+                "physical_object_count": 0,
+                "spatial_state_count": 5,
+                "social_role_count": 6
+              },
+              "text_prefix": "it you turn it. *CHI: okay. *CHI: what? *MAR: turn turn turn turn turn turn. *FAT: sorry about dropping that tape recorder. *MAR: turn turn turn turn turn turn turn turn turn turn turn. %int: 9-11 fall [aft walks back towards tape recorder] *MAR: whoa! *MAR: y"
+            },
+            {
+              "example_id": 45375,
+              "source": "open_subtitles",
+              "score": 0.3404,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 8,
+                "social_role_count": 29
+              },
+              "text_prefix": "then? I mean, I tried calling you on your cell, I tried texting you, you didn't text me back. What did you want? What difference does it make what I wanted? That was yesterday. You have to tell people where you are. What if something happened to the kids? What"
+            },
+            {
+              "example_id": 26230,
+              "source": "gutenberg",
+              "score": 0.3398,
+              "feature_counts": {
+                "action_count": 16,
+                "causal_temporal_count": 7,
+                "physical_object_count": 2,
+                "spatial_state_count": 3,
+                "social_role_count": 19
+              },
+              "text_prefix": "so much money with you, then?\" asked Francois, doubtfully. \"See here!\" and Ben took out five napoleons, which he displayed in his open palm. The attendant's eyes sparkled. \"And you will give them to me, if perchance I set you free?\" \"Yes.\" \"Poor Francois,\" sai"
+            },
+            {
+              "example_id": 18546,
+              "source": "childes",
+              "score": 0.3362,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 6,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 16
+              },
+              "text_prefix": "at me so I shouldn't do that. *CHI: do you have a place where you put your little bag that you carry your your cards in? *CHI: you mean you carry it like this on here? *CHI: daddy how could I take Minerva Mouse to the airport with me. *CHI: daddy? *FAT: why do"
+            },
+            {
+              "example_id": 41859,
+              "source": "open_subtitles",
+              "score": 0.3294,
+              "feature_counts": {
+                "action_count": 14,
+                "causal_temporal_count": 5,
+                "physical_object_count": 2,
+                "spatial_state_count": 4,
+                "social_role_count": 26
+              },
+              "text_prefix": "over there. Just cross the river. It's okay, hurry up! Did my father really send you? Then you think I just came here because I have nothing else to do? Give that to me. Please stop the car! Stop the car! Dong-su, eat plenty. Eat as much as you can. Sis, he is"
+            },
+            {
+              "example_id": 1999,
+              "source": "bnc_spoken",
+              "score": 0.3289,
+              "feature_counts": {
+                "action_count": 10,
+                "causal_temporal_count": 9,
+                "physical_object_count": 3,
+                "spatial_state_count": 14,
+                "social_role_count": 9
+              },
+              "text_prefix": "Shall I write it down? Yes, it would be a good idea, wouldn't it? Mm. Do you want to write on the back of It would be because you've already got some in here haven't you? I think I probably Yeah. Actually I'll carr I'll carry on on And the date today is the Th"
+            },
+            {
+              "example_id": 43046,
+              "source": "open_subtitles",
+              "score": 0.3286,
+              "feature_counts": {
+                "action_count": 12,
+                "causal_temporal_count": 4,
+                "physical_object_count": 13,
+                "spatial_state_count": 8,
+                "social_role_count": 15
+              },
+              "text_prefix": "I know you want to know. I won't make you pay any fines. Other than money, the only good word that comes to mind when I think of Mr. Han Min Gook is ... Money is money. Money is still money. Money is money. How can money not be money? Here. Shall I give you so"
+            },
+            {
+              "example_id": 6702,
+              "source": "childes",
+              "score": 0.3281,
+              "feature_counts": {
+                "action_count": 24,
+                "causal_temporal_count": 1,
+                "physical_object_count": 3,
+                "spatial_state_count": 10,
+                "social_role_count": 8
+              },
+              "text_prefix": "*CHI: sit on your feet. [Baby whimpers and Adam runs into kitchen] [sits on Cromer's feet] *CHI: I listen. *MOT: okay? *CHI: [runs back into room and throws papers on the floor and kicks his shoe off]. *CHI: kick. *MOT: no I'll hafta put it up now Adam. *CHI: "
+            }
+          ]
+        },
+        "neutral_source_matched_summary": {
+          "rows": 369,
+          "words": 59040,
+          "source_words": {
+            "bnc_spoken": 4960,
+            "childes": 10560,
+            "gutenberg": 18720,
+            "open_subtitles": 12960,
+            "simple_wiki": 11840
+          },
+          "source_rows": {
+            "bnc_spoken": 31,
+            "childes": 66,
+            "gutenberg": 117,
+            "open_subtitles": 81,
+            "simple_wiki": 74
+          },
+          "relation_affordance_score_stats": {
+            "n": 369,
+            "min": 0.0,
+            "p05": 0.004629824561403508,
+            "mean": 0.0482714729069221,
+            "median": 0.045625,
+            "p95": 0.10874999999999999,
+            "max": 0.11552795031055901,
+            "sum": 17.812173502654257
+          },
+          "action_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 0.8997289972899729,
+            "median": 0,
+            "p95": 3.0,
+            "max": 7,
+            "sum": 332
+          },
+          "causal_temporal_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 1.0975609756097562,
+            "median": 1,
+            "p95": 3.0,
+            "max": 6,
+            "sum": 405
+          },
+          "physical_object_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 0.4715447154471545,
+            "median": 0,
+            "p95": 2.0,
+            "max": 14,
+            "sum": 174
+          },
+          "spatial_state_count_stats": {
+            "n": 369,
+            "min": 0,
+            "p05": 0.0,
+            "mean": 2.0948509485094853,
+            "median": 2,
+            "p95": 5.0,
+            "max": 10,
+            "sum": 773
+          },
+          "aoa_target_occurrences": 2704,
+          "top_examples": [
+            {
+              "example_id": 9071,
+              "source": "childes",
+              "score": 0.1155,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 2,
+                "physical_object_count": 2,
+                "spatial_state_count": 1,
+                "social_role_count": 11
+              },
+              "text_prefix": "*CHI: l e y. *CHI: sincerely... *CHI: sincerely Chi [full name]. *MOT: why don't you read that out loud to me one last time. *CHI: okay. *CHI: February eleventh nineteen ninety five. *CHI: dear Eric Carle me and my mom love your book The Very Hungry Caterpilla"
+            },
+            {
+              "example_id": 10463,
+              "source": "childes",
+              "score": 0.115,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 3,
+                "physical_object_count": 1,
+                "spatial_state_count": 1,
+                "social_role_count": 5
+              },
+              "text_prefix": "*SIS: I saw it on the news report. *FAT: well according to what the head honcho at the library said um the Govenor cut the state's aid to the cities and towns. *FAT: the state gives money to the cities and towns 'cause xxx by two hundred and ten billion dollar"
+            },
+            {
+              "example_id": 22303,
+              "source": "childes",
+              "score": 0.115,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 0,
+                "physical_object_count": 4,
+                "spatial_state_count": 5,
+                "social_role_count": 9
+              },
+              "text_prefix": "*CHI: no a big dog. *MOT: what's he have here? [points to a large tongue hanging out of the dog's mouth] *CHI: mouth. *CHI: I bite my hand. *MOT: what are you doing? *CHI: those bites. *CHI: those... *MOT: they bite? *MOT: what does he have hanging out of his "
+            },
+            {
+              "example_id": 9674,
+              "source": "childes",
+              "score": 0.1144,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 2,
+                "physical_object_count": 4,
+                "spatial_state_count": 7,
+                "social_role_count": 4
+              },
+              "text_prefix": "black base again with the yellow wand] *CHI: no! [brushes both Sis's wand and Mot's hand away from black base] *BRO: momma. *CHI: [removes man and washer from the black base] *MOT: yes Bro. *BRO: what's that? *CHI: [places two silver men upside down and facing"
+            },
+            {
+              "example_id": 17037,
+              "source": "childes",
+              "score": 0.1144,
+              "feature_counts": {
+                "action_count": 6,
+                "causal_temporal_count": 1,
+                "physical_object_count": 0,
+                "spatial_state_count": 1,
+                "social_role_count": 12
+              },
+              "text_prefix": "beans in there too. *MOT: and kidney beans. *CHI: okay? %add: MOT *FAT: lentils are kidney beans right? *FAT: but they're same s they're the same size. *MOT: lentils... *MOT: lentils are the little tiny ones. *FAT: oh yeah? *MOT: yeah. *FAT: I thought they wer"
+            },
+            {
+              "example_id": 18827,
+              "source": "childes",
+              "score": 0.1137,
+              "feature_counts": {
+                "action_count": 4,
+                "causal_temporal_count": 0,
+                "physical_object_count": 0,
+                "spatial_state_count": 3,
+                "social_role_count": 17
+              },
+              "text_prefix": "ha! *MAR: that's what he said. *FAT: I thought I heard him say it. *MOT: let's not repeat it Mark. *FAT: where's this goes. *CHI: that goes on the xxx. *FAT: could you find them for me? *FAT: can you find them please for me? *MOT: I think you're putting them t"
+            },
+            {
+              "example_id": 20876,
+              "source": "childes",
+              "score": 0.1137,
+              "feature_counts": {
+                "action_count": 5,
+                "causal_temporal_count": 3,
+                "physical_object_count": 0,
+                "spatial_state_count": 3,
+                "social_role_count": 7
+              },
+              "text_prefix": "my skull would duck down into the bones and then my head would fall through. *FAT: uhhuh but that's not real is it? [yes] *CHI: well maybe it'll get untacked. *FAT: is it hard to see pictures in the dark? *CHI: no. *FAT: is it hard to think of things? *CHI: no"
+            },
+            {
+              "example_id": 20648,
+              "source": "childes",
+              "score": 0.1132,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 5,
+                "physical_object_count": 0,
+                "spatial_state_count": 3,
+                "social_role_count": 8
+              },
+              "text_prefix": "popped another balloons and that's nice. [another and two = one after another.] *CHI: and we popped two balloons. *CHI: and we're going to have still no more new year. [referring to the previous recording] *FAT: Ross is that right? *CHI: yeah. *FAT: what about"
+            },
+            {
+              "example_id": 12171,
+              "source": "childes",
+              "score": 0.1131,
+              "feature_counts": {
+                "action_count": 3,
+                "causal_temporal_count": 1,
+                "physical_object_count": 3,
+                "spatial_state_count": 5,
+                "social_role_count": 5
+              },
+              "text_prefix": "Grandma knew it Bonnie was calling. *MOT: Grandma took Bonnie out of her crib. *MOT: what about this one? [points to the picture of grandma bunny] *MOT: let's go downstairs and see if our cookies are ready for Becky and Bumper grandma said to Bonnie as she too"
+            },
+            {
+              "example_id": 20793,
+              "source": "childes",
+              "score": 0.1125,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 5,
+                "physical_object_count": 0,
+                "spatial_state_count": 3,
+                "social_role_count": 13
+              },
+              "text_prefix": "[Brian told Ross that he made an excellent fruit salad.] *CHI: thanks dad we needed that! *FAT: uhuh. [and he looked at him, elaborate.] *CHI: we've been waiting for that for a long time. [meaning; We've been waiting for you to tell us that you like that fruit"
+            },
+            {
+              "example_id": 18363,
+              "source": "childes",
+              "score": 0.1122,
+              "feature_counts": {
+                "action_count": 2,
+                "causal_temporal_count": 2,
+                "physical_object_count": 3,
+                "spatial_state_count": 3,
+                "social_role_count": 7
+              },
+              "text_prefix": "come in. *FAT: and we were watching tv oh here's Marky. *FAT: that was the cat. *FAT: that's not Marky. *FAT: okay what will Mark talk about? *FAT: we saw the Gonk and the Glimore something on tv. *FAT: and about two hours later he asked me *CHI: \" where's the"
+            },
+            {
+              "example_id": 20441,
+              "source": "childes",
+              "score": 0.1109,
+              "feature_counts": {
+                "action_count": 1,
+                "causal_temporal_count": 2,
+                "physical_object_count": 0,
+                "spatial_state_count": 10,
+                "social_role_count": 9
+              },
+              "text_prefix": "can't remember what it was. *FAT: um when you were flipping the uh hamburger you said *FAT: \" I can't seem to be able to flip it over. \" *FAT: is that right? *CHI: mhm. *FAT: and how should you say that? *CHI: I can't seem to be able to flip it over. *FAT: no."
+            }
+          ]
+        },
+        "removed_rewrite_suffix_surrogate_summary": {
+          "surrogate": "current-rewrite suffix after target length; actual generated compact views must be audited before training",
+          "removed_words": 59167,
+          "removed_aoa_target_occurrences": 3201,
+          "removed_words_by_source": {
+            "open_subtitles": 4025,
+            "simple_wiki": 16046,
+            "gutenberg": 33599,
+            "bnc_spoken": 4532,
+            "childes": 938,
+            "switchboard": 27
+          },
+          "examples": [
+            {
+              "pair_id": "rw2s0_000039",
+              "source": "open_subtitles",
+              "example_id": 39903,
+              "current_rewrite_words": 28,
+              "target_compact_rewrite_words": 16,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "This would be extremely useful, and perhaps far more so than Islam, which has been propagated",
+              "removed_suffix_prefix": "to billions, yet what are the chances that the seventeen demons exist?"
+            },
+            {
+              "pair_id": "rw2s0_000050",
+              "source": "simple_wiki",
+              "example_id": 55111,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 14,
+              "removed_suffix_words": 13,
+              "rewrite_prefix_kept": "The community's name stems from the fact that Colonists used the hill as an",
+              "removed_suffix_prefix": "important lookout point during the French and Indian War and the Revolutionary War."
+            },
+            {
+              "pair_id": "rw2s0_000085",
+              "source": "gutenberg",
+              "example_id": 25814,
+              "current_rewrite_words": 37,
+              "target_compact_rewrite_words": 23,
+              "removed_suffix_words": 14,
+              "rewrite_prefix_kept": "Sometimes they are found in large groups sleeping together in old caves, tree trunks, and similar places, and it may be that they",
+              "removed_suffix_prefix": "half wake up to talk to one another in order to pass the time."
+            },
+            {
+              "pair_id": "rw2s0_000135",
+              "source": "gutenberg",
+              "example_id": 22618,
+              "current_rewrite_words": 43,
+              "target_compact_rewrite_words": 26,
+              "removed_suffix_words": 17,
+              "rewrite_prefix_kept": "She recognized her as the neighbour who had died many years ago, and upon looking around the church, she recalled clearly that she had previously seen",
+              "removed_suffix_prefix": "both the minister and several members of the congregation, all of whom had also died long ago."
+            },
+            {
+              "pair_id": "rw2s0_000140",
+              "source": "bnc_spoken",
+              "example_id": 3421,
+              "current_rewrite_words": 30,
+              "target_compact_rewrite_words": 18,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "This year's figure incorporates a nineteen point six million profit from the sale of Carpet Right, whereas last",
+              "removed_suffix_prefix": "year's figure incorporates twenty four point seven million flotation and buy-out costs."
+            },
+            {
+              "pair_id": "rw2s0_000147",
+              "source": "gutenberg",
+              "example_id": 26990,
+              "current_rewrite_words": 39,
+              "target_compact_rewrite_words": 24,
+              "removed_suffix_words": 15,
+              "rewrite_prefix_kept": "As they aged, they ran with their mother to meet him, and when he sat down on the grass they clambered over him and",
+              "removed_suffix_prefix": "crept into his shirt-bosom, and crooned softly, as they did when their mother hovered them."
+            },
+            {
+              "pair_id": "rw2s0_000164",
+              "source": "simple_wiki",
+              "example_id": 57164,
+              "current_rewrite_words": 44,
+              "target_compact_rewrite_words": 25,
+              "removed_suffix_words": 19,
+              "rewrite_prefix_kept": "The movie follows a graduate student in Chicago who is completing a thesis on urban legends, a pursuit that brings her to the legend of",
+              "removed_suffix_prefix": "\"Candyman\", the ghost of an artist and son of a slave who was murdered in the late 19th century."
+            },
+            {
+              "pair_id": "rw2s0_000180",
+              "source": "simple_wiki",
+              "example_id": 57139,
+              "current_rewrite_words": 35,
+              "target_compact_rewrite_words": 23,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "In the United States, where processed sugarcane syrup serves as a sweetener in food and beverage manufacturing, the Food and Drug Administration (FDA)",
+              "removed_suffix_prefix": "deems \"evaporated cane juice\" a misleading term for \"sugar\" on product labels."
+            },
+            {
+              "pair_id": "rw2s0_000200",
+              "source": "bnc_spoken",
+              "example_id": 859,
+              "current_rewrite_words": 27,
+              "target_compact_rewrite_words": 15,
+              "removed_suffix_words": 12,
+              "rewrite_prefix_kept": "As far as this country's concerned anyway, Indonesia is probably the source of the biggest",
+              "removed_suffix_prefix": "imports of tropical ply wood and saw wood, representing a big trade."
+            },
+            {
+              "pair_id": "rw2s0_000204",
+              "source": "simple_wiki",
+              "example_id": 57982,
+              "current_rewrite_words": 46,
+              "target_compact_rewrite_words": 29,
+              "removed_suffix_words": 17,
+              "rewrite_prefix_kept": "On February 1, 2016, the World Health Organization stated that the Zika virus was a \"public health emergency,\" noted that it was \"spreading explosively\" (very quickly), and projected that",
+              "removed_suffix_prefix": "within the next year, as many as 3 million to 4 million people could contract the virus."
+            }
+          ]
+        }
+      },
+      "topup_minus_removed_suffix_surrogate": {
+        "aoa_target_occurrence_delta": 3062,
+        "official_words_added_minus_rewrite_suffix_words_removed": -127,
+        "note": "Delta uses a suffix-removal surrogate for the old rewrite; actual generated compact text must be audited. Positive AoA occurrence delta means added official rows contain more CDI target occurrences than the removed rewrite suffix surrogate."
+      }
+    }
+  },
+  "preferred_design": {
+    "name": "len90_r060",
+    "why_preferred_if_pending_endpoint_fails": "Compacts only current Qwen rewrites at or above near-parity length, leaves low-ratio already-short rewrites untouched, preserves all original sides and all existing official filler, saves a learning-relevant ~2%+ corpus budget, and reinvests into full official rows rather than FineWeb replacement.",
+    "not_authorized_until": "read the completed reinvest full vector and seed43122 result; if reinvest has substantial full-NLP gain with neutral AoA, this design may be superseded; if it lacks full-NLP/AoA, this becomes the safer density continuation candidate",
+    "manifest_files": {
+      "compaction_manifest": "experiments/archive/representation_and_objectives/data/qwen_internal_density_preflight/preferred_len90_r060_compaction_manifest.jsonl",
+      "affordance_topup_rows": "experiments/archive/representation_and_objectives/data/qwen_internal_density_preflight/preferred_len90_r060_affordance_topup_rows.jsonl",
+      "neutral_source_matched_rows": "experiments/archive/representation_and_objectives/data/qwen_internal_density_preflight/preferred_len90_r060_neutral_source_matched_rows.jsonl",
+      "prompt_slice512": "experiments/archive/representation_and_objectives/data/qwen_internal_density_preflight/preferred_len90_r060_compaction_prompt_slice512.jsonl"
+    }
+  },
+  "next_low_cost_checks_before_any_100M_run": [
+    "Generate only the 512-prompt slice or a similarly small stratified slice to measure whether Qwen can produce faithful <=target compact rewrites inside the COMPACT_EXPERIENCE pair distribution; audit entity/number/content retention and realized saved words.",
+    "Materialize a 10M dry-run only after real compact outputs exist; audit exact word accounting, row packing, seq256 source+compact-view visibility, token geometry, source distribution, AoA target exposure, and no phrase-level overlap with official evaluation data as a contamination safeguard, not a selector.",
+    "Train only if pending reinvest results show the FineWeb replacement endpoint lacks complete-eval value and the compact-slice audit shows high-fidelity compaction; use a matched neutral-topup control or endpoint comparison that can predict full evaluation, not fast seven-column surface alone."
+  ],
+  "elapsed_sec": 7.149
+}

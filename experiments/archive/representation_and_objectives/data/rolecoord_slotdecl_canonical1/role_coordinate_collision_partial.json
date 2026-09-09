@@ -1,0 +1,527 @@
+{
+  "status": "ROLE_COORDINATE_COLLISION_PARTIAL",
+  "created": "2026-09-04T10:58:18Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/rolecoord_slotdecl_canonical1",
+    "arms": "slotdecl_direct",
+    "n_seeds": 1,
+    "seed_base": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "slotdecl_direct": {
+      "arm_name": "slotdecl_direct",
+      "ctx_mode": "slotdecl",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=slotdecl|q=direct_tag": 2560,
+          "base_stable_train|ctx=slotdecl|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=slotdecl|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=slotdecl|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "slotdecl_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "slotdecl_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "slotdecl_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    }
+  },
+  "token_audit": {
+    "train_all": {
+      "n": 5632,
+      "min": 108,
+      "p50": 117.0,
+      "p90": 123.0,
+      "p99": 128.0,
+      "max": 132,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 3840,
+      "min": 107,
+      "p50": 119.0,
+      "p90": 125.0,
+      "p99": 129.0,
+      "max": 132,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "summary": {
+    "slotdecl_direct": {
+      "best_train_acc": 0.9792258739471436,
+      "train_fit": {
+        "overall": 0.9792258522727273,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=slotdecl|q=direct_tag": 1.0,
+          "base_stable_train|ctx=slotdecl|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=slotdecl|q=direct_tag": 0.54296875,
+          "sparse_stable_focal|ctx=slotdecl|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 0.9544270833333334,
+          "focal_before": 0.9694010416666666,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 1.0,
+          "True": 0.54296875
+        }
+      },
+      "evals": {
+        "slotdecl_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 0.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 2.969342615455389,
+            "focal_after": -3.909046906977892,
+            "secondary_before": 3.644879096187651,
+            "secondary_after": 4.095010355114937
+          },
+          "standard_acc": 0.60390625
+        },
+        "slotdecl_direct_heldStable_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 2.6742950677871704,
+            "focal_after": 1.4005067348480225,
+            "secondary_before": 5.59667694568634,
+            "secondary_after": 5.4771517515182495
+          },
+          "standard_acc": 0.5171875
+        },
+        "slotdecl_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 0.75,
+            "focal_after": 0.25,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 1.606364518404007,
+            "focal_after": -2.6442632377147675,
+            "secondary_before": 4.386134690605104,
+            "secondary_after": 3.6179722212255
+          },
+          "standard_acc": 0.59140625
+        }
+      }
+    }
+  },
+  "per_seed": {
+    "slotdecl_direct": [
+      {
+        "arm": "slotdecl_direct",
+        "seed": 26700,
+        "best_train_acc": 0.9792258739471436,
+        "train_fit": {
+          "overall": 0.9792258522727273,
+          "by_train_kind": {
+            "base_stable_anchor|ctx=slotdecl|q=direct_tag": 1.0,
+            "base_stable_train|ctx=slotdecl|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=slotdecl|q=direct_tag": 0.54296875,
+            "sparse_stable_focal|ctx=slotdecl|q=direct_tag": 1.0
+          },
+          "by_query_family": {
+            "focal_after": 0.9544270833333334,
+            "focal_before": 0.9694010416666666,
+            "secondary_after": 1.0,
+            "secondary_before": 1.0
+          },
+          "by_changed_focal": {
+            "False": 1.0,
+            "True": 0.54296875
+          }
+        },
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.7001386225562204,
+            "train_acc": 0.4982244372367859
+          },
+          {
+            "epoch": 2,
+            "loss": 0.6953256284310059,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 3,
+            "loss": 0.39959005789770624,
+            "train_acc": 0.9753196239471436
+          },
+          {
+            "epoch": 4,
+            "loss": 0.13092105408669463,
+            "train_acc": 0.976207435131073
+          },
+          {
+            "epoch": 5,
+            "loss": 0.11706346769792927,
+            "train_acc": 0.9754971861839294
+          },
+          {
+            "epoch": 6,
+            "loss": 0.11379425353231909,
+            "train_acc": 0.978160560131073
+          },
+          {
+            "epoch": 7,
+            "loss": 0.08930276979906279,
+            "train_acc": 0.9792258739471436
+          },
+          {
+            "epoch": 8,
+            "loss": 0.11923001815185588,
+            "train_acc": 0.9783381223678589
+          },
+          {
+            "epoch": 9,
+            "loss": 0.07395778287365831,
+            "train_acc": 0.9760298728942871
+          },
+          {
+            "epoch": 10,
+            "loss": 0.1067667354107003,
+            "train_acc": 0.9772727489471436
+          }
+        ],
+        "evals": {
+          "slotdecl_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.60390625,
+              "by_query_family": {
+                "focal_before": 0.515625,
+                "focal_after": 0.50625,
+                "secondary_before": 0.696875,
+                "secondary_after": 0.696875
+              },
+              "by_changed_focal": {
+                "True": 0.60390625
+              },
+              "by_stable_secondary": {
+                "True": 0.60390625
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 0.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 2.969342615455389,
+                "focal_after": -3.909046906977892,
+                "secondary_before": 3.644879096187651,
+                "secondary_after": 4.095010355114937
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 1.7000462899450213
+            }
+          },
+          "slotdecl_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.59140625,
+              "by_query_family": {
+                "focal_before": 0.503125,
+                "focal_after": 0.5,
+                "secondary_before": 0.684375,
+                "secondary_after": 0.678125
+              },
+              "by_changed_focal": {
+                "True": 0.59140625
+              },
+              "by_stable_secondary": {
+                "True": 0.59140625
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.75,
+                "focal_after": 0.25,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 1.606364518404007,
+                "focal_after": -2.6442632377147675,
+                "secondary_before": 4.386134690605104,
+                "secondary_after": 3.6179722212255
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 1.741552048129961
+            }
+          },
+          "slotdecl_direct_heldStable_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5171875,
+              "by_query_family": {
+                "focal_before": 0.528125,
+                "focal_after": 0.51875,
+                "secondary_before": 0.509375,
+                "secondary_after": 0.5125
+              },
+              "by_changed_focal": {
+                "False": 0.5171875
+              },
+              "by_stable_secondary": {
+                "True": 0.5171875
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 2.6742950677871704,
+                "focal_after": 1.4005067348480225,
+                "secondary_before": 5.59667694568634,
+                "secondary_after": 5.4771517515182495
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "margin_mean": 3.7871576249599457
+            }
+          }
+        }
+      }
+    ]
+  },
+  "boundary": "Small bridge probe; fit-first interpretation."
+}

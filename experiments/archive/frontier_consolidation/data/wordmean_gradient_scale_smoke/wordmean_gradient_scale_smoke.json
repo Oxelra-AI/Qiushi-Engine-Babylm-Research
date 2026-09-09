@@ -1,0 +1,59 @@
+{
+  "status": "WORDMEAN_GRADIENT_SCALE_SMOKE",
+  "created_utc": "2026-08-30T09:55:04Z",
+  "purpose": "Small bounded actual-gradient check to help separate relative word-length credit from total update-scale/direction effects for the research word-mean screen.",
+  "scope": "No optimizer step and no training; same initialized model, same actual training rows, same masks and dropout seeds for token-mean and word-mean backward passes.",
+  "device": "cpu",
+  "gpu_requested": -1,
+  "train_file": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "tokenizer_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "batch_indices": [
+    0,
+    1024
+  ],
+  "full_batch_size_for_indices": 256,
+  "micro_batch_size": 4,
+  "results": [
+    {
+      "batch_index0": 0,
+      "rows": 4,
+      "words": 550,
+      "selected_tokens": 115,
+      "selected_word_groups": 80,
+      "mean_tokens_per_selected_group": 1.4375,
+      "token_mean_loss": 9.848623275756836,
+      "word_mean_loss": 9.847326278686523,
+      "loss_delta_word_minus_token": -0.0012969970703125,
+      "parameter_grad_norm_tokenmean": 4.9110686559721435,
+      "parameter_grad_norm_wordmean": 5.21619257246772,
+      "parameter_grad_norm_ratio_wordmean_over_tokenmean": 1.0621298413583626,
+      "parameter_grad_cosine_wordmean_vs_tokenmean": 0.8914998346355244,
+      "logit_weight_rms_scale_uncorrelated_tokens": 1.1019927499005306
+    },
+    {
+      "batch_index0": 1024,
+      "rows": 4,
+      "words": 633,
+      "selected_tokens": 126,
+      "selected_word_groups": 93,
+      "mean_tokens_per_selected_group": 1.3548387096774193,
+      "token_mean_loss": 9.873157501220703,
+      "word_mean_loss": 9.849475860595703,
+      "loss_delta_word_minus_token": -0.023681640625,
+      "parameter_grad_norm_tokenmean": 4.6099561264469555,
+      "parameter_grad_norm_wordmean": 4.905184777855698,
+      "parameter_grad_norm_ratio_wordmean_over_tokenmean": 1.0640415317002778,
+      "parameter_grad_cosine_wordmean_vs_tokenmean": 0.9288018297665435,
+      "logit_weight_rms_scale_uncorrelated_tokens": 1.076182407587889
+    }
+  ],
+  "summary": {
+    "n_microbatches": 2,
+    "mean_parameter_grad_norm_ratio_wordmean_over_tokenmean": 1.0630856865293201,
+    "p10_parameter_grad_norm_ratio": 1.0623210103925542,
+    "p90_parameter_grad_norm_ratio": 1.0638503626660862,
+    "mean_parameter_grad_cosine": 0.9101508322010339,
+    "mean_logit_weight_rms_scale_uncorrelated_tokens": 1.0890875787442098
+  },
+  "interpretation": "If word-mean and token-mean parameter gradients have norm ratio far from 1 or cosine materially below 1, the research unchanged-LR training result combines relative credit reweighting with update-scale/direction changes. This does not invalidate the screen, but it constrains mechanism attribution and motivates scale-aware follow-up only if scores improve."
+}

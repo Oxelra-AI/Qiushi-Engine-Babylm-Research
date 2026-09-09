@@ -1,0 +1,78 @@
+{
+  "status": "QWEN_SOURCE_PERTURB_PROBE_DONE",
+  "created_utc": "2026-09-07T12:11:30Z",
+  "plan": "experiments/archive/functional_learning/data/qwen_source_perturb_probe_smoke/plan.json",
+  "score_paths": {
+    "parent": "experiments/archive/functional_learning/data/qwen_source_perturb_probe_smoke/scores_parent.jsonl"
+  },
+  "load_infos": {
+    "parent": {
+      "endpoint": "models/frontier",
+      "missing": [
+        "cls.predictions.decoder.weight",
+        "cls.predictions.decoder.bias"
+      ],
+      "unexpected": [],
+      "identity": {
+        "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+        "module": "frozen82_private_modeling",
+        "total_params": 36458592,
+        "private_adapter_tensors": 48,
+        "private_adapter_params": 995584,
+        "executed_private_scales": [
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ]
+      }
+    }
+  },
+  "model_summaries": {
+    "parent": {
+      "by_condition": {
+        "correct_source": {
+          "n_targets": 24,
+          "n_pairs": 12,
+          "mean_nll": 1.2176715147021848,
+          "median_nll": 0.21767684072256088,
+          "mean_delta_nll_vs_parent": 0.0
+        },
+        "view_only": {
+          "n_targets": 24,
+          "n_pairs": 12,
+          "mean_nll": 4.252512974302388,
+          "median_nll": 4.293092489242554,
+          "mean_delta_nll_vs_parent": 0.0
+        },
+        "wrong_source": {
+          "n_targets": 24,
+          "n_pairs": 12,
+          "mean_nll": 4.487996940190594,
+          "median_nll": 4.578240871429443,
+          "mean_delta_nll_vs_parent": 0.0
+        }
+      },
+      "source_specificity": {
+        "n_complete_triplets": 24,
+        "n_pairs": 12,
+        "mean_specific_source_advantage": 3.2703254254884087,
+        "median_specific_source_advantage": 3.2140893996693194,
+        "mean_generic_source_advantage": -0.2354839658882055,
+        "mean_total_source_advantage": 3.0348414596002034,
+        "mean_delta_specific_source_advantage_vs_parent": 0.0,
+        "median_delta_specific_source_advantage_vs_parent": 0.0,
+        "share_delta_specific_positive_vs_parent": 0.0,
+        "mean_delta_total_source_advantage_vs_parent": 0.0,
+        "mean_delta_correct_source_nll_vs_parent": 0.0,
+        "mean_delta_wrong_source_nll_vs_parent": 0.0,
+        "mean_delta_view_only_nll_vs_parent": 0.0
+      }
+    }
+  },
+  "interpretation_scope": "This is a controlled readout on sampled unchanged Qwen second-view targets. It measures source-specific conditioning on trained material; it is not broad BabyLM competence and should be interpreted with Cheap7/common-target results."
+}

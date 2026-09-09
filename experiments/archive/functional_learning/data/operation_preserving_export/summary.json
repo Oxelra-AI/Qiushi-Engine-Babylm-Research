@@ -1,0 +1,31 @@
+{
+  "status": "A01_OPERATION_PRESERVING_EXPORT_READY",
+  "source_pairs": "experiments/archive/functional_learning/data/saved_state_replicate_neutral_threeentity/fixed_repaired_pairs.jsonl",
+  "n_held_maps": 30,
+  "relations": {
+    "birthplace": 4,
+    "death_place": 26
+  },
+  "entity_overlap_counts": {
+    "0": 5,
+    "1": 13,
+    "2": 12
+  },
+  "source_value_overlap_counts": {
+    "0": 3,
+    "1": 12,
+    "2": 15
+  },
+  "n_low_entity_overlap_examples": 5,
+  "contract": {
+    "central_operation": "contextual state selection under recipient-only reversal",
+    "success_rule": "For each query orientation, self-update chooses shared_new; distractor-update retains the queried entity's source value over both wrong source and shared_new; neutral retrieves the queried source value over both alternatives.",
+    "scoring": "Simultaneously mask the full candidate span for each candidate in the same rendered final frame; compare mean log probability or a predeclared length-normalized score consistently across candidates.",
+    "why_this_avoids_the_Step74_shortcut": "Candidates are value_a/value_b/shared_new for the same typed relation (mostly place names), and both query orientations share the same candidate set, so entity type alone should not determine the answer without reading the contextual assignment."
+  },
+  "outputs": {
+    "held_maps": "experiments/archive/functional_learning/data/operation_preserving_export/a01_operation_preserving_held_maps.jsonl",
+    "low_entity_overlap_examples": "experiments/archive/functional_learning/data/operation_preserving_export/a01_low_entity_overlap_examples.jsonl",
+    "summary": "experiments/archive/functional_learning/data/operation_preserving_export/summary.json"
+  }
+}

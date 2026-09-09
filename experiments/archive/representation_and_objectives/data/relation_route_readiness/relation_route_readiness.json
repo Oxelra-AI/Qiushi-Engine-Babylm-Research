@@ -1,0 +1,119 @@
+{
+  "status": "RELATION_ROUTE_READINESS",
+  "purpose": "Consolidate CPU-only evidence and independent_review reading for a possible post-legal40k relation-cue WWM route; no model training, no GPU work, no official evaluation result, and no route launch.",
+  "pending_primary_evidence": [
+    "s65_t22_tool1 legal40k seed43022 full official evaluation",
+    "s66_t9_tool1 legal40k seed43122 full official evaluation"
+  ],
+  "supporting_files": {
+    "large_pool_measurement_json": "experiments/archive/representation_and_objectives/data/relation_bias_large_stream_audit/relation_bias_large_stream_audit.json",
+    "large_pool_note": "research/notes/representation_and_objectives/relation_bias_large_stream_audit.md",
+    "prefix_identity_json": "experiments/archive/representation_and_objectives/data/relation_bias_prefix_identity/relation_bias_prefix_identity.json",
+    "prefix_identity_note": "research/notes/representation_and_objectives/relation_bias_prefix_identity.md",
+    "execution_replay_json": "experiments/archive/representation_and_objectives/data/relation_bias_execution_replay/relation_bias_execution_replay.json",
+    "execution_replay_note": "research/notes/representation_and_objectives/relation_bias_execution_replay.md",
+    "independent_review_integration": "data/external/independent_review01_verifier1_integration.md",
+    "patched_interpreter": "experiments/archive/representation_and_objectives/scripts/legal40k_endpoint_interpreter.py"
+  },
+  "large_pool_measurement": {
+    "rows": 64740,
+    "words": 10000000,
+    "pool10_sha_matches": true,
+    "tokenizer_sha_matches": true,
+    "visible_groups": 9871336,
+    "visible_tokens": 13706162,
+    "relation_groups": 1079828,
+    "relation_tokens": 1316350,
+    "relation_group_frac": 0.10939025882616092,
+    "relation_token_frac": 0.09604074430172356,
+    "row_relation_group_frac_p50": 0.10741028343224804,
+    "row_relation_group_frac_p90": 0.1625,
+    "row_relation_group_frac_p99": 0.21250000000000002,
+    "boost2": {
+      "relation_selected_group_frac": 0.21878051765232068,
+      "relation_target_token_frac": 0.19470565194248718,
+      "selected_group_multiplier_vs_uniform": 1.0000000000000002,
+      "target_token_multiplier_vs_uniform": 0.9865224079893918,
+      "rows_clipped_frac": 0.0
+    },
+    "boost3": {
+      "relation_selected_group_frac": 0.32816642043184285,
+      "relation_target_token_frac": 0.29609967219339395,
+      "selected_group_multiplier_vs_uniform": 1.0000000000000002,
+      "target_token_multiplier_vs_uniform": 0.9730462742012485,
+      "rows_clipped_frac": 7.723200494284832e-05
+    },
+    "boost4": {
+      "relation_selected_group_frac": 0.4373556932921723,
+      "relation_target_token_frac": 0.40014904122466705,
+      "selected_group_multiplier_vs_uniform": 1.0000000000000002,
+      "target_token_multiplier_vs_uniform": 0.9596086006129232,
+      "rows_clipped_frac": 0.0018535681186283596
+    },
+    "boost2_source_range_relation_selected_group_frac": {
+      "low": [
+        "simple_wiki",
+        0.1220689688143925
+      ],
+      "high": [
+        "bnc_spoken",
+        0.26365237203777453
+      ]
+    }
+  },
+  "prefix_identity": {
+    "pool_rows_words": [
+      64740,
+      10000000
+    ],
+    "stream_first_pass_rows_words": [
+      64740,
+      10000000
+    ],
+    "pool10_sha_matches": true,
+    "stream100_sha_matches": true,
+    "row_object_multiset_equal": true,
+    "source_words_equal": true,
+    "stream_minus_pool_row_count": 0,
+    "pool_minus_stream_row_count": 0,
+    "interpretation": "The 100M launch stream first 10M charged words are exactly a row-object multiset permutation of the audited 10M pool. The first rows are in different order, so partial prefix subsets need not match the standalone 10M sequence."
+  },
+  "execution_replay_10k": {
+    "max_rows": 10000,
+    "mask_seeds": [
+      43023,
+      43123
+    ],
+    "stream_rows_words": [
+      10000,
+      1544605
+    ],
+    "pool_rows_words": [
+      10000,
+      1507476
+    ],
+    "subset_row_multiset_equal": false,
+    "relation_dataset_matches_base_first256": true,
+    "base_selected_relation_group_frac": 0.10914373663659856,
+    "boost2_selected_relation_group_frac": 0.22012980057752296,
+    "base_selected_relation_token_frac": 0.09562314726423152,
+    "boost2_selected_relation_token_frac": 0.19518206088530943,
+    "boost2_selected_group_ratio_vs_base_realized": 1.0001421057004063,
+    "boost2_selected_token_ratio_vs_base_realized": 0.9868581369642767,
+    "boost2_expected_group_multiplier_vs_uniform": 0.9999999999999997,
+    "boost2_expected_token_multiplier_vs_uniform": 0.9863865321055933,
+    "boost2_rows_clipped_frac": 0.0,
+    "base_zero_selected_row_frac": 0.0,
+    "boost2_zero_selected_row_frac": 0.0,
+    "base_partial_selected_groups": 0,
+    "boost2_partial_selected_groups": 0,
+    "base_observed_special_random_replacements": 8,
+    "boost2_observed_special_random_replacements": 5,
+    "interpretation": "The partial 10k stream-order subset does not match the first 10k rows of the standalone 10M file, as expected for a permuted first pass. Its masking replay nevertheless verifies the enabled research path on real launch-order rows and actual train RNG seeds."
+  },
+  "independent_review_summary": {
+    "integration_path": "data/external/independent_review01_verifier1_integration.md",
+    "core_reading": "The intervention is genuinely a target-selection/objective intervention if tokenizer, architecture, data stream, optimizer, seeds, and WWM curriculum are fixed. Boost 2.0 is the best-supported first elevated dose: no clipping, relation selected-group fraction about 0.219, relation target-token fraction about 0.195, and only about 1.35% expected target-token reduction. Main remaining confounds are cue frequency/predictability, source-dependent dose, lexicon precision/provenance, unpaired mask randomness, and inherited corruption policy allowing rare special-token random replacements."
+  },
+  "route_implication": "If the pending legal40k official vectors fail in relation/world-knowledge columns, relation-cue WWM boost 2.0 is better specified than it was at research and is a distinct learning-signal route, not another vocabulary sweep. It should still not be launched until legal40k vectors are read; if legal40k succeeds, protect/reproduce the compliant endpoint instead."
+}

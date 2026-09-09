@@ -1,0 +1,393 @@
+{
+  "status": "MLM_LOADER_EXPOSURE_AUDIT",
+  "purpose": "static exact-loader exposure/topology audit before any skeleton H100 training",
+  "manifest_path": "experiments/archive/frontier_consolidation/data/skeleton_reinvest_pool_scaffold/skeleton_reinvest_pool_manifest.json",
+  "manifest_sha256": "8db8e03168d9c1d61e7b9f608d0d315acd1bcf8420505cce748629c6e480296b",
+  "pairs_path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+  "pairs_sha256": "d2a3110c110e216180b632ce7a181acdf348b804ea19f172e16b5afeb0d8c9fc",
+  "meta_path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl",
+  "meta_sha256": "4c30b7f6d1a90ab6e8f1b618f5ef445e4dd80b9a6817a5ce3d299e1744924e2c",
+  "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+  "seq_len": 256,
+  "trainer_coordinate": {
+    "row_tokenization": "tokenizer(text, add_special_tokens=False, truncation=True, max_length=256, padding=max_length)",
+    "loader_order": "DataLoader shuffle=False over selected JSONL rows",
+    "masking": "wwm_fixed, nominal p=0.15 over tokenizer word-start groups; expected target mass reported, not a realized CUDA RNG mask stream"
+  },
+  "variants": {
+    "compact": {
+      "rows": 64740,
+      "words": 10000000,
+      "raw_tokens": 14664519,
+      "active_tokens": 14294893,
+      "truncated_tokens": 369626,
+      "rows_truncated": 15117,
+      "rows_truncated_fraction": 0.2335032437442076,
+      "candidate_tokens": 14294893,
+      "candidate_groups": 9802194,
+      "expected_wwm_masked_tokens_at_p015": 2144233.9499999997,
+      "expected_wwm_masked_groups_at_p015": 1470329.0999999999,
+      "tokens_per_word_raw": 1.4664519,
+      "tokens_per_word_active": 1.4294893,
+      "changed_active_tokens": 607273,
+      "changed_raw_tokens": 607909,
+      "changed_active_token_fraction": 0.04248181500903854,
+      "changed_truncated_tokens": 636,
+      "changed_rows_truncated": 52,
+      "changed_rows": 3006,
+      "changed_text_mismatches": 0,
+      "changed_word_mismatches": 0,
+      "active_segment_tokens_changed": {
+        "source": 359905,
+        "view": 247289,
+        "other": 11,
+        "unknown": 68
+      },
+      "raw_segment_tokens_changed": {
+        "source": 359997,
+        "view": 247833,
+        "other": 11,
+        "unknown": 68
+      },
+      "wwm_candidate_groups_by_segment_changed": {
+        "source": 261745,
+        "view": 161425,
+        "other": 9,
+        "unknown": 0
+      },
+      "wwm_candidate_token_mass_by_segment_changed": {
+        "source": 359928,
+        "view": 247334,
+        "other": 11,
+        "unknown": 0
+      },
+      "expected_masked_tokens_by_segment_changed_p015": {
+        "source": 53989.2,
+        "view": 37100.1,
+        "other": 1.65,
+        "unknown": 0.0
+      },
+      "expected_masked_groups_by_segment_changed_p015": {
+        "source": 39261.75,
+        "view": 24213.75,
+        "other": 1.3499999999999999,
+        "unknown": 0.0
+      },
+      "pair_records": 12155,
+      "pair_both_any_visible_fraction": 0.9991772932949403,
+      "pair_both_full_visible_fraction": 0.995475113122172,
+      "source_full_visible_fraction": 0.9993418346359523,
+      "view_full_visible_fraction": 0.995475113122172,
+      "mean_source_visible_fraction": 0.9996505331634092,
+      "mean_view_visible_fraction": 0.998102081339879,
+      "mean_visible_source_to_view_token_gap": 0.0037052284890901604,
+      "median_visible_source_to_view_token_gap": 0.0,
+      "pool_path": "experiments/archive/frontier_consolidation/data/skeleton_reinvest_pool_scaffold/cleanqwen_fineweb_compact_skeleton_reinvest_10M.jsonl",
+      "pool_sha256": "7c3792fdf4b84b7ab0ea06c6f0c2430a290cd4b3ae17424186da4b67f0be9404"
+    },
+    "prefix_repeat": {
+      "rows": 64740,
+      "words": 10000000,
+      "raw_tokens": 14633230,
+      "active_tokens": 14264083,
+      "truncated_tokens": 369147,
+      "rows_truncated": 15084,
+      "rows_truncated_fraction": 0.2329935125115848,
+      "candidate_tokens": 14264083,
+      "candidate_groups": 9802439,
+      "expected_wwm_masked_tokens_at_p015": 2139612.4499999997,
+      "expected_wwm_masked_groups_at_p015": 1470365.8499999999,
+      "tokens_per_word_raw": 1.463323,
+      "tokens_per_word_active": 1.4264083,
+      "changed_active_tokens": 576463,
+      "changed_raw_tokens": 576620,
+      "changed_active_token_fraction": 0.04041360387485126,
+      "changed_truncated_tokens": 157,
+      "changed_rows_truncated": 19,
+      "changed_rows": 3006,
+      "changed_text_mismatches": 0,
+      "changed_word_mismatches": 0,
+      "active_segment_tokens_changed": {
+        "source": 359964,
+        "view": 216436,
+        "other": 11,
+        "unknown": 52
+      },
+      "raw_segment_tokens_changed": {
+        "source": 359997,
+        "view": 216560,
+        "other": 11,
+        "unknown": 52
+      },
+      "wwm_candidate_groups_by_segment_changed": {
+        "source": 261784,
+        "view": 161631,
+        "other": 9,
+        "unknown": 0
+      },
+      "wwm_candidate_token_mass_by_segment_changed": {
+        "source": 359987,
+        "view": 216465,
+        "other": 11,
+        "unknown": 0
+      },
+      "expected_masked_tokens_by_segment_changed_p015": {
+        "source": 53998.049999999996,
+        "view": 32469.75,
+        "other": 1.65,
+        "unknown": 0.0
+      },
+      "expected_masked_groups_by_segment_changed_p015": {
+        "source": 39267.6,
+        "view": 24244.649999999998,
+        "other": 1.3499999999999999,
+        "unknown": 0.0
+      },
+      "pair_records": 12155,
+      "pair_both_any_visible_fraction": 0.999835458658988,
+      "pair_both_full_visible_fraction": 0.9984368572603867,
+      "source_full_visible_fraction": 0.999835458658988,
+      "view_full_visible_fraction": 0.9984368572603867,
+      "mean_source_visible_fraction": 0.9998857351798528,
+      "mean_view_visible_fraction": 0.9995127813128425,
+      "mean_visible_source_to_view_token_gap": 0.0023862420801448203,
+      "median_visible_source_to_view_token_gap": 0.0,
+      "pool_path": "experiments/archive/frontier_consolidation/data/skeleton_reinvest_pool_scaffold/cleanqwen_fineweb_prefix_repeat_skeleton_reinvest_10M.jsonl",
+      "pool_sha256": "1028409400d6ee0490b076a01a3c8ee5ef4dd3f9d20534ff70c081c4eeeae387"
+    },
+    "content_spread": {
+      "rows": 64740,
+      "words": 10000000,
+      "raw_tokens": 14665547,
+      "active_tokens": 14295757,
+      "truncated_tokens": 369790,
+      "rows_truncated": 15122,
+      "rows_truncated_fraction": 0.23358047574915045,
+      "candidate_tokens": 14295757,
+      "candidate_groups": 9802121,
+      "expected_wwm_masked_tokens_at_p015": 2144363.55,
+      "expected_wwm_masked_groups_at_p015": 1470318.15,
+      "tokens_per_word_raw": 1.4665547,
+      "tokens_per_word_active": 1.4295757,
+      "changed_active_tokens": 608137,
+      "changed_raw_tokens": 608937,
+      "changed_active_token_fraction": 0.042539685026822996,
+      "changed_truncated_tokens": 800,
+      "changed_rows_truncated": 57,
+      "changed_rows": 3006,
+      "changed_text_mismatches": 0,
+      "changed_word_mismatches": 0,
+      "active_segment_tokens_changed": {
+        "source": 359870,
+        "view": 248204,
+        "other": 11,
+        "unknown": 52
+      },
+      "raw_segment_tokens_changed": {
+        "source": 359997,
+        "view": 248877,
+        "other": 11,
+        "unknown": 52
+      },
+      "wwm_candidate_groups_by_segment_changed": {
+        "source": 261721,
+        "view": 161376,
+        "other": 9,
+        "unknown": 0
+      },
+      "wwm_candidate_token_mass_by_segment_changed": {
+        "source": 359893,
+        "view": 248233,
+        "other": 11,
+        "unknown": 0
+      },
+      "expected_masked_tokens_by_segment_changed_p015": {
+        "source": 53983.95,
+        "view": 37234.95,
+        "other": 1.65,
+        "unknown": 0.0
+      },
+      "expected_masked_groups_by_segment_changed_p015": {
+        "source": 39258.15,
+        "view": 24206.399999999998,
+        "other": 1.3499999999999999,
+        "unknown": 0.0
+      },
+      "pair_records": 12155,
+      "pair_both_any_visible_fraction": 0.9990127519539285,
+      "pair_both_full_visible_fraction": 0.9950637597696421,
+      "source_full_visible_fraction": 0.9990950226244344,
+      "view_full_visible_fraction": 0.9950637597696421,
+      "mean_source_visible_fraction": 0.9995202152696888,
+      "mean_view_visible_fraction": 0.9977648095852842,
+      "mean_visible_source_to_view_token_gap": 0.0023882071975623816,
+      "median_visible_source_to_view_token_gap": 0.0,
+      "pool_path": "experiments/archive/frontier_consolidation/data/skeleton_reinvest_pool_scaffold/cleanqwen_fineweb_content_spread_skeleton_reinvest_10M.jsonl",
+      "pool_sha256": "54ce8ec0e2e2838ade3d9ef5b30a152cfce63d7ec9ec377f1c036353b6ce4fce"
+    },
+    "scored_source_skeleton": {
+      "rows": 64740,
+      "words": 10000000,
+      "raw_tokens": 14672401,
+      "active_tokens": 14302299,
+      "truncated_tokens": 370102,
+      "rows_truncated": 15148,
+      "rows_truncated_fraction": 0.23398208217485325,
+      "candidate_tokens": 14302299,
+      "candidate_groups": 9801948,
+      "expected_wwm_masked_tokens_at_p015": 2145344.85,
+      "expected_wwm_masked_groups_at_p015": 1470292.2,
+      "tokens_per_word_raw": 1.4672401,
+      "tokens_per_word_active": 1.4302299,
+      "changed_active_tokens": 614679,
+      "changed_raw_tokens": 615791,
+      "changed_active_token_fraction": 0.042977635973069785,
+      "changed_truncated_tokens": 1112,
+      "changed_rows_truncated": 83,
+      "changed_rows": 3006,
+      "changed_text_mismatches": 0,
+      "changed_word_mismatches": 0,
+      "active_segment_tokens_changed": {
+        "source": 359840,
+        "view": 254551,
+        "other": 11,
+        "unknown": 277
+      },
+      "raw_segment_tokens_changed": {
+        "source": 359997,
+        "view": 255506,
+        "other": 11,
+        "unknown": 277
+      },
+      "wwm_candidate_groups_by_segment_changed": {
+        "source": 261708,
+        "view": 161204,
+        "other": 9,
+        "unknown": 12
+      },
+      "wwm_candidate_token_mass_by_segment_changed": {
+        "source": 359863,
+        "view": 254781,
+        "other": 11,
+        "unknown": 24
+      },
+      "expected_masked_tokens_by_segment_changed_p015": {
+        "source": 53979.45,
+        "view": 38217.15,
+        "other": 1.65,
+        "unknown": 3.5999999999999996
+      },
+      "expected_masked_groups_by_segment_changed_p015": {
+        "source": 39256.2,
+        "view": 24180.6,
+        "other": 1.3499999999999999,
+        "unknown": 1.7999999999999998
+      },
+      "pair_records": 12155,
+      "pair_both_any_visible_fraction": 0.9986836692719046,
+      "pair_both_full_visible_fraction": 0.9928424516659811,
+      "source_full_visible_fraction": 0.9986836692719046,
+      "view_full_visible_fraction": 0.9928424516659811,
+      "mean_source_visible_fraction": 0.9994164857843217,
+      "mean_view_visible_fraction": 0.9969174130903052,
+      "mean_visible_source_to_view_token_gap": 0.020924293599143256,
+      "median_visible_source_to_view_token_gap": 0.0,
+      "pool_path": "experiments/archive/frontier_consolidation/data/skeleton_reinvest_pool_scaffold/cleanqwen_fineweb_scored_source_skeleton_skeleton_reinvest_10M.jsonl",
+      "pool_sha256": "a0539d78c6d5ed33d83b7e2e423dfd07d0d1d909ed9ca418ae989abd679c6101"
+    }
+  },
+  "comparisons_vs_compact": {
+    "prefix_repeat": {
+      "delta_raw_tokens": -31289,
+      "delta_active_tokens": -30810,
+      "delta_truncated_tokens": -479,
+      "delta_candidate_tokens": -30810,
+      "delta_candidate_groups": 245,
+      "delta_changed_active_tokens": -30810,
+      "delta_changed_source_active_tokens": 59,
+      "delta_changed_view_active_tokens": -30853,
+      "delta_changed_view_wwm_token_mass": -30869,
+      "delta_pair_both_full_visible_fraction": 0.002961744138214706,
+      "delta_mean_view_visible_fraction": 0.0014106999729635028,
+      "delta_tokens_per_word_active": -0.0030809999999998894
+    },
+    "content_spread": {
+      "delta_raw_tokens": 1028,
+      "delta_active_tokens": 864,
+      "delta_truncated_tokens": 164,
+      "delta_candidate_tokens": 864,
+      "delta_candidate_groups": -73,
+      "delta_changed_active_tokens": 864,
+      "delta_changed_source_active_tokens": -35,
+      "delta_changed_view_active_tokens": 915,
+      "delta_changed_view_wwm_token_mass": 899,
+      "delta_pair_both_full_visible_fraction": -0.00041135335252984184,
+      "delta_mean_view_visible_fraction": -0.0003372717545947479,
+      "delta_tokens_per_word_active": 8.6400000000042e-05
+    },
+    "scored_source_skeleton": {
+      "delta_raw_tokens": 7882,
+      "delta_active_tokens": 7406,
+      "delta_truncated_tokens": 476,
+      "delta_candidate_tokens": 7406,
+      "delta_candidate_groups": -246,
+      "delta_changed_active_tokens": 7406,
+      "delta_changed_source_active_tokens": -65,
+      "delta_changed_view_active_tokens": 7262,
+      "delta_changed_view_wwm_token_mass": 7447,
+      "delta_pair_both_full_visible_fraction": -0.002632661456190899,
+      "delta_mean_view_visible_fraction": -0.0011846682495737504,
+      "delta_tokens_per_word_active": 0.0007406000000000912
+    }
+  },
+  "comparisons_vs_prefix_repeat": {
+    "compact": {
+      "delta_raw_tokens": 31289,
+      "delta_active_tokens": 30810,
+      "delta_truncated_tokens": 479,
+      "delta_candidate_tokens": 30810,
+      "delta_candidate_groups": -245,
+      "delta_changed_active_tokens": 30810,
+      "delta_changed_source_active_tokens": -59,
+      "delta_changed_view_active_tokens": 30853,
+      "delta_changed_view_wwm_token_mass": 30869,
+      "delta_pair_both_full_visible_fraction": -0.002961744138214706,
+      "delta_mean_view_visible_fraction": -0.0014106999729635028,
+      "delta_tokens_per_word_active": 0.0030809999999998894
+    },
+    "content_spread": {
+      "delta_raw_tokens": 32317,
+      "delta_active_tokens": 31674,
+      "delta_truncated_tokens": 643,
+      "delta_candidate_tokens": 31674,
+      "delta_candidate_groups": -318,
+      "delta_changed_active_tokens": 31674,
+      "delta_changed_source_active_tokens": -94,
+      "delta_changed_view_active_tokens": 31768,
+      "delta_changed_view_wwm_token_mass": 31768,
+      "delta_pair_both_full_visible_fraction": -0.0033730974907445477,
+      "delta_mean_view_visible_fraction": -0.0017479717275582507,
+      "delta_tokens_per_word_active": 0.0031673999999999314
+    },
+    "scored_source_skeleton": {
+      "delta_raw_tokens": 39171,
+      "delta_active_tokens": 38216,
+      "delta_truncated_tokens": 955,
+      "delta_candidate_tokens": 38216,
+      "delta_candidate_groups": -491,
+      "delta_changed_active_tokens": 38216,
+      "delta_changed_source_active_tokens": -124,
+      "delta_changed_view_active_tokens": 38115,
+      "delta_changed_view_wwm_token_mass": 38316,
+      "delta_pair_both_full_visible_fraction": -0.005594405594405605,
+      "delta_mean_view_visible_fraction": -0.002595368222537253,
+      "delta_tokens_per_word_active": 0.0038215999999999806
+    }
+  },
+  "issues": [],
+  "elapsed_sec": 243.7595193386078,
+  "out_md": "research/documents/frontier_consolidation/data/mlm_loader_exposure_audit_pools/mlm_loader_exposure_audit.md",
+  "changed_row_csv": "experiments/archive/frontier_consolidation/data/mlm_loader_exposure_audit_pools/changed_row_loader_exposure.csv",
+  "pair_visibility_csv": "experiments/archive/frontier_consolidation/data/mlm_loader_exposure_audit_pools/pair_visibility_loader_exposure.csv"
+}

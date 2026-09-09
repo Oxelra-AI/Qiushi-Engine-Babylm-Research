@@ -1,0 +1,563 @@
+{
+  "status": "DATA_SUBSTRATE_MECHANISM_SCALE",
+  "purpose": "CPU-only route reading for broad FineWeb source+compact pairing as an extension of the replicated compact-view principle, distinct from U256 and from merely copying the public leader.",
+  "no_training_or_eval_launched_by_this_script": true,
+  "inputs": {
+    "current_source_breakdown": "experiments/archive/representation_and_objectives/data/corpus_lineage_multiplicity_audit/source_class_word_breakdown_10M.csv",
+    "current_target_burden": "experiments/archive/representation_and_objectives/data/wwm_target_burden_map/source_class_target_burden.csv",
+    "u256_note_json": "experiments/archive/representation_and_objectives/data/u256_leverage_and_data_route_reading/u256_leverage_and_data_route_reading.json",
+    "v3_summary": "experiments/archive/representation_and_objectives/data/live_fineweb_source_selector_v3/live_fineweb_source_selector_v3_summary.json",
+    "v3_stable": "experiments/archive/representation_and_objectives/data/live_fineweb_source_selector_v3/live_fineweb_selector_v3_stable.jsonl",
+    "v5_summary": "experiments/archive/representation_and_objectives/data/live_fineweb_selector_v5_strictstable/live_fineweb_selector_v5_summary.json",
+    "v5_kept": "experiments/archive/representation_and_objectives/data/live_fineweb_selector_v5_strictstable/live_fineweb_selector_v5_kept.jsonl",
+    "quality_summary": "experiments/archive/representation_and_objectives/data/live_fineweb_quality_tiers/live_fineweb_quality_tiers_summary.json",
+    "quality_kept": "experiments/archive/representation_and_objectives/data/live_fineweb_quality_tiers/live_fineweb_quality_v2_kept.jsonl",
+    "a02_compact_metadata": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/density_core_reinvestment_metadata.json",
+    "a02_compact_pairs": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "sgcr_partial_payload": "experiments/archive/representation_and_objectives/data/legal40k_12x384_sgcrK50d64_seed43022_full_eval/per_target/legal40k_12x384_sgcrK50d64_seed43022.json",
+    "depth_vector": "experiments/archive/representation_and_objectives/data/depth_vector_decision/depth_vector_decision.json",
+    "legal40_vector": "experiments/archive/representation_and_objectives/data/legal40k_two_seed_comparison/legal40k_two_seed_comparison.json"
+  },
+  "current_corpus_words": {
+    "official_babylm_source_row": {
+      "rows_10M": 49498,
+      "words_10M": 7919680,
+      "fraction_words_10M": 0.791968
+    },
+    "inherited_official_source_qwen_paraphrase_pair_row": {
+      "rows_10M": 12236,
+      "words_10M": 1656800,
+      "fraction_words_10M": 0.16568
+    },
+    "fineweb_source_qwen_compact_rewrite_pair_row": {
+      "rows_10M": 3005,
+      "words_10M": 423511,
+      "fraction_words_10M": 0.0423511
+    },
+    "neutral_topup_from_heldout_official_row": {
+      "rows_10M": 1,
+      "words_10M": 9,
+      "fraction_words_10M": 9e-07
+    }
+  },
+  "current_target_burden_by_source_class": {
+    "fineweb_source_qwen_compact_rewrite_pair_row": {
+      "words": 423511,
+      "raw_tok16": 608241,
+      "raw_tok40": 546988,
+      "raw_reduction": 0.10070514812385223,
+      "vis_tok16": 607594,
+      "vis_tok40": 546964,
+      "visible_reduction": 0.09978702883833612,
+      "vis_groups16": 423165,
+      "vis_groups40": 423494,
+      "over256_16": 54,
+      "over256_40": 2
+    },
+    "inherited_official_source_qwen_paraphrase_pair_row": {
+      "words": 1656800,
+      "raw_tok16": 2227776,
+      "raw_tok40": 2067984,
+      "raw_reduction": 0.07172713953287946,
+      "vis_tok16": 2226492,
+      "vis_tok40": 2067728,
+      "visible_reduction": 0.07130679113151994,
+      "vis_groups16": 1656128,
+      "vis_groups40": 1656648,
+      "over256_16": 82,
+      "over256_40": 15
+    },
+    "neutral_topup_from_heldout_official_row": {
+      "words": 9,
+      "raw_tok16": 11,
+      "raw_tok40": 11,
+      "raw_reduction": 0.0,
+      "vis_tok16": 11,
+      "vis_tok40": 11,
+      "visible_reduction": 0.0,
+      "vis_groups16": 9,
+      "vis_groups40": 9,
+      "over256_16": 0,
+      "over256_40": 0
+    },
+    "official_babylm_source_row": {
+      "words": 7919680,
+      "raw_tok16": 11833248,
+      "raw_tok40": 11327661,
+      "raw_reduction": 0.04272597008023493,
+      "vis_tok16": 11464682,
+      "vis_tok40": 11091459,
+      "visible_reduction": 0.032554151959906075,
+      "vis_groups16": 7722423,
+      "vis_groups40": 7791185,
+      "over256_16": 15007,
+      "over256_40": 11390
+    }
+  },
+  "source_pool_summaries": {
+    "v3_stable": {
+      "name": "v3_stable",
+      "path": "experiments/archive/representation_and_objectives/data/live_fineweb_source_selector_v3/live_fineweb_selector_v3_stable.jsonl",
+      "rows": 23364,
+      "source_word_stats": {
+        "n": 23364,
+        "sum": 538124,
+        "mean": 23.0322,
+        "median": 22.0,
+        "p90": 34,
+        "p95": 38,
+        "min": 10,
+        "max": 42
+      },
+      "unique_docs": 3974,
+      "unique_normalized_texts": 23363,
+      "domain_counts": {
+        "quantitative": 7670,
+        "stable_relational_other": 7088,
+        "causal_mechanistic": 4775,
+        "geography": 4090,
+        "spatial_geographic": 3592,
+        "biographical_historical": 2968,
+        "history_society": 2917,
+        "quant": 2902,
+        "science": 1936,
+        "catalogue_list": 888,
+        "definition_taxonomy": 830
+      },
+      "examples": [
+        {
+          "text": "In her last book Anne Elliot is persuaded to refuse Captain Wentworth at Lady Russel’s insistence.",
+          "words": 16,
+          "domains": [
+            "stable_relational_other"
+          ],
+          "doc_id": "<urn:uuid:0d8a309d-25c5-405d-a08a-c11239f0d717>"
+        },
+        {
+          "text": "In the mother country, one day in that same cold December a baby girl was born at Steventon Rectory.",
+          "words": 19,
+          "domains": [
+            "biographical_historical",
+            "history_society"
+          ],
+          "doc_id": "<urn:uuid:0d8a309d-25c5-405d-a08a-c11239f0d717>"
+        },
+        {
+          "text": "If you read the definitions below and you're still scratching your head, check out Categories of Free and Non-Free Software which includes a helpful diagram.",
+          "words": 25,
+          "domains": [
+            "stable_relational_other"
+          ],
+          "doc_id": "<urn:uuid:c337bcd8-6aa1-4f2d-8c48-b916442ebbee>"
+        }
+      ]
+    },
+    "v5_strictstable": {
+      "name": "v5_strictstable",
+      "path": "experiments/archive/representation_and_objectives/data/live_fineweb_selector_v5_strictstable/live_fineweb_selector_v5_kept.jsonl",
+      "rows": 11415,
+      "source_word_stats": {
+        "n": 11415,
+        "sum": 242601,
+        "mean": 21.2528,
+        "median": 20.0,
+        "p90": 32,
+        "p95": 36,
+        "min": 10,
+        "max": 42
+      },
+      "unique_docs": 3141,
+      "unique_normalized_texts": 11415,
+      "domain_counts": {
+        "quantitative": 4270,
+        "stable_relational_other": 3437,
+        "causal_mechanistic": 2151,
+        "geography": 1973,
+        "spatial_geographic": 1795,
+        "quant": 1493,
+        "biographical_historical": 1477,
+        "history_society": 1244,
+        "science": 1037,
+        "definition_taxonomy": 473,
+        "catalogue_list": 336
+      },
+      "examples": [
+        {
+          "text": "In the mother country, one day in that same cold December a baby girl was born at Steventon Rectory.",
+          "words": 19,
+          "domains": [
+            "biographical_historical",
+            "history_society"
+          ],
+          "doc_id": "<urn:uuid:0d8a309d-25c5-405d-a08a-c11239f0d717>"
+        },
+        {
+          "text": "The latest version of Microsoft Office Professional Plus is an integrated collection of programs, servers, and services designed to work together to enable optimised information work.",
+          "words": 26,
+          "domains": [
+            "causal_mechanistic"
+          ],
+          "doc_id": "<urn:uuid:c337bcd8-6aa1-4f2d-8c48-b916442ebbee>"
+        },
+        {
+          "text": "Desalination can become more economical and used as a viable alternate water resource.",
+          "words": 13,
+          "domains": [
+            "stable_relational_other"
+          ],
+          "doc_id": "<urn:uuid:c0b175bb-65fb-420e-a881-a80b91d00ecd>"
+        }
+      ]
+    },
+    "quality_v2_kept": {
+      "name": "quality_v2_kept",
+      "path": "experiments/archive/representation_and_objectives/data/live_fineweb_quality_tiers/live_fineweb_quality_v2_kept.jsonl",
+      "rows": 11564,
+      "source_word_stats": {
+        "n": 11564,
+        "sum": 297648,
+        "mean": 25.7392,
+        "median": 25.0,
+        "p90": 37,
+        "p95": 39,
+        "min": 10,
+        "max": 42
+      },
+      "unique_docs": 2821,
+      "unique_normalized_texts": 11564,
+      "domain_counts": {
+        "no_domain": 4556,
+        "quant": 2603,
+        "history_society": 2517,
+        "geography": 2455,
+        "science": 1447
+      },
+      "examples": [
+        {
+          "text": "The earths magnetic field decays by approximately 5% every century, this means that a mere 10,000 years ago, the earths magnetic field would have been so strong that the heat it would have produced would have made life o",
+          "words": 41,
+          "domains": [
+            "history_society",
+            "quant"
+          ],
+          "doc_id": "<urn:uuid:3ee9dc2b-9ca9-499d-96b4-7c4953bfce0c>"
+        },
+        {
+          "text": "For a short period in the fifteenth century, China was the dominant power in the Indian Ocean, but over the centuries that followed, it had little to do with the Middle East.",
+          "words": 32,
+          "domains": [
+            "geography",
+            "history_society"
+          ],
+          "doc_id": "<urn:uuid:aed7ac2b-d433-405a-b80e-9906b9bf6d2e>"
+        },
+        {
+          "text": "The expedition, ostensibly to rescue Emin Pasha, the governor of Equatoria, was successful, but more notable for the wake of destruction it left and the decades of exploitation that Leopold managed in the Congo Free Stat",
+          "words": 39,
+          "domains": [
+            "no_domain"
+          ],
+          "doc_id": "<urn:uuid:b70e24d2-15fd-4f0c-99fe-9afd8deb0727>"
+        }
+      ]
+    }
+  },
+  "a02_compact_reinvest_pair_summary_from_jsonl": {
+    "rows": 12155,
+    "source_words": 261803,
+    "rewrite_words": 161708,
+    "pair_words": 423511,
+    "rewrite_to_source_ratio": 0.6176705385346998,
+    "source_word_stats": {
+      "n": 12155,
+      "sum": 261803,
+      "mean": 21.5387,
+      "median": 20.0,
+      "p90": 33,
+      "p95": 37,
+      "min": 10,
+      "max": 48
+    },
+    "rewrite_word_stats": {
+      "n": 12155,
+      "sum": 161708,
+      "mean": 13.3038,
+      "median": 13.0,
+      "p90": 20,
+      "p95": 23,
+      "min": 4,
+      "max": 39
+    },
+    "pair_word_stats": {
+      "n": 12155,
+      "sum": 423511,
+      "mean": 34.8425,
+      "median": 33.0,
+      "p90": 52,
+      "p95": 59,
+      "min": 14,
+      "max": 86
+    },
+    "unique_docs": 4529,
+    "unique_normalized_source_texts": 12152,
+    "domain_counts": {
+      "no_domain": 6975,
+      "science_physical": 1589,
+      "causal_relational": 1537,
+      "quant_numeric": 974,
+      "institutions_society": 862,
+      "geography_places": 772,
+      "media_culture": 370,
+      "people_history": 358
+    },
+    "content_recall_mean": 0.6631212351812201,
+    "entity_recall_mean": 0.9960414095708213,
+    "number_recall_mean": 1.0,
+    "examples": [
+      {
+        "source": "Based on the home's plans, the Home Energy Rater uses an energy efficiency software package to perform an energy analysis of the home's design.",
+        "rewrite": "The Home Energy Rater uses software to analyze the home's design based on its plans.",
+        "source_words": 24,
+        "rewrite_words": 15,
+        "domains": [
+          "science_physical"
+        ]
+      },
+      {
+        "source": "Just like the physical environment, the virtual environment has become polluted in some way shape or form - some areas are worse than others.",
+        "rewrite": "Like the physical environment, the virtual environment is polluted, with some areas worse than others.",
+        "source_words": 24,
+        "rewrite_words": 15,
+        "domains": []
+      },
+      {
+        "source": "The polar regions become much colder than they are presently and there are noticeably large differences in temperature from the equator There have actually been a number of ice age",
+        "rewrite": "Polar regions become much colder than now, with large temperature differences from the equator, and Earth has had many ice ages.",
+        "source_words": 36,
+        "rewrite_words": 21,
+        "domains": []
+      }
+    ]
+  },
+  "a02_compact_reinvest_metadata_selection": {
+    "core_sources": 10094,
+    "compact_added_sources": 2061,
+    "near_core_pair_words": 423503,
+    "compact_core_pair_words": 353945,
+    "saved_words_from_compact_core_vs_near_core_budget": 69575,
+    "compact_added_pair_words": 69566,
+    "compact_reinvest_pair_words": 423511,
+    "near_neutral_topup_words": 17,
+    "compact_core_neutral_topup_words": 69575,
+    "compact_reinvest_neutral_topup_words": 9,
+    "compact_reinvest_sources_total": 12155,
+    "source_multiplier_compact_reinvest_vs_near_core": 1.2041807014067762,
+    "added_source_fraction_of_reinvest": 0.1695598519127931
+  },
+  "cached_source_union": {
+    "unique_sources": 38167,
+    "source_word_stats": {
+      "n": 38167,
+      "sum": 875891,
+      "mean": 22.9489,
+      "median": 22.0,
+      "p90": 35,
+      "p95": 38,
+      "min": 10,
+      "max": 48
+    },
+    "unique_docs_lower_bound": 8469,
+    "domain_counts": {
+      "no_domain": 11471,
+      "quantitative": 7670,
+      "stable_relational_other": 7214,
+      "geography": 4853,
+      "causal_mechanistic": 4810,
+      "quant": 3754,
+      "spatial_geographic": 3659,
+      "history_society": 3653,
+      "biographical_historical": 3001,
+      "science": 2486,
+      "science_physical": 1589,
+      "causal_relational": 1537,
+      "quant_numeric": 974,
+      "catalogue_list": 888,
+      "institutions_society": 862,
+      "definition_taxonomy": 842,
+      "geography_places": 772,
+      "media_culture": 370,
+      "people_history": 358
+    },
+    "membership_counts": {
+      "v3_stable": 23363,
+      "a02_selected_compact_sources": 12152,
+      "quality_v2_kept": 11564,
+      "v5_strictstable": 11415
+    },
+    "by_pool_unique_hashes": {
+      "v3_stable": {
+        "unique_hashes": 23363
+      },
+      "v5_strictstable": {
+        "unique_hashes": 11415
+      },
+      "quality_v2_kept": {
+        "unique_hashes": 11564
+      },
+      "a02_selected_compact_sources": {
+        "unique_hashes": 12152
+      }
+    }
+  },
+  "scale_options": [
+    {
+      "fineweb_pair_budget_words": 1000000,
+      "fineweb_pair_fraction_of_10M": 0.1,
+      "multiple_of_current_fineweb_pair_words": 2.3612137583203268,
+      "fraction_of_public_leader_pair_words": 0.100000310000961,
+      "source_words_needed_at_current_compact_ratio": 618172.8,
+      "rewrite_words_needed_at_current_compact_ratio": 381827.2,
+      "cached_source_words_fraction_of_need": 1.4169030656676966,
+      "cached_sources_enough_without_new_scan": true,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 1080311,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 0
+    },
+    {
+      "fineweb_pair_budget_words": 1500000,
+      "fineweb_pair_fraction_of_10M": 0.15,
+      "multiple_of_current_fineweb_pair_words": 3.5418206374804906,
+      "fraction_of_public_leader_pair_words": 0.1500004650014415,
+      "source_words_needed_at_current_compact_ratio": 927259.3,
+      "rewrite_words_needed_at_current_compact_ratio": 572740.7,
+      "cached_source_words_fraction_of_need": 0.9446020437784646,
+      "cached_sources_enough_without_new_scan": false,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 580311,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 0
+    },
+    {
+      "fineweb_pair_budget_words": 1750000,
+      "fineweb_pair_fraction_of_10M": 0.175,
+      "multiple_of_current_fineweb_pair_words": 4.132124077060572,
+      "fraction_of_public_leader_pair_words": 0.17500054250168176,
+      "source_words_needed_at_current_compact_ratio": 1081802.5,
+      "rewrite_words_needed_at_current_compact_ratio": 668197.5,
+      "cached_source_words_fraction_of_need": 0.8096588946672554,
+      "cached_sources_enough_without_new_scan": false,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 330311,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 0
+    },
+    {
+      "fineweb_pair_budget_words": 2000000,
+      "fineweb_pair_fraction_of_10M": 0.2,
+      "multiple_of_current_fineweb_pair_words": 4.7224275166406535,
+      "fraction_of_public_leader_pair_words": 0.200000620001922,
+      "source_words_needed_at_current_compact_ratio": 1236345.7,
+      "rewrite_words_needed_at_current_compact_ratio": 763654.3,
+      "cached_source_words_fraction_of_need": 0.7084515328338483,
+      "cached_sources_enough_without_new_scan": false,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 80311,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 0
+    },
+    {
+      "fineweb_pair_budget_words": 2500000,
+      "fineweb_pair_fraction_of_10M": 0.25,
+      "multiple_of_current_fineweb_pair_words": 5.903034395800818,
+      "fraction_of_public_leader_pair_words": 0.25000077500240253,
+      "source_words_needed_at_current_compact_ratio": 1545432.1,
+      "rewrite_words_needed_at_current_compact_ratio": 954567.9,
+      "cached_source_words_fraction_of_need": 0.5667612262670787,
+      "cached_sources_enough_without_new_scan": false,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 0,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 419689
+    },
+    {
+      "fineweb_pair_budget_words": 3500000,
+      "fineweb_pair_fraction_of_10M": 0.35,
+      "multiple_of_current_fineweb_pair_words": 8.264248154121145,
+      "fraction_of_public_leader_pair_words": 0.3500010850033635,
+      "source_words_needed_at_current_compact_ratio": 2163605.0,
+      "rewrite_words_needed_at_current_compact_ratio": 1336395.0,
+      "cached_source_words_fraction_of_need": 0.4048294473336277,
+      "cached_sources_enough_without_new_scan": false,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 0,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 1419689
+    },
+    {
+      "fineweb_pair_budget_words": 5000000,
+      "fineweb_pair_fraction_of_10M": 0.5,
+      "multiple_of_current_fineweb_pair_words": 11.806068791601636,
+      "fraction_of_public_leader_pair_words": 0.5000015500048051,
+      "source_words_needed_at_current_compact_ratio": 3090864.2,
+      "rewrite_words_needed_at_current_compact_ratio": 1909135.8,
+      "cached_source_words_fraction_of_need": 0.28338061313353935,
+      "cached_sources_enough_without_new_scan": false,
+      "current_official_qwen_words_remaining_if_extra_pair_replaces_that_block_first": 0,
+      "official_source_words_preserved_if_replace_qwen_first": 7919680,
+      "official_source_words_displaced_after_qwen_block_exhausted": 2919689
+    }
+  ],
+  "u256_reference": {
+    "hidden_words_per_10M": null,
+    "fineweb_hidden_words": null,
+    "active_token_relative_increase": null,
+    "masked_target_relative_increase": null
+  },
+  "sgcr_partial_endpoint_reading": {
+    "status": "partial_zero_shot_reading_available_superglue_failed_oom",
+    "partial_scores": {
+      "BLiMP": 67.69,
+      "Supplement": 57.75,
+      "Entity": 25.44,
+      "COMPS": 52.9,
+      "GlobalPIQA": 34.15,
+      "GlobalPIQA_parallel": 23.3,
+      "GlobalPIQA_nonparallel": 45.0,
+      "Reading": 7.449999999999999
+    },
+    "completed_columns_for_overall": [
+      "BLiMP",
+      "Supplement",
+      "Entity",
+      "COMPS",
+      "GlobalPIQA",
+      "Reading"
+    ],
+    "completed_sum": 245.38,
+    "needed_total_for_41p80": 376.2,
+    "required_EWoK_plus_SuperGLUE_sum_if_AoA_zero": 130.82,
+    "required_EWoK_SuperGLUE_average_if_AoA_zero": 65.41,
+    "leader_EWoK_plus_SuperGLUE": 125.86000000000001,
+    "with_leader_EWoK_and_SuperGLUE_and_AoA0_overall": 41.24888888888889,
+    "scientific_reading": "The partial official-compatible columns already make a near-frontier SGCR endpoint unlikely unless the missing EWoK/SuperGLUE columns greatly exceed the public leader; complete collation is still required before closing the route formally."
+  },
+  "mechanism_reading": {
+    "replicated_principle": "Small-scale source+compact pairing was the strongest validated data mechanism, but current FineWeb compact-pair mass is only 423,511 words.",
+    "not_leader_copy": "The proposed successor is not to import the leader recipe wholesale; it scales the source-aligned compact-view mechanism with matched source-repeat controls and exact provenance.",
+    "source_vs_pairing_distinction": "A broad source-repeat arm with the same selected FineWeb sources, row packing, word budget, model family, and per-corpus legal tokenizer is needed to distinguish adding FineWeb content from compact-view consolidation.",
+    "budget_strategy": "Replacing the inherited official-source Qwen paraphrase block before displacing official originals can raise FineWeb source+compact mass to about 1.75-2.0M words while preserving the 7.92M original official-source words.",
+    "why_u256_is_lower_priority": "U256 changes only about 1.7% realized targets and exposes almost no FineWeb compact material, while the broad data route changes the source and view substrate at 4-5x current FineWeb pair mass."
+  },
+  "proposed_next_materialization": {
+    "first_scale": "FW1p75M source+compact family",
+    "fineweb_pair_words": 1750000,
+    "source_words_needed_approx": 1081802.5,
+    "rewrite_words_needed_approx": 668197.5,
+    "arms": [
+      "compact_view: selected FineWeb source followed by faithful compact rewrite, row-packed like research, official original sources preserved, most inherited official-source Qwen rows displaced first",
+      "source_repeat: same selected FineWeb sources and row lengths, repeated/source-only material replacing the compact rewrites, same official original source preservation"
+    ],
+    "pre_h100_work": [
+      "deduplicate and freeze selected FineWeb sources independent of evaluation text",
+      "generate or reuse faithful compact rewrites with entity/number/content retention measurements and source-line provenance",
+      "materialize matched 10M corpora with exact word counts, row hashes, source accounting, and tokenizer-training provenance",
+      "train legal tokenizers separately on each exact 10M corpus and measure support/visibility/WWM target burden before any model run"
+    ],
+    "first_expensive_use_if_sgcr_is_weak": "Launch treatment and source-repeat control only after the corpora and tokenizer measurements show the 1.75M pair family is mechanically clean; use the best completed compliant backbone unless the completed SGCR vector changes that reading."
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "status": "PRESERVATION_KL_MODE_PROBE_DONE",
+  "created_utc": "2026-09-07T23:53:39Z",
+  "scientific_question": "How much identical-weight KL arises from train/eval stochastic mode mismatch before learning?",
+  "prefix_info": {
+    "tail_jsonl": "experiments/archive/functional_learning/data/unchanged_pair_segments_tail/reference_tail_unchanged_qwen_segments.jsonl",
+    "requested_max_updates": 1,
+    "words_per_update": 39533,
+    "prefix_rows": 252,
+    "prefix_words": 39652,
+    "target_prefix_words": 39533,
+    "qwen_rows": 33,
+    "qwen_pair_segments": 112,
+    "compact_modified_rows": 0,
+    "compact_modified_pair_occurrences": 0,
+    "topup_rows": 0,
+    "source_rows": {
+      "gutenberg": 44,
+      "simple_wiki": 31,
+      "qwen_pair_packed": 33,
+      "open_subtitles": 53,
+      "childes": 73,
+      "cleanqwen_fineweb_compact_view_reinvest": 4,
+      "bnc_spoken": 13,
+      "switchboard": 1
+    }
+  },
+  "macro_words": 39652,
+  "preservation_examples_available": 8,
+  "preservation_targets_available_before_limit": 972,
+  "preservation_words_first_macro": 4657,
+  "limited_examples": 8,
+  "limited_targets": 244,
+  "model_a_identity": {
+    "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+    "module": "frozen82_private_modeling",
+    "total_params": 36458592,
+    "private_adapter_tensors": 48,
+    "private_adapter_params": 995584,
+    "executed_private_scales": [
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75
+    ]
+  },
+  "model_b_identity": {
+    "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+    "module": "frozen82_private_modeling",
+    "total_params": 36458592,
+    "private_adapter_tensors": 48,
+    "private_adapter_params": 995584,
+    "executed_private_scales": [
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75
+    ]
+  },
+  "implemented_kl_direction": "KL(teacher || student), not KL(student || teacher)",
+  "mode_results": {
+    "eval_eval": {
+      "student_mode_model_a": "eval",
+      "teacher_mode_model_b": "eval",
+      "rng_seed_before_eval": 12345,
+      "forward_batches": 2,
+      "tokens": 244,
+      "orientation": "KL(teacher || student) = F.kl_div(log_softmax(student_logits), softmax(teacher_logits))",
+      "kl_b_to_a_mean": 9.778409921487825e-10,
+      "kl_a_to_b_mean": 9.778409921487825e-10,
+      "student_ce_label_mean": 1.7496821294065381,
+      "teacher_ce_label_mean": 1.7496821294065381,
+      "per_batch_head": [
+        {
+          "batch_index": 0,
+          "tokens": 123,
+          "kl_b_to_a_mean": 6.218281824414323e-10,
+          "kl_a_to_b_mean": 6.218281824414323e-10,
+          "student_ce_label_mean": 1.7839201640307418,
+          "teacher_ce_label_mean": 1.7839201640307418
+        },
+        {
+          "batch_index": 1,
+          "tokens": 121,
+          "kl_b_to_a_mean": 1.3397383111074936e-09,
+          "kl_a_to_b_mean": 1.3397383111074936e-09,
+          "student_ce_label_mean": 1.7148781768546617,
+          "teacher_ce_label_mean": 1.7148781768546617
+        }
+      ]
+    },
+    "train_eval": {
+      "student_mode_model_a": "train",
+      "teacher_mode_model_b": "eval",
+      "rng_seed_before_eval": 12345,
+      "forward_batches": 2,
+      "tokens": 244,
+      "orientation": "KL(teacher || student) = F.kl_div(log_softmax(student_logits), softmax(teacher_logits))",
+      "kl_b_to_a_mean": 0.18062807302005957,
+      "kl_a_to_b_mean": 0.2151150390750072,
+      "student_ce_label_mean": 1.8752610878866227,
+      "teacher_ce_label_mean": 1.7496821294065381,
+      "per_batch_head": [
+        {
+          "batch_index": 0,
+          "tokens": 123,
+          "kl_b_to_a_mean": 0.23178328537359472,
+          "kl_a_to_b_mean": 0.2660798483747777,
+          "student_ce_label_mean": 1.9639427371141387,
+          "teacher_ce_label_mean": 1.7839201640307418
+        },
+        {
+          "batch_index": 1,
+          "tokens": 121,
+          "kl_b_to_a_mean": 0.12862731996646598,
+          "kl_a_to_b_mean": 0.16330783623309175,
+          "student_ce_label_mean": 1.7851136262751808,
+          "teacher_ce_label_mean": 1.7148781768546617
+        }
+      ]
+    },
+    "train_eval_repeat_same_seed": {
+      "student_mode_model_a": "train",
+      "teacher_mode_model_b": "eval",
+      "rng_seed_before_eval": 12345,
+      "forward_batches": 2,
+      "tokens": 244,
+      "orientation": "KL(teacher || student) = F.kl_div(log_softmax(student_logits), softmax(teacher_logits))",
+      "kl_b_to_a_mean": 0.18062807302005957,
+      "kl_a_to_b_mean": 0.2151150390750072,
+      "student_ce_label_mean": 1.8752610878866227,
+      "teacher_ce_label_mean": 1.7496821294065381,
+      "per_batch_head": [
+        {
+          "batch_index": 0,
+          "tokens": 123,
+          "kl_b_to_a_mean": 0.23178328537359472,
+          "kl_a_to_b_mean": 0.2660798483747777,
+          "student_ce_label_mean": 1.9639427371141387,
+          "teacher_ce_label_mean": 1.7839201640307418
+        },
+        {
+          "batch_index": 1,
+          "tokens": 121,
+          "kl_b_to_a_mean": 0.12862731996646598,
+          "kl_a_to_b_mean": 0.16330783623309175,
+          "student_ce_label_mean": 1.7851136262751808,
+          "teacher_ce_label_mean": 1.7148781768546617
+        }
+      ]
+    },
+    "train_eval_different_seed": {
+      "student_mode_model_a": "train",
+      "teacher_mode_model_b": "eval",
+      "rng_seed_before_eval": 54321,
+      "forward_batches": 2,
+      "tokens": 244,
+      "orientation": "KL(teacher || student) = F.kl_div(log_softmax(student_logits), softmax(teacher_logits))",
+      "kl_b_to_a_mean": 0.16987394114009668,
+      "kl_a_to_b_mean": 0.19060477272408907,
+      "student_ce_label_mean": 1.8275659905105341,
+      "teacher_ce_label_mean": 1.7496821294065381,
+      "per_batch_head": [
+        {
+          "batch_index": 0,
+          "tokens": 123,
+          "kl_b_to_a_mean": 0.15863590705685499,
+          "kl_a_to_b_mean": 0.19210762706229356,
+          "student_ce_label_mean": 1.776665664300686,
+          "teacher_ce_label_mean": 1.7839201640307418
+        },
+        {
+          "batch_index": 1,
+          "tokens": 121,
+          "kl_b_to_a_mean": 0.18129772785281348,
+          "kl_a_to_b_mean": 0.18907707781831096,
+          "student_ce_label_mean": 1.8793076444263301,
+          "teacher_ce_label_mean": 1.7148781768546617
+        }
+      ]
+    },
+    "train_train_same_seed_reset": {
+      "student_mode_model_a": "train",
+      "teacher_mode_model_b": "train",
+      "rng_seed_before_eval": 777,
+      "forward_batches": 2,
+      "tokens": 244,
+      "orientation": "KL(teacher || student) = F.kl_div(log_softmax(student_logits), softmax(teacher_logits))",
+      "kl_b_to_a_mean": 0.21295691318199284,
+      "kl_a_to_b_mean": 0.22951474736948482,
+      "student_ce_label_mean": 1.882551724793481,
+      "teacher_ce_label_mean": 1.8473214946809362,
+      "per_batch_head": [
+        {
+          "batch_index": 0,
+          "tokens": 123,
+          "kl_b_to_a_mean": 0.21569675352515244,
+          "kl_a_to_b_mean": 0.21459114260789824,
+          "student_ce_label_mean": 1.92138671875,
+          "teacher_ce_label_mean": 1.8651795426035316
+        },
+        {
+          "batch_index": 1,
+          "tokens": 121,
+          "kl_b_to_a_mean": 0.2101717862215909,
+          "kl_a_to_b_mean": 0.24468502328415548,
+          "student_ce_label_mean": 1.843074830110408,
+          "teacher_ce_label_mean": 1.829168272412513
+        }
+      ]
+    },
+    "eval_train": {
+      "student_mode_model_a": "eval",
+      "teacher_mode_model_b": "train",
+      "rng_seed_before_eval": 12345,
+      "forward_batches": 2,
+      "tokens": 244,
+      "orientation": "KL(teacher || student) = F.kl_div(log_softmax(student_logits), softmax(teacher_logits))",
+      "kl_b_to_a_mean": 0.2151150390750072,
+      "kl_a_to_b_mean": 0.18062807302005957,
+      "student_ce_label_mean": 1.7496821294065381,
+      "teacher_ce_label_mean": 1.8752610878866227,
+      "per_batch_head": [
+        {
+          "batch_index": 0,
+          "tokens": 123,
+          "kl_b_to_a_mean": 0.2660798483747777,
+          "kl_a_to_b_mean": 0.23178328537359472,
+          "student_ce_label_mean": 1.7839201640307418,
+          "teacher_ce_label_mean": 1.9639427371141387
+        },
+        {
+          "batch_index": 1,
+          "tokens": 121,
+          "kl_b_to_a_mean": 0.16330783623309175,
+          "kl_a_to_b_mean": 0.12862731996646598,
+          "student_ce_label_mean": 1.7148781768546617,
+          "teacher_ce_label_mean": 1.7851136262751808
+        }
+      ]
+    }
+  },
+  "interpretation": {
+    "eval_eval": "Should be near numerical zero for identical weights; nonzero indicates loading mismatch.",
+    "train_eval": "Measures dropout/stochastic consistency pressure present at update 0 in research-style teacher-eval/student-train KL.",
+    "warning": "These KL magnitudes are not gradient-contribution percentages; they only quantify objective value under the probed modes."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "status": "EVAL_COORDINATE_READINESS_SUMMARY",
+  "created_utc": "2026-08-30T00:30:36Z",
+  "audits": {
+    "dataset_audit": "experiments/archive/representation_and_objectives/data/eval_dataset_coordinate_audit/eval_dataset_coordinate_audit.json",
+    "code_audit": "experiments/archive/representation_and_objectives/data/eval_code_coordinate_audit/eval_code_coordinate_audit.json",
+    "globalpiqa_lineage": "experiments/archive/representation_and_objectives/data/globalpiqa_official_lineage/globalpiqa_official_lineage.json",
+    "two_seed_plan": "experiments/archive/representation_and_objectives/data/two_seed_full_eval_plan/two_seed_full_eval_plan.json",
+    "projection_policy_regression": "experiments/archive/representation_and_objectives/data/projection_policy_regression/projection_policy_regression.json"
+  },
+  "non_repaired_data_identical_for": {
+    "BLiMP": true,
+    "Supplement": true,
+    "Entity": true,
+    "COMPS": true,
+    "Reading": true,
+    "SuperGLUE": true
+  },
+  "globalpiqa_resolved_by_step038_official_generator_byte_equivalence": true,
+  "ewok_repaired_by_step048_official_7618_row_script": true,
+  "aoa_repaired_by_step048_min_context0_8005_context_script": true,
+  "runner_code": {
+    "sentence_zero_shot_reading_globalpiqa_identical_between_initial_model_studies_and_pristine": true,
+    "finetune_classifier_diff_found": true,
+    "finetune_diff_resolution": "Patched both research A01 wrappers to set base.STRICT to the pristine current checkout before SuperGLUE finetune subprocesses run.",
+    "wrappers": {
+      "43022": {
+        "path": "experiments/archive/representation_and_objectives/training/scripts/full_eval_strictsmalltok_seed43022.py",
+        "exists": true,
+        "uses_pristine_strict_override": true,
+        "uses_step038_globalpiqa_generated_paths": true,
+        "still_mentions_initial_model_studies_script_import": true,
+        "note": "The wrapper still imports COMPACT_EXPERIENCE's robust runner module, but overrides base.STRICT to the pristine current checkout and redirects GlobalPIQA data to research official-generator files before calling base.main()."
+      },
+      "43122": {
+        "path": "experiments/archive/representation_and_objectives/training/scripts/full_eval_strictsmalltok_seed43122.py",
+        "exists": true,
+        "uses_pristine_strict_override": true,
+        "uses_step038_globalpiqa_generated_paths": true,
+        "still_mentions_initial_model_studies_script_import": true,
+        "note": "The wrapper still imports COMPACT_EXPERIENCE's robust runner module, but overrides base.STRICT to the pristine current checkout and redirects GlobalPIQA data to research official-generator files before calling base.main()."
+      }
+    }
+  },
+  "policy": {
+    "projection_policy_regression_pass": true,
+    "two_seed_plan_ready_seeds": [
+      "43022",
+      "43122"
+    ],
+    "both_completed_retrains_require_full_pristine_coordinate": true,
+    "surface_first_role": "scheduling only, not endpoint selection or omission of second seed"
+  },
+  "ready_for_full_official_evaluation_after_patch": true,
+  "load_bearing_warning": "Do not run old wrappers without the pristine STRICT override; otherwise SuperGLUE uses the patched INITIAL_MODEL_STUDIES classifier_model.py rather than the current official checkout."
+}

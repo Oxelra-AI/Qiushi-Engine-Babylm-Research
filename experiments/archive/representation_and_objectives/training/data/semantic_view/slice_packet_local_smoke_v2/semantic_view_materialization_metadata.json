@@ -1,0 +1,545 @@
+{
+  "status": "SEMANTIC_VIEW_CONTRAST_MATERIALIZED",
+  "created_utc_unix": 1787992800,
+  "purpose": "matched semantic-view vs original-only source contrast under BabyLM strict-small word accounting",
+  "prompts": "experiments/archive/representation_and_objectives/training/data/generation_slice/slice_prompts.jsonl",
+  "outputs": "experiments/archive/representation_and_objectives/training/runs/generation_slice_qwen/outputs.jsonl",
+  "prompt_sha256": "83cf27a6cd3ac729013d339d129ef440680fde48bca72f62bb8f8457966020f6",
+  "output_sha256": "2f17430fbe95e086c013e276c129297487599afaf6f4d26a6f5e91c8b9acafd5",
+  "official_pool": "experiments/archive/compact_experience/data/mixture/official_pool.jsonl",
+  "official_pool_sha256": "072eb2a9ecb52e6e6022d46d233c99c2ad9758843c2ae29f4eb653fb38902f02",
+  "total_words_per_pool": 100000,
+  "passes": 2,
+  "word_exposure_per_training_file": 200000,
+  "strict_numbers": false,
+  "prompt_rows_loaded": 256,
+  "output_rows_loaded": 384,
+  "missing_outputs_for_prompts": 0,
+  "accepted_views": 149,
+  "accepted_views_by_type": {
+    "simplification": 68,
+    "paraphrase": 81
+  },
+  "rejected_prompt_outputs": 107,
+  "rejection_reasons_prefix_counts": {
+    "entity": 78,
+    "copy": 8,
+    "number": 26,
+    "repetition": 5,
+    "new": 1,
+    "incomplete_or_fragment": 2,
+    "bad_pattern": 1
+  },
+  "semantic_packet_rows": 149,
+  "semantic_packet_words": 9398,
+  "semantic_packet_fraction_of_pool": 0.09398,
+  "official_filler_words_identical": 90602,
+  "official_filler_rows_identical": 567,
+  "row_length_sequence_identical": true,
+  "official_filler_identical_after_semantic_prefix": true,
+  "control_construction": "three source-only controls are written: original_stream_matched chunks a shuffled/cycled stream of the same selected SimpleWiki sources to the treatment row-length sequence; original_packet_local is the packet-local balanced-repetition control preserving each row's own source identity, boundary, length, and repetition without generated wording (first copy starts with the exact source; extra repetitions use cyclic offsets); original_packet_exact_matched is a naive rowwise prefix-repeated original kept only as a forensic artifact because it over-emphasizes source prefixes",
+  "pool_rows": {
+    "treatment": 716,
+    "stream_control": 716,
+    "packet_local_control": 716,
+    "packet_exact_control": 716
+  },
+  "semantic_row_word_stats": {
+    "n": 149,
+    "min": 26,
+    "p05": 31,
+    "mean": 63.0738,
+    "median": 61,
+    "p95": 106,
+    "max": 113,
+    "sum": 9398
+  },
+  "semantic_original_source_word_stats": {
+    "n": 149,
+    "min": 15,
+    "p05": 16,
+    "mean": 33.0336,
+    "median": 30,
+    "p95": 58,
+    "max": 60,
+    "sum": 4922
+  },
+  "accepted_view_word_stats_by_type": {
+    "simplification": {
+      "n": 68,
+      "min": 11,
+      "p05": 14,
+      "mean": 28.6765,
+      "median": 26.0,
+      "p95": 50,
+      "max": 55,
+      "sum": 1950
+    },
+    "paraphrase": {
+      "n": 81,
+      "min": 15,
+      "p05": 18,
+      "mean": 31.1852,
+      "median": 28,
+      "p95": 52,
+      "max": 59,
+      "sum": 2526
+    }
+  },
+  "accepted_view_quality_by_type": {
+    "simplification": {
+      "len_ratio": {
+        "n": 68,
+        "min": 0.5294117647058824,
+        "p05": 0.5909090909090909,
+        "mean": 0.9146,
+        "median": 0.9170454545454545,
+        "p95": 1.3333333333333333,
+        "max": 1.4838709677419355,
+        "sum": 62.190960024646294
+      },
+      "content_overlap": {
+        "n": 68,
+        "min": 0.3333333333333333,
+        "p05": 0.42857142857142855,
+        "mean": 0.748,
+        "median": 0.7777777777777778,
+        "p95": 0.9444444444444444,
+        "max": 1.0,
+        "sum": 50.862279638556195
+      },
+      "entity_recall": {
+        "n": 68,
+        "min": 0.75,
+        "p05": 0.75,
+        "mean": 0.9295,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 63.20881079704609
+      },
+      "number_recall": {
+        "n": 68,
+        "min": 1.0,
+        "p05": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 68.0
+      },
+      "new_entities": {
+        "n": 68,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.3971,
+        "median": 0.0,
+        "p95": 1,
+        "max": 3,
+        "sum": 27
+      },
+      "new_numbers": {
+        "n": 68,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.0294,
+        "median": 0.0,
+        "p95": 0,
+        "max": 1,
+        "sum": 2
+      }
+    },
+    "paraphrase": {
+      "len_ratio": {
+        "n": 81,
+        "min": 0.5833333333333334,
+        "p05": 0.6923076923076923,
+        "mean": 0.9701,
+        "median": 0.9310344827586207,
+        "p95": 1.2727272727272727,
+        "max": 1.7391304347826086,
+        "sum": 78.5741071547607
+      },
+      "content_overlap": {
+        "n": 81,
+        "min": 0.18181818181818182,
+        "p05": 0.3333333333333333,
+        "mean": 0.6843,
+        "median": 0.7222222222222222,
+        "p95": 0.9090909090909091,
+        "max": 0.9333333333333333,
+        "sum": 55.42607775367954
+      },
+      "entity_recall": {
+        "n": 81,
+        "min": 0.75,
+        "p05": 0.8,
+        "mean": 0.9486,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 76.8391349878192
+      },
+      "number_recall": {
+        "n": 81,
+        "min": 0.75,
+        "p05": 1.0,
+        "mean": 0.9877,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 80.0
+      },
+      "new_entities": {
+        "n": 81,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.7037,
+        "median": 1,
+        "p95": 2,
+        "max": 3,
+        "sum": 57
+      },
+      "new_numbers": {
+        "n": 81,
+        "min": 0,
+        "p05": 0,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "max": 0,
+        "sum": 0
+      }
+    }
+  },
+  "semantic_unique_source_keys": 149,
+  "semantic_source_articles": 148,
+  "top_semantic_source_articles_by_rows": [
+    [
+      "Endgame (Megadeth album)",
+      2
+    ],
+    [
+      "Rob Base and DJ E-Z Rock",
+      1
+    ],
+    [
+      "Fresquel",
+      1
+    ],
+    [
+      "Gido Kokars",
+      1
+    ],
+    [
+      "Lyda Conley",
+      1
+    ],
+    [
+      "Marcin Wrona",
+      1
+    ],
+    [
+      "School of the Air",
+      1
+    ],
+    [
+      "Jupiter Icy Moons Explorer",
+      1
+    ],
+    [
+      "Gould Belt",
+      1
+    ],
+    [
+      "Enoch Kelly Haney",
+      1
+    ],
+    [
+      "Dickin Medal",
+      1
+    ],
+    [
+      "Typhoon Soulik (2013)",
+      1
+    ],
+    [
+      "Motomu Kiyokawa",
+      1
+    ],
+    [
+      "Colwich, Kansas",
+      1
+    ],
+    [
+      "Cachexia",
+      1
+    ],
+    [
+      "L-functions and modular forms database",
+      1
+    ],
+    [
+      "Irish Americans",
+      1
+    ],
+    [
+      "Doug Sahm",
+      1
+    ],
+    [
+      "Dawn Staley",
+      1
+    ],
+    [
+      "Gallstone",
+      1
+    ],
+    [
+      "Seyrani Monument",
+      1
+    ],
+    [
+      "Richard Jewell",
+      1
+    ],
+    [
+      "Hamis Kiggundu",
+      1
+    ],
+    [
+      "Enrique Moreno",
+      1
+    ],
+    [
+      "Donald Trump 2024 presidential campaign",
+      1
+    ],
+    [
+      "Roxana Druse",
+      1
+    ],
+    [
+      "Zipporah",
+      1
+    ],
+    [
+      "Brooke Valentine",
+      1
+    ],
+    [
+      "WHTZ",
+      1
+    ],
+    [
+      "Kiryat Matlon",
+      1
+    ]
+  ],
+  "top_semantic_source_articles_by_original_words": [
+    [
+      "Endgame (Megadeth album)",
+      112
+    ],
+    [
+      "School of the Air",
+      60
+    ],
+    [
+      "Hamis Kiggundu",
+      60
+    ],
+    [
+      "Northern Zazaki",
+      60
+    ],
+    [
+      "Rodolfo Hernández Suárez",
+      59
+    ],
+    [
+      "Fred Brooks",
+      59
+    ],
+    [
+      "Sian Massey-Ellis",
+      59
+    ],
+    [
+      "Higher (Creed song)",
+      58
+    ],
+    [
+      "Eurovision Song Contest 2006",
+      58
+    ],
+    [
+      "Auntie Fee",
+      57
+    ],
+    [
+      "Colwich, Kansas",
+      56
+    ],
+    [
+      "Budō",
+      56
+    ],
+    [
+      "Lyda Conley",
+      55
+    ],
+    [
+      "Video game industry",
+      55
+    ],
+    [
+      "Ilja Seifert",
+      54
+    ],
+    [
+      "Robert Spitzer (psychiatrist)",
+      53
+    ],
+    [
+      "Tania Dalton",
+      53
+    ],
+    [
+      "Brooke Valentine",
+      52
+    ],
+    [
+      "Doug Sahm",
+      51
+    ],
+    [
+      "Seyrani Monument",
+      51
+    ],
+    [
+      "Roxana Druse",
+      51
+    ],
+    [
+      "Australian Kelpie",
+      51
+    ],
+    [
+      "Michel Maïque",
+      50
+    ],
+    [
+      "Ken Judge",
+      48
+    ],
+    [
+      "Grammis",
+      48
+    ],
+    [
+      "Dickin Medal",
+      47
+    ],
+    [
+      "Malabar Headland National Park",
+      47
+    ],
+    [
+      "Sedevacantism",
+      47
+    ],
+    [
+      "Kalevi Lehtovirta",
+      47
+    ],
+    [
+      "Scinax hayii",
+      47
+    ]
+  ],
+  "domain_row_hits_selected_sources": {
+    "media_culture": 30,
+    "geography_places": 20,
+    "people_history": 40,
+    "quant_numeric": 59,
+    "institutions_society": 20,
+    "science_physical": 11,
+    "causal_relational": 18
+  },
+  "source_word_counts_treatment": {
+    "simplewiki_semantic_view": 9398,
+    "simple_wiki": 13600,
+    "open_subtitles": 20960,
+    "bnc_spoken": 7040,
+    "childes": 24960,
+    "gutenberg": 23680,
+    "switchboard": 320,
+    "simple_wiki::partial_filler": 42
+  },
+  "source_word_counts_stream_control": {
+    "simplewiki_original_stream_matched": 9398,
+    "simple_wiki": 13600,
+    "open_subtitles": 20960,
+    "bnc_spoken": 7040,
+    "childes": 24960,
+    "gutenberg": 23680,
+    "switchboard": 320,
+    "simple_wiki::partial_filler": 42
+  },
+  "source_word_counts_packet_local_control": {
+    "simplewiki_original_packet_local": 9398,
+    "simple_wiki": 13600,
+    "open_subtitles": 20960,
+    "bnc_spoken": 7040,
+    "childes": 24960,
+    "gutenberg": 23680,
+    "switchboard": 320,
+    "simple_wiki::partial_filler": 42
+  },
+  "source_word_counts_packet_exact_control": {
+    "simplewiki_original_only_matched": 9398,
+    "simple_wiki": 13600,
+    "open_subtitles": 20960,
+    "bnc_spoken": 7040,
+    "childes": 24960,
+    "gutenberg": 23680,
+    "switchboard": 320,
+    "simple_wiki::partial_filler": 42
+  },
+  "files": {
+    "treatment_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/semantic_view_treatment_10M.jsonl",
+    "control_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/original_stream_matched_10M.jsonl",
+    "packet_local_control_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/original_packet_local_10M.jsonl",
+    "packet_exact_control_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/original_packet_exact_matched_10M.jsonl",
+    "treatment_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/semantic_view_treatment_100M.jsonl",
+    "control_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/original_stream_matched_100M.jsonl",
+    "packet_local_control_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/original_packet_local_100M.jsonl",
+    "packet_exact_control_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/original_packet_exact_matched_100M.jsonl",
+    "semantic_packet_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/semantic_packet_rows_meta.jsonl",
+    "matched_packet_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/matched_packet_rows_meta.jsonl",
+    "packet_local_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/packet_local_rows_meta.jsonl",
+    "stream_packet_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/stream_matched_packet_rows_meta.jsonl",
+    "accepted_views": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/accepted_views.jsonl",
+    "view_validation_rows": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/view_validation_rows.jsonl",
+    "materialization_metadata": "experiments/archive/representation_and_objectives/training/data/semantic_view/slice_packet_local_smoke_v2/semantic_view_materialization_metadata.json",
+    "report_note": "research/notes/representation_and_objectives/semantic_view_packet_local_smoke_v2.md"
+  },
+  "sha256": {
+    "treatment_pool": "d0ee727cdd8ce122bc9aa506f84a342330b3b4acc59da08488c8a68cbc89540f",
+    "control_pool": "c114f55d68627e71951fc62ec8814700309a2b8da75ce0e39f25bac2225d9a73",
+    "packet_local_control_pool": "a11a172718b53d9f7460d299cc7ed1ec389fc1768e8f92f7a0455ec14017ef24",
+    "packet_exact_control_pool": "b7e768d2a04789119561c222b876d844436295edea532c0be993688f7ce11661",
+    "treatment_training": "d84727622654d392dd1ce8767ae56916245e86f9977649b6098323f28e2567ac",
+    "control_training": "c345b110c792d1a1006641586af07762d7dbc61d0eb0e375f04e8864a2ae0526",
+    "packet_local_control_training": "1a2484e36033692defd8e575d585b285da31a760fc61f198d38e47657d5ad1fc",
+    "packet_exact_control_training": "0f12bbf10a58200956a97e66108590dd8f3791ee6e112ef1d4adee8253834b20",
+    "semantic_packet_meta": "245ef5bfe21a7c79921bbffa55d645a6d08755cf84da422d98319d6cc36fb59e",
+    "matched_packet_meta": "a0141255f0f6529cc864c4d4d7ed305432d8897cf900e154c5fb456f5582c130",
+    "packet_local_meta": "5ac369cb27430784b7763397b032cd1e07e34afb2d193ef05b4394f703cfc9a5",
+    "stream_packet_meta": "fb114ec759d67a9c106cedc51a8ed1d11b5317a282ae6a9e0813a825a5dab256",
+    "accepted_views": "ac4927eff1544071bc21eb8215aef6fbcf67fb1ef07ac4fcca6ce37a37823b51",
+    "view_validation_rows": "2d328f7fd384c8e948deb4ec8ff3633de76fc58b6ca41f1473b5d07d3c7ea70f"
+  },
+  "elapsed_sec": 1.862
+}

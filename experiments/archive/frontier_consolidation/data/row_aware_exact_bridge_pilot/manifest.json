@@ -1,0 +1,39 @@
+{
+  "status": "ROW_AWARE_EXACT_BRIDGE_PROMPTS_PREPARED",
+  "created_utc": "2026-09-02T10:18:49Z",
+  "seed": 239003,
+  "selected_rows": 55,
+  "selected_two_pair_rows": 40,
+  "selected_three_pair_rows": 15,
+  "selected_pairs": 125,
+  "prompts": 500,
+  "regimes": [
+    "exact_predicate_front",
+    "exact_clause_recast",
+    "exact_anchor_gapfill",
+    "exact_compact_shadow"
+  ],
+  "changed_rows_total": 3005,
+  "changed_words_per_10m": 423511,
+  "row_pair_count_distribution_total": {
+    "3": 727,
+    "4": 1406,
+    "5": 727,
+    "2": 40,
+    "6": 100,
+    "7": 5
+  },
+  "selected_rows_path": "experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/selected_rows.jsonl",
+  "selected_pairs_path": "experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/selected_pairs.jsonl",
+  "prompts_gpu0": "experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/prompts_gpu0.jsonl",
+  "prompts_gpu1": "experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/prompts_gpu1.jsonl",
+  "commands": {
+    "gpu0": "CUDA_VISIBLE_DEVICES=0 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model qwen3.5-9b --prompts-jsonl experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/prompts_gpu0.jsonl --output-jsonl experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/gen_outputs_gpu0.jsonl --batch-size 32 --max-new-tokens 80 --temperature 0.1 --device cuda",
+    "gpu1": "CUDA_VISIBLE_DEVICES=1 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model qwen3.5-9b --prompts-jsonl experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/prompts_gpu1.jsonl --output-jsonl experiments/archive/frontier_consolidation/data/row_aware_exact_bridge_pilot/gen_outputs_gpu1.jsonl --batch-size 32 --max-new-tokens 80 --temperature 0.1 --device cuda"
+  },
+  "scientific_decision": {
+    "continue_full_pool_generation_if": "exact-length transformation-like pair yield is high enough to plausibly fill at least ~60% of changed-block words in a repacked matched subset, and direct review of accepted outputs does not reveal systematic proposition/grammar damage.",
+    "stop_or_redesign_if": "yield remains near research (~20-30%) or whole/pair word mass is too small; do not launch 100M training from a compact/bridge blend."
+  },
+  "no_babylm_training_eval_upload_submission": true
+}

@@ -1,0 +1,134 @@
+{
+  "status": "DEBERTA_POSITIONAL_ABLATION_PREFLIGHT",
+  "no_gpu_training_launched": true,
+  "no_official_eval_upload_aoa_or_leaderboard": true,
+  "legal_tokenizer": {
+    "path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "matches_expected_legal_sha": true,
+    "vocab_size": 16384,
+    "special_tokens": {
+      "bos_token": "<s>",
+      "eos_token": "</s>",
+      "unk_token": "<unk>",
+      "pad_token": "<pad>",
+      "mask_token": "<mask>"
+    }
+  },
+  "references": {
+    "legal_compact_full_deberta": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "tokenizer_label": "compliant16k_reinvest10M",
+      "parameter_count": 34467424,
+      "word_exposure": 100000000,
+      "actual_training_steps": 2529,
+      "loss_last": 2.5525617599487305,
+      "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl"
+    },
+    "old_repeat_full_deberta_not_matched_for_new_ablation": {
+      "run_dir": "experiments/archive/representation_and_objectives/training/runs/gc_compact_repeat_reinvest_16k_seed43022_r2",
+      "tokenizer_label": "baseline16k",
+      "parameter_count": 34467424,
+      "word_exposure": 100000000,
+      "actual_training_steps": 2529,
+      "loss_last": 2.577287197113037,
+      "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_reinvest_100M.jsonl",
+      "why_not_matched": "uses non-legal inherited baseline16k tokenizer, so a legal ablation family must train both compact and repeat under research tokenizer"
+    }
+  },
+  "streams": {
+    "compact": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "exists": true,
+      "sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+      "rows": 647400,
+      "words": 100000000,
+      "changed_rows": 30050,
+      "unique_changed_ids": 3005,
+      "bad_changed_repeat_counts": {},
+      "exact_100M": true
+    },
+    "repeat": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_reinvest_100M.jsonl",
+      "exists": true,
+      "sha256": "91e8817e25f234b87481fa6ca96d968d6c460b84317273629eda21ea3be24eaa",
+      "rows": 647400,
+      "words": 100000000,
+      "changed_rows": 30050,
+      "unique_changed_ids": 3005,
+      "bad_changed_repeat_counts": {},
+      "exact_100M": true
+    }
+  },
+  "model_variants": {
+    "variants": [
+      {
+        "variant": "c2p_only_abs",
+        "config": {
+          "relative_attention": true,
+          "pos_att_type": [
+            "c2p"
+          ],
+          "position_biased_input": true
+        },
+        "scientific_role": "retain content->position disentangled channel plus absolute input positions; removes p2c",
+        "parameter_count": 32620384,
+        "delta_vs_baseline": -1847040,
+        "rel_pos_tensor_count": 18,
+        "has_encoder_rel_embeddings": true,
+        "has_position_embeddings": true,
+        "has_pos_key_proj": true,
+        "has_pos_query_proj": false
+      },
+      {
+        "variant": "p2c_only_abs",
+        "config": {
+          "relative_attention": true,
+          "pos_att_type": [
+            "p2c"
+          ],
+          "position_biased_input": true
+        },
+        "scientific_role": "retain position->content disentangled channel plus absolute input positions; removes c2p",
+        "parameter_count": 32620384,
+        "delta_vs_baseline": -1847040,
+        "rel_pos_tensor_count": 18,
+        "has_encoder_rel_embeddings": true,
+        "has_position_embeddings": true,
+        "has_pos_key_proj": false,
+        "has_pos_query_proj": true
+      },
+      {
+        "variant": "no_disentangle_abs",
+        "config": {
+          "relative_attention": true,
+          "pos_att_type": [],
+          "position_biased_input": true
+        },
+        "scientific_role": "retain rel_embeddings/absolute input positions but remove both attention score terms; isolates disentangled score contribution",
+        "parameter_count": 30773344,
+        "delta_vs_baseline": -3694080,
+        "rel_pos_tensor_count": 2,
+        "has_encoder_rel_embeddings": true,
+        "has_position_embeddings": true,
+        "has_pos_key_proj": false,
+        "has_pos_query_proj": false
+      }
+    ]
+  },
+  "minimum_exact_contrast": {
+    "data_arms": [
+      "compact_view_reinvest_100M",
+      "repeat_compact_reinvest_100M"
+    ],
+    "tokenizer": "legal research compliant16k_reinvest10M for every arm",
+    "architecture_family": "DebertaV2ForMaskedLM 8x480/8h, one positional component changed per arm",
+    "learning_recipe": "research recipe: seeds 43/43022/43023, WWM p=0.15, AdamW lr=0.001, batch256/seq256, lr_total_steps=2529, exact 100M exposure",
+    "interpretation": "the scientific estimand is compact-minus-repeat within each ablated architecture, not a single-arm gain and not a comparison to a different-tokenizer old repeat run"
+  },
+  "warnings": [
+    "Do not use a 20M single-arm masking-rate gain to justify continuation; many early gains reversed in the recorded comparisons.",
+    "The existing mature repeat DeBERTa run is tokenizer-mismatched to the legal coordinate; it is provenance/context, not the ablation reference.",
+    "Parameter counts change under component ablation; the primary estimand is the data-treatment interaction, not equal total parameters."
+  ]
+}

@@ -1,0 +1,638 @@
+{
+  "status": "LAMB_GEOMETRY_RECONSTRUCTION",
+  "created_utc": "2026-08-31T05:57:37Z",
+  "purpose": "Reconstruct the actual research LAMB×sequence-curriculum exposure, chunking, and masking geometry before interpreting downstream scores.",
+  "totals": {
+    "data_path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "tokenizer_path": "experiments/archive/representation_and_objectives/data/legal_representation_route_map/tokenizers/legal_byte_bpe_40k",
+    "curriculum": "64:20000000,128:50000000,256:100000000",
+    "batch_size_chunks": 256,
+    "mask_prob": 0.15,
+    "min_chunk_tokens": 8,
+    "rows": 647400,
+    "trainer_charged_words": 100000000,
+    "chunks_kept": 1263068,
+    "optimizer_steps": 4935,
+    "baseline_fixed256_optimizer_steps": 2529,
+    "optimizer_step_ratio_lamb_curriculum_vs_fixed256": 1.9513641755634639,
+    "kept_tokens": 139266696,
+    "full_row_tokens": 139426440,
+    "visible_token_fraction": 0.9988542775674398,
+    "baseline_fixed256_candidate_tokens": 137061620,
+    "candidate_token_ratio_vs_fixed256": 1.016088209084352,
+    "midword_chunk_boundaries": 183226,
+    "rows_with_midword_boundary": 147427,
+    "rows_with_midword_boundary_frac": 0.22772165585418597,
+    "dropped_tail_tokens": 159744,
+    "dropped_tail_token_fraction": 0.001145722432560137,
+    "trainer_word_groups": 100078654,
+    "kept_original_groups": 99895428,
+    "group_overcount_from_midword_resets": 183226,
+    "group_overcount_frac_of_kept_original": 0.0018341780366564924,
+    "expected_lamb_mask_tokens": 20908432.421873238,
+    "expected_bernoulli_mask_tokens_same_chunks": 20890004.40006158,
+    "lamb_round_min_mask_token_ratio_vs_bernoulli_same_chunks": 1.0008821454250916,
+    "baseline_expected_bernoulli_mask_tokens": 20559242.99999361,
+    "expected_mask_token_ratio_lamb_curriculum_vs_fixed256_bernoulli": 1.0169845466527991,
+    "elapsed_sec": 414.1
+  },
+  "phases": [
+    {
+      "phase": 0,
+      "seq_len": 64,
+      "target_budget_words": 20000000,
+      "rows": 129480,
+      "row_words": 20000000,
+      "trainer_charged_words": 20000000,
+      "rows_token_lt8": 0,
+      "chunks_kept": 484784,
+      "optimizer_steps": 1894,
+      "words_per_step": 10559.662090813094,
+      "kept_tokens": 27815304,
+      "full_row_tokens": 27885288,
+      "visible_token_fraction": 0.9974902895031961,
+      "dropped_tail_tokens": 69984,
+      "rows_with_dropped_tail": 17550,
+      "dropped_tail_token_fraction": 0.0025097104968039062,
+      "midword_chunk_boundaries": 102500,
+      "rows_with_midword_boundary": 71612,
+      "rows_with_midword_boundary_frac": 0.5530738337967254,
+      "kept_original_groups": 19950052,
+      "trainer_word_groups": 20052552,
+      "group_overcount_from_midword_resets": 102500,
+      "group_overcount_frac_of_kept_original": 0.005137831219688049,
+      "expected_lamb_mask_groups": 3018878.0,
+      "expected_lamb_mask_tokens": 4186912.2714035134,
+      "expected_bernoulli_mask_groups_same_chunks": 3007882.799999989,
+      "expected_bernoulli_mask_tokens_same_chunks": 4172295.6000247607,
+      "lamb_round_min_mask_token_ratio_vs_bernoulli_same_chunks": 1.003503268411439,
+      "tokens_per_step": 14686.01055966209,
+      "expected_lamb_mask_tokens_per_step": 2210.618939494991,
+      "chunks_per_row_mean": 3.7440840284213777,
+      "max_chunks_per_row": 11,
+      "row_token_len_percentiles": {
+        "mean": 215.3636700648749,
+        "p05": 153.0,
+        "p25": 189.0,
+        "p50": 211.0,
+        "p75": 244.0,
+        "p95": 281.0,
+        "max": 661.0
+      },
+      "chunk_len_percentiles": {
+        "mean": 57.37669560051487,
+        "p05": 18.0,
+        "p25": 64.0,
+        "p50": 64.0,
+        "p75": 64.0,
+        "p95": 64.0,
+        "max": 64.0
+      },
+      "trainer_group_count_percentiles": {
+        "mean": 41.36388989735635,
+        "p05": 13.0,
+        "p25": 36.0,
+        "p50": 44.0,
+        "p75": 51.0,
+        "p95": 56.0,
+        "max": 64.0
+      },
+      "chunk_count_hist": {
+        "1": 24,
+        "2": 2562,
+        "3": 46024,
+        "4": 63454,
+        "5": 17024,
+        "6": 242,
+        "7": 88,
+        "8": 30,
+        "9": 4,
+        "10": 24,
+        "11": 4
+      },
+      "tail_len_hist": {
+        "1": 2498,
+        "2": 2596,
+        "3": 2500,
+        "4": 2482,
+        "5": 2536,
+        "6": 2380,
+        "7": 2558
+      },
+      "top_midword_start_tokens": [
+        [
+          ".",
+          19228
+        ],
+        [
+          ":",
+          12124
+        ],
+        [
+          ",",
+          11604
+        ],
+        [
+          "CHI",
+          4816
+        ],
+        [
+          "?",
+          4678
+        ],
+        [
+          "MOT",
+          4284
+        ],
+        [
+          "'s",
+          3252
+        ],
+        [
+          "'t",
+          1778
+        ],
+        [
+          "1",
+          1702
+        ],
+        [
+          "!",
+          1294
+        ],
+        [
+          "]",
+          1280
+        ],
+        [
+          "0",
+          1262
+        ],
+        [
+          "2",
+          1256
+        ],
+        [
+          "FAT",
+          1028
+        ],
+        [
+          "...",
+          934
+        ],
+        [
+          "9",
+          746
+        ],
+        [
+          "'m",
+          610
+        ],
+        [
+          "'re",
+          608
+        ],
+        [
+          "3",
+          468
+        ],
+        [
+          "].",
+          456
+        ],
+        [
+          "'ll",
+          452
+        ],
+        [
+          "5",
+          440
+        ],
+        [
+          ";",
+          420
+        ],
+        [
+          "8",
+          414
+        ],
+        [
+          "'",
+          406
+        ]
+      ]
+    },
+    {
+      "phase": 1,
+      "seq_len": 128,
+      "target_budget_words": 50000000,
+      "rows": 194220,
+      "row_words": 30000000,
+      "trainer_charged_words": 30000000,
+      "rows_token_lt8": 0,
+      "chunks_kept": 410964,
+      "optimizer_steps": 1606,
+      "words_per_step": 18679.950186799502,
+      "kept_tokens": 41790987,
+      "full_row_tokens": 41827932,
+      "visible_token_fraction": 0.9991167385468639,
+      "dropped_tail_tokens": 36945,
+      "rows_with_dropped_tail": 9306,
+      "dropped_tail_token_fraction": 0.0008832614531361484,
+      "midword_chunk_boundaries": 62331,
+      "rows_with_midword_boundary": 57465,
+      "rows_with_midword_boundary_frac": 0.2958758109360519,
+      "kept_original_groups": 29977206,
+      "trainer_word_groups": 30039537,
+      "group_overcount_from_midword_resets": 62331,
+      "group_overcount_frac_of_kept_original": 0.002079279836820016,
+      "expected_lamb_mask_groups": 4505322.0,
+      "expected_lamb_mask_tokens": 6268390.598862329,
+      "expected_bernoulli_mask_groups_same_chunks": 4505930.54999992,
+      "expected_bernoulli_mask_tokens_same_chunks": 6268648.050025726,
+      "lamb_round_min_mask_token_ratio_vs_bernoulli_same_chunks": 0.99995893035287,
+      "tokens_per_step": 26021.785180572853,
+      "expected_lamb_mask_tokens_per_step": 3903.1074712716863,
+      "chunks_per_row_mean": 2.115971578622181,
+      "max_chunks_per_row": 6,
+      "row_token_len_percentiles": {
+        "mean": 215.3636700648749,
+        "p05": 153.0,
+        "p25": 189.0,
+        "p50": 211.0,
+        "p75": 244.0,
+        "p95": 281.0,
+        "max": 661.0
+      },
+      "chunk_len_percentiles": {
+        "mean": 101.6901407422548,
+        "p05": 24.0,
+        "p25": 75.0,
+        "p50": 128.0,
+        "p75": 128.0,
+        "p95": 128.0,
+        "max": 128.0
+      },
+      "trainer_group_count_percentiles": {
+        "mean": 73.09530031827606,
+        "p05": 15.0,
+        "p25": 58.0,
+        "p50": 76.0,
+        "p75": 95.0,
+        "p95": 110.0,
+        "max": 127.0
+      },
+      "chunk_count_hist": {
+        "1": 3879,
+        "2": 164217,
+        "3": 25899,
+        "4": 177,
+        "5": 42,
+        "6": 6
+      },
+      "tail_len_hist": {
+        "1": 1362,
+        "2": 1389,
+        "3": 1308,
+        "4": 1332,
+        "5": 1287,
+        "6": 1278,
+        "7": 1350
+      },
+      "top_midword_start_tokens": [
+        [
+          ".",
+          11745
+        ],
+        [
+          ":",
+          7842
+        ],
+        [
+          ",",
+          6867
+        ],
+        [
+          "CHI",
+          3096
+        ],
+        [
+          "?",
+          2802
+        ],
+        [
+          "MOT",
+          2685
+        ],
+        [
+          "'s",
+          1962
+        ],
+        [
+          "1",
+          1080
+        ],
+        [
+          "'t",
+          1035
+        ],
+        [
+          "0",
+          780
+        ],
+        [
+          "2",
+          780
+        ],
+        [
+          "!",
+          771
+        ],
+        [
+          "]",
+          717
+        ],
+        [
+          "FAT",
+          585
+        ],
+        [
+          "...",
+          507
+        ],
+        [
+          "9",
+          429
+        ],
+        [
+          "'re",
+          339
+        ],
+        [
+          "].",
+          318
+        ],
+        [
+          "'m",
+          315
+        ],
+        [
+          "3",
+          273
+        ],
+        [
+          "8",
+          267
+        ],
+        [
+          ";",
+          258
+        ],
+        [
+          "'ll",
+          255
+        ],
+        [
+          "'",
+          252
+        ],
+        [
+          "5",
+          252
+        ]
+      ]
+    },
+    {
+      "phase": 2,
+      "seq_len": 256,
+      "target_budget_words": 100000000,
+      "rows": 323700,
+      "row_words": 50000000,
+      "trainer_charged_words": 50000000,
+      "rows_token_lt8": 0,
+      "chunks_kept": 367320,
+      "optimizer_steps": 1435,
+      "words_per_step": 34843.20557491289,
+      "kept_tokens": 69660405,
+      "full_row_tokens": 69713220,
+      "visible_token_fraction": 0.9992423962054829,
+      "dropped_tail_tokens": 52815,
+      "rows_with_dropped_tail": 13500,
+      "dropped_tail_token_fraction": 0.0007576037945170227,
+      "midword_chunk_boundaries": 18395,
+      "rows_with_midword_boundary": 18350,
+      "rows_with_midword_boundary_frac": 0.05668829162805066,
+      "kept_original_groups": 49968170,
+      "trainer_word_groups": 49986565,
+      "group_overcount_from_midword_resets": 18395,
+      "group_overcount_frac_of_kept_original": 0.00036813435432996646,
+      "expected_lamb_mask_groups": 7500220.0,
+      "expected_lamb_mask_tokens": 10453129.551607396,
+      "expected_bernoulli_mask_groups_same_chunks": 7497984.749999626,
+      "expected_bernoulli_mask_tokens_same_chunks": 10449060.750011094,
+      "lamb_round_min_mask_token_ratio_vs_bernoulli_same_chunks": 1.0003893940033126,
+      "tokens_per_step": 48543.8362369338,
+      "expected_lamb_mask_tokens_per_step": 7284.410837357071,
+      "chunks_per_row_mean": 1.1347544022242817,
+      "max_chunks_per_row": 3,
+      "row_token_len_percentiles": {
+        "mean": 215.3636700648749,
+        "p05": 153.0,
+        "p25": 189.0,
+        "p50": 211.0,
+        "p75": 244.0,
+        "p95": 281.0,
+        "max": 661.0
+      },
+      "chunk_len_percentiles": {
+        "mean": 189.64500980071873,
+        "p05": 18.0,
+        "p25": 179.0,
+        "p50": 204.0,
+        "p75": 238.0,
+        "p95": 256.0,
+        "max": 256.0
+      },
+      "trainer_group_count_percentiles": {
+        "mean": 136.08451758684527,
+        "p05": 11.0,
+        "p25": 140.0,
+        "p50": 160.0,
+        "p75": 160.0,
+        "p95": 160.0,
+        "max": 160.0
+      },
+      "chunk_count_hist": {
+        "1": 280160,
+        "2": 43460,
+        "3": 80
+      },
+      "tail_len_hist": {
+        "1": 2035,
+        "2": 2085,
+        "3": 1935,
+        "4": 1940,
+        "5": 1870,
+        "6": 1750,
+        "7": 1885
+      },
+      "top_midword_start_tokens": [
+        [
+          ":",
+          4355
+        ],
+        [
+          ".",
+          2925
+        ],
+        [
+          "CHI",
+          1865
+        ],
+        [
+          "MOT",
+          1375
+        ],
+        [
+          "?",
+          990
+        ],
+        [
+          "'s",
+          470
+        ],
+        [
+          "]",
+          400
+        ],
+        [
+          "1",
+          315
+        ],
+        [
+          ",",
+          310
+        ],
+        [
+          "FAT",
+          295
+        ],
+        [
+          "!",
+          265
+        ],
+        [
+          "'t",
+          240
+        ],
+        [
+          "2",
+          230
+        ],
+        [
+          "].",
+          200
+        ],
+        [
+          "0",
+          145
+        ],
+        [
+          "...",
+          140
+        ],
+        [
+          "SIS",
+          120
+        ],
+        [
+          "'",
+          120
+        ],
+        [
+          "9",
+          80
+        ],
+        [
+          "laughs",
+          80
+        ],
+        [
+          "MAR",
+          70
+        ],
+        [
+          "3",
+          65
+        ],
+        [
+          "BRO",
+          65
+        ],
+        [
+          "INV",
+          60
+        ],
+        [
+          "int",
+          60
+        ]
+      ]
+    }
+  ],
+  "matched_fixed256_reference_geometry": {
+    "seq_len": 256,
+    "rows": 647400,
+    "words": 100000000,
+    "candidate_tokens": 137061620,
+    "word_groups": 98713360,
+    "rows_truncated": 114070,
+    "truncated_tokens": 2364820,
+    "truncation_midword_cut_rows": 47550,
+    "expected_bernoulli_mask_tokens": 20559242.99999361,
+    "expected_bernoulli_mask_groups": 14807003.999998324,
+    "optimizer_steps": 2529,
+    "tokens_per_step": 54195.97469355477,
+    "words_per_step": 39541.320680110715,
+    "expected_bernoulli_mask_tokens_per_step": 8129.396204030689,
+    "row_token_len_percentiles": {
+      "mean": 215.3636700648749,
+      "p05": 153.0,
+      "p25": 189.0,
+      "p50": 211.0,
+      "p75": 244.0,
+      "p95": 281.0,
+      "max": 661.0
+    },
+    "visible_token_len_percentiles": {
+      "mean": 211.71087426629595,
+      "p05": 153.0,
+      "p25": 189.0,
+      "p50": 211.0,
+      "p75": 244.0,
+      "p95": 256.0,
+      "max": 256.0
+    },
+    "visible_group_count_percentiles": {
+      "mean": 152.4766141489033,
+      "p05": 124.0,
+      "p25": 149.0,
+      "p50": 160.0,
+      "p75": 160.0,
+      "p95": 160.0,
+      "max": 160.0
+    }
+  },
+  "interpretation": {
+    "joint_intervention": "research changes optimizer, length schedule, chunk construction, exact-per-chunk WWM selection, update count, candidate-token exposure, and token batch geometry together.",
+    "not_word_boundary_chunked": true,
+    "midword_reset_meaning": "When a chunk starts inside a wordpiece group, research treats that continuation piece as a new WWM group in the new chunk.",
+    "tail_drop_meaning": "Final token tails shorter than min_chunk_tokens are not fed to the model, while the row word count is charged at the first chunk.",
+    "cheap7_readout": "Compare any research cheap7 vector to matched cheap7 vectors for legal40k fixed-256 AdamW baselines and the visible leader, not to nine-column Overall scores."
+  },
+  "sample_files": {
+    "midword_boundaries": "experiments/archive/representation_and_objectives/data/lamb_geometry_reconstruction/midword_boundary_samples.jsonl",
+    "dropped_tails": "experiments/archive/representation_and_objectives/data/lamb_geometry_reconstruction/dropped_tail_samples.jsonl",
+    "phase_csv": "experiments/archive/representation_and_objectives/data/lamb_geometry_reconstruction/phase_geometry.csv"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "status": "MIRROR_DIAGNOSIS",
+  "checkpoint": "experiments/archive/initial_model_studies/training/runs/r1_ordered_dynamic_5M/hf_model/chck_5M",
+  "n_pairs": 60,
+  "token_diff": {
+    "mean": 16.5,
+    "min": 5,
+    "max": 25,
+    "note": "How many token positions differ between counterfactual A and B (differ only by operation order)."
+  },
+  "query_hidden_cosine_A_vs_B": {
+    "mean": 0.9999999930461247,
+    "min": 0.9999999403953552,
+    "max": 1.0000001192092896,
+    "note": "Cosine of final-layer hidden at the masked query position, context A vs B. ~1.0 => contexts collapsed at query position."
+  },
+  "same_candidate_score_diff_sAa_minus_sBa": {
+    "mean": -4.76837158203125e-08,
+    "mean_abs": 2.0662943522135417e-07,
+    "max_abs": 9.5367431640625e-07,
+    "note": "Log-prob of the SAME candidate answer_a scored in context A vs context B. ~0 => the scoring position cannot distinguish the two operation orders."
+  },
+  "diagnosis": "QUERY_POSITION_COLLAPSE: the encoder produces nearly identical query-position representations for both operation orders, so the MLM scoring head receives no order signal. The mirror is structural, not a head-capacity issue. Final-answer MLM scoring cannot carry this state distinction; only a representation/objective that forces the query position to encode order could work. Supports pivoting away from final-answer ranking."
+}

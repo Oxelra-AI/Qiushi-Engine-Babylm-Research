@@ -1,0 +1,171 @@
+{
+  "status": "ALPHA075_ARTIFACT_RECONCILIATION",
+  "created_utc": "2026-09-01T10:22:39Z",
+  "files": {
+    "alpha075_model": {
+      "path": "models/frontier/model.safetensors",
+      "exists": true,
+      "size_bytes": 145866368,
+      "sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8"
+    },
+    "alpha075_config": {
+      "path": "models/frontier/config.json",
+      "exists": true,
+      "size_bytes": 1210,
+      "sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7"
+    },
+    "alpha075_carrier": {
+      "path": "experiments/archive/frontier_consolidation/data/truthful_private_scale_carriers/coherent86_alpha0p75/all_full_preds_truthful_coherent86_alpha0p75_mlm.json",
+      "exists": true,
+      "size_bytes": 15887750,
+      "sha256": "40181994810e21bc823474a3e4ac84c8eb42213e03904d36a60a4698477d1994"
+    },
+    "alpha075_manifest": {
+      "path": "experiments/archive/frontier_consolidation/data/truthful_private_scale_carriers/coherent86_alpha0p75/truthful_coherent86_alpha0p75_carrier_manifest.json",
+      "exists": true,
+      "size_bytes": 7790,
+      "sha256": "6bcd43b6ae7ece0b5e8b635477668c865e4976b5b3a189feab5056d044b98015"
+    },
+    "alpha1_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/final/model.safetensors",
+      "exists": true,
+      "size_bytes": 145866368,
+      "sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8"
+    },
+    "alpha1_config": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/final/config.json",
+      "exists": true,
+      "size_bytes": 1209,
+      "sha256": "69ecbc420c93ce6228571899e70b0be783c81bc7bae5cc2f0a0c4fb474ebe690"
+    },
+    "alpha1_replay_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/replay_frozen82_fastpath4M_coherent_seed43022/hf_model/final/model.safetensors",
+      "exists": true,
+      "size_bytes": 145866368,
+      "sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8"
+    },
+    "alpha05_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/coherent86_private_scale_0p5/hf_model/final/model.safetensors",
+      "exists": true,
+      "size_bytes": 145866368,
+      "sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8"
+    },
+    "anchor_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M/model.safetensors",
+      "exists": true,
+      "size_bytes": 141878192,
+      "sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3"
+    }
+  },
+  "sha256_lengths": {
+    "alpha075_model": 64,
+    "alpha075_config": 64,
+    "alpha075_carrier": 64,
+    "alpha075_manifest": 64,
+    "alpha1_model": 64,
+    "alpha1_config": 64,
+    "alpha1_replay_model": 64,
+    "alpha05_model": 64,
+    "anchor_model": 64
+  },
+  "expected_from_manifest": {
+    "model_safetensors_sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8",
+    "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7",
+    "carrier_sha256": "40181994810e21bc823474a3e4ac84c8eb42213e03904d36a60a4698477d1994"
+  },
+  "manifest_matches_recomputed": {
+    "model": true,
+    "config": true,
+    "carrier": true
+  },
+  "alpha075_model_identity": {
+    "model_dir": "models/frontier",
+    "private_adapter_scale": 0.75,
+    "private_adapter_enabled": true,
+    "architectures": [
+      "FrozenSlowPrivateDebertaV2ForMaskedLM"
+    ],
+    "auto_map": {
+      "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+    }
+  },
+  "weight_identity": {
+    "alpha075_weights_bit_identical_to_coherent_alpha1": true,
+    "alpha075_weights_bit_identical_to_coherent_replay": true,
+    "alpha075_weights_bit_identical_to_alpha05": true,
+    "interpretation": "alpha0.75 is a config-scaled inference function over the same learned coherent86 private-path weights"
+  },
+  "config_diff_alpha075_vs_alpha1": {
+    "num_same": 36,
+    "num_different": 1,
+    "different_fields": {
+      "private_adapter_scale": {
+        "alpha075": 0.75,
+        "coherent_alpha1": 1.0
+      }
+    }
+  },
+  "config_diff_alpha075_vs_alpha05": {
+    "num_same": 36,
+    "num_different": 1,
+    "different_fields": {
+      "private_adapter_scale": {
+        "alpha075": 0.75,
+        "coherent_alpha1": 0.5
+      }
+    }
+  },
+  "carrier_score_from_manifest": {
+    "scores": {
+      "BLiMP": 68.51,
+      "Supplement": 63.64,
+      "EWoK": 50.02,
+      "Entity": 28.32,
+      "COMPS": 52.05,
+      "GlobalPIQA": 38.565,
+      "Reading": 8.165,
+      "SuperGLUE": 69.81922238969935,
+      "AoA": 0.0
+    },
+    "cheap7": 44.18142857142857,
+    "overall_with_aoa0": 42.1210247099666,
+    "deltas_vs_protected_chck82": {
+      "cheap7": 0.22197869497684053,
+      "superglue": 0.053041018387546046,
+      "overall_with_aoa0": 0.17854354258061278
+    }
+  },
+  "truthful_history_policy": {
+    "aoa": "scalar_zero_only",
+    "fast_eval_results": "omitted; no borrowed protected chck82 fast history",
+    "cheap_predictions": "experiments/archive/frontier_consolidation/data/private_scale_sentinel_eval/coherent86_private_scale_0p75/per_target/coherent86_private_scale_0p75.json",
+    "superglue_predictions": "experiments/archive/frontier_consolidation/data/private_scale_superglue_eval/coherent86_private_scale_0p75/per_target/coherent86_private_scale_0p75_sg_retry.json"
+  },
+  "logits_probe": {
+    "texts": [
+      "The child put the toy in the box and then [MASK] smiled.",
+      "If the cup is full, water can [MASK] from it."
+    ],
+    "status": "ok",
+    "param_counts": {
+      "alpha075": 36458592,
+      "alpha1": 36458592,
+      "alpha05": 36458592
+    },
+    "diffs": {
+      "alpha075_vs_alpha1": {
+        "max_abs": 0.27073097229003906,
+        "mean_abs": 0.0386270210146904
+      },
+      "alpha075_vs_alpha05": {
+        "max_abs": 0.2740938663482666,
+        "mean_abs": 0.03873499110341072
+      }
+    },
+    "private_off_vs_anchor": {
+      "method": "model.set_private_enabled(False)",
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    }
+  }
+}

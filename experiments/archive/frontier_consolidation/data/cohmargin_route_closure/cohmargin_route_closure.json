@@ -1,0 +1,52 @@
+{
+  "status": "COHERENCE_MARGIN_ROUTE_CLOSED_AFTER_4M_PILOT",
+  "created_utc": "2026-09-01T09:41:28Z",
+  "pilot_payload": "experiments/archive/frontier_consolidation/data/cohmargin4M_eval/per_target/cohmargin4M_scale1p75_seed43022.json",
+  "pilot_scores": {
+    "BLiMP": 53.97,
+    "Supplement": 46.57,
+    "EWoK": 48.94,
+    "Entity": 16.5,
+    "COMPS": 50.3,
+    "GlobalPIQA": 34.195,
+    "Reading": 6.37
+  },
+  "pilot_cheap7": 36.692142857142855,
+  "protected_chck82_cheap7": 43.95944987645173,
+  "deltas_vs_chck82": {
+    "BLiMP": -14.521284036519859,
+    "Supplement": -16.3678112562002,
+    "EWoK": -1.115453325532762,
+    "Entity": -11.814041930298774,
+    "COMPS": -1.8911750944359653,
+    "GlobalPIQA": -3.3826699029126175,
+    "Reading": -1.7787135892619022
+  },
+  "cheap7_delta_vs_chck82": -7.267307019308873,
+  "training_trace_summary": {
+    "source": "experiments/archive/frontier_consolidation/data/cohmargin_training_trace_summary/cohmargin_training_trace_summary.json",
+    "charged_word_exposure": 3999724,
+    "coherent_words": 1999862,
+    "optimizer_steps": 51,
+    "margin_loss_mean": 0.7998403205591089,
+    "last_10_margin_loss_mean": 0.7989563912153244,
+    "nll_bad_minus_coh_mean": -0.0006274628855559664,
+    "last_10_nll_gap_mean": -0.0003145403374219313
+  },
+  "nll_gap_comparison": {
+    "source": "experiments/archive/frontier_consolidation/data/cohmargin_nll_gap_comparison/cohmargin_nll_gap_comparison.json",
+    "pilot_train_gap": 0.0009750703694095194,
+    "pilot_holdout_gap": 0.0003258801299841141,
+    "ref2m_train_gap": -0.0004531093104696179,
+    "ref2m_holdout_gap": 8.03497931523454e-05,
+    "ref4m_train_gap": 0.025009877468731484,
+    "ref4m_holdout_gap": 0.017921989642364473
+  },
+  "lambda0_isolate_status": {
+    "task": "s159_t54_tool1",
+    "state": "cancelled_after_pilot_destructive_result",
+    "partial_trace_reading": "not a result; smoke and early logs only confirm same trainer/disruption geometry before cancellation",
+    "stdout_tail": "{\"event\": \"cohmargin_smoke\", \"target_mismatch_tokens\": 0, \"special_or_pad_mismatch_tokens\": 0, \"mask_position_mismatch_tokens\": 0, \"rows_with_context_multiset_mismatch\": 0, \"moved_context_tokens_mean\": 170.46875, \"moved_context_tokens_min\": 64, \"moved_context_tokens_max\": 224, \"param_count\": 35463008, \"adapter_params\": 995584, \"device\": \"cuda\", \"n_masked_tokens\": 3988}\n{\"event\": \"train\", \"micro_step\": 2, \"optim_step\": 1, \"loss\": 9.811876773834229, \"mlm_loss\": 9.811876773834229, \"margin_loss\": 0.8088392615318298, \"nll_bad_minus_coh_last_micro\": -0.009171899408102036, \"lr\": 1.3333333333333335e-05, \"coherent_words\": 39370, \"charged_word_exposure\": 78740, \"batch_words_last_micro\": 19811, \"effective_mask_rate_last_micro\": 0.1506690548941102, \"elapsed_sec\": 6.2}\n{\"event\": \"checkpoint_saved\", \"name\": \"chck_1M\", \"charged_words\": 1028018, \"coherent_words\": 514009}\n{\"event\": \"train\", \"micro_step\": 40, \"optim_step\": 20, \"loss\": 8.165989875793457, \"mlm_loss\": 8.165989875793457, \"margin_loss\": 0.798346996307373, \"nll_bad_minus_coh_last_micro\": 0.0015314725460484624, \"lr\": 0.0002666666666666667, \"coherent_words\": 789880, \"charged_word_exposure\": 1579760, \"batch_words_last_micro\": 19821, \"effective_mask_rate_last_micro\": 0.1453241983330979, \"elapsed_sec\": 60.3}\n{\"event\": \"checkpoint_saved\", \"name\": \"chck_2M\", \"charged_words\": 2054940, \"coherent_words\": 1027470}"
+  },
+  "scientific_interpretation": "The pilot is broadly destructive on official-compatible cheap7 and fails the intended mechanism probe: the margin term stayed near softplus(0.20) and coherent-vs-disrupted NLL separation remained near zero. The route should not continue to 20M, nor should lambda-zero official evaluation be spent after this pilot result."
+}

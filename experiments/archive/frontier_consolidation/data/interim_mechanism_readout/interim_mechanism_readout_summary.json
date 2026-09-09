@@ -1,0 +1,108 @@
+{
+  "status": "INTERIM_MECHANISM_READOUT_COMPLETE",
+  "created_utc": "2026-09-04T11:48:13Z",
+  "predeclared_prediction_note": "research/notes/frontier_consolidation/binding_content_trade_predeclared_predictions.md",
+  "cpu_safe_worker": "experiments/archive/frontier_consolidation/scripts/cpu_safe_scoring_worker.py",
+  "cpu_probe": {
+    "status": "CPU_PROBE_OK",
+    "created_utc": "2026-09-04T11:06:52Z",
+    "returncode": 0,
+    "elapsed_sec": 1.617,
+    "log": "experiments/archive/frontier_consolidation/data/cpu_safe_scoring_worker/logs/cpu_probe.log",
+    "cpu_assert_seen": true
+  },
+  "max_repeat_100m_current_ready_cols": [
+    "BLiMP",
+    "Supplement",
+    "EWoK"
+  ],
+  "max_repeat_100m_missing_cols": [
+    "Entity",
+    "COMPS",
+    "Reading"
+  ],
+  "max_100m_ewok": {
+    "view": 50.15,
+    "repeat": 49.88,
+    "view_minus_repeat": 0.269999999999996,
+    "interpretation": "The newly measured repeat EWoK row makes full-exposure MAX EWoK currently slightly view-positive, unlike the negative average over the 10M-80M common window; the remaining Entity/COMPS/Reading columns are still needed for the late full-exposure fixed-budget readout."
+  },
+  "margin_pilot80": {
+    "summary_path": "experiments/archive/frontier_consolidation/data/ewok_entity_margin_pilot80/margin_readout_summary.json",
+    "sample": {
+      "ewok_per_domain": 5,
+      "entity_per_group": 5,
+      "ewok_rows_selected": 55,
+      "entity_rows_selected": 90
+    },
+    "delta_summaries": [
+      {
+        "dose_name": "dose1",
+        "family": "EWoK",
+        "n": 55,
+        "mean": 0.33854358875065704,
+        "median": 0.6189367789775133,
+        "frac_positive": 0.6,
+        "binary_delta_mean": 0.10909090909090909
+      },
+      {
+        "dose_name": "dose1",
+        "family": "Entity",
+        "n": 90,
+        "mean": 0.867337383302058,
+        "median": 0.36170252662850544,
+        "frac_positive": 0.5111111111111111,
+        "binary_delta_mean": -0.022222222222222223
+      },
+      {
+        "dose_name": "dose1p82",
+        "family": "EWoK",
+        "n": 55,
+        "mean": 0.011078408611303365,
+        "median": -0.3559688590466976,
+        "frac_positive": 0.45454545454545453,
+        "binary_delta_mean": -0.10909090909090909
+      },
+      {
+        "dose_name": "dose1p82",
+        "family": "Entity",
+        "n": 90,
+        "mean": 0.2795949275411355,
+        "median": 0.21994262095540762,
+        "frac_positive": 0.5333333333333333,
+        "binary_delta_mean": 0.03333333333333333
+      },
+      {
+        "dose_name": "dose2p64",
+        "family": "EWoK",
+        "n": 55,
+        "mean": -0.29596345308289695,
+        "median": 0.1289599807932973,
+        "frac_positive": 0.5272727272727272,
+        "binary_delta_mean": 0.07272727272727272
+      },
+      {
+        "dose_name": "dose2p64",
+        "family": "Entity",
+        "n": 90,
+        "mean": 0.9792498404043727,
+        "median": 0.5343762714765035,
+        "frac_positive": 0.5555555555555556,
+        "binary_delta_mean": 0.08888888888888889
+      }
+    ],
+    "interpretation": "In the small 80M balanced sample, Entity V-R margins are positive at all three doses and largest at MAX, while EWoK V-R margin moves from positive at 1x to near zero at 1.82x and negative at MAX. This supports using a larger sampled trajectory as a graded signed-family test, but it is not a full-dataset result."
+  },
+  "running_cpu_tasks_started_by_step267": {
+    "s267_t32_tool1": "finish remaining MAX-repeat 100M Entity/COMPS/Reading with CPU-safe official worker",
+    "s267_t33_tool1": "finish RoBERTa clean 50M-100M stable-family remainder with CPU-safe official worker; 30M/40M COMPS+Reading still need later resumption",
+    "s267_t38_tool1": "sampled EWoK/Entity continuous-margin 10M-80M dose ladder"
+  },
+  "still_needed_after_these_tasks": [
+    "harvest and recompute dose decomposition after MAX-repeat 100M completes",
+    "complete RoBERTa clean 30M/40M missing COMPS and Reading if not already recovered",
+    "evaluate second-basin MAX view/repeat after trainings finish",
+    "evaluate MAX breadth after training finishes and compare stable families plus duplicate-sensitive/entity-binding panels"
+  ],
+  "no_globalpiqa_superglue_aoa_upload_or_leaderboard": true
+}

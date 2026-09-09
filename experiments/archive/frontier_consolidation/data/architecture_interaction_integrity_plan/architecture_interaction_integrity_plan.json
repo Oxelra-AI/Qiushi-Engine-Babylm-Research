@@ -1,0 +1,59 @@
+{
+  "status": "ARCHITECTURE_INTERACTION_INTEGRITY_PLAN",
+  "created_utc": "2026-09-02T11:15:54Z",
+  "out_dir": "experiments/archive/frontier_consolidation/data/architecture_interaction_integrity_plan",
+  "arms": {
+    "full_compact_existing": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "variant": "full_p2c_c2p_abs",
+      "data_arm": "compact",
+      "role": "existing legal full-DeBERTa compact reference; reused only after exact-coordinate checks",
+      "expected_param_count": 34467424,
+      "expected_pos_att_type": [
+        "p2c",
+        "c2p"
+      ],
+      "expected_saved_checkpoint_count": 100,
+      "existing_reference": true
+    },
+    "full_repeat": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_repeat_deberta100M_seed43022",
+      "variant": "full_p2c_c2p_abs",
+      "data_arm": "repeat",
+      "role": "new missing legal full-DeBERTa repeat reference",
+      "expected_param_count": 34467424,
+      "expected_pos_att_type": [
+        "p2c",
+        "c2p"
+      ],
+      "expected_saved_checkpoint_count": 10,
+      "existing_reference": false
+    },
+    "nodis_compact": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/no_disentangle_abs_compact_deberta100M_seed43022",
+      "variant": "no_disentangle_abs",
+      "data_arm": "compact",
+      "role": "compact arm with c2p/p2c attention-score terms removed, absolute input positions retained",
+      "expected_param_count": 30773344,
+      "expected_pos_att_type": [],
+      "expected_saved_checkpoint_count": 10,
+      "existing_reference": false
+    },
+    "nodis_repeat": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/no_disentangle_abs_repeat_deberta100M_seed43022",
+      "variant": "no_disentangle_abs",
+      "data_arm": "repeat",
+      "role": "repeat arm with c2p/p2c attention-score terms removed, absolute input positions retained",
+      "expected_param_count": 30773344,
+      "expected_pos_att_type": [],
+      "expected_saved_checkpoint_count": 10,
+      "existing_reference": false
+    }
+  },
+  "required_checkpoints": [
+    "chck_80M",
+    "chck_100M"
+  ],
+  "scientific_estimand": "Compare compact-minus-repeat under full DeBERTa with compact-minus-repeat under no_disentangle_abs. Survival of the compact-minus-repeat effect without c2p/p2c score terms shows those score terms are not necessary; collapse initially implicates the whole removed positional package plus parameter/normalization changes, not c2p vs p2c separately.",
+  "no_training_selected_eval_superglue_aoa_upload_or_leaderboard": true
+}

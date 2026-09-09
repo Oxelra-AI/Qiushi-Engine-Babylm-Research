@@ -1,0 +1,79 @@
+{
+  "status": "QWEN10_STAGEWISE_ROWCHUNK_MATERIALIZED",
+  "created_utc": "2026-08-29T08:15:29Z",
+  "design": "low-truncation row chunks for repaired leader-style sequence curriculum; Qwen pair-packed rows may be split deliberately to expose counted words during seq64/128 stages",
+  "input": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+  "input_sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+  "input_rows": 64381,
+  "input_words": 10000000,
+  "stages": {
+    "1": {
+      "stage": 1,
+      "target_words": 3000000,
+      "seq_len": 64,
+      "batch_size": 512,
+      "max_chunk_words": 32,
+      "path": "experiments/archive/frontier_consolidation/data/qwen10_stagewise_rowchunk/qwen10_rowchunk_stage1_seq64_3M.jsonl",
+      "rows": 95313,
+      "words": 3000000,
+      "source_words": {
+        "childes": 810347,
+        "open_subtitles": 572160,
+        "bnc_spoken": 181440,
+        "gutenberg": 592800,
+        "qwen_pair_packed": 489973,
+        "simple_wiki": 346080,
+        "switchboard": 7200
+      },
+      "orig_rows_seen": 19302,
+      "sha256": "9acff35f8f94f8936550651a997fc3f0814fad83ba96ce41ed02979d4bd694c2",
+      "bytes": 38522458
+    },
+    "2": {
+      "stage": 2,
+      "target_words": 3000000,
+      "seq_len": 128,
+      "batch_size": 256,
+      "max_chunk_words": 64,
+      "path": "experiments/archive/frontier_consolidation/data/qwen10_stagewise_rowchunk/qwen10_rowchunk_stage2_seq128_3M.jsonl",
+      "rows": 56842,
+      "words": 3000000,
+      "source_words": {
+        "childes": 828693,
+        "simple_wiki": 336960,
+        "gutenberg": 583840,
+        "qwen_pair_packed": 487317,
+        "bnc_spoken": 183200,
+        "open_subtitles": 573270,
+        "switchboard": 6720
+      },
+      "orig_rows_seen": 19315,
+      "sha256": "3c15ab3aa2b470071f1e898e67bc3376c95b555098807230ffc68e51b7873a30",
+      "bytes": 29718114
+    },
+    "3": {
+      "stage": 3,
+      "target_words": 4000000,
+      "seq_len": 256,
+      "batch_size": 128,
+      "max_chunk_words": 160,
+      "path": "experiments/archive/frontier_consolidation/data/qwen10_stagewise_rowchunk/qwen10_rowchunk_stage3_seq256_4M.jsonl",
+      "rows": 25766,
+      "words": 4000000,
+      "source_words": {
+        "open_subtitles": 781770,
+        "bnc_spoken": 241920,
+        "childes": 1073600,
+        "gutenberg": 782240,
+        "qwen_pair_packed": 679510,
+        "simple_wiki": 432640,
+        "switchboard": 8320
+      },
+      "orig_rows_seen": 25766,
+      "sha256": "2772d709ba079294c14e4faa93acdd2a464bed22986d883aa51213a77dcf0b8b",
+      "bytes": 27978951
+    }
+  },
+  "total_words": 10000000,
+  "elapsed_sec": 2.27
+}

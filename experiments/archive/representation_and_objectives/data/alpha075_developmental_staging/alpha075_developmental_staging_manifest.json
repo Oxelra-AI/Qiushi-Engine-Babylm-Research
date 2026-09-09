@@ -1,0 +1,707 @@
+{
+  "status": "ALPHA075_DEVELOPMENTAL_STAGING_PARTIAL",
+  "created_utc": "2026-09-01T14:19:49Z",
+  "out_dir": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging",
+  "hf_model_root": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model",
+  "strict_small_fast_revisions": [
+    "chck_1M",
+    "chck_2M",
+    "chck_3M",
+    "chck_4M",
+    "chck_5M",
+    "chck_6M",
+    "chck_7M",
+    "chck_8M",
+    "chck_9M",
+    "chck_10M",
+    "chck_20M",
+    "chck_30M",
+    "chck_40M",
+    "chck_50M",
+    "chck_60M",
+    "chck_70M",
+    "chck_80M",
+    "chck_90M",
+    "chck_100M"
+  ],
+  "staged_fast_revisions": [
+    "chck_1M",
+    "chck_2M",
+    "chck_3M",
+    "chck_4M",
+    "chck_5M",
+    "chck_6M",
+    "chck_7M",
+    "chck_8M",
+    "chck_9M",
+    "chck_10M",
+    "chck_20M",
+    "chck_30M",
+    "chck_40M",
+    "chck_50M",
+    "chck_60M",
+    "chck_70M",
+    "chck_80M"
+  ],
+  "missing_fast_revisions": [
+    "chck_90M",
+    "chck_100M"
+  ],
+  "can_run_full_official_fast_or_aoa": false,
+  "can_run_pilots_on_existing_revisions": true,
+  "truthful_developmental_policy": {
+    "before_private_intervention": "chck_1M..chck_82M are true scale1.75 slow ancestor checkpoints; no private weights are retrofitted into early history",
+    "private_tail_existing": "chck_83M..chck_85M are real coherent-tail checkpoint states, re-materialized only by changing config private_adapter_scale from 1.0 to 0.75",
+    "candidate_endpoint": "main and chck_86M point to the exact alpha0.75 candidate final model; chck_86M is not an official fast slot but preserves endpoint identity",
+    "after_candidate": "chck_90M and chck_100M are absent until genuine continuation from the unchanged coherent private tail creates them; this script refuses duplicates or ordinary-trajectory borrowing"
+  },
+  "source_roots": {
+    "slow_ladder": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model",
+    "coherent_tail_alpha1": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model",
+    "alpha075_final": "models/frontier",
+    "alpha075_carrier_manifest": "experiments/archive/frontier_consolidation/data/truthful_private_scale_carriers/coherent86_alpha0p75/truthful_coherent86_alpha0p75_carrier_manifest.json"
+  },
+  "final_candidate_identity": {
+    "path": "models/frontier",
+    "exists": true,
+    "model_sha256": "e14d757ae51b41e33bf0813f841248fecd1eefeb9e040f520c4c6203343b15c8",
+    "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7",
+    "architectures": [
+      "FrozenSlowPrivateDebertaV2ForMaskedLM"
+    ],
+    "auto_map": {
+      "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+    },
+    "adapter_scale": 1.75,
+    "private_adapter_scale": 0.75,
+    "private_adapter_enabled": true,
+    "vocab_size": 16384
+  },
+  "main_alias": {
+    "mode": "symlink",
+    "src": "models/frontier",
+    "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/main"
+  },
+  "chck86_alias": {
+    "mode": "symlink",
+    "src": "models/frontier",
+    "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_86M"
+  },
+  "optional_nonofficial_tail_revisions": [
+    {
+      "revision": "chck_83M",
+      "phase": "optional_nonofficial_real_coherent_private_tail_alpha0p75",
+      "source": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_83012495w",
+      "operation": "scale_config_copy",
+      "true_tail_checkpoint_name": "chck_total_83012495w",
+      "materialization": {
+        "mode": "copy_or_hardlink_scaled_config",
+        "src": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_83012495w",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_83M",
+        "scale": 0.75,
+        "old_private_adapter_scale": 1.0,
+        "old_private_adapter_enabled": true,
+        "copied": {
+          "model.safetensors": "copy",
+          "special_tokens_map.json": "copy",
+          "frozen82_private_modeling.py": "copy",
+          "tokenizer.json": "copy",
+          "tokenizer_config.json": "copy"
+        },
+        "model_safetensors_sha256": "257e8f5c890482c8da0ac3da36c7a28e62d449cba5dc4be30a46edc25bec7a10",
+        "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_83M",
+        "exists": true,
+        "model_sha256": "257e8f5c890482c8da0ac3da36c7a28e62d449cba5dc4be30a46edc25bec7a10",
+        "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7",
+        "architectures": [
+          "FrozenSlowPrivateDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": 0.75,
+        "private_adapter_enabled": true,
+        "vocab_size": 16384
+      },
+      "exposure_meaning": "real coherent private-tail state at total 83012495 words, not an official strict-small fast slot"
+    },
+    {
+      "revision": "chck_84M",
+      "phase": "optional_nonofficial_real_coherent_private_tail_alpha0p75",
+      "source": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_84012495w",
+      "operation": "scale_config_copy",
+      "true_tail_checkpoint_name": "chck_total_84012495w",
+      "materialization": {
+        "mode": "copy_or_hardlink_scaled_config",
+        "src": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_84012495w",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_84M",
+        "scale": 0.75,
+        "old_private_adapter_scale": 1.0,
+        "old_private_adapter_enabled": true,
+        "copied": {
+          "model.safetensors": "copy",
+          "special_tokens_map.json": "copy",
+          "frozen82_private_modeling.py": "copy",
+          "tokenizer.json": "copy",
+          "tokenizer_config.json": "copy"
+        },
+        "model_safetensors_sha256": "b6cf92d92c9d5304374d491cb0e963a9d2250cf5e07a0977b6a531167fd4efa0",
+        "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_84M",
+        "exists": true,
+        "model_sha256": "b6cf92d92c9d5304374d491cb0e963a9d2250cf5e07a0977b6a531167fd4efa0",
+        "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7",
+        "architectures": [
+          "FrozenSlowPrivateDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": 0.75,
+        "private_adapter_enabled": true,
+        "vocab_size": 16384
+      },
+      "exposure_meaning": "real coherent private-tail state at total 84012495 words, not an official strict-small fast slot"
+    },
+    {
+      "revision": "chck_85M",
+      "phase": "optional_nonofficial_real_coherent_private_tail_alpha0p75",
+      "source": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_85012495w",
+      "operation": "scale_config_copy",
+      "true_tail_checkpoint_name": "chck_total_85012495w",
+      "materialization": {
+        "mode": "copy_or_hardlink_scaled_config",
+        "src": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_85012495w",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_85M",
+        "scale": 0.75,
+        "old_private_adapter_scale": 1.0,
+        "old_private_adapter_enabled": true,
+        "copied": {
+          "model.safetensors": "copy",
+          "special_tokens_map.json": "copy",
+          "frozen82_private_modeling.py": "copy",
+          "tokenizer.json": "copy",
+          "tokenizer_config.json": "copy"
+        },
+        "model_safetensors_sha256": "9c8c63aa9489292f555353136f2c4eb98e34bf4098d87204c173d7c6e2dd9c5d",
+        "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_85M",
+        "exists": true,
+        "model_sha256": "9c8c63aa9489292f555353136f2c4eb98e34bf4098d87204c173d7c6e2dd9c5d",
+        "config_sha256": "ca6792fe1842f0e89e7080e7709e0619fdcaf5ce48a65f69bf7137ac26ce9bb7",
+        "architectures": [
+          "FrozenSlowPrivateDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": 0.75,
+        "private_adapter_enabled": true,
+        "vocab_size": 16384
+      },
+      "exposure_meaning": "real coherent private-tail state at total 85012495 words, not an official strict-small fast slot"
+    }
+  ],
+  "records": [
+    {
+      "revision": "chck_1M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_1M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 1M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_1M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_1M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_1M",
+        "exists": true,
+        "model_sha256": "c6086ad117869698d8605f54539fe91a26406f7ef9559f0fd7bbe7dd8e28135f",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_2M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_2M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 2M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_2M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_2M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_2M",
+        "exists": true,
+        "model_sha256": "3a0567cdb58c4742096f04acdf7a170e916504edc2e13fc335b0b0dad0ccebf0",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_3M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_3M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 3M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_3M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_3M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_3M",
+        "exists": true,
+        "model_sha256": "be37102167c9ee489e15c33dc878a678475e4dea39d92587e029d51dce2545f3",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_4M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_4M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 4M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_4M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_4M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_4M",
+        "exists": true,
+        "model_sha256": "67497cf84e62926aae02e4dfb1191fcd588d5ef9c0e12079b703ddc1cd0b6817",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_5M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_5M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 5M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_5M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_5M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_5M",
+        "exists": true,
+        "model_sha256": "261404f1211b2d307d83550320d168522c528e6a28c92e3a8e3084efdd12fe51",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_6M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_6M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 6M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_6M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_6M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_6M",
+        "exists": true,
+        "model_sha256": "f006cceed0a8de7d6656f3e8af039d3aafdc290df0b38b144584eda9378264be",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_7M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_7M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 7M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_7M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_7M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_7M",
+        "exists": true,
+        "model_sha256": "397dee1b9463f8b249ca7c3e1fb349113ea5aef7eac9e5de4810a3d10eb2246f",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_8M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_8M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 8M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_8M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_8M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_8M",
+        "exists": true,
+        "model_sha256": "f7284dede49a0ad6df3199f47c109476a4c1ae3edde03d4462c9267232e2ad49",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_9M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_9M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 9M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_9M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_9M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_9M",
+        "exists": true,
+        "model_sha256": "bc48efc7e7aef54cb4817b9c1f3ce1fc88ad192d4550907345ab451472cb6d86",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_10M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_10M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 10M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_10M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_10M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_10M",
+        "exists": true,
+        "model_sha256": "a99abd758d36ecf9ffdab262769969d110e68f77ad543a7a688dcceb3bfd821c",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_20M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_20M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 20M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_20M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_20M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_20M",
+        "exists": true,
+        "model_sha256": "b37e243b5fc9c9459efe0b6b4f2abce40f4597d82c9621949e0d458e85e7b031",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_30M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_30M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 30M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_30M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_30M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_30M",
+        "exists": true,
+        "model_sha256": "61ae64376a5af87886fa3a4d1efaaea4fc7dd8b5e7c57d647284e1b3485f2ade",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_40M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_40M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 40M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_40M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_40M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_40M",
+        "exists": true,
+        "model_sha256": "cf097c4156b0a842a5b5526cafdbdb2f25bd045e89300dbca79b7b2429cf38d8",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_50M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_50M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 50M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_50M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_50M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_50M",
+        "exists": true,
+        "model_sha256": "995c167832d83a721e1cccb6c3d4f348d11443283845ed5d72ba39bb8e802034",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_60M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_60M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 60M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_60M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_60M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_60M",
+        "exists": true,
+        "model_sha256": "52ac1bf1073a936680f1dcc52a9469649040fb268611416806ed65f0201e53a8",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_70M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_70M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 70M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_70M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_70M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_70M",
+        "exists": true,
+        "model_sha256": "e947a7fb06f58df98c6b0b49886aa5d8dd62b3bc4ad60813265ed5ecb3332024",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_80M",
+      "phase": "ancestral_slow_before_private_intervention",
+      "source": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_80M",
+      "operation": "symlink",
+      "exposure_meaning": "true scale1.75 slow trajectory after approximately 80M word exposure; no private adapter exists before 82M intervention",
+      "materialization": {
+        "mode": "symlink",
+        "src": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_80M",
+        "dst": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_80M"
+      },
+      "identity": {
+        "path": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_80M",
+        "exists": true,
+        "model_sha256": "c37f6665df84109a266428e606e1bf665db70d9a5e7842816b5717d36922edda",
+        "config_sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0",
+        "architectures": [
+          "AdapterDebertaV2ForMaskedLM"
+        ],
+        "auto_map": {
+          "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+        },
+        "adapter_scale": 1.75,
+        "private_adapter_scale": null,
+        "private_adapter_enabled": null,
+        "vocab_size": 16384
+      }
+    },
+    {
+      "revision": "chck_90M",
+      "phase": "missing_requires_genuine_continuation",
+      "source": null,
+      "operation": "missing_do_not_fake",
+      "exposure_meaning": "not available from current coherent86 alpha0.75 lineage; must be produced by genuine continuation from unchanged coherent private-tail state, not duplicated or borrowed"
+    },
+    {
+      "revision": "chck_100M",
+      "phase": "missing_requires_genuine_continuation",
+      "source": null,
+      "operation": "missing_do_not_fake",
+      "exposure_meaning": "not available from current coherent86 alpha0.75 lineage; must be produced by genuine continuation from unchanged coherent private-tail state, not duplicated or borrowed"
+    }
+  ]
+}

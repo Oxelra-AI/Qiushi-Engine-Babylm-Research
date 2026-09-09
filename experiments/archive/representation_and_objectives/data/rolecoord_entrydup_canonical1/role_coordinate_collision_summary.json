@@ -1,0 +1,527 @@
+{
+  "status": "ROLE_COORDINATE_COLLISION",
+  "created": "2026-09-04T10:53:43Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/rolecoord_entrydup_canonical1",
+    "arms": "entrydup_direct",
+    "n_seeds": 1,
+    "seed_base": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "entrydup_direct": {
+      "arm_name": "entrydup_direct",
+      "ctx_mode": "entrydup",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=entrydup|q=direct_tag": 2560,
+          "base_stable_train|ctx=entrydup|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=entrydup|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=entrydup|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "entrydup_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "entrydup_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "entrydup_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    }
+  },
+  "token_audit": {
+    "train_all": {
+      "n": 5632,
+      "min": 112,
+      "p50": 122.0,
+      "p90": 128.0,
+      "p99": 133.0,
+      "max": 137,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 3840,
+      "min": 111,
+      "p50": 123.0,
+      "p90": 129.0,
+      "p99": 134.0,
+      "max": 136,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "summary": {
+    "entrydup_direct": {
+      "best_train_acc": 0.9772727489471436,
+      "train_fit": {
+        "overall": 0.9772727272727273,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=entrydup|q=direct_tag": 1.0,
+          "base_stable_train|ctx=entrydup|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=entrydup|q=direct_tag": 0.5,
+          "sparse_stable_focal|ctx=entrydup|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 0.958984375,
+          "focal_before": 0.9576822916666666,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 1.0,
+          "True": 0.5
+        }
+      },
+      "evals": {
+        "entrydup_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.8125,
+          "by_query": {
+            "focal_before": 0.75,
+            "focal_after": 0.5,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 0.16012334823608398,
+            "focal_after": 0.16716312523931265,
+            "secondary_before": 1.4284794451668859,
+            "secondary_after": 1.5099431932903826
+          },
+          "standard_acc": 0.5109375
+        },
+        "entrydup_direct_heldStable_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 10.570095658302307,
+            "focal_after": 10.699357390403748,
+            "secondary_before": 12.325695514678955,
+            "secondary_after": 11.650422275066376
+          },
+          "standard_acc": 0.925
+        },
+        "entrydup_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.375,
+          "by_query": {
+            "focal_before": 0.5,
+            "focal_after": 0.25,
+            "secondary_before": 0.5,
+            "secondary_after": 0.25
+          },
+          "by_query_margin": {
+            "focal_before": 0.34535051696002483,
+            "focal_after": -0.6436297493055463,
+            "secondary_before": 0.5569412549957633,
+            "secondary_after": 0.6841407753527164
+          },
+          "standard_acc": 0.5078125
+        }
+      }
+    }
+  },
+  "per_seed": {
+    "entrydup_direct": [
+      {
+        "arm": "entrydup_direct",
+        "seed": 26700,
+        "best_train_acc": 0.9772727489471436,
+        "train_fit": {
+          "overall": 0.9772727272727273,
+          "by_train_kind": {
+            "base_stable_anchor|ctx=entrydup|q=direct_tag": 1.0,
+            "base_stable_train|ctx=entrydup|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=entrydup|q=direct_tag": 0.5,
+            "sparse_stable_focal|ctx=entrydup|q=direct_tag": 1.0
+          },
+          "by_query_family": {
+            "focal_after": 0.958984375,
+            "focal_before": 0.9576822916666666,
+            "secondary_after": 1.0,
+            "secondary_before": 1.0
+          },
+          "by_changed_focal": {
+            "False": 1.0,
+            "True": 0.5
+          }
+        },
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.6998861932873048,
+            "train_acc": 0.5008878111839294
+          },
+          {
+            "epoch": 2,
+            "loss": 0.6956141343001615,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 3,
+            "loss": 0.36275524823000443,
+            "train_acc": 0.9747869372367859
+          },
+          {
+            "epoch": 4,
+            "loss": 0.14371316239729284,
+            "train_acc": 0.9769176244735718
+          },
+          {
+            "epoch": 5,
+            "loss": 0.11238328186019751,
+            "train_acc": 0.9765625
+          },
+          {
+            "epoch": 6,
+            "loss": 0.11672721426042963,
+            "train_acc": 0.9769176244735718
+          },
+          {
+            "epoch": 7,
+            "loss": 0.12648860694161035,
+            "train_acc": 0.9772727489471436
+          },
+          {
+            "epoch": 8,
+            "loss": 0.114484922255444,
+            "train_acc": 0.9751420617103577
+          },
+          {
+            "epoch": 9,
+            "loss": 0.10987287215628468,
+            "train_acc": 0.9747869372367859
+          },
+          {
+            "epoch": 10,
+            "loss": 0.10289815293864667,
+            "train_acc": 0.9772727489471436
+          }
+        ],
+        "evals": {
+          "entrydup_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5109375,
+              "by_query_family": {
+                "focal_before": 0.5125,
+                "focal_after": 0.5,
+                "secondary_before": 0.515625,
+                "secondary_after": 0.515625
+              },
+              "by_changed_focal": {
+                "True": 0.5109375
+              },
+              "by_stable_secondary": {
+                "True": 0.5109375
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.8125,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.75,
+                "focal_after": 0.5,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 0.16012334823608398,
+                "focal_after": 0.16716312523931265,
+                "secondary_before": 1.4284794451668859,
+                "secondary_after": 1.5099431932903826
+              },
+              "by_changed_focal": {
+                "True": 0.8125
+              },
+              "margin_mean": 0.8164272779831663
+            }
+          },
+          "entrydup_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5078125,
+              "by_query_family": {
+                "focal_before": 0.50625,
+                "focal_after": 0.5,
+                "secondary_before": 0.5125,
+                "secondary_after": 0.5125
+              },
+              "by_changed_focal": {
+                "True": 0.5078125
+              },
+              "by_stable_secondary": {
+                "True": 0.5078125
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.375,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.5,
+                "focal_after": 0.25,
+                "secondary_before": 0.5,
+                "secondary_after": 0.25
+              },
+              "by_query_margin": {
+                "focal_before": 0.34535051696002483,
+                "focal_after": -0.6436297493055463,
+                "secondary_before": 0.5569412549957633,
+                "secondary_after": 0.6841407753527164
+              },
+              "by_changed_focal": {
+                "True": 0.375
+              },
+              "margin_mean": 0.23570069950073957
+            }
+          },
+          "entrydup_direct_heldStable_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.925,
+              "by_query_family": {
+                "focal_before": 0.934375,
+                "focal_after": 0.9375,
+                "secondary_before": 0.915625,
+                "secondary_after": 0.9125
+              },
+              "by_changed_focal": {
+                "False": 0.925
+              },
+              "by_stable_secondary": {
+                "True": 0.925
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 10.570095658302307,
+                "focal_after": 10.699357390403748,
+                "secondary_before": 12.325695514678955,
+                "secondary_after": 11.650422275066376
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "margin_mean": 11.311392709612846
+            }
+          }
+        }
+      }
+    ]
+  },
+  "boundary": "Small pretrained bridge probe; use as route-local evidence only after changed-row fit checks."
+}

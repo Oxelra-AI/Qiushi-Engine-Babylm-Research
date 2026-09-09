@@ -1,0 +1,973 @@
+{
+  "status": "DRY",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/inline_role_bridge_dry",
+    "arms": "tag_only,inline_direct,inline_role,inline_both,compact_direct",
+    "seed_base": 26900,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": true
+  },
+  "construction": {
+    "tag_only": {
+      "arm": "tag_only",
+      "ctx": "tag_only",
+      "tq": [
+        "direct_tag"
+      ],
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "sel": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "tr": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=tag_only|q=direct_tag": 2560,
+          "base_stable_train|ctx=tag_only|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=tag_only|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=tag_only|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "ev": {
+        "tag_only_hC_hS_direct_hH": 1280
+      }
+    },
+    "inline_direct": {
+      "arm": "inline_direct",
+      "ctx": "inline_role",
+      "tq": [
+        "direct_tag"
+      ],
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "sel": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "tr": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=inline_role|q=direct_tag": 2560,
+          "base_stable_train|ctx=inline_role|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=inline_role|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=inline_role|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "ev": {
+        "inline_direct_hC_hS_direct_hH": 1280,
+        "inline_direct_hC_hS_rolePara_hH": 1280,
+        "inline_direct_hC_hS_roleSwap_direct_hH": 1280,
+        "inline_direct_hC_hS_roleSwap_role_hH": 1280,
+        "inline_direct_hC_hS_role_hH": 1280
+      }
+    },
+    "inline_role": {
+      "arm": "inline_role",
+      "ctx": "inline_role",
+      "tq": [
+        "role_inline"
+      ],
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "sel": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "tr": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=inline_role|q=role_inline": 2560,
+          "base_stable_train|ctx=inline_role|q=role_inline": 2560,
+          "sparse_changed_focal|ctx=inline_role|q=role_inline": 256,
+          "sparse_stable_focal|ctx=inline_role|q=role_inline": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "ev": {
+        "inline_role_hC_hS_direct_hH": 1280,
+        "inline_role_hC_hS_rolePara_hH": 1280,
+        "inline_role_hC_hS_roleSwap_direct_hH": 1280,
+        "inline_role_hC_hS_roleSwap_role_hH": 1280,
+        "inline_role_hC_hS_role_hH": 1280
+      }
+    },
+    "inline_both": {
+      "arm": "inline_both",
+      "ctx": "inline_role",
+      "tq": [
+        "direct_tag",
+        "role_inline"
+      ],
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "sel": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "tr": {
+        "n": 11264,
+        "by_query": {
+          "focal_after": 3072,
+          "focal_before": 3072,
+          "secondary_after": 2560,
+          "secondary_before": 2560
+        },
+        "by_label": {
+          "0": 5632,
+          "1": 5632
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=inline_role|q=direct_tag": 2560,
+          "base_stable_anchor|ctx=inline_role|q=role_inline": 2560,
+          "base_stable_train|ctx=inline_role|q=direct_tag": 2560,
+          "base_stable_train|ctx=inline_role|q=role_inline": 2560,
+          "sparse_changed_focal|ctx=inline_role|q=direct_tag": 256,
+          "sparse_changed_focal|ctx=inline_role|q=role_inline": 256,
+          "sparse_stable_focal|ctx=inline_role|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=inline_role|q=role_inline": 256
+        },
+        "by_changed_focal": {
+          "False": 10752,
+          "True": 512
+        },
+        "by_stable_secondary": {
+          "True": 11264
+        }
+      },
+      "ev": {
+        "inline_both_hC_hS_direct_hH": 1280,
+        "inline_both_hC_hS_rolePara_hH": 1280,
+        "inline_both_hC_hS_roleSwap_direct_hH": 1280,
+        "inline_both_hC_hS_roleSwap_role_hH": 1280,
+        "inline_both_hC_hS_role_hH": 1280
+      }
+    },
+    "compact_direct": {
+      "arm": "compact_direct",
+      "ctx": "compact_map",
+      "tq": [
+        "direct_tag"
+      ],
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "sel": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "tr": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=compact_map|q=direct_tag": 2560,
+          "base_stable_train|ctx=compact_map|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=compact_map|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=compact_map|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "ev": {
+        "compact_direct_hC_hS_direct_hH": 1280
+      }
+    }
+  },
+  "token_audit": {
+    "train": {
+      "n": 33792,
+      "min": 79,
+      "p50": 101.0,
+      "p90": 119.0,
+      "max": 134,
+      "gt_max": 0.0
+    },
+    "eval": {
+      "n": 21760,
+      "min": 81,
+      "p50": 100.0,
+      "p90": 106.0,
+      "max": 133,
+      "gt_max": 0.0
+    }
+  }
+}

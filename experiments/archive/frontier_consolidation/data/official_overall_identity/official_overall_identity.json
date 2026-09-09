@@ -1,0 +1,140 @@
+{
+  "status": "COMPLETE",
+  "created_utc": "2026-09-01T08:04:11Z",
+  "source_files": {
+    "read_evals_py": {
+      "path": "experiments/archive/frontier_consolidation/data/live_leaderboard_space_repo/src/leaderboard/read_evals.py",
+      "sha256": "f7e99e7c8e8ed07353ce5c7277fd226f9b88b0201aeed12fdabf4e0fd821c76c",
+      "formula_lines": [
+        363,
+        377
+      ]
+    },
+    "eval_submission_py": {
+      "path": "experiments/archive/frontier_consolidation/data/live_leaderboard_space_repo/src/submission/eval_submission.py",
+      "sha256": "15e6bb9317cb225919d45812b115d8d5c3c0a943b31a560afaa795b6d8d3d05c",
+      "aoa_lines": [
+        80,
+        87
+      ]
+    },
+    "check_validity_py": {
+      "path": "experiments/archive/frontier_consolidation/data/live_leaderboard_space_repo/src/submission/check_validity.py",
+      "sha256": "ce762ff75c0e2118c3ae57ae68e9f09a4075733c575c31dc7877736007f0b4ff",
+      "missing_aoa_and_fast_lines": [
+        209,
+        295
+      ]
+    }
+  },
+  "source_excerpts": {
+    "strict_overall_formula_read_evals_363_377": [
+      "363:             # NLP tasks are measured directly; \"human-like\" tasks are measured against",
+      "364:             # human data/psychometrics. \"Reading\" is itself the mean of its spr/rt",
+      "365:             # subtasks, so it is one entry here (AoA gets 1/2 of the human-like weight).",
+      "366:             # GlobalPIQA is already the macro-average of its parallel/nonparallel subtasks.",
+      "367:             global_piqa = self.results.get(\"global_piqa\") or 0.0",
+      "368:             NLP_BENCHMARK_KEYS = (\"blimp\", \"blimp_supplement\", \"ewok\", \"entity_tracking\", \"comps\", \"glue\")",
+      "369:             HUMAN_LIKE_BENCHMARK_KEYS = (\"reading\", \"aoa\")",
+      "370: ",
+      "371:             nlp_vals = [self.results.get(k) or 0.0 for k in NLP_BENCHMARK_KEYS] + [global_piqa]",
+      "372:             human_vals = [self.results.get(k) or 0.0 for k in HUMAN_LIKE_BENCHMARK_KEYS]",
+      "373:             overall_vals = nlp_vals + human_vals",
+      "374: ",
+      "375:             data_dict[eval_column.overall_average.name] = sum(overall_vals) / len(overall_vals)",
+      "376:             data_dict[eval_column.nlp_average.name] = sum(nlp_vals) / len(nlp_vals)",
+      "377:             data_dict[eval_column.human_like_average.name] = sum(human_vals) / len(human_vals)"
+    ],
+    "submission_aoa_mapping_eval_submission_80_87": [
+      "80:     # AoA — new format is {\"aoa\": <float>} (score computed in the pipeline). Old submissions",
+      "81:     # put the raw surprisals ({\"metadata\", \"results\"}) under \"aoa\" instead; those, and any",
+      "82:     # missing/malformed value, map to 0.0 so legacy files parse without error.",
+      "83:     aoa = results_dict.get(\"aoa\")",
+      "84:     if isinstance(aoa, dict) and isinstance(aoa.get(\"aoa\"), (int, float)) and not isinstance(aoa.get(\"aoa\"), bool):",
+      "85:         processed_results_dict[\"aoa\"] = {\"aoa\": float(aoa[\"aoa\"])}",
+      "86:     else:",
+      "87:         processed_results_dict[\"aoa\"] = {\"aoa\": 0.0}"
+    ],
+    "validator_missing_aoa_allowed_check_validity_209_220": [
+      "209:     # Validate AoA if present — missing AoA is allowed (scored as 0)",
+      "210:     if \"aoa\" in predictions and predictions[\"aoa\"] is not None and \"results\" in predictions[\"aoa\"]:",
+      "211:         aoa_results = predictions[\"aoa\"]",
+      "212:         target_num_items = NUM_CHECKPOINTS_10M if track == 'strict-small' else NUM_CHECKPOINTS_100M",
+      "213:         revisions_in_results = {r['step'] for r in aoa_results[\"results\"]}",
+      "214:         if len(revisions_in_results) > target_num_items:",
+      "215:             out_msg = f\"Error: AoA predictions contain results for {len(revisions_in_results)} checkpoints. Was expecting at most {target_num_items} for track {track}\"",
+      "216:         else:",
+      "217:             for revision in revisions_in_results:",
+      "218:                 revision_results = [r for r in aoa_results[\"results\"] if r['step'] == revision]",
+      "219:                 if len(revision_results) != AOA_SIZE:",
+      "220:                     out_msg = f\"Error: AoA prediction for checkpoint {revision} contains {len(revision_results)} datapoints. Was expecting {AOA_SIZE}\""
+    ],
+    "validator_missing_fast_allowed_check_validity_292_295": [
+      "292: def is_valid_fast_metrics(predictions: dict, track: str) -> tuple[bool, str]:",
+      "293:     # Missing fast eval results are allowed — they are scored as 0",
+      "294:     if \"fast_eval_results\" not in predictions or predictions[\"fast_eval_results\"] is None:",
+      "295:         return True, \"Upload successful.\""
+    ]
+  },
+  "identity": {
+    "strict_small_columns": [
+      "BLiMP",
+      "Supplement",
+      "EWoK",
+      "Entity",
+      "COMPS",
+      "SuperGLUE",
+      "GlobalPIQA",
+      "Reading",
+      "AoA"
+    ],
+    "cheap7_columns": [
+      "BLiMP",
+      "Supplement",
+      "EWoK",
+      "Entity",
+      "COMPS",
+      "GlobalPIQA",
+      "Reading"
+    ],
+    "formula": "Overall(AoA0) = (7 * cheap7 + SuperGLUE) / 9",
+    "note": "AoA is 0.0 for scalar/missing AoA without aoa_surprisals; missing fast_eval_results validates but public submit warns that challenge submissions should include fast history."
+  },
+  "rows": {
+    "chck82_anchor": {
+      "cheap7": 43.95944987645173,
+      "superglue": 69.7661813713118,
+      "aoa": 0.0,
+      "overall_formula": 41.942481167385985,
+      "known_overall": 41.942481167385985,
+      "difference_formula_minus_known": 0.0
+    },
+    "coherent86_private_alpha1": {
+      "cheap7": 44.10642857142857,
+      "superglue_reference_alpha1_first": 69.77796826428681,
+      "aoa": 0.0,
+      "overall_if_alpha1_first_sg": 42.058107584920755,
+      "delta_vs_chck82_if_alpha1_first_sg": 0.1156264175347701,
+      "superglue_needed_to_match_chck82": 68.73733050647388
+    },
+    "coherent86_private_alpha0p5": {
+      "cheap7": 44.17785714285714,
+      "superglue_reference_alpha1_first": 69.77796826428681,
+      "aoa": 0.0,
+      "overall_if_alpha1_first_sg": 42.11366314047631,
+      "delta_vs_chck82_if_alpha1_first_sg": 0.17118197309032723,
+      "superglue_needed_to_match_chck82": 68.23733050647388
+    },
+    "coherent86_private_alpha0p75": {
+      "cheap7": 44.18142857142857,
+      "superglue_reference_alpha1_first": 69.77796826428681,
+      "aoa": 0.0,
+      "overall_if_alpha1_first_sg": 42.116440918254085,
+      "delta_vs_chck82_if_alpha1_first_sg": 0.17395975086810012,
+      "superglue_needed_to_match_chck82": 68.2123305064739
+    }
+  },
+  "alpha1_superglue_values_seen": [
+    69.77796826428681
+  ]
+}

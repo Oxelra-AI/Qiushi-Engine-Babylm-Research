@@ -1,0 +1,161 @@
+{
+  "variant": "phase2_stagewise_wwm_to_token",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "model_type": "deberta_v2",
+  "parameter_count": 34677184,
+  "embedding_parameter_count": 15360000,
+  "non_embedding_parameter_count": 19317184,
+  "vocab_size": 40000,
+  "tokenizer_label": "sp40k_shared_official7p5M",
+  "tokenizer_path": "experiments/archive/compact_experience/data/shared_tokenizer/hf_tokenizer_40k_shared",
+  "word_exposure": 100000000,
+  "loss_first": 10.639985084533691,
+  "loss_last": 2.285299777984619,
+  "actual_training_steps": 5984,
+  "total_scheduled_steps": 5984,
+  "mask_mode": "wwm",
+  "mask_switch_mode": "token",
+  "mask_switch_words": 70000000,
+  "mask_prob": 0.15,
+  "optimizer": "lamb",
+  "learning_rate": 0.007,
+  "warmup_fraction": 0.06,
+  "weight_decay": 0.01,
+  "n_layer": 12,
+  "hidden_size": 384,
+  "n_head": 12,
+  "intermediate_size": 1280,
+  "share_att_key": "true",
+  "position_biased_input": "false",
+  "seed": 43,
+  "extra_init_seed": 43200,
+  "train_rng_seed": 43201,
+  "stage_config": [
+    {
+      "stage": 1,
+      "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/mix25_stage1_seq64_30M_v2.jsonl",
+      "seq": 64,
+      "batch": 512,
+      "words": 30000000
+    },
+    {
+      "stage": 2,
+      "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/mix25_stage2_seq128_30M_v2.jsonl",
+      "seq": 128,
+      "batch": 256,
+      "words": 30000000
+    },
+    {
+      "stage": 3,
+      "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/mix25_stage3_seq256_40M_v2.jsonl",
+      "seq": 256,
+      "batch": 128,
+      "words": 40000000
+    }
+  ],
+  "stage_metrics": [
+    {
+      "stage": 1,
+      "seq": 64,
+      "batch": 512,
+      "words": 30000000,
+      "visible_tokens": 42047028,
+      "visible_word_groups": 29950341,
+      "masked_tokens": 6308717,
+      "loss_first": 10.639985084533691,
+      "loss_last": 3.4305832386016846,
+      "visible_tokens_per_word": 1.4016,
+      "visible_word_groups_per_word": 0.9983
+    },
+    {
+      "stage": 2,
+      "seq": 128,
+      "batch": 256,
+      "words": 30000000,
+      "visible_tokens": 42120006,
+      "visible_word_groups": 29980125,
+      "masked_tokens": 6317267,
+      "loss_first": 3.590167760848999,
+      "loss_last": 2.651385545730591,
+      "visible_tokens_per_word": 1.404,
+      "visible_word_groups_per_word": 0.9993
+    },
+    {
+      "stage": 3,
+      "seq": 256,
+      "batch": 128,
+      "words": 40000000,
+      "visible_tokens": 55169660,
+      "visible_word_groups": 39422544,
+      "masked_tokens": 8277580,
+      "loss_first": 2.751981735229492,
+      "loss_last": 2.285299777984619,
+      "visible_tokens_per_word": 1.3792,
+      "visible_word_groups_per_word": 0.9856
+    }
+  ],
+  "saved_checkpoints": [
+    {
+      "name": "chck_10M",
+      "target_word_exposure": 10000000,
+      "actual_cumulative_word_exposure": 10010624,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_10M"
+    },
+    {
+      "name": "chck_20M",
+      "target_word_exposure": 20000000,
+      "actual_cumulative_word_exposure": 20004864,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_20M"
+    },
+    {
+      "name": "chck_30M",
+      "target_word_exposure": 30000000,
+      "actual_cumulative_word_exposure": 30000000,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_30M"
+    },
+    {
+      "name": "chck_40M",
+      "target_word_exposure": 40000000,
+      "actual_cumulative_word_exposure": 40007904,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_40M"
+    },
+    {
+      "name": "chck_50M",
+      "target_word_exposure": 50000000,
+      "actual_cumulative_word_exposure": 50002144,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_50M"
+    },
+    {
+      "name": "chck_60M",
+      "target_word_exposure": 60000000,
+      "actual_cumulative_word_exposure": 60000000,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_60M"
+    },
+    {
+      "name": "chck_70M",
+      "target_word_exposure": 70000000,
+      "actual_cumulative_word_exposure": 70014720,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_70M"
+    },
+    {
+      "name": "chck_80M",
+      "target_word_exposure": 80000000,
+      "actual_cumulative_word_exposure": 80008960,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_80M"
+    },
+    {
+      "name": "chck_90M",
+      "target_word_exposure": 90000000,
+      "actual_cumulative_word_exposure": 90003200,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_90M"
+    },
+    {
+      "name": "chck_100M",
+      "target_word_exposure": 100000000,
+      "actual_cumulative_word_exposure": 100000000,
+      "path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_100M"
+    }
+  ],
+  "elapsed_sec": 5708.4
+}

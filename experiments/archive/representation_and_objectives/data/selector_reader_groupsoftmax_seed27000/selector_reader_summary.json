@@ -1,0 +1,2707 @@
+{
+  "status": "DONE",
+  "created": "2026-09-04T15:35:48Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/selector_reader_groupsoftmax_seed27000",
+    "seed": 27000,
+    "selector_seed": 27000,
+    "mode": "inline_role",
+    "shared_address_ns": "s269_inline_direct",
+    "shared_address_suffix": "_direct_tag",
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "selector_group_batch_size": 8,
+    "eval_batch_size": 32,
+    "reader_tag_epochs": 5,
+    "reader_direct_epochs": 6,
+    "selector_epochs": 8,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "reader_tag_train_rows": 5632,
+    "reader_train_rows": 5632,
+    "selector_train_rows": 11264,
+    "reader_tag_train": {
+      "mode": "tag_only",
+      "qmode": "direct_tag",
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "train": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=tag_only|q=direct_tag": 2560,
+          "base_stable_train|ctx=tag_only|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=tag_only|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=tag_only|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "eval_counts": {
+        "tag_only_heldChanged_heldStable_direct_hH": 1280,
+        "tag_only_trainChanged_heldStable_direct_hH": 1280
+      }
+    },
+    "reader_direct_train": {
+      "mode": "inline_role",
+      "qmode": "direct_tag",
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "train": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=inline_role|q=direct_tag": 2560,
+          "base_stable_train|ctx=inline_role|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=inline_role|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=inline_role|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "eval_counts": {
+        "inline_role_heldChanged_heldStable_direct_hH": 1280,
+        "inline_role_trainChanged_heldStable_direct_hH": 1280
+      }
+    },
+    "selector_train": {
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "train": {
+        "n": 11264,
+        "by_query": {
+          "focal_after": 3072,
+          "focal_before": 3072,
+          "secondary_after": 2560,
+          "secondary_before": 2560
+        },
+        "by_label": {
+          "0": 8448,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=inline_role|q=role_inline": 5120,
+          "base_stable_train|ctx=inline_role|q=role_inline": 5120,
+          "sparse_changed_focal|ctx=inline_role|q=role_inline": 512,
+          "sparse_stable_focal|ctx=inline_role|q=role_inline": 512
+        },
+        "by_changed_focal": {
+          "False": 10752,
+          "True": 512
+        },
+        "by_stable_secondary": {
+          "True": 11264
+        }
+      },
+      "selector_groups": {
+        "rows": 11264,
+        "groups": 2816,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      }
+    },
+    "selector_eval_counts": {
+      "held_exact_nsA": 2560,
+      "held_exact_nsB": 2560,
+      "trainChanged_exact_nsA": 2560,
+      "held_role_swap_nsA": 2560,
+      "held_para_nsA": 2560
+    },
+    "selector_group_audit": {
+      "train": {
+        "rows": 11264,
+        "groups": 2816,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      },
+      "held_exact_nsA": {
+        "rows": 2560,
+        "groups": 640,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      },
+      "held_exact_nsB": {
+        "rows": 2560,
+        "groups": 640,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      },
+      "trainChanged_exact_nsA": {
+        "rows": 2560,
+        "groups": 640,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      },
+      "held_role_swap_nsA": {
+        "rows": 2560,
+        "groups": 640,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      },
+      "held_para_nsA": {
+        "rows": 2560,
+        "groups": 640,
+        "group_size_min": 4,
+        "group_size_max": 4,
+        "positive_per_group_min": 1,
+        "positive_per_group_max": 1
+      }
+    },
+    "token_audit": {
+      "n": 40448,
+      "min": 78,
+      "p50": 96.0,
+      "p90": 101.0,
+      "max": 110,
+      "frac_gt_max_len": 0.0
+    },
+    "selector_objective": "group_softmax_4way"
+  },
+  "results": {
+    "reader_tag_pretrain": {
+      "phase": "reader_tag_pretrain",
+      "best_train_acc": 0.9996448863636364,
+      "fit": {
+        "overall": 0.9996448863636364,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=tag_only|q=direct_tag": 0.999609375,
+          "base_stable_train|ctx=tag_only|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=tag_only|q=direct_tag": 0.99609375,
+          "sparse_stable_focal|ctx=tag_only|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 0.9993489583333334,
+          "secondary_after": 0.99921875,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 0.9998139880952381,
+          "True": 0.99609375
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.43429626348297873,
+          "train_acc": 0.9728338068181818,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=tag_only|q=direct_tag": 0.995703125,
+            "base_stable_train|ctx=tag_only|q=direct_tag": 0.996484375,
+            "sparse_changed_focal|ctx=tag_only|q=direct_tag": 0.49609375,
+            "sparse_stable_focal|ctx=tag_only|q=direct_tag": 0.984375
+          },
+          "track_by_query": {
+            "tag_only_heldChanged_heldStable_direct_hH": {
+              "focal_before": 0.75,
+              "focal_after": 0.25,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "tag_only_trainChanged_heldStable_direct_hH": {
+              "focal_before": 0.75,
+              "focal_after": 0.25,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 2,
+          "loss": 0.13153002489664026,
+          "train_acc": 0.9769176136363636,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=tag_only|q=direct_tag": 0.9984375,
+            "base_stable_train|ctx=tag_only|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=tag_only|q=direct_tag": 0.5078125,
+            "sparse_stable_focal|ctx=tag_only|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "tag_only_heldChanged_heldStable_direct_hH": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "tag_only_trainChanged_heldStable_direct_hH": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 3,
+          "loss": 0.10356840368424645,
+          "train_acc": 0.9987571022727273,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=tag_only|q=direct_tag": 1.0,
+            "base_stable_train|ctx=tag_only|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=tag_only|q=direct_tag": 0.97265625,
+            "sparse_stable_focal|ctx=tag_only|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "tag_only_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "tag_only_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 4,
+          "loss": 0.029240470484402502,
+          "train_acc": 0.9964488636363636,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=tag_only|q=direct_tag": 0.998828125,
+            "base_stable_train|ctx=tag_only|q=direct_tag": 0.996484375,
+            "sparse_changed_focal|ctx=tag_only|q=direct_tag": 0.98828125,
+            "sparse_stable_focal|ctx=tag_only|q=direct_tag": 0.98046875
+          },
+          "track_by_query": {
+            "tag_only_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "tag_only_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "loss": 0.019518553375332006,
+          "train_acc": 0.9996448863636364,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=tag_only|q=direct_tag": 0.999609375,
+            "base_stable_train|ctx=tag_only|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=tag_only|q=direct_tag": 0.99609375,
+            "sparse_stable_focal|ctx=tag_only|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "tag_only_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "tag_only_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        }
+      ]
+    },
+    "reader_inline_direct": {
+      "phase": "reader_inline_direct",
+      "best_train_acc": 1.0,
+      "fit": {
+        "overall": 1.0,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=inline_role|q=direct_tag": 1.0,
+          "base_stable_train|ctx=inline_role|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=inline_role|q=direct_tag": 1.0,
+          "sparse_stable_focal|ctx=inline_role|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 1.0,
+          "True": 1.0
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.05060215140891881,
+          "train_acc": 0.9991122159090909,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=inline_role|q=direct_tag": 1.0,
+            "base_stable_train|ctx=inline_role|q=direct_tag": 0.999609375,
+            "sparse_changed_focal|ctx=inline_role|q=direct_tag": 0.984375,
+            "sparse_stable_focal|ctx=inline_role|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "inline_role_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "inline_role_trainChanged_heldStable_direct_hH": {
+              "focal_before": 0.75,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 2,
+          "loss": 0.06337509316424303,
+          "train_acc": 0.9991122159090909,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=inline_role|q=direct_tag": 1.0,
+            "base_stable_train|ctx=inline_role|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=inline_role|q=direct_tag": 0.98046875,
+            "sparse_stable_focal|ctx=inline_role|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "inline_role_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "inline_role_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 3,
+          "loss": 0.040500861336986355,
+          "train_acc": 1.0,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=inline_role|q=direct_tag": 1.0,
+            "base_stable_train|ctx=inline_role|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=inline_role|q=direct_tag": 1.0,
+            "sparse_stable_focal|ctx=inline_role|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "inline_role_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "inline_role_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 4,
+          "loss": 0.03604340222079925,
+          "train_acc": 0.9818892045454546,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=inline_role|q=direct_tag": 0.994140625,
+            "base_stable_train|ctx=inline_role|q=direct_tag": 0.988671875,
+            "sparse_changed_focal|ctx=inline_role|q=direct_tag": 0.7890625,
+            "sparse_stable_focal|ctx=inline_role|q=direct_tag": 0.984375
+          },
+          "track_by_query": {
+            "inline_role_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "inline_role_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "loss": 0.026363804958642097,
+          "train_acc": 0.9996448863636364,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=inline_role|q=direct_tag": 1.0,
+            "base_stable_train|ctx=inline_role|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=inline_role|q=direct_tag": 0.9921875,
+            "sparse_stable_focal|ctx=inline_role|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "inline_role_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "inline_role_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 6,
+          "loss": 0.029680785057439266,
+          "train_acc": 1.0,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=inline_role|q=direct_tag": 1.0,
+            "base_stable_train|ctx=inline_role|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=inline_role|q=direct_tag": 1.0,
+            "sparse_stable_focal|ctx=inline_role|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "inline_role_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "inline_role_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        }
+      ]
+    },
+    "selector_train": {
+      "phase": "selector_group_softmax",
+      "objective": "group_softmax_4way",
+      "best_train_top1": 1.0,
+      "final_top1": {
+        "top1": 1.0,
+        "groups": 2816,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_selector_qmode": {
+          "role_inline": 1.0
+        },
+        "by_role_swap": {
+          "False": 1.0
+        },
+        "by_eval_set": {
+          "base_stable_anchor": 1.0,
+          "base_stable_train": 1.0,
+          "sparse_changed_focal": 1.0,
+          "sparse_stable_focal": 1.0
+        }
+      },
+      "final_binary": {
+        "row_acc": 0.9991122159090909,
+        "pos_rate_pred": 0.2491122159090909,
+        "pos_rate_true": 0.25,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=inline_role|q=role_inline": 0.9990234375,
+          "base_stable_train|ctx=inline_role|q=role_inline": 0.9990234375,
+          "sparse_changed_focal|ctx=inline_role|q=role_inline": 1.0,
+          "sparse_stable_focal|ctx=inline_role|q=role_inline": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 0.9993489583333334,
+          "focal_before": 0.9993489583333334,
+          "secondary_after": 0.99921875,
+          "secondary_before": 0.9984375
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.9991122159090909
+        },
+        "by_role_swap": {
+          "False": 0.9991122159090909
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 1.1561182404839208,
+          "train_top1": {
+            "top1": 0.9861505681818182,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 0.9934895833333334,
+              "focal_before": 0.9817708333333334,
+              "secondary_after": 0.9828125,
+              "secondary_before": 0.9859375
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9861505681818182
+            },
+            "by_role_swap": {
+              "False": 0.9861505681818182
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 0.98515625,
+              "base_stable_train": 0.98671875,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 0.9765625
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9632457386363636,
+            "pos_rate_pred": 0.21608664772727273,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.9623046875,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.9607421875,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 0.986328125,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 0.974609375
+            },
+            "by_query_family": {
+              "focal_after": 0.9778645833333334,
+              "focal_before": 0.9781901041666666,
+              "secondary_after": 0.908984375,
+              "secondary_before": 0.98203125
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9632457386363636
+            },
+            "by_role_swap": {
+              "False": 0.9632457386363636
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 0.98125,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.98125,
+                "focal_before": 0.96875,
+                "secondary_after": 0.98125,
+                "secondary_before": 0.99375
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.98125
+              },
+              "by_role_swap": {
+                "False": 0.98125
+              },
+              "by_eval_set": {
+                "hC_hS": 0.98125
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 0.9875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.975,
+                "focal_before": 0.9875,
+                "secondary_after": 0.9875,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9875
+              },
+              "by_role_swap": {
+                "False": 0.9875
+              },
+              "by_eval_set": {
+                "hC_hS": 0.9875
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 0.9734375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.95,
+                "focal_before": 0.98125,
+                "secondary_after": 0.975,
+                "secondary_before": 0.9875
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9734375
+              },
+              "by_role_swap": {
+                "False": 0.9734375
+              },
+              "by_eval_set": {
+                "tC_hS": 0.9734375
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 0.9828125,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.96875,
+                "focal_before": 0.98125,
+                "secondary_after": 0.98125,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9828125
+              },
+              "by_role_swap": {
+                "True": 0.9828125
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 0.9828125
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.7078125,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.925,
+                "focal_before": 0.60625,
+                "secondary_after": 0.35625,
+                "secondary_before": 0.94375
+              },
+              "by_selector_qmode": {
+                "role_para": 0.7078125
+              },
+              "by_role_swap": {
+                "False": 0.7078125
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.7078125
+              }
+            }
+          }
+        },
+        {
+          "epoch": 2,
+          "loss": 0.050835266442179554,
+          "train_top1": {
+            "top1": 0.9978693181818182,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 0.9973958333333334,
+              "focal_before": 0.9986979166666666,
+              "secondary_after": 0.996875,
+              "secondary_before": 0.9984375
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9978693181818182
+            },
+            "by_role_swap": {
+              "False": 0.9978693181818182
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 0.99921875,
+              "base_stable_train": 0.99609375,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 1.0
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9839311079545454,
+            "pos_rate_pred": 0.23570667613636365,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.9865234375,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.980078125,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 0.990234375,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 0.990234375
+            },
+            "by_query_family": {
+              "focal_after": 0.9814453125,
+              "focal_before": 0.9847005208333334,
+              "secondary_after": 0.986328125,
+              "secondary_before": 0.98359375
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9839311079545454
+            },
+            "by_role_swap": {
+              "False": 0.9839311079545454
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 0.9984375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.99375,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9984375
+              },
+              "by_role_swap": {
+                "False": 0.9984375
+              },
+              "by_eval_set": {
+                "hC_hS": 0.9984375
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 0.9984375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 0.99375,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9984375
+              },
+              "by_role_swap": {
+                "False": 0.9984375
+              },
+              "by_eval_set": {
+                "tC_hS": 0.9984375
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "True": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 1.0
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.55625,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.99375,
+                "focal_before": 0.06875,
+                "secondary_after": 1.0,
+                "secondary_before": 0.1625
+              },
+              "by_selector_qmode": {
+                "role_para": 0.55625
+              },
+              "by_role_swap": {
+                "False": 0.55625
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.55625
+              }
+            }
+          }
+        },
+        {
+          "epoch": 3,
+          "loss": 0.014057981125611853,
+          "train_top1": {
+            "top1": 0.9957386363636364,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 0.9947916666666666,
+              "focal_before": 0.9973958333333334,
+              "secondary_after": 0.9953125,
+              "secondary_before": 0.9953125
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9957386363636364
+            },
+            "by_role_swap": {
+              "False": 0.9957386363636364
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 0.99296875,
+              "base_stable_train": 0.9984375,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 0.9921875
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9224964488636364,
+            "pos_rate_pred": 0.18865411931818182,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.9150390625,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.919921875,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 0.9765625,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 0.96875
+            },
+            "by_query_family": {
+              "focal_after": 0.9798177083333334,
+              "focal_before": 0.9632161458333334,
+              "secondary_after": 0.76484375,
+              "secondary_before": 0.9625
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9224964488636364
+            },
+            "by_role_swap": {
+              "False": 0.9224964488636364
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 0.9609375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.94375,
+                "focal_before": 1.0,
+                "secondary_after": 0.90625,
+                "secondary_before": 0.99375
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9609375
+              },
+              "by_role_swap": {
+                "False": 0.9609375
+              },
+              "by_eval_set": {
+                "hC_hS": 0.9609375
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 0.9625,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.95,
+                "focal_before": 0.99375,
+                "secondary_after": 0.90625,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9625
+              },
+              "by_role_swap": {
+                "False": 0.9625
+              },
+              "by_eval_set": {
+                "hC_hS": 0.9625
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 0.9671875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.95625,
+                "focal_before": 1.0,
+                "secondary_after": 0.9125,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9671875
+              },
+              "by_role_swap": {
+                "False": 0.9671875
+              },
+              "by_eval_set": {
+                "tC_hS": 0.9671875
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 0.9671875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.9875,
+                "focal_before": 0.99375,
+                "secondary_after": 0.8875,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9671875
+              },
+              "by_role_swap": {
+                "True": 0.9671875
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 0.9671875
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.575,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.99375,
+                "focal_before": 0.06875,
+                "secondary_after": 0.9375,
+                "secondary_before": 0.3
+              },
+              "by_selector_qmode": {
+                "role_para": 0.575
+              },
+              "by_role_swap": {
+                "False": 0.575
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.575
+              }
+            }
+          }
+        },
+        {
+          "epoch": 4,
+          "loss": 0.005050225331713212,
+          "train_top1": {
+            "top1": 1.0,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 1.0,
+              "focal_before": 1.0,
+              "secondary_after": 1.0,
+              "secondary_before": 1.0
+            },
+            "by_selector_qmode": {
+              "role_inline": 1.0
+            },
+            "by_role_swap": {
+              "False": 1.0
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 1.0,
+              "base_stable_train": 1.0,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 1.0
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9991122159090909,
+            "pos_rate_pred": 0.2491122159090909,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.9990234375,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.9990234375,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 1.0,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 1.0
+            },
+            "by_query_family": {
+              "focal_after": 0.9993489583333334,
+              "focal_before": 0.9993489583333334,
+              "secondary_after": 0.99921875,
+              "secondary_before": 0.9984375
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9991122159090909
+            },
+            "by_role_swap": {
+              "False": 0.9991122159090909
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 0.996875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 0.9875,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.996875
+              },
+              "by_role_swap": {
+                "False": 0.996875
+              },
+              "by_eval_set": {
+                "hC_hS": 0.996875
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 0.9984375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 0.99375,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9984375
+              },
+              "by_role_swap": {
+                "False": 0.9984375
+              },
+              "by_eval_set": {
+                "tC_hS": 0.9984375
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "True": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 1.0
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.5109375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 0.0,
+                "secondary_after": 1.0,
+                "secondary_before": 0.04375
+              },
+              "by_selector_qmode": {
+                "role_para": 0.5109375
+              },
+              "by_role_swap": {
+                "False": 0.5109375
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.5109375
+              }
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "loss": 0.014204769514960719,
+          "train_top1": {
+            "top1": 0.9989346590909091,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 0.9973958333333334,
+              "focal_before": 1.0,
+              "secondary_after": 1.0,
+              "secondary_before": 0.9984375
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9989346590909091
+            },
+            "by_role_swap": {
+              "False": 0.9989346590909091
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 0.99921875,
+              "base_stable_train": 0.9984375,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 1.0
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9908558238636364,
+            "pos_rate_pred": 0.24174360795454544,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.9908203125,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.9908203125,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 0.98828125,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 0.994140625
+            },
+            "by_query_family": {
+              "focal_after": 0.986328125,
+              "focal_before": 0.9892578125,
+              "secondary_after": 0.994921875,
+              "secondary_before": 0.994140625
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9908558238636364
+            },
+            "by_role_swap": {
+              "False": 0.9908558238636364
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 0.9984375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.99375,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9984375
+              },
+              "by_role_swap": {
+                "False": 0.9984375
+              },
+              "by_eval_set": {
+                "hC_hS": 0.9984375
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 0.9984375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 0.99375,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9984375
+              },
+              "by_role_swap": {
+                "False": 0.9984375
+              },
+              "by_eval_set": {
+                "tC_hS": 0.9984375
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "True": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 1.0
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.565625,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.99375,
+                "focal_before": 0.075,
+                "secondary_after": 0.99375,
+                "secondary_before": 0.2
+              },
+              "by_selector_qmode": {
+                "role_para": 0.565625
+              },
+              "by_role_swap": {
+                "False": 0.565625
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.565625
+              }
+            }
+          }
+        },
+        {
+          "epoch": 6,
+          "loss": 0.004650557558423984,
+          "train_top1": {
+            "top1": 1.0,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 1.0,
+              "focal_before": 1.0,
+              "secondary_after": 1.0,
+              "secondary_before": 1.0
+            },
+            "by_selector_qmode": {
+              "role_inline": 1.0
+            },
+            "by_role_swap": {
+              "False": 1.0
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 1.0,
+              "base_stable_train": 1.0,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 1.0
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9972478693181818,
+            "pos_rate_pred": 0.24724786931818182,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.996875,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.9970703125,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 1.0,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 1.0
+            },
+            "by_query_family": {
+              "focal_after": 1.0,
+              "focal_before": 1.0,
+              "secondary_after": 0.9890625,
+              "secondary_before": 0.998828125
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9972478693181818
+            },
+            "by_role_swap": {
+              "False": 0.9972478693181818
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "tC_hS": 1.0
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "True": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 1.0
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.740625,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 0.0,
+                "secondary_after": 1.0,
+                "secondary_before": 0.9625
+              },
+              "by_selector_qmode": {
+                "role_para": 0.740625
+              },
+              "by_role_swap": {
+                "False": 0.740625
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.740625
+              }
+            }
+          }
+        },
+        {
+          "epoch": 7,
+          "loss": 7.685672853949025e-07,
+          "train_top1": {
+            "top1": 1.0,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 1.0,
+              "focal_before": 1.0,
+              "secondary_after": 1.0,
+              "secondary_before": 1.0
+            },
+            "by_selector_qmode": {
+              "role_inline": 1.0
+            },
+            "by_role_swap": {
+              "False": 1.0
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 1.0,
+              "base_stable_train": 1.0,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 1.0
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9982244318181818,
+            "pos_rate_pred": 0.24822443181818182,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.998046875,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.998046875,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 1.0,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 1.0
+            },
+            "by_query_family": {
+              "focal_after": 1.0,
+              "focal_before": 1.0,
+              "secondary_after": 0.9921875,
+              "secondary_before": 1.0
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9982244318181818
+            },
+            "by_role_swap": {
+              "False": 0.9982244318181818
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "tC_hS": 1.0
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "True": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 1.0
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.746875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 0.0,
+                "secondary_after": 1.0,
+                "secondary_before": 0.9875
+              },
+              "by_selector_qmode": {
+                "role_para": 0.746875
+              },
+              "by_role_swap": {
+                "False": 0.746875
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.746875
+              }
+            }
+          }
+        },
+        {
+          "epoch": 8,
+          "loss": 0.009457379399486364,
+          "train_top1": {
+            "top1": 0.9996448863636364,
+            "groups": 2816,
+            "by_query_family": {
+              "focal_after": 1.0,
+              "focal_before": 1.0,
+              "secondary_after": 0.9984375,
+              "secondary_before": 1.0
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9996448863636364
+            },
+            "by_role_swap": {
+              "False": 0.9996448863636364
+            },
+            "by_eval_set": {
+              "base_stable_anchor": 1.0,
+              "base_stable_train": 0.99921875,
+              "sparse_changed_focal": 1.0,
+              "sparse_stable_focal": 1.0
+            }
+          },
+          "train_binary": {
+            "row_acc": 0.9148615056818182,
+            "pos_rate_pred": 0.16486150568181818,
+            "pos_rate_true": 0.25,
+            "by_train_kind": {
+              "base_stable_anchor|ctx=inline_role|q=role_inline": 0.921484375,
+              "base_stable_train|ctx=inline_role|q=role_inline": 0.9171875,
+              "sparse_changed_focal|ctx=inline_role|q=role_inline": 0.875,
+              "sparse_stable_focal|ctx=inline_role|q=role_inline": 0.865234375
+            },
+            "by_query_family": {
+              "focal_after": 0.8541666666666666,
+              "focal_before": 0.876953125,
+              "secondary_after": 0.984765625,
+              "secondary_before": 0.96328125
+            },
+            "by_selector_qmode": {
+              "role_inline": 0.9148615056818182
+            },
+            "by_role_swap": {
+              "False": 0.9148615056818182
+            }
+          },
+          "eval_top1": {
+            "held_exact_nsA": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "held_exact_nsB": {
+              "top1": 1.0,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 1.0,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 1.0
+              },
+              "by_role_swap": {
+                "False": 1.0
+              },
+              "by_eval_set": {
+                "hC_hS": 1.0
+              }
+            },
+            "trainChanged_exact_nsA": {
+              "top1": 0.996875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.99375,
+                "focal_before": 1.0,
+                "secondary_after": 0.99375,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.996875
+              },
+              "by_role_swap": {
+                "False": 0.996875
+              },
+              "by_eval_set": {
+                "tC_hS": 0.996875
+              }
+            },
+            "held_role_swap_nsA": {
+              "top1": 0.9984375,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 1.0,
+                "focal_before": 1.0,
+                "secondary_after": 0.99375,
+                "secondary_before": 1.0
+              },
+              "by_selector_qmode": {
+                "role_inline": 0.9984375
+              },
+              "by_role_swap": {
+                "True": 0.9984375
+              },
+              "by_eval_set": {
+                "hC_hS_swap": 0.9984375
+              }
+            },
+            "held_para_nsA": {
+              "top1": 0.7921875,
+              "groups": 640,
+              "by_query_family": {
+                "focal_after": 0.9875,
+                "focal_before": 0.64375,
+                "secondary_after": 1.0,
+                "secondary_before": 0.5375
+              },
+              "by_selector_qmode": {
+                "role_para": 0.7921875
+              },
+              "by_role_swap": {
+                "False": 0.7921875
+              },
+              "by_eval_set": {
+                "hC_hS_para": 0.7921875
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "reader_direct_eval": {
+    "inline_role_heldChanged_heldStable_direct_hH": {
+      "con_acc": 1.0,
+      "by_q": {
+        "focal_before": 1.0,
+        "focal_after": 1.0,
+        "secondary_before": 1.0,
+        "secondary_after": 1.0
+      },
+      "by_m": {
+        "focal_before": 20.00034636259079,
+        "focal_after": 24.435906648635864,
+        "secondary_before": 27.953409671783447,
+        "secondary_after": 26.14629364013672
+      },
+      "std_acc": 0.98125
+    },
+    "inline_role_trainChanged_heldStable_direct_hH": {
+      "con_acc": 1.0,
+      "by_q": {
+        "focal_before": 1.0,
+        "focal_after": 1.0,
+        "secondary_before": 1.0,
+        "secondary_after": 1.0
+      },
+      "by_m": {
+        "focal_before": 20.96978387236595,
+        "focal_after": 13.731005400419235,
+        "secondary_before": 29.83638286590576,
+        "secondary_after": 29.06209897994995
+      },
+      "std_acc": 0.984375
+    }
+  },
+  "selector_evals": {
+    "held_exact_nsA": {
+      "top1": {
+        "top1": 0.996875,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 0.9875,
+          "secondary_before": 1.0
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.996875
+        },
+        "by_role_swap": {
+          "False": 0.996875
+        },
+        "by_eval_set": {
+          "hC_hS": 0.996875
+        }
+      },
+      "binary": {
+        "row_acc": 0.92734375,
+        "pos_rate_pred": 0.17734375,
+        "pos_rate_true": 0.25,
+        "by_train_kind": {
+          "eval|ctx=inline_role|q=role_inline": 0.92734375
+        },
+        "by_query_family": {
+          "focal_after": 0.990625,
+          "focal_before": 0.9828125,
+          "secondary_after": 0.75,
+          "secondary_before": 0.9859375
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.92734375
+        },
+        "by_role_swap": {
+          "False": 0.92734375
+        }
+      }
+    },
+    "held_exact_nsB": {
+      "top1": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_selector_qmode": {
+          "role_inline": 1.0
+        },
+        "by_role_swap": {
+          "False": 1.0
+        },
+        "by_eval_set": {
+          "hC_hS": 1.0
+        }
+      },
+      "binary": {
+        "row_acc": 0.9296875,
+        "pos_rate_pred": 0.1796875,
+        "pos_rate_true": 0.25,
+        "by_train_kind": {
+          "eval|ctx=inline_role|q=role_inline": 0.9296875
+        },
+        "by_query_family": {
+          "focal_after": 0.99375,
+          "focal_before": 0.984375,
+          "secondary_after": 0.75,
+          "secondary_before": 0.990625
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.9296875
+        },
+        "by_role_swap": {
+          "False": 0.9296875
+        }
+      }
+    },
+    "trainChanged_exact_nsA": {
+      "top1": {
+        "top1": 0.9984375,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 0.99375,
+          "secondary_before": 1.0
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.9984375
+        },
+        "by_role_swap": {
+          "False": 0.9984375
+        },
+        "by_eval_set": {
+          "tC_hS": 0.9984375
+        }
+      },
+      "binary": {
+        "row_acc": 0.9296875,
+        "pos_rate_pred": 0.1796875,
+        "pos_rate_true": 0.25,
+        "by_train_kind": {
+          "eval|ctx=inline_role|q=role_inline": 0.9296875
+        },
+        "by_query_family": {
+          "focal_after": 0.9921875,
+          "focal_before": 0.990625,
+          "secondary_after": 0.75,
+          "secondary_before": 0.9859375
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.9296875
+        },
+        "by_role_swap": {
+          "False": 0.9296875
+        }
+      }
+    },
+    "held_role_swap_nsA": {
+      "top1": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_selector_qmode": {
+          "role_inline": 1.0
+        },
+        "by_role_swap": {
+          "True": 1.0
+        },
+        "by_eval_set": {
+          "hC_hS_swap": 1.0
+        }
+      },
+      "binary": {
+        "row_acc": 0.929296875,
+        "pos_rate_pred": 0.179296875,
+        "pos_rate_true": 0.25,
+        "by_train_kind": {
+          "eval|ctx=inline_role|q=role_inline": 0.929296875
+        },
+        "by_query_family": {
+          "focal_after": 0.9921875,
+          "focal_before": 0.9875,
+          "secondary_after": 0.75,
+          "secondary_before": 0.9875
+        },
+        "by_selector_qmode": {
+          "role_inline": 0.929296875
+        },
+        "by_role_swap": {
+          "True": 0.929296875
+        }
+      }
+    },
+    "held_para_nsA": {
+      "top1": {
+        "top1": 0.5109375,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 0.0,
+          "secondary_after": 1.0,
+          "secondary_before": 0.04375
+        },
+        "by_selector_qmode": {
+          "role_para": 0.5109375
+        },
+        "by_role_swap": {
+          "False": 0.5109375
+        },
+        "by_eval_set": {
+          "hC_hS_para": 0.5109375
+        }
+      },
+      "binary": {
+        "row_acc": 0.766796875,
+        "pos_rate_pred": 0.103515625,
+        "pos_rate_true": 0.25,
+        "by_train_kind": {
+          "eval|ctx=inline_role|q=role_para": 0.766796875
+        },
+        "by_query_family": {
+          "focal_after": 0.990625,
+          "focal_before": 0.6078125,
+          "secondary_after": 0.75,
+          "secondary_before": 0.71875
+        },
+        "by_selector_qmode": {
+          "role_para": 0.766796875
+        },
+        "by_role_swap": {
+          "False": 0.766796875
+        }
+      }
+    }
+  },
+  "composition": {
+    "held_exact_nsA": {
+      "selector_top1_used": {
+        "top1": 0.996875,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 0.9875,
+          "secondary_before": 1.0
+        }
+      },
+      "composed": {
+        "con_acc": 0.99375,
+        "by_q": {
+          "focal_before": 0.98125,
+          "focal_after": 0.99375,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 19.64989420864731,
+          "focal_after": 20.92568545639515,
+          "secondary_before": 29.221197390556334,
+          "secondary_after": 28.750608396157624
+        },
+        "std_acc": 0.98046875
+      },
+      "oracle_selector": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "oracle_reader": {
+        "con_acc": 0.99375,
+        "by_q": {
+          "focal_before": 0.98125,
+          "focal_after": 0.99375,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 19.64989420864731,
+          "focal_after": 20.92568545639515,
+          "secondary_before": 29.221197390556334,
+          "secondary_after": 28.873001539707182
+        },
+        "std_acc": 0.98125
+      }
+    },
+    "held_exact_nsB": {
+      "selector_top1_used": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "composed": {
+        "con_acc": 0.9953125,
+        "by_q": {
+          "focal_before": 0.99375,
+          "focal_after": 0.9875,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 20.89465483594686,
+          "focal_after": 20.397902246192096,
+          "secondary_before": 29.070503932237624,
+          "secondary_after": 28.773146188259126
+        },
+        "std_acc": 0.9796875
+      },
+      "oracle_selector": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "oracle_reader": {
+        "con_acc": 0.9953125,
+        "by_q": {
+          "focal_before": 0.99375,
+          "focal_after": 0.9875,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 20.89465483594686,
+          "focal_after": 20.397902246192096,
+          "secondary_before": 29.070503932237624,
+          "secondary_after": 28.773146188259126
+        },
+        "std_acc": 0.9796875
+      }
+    },
+    "trainChanged_exact_nsA": {
+      "selector_top1_used": {
+        "top1": 0.9984375,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 0.99375,
+          "secondary_before": 1.0
+        }
+      },
+      "composed": {
+        "con_acc": 0.9921875,
+        "by_q": {
+          "focal_before": 0.9875,
+          "focal_after": 0.98125,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 20.282518607378005,
+          "focal_after": 20.996980185247956,
+          "secondary_before": 29.132714772224425,
+          "secondary_after": 28.903321385383606
+        },
+        "std_acc": 0.97734375
+      },
+      "oracle_selector": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "oracle_reader": {
+        "con_acc": 0.9921875,
+        "by_q": {
+          "focal_before": 0.9875,
+          "focal_after": 0.98125,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 20.282518607378005,
+          "focal_after": 20.996980185247956,
+          "secondary_before": 29.132714772224425,
+          "secondary_after": 28.935476106405257
+        },
+        "std_acc": 0.97734375
+      }
+    },
+    "held_role_swap_nsA": {
+      "selector_top1_used": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "composed": {
+        "con_acc": 0.99375,
+        "by_q": {
+          "focal_before": 1.0,
+          "focal_after": 0.975,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 21.57179878950119,
+          "focal_after": 19.18015785012394,
+          "secondary_before": 28.929932820796967,
+          "secondary_after": 29.010146802663805
+        },
+        "std_acc": 0.98359375
+      },
+      "oracle_selector": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "oracle_reader": {
+        "con_acc": 0.99375,
+        "by_q": {
+          "focal_before": 1.0,
+          "focal_after": 0.975,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 21.57179878950119,
+          "focal_after": 19.18015785012394,
+          "secondary_before": 28.929932820796967,
+          "secondary_after": 29.010146802663805
+        },
+        "std_acc": 0.98359375
+      }
+    },
+    "held_para_nsA": {
+      "selector_top1_used": {
+        "top1": 0.5109375,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 0.0,
+          "secondary_after": 1.0,
+          "secondary_before": 0.04375
+        }
+      },
+      "composed": {
+        "con_acc": 0.75,
+        "by_q": {
+          "focal_before": 0.00625,
+          "focal_after": 0.99375,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": -20.92568545639515,
+          "focal_after": 20.92568545639515,
+          "secondary_before": 28.667650121450425,
+          "secondary_after": 28.873001539707182
+        },
+        "std_acc": 0.75
+      },
+      "oracle_selector": {
+        "top1": 1.0,
+        "groups": 640,
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 1.0,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        }
+      },
+      "oracle_reader": {
+        "con_acc": 0.99375,
+        "by_q": {
+          "focal_before": 0.98125,
+          "focal_after": 0.99375,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 19.64989420864731,
+          "focal_after": 20.92568545639515,
+          "secondary_before": 29.221197390556334,
+          "secondary_after": 28.873001539707182
+        },
+        "std_acc": 0.98125
+      }
+    }
+  },
+  "boundary": "Small pretrained selector-reader bridge with group-softmax selector. R is trained then held fixed; M is separate and sees no state labels; composition uses M-selected tags, with oracle-reader ceiling reported only as a reference."
+}

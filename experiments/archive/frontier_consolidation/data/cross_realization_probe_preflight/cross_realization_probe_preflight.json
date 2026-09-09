@@ -1,0 +1,147 @@
+{
+  "status": "CROSS_REALIZATION_PROBE_PREFLIGHT",
+  "meaning": "No-training feasibility and matching preflight for a saved-checkpoint cross-realization probe of source-shared/copied content targets under source, genuine compact, and counterfactual compact contexts.",
+  "inputs": {
+    "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "compact_pairs": "experiments/archive/frontier_consolidation/data/factorial_view_candidate_audit/compact_candidate_pairs.jsonl",
+    "compact_pairs_sha256": "6d0ac85dec1718e5f5663d09123e2f62a23f7cceb0b491b83a34f7bfca59d32d",
+    "train_fixed_events": "experiments/archive/representation_and_objectives/data/existing_trajectory_denoising_probe/probe_events.jsonl",
+    "train_fixed_events_sha256": "b6ddfbf521eaac2adb39a68f91bfbd439c44ab774d200151b0830683af030021",
+    "source_disjoint_events": "experiments/archive/representation_and_objectives/data/source_disjoint_target_probe/source_disjoint_probe_events.jsonl",
+    "source_disjoint_events_sha256": "00e3b25008a8b4b8c86c268015517d4365f7841ff2a2f72a7a367be38b1dc794"
+  },
+  "parameters": {
+    "max_per_eval_set": 2000,
+    "max_events_out": 4500,
+    "seed": 22243023,
+    "seq_len": 256
+  },
+  "counterfactual_pool": {
+    "compact_contexts": 12155,
+    "slot_bucket_count": 194,
+    "slot_count": 161708,
+    "matching_rule": "same target BPE ids; replacement slot same BPE piece count and content flag; close relative position; target absent from counterfactual source/view before insertion; different pair and different doc when doc id is known; final context <=256 tokens"
+  },
+  "candidate_events_loaded": 6949,
+  "prepared_events": 4500,
+  "by_eval_set": {
+    "doc_disjoint_all_accepted": 1485,
+    "doc_disjoint_quality": 726,
+    "source_disjoint_quality": 1547,
+    "train_fixed_probe": 742
+  },
+  "skips": {
+    "rewrite_target_at_start": 440,
+    "no_exact_source_occurrence_same_bpe": 982,
+    "target_not_content": 21,
+    "target_piece_count_out_of_range": 4
+  },
+  "target_piece_stats": {
+    "n": 4500,
+    "min": 1,
+    "p05": 1,
+    "p25": 1,
+    "mean": 1.7144444444444444,
+    "median": 1.0,
+    "p75": 2,
+    "p95": 4,
+    "max": 8
+  },
+  "source_context_token_stats": {
+    "n": 4500,
+    "min": 11,
+    "p05": 16,
+    "p25": 23,
+    "mean": 33.94422222222222,
+    "median": 31.0,
+    "p75": 42,
+    "p95": 63,
+    "max": 92
+  },
+  "compact_context_token_stats": {
+    "n": 4500,
+    "min": 6,
+    "p05": 12,
+    "p25": 17,
+    "mean": 25.404666666666667,
+    "median": 23.0,
+    "p75": 31,
+    "p95": 49,
+    "max": 73
+  },
+  "counterfactual_context_token_stats": {
+    "n": 4500,
+    "min": 6,
+    "p05": 12,
+    "p25": 17,
+    "mean": 25.19911111111111,
+    "median": 23.0,
+    "p75": 30,
+    "p95": 47,
+    "max": 74
+  },
+  "counterfactual_relpos_abs_delta_stats": {
+    "n": 4500,
+    "min": 0.0,
+    "p05": 0.0,
+    "p25": 0.0,
+    "mean": 0.000752208448378956,
+    "median": 0.0,
+    "p75": 0.0,
+    "p95": 0.0,
+    "max": 0.10000000000000009
+  },
+  "counterfactual_wordlen_abs_delta_stats": {
+    "n": 4500,
+    "min": 0,
+    "p05": 0,
+    "p25": 0,
+    "mean": 0.11244444444444444,
+    "median": 0.0,
+    "p75": 0,
+    "p95": 0,
+    "max": 14
+  },
+  "events_file": "experiments/archive/frontier_consolidation/data/cross_realization_probe_preflight/cross_realization_probe_preflight_events.jsonl",
+  "events_file_sha256": "9e24915d1ddd2e73ea425fc0db645ee3bff744592a2d595a1c00351ed898c858",
+  "arm_availability": {
+    "full_compact_100M": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+      "exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true
+    },
+    "drop_abs_100M": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast/hf_model/chck_100M",
+      "exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true
+    },
+    "drop_copied_word_100M": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast/hf_model/chck_100M",
+      "exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true
+    },
+    "repeat_100M": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/gc_compact_repeat_reinvest_16k_seed43022_r2/hf_model/chck_100M",
+      "exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true
+    },
+    "adjbreak_100M": {
+      "path": "experiments/archive/representation_and_objectives/training/runs/gc_adjbreak_reinvest_16k_seed43022_r2/hf_model/chck_100M",
+      "exists": true,
+      "config_exists": true,
+      "model_safetensors_exists": true,
+      "tokenizer_json_exists": true
+    }
+  },
+  "preflight_pass": true,
+  "scientific_reading": "If used for the full probe, these events should be analyzed by eval_set and bootstrapped by pair/doc. They are not selected from model outputs. A positive result must come from arm interactions (full/drop_abs/drop_copied/repeat/adjbreak), not from raw local NLL alone."
+}

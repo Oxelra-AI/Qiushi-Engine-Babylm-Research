@@ -1,0 +1,66 @@
+{
+  "status": "QWEN_ALIGNMENT_CLUE_FACTORIAL_PLAN",
+  "created_utc": "2026-09-07T19:16:22Z",
+  "tail_jsonl": "experiments/archive/functional_learning/data/unchanged_pair_segments_tail/reference_tail_unchanged_qwen_segments.jsonl",
+  "out_dir": "experiments/archive/functional_learning/data/qwen_alignment_clue_factorial_copy_dryrun",
+  "parameters": {
+    "max_updates": 80,
+    "words_per_update": 39533,
+    "max_segments": 80,
+    "max_targets_per_segment": 2,
+    "sample_seed": 74074,
+    "max_length": 320
+  },
+  "segment_stats": {
+    "segments_available": 11778,
+    "segments_sampled": 80,
+    "mean_source_tokens_sampled": 30.025,
+    "mean_view_tokens_sampled": 28.3625
+  },
+  "task_stats": {
+    "n_tasks": 960,
+    "n_base_targets": 160,
+    "condition_counts": {
+      "aligned_source|retained_view_clues": 160,
+      "aligned_source|suppressed_view_clues": 160,
+      "shuffled_source|retained_view_clues": 160,
+      "shuffled_source|suppressed_view_clues": 160,
+      "no_source|retained_view_clues": 160,
+      "no_source|suppressed_view_clues": 160
+    },
+    "base_target_copy_class_counts": {
+      "exact_source_copy": 83,
+      "source_absent": 74,
+      "source_substring_only": 3
+    },
+    "base_target_copy_binary_counts": {
+      "copied": 86,
+      "not_copied": 74
+    },
+    "source_choice_reasons": {
+      "target_absent_length_matched": 160
+    },
+    "skips": {},
+    "shuffled_source_token_delta": {
+      "n": 320,
+      "mean": -0.2,
+      "median": 0.0,
+      "max_abs": 10
+    }
+  },
+  "source_types": [
+    "aligned_source",
+    "shuffled_source",
+    "no_source"
+  ],
+  "clue_types": [
+    "retained_view_clues",
+    "suppressed_view_clues"
+  ],
+  "scientific_use": "Evaluation-only test of whether dense focus increases correct-source advantage especially when second-view content clues are suppressed. Compare parent, ordinary WWM, sparse focus, dense seed62064, and replicated dense seed62065 when available.",
+  "interpretation_boundaries": [
+    "Shuffled source is length-matched from another pair, usually target-string absent, but it is not a semantic counterfactual source.",
+    "Suppressed-view scoring masks all detected content groups and scores only the selected target group, approximating the dense effective-input geometry.",
+    "The result is mechanistic evidence about trained unchanged Qwen material, not official BabyLM competence."
+  ]
+}

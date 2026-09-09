@@ -1,0 +1,504 @@
+{
+  "status": "TOKENIZER_SEMANTIC_EQUIVALENCE",
+  "created_utc": "2026-08-30T02:08:19Z",
+  "expected_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "saved_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_100M",
+  "pool_sample_source": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+  "expected_tokenizer_json": {
+    "sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "size_bytes": 1135416,
+    "top_keys": [
+      "added_tokens",
+      "decoder",
+      "model",
+      "normalizer",
+      "padding",
+      "post_processor",
+      "pre_tokenizer",
+      "truncation",
+      "version"
+    ],
+    "model_type": "BPE",
+    "vocab_size": 16384,
+    "merge_count": 16194,
+    "unk_token": "<unk>",
+    "byte_fallback": false,
+    "continuing_subword_prefix": null,
+    "end_of_word_suffix": null,
+    "dropout": null,
+    "normalizer": {
+      "type": "Sequence",
+      "normalizers": [
+        {
+          "type": "Prepend",
+          "prepend": " "
+        },
+        {
+          "type": "NFKC"
+        },
+        {
+          "type": "Replace",
+          "pattern": {
+            "Regex": "\\n"
+          },
+          "content": "\n "
+        },
+        {
+          "type": "Replace",
+          "pattern": {
+            "Regex": " *\\n"
+          },
+          "content": "\n"
+        }
+      ]
+    },
+    "pre_tokenizer": {
+      "type": "Sequence",
+      "pretokenizers": [
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": "[^\\r\\n\\p{L}\\p{N}]?[\\p{Lu}\\p{Lt}\\p{Lm}\\p{Lo}\\p{M}]*[\\p{Ll}\\p{Lm}\\p{Lo}\\p{M}]+|[^\\r\\n\\p{L}\\p{N}]?[\\p{Lu}\\p{Lt}\\p{Lm}\\p{Lo}\\p{M}]+[\\p{Ll}\\p{Lm}\\p{Lo}\\p{M}]*|\\p{N}| ?[^\\s\\p{L}\\p{N}]+[\\r\\n/]*|\\s*[\\r\\n]+|\\s+(?!\\S)|\\s+"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        },
+        {
+          "type": "ByteLevel",
+          "add_prefix_space": false,
+          "trim_offsets": true,
+          "use_regex": false
+        },
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": ".{1,24}"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        }
+      ]
+    },
+    "post_processor": {
+      "type": "TemplateProcessing",
+      "single": [
+        {
+          "SpecialToken": {
+            "id": "<s>",
+            "type_id": 0
+          }
+        },
+        {
+          "Sequence": {
+            "id": "A",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "</s>",
+            "type_id": 0
+          }
+        }
+      ],
+      "pair": [
+        {
+          "SpecialToken": {
+            "id": "<s>",
+            "type_id": 0
+          }
+        },
+        {
+          "Sequence": {
+            "id": "A",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "</s>",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "<s>",
+            "type_id": 0
+          }
+        },
+        {
+          "Sequence": {
+            "id": "B",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "</s>",
+            "type_id": 0
+          }
+        }
+      ],
+      "special_tokens": {
+        "</s>": {
+          "id": "</s>",
+          "ids": [
+            2
+          ],
+          "tokens": [
+            "</s>"
+          ]
+        },
+        "<s>": {
+          "id": "<s>",
+          "ids": [
+            1
+          ],
+          "tokens": [
+            "<s>"
+          ]
+        }
+      }
+    },
+    "decoder": {
+      "type": "Sequence",
+      "decoders": [
+        {
+          "type": "ByteLevel",
+          "add_prefix_space": true,
+          "trim_offsets": true,
+          "use_regex": true
+        },
+        {
+          "type": "Strip",
+          "content": " ",
+          "start": 1,
+          "stop": 0
+        },
+        {
+          "type": "Replace",
+          "pattern": {
+            "String": "\n "
+          },
+          "content": "\n"
+        }
+      ]
+    },
+    "added_tokens": [
+      {
+        "id": 0,
+        "content": "<unk>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 1,
+        "content": "<s>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 2,
+        "content": "</s>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 3,
+        "content": "<pad>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 4,
+        "content": "<mask>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      }
+    ]
+  },
+  "saved_tokenizer_json": {
+    "sha256": "a9cbb830495cb92bbb2996adc256207746282ee67f4f8d40a4f646a634ec139a",
+    "size_bytes": 1135681,
+    "top_keys": [
+      "added_tokens",
+      "decoder",
+      "model",
+      "normalizer",
+      "padding",
+      "post_processor",
+      "pre_tokenizer",
+      "truncation",
+      "version"
+    ],
+    "model_type": "BPE",
+    "vocab_size": 16384,
+    "merge_count": 16194,
+    "unk_token": "<unk>",
+    "byte_fallback": false,
+    "continuing_subword_prefix": null,
+    "end_of_word_suffix": null,
+    "dropout": null,
+    "normalizer": {
+      "type": "Sequence",
+      "normalizers": [
+        {
+          "type": "Prepend",
+          "prepend": " "
+        },
+        {
+          "type": "NFKC"
+        },
+        {
+          "type": "Replace",
+          "pattern": {
+            "Regex": "\\n"
+          },
+          "content": "\n "
+        },
+        {
+          "type": "Replace",
+          "pattern": {
+            "Regex": " *\\n"
+          },
+          "content": "\n"
+        }
+      ]
+    },
+    "pre_tokenizer": {
+      "type": "Sequence",
+      "pretokenizers": [
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": "[^\\r\\n\\p{L}\\p{N}]?[\\p{Lu}\\p{Lt}\\p{Lm}\\p{Lo}\\p{M}]*[\\p{Ll}\\p{Lm}\\p{Lo}\\p{M}]+|[^\\r\\n\\p{L}\\p{N}]?[\\p{Lu}\\p{Lt}\\p{Lm}\\p{Lo}\\p{M}]+[\\p{Ll}\\p{Lm}\\p{Lo}\\p{M}]*|\\p{N}| ?[^\\s\\p{L}\\p{N}]+[\\r\\n/]*|\\s*[\\r\\n]+|\\s+(?!\\S)|\\s+"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        },
+        {
+          "type": "ByteLevel",
+          "add_prefix_space": false,
+          "trim_offsets": true,
+          "use_regex": false
+        },
+        {
+          "type": "Split",
+          "pattern": {
+            "Regex": ".{1,24}"
+          },
+          "behavior": "Isolated",
+          "invert": false
+        }
+      ]
+    },
+    "post_processor": {
+      "type": "TemplateProcessing",
+      "single": [
+        {
+          "SpecialToken": {
+            "id": "<s>",
+            "type_id": 0
+          }
+        },
+        {
+          "Sequence": {
+            "id": "A",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "</s>",
+            "type_id": 0
+          }
+        }
+      ],
+      "pair": [
+        {
+          "SpecialToken": {
+            "id": "<s>",
+            "type_id": 0
+          }
+        },
+        {
+          "Sequence": {
+            "id": "A",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "</s>",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "<s>",
+            "type_id": 0
+          }
+        },
+        {
+          "Sequence": {
+            "id": "B",
+            "type_id": 0
+          }
+        },
+        {
+          "SpecialToken": {
+            "id": "</s>",
+            "type_id": 0
+          }
+        }
+      ],
+      "special_tokens": {
+        "</s>": {
+          "id": "</s>",
+          "ids": [
+            2
+          ],
+          "tokens": [
+            "</s>"
+          ]
+        },
+        "<s>": {
+          "id": "<s>",
+          "ids": [
+            1
+          ],
+          "tokens": [
+            "<s>"
+          ]
+        }
+      }
+    },
+    "decoder": {
+      "type": "Sequence",
+      "decoders": [
+        {
+          "type": "ByteLevel",
+          "add_prefix_space": true,
+          "trim_offsets": true,
+          "use_regex": true
+        },
+        {
+          "type": "Strip",
+          "content": " ",
+          "start": 1,
+          "stop": 0
+        },
+        {
+          "type": "Replace",
+          "pattern": {
+            "String": "\n "
+          },
+          "content": "\n"
+        }
+      ]
+    },
+    "added_tokens": [
+      {
+        "id": 0,
+        "content": "<unk>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 1,
+        "content": "<s>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 2,
+        "content": "</s>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 3,
+        "content": "<pad>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 4,
+        "content": "<mask>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      }
+    ]
+  },
+  "canonical_fingerprint_expected": "ac531262dedcf65f4d4c8b58c9c5874ab4cf7d83432bb53cad3e5aada822b9c6",
+  "canonical_fingerprint_saved": "ac531262dedcf65f4d4c8b58c9c5874ab4cf7d83432bb53cad3e5aada822b9c6",
+  "checks": {
+    "raw_sha_equal": false,
+    "canonical_fingerprint_equal": true,
+    "model_vocab_equal": true,
+    "model_merges_equal": true,
+    "model_settings_equal": {
+      "byte_fallback": true,
+      "continuing_subword_prefix": true,
+      "dropout": true,
+      "end_of_word_suffix": true,
+      "fuse_unk": true,
+      "ignore_merges": true,
+      "type": true,
+      "unk_token": true
+    },
+    "normalizer_equal": true,
+    "pre_tokenizer_equal": true,
+    "post_processor_equal": true,
+    "decoder_equal": true,
+    "added_tokens_equal": true
+  },
+  "encoding_agreement": {
+    "sample_count": 521,
+    "stress_count": 9,
+    "pool_sample_count": 512,
+    "mismatch_count_capped": 0,
+    "mismatches_head": [],
+    "encoding_all_checked_equal": true,
+    "special_equal": {
+      "vocab_size_equal": true,
+      "vocab_dict_equal": true,
+      "all_special_tokens_equal": true,
+      "all_special_ids_equal": true,
+      "special_tokens_map_equal": true,
+      "model_max_length_equal": true
+    }
+  },
+  "semantic_equivalent_for_evaluation": true,
+  "interpretation": "If semantic_equivalent_for_evaluation is true, the raw tokenizer.json SHA mismatch is save_pretrained serialization drift and should not block scoring, provided training-command tokenizer metadata still binds the tokenizer to the allowed 10M pool."
+}

@@ -1,0 +1,78 @@
+{
+  "status": "PAIRED_TAIL_DRYRUN_SYNTHESIS",
+  "script": "experiments/archive/representation_and_objectives/scripts/paired_tail_continuation_trainer.py",
+  "manifests": {
+    "residual_low_lr": "experiments/archive/representation_and_objectives/data/paired_tail_dryrun_residual/paired_tail_manifest.json",
+    "reheat_cosine": "experiments/archive/representation_and_objectives/data/paired_tail_dryrun_reheat/paired_tail_manifest.json"
+  },
+  "same_tail_geometry": {
+    "tail_start_row_index": true,
+    "tail_examples": true,
+    "continuation_words": true,
+    "total_tail_steps": true,
+    "values": {
+      "tail_start_row_index": 518144,
+      "tail_examples": 129256,
+      "continuation_words": 19965632,
+      "total_tail_steps": 505,
+      "source_step": 2024,
+      "final_global_step": 2529
+    }
+  },
+  "same_first_plain_batch": true,
+  "same_first_cpu_mask_replay": true,
+  "first_batch_hashes": {
+    "plain": {
+      "input_ids_sha256": "f890c152a8eeaf871b018113b6df6c63630af61149421875e504f48711119d72",
+      "attention_mask_sha256": "e51db5cba375f08b338e24d6342b765addf4592c1ad9bda19be34ece0ac98ef5",
+      "word_group_sha256": "29a5b585632a3d6d15631ce9b5660f9322945c3197f9704200d2e43256a76f75",
+      "words_sha256": "6bbc9c9ac699bbc182214aca4358c300a38707caa25cf7d9033a6c2216c83e8f",
+      "words_sum": 39780
+    },
+    "cpu_mask": {
+      "masked_inputs_sha256": "32d05c098c4deacb2c8c4caaf79e7efeb5ef94b7d81e624ab3dbc4e1e97f02cf",
+      "labels_sha256": "b26d52d27ffa568da53f7a1ba75431368663d1725009f746d059f47ee8800b56",
+      "selected_positions_sha256": "319950e1e6aab858c2144c3f9848481f1a0222467281729ec7afda893010abf9",
+      "masked_tokens": 8232
+    }
+  },
+  "lr_geometry": {
+    "residual_low_lr": {
+      "mode": "residual_low_lr",
+      "original_base_lr": 0.001,
+      "original_total_steps": 2529,
+      "original_warmup_fraction": 0.06,
+      "original_warmup_steps": 151,
+      "reheat_peak_lr": 0.0003,
+      "reheat_warmup_fraction": 0.06,
+      "reheat_warmup_steps": 30,
+      "first_update_lr": 0.00010720866372880134,
+      "first_after_update_lr": 0.00010680028468509506,
+      "last_update_lr": 4.3633092056127864e-10,
+      "final_after_update_lr": 0.0,
+      "source_logged_lr_after_step": 0.00010720866372880134,
+      "baseline_next_step_logged_lr": 0.00010680028468509506,
+      "residual_first_update_matches_source_logged_lr": true,
+      "residual_first_after_update_matches_baseline_next_step_log": true
+    },
+    "reheat_cosine": {
+      "mode": "reheat_cosine",
+      "original_base_lr": 0.001,
+      "original_total_steps": 2529,
+      "original_warmup_fraction": 0.06,
+      "original_warmup_steps": 151,
+      "reheat_peak_lr": 0.0003,
+      "reheat_warmup_fraction": 0.06,
+      "reheat_warmup_steps": 30,
+      "first_update_lr": 0.0,
+      "first_after_update_lr": 9.999999999999999e-06,
+      "last_update_lr": 3.2807429663106456e-09,
+      "final_after_update_lr": 0.0,
+      "source_logged_lr_after_step": 0.00010720866372880134,
+      "baseline_next_step_logged_lr": 0.00010680028468509506,
+      "residual_first_update_matches_source_logged_lr": null,
+      "residual_first_after_update_matches_baseline_next_step_log": null
+    }
+  },
+  "interpretation": "Both arms reset AdamW moments from identical 80M weights and share tail rows, first-batch tokenization, and first CPU WWM mask replay; intended difference is residual baseline LR versus reheated tail cosine."
+}

@@ -1,0 +1,321 @@
+\section{Training, measurement, and reproducibility}
+\label{app:repro}
+
+\subsection{Computing environment and experimental support}
+\label{app:compute}
+
+Research computations used the AI Lab skill and accompanying scientific programs. Here, a skill is a collection of tools available to Qiushi Engine for text generation, training, evaluation, analysis of internal computations, and intervention experiments. CPUs supported text processing, tokenization, data statistics, and result analysis. Two NVIDIA H100 GPUs supported model training and evaluation, teacher-generated text, and accelerated mechanism experiments. Recorded workloads include running \nolinkurl{Qwen/Qwen3.5-9B} to produce compact restatements of existing source text, training controlled relation tasks, measuring hidden states and gradients, and intervening on internal signals.
+
+\begin{table}[htbp]
+\caption{Computing platform. GPU use is documented in the research records; CPU, memory, and operating-system specifications were checked on 9 September 2026.}
+\label{tab:compute_platform}
+\small
+\begin{tabularx}{\linewidth}{@{}P{30mm}Y@{}}
+\toprule Component & Configuration\\\midrule
+GPU & Two NVIDIA H100 GPUs\\
+CPU & Two Intel Xeon Platinum 8473C processors; 104 physical cores and 208 logical threads in total\\
+Memory & Approximately 503 GiB visible to the operating system\\
+Operating system & Ubuntu 22.04.5 LTS, x86\_64\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Both released model packages record a CPU validation environment comprising Python 3.12, PyTorch 2.11.0 (CUDA 12.8 build), Transformers 4.57.6, Tokenizers 0.22.2, and Safetensors 0.8.0. Dependency records are provided in \nolinkurl{models/frontier/ENVIRONMENT.json} and \nolinkurl{models/principle_guided/ENVIRONMENT.json}. These describe release validation, not a single environment retroactively assigned to every training, generation, or evaluation run. Original computations retain their own program and dependency records. Environment instructions, training entry points, and data dependencies are collected in \nolinkurl{reproducibility/TRAINING.md}.
+
+\subsection{Model versions, teachers, and data sources}
+
+Both public models have the same architecture and total parameter count. Stage III updates the existing incremental branch. Masked prediction and downstream fine-tuning must load that branch alongside the base network to evaluate the complete model. Input length, padding, and truncation are set by the respective evaluation configurations. Model identity therefore includes the weights, architecture configuration, tokenizer, and corresponding loading implementation.
+
+Shared pretraining used an eight-layer DeBERTa-v2-style architecture with hidden size 480, eight attention heads, and feed-forward size 1,920. A byte-level BPE tokenizer had a vocabulary of 16,384; sequences contained up to 256 tokens. AdamW used an effective batch size of 256, peak learning rate 0.001, linear warmup over the first 6\% of training, cosine decay, and weight decay 0.01. The initial residual branch had bottleneck size 128 and scale 1.75. Model configuration, parameter initialization, and training randomness were recorded with seeds 43, 43022, and 43023, respectively. These govern different operations and are not interchangeable descriptions of a single training seed. Table~\ref{tab:lineage} locates first-generation incremental learning and second-generation continuation within the model lineage; further details appear in \nolinkurl{models/frontier/TRAINING.md}.
+
+The following links identify the model versions used here. Full revision records are supplied in \nolinkurl{results/public_model_revisions.csv}.
+
+\begin{description}[font=\normalfont\bfseries,leftmargin=2em,style=nextline]
+\item[\Frontier]
+\href{https://huggingface.co/leslie721007/Qiushi-Engine-Frontier-Advancement/tree/5eb20f9c5088f40183269bb2c97381711aea0143}{Qiushi-Engine-Frontier-Advancement}.
+\item[\Guided]
+\href{https://huggingface.co/leslie721007/Qiushi-Engine-Principle-Guided-Frontier-Advancement/tree/ce7eabf0dfbd3d1393670f41f610bdccbdbe45d1}{Qiushi-Engine-Principle-Guided-Frontier-Advancement}.
+\end{description}
+
+Three model roles should be distinguished: reasoning models used by the research system, an external teacher that generates rewritten training text, and the frozen parent that supplies preservation targets. Stage III uses \Frontier{} as its preservation teacher and reuses previously generated Qwen restatements. Data manifests distinguish 37,594 existing source--restatement pairs containing 1,656,800 words from 12,155 compact pairs containing 423,511 words. Both belong to the ten-million-word corpus pool; no new text is generated for Stage III.
+
+The compact pairs contain 423,511 words of source and restatement text. Nine padding words bring the replacement block in Table~\ref{tab:compact} to 423,520 words.
+
+Compact restatements were generated with \nolinkurl{Qwen/Qwen3.5-9B}, temperature 0.1, a maximum of 80 generated tokens per call, batch size 64, and bfloat16 precision. These settings and source counts are recorded in \nolinkurl{models/frontier/DATA_MANIFEST.json}. Generation templates, pair selection, filtering, and packing records accompany the repository. \nolinkurl{data/RECONSTRUCTION.md} explains pair construction, compact replacement, selection of continuation text, and position annotations. The original generator was an external program; its invocation settings and input/output format are retained, with dependencies documented in \nolinkurl{reproducibility/TRAINING.md}.
+
+Table~\ref{tab:data_composition} describes the actual Stage III input. A row is a packed training input and can contain several segments; row counts therefore describe the continuation stream rather than the word composition of the entire corpus. Corpus-wide source word counts appear in the data manifests. Source licenses, rules for generated text, and cumulative exposure accounting apply to data use.
+
+\begin{table}[htbp]
+\caption{Stage III input composition: 20,475 packed rows containing 3,162,742 words. One row can contain several paired segments.}
+\label{tab:data_composition}
+\small
+\begin{tabularx}{\linewidth}{@{}Yr@{\hspace{6mm}}Yr@{}}
+\toprule Source & Rows & Source & Rows\\\midrule
+Gutenberg & 3,635 & CHILDES & 5,173\\
+Simple Wikipedia & 2,063 & Compact restatements and budget reinvestment & 940\\
+Existing Qwen source--restatement pairs & 3,831 & BNC spoken & 1,108\\
+OpenSubtitles & 3,684 & Switchboard & 41\\
+\midrule \multicolumn{3}{@{}l}{Total} & 20,475\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Acquisition and preservation algorithm}
+
+Let $Q_o$ denote ordinary prediction targets, $Q_f$ the relation-focused targets, and $Q_m$ the dense masking set, with $Q_f\subseteq Q_m$. For input $x$ and target set $Q$, mean cross-entropy is
+\begin{equation}
+ \overline{\CE}(x,Q)=\frac{1}{|Q|}\sum_{i\in Q}-\log p_\theta(y_i\mid x,i).
+\end{equation}
+Here, $y_i$ is the correct token at position $i$, $p_\theta(y_i\mid x,i)$ is its predicted probability, and $|Q|$ counts target tokens. Relation inputs in $(M,S)$ are masked over $Q_m$ but supervised only over $Q_f$. $(M,M)$ uses the same dense input and a larger supervised set. The equation describes one row for clarity. During training, focused and ordinary losses are each summed across all rows in an optimizer update, divided by their respective total target-token counts, and combined using Eq.~\eqref{eq:acquisition}. Microbatches partition computation without changing these denominators.
+
+Existing annotations determine row assignment. Qwen pairs with source--restatement segment positions enter the focused branch; other rows receive ordinary whole-word masking. In particular, the 940 compact-restatement and budget-reinvestment rows in Table~\ref{tab:data_composition} belong to the ordinary branch. Stage I compact text thus continues to support ordinary language learning, while the Stage III focused objective acts on another set of existing paired rows. Preservation presents only those Qwen focused rows again, under a new ordinary whole-word mask, and computes KL at the targets selected by that mask.
+
+Content groups are located as character spans within restatement segments and mapped to valid tokens using tokenizer offsets. Candidate words comprise English letters or digits, allowing internal apostrophes. After lowercasing, words shorter than four characters, purely numerical words, and members of a fixed stopword list are excluded. This is a lexical selection rule. Sparse supervision first samples at most 16 groups per row, then independently selects each with probability 0.35. If candidates exist but none is selected, one group is retained.
+
+Dense masking samples from a separate candidate set, by default selecting at most 128 groups using a row-specific random seed. All supervised groups are then added, so the final set can exceed 128. Masks and labels share the same position mapping but are selected separately. Exact stopwords, row-seed construction, and source-segment annotations are provided with the training implementation.
+
+The complete update proceeds as follows.
+
+\begin{enumerate}
+\item Read complete rows from the fixed stream. Schedule updates by cumulative words, retaining the established source--restatement pairing and token offsets.
+\item Construct relation inputs and sets $Q_f,Q_m$ for annotated Qwen rows; construct ordinary inputs and $Q_o$ for other rows. Count each target class across the update.
+\item Normalize each loss by its target-token count, combine them using Eq.~\eqref{eq:acquisition}, and accumulate gradients. Only the designated 48 incremental parameter tensors are trainable. An empty target class raises an error rather than silently changing the loss weights.
+\item Apply ordinary masking to the same Qwen rows for preservation. Compute frozen-teacher probabilities without gradients and student probabilities at the same targets. Accumulate $\KL(p_{\Frontier}\|p_\theta)$, normalized by the total preservation-target count.
+\item Disable dropout for preservation while retaining student gradients. Save and restore Python, PyTorch CPU, and CUDA random-number states around the extra forward passes. Restore training mode and perform the optimizer update.
+\item Account separately for acquisition words and preservation presentations, and record checkpoint identity and evaluation vectors. Export the complete model after 80 updates.
+\end{enumerate}
+
+Word-paced updates accumulate complete rows until the prescribed word count is reached. Variable row lengths mean that row and token counts per update can vary. Table~\ref{tab:configuration} summarizes the continuation configuration, including the final-update learning rate rather than presenting it as a constant throughout training.
+
+\begin{table}[htbp]
+\caption{Stage III continuation settings. Both runs share the parent, data processing, and method configuration; continuation seeds are 62064 and 62065.}
+\label{tab:configuration}
+\small
+\begin{tabularx}{\linewidth}{@{}P{56mm}Y@{}}
+\toprule Setting & Value or definition\\\midrule
+Parent & Fixed revision of \Frontier\\
+Total / trainable parameters & 36,458,592 / 995,584\\
+Incremental tensors / scale & 48 / 0.75\\
+Vocabulary size & 16,384\\
+Maximum input / microbatch & 512 tokens / 8 rows\\
+Continuation seeds & 62064, 62065\\
+Optimizer updates & 80\\
+Target words per update & Approximately 39,533; complete-row accounting\\
+Learning-rate parameter / schedule & $5\times10^{-5}$; 455-update schedule, offset 101, warmup 10\\
+Weight decay / gradient-norm cap & 0.01 / 1.0\\
+Focused / ordinary loss weights & 0.15 / 0.85, each averaged over its own targets\\
+Preservation weight / temperature & 1.0 / 1.0; teacher-to-student KL\\
+Preservation input & Complete rows with ordinary 15\% whole-word masking and source retained\\
+Acquisition / preservation words & 3,162,742 / 517,332\\
+Final-update learning rate (62064) & $3.4055\times10^{-5}$; a single-update observation\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Ordinary continuation supervises 697,102 tokens. $(M,S)$ has 592,858 ordinary targets and 28,590 focused targets. Equal cumulative word exposure therefore does not imply equal target counts or loss allocation; this comparison evaluates a training design rather than an isolated masking-rate change.
+
+Input lengths follow the experiment: main-model pretraining uses 256 tokens, whereas final continuation and the gradient comparison in Table~\ref{tab:gradient_geometry} use a 512-token limit. The learning-rate offset continues an existing schedule; the 80 updates do not restart a new schedule. Executed settings are provided in \nolinkurl{experiments/configs/executed_stage3.json}, with environments and commands in \nolinkurl{reproducibility/TRAINING.md}. Each control retains its own target selection, sampling, and preservation settings.
+
+\subsection{Evaluation aggregation, randomness, and trajectories}
+\label{app:evaluation}
+
+Every complete-model evaluation interface includes the incremental branch. Zero-shot masked prediction, Reading, downstream fine-tuning, and AoA produce their respective outputs before aggregation by Eq.~\eqref{eq:overall}. Local nine-metric comparisons preserve each run's scoring record under a common aggregation procedure. Public leaderboard tables preserve the displayed values. Four decimal places distinguish close local scores; uncertainty is assessed separately for each measurement.
+
+Scoring is referenced to the official evaluator version cited in \citet{babylm2026evaluation}; the AoA estimator corresponds to revision \texttt{6f825c2}. The repository retains the scoring programs actually used and the loading adaptations required by the complete incremental model. \nolinkurl{reproducibility/TRAINING.md} links code and execution entry points. Scorer version, model loading, and checkpoint lists jointly define the evaluation configuration; abbreviated labels on a current repository homepage do not replace these definitions.
+
+BLiMP has a reproducible distinction between two scoring records. Local runs score the selected option index, yielding 68.51 and 68.26 for the two generations. Released prediction files retain only the selected answer text. Matching that text against the correct answer yields 68.52 and 68.27, consistent with the public display. Among 59,875 items across 67 subtasks, seven have identical text in both options, in \texttt{passive\_1} and \texttt{principle\_A\_case\_2}. Three such items for \Frontier{} and five for \Guided{} receive different scores under the two procedures, accounting for the differences. Released predictions themselves match the corresponding original run files. \nolinkurl{results/blimp_scoring_comparison.csv} summarizes the comparison. Original values are retained, and all local training controls use the same scoring procedure.
+
+Macro-averaged task scores and net item changes measure different quantities. For correctness indicators $c_i^{(0)},c_i^{(1)}$, the net change in correct answers is $\Delta N=\sum_i(c_i^{(1)}-c_i^{(0)})$. Unequal subtask sizes can make this quantity and the macro-average change have opposite signs. Non-accuracy measures such as Reading are not included in item counts. Such a difference occurred between incremental-scale choices in Stage I; it does not describe an item-level comparison of the two official model generations.
+
+Uncertainty follows the sampling unit. Relation experiments report standard deviations across training seeds. Source-isolated loss comparisons resample text pairs, keeping a pair's targets together. Final-model results report two continuations from one parent. Paired item-level intervals for GlobalPIQA are not provided with this report.
+
+AoA evaluates vocabulary-learning trajectories under the prescribed valid-word and statistical conditions. Both models share 17 earlier checkpoints: one at each million words from 1M to 10M, then one every ten million from 20M to 80M. Adding each model's own endpoint produces an 18-point trajectory. \nolinkurl{CHECKPOINTS.json} in each model directory lists checkpoints and actual cumulative exposure, including their shared history. Lists follow the actual stopping points and do not insert 90M or 100M branches that these models never traversed. Evaluation defaults must be adjusted to the actual trajectory when necessary.
+
+\par\FloatBarrier\Needspace{9\baselineskip}
+\section{Complete local evaluation vectors}
+\label{app:local}
+
+The following tables list all nine metrics for the shared parent and eight continuation models in the same order. Accompanying CSV files preserve full precision; Appendix~\ref{app:assets} provides file locations. The report builder verifies each nine-metric mean against Overall.
+
+\begin{table}[htbp]
+\caption{Local controls: language form, knowledge, entity tracking, and composition. Sup. denotes BLiMP Supplement. The shared parent appears once.}
+\label{tab:local_a}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
+\toprule Strategy & Seed & BLiMP & Sup. & EWoK & Entity & COMPS\\\midrule
+\input{tables/local_language}
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Remaining metrics and complete Overall for the same nine models. Values are shown to four decimal places; source tables retain full precision.}
+\label{tab:local_b}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
+\toprule Strategy & Seed & GlobalPIQA & (Super)GLUE & Reading & AoA & Overall\\\midrule
+\input{tables/local_remaining}
+\end{tabularx}
+\end{table}
+
+Sparse and dense supervision denote $(M,S)$ and $(M,M)$, respectively. The complete strategy adds ordinary-input preservation to $(M,S)$. Quick measurements of $(S,S)$ are not included among complete nine-metric evaluations.
+
+\begin{table}[htbp]
+\caption{Principal Overall differences. The complete strategy includes additional preservation presentations.}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule Comparison & Seed 62064 & Seed 62065\\\midrule
+\input{tables/strategy_differences}
+\end{tabularx}
+\end{table}
+
+GlobalPIQA is unchanged between $(M,S)$ and the complete strategy. Their Overall difference reflects net changes in other metrics, not simultaneous improvement in every metric.
+
+\par\FloatBarrier\Needspace{9\baselineskip}
+\section{Additional controls and mechanism results}
+\label{app:extended}
+
+\subsection{Downstream fine-tuning randomness}
+
+Table~\ref{tab:finetuning_seeds} holds fixed the parent and two continuation models trained with seed 62064, then evaluates (Super)GLUE with fine-tuning seeds 42 and 44. It measures variability in downstream training, not additional independent pretraining or continuation. The complete strategy exceeds both the parent and $(M,S)$ under each fine-tuning seed. Main nine-metric results use fine-tuning seed 42; seed 44 is a supplementary comparison and is not combined with other metrics to construct a new Overall. All seven subtask values appear in \nolinkurl{results/finetuning_seed_comparison.csv}.
+
+\begin{table}[htbp]
+\caption{(Super)GLUE under two fine-tuning seeds with model weights held fixed. Scores are equal-weight means of the seven primary subtask metrics. Both continuation strategies use continuation seed 62064.}
+\label{tab:finetuning_seeds}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule Model & Fine-tuning seed 42 & Fine-tuning seed 44\\\midrule
+\input{tables/finetuning_seeds}
+\end{tabularx}
+\end{table}
+
+\subsection{Target deletion and source isolation}
+
+A source-absent target is a word absent from its paired source passage, not necessarily a word or fact never encountered by the model. At 20M words of exposure, removing source-absent targets produces higher subword-weighted prediction loss on source-absent content words than removing whole-word-matched source-present targets. Table~\ref{tab:disjoint} distinguishes isolation levels and sampling units.
+
+\begin{table}[htbp]
+\caption{Local loss differences under source isolation (nats). Positive values mean that deleting source-absent supervision is worse on the measured targets than deleting matched-copy supervision. Intervals follow the resampling units of the respective records.}
+\label{tab:disjoint}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule Measurement sample & Target events & Loss difference & 95\% interval\\\midrule
+Pair-disjoint, quality-filtered & 974 & 0.0796 & $[0.031,0.125]$\\
+Document-disjoint, quality-filtered & 71 & 0.1141 & $[-0.063,0.313]$\\
+Document-disjoint, all accepted targets & 1,012 & 0.0356 & $[-0.008,0.076]$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Pair isolation excludes pairs used in the corresponding training data; document isolation also excludes other pairs from the same source document. A loss difference is observed under the former condition. Intervals under the stricter condition include zero. The following table evaluates seven tasks at 100M words, separately from the early local prediction measurement.
+
+\begin{table}[htbp]
+\caption{Seven-metric results of single-seed target-deletion experiments at 100M words. Compact inputs are held fixed; the two deletion conditions remove supervision from 48,105 and 48,387 BPE tokens, respectively. GP denotes GlobalPIQA.}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrrrr@{}}
+\toprule Targets & BLiMP & Sup. & EWoK & Entity & COMPS & GP & Reading & Mean\\\midrule
+All & 66.87 & 63.28 & 53.54 & 27.75 & 51.97 & 35.62 & 8.240 & 43.896\\
+Source-absent removed & 65.64 & 63.73 & 51.51 & 26.72 & 51.60 & 36.665 & 8.195 & 43.437\\
+Matched-copy removed & 67.32 & 59.84 & 51.93 & 25.67 & 51.58 & 35.09 & 8.115 & 42.792\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Experience replacement, shared initialization, relational anchors, character identity, and entity storage are developed in Section~\ref{sec:lineage}. This appendix supplies additional measurements and corrections without repeating those accounts.
+
+\subsection{Measurement populations and subsequent corrections}
+
+``Unseen'' requires a reference set. An example outside the present continuation prefix may already occur in the parent's training history; distinct text rows may share a source pair or document. A later overlap check found that 6,992 rows previously used for ordinary-loss analysis also occurred in the historical stream. Those measurements are no longer treated as clean evidence of generalization preservation. Further candidate sets likewise require separate checks for exact-row, paired-text, and document overlap.
+
+Results identify the relevant population where they are presented: acquisition on training rows, source pairs outside the current prefix, pair-isolated targets, or document-isolated targets. A correction narrows the claim supported by the affected measurement without automatically invalidating experiments on other identified populations.
+
+KL self-comparisons also require consistent forward-pass randomness. Additional preservation calls must save and restore the acquisition branch's random-number state. Shared-initialization checks, query-dependence tests, text-overlap analysis, and forward-consistency checks address different experimental confounds. Their programs and records accompany the models for reuse in subsequent comparisons.
+
+\par\FloatBarrier\Needspace{9\baselineskip}
+\section{Public leaderboard metrics}
+\label{app:board}
+
+Both tables use the same frozen snapshot as Table~\ref{tab:board}, selecting the two official Qiushi models and eight external submissions without a rank column. Full names and links are provided in \nolinkurl{results/leaderboard_comparison.csv}. Publishers are identified by public account, without inferring unreported institutional affiliations.
+
+\begin{table}[htbp]
+\caption{Public submissions: language form, knowledge, entity tracking, and composition. Values retain the precision displayed on the leaderboard.}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrr@{}}
+\toprule Publisher / model & BLiMP & Sup. & EWoK & Entity & COMPS\\\midrule
+\input{tables/board_language}
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Remaining metrics for the same public submissions. Reading and AoA are not ordinary task accuracies; negative values are retained from the snapshot.}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule Publisher / model & GlobalPIQA & (Super)GLUE & Reading & AoA\\\midrule
+\input{tables/board_remaining}
+\end{tabularx}
+\end{table}
+
+Similar Overall scores can conceal different strengths. A model with stronger grammatical judgments may be weaker at entity tracking, and the highest NLP average need not give the highest Overall. Aggregate and component scores serve complementary purposes: Overall records the combined improvement, while individual metrics identify its sources and trade-offs.
+
+\par\FloatBarrier\Needspace{9\baselineskip}
+\section{Research repository and use of materials}
+\label{app:assets}
+
+The accompanying repository organizes models, methods, experiments, and research records by scientific question and research stage. Each reported finding can be followed to its programs, configurations, and results; topic guides also provide derivations, experimental plans, and later revisions. All file paths below are relative to the repository root.
+
+\textbf{Models.} Hugging Face repositories for \href{https://huggingface.co/leslie721007/Qiushi-Engine-Frontier-Advancement}{\Frontier{}} and \href{https://huggingface.co/leslie721007/Qiushi-Engine-Principle-Guided-Frontier-Advancement}{\Guided{}} provide weights, tokenizers, loading implementations, and training and evaluation documentation. Appendix~\ref{app:repro} identifies the versions used here.
+
+\textbf{Research materials.} \href{https://github.com/Oxelra-AI/Qiushi-Engine-Babylm-Research}{Qiushi-Engine-Babylm-Research on GitHub} collects both model generations, method implementations, experiment configurations, data construction, complete evaluations, research notes, and editable report sources. Model-package instructions appear in \nolinkurl{models/README.md}; scientific materials are organized through the following entry points.
+
+\begin{longtable}{@{}P{43mm}P{107mm}@{}}
+\caption{Entry points connecting the report to research materials. Method explanations, executed configurations, and original programs serve distinct purposes; principal figure and table data are listed in Table~\ref{tab:files}.}\label{tab:material_entries}\\
+\toprule Research content & Material and purpose\\\midrule\endfirsthead
+\multicolumn{2}{@{}l}{\ReportTableContinuation}\\
+\toprule Research content & Material and purpose\\\midrule\endhead
+\bottomrule\endfoot
+Models and lineage & \nolinkurl{models/README.md}: local weights, tokenizers, custom loading, training records, and loading examples.\\
+Experience construction and incremental learning & \nolinkurl{methods/compact_views.md}, \nolinkurl{methods/residual_learning.md}: Stage I text-budget and model designs.\\
+Relation learning and capability reuse & \nolinkurl{methods/relation_learning.md}, \nolinkurl{methods/functional_access.md}: relations, windows, supervision, and internal interventions.\\
+Principle-guided training and controls & \nolinkurl{methods/principle_guided_training.md}, \nolinkurl{experiments/configs/executed_stage3.json}: complete method, comparisons, and executed configuration.\\
+Training and evaluation programs & \nolinkurl{experiments/CORE_PROGRAMS.md}: original programs; \nolinkurl{reproducibility/TRAINING.md}: environments, arguments, and data dependencies.\\
+Data generation and training inputs & \nolinkurl{data/RECONSTRUCTION.md}: pairing, compression, replacement, packing, and continuation inputs; \nolinkurl{data/README.md}: source licenses.\\
+Questions and design development & \nolinkurl{research/reading_paths.md}: hypotheses, controls, results, and revisions; \nolinkurl{evidence/research_timeline.md}: changes in research decisions.\\
+Research notes and plans & \nolinkurl{research/notes/README.md}: analyses, derivations, and route selection; \nolinkurl{research/plans/README.md}: experimental aims, competing explanations, controls, and decision criteria.\\
+Measurement records and terminology & \nolinkurl{research/documents/README.md}: measurement, data, and technical records; \nolinkurl{research/terms.md}: terms, abbreviations, and experimental conditions used in the materials.\\
+Independent findings and topic catalog & \nolinkurl{research/materials.md}: methods, notes, experiments, and results for 74 topics; \nolinkurl{research/catalog.md}: topic summaries and conclusion status.\\
+Claims and evidence & \nolinkurl{evidence/claim_evidence_map.md}, \nolinkurl{experiments/index.csv}: connections among findings, methods, result tables, and report sections.\\
+\end{longtable}
+
+English and Chinese PDFs and editable LaTeX projects are in \nolinkurl{reports/en/} and \nolinkurl{reports/zh/}. Instructions accompany each directory. Numerical figures and tables read the shared \nolinkurl{results/} files. From the repository root, \texttt{make report-en} rebuilds the English report and \texttt{make report} rebuilds the Chinese report. Neither command runs model experiments or calls external models.
+
+\par\Needspace{10\baselineskip}
+\begingroup
+\AtBeginEnvironment{longtable}{\footnotesize\setstretch{1.04}\renewcommand{\arraystretch}{1.08}}
+\begin{longtable}{@{}P{69mm}P{81mm}@{}}
+\caption{Principal result data and report build files. Paths are relative to the GitHub repository root.}\label{tab:files}\\
+\toprule File & Contents and use\\\midrule\endfirsthead
+\multicolumn{2}{@{}l}{\ReportTableContinuation}\\
+\toprule File & Contents and use\\\midrule\endhead
+\bottomrule\endfoot
+\nolinkurl{results/training_strategy_comparison.csv} & Nine local models, all nine metrics, exact Overall, continuation seeds, and cumulative exposure.\\
+\nolinkurl{results/leaderboard_comparison.csv} & Two representative models and eight external submissions from one snapshot, with links and displayed scores; no rank column.\\
+\nolinkurl{results/public_model_revisions.csv} & Public model repositories and fixed revisions.\\
+\nolinkurl{results/relation_context_use.csv} & Source-advantage changes on compact-restatement targets and standard deviations across three training seeds.\\
+\nolinkurl{results/relation_window_controls.csv} & Same-window and split-window controls, seeds, target counts, and checkpoint aggregation.\\
+\nolinkurl{results/natural_restatement_transfer.csv} & Two target classes in natural restatements and source-advantage changes across three seeds.\\
+\nolinkurl{results/finetuning_seed_comparison.csv} & Three models under two fine-tuning seeds: seven subtasks and the (Super)GLUE mean.\\
+\nolinkurl{results/blimp_scoring_comparison.csv} & BLiMP scoring by selected option index and by stored answer text.\\
+\nolinkurl{results/interface_reach.csv} & Familiar/unseen accuracy and functional-intervention measurements from one controlled setup.\\
+\nolinkurl{results/state_preservation_readouts.csv} & Acquisition and preservation measurements with their distinct sample populations.\\
+\nolinkurl{results/compact_budget.csv} & Compact restatement, source, and budget-reinvestment counts.\\
+\nolinkurl{results/source_disjoint_target_loss.csv} & Pair- and document-isolated target losses and intervals.\\
+\nolinkurl{results/target_deletion_100m.csv} & Seven-metric results for three target-deletion conditions.\\
+\nolinkurl{results/late_consolidation_controls.csv} & Stage I late continuation and incremental controls, update methods, and exposure.\\
+\nolinkurl{results/private_scale_sweep.csv} & Historical measurements used to select the Stage I incremental scale.\\
+\nolinkurl{results/preservation_gradient_diagnostic.csv} & Preservation strength and gradient direction on shared target positions, with measurement counts.\\
+\nolinkurl{results/research_catalog.tsv} & Scientific topics, result status, and reading guides.\\
+\nolinkurl{reports/zh/render.py} & Shared data checks and vector statistical figures.\\
+\nolinkurl{reports/en/render.py} & English tables generated from the same result files.\\
+\nolinkurl{reports/zh/figures/input_supervision.tex} & Editable vector source for masking and supervised positions.\\
+\nolinkurl{reports/zh/figures/research_lineage.tex} & Vector source for model inheritance, method links, and independent branches.\\
+\nolinkurl{reports/en/build.sh} & English LaTeX and bibliography build.\\
+\end{longtable}
+\endgroup
+
+Across 74 topics, the materials retain model methods, mechanism findings, controls, and scientific corrections. Research notes and experimental plans explain how questions arose, why methods changed, and which results informed subsequent work. Models, code, documents, and third-party data remain subject to their respective licenses. Redistribution terms and data acquisition or construction procedures appear in \nolinkurl{data/README.md} and the relevant material descriptions.

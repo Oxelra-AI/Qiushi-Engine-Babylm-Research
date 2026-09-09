@@ -1,0 +1,1224 @@
+{
+  "status": "INDIRECT_ADDRESS_PARTIAL",
+  "created": "2026-09-04T07:32:23Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/temporal_indirect_address_singlefam_fitcheck",
+    "train_families": "background_update",
+    "eval_families": "background_update,original_current_exact",
+    "train_direct_tag": true,
+    "n_seeds": 1,
+    "base_stable": 20,
+    "sparse_changed": 8,
+    "sparse_stable": 8,
+    "eval_held_changed": 10,
+    "eval_held_stable": 10,
+    "eval_train_changed": 10,
+    "eval_train_stable": 10,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "inventory": {
+      "train_total": 1320,
+      "held_total": 440
+    },
+    "selection": {
+      "base_stable": {
+        "n": 20,
+        "changed": {
+          "False": 20
+        },
+        "dir": {
+          "A->A": 10,
+          "B->B": 10
+        },
+        "winner_initial_later": {
+          "0->0": 8,
+          "1->1": 12
+        }
+      },
+      "base_stable2": {
+        "n": 37,
+        "changed": {
+          "False": 37
+        },
+        "dir": {
+          "A->A": 19,
+          "B->B": 18
+        },
+        "winner_initial_later": {
+          "1->1": 19,
+          "0->0": 18
+        }
+      },
+      "sparse_changed": {
+        "n": 8,
+        "changed": {
+          "True": 8
+        },
+        "dir": {
+          "B->A": 4,
+          "A->B": 4
+        },
+        "winner_initial_later": {
+          "0->1": 7,
+          "1->0": 1
+        }
+      },
+      "sparse_stable": {
+        "n": 8,
+        "changed": {
+          "False": 8
+        },
+        "dir": {
+          "B->B": 4,
+          "A->A": 4
+        },
+        "winner_initial_later": {
+          "1->1": 8
+        }
+      },
+      "sparse_secondary_stable": {
+        "n": 25,
+        "changed": {
+          "False": 25
+        },
+        "dir": {
+          "A->A": 13,
+          "B->B": 12
+        },
+        "winner_initial_later": {
+          "1->1": 8,
+          "0->0": 17
+        }
+      },
+      "eval_train_changed": {
+        "n": 10,
+        "changed": {
+          "True": 10
+        },
+        "dir": {
+          "B->A": 5,
+          "A->B": 5
+        },
+        "winner_initial_later": {
+          "0->1": 8,
+          "1->0": 2
+        }
+      },
+      "eval_train_stable": {
+        "n": 10,
+        "changed": {
+          "False": 10
+        },
+        "dir": {
+          "A->A": 5,
+          "B->B": 5
+        },
+        "winner_initial_later": {
+          "1->1": 6,
+          "0->0": 4
+        }
+      },
+      "eval_held_changed": {
+        "n": 10,
+        "changed": {
+          "True": 10
+        },
+        "dir": {
+          "B->A": 5,
+          "A->B": 5
+        },
+        "winner_initial_later": {
+          "0->1": 7,
+          "1->0": 3
+        }
+      },
+      "eval_held_stable": {
+        "n": 10,
+        "changed": {
+          "False": 10
+        },
+        "dir": {
+          "A->A": 5,
+          "B->B": 5
+        },
+        "winner_initial_later": {
+          "0->0": 8,
+          "1->1": 2
+        }
+      },
+      "eval_held_stable2": {
+        "n": 10,
+        "changed": {
+          "False": 10
+        },
+        "dir": {
+          "A->A": 5,
+          "B->B": 5
+        },
+        "winner_initial_later": {
+          "0->0": 4,
+          "1->1": 6
+        }
+      }
+    },
+    "train_families": [
+      "background_update"
+    ],
+    "eval_families": [
+      "background_update",
+      "original_current_exact"
+    ],
+    "train_direct_tag": true,
+    "base": {
+      "n": 1280,
+      "by_query": {
+        "focal_after": 320,
+        "focal_before": 320,
+        "secondary_after": 320,
+        "secondary_before": 320
+      },
+      "by_label": {
+        "0": 640,
+        "1": 640
+      },
+      "by_kind": {
+        "base_stable_direct|background_update|direct_tag_query": 640,
+        "base_stable|background_update|role_query": 640
+      },
+      "by_changed_focal": {
+        "False": 1280
+      },
+      "by_stable_secondary": {
+        "True": 1280
+      }
+    },
+    "updates": {
+      "balanced_temporal": {
+        "n": 512,
+        "by_query": {
+          "focal_after": 256,
+          "focal_before": 256
+        },
+        "by_label": {
+          "0": 256,
+          "1": 256
+        },
+        "by_kind": {
+          "sparse_changed_direct|background_update|direct_tag_query": 128,
+          "sparse_changed_focal|background_update|role_query": 128,
+          "sparse_stable_direct|background_update|direct_tag_query": 128,
+          "sparse_stable_focal|background_update|role_query": 128
+        },
+        "by_changed_focal": {
+          "False": 256,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 512
+        }
+      }
+    },
+    "eval_counts": {
+      "background_update_heldChanged_heldStable_directTag_roleSwap_heldHyp": 320,
+      "background_update_heldChanged_heldStable_direct_tag_heldHyp": 320,
+      "background_update_heldChanged_heldStable_roleSwap_heldHyp": 320,
+      "background_update_heldChanged_heldStable_role_heldHyp": 320,
+      "background_update_heldStable_heldStable_direct_tag_heldHyp": 320,
+      "background_update_heldStable_heldStable_role_heldHyp": 320,
+      "background_update_trainChanged_heldStable_direct_tag_heldHyp": 320,
+      "background_update_trainChanged_heldStable_role_heldHyp": 320,
+      "original_current_exact_heldChanged_heldStable_directTag_roleSwap_heldHyp": 320,
+      "original_current_exact_heldChanged_heldStable_direct_tag_heldHyp": 320,
+      "original_current_exact_heldChanged_heldStable_roleSwap_heldHyp": 320,
+      "original_current_exact_heldChanged_heldStable_role_heldHyp": 320,
+      "original_current_exact_heldStable_heldStable_direct_tag_heldHyp": 320,
+      "original_current_exact_heldStable_heldStable_role_heldHyp": 320,
+      "original_current_exact_trainChanged_heldStable_direct_tag_heldHyp": 320,
+      "original_current_exact_trainChanged_heldStable_role_heldHyp": 320
+    },
+    "boundary": "Two-hop role-to-tag probe with shuffled context sentences; one-seed small pretrained bridge."
+  },
+  "summary": {
+    "best_train_acc": 0.5,
+    "train_fit": {
+      "overall": 0.5,
+      "by_train_kind": {
+        "base_stable_direct|background_update|direct_tag_query": 0.5,
+        "base_stable|background_update|role_query": 0.5,
+        "sparse_changed_direct|background_update|direct_tag_query": 0.5,
+        "sparse_changed_focal|background_update|role_query": 0.5,
+        "sparse_stable_direct|background_update|direct_tag_query": 0.5,
+        "sparse_stable_focal|background_update|role_query": 0.5
+      },
+      "by_query_family": {
+        "focal_after": 0.5,
+        "focal_before": 0.5,
+        "secondary_after": 0.5,
+        "secondary_before": 0.5
+      },
+      "by_changed_focal": {
+        "False": 0.5,
+        "True": 0.5
+      }
+    },
+    "evals": {
+      "background_update_heldChanged_heldStable_directTag_roleSwap_heldHyp": {
+        "contrastive_acc": 0.3125,
+        "by_query": {
+          "focal_before": 0.75,
+          "focal_after": 0.5,
+          "secondary_before": 0.0,
+          "secondary_after": 0.0
+        },
+        "by_query_margin": {
+          "focal_before": 0.00027213990688323975,
+          "focal_after": 0.00013952702283859253,
+          "secondary_before": -0.0008109826594591141,
+          "secondary_after": -0.0007915645837783813
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_heldChanged_heldStable_direct_tag_heldHyp": {
+        "contrastive_acc": 0.375,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.5,
+          "secondary_before": 0.0,
+          "secondary_after": 0.0
+        },
+        "by_query_margin": {
+          "focal_before": 0.00016784202307462692,
+          "focal_after": -1.7764978110790253e-05,
+          "secondary_before": -0.000665067695081234,
+          "secondary_after": -0.00044916383922100067
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_heldChanged_heldStable_roleSwap_heldHyp": {
+        "contrastive_acc": 0.75,
+        "by_query": {
+          "focal_before": 0.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -0.00032522715628147125,
+          "focal_after": 0.0003292476758360863,
+          "secondary_before": 0.0008236067369580269,
+          "secondary_after": 0.0008590826764702797
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_heldChanged_heldStable_role_heldHyp": {
+        "contrastive_acc": 0.75,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 0.0005645528435707092,
+          "focal_after": -0.0005932264029979706,
+          "secondary_before": 0.00031102076172828674,
+          "secondary_after": 0.0003529004752635956
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_heldStable_heldStable_direct_tag_heldHyp": {
+        "contrastive_acc": 0.6875,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.75,
+          "secondary_before": 0.5,
+          "secondary_after": 0.5
+        },
+        "by_query_margin": {
+          "focal_before": 0.0003097141161561012,
+          "focal_after": 0.00013623200356960297,
+          "secondary_before": 1.4845281839370728e-06,
+          "secondary_after": 3.2308511435985565e-05
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_heldStable_heldStable_role_heldHyp": {
+        "contrastive_acc": 0.0,
+        "by_query": {
+          "focal_before": 0.0,
+          "focal_after": 0.0,
+          "secondary_before": 0.0,
+          "secondary_after": 0.0
+        },
+        "by_query_margin": {
+          "focal_before": -0.0004920652136206627,
+          "focal_after": -0.000569421797990799,
+          "secondary_before": -0.0004451414570212364,
+          "secondary_after": -0.0005149552598595619
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_trainChanged_heldStable_direct_tag_heldHyp": {
+        "contrastive_acc": 0.8125,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.25,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 0.00038732588291168213,
+          "focal_after": -0.00031534116715192795,
+          "secondary_before": 0.00027746614068746567,
+          "secondary_after": 0.0003903582692146301
+        },
+        "standard_acc": 0.5
+      },
+      "background_update_trainChanged_heldStable_role_heldHyp": {
+        "contrastive_acc": 0.5625,
+        "by_query": {
+          "focal_before": 0.75,
+          "focal_after": 0.0,
+          "secondary_before": 0.75,
+          "secondary_after": 0.75
+        },
+        "by_query_margin": {
+          "focal_before": 0.0003469642251729965,
+          "focal_after": -0.00023058708757162094,
+          "secondary_before": 5.094893276691437e-05,
+          "secondary_after": 9.327288717031479e-05
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_heldChanged_heldStable_directTag_roleSwap_heldHyp": {
+        "contrastive_acc": 0.75,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": 0.0006843209266662598,
+          "focal_after": -0.0007389876991510391,
+          "secondary_before": 0.0012607751414179802,
+          "secondary_after": 0.0013744020834565163
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_heldChanged_heldStable_direct_tag_heldHyp": {
+        "contrastive_acc": 0.625,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.0,
+          "secondary_before": 0.75,
+          "secondary_after": 0.75
+        },
+        "by_query_margin": {
+          "focal_before": 0.001994001679122448,
+          "focal_after": -0.001866314560174942,
+          "secondary_before": 0.00031617842614650726,
+          "secondary_after": 0.00011797621846199036
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_heldChanged_heldStable_roleSwap_heldHyp": {
+        "contrastive_acc": 0.375,
+        "by_query": {
+          "focal_before": 0.25,
+          "focal_after": 0.75,
+          "secondary_before": 0.25,
+          "secondary_after": 0.25
+        },
+        "by_query_margin": {
+          "focal_before": -0.00029549282044172287,
+          "focal_after": 0.00020310282707214355,
+          "secondary_before": -2.9029324650764465e-05,
+          "secondary_after": 3.1227245926856995e-06
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_heldChanged_heldStable_role_heldHyp": {
+        "contrastive_acc": 0.6875,
+        "by_query": {
+          "focal_before": 0.0,
+          "focal_after": 0.75,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -0.00015494879335165024,
+          "focal_after": 9.379908442497253e-05,
+          "secondary_before": 0.0001799166202545166,
+          "secondary_after": 0.00015866011381149292
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_heldStable_heldStable_direct_tag_heldHyp": {
+        "contrastive_acc": 0.4375,
+        "by_query": {
+          "focal_before": 0.0,
+          "focal_after": 0.0,
+          "secondary_before": 0.75,
+          "secondary_after": 1.0
+        },
+        "by_query_margin": {
+          "focal_before": -0.0003968058153986931,
+          "focal_after": -0.00035735685378313065,
+          "secondary_before": 0.0003658384084701538,
+          "secondary_after": 0.0008859317749738693
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_heldStable_heldStable_role_heldHyp": {
+        "contrastive_acc": 0.25,
+        "by_query": {
+          "focal_before": 0.0,
+          "focal_after": 0.0,
+          "secondary_before": 0.5,
+          "secondary_after": 0.5
+        },
+        "by_query_margin": {
+          "focal_before": -0.0008410010486841202,
+          "focal_after": -0.0008367430418729782,
+          "secondary_before": -6.949901580810547e-05,
+          "secondary_after": -5.6792981922626495e-05
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_trainChanged_heldStable_direct_tag_heldHyp": {
+        "contrastive_acc": 0.25,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.0,
+          "secondary_before": 0.0,
+          "secondary_after": 0.0
+        },
+        "by_query_margin": {
+          "focal_before": 0.0006395168602466583,
+          "focal_after": -0.0006591081619262695,
+          "secondary_before": -0.0013880236074328423,
+          "secondary_after": -0.0013805422931909561
+        },
+        "standard_acc": 0.5
+      },
+      "original_current_exact_trainChanged_heldStable_role_heldHyp": {
+        "contrastive_acc": 0.5625,
+        "by_query": {
+          "focal_before": 1.0,
+          "focal_after": 0.0,
+          "secondary_before": 0.75,
+          "secondary_after": 0.5
+        },
+        "by_query_margin": {
+          "focal_before": 0.0015530716627836227,
+          "focal_after": -0.0015217531472444534,
+          "secondary_before": 0.0001798449084162712,
+          "secondary_after": 0.00015343818813562393
+        },
+        "standard_acc": 0.5
+      }
+    }
+  },
+  "per_seed": [
+    {
+      "arm": "balanced_temporal",
+      "seed": 26780,
+      "best_train_acc": 0.5,
+      "train_fit": {
+        "overall": 0.5,
+        "by_train_kind": {
+          "base_stable_direct|background_update|direct_tag_query": 0.5,
+          "base_stable|background_update|role_query": 0.5,
+          "sparse_changed_direct|background_update|direct_tag_query": 0.5,
+          "sparse_changed_focal|background_update|role_query": 0.5,
+          "sparse_stable_direct|background_update|direct_tag_query": 0.5,
+          "sparse_stable_focal|background_update|role_query": 0.5
+        },
+        "by_query_family": {
+          "focal_after": 0.5,
+          "focal_before": 0.5,
+          "secondary_after": 0.5,
+          "secondary_before": 0.5
+        },
+        "by_changed_focal": {
+          "False": 0.5,
+          "True": 0.5
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.7045985657189574,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6989973219377654,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6960760692932776,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 4,
+          "loss": 0.6982042552637202,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 5,
+          "loss": 0.6955699148987021,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 6,
+          "loss": 0.6946319692901203,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6937463150492736,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 8,
+          "loss": 0.6938072959227222,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 9,
+          "loss": 0.6941198797098228,
+          "train_acc": 0.5
+        },
+        {
+          "epoch": 10,
+          "loss": 0.6930947726858514,
+          "train_acc": 0.5
+        }
+      ],
+      "evals": {
+        "background_update_heldChanged_heldStable_role_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.75,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 0.0005645528435707092,
+              "focal_after": -0.0005932264029979706,
+              "secondary_before": 0.00031102076172828674,
+              "secondary_after": 0.0003529004752635956
+            },
+            "by_changed_focal": {
+              "True": 0.75
+            },
+            "margin_mean": 0.00015881191939115524
+          }
+        },
+        "background_update_heldChanged_heldStable_direct_tag_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.375,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.5,
+              "secondary_before": 0.0,
+              "secondary_after": 0.0
+            },
+            "by_query_margin": {
+              "focal_before": 0.00016784202307462692,
+              "focal_after": -1.7764978110790253e-05,
+              "secondary_before": -0.000665067695081234,
+              "secondary_after": -0.00044916383922100067
+            },
+            "by_changed_focal": {
+              "True": 0.375
+            },
+            "margin_mean": -0.0002410386223345995
+          }
+        },
+        "background_update_heldChanged_heldStable_roleSwap_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.75,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -0.00032522715628147125,
+              "focal_after": 0.0003292476758360863,
+              "secondary_before": 0.0008236067369580269,
+              "secondary_after": 0.0008590826764702797
+            },
+            "by_changed_focal": {
+              "True": 0.75
+            },
+            "margin_mean": 0.0004216774832457304
+          }
+        },
+        "background_update_heldChanged_heldStable_directTag_roleSwap_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.3125,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.75,
+              "focal_after": 0.5,
+              "secondary_before": 0.0,
+              "secondary_after": 0.0
+            },
+            "by_query_margin": {
+              "focal_before": 0.00027213990688323975,
+              "focal_after": 0.00013952702283859253,
+              "secondary_before": -0.0008109826594591141,
+              "secondary_after": -0.0007915645837783813
+            },
+            "by_changed_focal": {
+              "True": 0.3125
+            },
+            "margin_mean": -0.0002977200783789158
+          }
+        },
+        "background_update_heldStable_heldStable_role_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "False": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.0,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.0,
+              "focal_after": 0.0,
+              "secondary_before": 0.0,
+              "secondary_after": 0.0
+            },
+            "by_query_margin": {
+              "focal_before": -0.0004920652136206627,
+              "focal_after": -0.000569421797990799,
+              "secondary_before": -0.0004451414570212364,
+              "secondary_after": -0.0005149552598595619
+            },
+            "by_changed_focal": {
+              "False": 0.0
+            },
+            "margin_mean": -0.000505395932123065
+          }
+        },
+        "background_update_heldStable_heldStable_direct_tag_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "False": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.6875,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.75,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_query_margin": {
+              "focal_before": 0.0003097141161561012,
+              "focal_after": 0.00013623200356960297,
+              "secondary_before": 1.4845281839370728e-06,
+              "secondary_after": 3.2308511435985565e-05
+            },
+            "by_changed_focal": {
+              "False": 0.6875
+            },
+            "margin_mean": 0.00011993478983640671
+          }
+        },
+        "background_update_trainChanged_heldStable_role_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.5625,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.75,
+              "focal_after": 0.0,
+              "secondary_before": 0.75,
+              "secondary_after": 0.75
+            },
+            "by_query_margin": {
+              "focal_before": 0.0003469642251729965,
+              "focal_after": -0.00023058708757162094,
+              "secondary_before": 5.094893276691437e-05,
+              "secondary_after": 9.327288717031479e-05
+            },
+            "by_changed_focal": {
+              "True": 0.5625
+            },
+            "margin_mean": 6.514973938465118e-05
+          }
+        },
+        "background_update_trainChanged_heldStable_direct_tag_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.8125,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.25,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 0.00038732588291168213,
+              "focal_after": -0.00031534116715192795,
+              "secondary_before": 0.00027746614068746567,
+              "secondary_after": 0.0003903582692146301
+            },
+            "by_changed_focal": {
+              "True": 0.8125
+            },
+            "margin_mean": 0.0001849522814154625
+          }
+        },
+        "original_current_exact_heldChanged_heldStable_role_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.6875,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.0,
+              "focal_after": 0.75,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -0.00015494879335165024,
+              "focal_after": 9.379908442497253e-05,
+              "secondary_before": 0.0001799166202545166,
+              "secondary_after": 0.00015866011381149292
+            },
+            "by_changed_focal": {
+              "True": 0.6875
+            },
+            "margin_mean": 6.935675628483295e-05
+          }
+        },
+        "original_current_exact_heldChanged_heldStable_direct_tag_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.625,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.0,
+              "secondary_before": 0.75,
+              "secondary_after": 0.75
+            },
+            "by_query_margin": {
+              "focal_before": 0.001994001679122448,
+              "focal_after": -0.001866314560174942,
+              "secondary_before": 0.00031617842614650726,
+              "secondary_after": 0.00011797621846199036
+            },
+            "by_changed_focal": {
+              "True": 0.625
+            },
+            "margin_mean": 0.0001404604408890009
+          }
+        },
+        "original_current_exact_heldChanged_heldStable_roleSwap_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.375,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.25,
+              "focal_after": 0.75,
+              "secondary_before": 0.25,
+              "secondary_after": 0.25
+            },
+            "by_query_margin": {
+              "focal_before": -0.00029549282044172287,
+              "focal_after": 0.00020310282707214355,
+              "secondary_before": -2.9029324650764465e-05,
+              "secondary_after": 3.1227245926856995e-06
+            },
+            "by_changed_focal": {
+              "True": 0.375
+            },
+            "margin_mean": -2.957414835691452e-05
+          }
+        },
+        "original_current_exact_heldChanged_heldStable_directTag_roleSwap_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.75,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": 0.0006843209266662598,
+              "focal_after": -0.0007389876991510391,
+              "secondary_before": 0.0012607751414179802,
+              "secondary_after": 0.0013744020834565163
+            },
+            "by_changed_focal": {
+              "True": 0.75
+            },
+            "margin_mean": 0.0006451276130974293
+          }
+        },
+        "original_current_exact_heldStable_heldStable_role_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "False": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.25,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.0,
+              "focal_after": 0.0,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_query_margin": {
+              "focal_before": -0.0008410010486841202,
+              "focal_after": -0.0008367430418729782,
+              "secondary_before": -6.949901580810547e-05,
+              "secondary_after": -5.6792981922626495e-05
+            },
+            "by_changed_focal": {
+              "False": 0.25
+            },
+            "margin_mean": -0.0004510090220719576
+          }
+        },
+        "original_current_exact_heldStable_heldStable_direct_tag_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "False": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.4375,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 0.0,
+              "focal_after": 0.0,
+              "secondary_before": 0.75,
+              "secondary_after": 1.0
+            },
+            "by_query_margin": {
+              "focal_before": -0.0003968058153986931,
+              "focal_after": -0.00035735685378313065,
+              "secondary_before": 0.0003658384084701538,
+              "secondary_after": 0.0008859317749738693
+            },
+            "by_changed_focal": {
+              "False": 0.4375
+            },
+            "margin_mean": 0.00012440187856554985
+          }
+        },
+        "original_current_exact_trainChanged_heldStable_role_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.5625,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.0,
+              "secondary_before": 0.75,
+              "secondary_after": 0.5
+            },
+            "by_query_margin": {
+              "focal_before": 0.0015530716627836227,
+              "focal_after": -0.0015217531472444534,
+              "secondary_before": 0.0001798449084162712,
+              "secondary_after": 0.00015343818813562393
+            },
+            "by_changed_focal": {
+              "True": 0.5625
+            },
+            "margin_mean": 9.115040302276611e-05
+          }
+        },
+        "original_current_exact_trainChanged_heldStable_direct_tag_heldHyp": {
+          "standard": {
+            "n": 320,
+            "acc": 0.5,
+            "by_query_family": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 0.5,
+              "secondary_after": 0.5
+            },
+            "by_changed_focal": {
+              "True": 0.5
+            },
+            "by_stable_secondary": {
+              "True": 0.5
+            }
+          },
+          "contrastive": {
+            "contrastive_acc": 0.25,
+            "n_pairs": 16,
+            "by_query": {
+              "focal_before": 1.0,
+              "focal_after": 0.0,
+              "secondary_before": 0.0,
+              "secondary_after": 0.0
+            },
+            "by_query_margin": {
+              "focal_before": 0.0006395168602466583,
+              "focal_after": -0.0006591081619262695,
+              "secondary_before": -0.0013880236074328423,
+              "secondary_after": -0.0013805422931909561
+            },
+            "by_changed_focal": {
+              "True": 0.25
+            },
+            "margin_mean": -0.0006970393005758524
+          }
+        }
+      }
+    }
+  ],
+  "boundary": "Small two-hop role-to-tag bridge; not BabyLM-scale training."
+}

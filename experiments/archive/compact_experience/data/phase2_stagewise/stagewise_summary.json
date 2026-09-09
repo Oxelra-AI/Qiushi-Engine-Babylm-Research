@@ -1,0 +1,110 @@
+{
+  "status": "PHASE2_STAGEWISE_MATERIALIZED",
+  "design": "no-waste sequence curriculum chunks: 40w->64, 80w->128, 160w->256; dynamic batches 512/256/128",
+  "inputs": {
+    "official": {
+      "input": "experiments/archive/compact_experience/data/fixedinit_replication/official_100M.jsonl",
+      "input_sha256": "b2daf84536bf5c87e842665357742228fa90415a7f514f1f6233713c00b63f7a",
+      "stages": {
+        "1": {
+          "rows": 750000,
+          "words": 30000000,
+          "seq_len": 64,
+          "batch_size": 512,
+          "chunk_words": 40,
+          "target_words": 30000000,
+          "path": "experiments/archive/compact_experience/data/phase2_stagewise/official_stage1_seq64_30M.jsonl",
+          "sha256": "f7a91543d8d55d43ae5443cc0ecf853fecb3edb4610336b1fd4d74ff774b79c4"
+        },
+        "2": {
+          "rows": 375000,
+          "words": 30000000,
+          "seq_len": 128,
+          "batch_size": 256,
+          "chunk_words": 80,
+          "target_words": 30000000,
+          "path": "experiments/archive/compact_experience/data/phase2_stagewise/official_stage2_seq128_30M.jsonl",
+          "sha256": "cdef40ffde8809878f82f6d8ab547786a502ecc5864e439cbc26c6c23a4569bf"
+        },
+        "3": {
+          "rows": 250000,
+          "words": 40000000,
+          "seq_len": 256,
+          "batch_size": 128,
+          "chunk_words": 160,
+          "target_words": 40000000,
+          "path": "experiments/archive/compact_experience/data/phase2_stagewise/official_stage3_seq256_40M.jsonl",
+          "sha256": "e559a94913ba308c8b23199311f4cedc5148922f143f9bb2133a845c79488bb8"
+        }
+      },
+      "total_words": 100000000
+    },
+    "mix25": {
+      "input": "experiments/archive/compact_experience/data/mixture/training_files/mix_25pct_100M.jsonl",
+      "input_sha256": "7c278c127699b0166625d202b910c4cf3e434b069d841663275eca854434a08e",
+      "stages": {
+        "1": {
+          "rows": 750000,
+          "words": 30000000,
+          "seq_len": 64,
+          "batch_size": 512,
+          "chunk_words": 40,
+          "target_words": 30000000,
+          "path": "experiments/archive/compact_experience/data/phase2_stagewise/mix25_stage1_seq64_30M.jsonl",
+          "sha256": "a0bc9d713ccb280c27046c2d0a5007723d181b76e6006ad400490334adf6d407"
+        },
+        "2": {
+          "rows": 375000,
+          "words": 30000000,
+          "seq_len": 128,
+          "batch_size": 256,
+          "chunk_words": 80,
+          "target_words": 30000000,
+          "path": "experiments/archive/compact_experience/data/phase2_stagewise/mix25_stage2_seq128_30M.jsonl",
+          "sha256": "393c384b316376c0f82f086da1feee449bc75eece7b13fab1efdfeb3bef1411b"
+        },
+        "3": {
+          "rows": 250000,
+          "words": 40000000,
+          "seq_len": 256,
+          "batch_size": 128,
+          "chunk_words": 160,
+          "target_words": 40000000,
+          "path": "experiments/archive/compact_experience/data/phase2_stagewise/mix25_stage3_seq256_40M.jsonl",
+          "sha256": "5eb337c891cc037d62feaffa7d4ad975cf068be528c5d1b36f4a7dbf592259ad"
+        }
+      },
+      "total_words": 100000000
+    }
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "row_start": 0,
+      "row_end": 187500,
+      "chunk_words": 40,
+      "seq_len": 64,
+      "batch_size": 512,
+      "target_words": 30000000
+    },
+    {
+      "stage": 2,
+      "row_start": 187500,
+      "row_end": 375000,
+      "chunk_words": 80,
+      "seq_len": 128,
+      "batch_size": 256,
+      "target_words": 30000000
+    },
+    {
+      "stage": 3,
+      "row_start": 375000,
+      "row_end": 625000,
+      "chunk_words": 160,
+      "seq_len": 256,
+      "batch_size": 128,
+      "target_words": 40000000
+    }
+  ],
+  "elapsed_sec": 38.4
+}

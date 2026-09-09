@@ -1,0 +1,484 @@
+{
+  "status": "TENSOR_PARITY_SMOKE",
+  "created_utc": "2026-09-02T05:58:22Z",
+  "meaning": "CPU tensor-parity smoke test for HS/LS/HD/LD factorial. Verifies identical initialization, matching LR schedule, matching batch geometry, finite loss/gradients, and word-count-determined step parity.",
+  "config": {
+    "model": {
+      "hidden_size": 480,
+      "n_layer": 8,
+      "n_head": 8,
+      "ffn_mult": 4,
+      "max_position_embeddings": 512,
+      "hidden_dropout_prob": 0.1,
+      "attention_probs_dropout_prob": 0.1,
+      "layer_norm_eps": 1e-05
+    },
+    "train": {
+      "seed": 43,
+      "extra_init_seed": 43022,
+      "train_rng_seed": 43023,
+      "batch_size": 256,
+      "seq_length": 256,
+      "learning_rate": 0.001,
+      "warmup_fraction": 0.06,
+      "weight_decay": 0.01,
+      "mask_prob": 0.15,
+      "lr_total_steps": 2529,
+      "grad_clip": 1.0
+    },
+    "smoke_steps": 3,
+    "smoke_batch": 4
+  },
+  "parity_checks": {
+    "init_sha_match": true,
+    "init_shas": {
+      "HS": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "LS": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "HD": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "LD": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977"
+    },
+    "param_count_match": true,
+    "param_counts": {
+      "HS": 30528064,
+      "LS": 30528064,
+      "HD": 30528064,
+      "LD": 30528064
+    },
+    "pool_word_match": true,
+    "pool_words": {
+      "HS": 2279,
+      "LS": 2279,
+      "HD": 2279,
+      "LD": 2279
+    },
+    "after_shas_all_same": false,
+    "hs_ls_params_differ": true
+  },
+  "step_comparisons": [
+    {
+      "step": 1,
+      "losses": {
+        "HS": 9.769025802612305,
+        "LS": 9.740862846374512,
+        "HD": 9.757328987121582,
+        "LD": 9.832427978515625
+      },
+      "lrs": {
+        "HS": 6.622516556291391e-06,
+        "LS": 6.622516556291391e-06,
+        "HD": 6.622516556291391e-06,
+        "LD": 6.622516556291391e-06
+      },
+      "batch_words": {
+        "HS": 563,
+        "LS": 563,
+        "HD": 563,
+        "LD": 563
+      },
+      "masked_tokens": {
+        "HS": 120,
+        "LS": 110,
+        "HD": 123,
+        "LD": 121
+      },
+      "candidate_tokens": {
+        "HS": 799,
+        "LS": 753,
+        "HD": 802,
+        "LD": 763
+      },
+      "effective_mask_rates": {
+        "HS": 0.150188,
+        "LS": 0.146082,
+        "HD": 0.153367,
+        "LD": 0.158585
+      },
+      "all_finite": {
+        "HS": true,
+        "LS": true,
+        "HD": true,
+        "LD": true
+      },
+      "lr_parity": true
+    },
+    {
+      "step": 2,
+      "losses": {
+        "HS": 9.763880729675293,
+        "LS": 9.781519889831543,
+        "HD": 9.754597663879395,
+        "LD": 9.783050537109375
+      },
+      "lrs": {
+        "HS": 1.3245033112582782e-05,
+        "LS": 1.3245033112582782e-05,
+        "HD": 1.3245033112582782e-05,
+        "LD": 1.3245033112582782e-05
+      },
+      "batch_words": {
+        "HS": 604,
+        "LS": 604,
+        "HD": 604,
+        "LD": 604
+      },
+      "masked_tokens": {
+        "HS": 119,
+        "LS": 135,
+        "HD": 130,
+        "LD": 120
+      },
+      "candidate_tokens": {
+        "HS": 834,
+        "LS": 808,
+        "HD": 842,
+        "LD": 814
+      },
+      "effective_mask_rates": {
+        "HS": 0.142686,
+        "LS": 0.167079,
+        "HD": 0.154394,
+        "LD": 0.14742
+      },
+      "all_finite": {
+        "HS": true,
+        "LS": true,
+        "HD": true,
+        "LD": true
+      },
+      "lr_parity": true
+    },
+    {
+      "step": 3,
+      "losses": {
+        "HS": 9.807605743408203,
+        "LS": 9.812556266784668,
+        "HD": 9.765483856201172,
+        "LD": 9.813552856445312
+      },
+      "lrs": {
+        "HS": 1.9867549668874173e-05,
+        "LS": 1.9867549668874173e-05,
+        "HD": 1.9867549668874173e-05,
+        "LD": 1.9867549668874173e-05
+      },
+      "batch_words": {
+        "HS": 548,
+        "LS": 548,
+        "HD": 548,
+        "LD": 548
+      },
+      "masked_tokens": {
+        "HS": 113,
+        "LS": 92,
+        "HD": 109,
+        "LD": 103
+      },
+      "candidate_tokens": {
+        "HS": 802,
+        "LS": 777,
+        "HD": 780,
+        "LD": 749
+      },
+      "effective_mask_rates": {
+        "HS": 0.140898,
+        "LS": 0.118404,
+        "HD": 0.139744,
+        "LD": 0.137517
+      },
+      "all_finite": {
+        "HS": true,
+        "LS": true,
+        "HD": true,
+        "LD": true
+      },
+      "lr_parity": true
+    }
+  ],
+  "per_arm_details": {
+    "HS": {
+      "init_sha256": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "param_sha256_after": "88e9ff35decedf274e0440e7eb3fa7150976f9b4271727b7a91ee7e8a2227c8b",
+      "steps": [
+        {
+          "step": 1,
+          "loss": 9.769025802612305,
+          "finite_loss": true,
+          "lr": 6.622516556291391e-06,
+          "batch_words": 563,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 120,
+          "candidate_tokens": 799,
+          "selected_groups": 82,
+          "total_groups": 563,
+          "effective_mask_rate": 0.150188,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03658379176325872,
+          "max_grad_norm": 0.55567866563797,
+          "all_finite_grads": true
+        },
+        {
+          "step": 2,
+          "loss": 9.763880729675293,
+          "finite_loss": true,
+          "lr": 1.3245033112582782e-05,
+          "batch_words": 604,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 119,
+          "candidate_tokens": 834,
+          "selected_groups": 92,
+          "total_groups": 604,
+          "effective_mask_rate": 0.142686,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03760390452920408,
+          "max_grad_norm": 0.5478202104568481,
+          "all_finite_grads": true
+        },
+        {
+          "step": 3,
+          "loss": 9.807605743408203,
+          "finite_loss": true,
+          "lr": 1.9867549668874173e-05,
+          "batch_words": 548,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 113,
+          "candidate_tokens": 802,
+          "selected_groups": 70,
+          "total_groups": 548,
+          "effective_mask_rate": 0.140898,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03780295558040742,
+          "max_grad_norm": 0.545259952545166,
+          "all_finite_grads": true
+        }
+      ]
+    },
+    "LS": {
+      "init_sha256": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "param_sha256_after": "cae287d97110129347d8fc364d1f8ee7dbaab10e0a9592efe89ef777cee23617",
+      "steps": [
+        {
+          "step": 1,
+          "loss": 9.740862846374512,
+          "finite_loss": true,
+          "lr": 6.622516556291391e-06,
+          "batch_words": 563,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 110,
+          "candidate_tokens": 753,
+          "selected_groups": 82,
+          "total_groups": 563,
+          "effective_mask_rate": 0.146082,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03691535331951008,
+          "max_grad_norm": 0.5387022495269775,
+          "all_finite_grads": true
+        },
+        {
+          "step": 2,
+          "loss": 9.781519889831543,
+          "finite_loss": true,
+          "lr": 1.3245033112582782e-05,
+          "batch_words": 604,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 135,
+          "candidate_tokens": 808,
+          "selected_groups": 93,
+          "total_groups": 604,
+          "effective_mask_rate": 0.167079,
+          "finite_logits": true,
+          "mean_grad_norm": 0.037785585870817824,
+          "max_grad_norm": 0.5459212064743042,
+          "all_finite_grads": true
+        },
+        {
+          "step": 3,
+          "loss": 9.812556266784668,
+          "finite_loss": true,
+          "lr": 1.9867549668874173e-05,
+          "batch_words": 548,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 92,
+          "candidate_tokens": 777,
+          "selected_groups": 70,
+          "total_groups": 548,
+          "effective_mask_rate": 0.118404,
+          "finite_logits": true,
+          "mean_grad_norm": 0.036877990384057875,
+          "max_grad_norm": 0.547690749168396,
+          "all_finite_grads": true
+        }
+      ]
+    },
+    "HD": {
+      "init_sha256": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "param_sha256_after": "94a04ca51504b259fa4cf30f404a60000dbf727ebff09da0386285e165be0a2e",
+      "steps": [
+        {
+          "step": 1,
+          "loss": 9.757328987121582,
+          "finite_loss": true,
+          "lr": 6.622516556291391e-06,
+          "batch_words": 563,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 123,
+          "candidate_tokens": 802,
+          "selected_groups": 82,
+          "total_groups": 563,
+          "effective_mask_rate": 0.153367,
+          "finite_logits": true,
+          "mean_grad_norm": 0.036571098400502274,
+          "max_grad_norm": 0.5514329075813293,
+          "all_finite_grads": true
+        },
+        {
+          "step": 2,
+          "loss": 9.754597663879395,
+          "finite_loss": true,
+          "lr": 1.3245033112582782e-05,
+          "batch_words": 604,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 130,
+          "candidate_tokens": 842,
+          "selected_groups": 92,
+          "total_groups": 604,
+          "effective_mask_rate": 0.154394,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03708492344785767,
+          "max_grad_norm": 0.5582420825958252,
+          "all_finite_grads": true
+        },
+        {
+          "step": 3,
+          "loss": 9.765483856201172,
+          "finite_loss": true,
+          "lr": 1.9867549668874173e-05,
+          "batch_words": 548,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 109,
+          "candidate_tokens": 780,
+          "selected_groups": 71,
+          "total_groups": 548,
+          "effective_mask_rate": 0.139744,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03722223508705716,
+          "max_grad_norm": 0.5511233806610107,
+          "all_finite_grads": true
+        }
+      ]
+    },
+    "LD": {
+      "init_sha256": "5397c302c18ee1a9a04542b074fa5bd050764b2dda155da8d23a3d170fd4d977",
+      "param_sha256_after": "0a83dda0ea9c77fee84eb1d5174bf9e506d1e1bbf6ca2f055c56588f54c336ca",
+      "steps": [
+        {
+          "step": 1,
+          "loss": 9.832427978515625,
+          "finite_loss": true,
+          "lr": 6.622516556291391e-06,
+          "batch_words": 563,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 121,
+          "candidate_tokens": 763,
+          "selected_groups": 82,
+          "total_groups": 563,
+          "effective_mask_rate": 0.158585,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03727703100952564,
+          "max_grad_norm": 0.5443481206893921,
+          "all_finite_grads": true
+        },
+        {
+          "step": 2,
+          "loss": 9.783050537109375,
+          "finite_loss": true,
+          "lr": 1.3245033112582782e-05,
+          "batch_words": 604,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 120,
+          "candidate_tokens": 814,
+          "selected_groups": 92,
+          "total_groups": 604,
+          "effective_mask_rate": 0.14742,
+          "finite_logits": true,
+          "mean_grad_norm": 0.037589908169462435,
+          "max_grad_norm": 0.5417411923408508,
+          "all_finite_grads": true
+        },
+        {
+          "step": 3,
+          "loss": 9.813552856445312,
+          "finite_loss": true,
+          "lr": 1.9867549668874173e-05,
+          "batch_words": 548,
+          "batch_rows": 4,
+          "input_shape": [
+            4,
+            256
+          ],
+          "masked_tokens": 103,
+          "candidate_tokens": 749,
+          "selected_groups": 71,
+          "total_groups": 548,
+          "effective_mask_rate": 0.137517,
+          "finite_logits": true,
+          "mean_grad_norm": 0.03744210380601696,
+          "max_grad_norm": 0.5459152460098267,
+          "all_finite_grads": true
+        }
+      ]
+    }
+  },
+  "verdict": {
+    "init_identical": true,
+    "lr_schedule_identical": true,
+    "all_finite": true,
+    "word_counts_identical": true,
+    "params_diverge_with_different_text": true,
+    "ready_for_training": true
+  },
+  "elapsed_sec": 8.2
+}

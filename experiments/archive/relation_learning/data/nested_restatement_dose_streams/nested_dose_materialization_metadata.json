@@ -1,0 +1,495 @@
+{
+  "status": "NESTED_RESTATEMENT_DOSE_MATERIALIZED",
+  "created_utc": "2026-09-07T00:24:59Z",
+  "base_stream": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "base_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+  "write_stream": true,
+  "tokenizer": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "max_tokens_no_special_for_replacement_rows": 256,
+  "shard1_accepted": "experiments/archive/relation_learning/data/dose_arm_validated/accepted_dose_arm_pairs_shard1.jsonl",
+  "shard0_accepted": "experiments/archive/relation_learning/data/dose_arm_validated/accepted_dose_arm_pairs_shard0.jsonl",
+  "shard1_pairs": 10377,
+  "shard1_pair_words": 489669,
+  "shard0_pairs": 10482,
+  "shard0_pair_words": 498109,
+  "selection_seed": 59000,
+  "targets": {
+    "dose21_added_pair_words_per_10M": 443200,
+    "dose25_added_pair_words_per_10M": 843200,
+    "dose25_topup_pair_words_from_shard0_per_10M": 400000,
+    "inherited_pair_words_per_10M": 1656800,
+    "dose21_total_pair_fraction": 0.21,
+    "dose25_total_pair_fraction": 0.25
+  },
+  "dose21_selection": {
+    "source": "validated shard1 only",
+    "selected_pairs": 9385,
+    "selected_pair_words": 443200,
+    "selected_sha256_virtual": "49d0d9b6222f6d82067491afc020a8904c066f8a547aaa5c75b150eb4a077754",
+    "packed_rows_per_pass": 3326,
+    "pair_word_stats": {
+      "n": 9385,
+      "min": 18.0,
+      "mean": 47.2243,
+      "median": 43.0,
+      "p95": 82.0,
+      "max": 115.0
+    },
+    "pair_source": {
+      "counts": {
+        "open_subtitles": 1074,
+        "gutenberg": 3653,
+        "childes": 2149,
+        "bnc_spoken": 1074,
+        "simple_wiki": 1390,
+        "switchboard": 45
+      },
+      "words": {
+        "open_subtitles": 43634,
+        "gutenberg": 203977,
+        "childes": 73312,
+        "bnc_spoken": 56186,
+        "simple_wiki": 63825,
+        "switchboard": 2266
+      }
+    },
+    "packed_pair_word_stats": {
+      "n": 3326,
+      "min": 55.0,
+      "mean": 133.2532,
+      "median": 136.0,
+      "p95": 158.0,
+      "max": 160.0
+    },
+    "packed_pair_token_stats": {
+      "n": 3326,
+      "min": 71.0,
+      "mean": 176.8319,
+      "median": 180.0,
+      "p95": 219.0,
+      "max": 254.0
+    },
+    "outputs": {
+      "selected_pairs": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21_selected_pairs.jsonl",
+      "packed_pair_rows": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21_packed_pair_rows.jsonl"
+    }
+  },
+  "dose25_selection": {
+    "source": "strict superset: dose21 selected pairs plus exact topup from validated shard0",
+    "selected_pairs": 17804,
+    "selected_pair_words": 843200,
+    "topup_pairs_from_shard0": 8419,
+    "topup_pair_words_from_shard0": 400000,
+    "selected_sha256_virtual": "e7201ace98ee610347b413f7079421899ddf9d9d05058de0e30cdafd25217e85",
+    "packed_core_rows_per_pass": 3326,
+    "packed_topup_rows_per_pass": 2995,
+    "topup_pair_word_stats": {
+      "n": 8419,
+      "min": 19.0,
+      "mean": 47.5116,
+      "median": 43.0,
+      "p95": 83.0,
+      "max": 112.0
+    },
+    "topup_pair_source": {
+      "counts": {
+        "open_subtitles": 931,
+        "gutenberg": 3333,
+        "childes": 1962,
+        "bnc_spoken": 893,
+        "simple_wiki": 1259,
+        "switchboard": 41
+      },
+      "words": {
+        "open_subtitles": 37352,
+        "gutenberg": 188955,
+        "childes": 67627,
+        "bnc_spoken": 46189,
+        "simple_wiki": 57873,
+        "switchboard": 2004
+      }
+    },
+    "packed_topup_pair_word_stats": {
+      "n": 2995,
+      "min": 42.0,
+      "mean": 133.5559,
+      "median": 137.0,
+      "p95": 158.0,
+      "max": 160.0
+    },
+    "packed_topup_pair_token_stats": {
+      "n": 2995,
+      "min": 45.0,
+      "mean": 176.9566,
+      "median": 180.0,
+      "p95": 220.0,
+      "max": 255.0
+    },
+    "outputs": {
+      "topup_selected_pairs": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_topup_selected_pairs_from_shard0.jsonl",
+      "selected_pairs_superset": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_selected_pairs_superset.jsonl",
+      "topup_packed_pair_rows": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_topup_packed_pair_rows.jsonl"
+    }
+  },
+  "nesting_checks": {
+    "content_superset": true,
+    "row_position_superset": true,
+    "dose21_core_rows_identical_in_dose25_metadata": true
+  },
+  "dose21_materialization": {
+    "mode": "dose21",
+    "write_stream": true,
+    "stream_path": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21/dose21_compact_view_reinvest_100M.jsonl",
+    "stream_sha256": "aea445d837fab5785db925489b5173003e4a2d076d89c6dc7f6d78b803e3966e",
+    "row_meta_path": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21/dose21_dose_rows_meta.jsonl",
+    "row_meta_sha256": "7d136b17740f19c7d8653db5da18ff63a80d2da6282569c9912384541e495cd6",
+    "pass_stats_path": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21/dose21_pass_stats.jsonl",
+    "pass_stats_sha256": "4bb2193d6920c39cf1be7f96fe178959cfec2a1e0a5c2bdee72622c51158f9bb",
+    "passes": 10,
+    "rows_per_pass": 64740,
+    "total_words": 100000000,
+    "output_source_words": {
+      "childes": 24019520,
+      "qwen_pair_packed": 16568000,
+      "simple_wiki": 9871520,
+      "open_subtitles": 17064320,
+      "bnc_spoken": 5373440,
+      "dose21_qwen_pair_packed": 5321600,
+      "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+      "gutenberg": 17347200,
+      "switchboard": 199200,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+    },
+    "replacement_rows_per_pass": 3326,
+    "added_pair_words_per_pass": 443200,
+    "topup_words_per_pass": 88960,
+    "pair_segment_rows_over_256_total": 0,
+    "full_rows_over_256_total": 684,
+    "pair_segment_token_stats_first_pass": {
+      "n": 3326,
+      "min": 71.0,
+      "mean": 176.8319,
+      "median": 180.0,
+      "p95": 219.0,
+      "max": 254.0
+    },
+    "full_row_token_stats_first_pass": {
+      "n": 3326,
+      "min": 179.0,
+      "mean": 216.9997,
+      "median": 215.0,
+      "p95": 247.0,
+      "max": 322.0
+    },
+    "pass_stats_preview": [
+      {
+        "pass": 0,
+        "mode": "dose21",
+        "before_words": 10000000,
+        "after_words": 10000000,
+        "candidate_filler_rows_160w": 49498,
+        "dose21_replaced_rows": 3326,
+        "dose25_extra_replaced_rows": 0,
+        "replaced_rows": 3326,
+        "added_pair_words": 443200,
+        "topup_words": 88960,
+        "displaced_source_words": {
+          "gutenberg": 118720,
+          "bnc_spoken": 37920,
+          "open_subtitles": 128640,
+          "simple_wiki": 72320,
+          "childes": 173760,
+          "switchboard": 800
+        },
+        "topup_source_words": {
+          "gutenberg": 19864,
+          "bnc_spoken": 6089,
+          "open_subtitles": 21055,
+          "simple_wiki": 12854,
+          "childes": 29011,
+          "switchboard": 87
+        },
+        "pair_segment_token_stats": {
+          "n": 3326,
+          "min": 71.0,
+          "mean": 176.8319,
+          "median": 180.0,
+          "p95": 219.0,
+          "max": 254.0
+        },
+        "full_row_token_stats": {
+          "n": 3326,
+          "min": 179.0,
+          "mean": 216.9997,
+          "median": 215.0,
+          "p95": 247.0,
+          "max": 322.0
+        },
+        "pair_segment_rows_over_256": 0,
+        "full_rows_over_256": 76
+      },
+      {
+        "pass": 1,
+        "mode": "dose21",
+        "before_words": 10000000,
+        "after_words": 10000000,
+        "candidate_filler_rows_160w": 49498,
+        "dose21_replaced_rows": 3326,
+        "dose25_extra_replaced_rows": 0,
+        "replaced_rows": 3326,
+        "added_pair_words": 443200,
+        "topup_words": 88960,
+        "displaced_source_words": {
+          "childes": 178400,
+          "open_subtitles": 111520,
+          "gutenberg": 130080,
+          "bnc_spoken": 37280,
+          "simple_wiki": 73760,
+          "switchboard": 1120
+        },
+        "topup_source_words": {
+          "childes": 29725,
+          "open_subtitles": 18682,
+          "gutenberg": 21538,
+          "bnc_spoken": 6650,
+          "simple_wiki": 12174,
+          "switchboard": 191
+        },
+        "pair_segment_token_stats": {
+          "n": 3326,
+          "min": 71.0,
+          "mean": 176.8319,
+          "median": 180.0,
+          "p95": 219.0,
+          "max": 254.0
+        },
+        "full_row_token_stats": {
+          "n": 3326,
+          "min": 178.0,
+          "mean": 216.7345,
+          "median": 215.0,
+          "p95": 245.0,
+          "max": 355.0
+        },
+        "pair_segment_rows_over_256": 0,
+        "full_rows_over_256": 65
+      }
+    ]
+  },
+  "dose25_materialization": {
+    "mode": "dose25",
+    "write_stream": true,
+    "stream_path": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25/dose25_compact_view_reinvest_100M.jsonl",
+    "stream_sha256": "c943e0a47b84bc2fbea562133e7b31a621fdab71984ad36684a227e22c7ab797",
+    "row_meta_path": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25/dose25_dose_rows_meta.jsonl",
+    "row_meta_sha256": "202eed543afc686c8ccd4761f22b0fe7c79e731ab5c3aa56e8c407dae0d12394",
+    "pass_stats_path": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25/dose25_pass_stats.jsonl",
+    "pass_stats_sha256": "b47291a4e8c6578260a4e2de75d3f5c54bed8b4d22606dae1f1f86575d726f61",
+    "passes": 10,
+    "rows_per_pass": 64740,
+    "total_words": 100000000,
+    "output_source_words": {
+      "childes": 22444160,
+      "qwen_pair_packed": 16568000,
+      "simple_wiki": 9241120,
+      "open_subtitles": 15979200,
+      "bnc_spoken": 5024960,
+      "dose21_qwen_pair_packed": 5321600,
+      "dose25_extra_qwen_pair_packed": 4792000,
+      "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+      "gutenberg": 16208480,
+      "switchboard": 185280,
+      "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+    },
+    "replacement_rows_per_pass": 6321,
+    "added_pair_words_per_pass": 843200,
+    "topup_words_per_pass": 168160,
+    "pair_segment_rows_over_256_total": 0,
+    "full_rows_over_256_total": 1248,
+    "pair_segment_token_stats_first_pass": {
+      "n": 6321,
+      "min": 45.0,
+      "mean": 176.891,
+      "median": 180.0,
+      "p95": 220.0,
+      "max": 255.0
+    },
+    "full_row_token_stats_first_pass": {
+      "n": 6321,
+      "min": 176.0,
+      "mean": 216.7352,
+      "median": 215.0,
+      "p95": 246.0,
+      "max": 338.0
+    },
+    "pass_stats_preview": [
+      {
+        "pass": 0,
+        "mode": "dose25",
+        "before_words": 10000000,
+        "after_words": 10000000,
+        "candidate_filler_rows_160w": 49498,
+        "dose21_replaced_rows": 3326,
+        "dose25_extra_replaced_rows": 2995,
+        "replaced_rows": 6321,
+        "added_pair_words": 843200,
+        "topup_words": 168160,
+        "displaced_source_words": {
+          "gutenberg": 232320,
+          "bnc_spoken": 71360,
+          "open_subtitles": 237440,
+          "simple_wiki": 136000,
+          "childes": 332160,
+          "switchboard": 2080
+        },
+        "topup_source_words": {
+          "gutenberg": 38772,
+          "bnc_spoken": 11718,
+          "open_subtitles": 39036,
+          "simple_wiki": 22678,
+          "childes": 55555,
+          "switchboard": 401
+        },
+        "pair_segment_token_stats": {
+          "n": 6321,
+          "min": 45.0,
+          "mean": 176.891,
+          "median": 180.0,
+          "p95": 220.0,
+          "max": 255.0
+        },
+        "full_row_token_stats": {
+          "n": 6321,
+          "min": 176.0,
+          "mean": 216.7352,
+          "median": 215.0,
+          "p95": 246.0,
+          "max": 338.0
+        },
+        "pair_segment_rows_over_256": 0,
+        "full_rows_over_256": 131
+      },
+      {
+        "pass": 1,
+        "mode": "dose25",
+        "before_words": 10000000,
+        "after_words": 10000000,
+        "candidate_filler_rows_160w": 49498,
+        "dose21_replaced_rows": 3326,
+        "dose25_extra_replaced_rows": 2995,
+        "replaced_rows": 6321,
+        "added_pair_words": 843200,
+        "topup_words": 168160,
+        "displaced_source_words": {
+          "childes": 335840,
+          "open_subtitles": 219520,
+          "gutenberg": 247680,
+          "bnc_spoken": 68480,
+          "simple_wiki": 137120,
+          "switchboard": 2720
+        },
+        "topup_source_words": {
+          "childes": 55936,
+          "open_subtitles": 36685,
+          "gutenberg": 40464,
+          "bnc_spoken": 12029,
+          "simple_wiki": 22535,
+          "switchboard": 511
+        },
+        "pair_segment_token_stats": {
+          "n": 6321,
+          "min": 45.0,
+          "mean": 176.891,
+          "median": 180.0,
+          "p95": 220.0,
+          "max": 255.0
+        },
+        "full_row_token_stats": {
+          "n": 6321,
+          "min": 172.0,
+          "mean": 216.6224,
+          "median": 214.0,
+          "p95": 245.0,
+          "max": 411.0
+        },
+        "pair_segment_rows_over_256": 0,
+        "full_rows_over_256": 114
+      }
+    ]
+  },
+  "artifact_sha256": {
+    "dose21_selected_pairs": "8caf660aecca5354851e443c1103516c70c1ccd370caeefcc24c9cf18709985c",
+    "dose25_topup_selected_pairs_from_shard0": "96ad50494c75555b314c7eeed49ab72f9242423af8d8038fe7a84fbd7d322999",
+    "dose25_selected_pairs_superset": "0c1de7044d5a38f9a8fce4703118833ab48a92fb9130bb385b7f15da4e015514",
+    "dose21_packed_pair_rows": "4daa94ea6ad88fb1e8f7be57bcca0b3f9dc8a549c64cc7a2a90a00d6924d0945",
+    "dose25_topup_packed_pair_rows": "ace3b9b725df7c071c0e7aeb511c60923f628d6854839cb1758df3b6c8349032"
+  },
+  "scientific_note": "The three-point compact-view-reinvest substrate is nested and pair-visible: 0 added pair words is the inherited shared slow-adapter training base, dose21 adds a shard1-only subset, and dose25 preserves those rows and adds shard0 topup rows. Pair-only segments are at the beginning of replacement rows and tokenize to <=256, so the added relation practice is not truncated; full-row >256 counts record possible truncation of appended filler top-up.",
+  "elapsed_sec": 234.67,
+  "probe_leakage_audit": {
+    "status": "DOSE_PROBE_LEAKAGE_AUDIT",
+    "created_utc": "2026-09-07T00:42:13Z",
+    "elapsed_sec": 121.39,
+    "query_meta": {
+      "dose21_pairs": 9385,
+      "dose25_topup_pairs": 8419,
+      "dose25_superset_pairs": 17804,
+      "selected_texts_audited": 35608
+    },
+    "reference_meta": {
+      "heldout6992_rows": 6992,
+      "heldout2647_rows": 2647,
+      "compact_probe_pairs": 1626,
+      "wiki_pairs": 1200,
+      "reference_texts": 225109,
+      "reference_texts_by_screen": {
+        "heldout6992": 158295,
+        "heldout2647": 59962,
+        "compact_probe1626": 3252,
+        "wikilarge_probe1200": 3600
+      }
+    },
+    "thresholds": {
+      "jaccard_threshold": 0.8,
+      "heldout_query_containment_threshold": 0.95
+    },
+    "blocking_hit_count": 35341,
+    "blocking_pair_count": 2330,
+    "affected_dose21_pair_count": 1209,
+    "affected_dose25_topup_pair_count": 1121,
+    "blocking_hits_by_screen": {
+      "heldout2647": 9597,
+      "heldout6992": 25744
+    },
+    "blocking_hits_by_type": {
+      "exact_norm": 3806,
+      "exact_token_subsequence": 11101,
+      "heldout_high_query_containment": 14273,
+      "high_jaccard": 6161
+    },
+    "blocking_pair_ids_to_exclude": "experiments/archive/relation_learning/data/dose_leakage_audit/blocking_pair_ids_to_exclude.txt",
+    "outputs": {
+      "blocking_hits_csv": "experiments/archive/relation_learning/data/dose_leakage_audit/blocking_hits.csv",
+      "blocking_hits_jsonl": "experiments/archive/relation_learning/data/dose_leakage_audit/blocking_hits.jsonl"
+    },
+    "inputs": {
+      "dose21_selected": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21_selected_pairs.jsonl",
+      "dose25_superset": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_selected_pairs_superset.jsonl",
+      "dose25_topup": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_topup_selected_pairs_from_shard0.jsonl",
+      "heldout6992": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/heldout_cleanqwen_rows.jsonl",
+      "heldout2647": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+      "compact_all_accepted": "experiments/archive/frontier_consolidation/data/expansion_analysis/combined_all_accepted_pairs.jsonl",
+      "compact_selected_max_excluded": "experiments/archive/frontier_consolidation/data/dose_distribution_select/selected_matched_max_pairs.jsonl",
+      "wiki_pairs": "experiments/archive/relation_learning/analysis/wikipedia_simplification_restatement_probe/wikipedia_simplification_pairs.jsonl"
+    },
+    "input_sha256": {
+      "dose21_selected": "8caf660aecca5354851e443c1103516c70c1ccd370caeefcc24c9cf18709985c",
+      "dose25_superset": "0c1de7044d5a38f9a8fce4703118833ab48a92fb9130bb385b7f15da4e015514",
+      "dose25_topup": "96ad50494c75555b314c7eeed49ab72f9242423af8d8038fe7a84fbd7d322999",
+      "heldout6992": "e1a28130141d52aaca34d752864cddc509bdc5a44a99994c44ca813db630fb0c",
+      "heldout2647": "5b56a820783963a3da33785b8dd7a7478c95e08f72d27ec4af2d3947f1d67c6d",
+      "wiki_pairs": "71d7399c02b9534fa342dbdd9f0f63fe2ac89ea1b7870ada21062dd53d6ad867"
+    },
+    "scientific_interpretation": "blocking_hit_count == 0 means no selected dose source/rewrite matched the primary heldout/probe texts under exact normalized, heldout token-subsequence, high-Jaccard, or high-query-containment screens. A positive count means the selected pair IDs should be excluded, dose streams re-materialized, and the audit rerun before training."
+  }
+}

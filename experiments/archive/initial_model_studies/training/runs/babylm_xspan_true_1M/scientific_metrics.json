@@ -1,0 +1,142 @@
+{
+  "variant": "masked_wwm_primary_xspan",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "model_type": "deberta_v2",
+  "parameter_count": 34467424,
+  "embedding_parameter_count": 7864320,
+  "non_embedding_parameter_count": 26603104,
+  "vocab_size": 16384,
+  "tokenizer_label": "baseline16k",
+  "tokenizer_path": "",
+  "wwm_word_exposure": 1000000,
+  "xspan_word_exposure": 18928,
+  "total_counted_word_exposure": 1018928,
+  "xspan_rho": 0.15,
+  "xspan_context": "true_s1",
+  "xspan_jsonl": "experiments/archive/initial_model_studies/data/xspan_revision_118/relational_xspan_compact_v4_from_v3_seed117_target200000_actual.jsonl",
+  "loss_first": 9.777398109436035,
+  "loss_last": 6.468961715698242,
+  "loss_wwm_first": 9.776864051818848,
+  "loss_wwm_last": 6.151599407196045,
+  "loss_xspan_first": 9.780423164367676,
+  "loss_xspan_last": 8.26734733581543,
+  "xspan_eval": {
+    "true_s1": {
+      "loss_per_token": 8.106474855317915,
+      "target_tokens": 1289,
+      "valid_rows": 212,
+      "batches": 7
+    },
+    "wrong_s1": {
+      "loss_per_token": 8.109861136407607,
+      "target_tokens": 1289,
+      "valid_rows": 212,
+      "batches": 7
+    },
+    "no_s1": {
+      "loss_per_token": 8.146750405372993,
+      "target_tokens": 1289,
+      "valid_rows": 212,
+      "batches": 7
+    },
+    "delta_logprob_true_minus_wrong": 0.0033862810896927442,
+    "delta_logprob_true_minus_no": 0.04027555005507821
+  },
+  "xspan_target_tokens_total": 4926,
+  "xspan_valid_rows_total": 800,
+  "example_pool_words_actual": 1000000,
+  "selected_for_training_words": 1000000,
+  "lr_schedule_total_steps": 25,
+  "actual_training_steps": 25,
+  "mask_mode": "wwm",
+  "mask_prob": 0.15,
+  "masked_tokens_total": 199626,
+  "masked_tokens_mean_per_step": 7985.04,
+  "masked_tokens_per_wwm_whitespace_word": 0.199626,
+  "unique_training_seq_lengths": [
+    256
+  ],
+  "tokenization_coupling_summary": {
+    "num_examples_summarized": 6250,
+    "total_words_summarized": 1000000,
+    "total_untruncated_tokens": 1363786,
+    "total_kept_tokens_at_max_seq_length": 1335322,
+    "total_word_groups_kept_at_max_seq_length": 984259,
+    "mean_untruncated_tokens_per_example": 218.20576,
+    "mean_kept_tokens_per_example": 213.65152,
+    "mean_word_groups_kept_per_example": 157.48144,
+    "untruncated_tokens_per_whitespace_word": 1.363786,
+    "kept_tokens_per_whitespace_word": 1.335322,
+    "word_groups_kept_per_whitespace_word": 0.984259,
+    "expected_wwm_selected_word_groups_at_mask_prob_0p15": 147638.85,
+    "expected_wwm_predicted_tokens_at_mask_prob_0p15_if_selected_groups_cover_tokens": 200298.3,
+    "truncated_examples_at_max_seq_length": 1255,
+    "truncated_example_fraction": 0.2008,
+    "total_tokens_lost_to_truncation": 28464,
+    "max_untruncated_tokens": 367,
+    "max_kept_tokens": 256,
+    "untruncated_length_histogram": {
+      "<=64": 0,
+      "65-128": 0,
+      "129-256": 4995,
+      ">256": 1255
+    }
+  },
+  "seq_length": 256,
+  "max_seq_length": 256,
+  "max_position_embeddings": 512,
+  "hidden_size": 480,
+  "n_layer": 8,
+  "n_head": 8,
+  "ffn_mult": 4,
+  "position_buckets": 256,
+  "max_relative_positions": 256,
+  "deberta_relative_attention": "true",
+  "deberta_pos_att_type": "p2c,c2p",
+  "seed": 42,
+  "extra_init_seed": 456,
+  "train_rng_seed": 789,
+  "saved_checkpoints": [
+    {
+      "name": "chck_1M",
+      "target_wwm_word_exposure": 1000000,
+      "actual_cumulative_wwm_word_exposure": 1000000,
+      "actual_cumulative_total_counted_words": 1018928,
+      "path": "experiments/archive/initial_model_studies/training/runs/babylm_xspan_true_1M/hf_model/chck_1M"
+    }
+  ],
+  "source_words_consumed": {
+    "epoch1::bnc_spoken.train.txt": 762080,
+    "epoch1::childes.train.txt": 237920
+  },
+  "xspan_train_meta": {
+    "path": "experiments/archive/initial_model_studies/data/xspan_revision_118/relational_xspan_compact_v4_from_v3_seed117_target200000_actual.jsonl",
+    "split_requested": "train",
+    "context": "true_s1",
+    "rows_loaded": 4023,
+    "split_counts_all_seen": {
+      "heldout": 212,
+      "train": 4023
+    },
+    "type_counts_loaded": {
+      "location_spatial_phrase": 1670,
+      "action_object_result_phrase": 483,
+      "definition_property_complement": 1080,
+      "semantic_content_continuation": 790
+    },
+    "counted_words_once": 96668,
+    "max_rows": 0
+  },
+  "data_source_type": "official_corpus_fullcycle_with_xspan_primary_objective",
+  "selection_epochs": [
+    {
+      "epoch_index": 1,
+      "shuffle_seed": 42,
+      "words_added": 1000000,
+      "examples_added": 6250
+    }
+  ],
+  "unique_official_pool_words": 1000000,
+  "total_official_corpus_words": 10000000
+}

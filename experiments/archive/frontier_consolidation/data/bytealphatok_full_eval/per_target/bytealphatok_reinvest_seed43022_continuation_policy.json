@@ -1,0 +1,104 @@
+{
+  "status": "COMPLIANT_EVAL_CONTINUATION_POLICY",
+  "created_utc": "2026-08-30T02:34:41Z",
+  "source": "experiments/archive/frontier_consolidation/data/bytealphatok_full_eval/per_target/bytealphatok_reinvest_seed43022.json",
+  "target": "bytealphatok_reinvest_seed43022",
+  "family": "end_to_end_compliant_tokenizer_density_reinvestment",
+  "description": "compact_view_reinvest retrained from random weights with a 16k BPE tokenizer trained only on the same 10M Strict-Small pool used for its pretraining; submission-relevant end-to-end corpus-budget-valid endpoint if training/evaluation complete",
+  "budget_semantics": null,
+  "scores": {
+    "BLiMP": 66.33,
+    "Supplement": 59.28,
+    "EWoK": 49.84,
+    "Entity": 26.2,
+    "COMPS": 51.81,
+    "SuperGLUE": null,
+    "GlobalPIQA": 36.105000000000004,
+    "Reading": 7.595000000000001,
+    "AoA": null
+  },
+  "known_keys": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA",
+    "Reading"
+  ],
+  "missing_keys": [
+    "SuperGLUE",
+    "AoA"
+  ],
+  "policy": {
+    "strategist_rule": "For the submission-relevant reinvest endpoint, partial columns conserve compute but must not substitute for the full official result. Stop SuperGLUE/AoA/pristine collation only if completed columns plus favorable upper-bound unfinished columns cannot reach the decision target; otherwise complete the official surface.",
+    "decision_target_overall": 41.8,
+    "missing_upper_each": 100.0,
+    "hard_stop_remaining_evaluation": false,
+    "recommended_action": "continue_remaining_official_evaluation_for_submission_relevant_endpoint",
+    "reinvest_endpoint_detected": true,
+    "aoa_counting_rule": "AoA is counted only after official_aoa_done with row_count_values=[8005] and finite_surprisals=true; missing-checkpoint placeholders remain missing, not zero."
+  },
+  "bounds": {
+    "leader": {
+      "target_overall": 41.8,
+      "known_sum": 297.16,
+      "target_sum_to_exceed_or_equal": 376.2,
+      "missing_keys": [
+        "SuperGLUE",
+        "AoA"
+      ],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 200.0,
+      "hard_upper_overall_if_missing_at_upper": 55.24,
+      "lower_overall_if_missing_zero": 33.01777777777778,
+      "needed_sum_from_missing_to_equal_target": 79.03999999999996,
+      "needed_mean_missing_to_equal_target": 39.51999999999998,
+      "mathematically_can_reach_target_with_missing_upper": true,
+      "complete_overall_if_no_missing": null,
+      "required_superglue_plus_aoa_to_equal_target": 79.03999999999996,
+      "old_reference_superglue_plus_aoa": 71.03604952825312
+    },
+    "frozen_oldtokenizer_reference": {
+      "target_overall": 42.0331347900748,
+      "known_sum": 297.16,
+      "target_sum_to_exceed_or_equal": 378.29821311067315,
+      "missing_keys": [
+        "SuperGLUE",
+        "AoA"
+      ],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 200.0,
+      "hard_upper_overall_if_missing_at_upper": 55.24,
+      "lower_overall_if_missing_zero": 33.01777777777778,
+      "needed_sum_from_missing_to_equal_target": 81.13821311067312,
+      "needed_mean_missing_to_equal_target": 40.56910655533656,
+      "mathematically_can_reach_target_with_missing_upper": true,
+      "complete_overall_if_no_missing": null,
+      "required_superglue_plus_aoa_to_equal_target": 81.13821311067312,
+      "old_reference_superglue_plus_aoa": 71.03604952825312
+    },
+    "decision_target": {
+      "target_overall": 41.8,
+      "known_sum": 297.16,
+      "target_sum_to_exceed_or_equal": 376.2,
+      "missing_keys": [
+        "SuperGLUE",
+        "AoA"
+      ],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 200.0,
+      "hard_upper_overall_if_missing_at_upper": 55.24,
+      "lower_overall_if_missing_zero": 33.01777777777778,
+      "needed_sum_from_missing_to_equal_target": 79.03999999999996,
+      "needed_mean_missing_to_equal_target": 39.51999999999998,
+      "mathematically_can_reach_target_with_missing_upper": true,
+      "complete_overall_if_no_missing": null
+    }
+  },
+  "notes": [
+    "The frozen old-tokenizer 42.0331347900748 reference is scientifically important but not an end-to-end compliant Strict-Small submission because of tokenizer provenance.",
+    "A complete compliant reinvest endpoint above the visible leader can answer the submission question even if it does not improve the old-tokenizer reference.",
+    "Clean-Qwen fixed-tokenizer projections are scientific controls only, not independent submission-valid scores, because tokenizer fitting used the reinvest 10M pool."
+  ]
+}

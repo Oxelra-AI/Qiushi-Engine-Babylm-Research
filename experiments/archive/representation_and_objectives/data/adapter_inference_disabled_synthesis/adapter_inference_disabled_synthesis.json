@@ -1,0 +1,100 @@
+{
+  "status": "ADAPTER_INFERENCE_DISABLED_SYNTHESIS",
+  "a02_summary": "experiments/archive/frontier_consolidation/data/adapter_matched_horizon_eval/adapter_matched_horizon_summary.json",
+  "per_target": "experiments/archive/representation_and_objectives/data/adapter_inference_disabled_eval/per_target/adapter128_live20M_inference_disabled_proxy.json",
+  "cheap_columns": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA",
+    "Reading"
+  ],
+  "table": {
+    "or_disabled_training_20M": {
+      "scores": {
+        "BLiMP": 59.69,
+        "Supplement": 55.45,
+        "EWoK": 50.73,
+        "Entity": 18.65,
+        "COMPS": 50.26,
+        "GlobalPIQA": 34.195,
+        "Reading": 8.67
+      },
+      "cheap7": 39.66357142857143
+    },
+    "live_adapter_enabled_inference_20M": {
+      "scores": {
+        "BLiMP": 60.38,
+        "Supplement": 56.23,
+        "EWoK": 49.49,
+        "Entity": 18.65,
+        "COMPS": 50.44,
+        "GlobalPIQA": 32.225,
+        "Reading": 8.309999999999999
+      },
+      "cheap7": 39.38928571428571
+    },
+    "live_adapter_disabled_at_inference_20M": {
+      "scores": {
+        "BLiMP": 59.91,
+        "Supplement": 56.12,
+        "EWoK": 48.98,
+        "Entity": 18.74,
+        "COMPS": 50.24,
+        "GlobalPIQA": 34.165,
+        "Reading": 8.379999999999999
+      },
+      "cheap7": 39.504999999999995
+    }
+  },
+  "comparisons": {
+    "disabled_inference_vs_step35": {
+      "BLiMP": 0.21999999999999886,
+      "Supplement": 0.6699999999999946,
+      "EWoK": -1.75,
+      "Entity": 0.08999999999999986,
+      "COMPS": -0.01999999999999602,
+      "GlobalPIQA": -0.030000000000001137,
+      "Reading": -0.2900000000000009,
+      "cheap7": -0.15857142857143458
+    },
+    "live_enabled_vs_step35": {
+      "BLiMP": 0.6900000000000048,
+      "Supplement": 0.779999999999994,
+      "EWoK": -1.2399999999999949,
+      "Entity": 0.0,
+      "COMPS": 0.17999999999999972,
+      "GlobalPIQA": -1.9699999999999989,
+      "Reading": -0.3600000000000012,
+      "cheap7": -0.2742857142857176
+    },
+    "direct_adapter_output_effect_live_minus_disabled_inference": {
+      "BLiMP": 0.47000000000000597,
+      "Supplement": 0.10999999999999943,
+      "EWoK": 0.5100000000000051,
+      "Entity": -0.08999999999999986,
+      "COMPS": 0.19999999999999574,
+      "GlobalPIQA": -1.9399999999999977,
+      "Reading": -0.07000000000000028,
+      "cheap7": -0.115714285714283
+    },
+    "backbone_drift_effect_disabled_inference_minus_step35": {
+      "BLiMP": 0.21999999999999886,
+      "Supplement": 0.6699999999999946,
+      "EWoK": -1.75,
+      "Entity": 0.08999999999999986,
+      "COMPS": -0.01999999999999602,
+      "GlobalPIQA": -0.030000000000001137,
+      "Reading": -0.2900000000000009,
+      "cheap7": -0.15857142857143458
+    }
+  },
+  "interpretation": {
+    "globalpiqa": "Disabling the live adapter at inference recovers GlobalPIQA almost exactly to the research/disabled-training anchor (34.165 vs 34.195), so the direct adapter residual output caused nearly all of the live arm's GlobalPIQA damage.",
+    "ewok": "EWoK remains worse than both the research anchor and live adapter-enabled inference (48.98 vs 50.73 and 49.49), so the EWoK damage is mainly stock-backbone trajectory drift from joint adapter training, partly offset by direct adapter output.",
+    "broad_columns": "The direct adapter output contributes BLiMP/Supplement/COMPS gains but also the GlobalPIQA loss; turning it off leaves Supplement gain but cheap7 remains below the research anchor.",
+    "route": "Ordinary joint adapters are not promoted: the key repair is coupling control, not more width. Stop-gradient/frozen-reader designs must protect stock trajectory and control direct residual output, especially for GlobalPIQA."
+  }
+}

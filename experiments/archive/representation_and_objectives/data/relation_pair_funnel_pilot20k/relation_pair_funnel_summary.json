@@ -1,0 +1,1790 @@
+{
+  "status": "RELATION_PAIR_FUNNEL",
+  "created_utc": "2026-08-31T03:50:15Z",
+  "purpose": "Structural legal pair yield for two-context/two-target relation interaction objective before any model scoring or H100 training.",
+  "inputs": {
+    "labels_jsonl": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/pvdm_strict_tail_70M_100M_labels.jsonl",
+    "tail_jsonl": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/compact_tail_70M_100M.jsonl",
+    "tokenizer_path": "experiments/archive/representation_and_objectives/data/shared_tokenizer/shared_16k_tokenizer"
+  },
+  "parameters": {
+    "labels_jsonl": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/pvdm_strict_tail_70M_100M_labels.jsonl",
+    "tail_jsonl": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/compact_tail_70M_100M.jsonl",
+    "tokenizer_path": "experiments/archive/representation_and_objectives/data/shared_tokenizer/shared_16k_tokenizer",
+    "output_dir": "experiments/archive/representation_and_objectives/data/relation_pair_funnel_pilot20k",
+    "note_path": "research/notes/representation_and_objectives/relation_pair_funnel_pilot20k.md",
+    "max_rows": 20000,
+    "max_pairs": 0,
+    "max_target_token_len": 4,
+    "max_control_distance_abs_diff": 1,
+    "max_control_freq_bin_abs_diff": 1,
+    "max_pair_target_freq_delta": 0,
+    "max_pair_distance_delta": 1,
+    "max_pairs_per_target": 32,
+    "candidate_scan_per_level": 512,
+    "sample_pairs": 40,
+    "strict_own_context_leak": true,
+    "cross_context_leak_filter": true,
+    "allow_same_source": false,
+    "wwm_group_mask_prob": 0.15,
+    "seed": 43023
+  },
+  "load_summary": {
+    "counts": {
+      "rows_seen": 20000,
+      "raw_events": 65188
+    },
+    "kept_events": 16100,
+    "rejects": {
+      "control_distance_mismatch": 21910,
+      "control_distance_mismatch::physical_change": 9149,
+      "control_distance_mismatch::negation": 4648,
+      "target_leaks_in_own_context": 25121,
+      "target_leaks_in_own_context::negation": 4724,
+      "target_leaks_in_own_context::temporal": 3930,
+      "target_leaks_in_own_context::physical_change": 7686,
+      "control_distance_mismatch::causal_connector": 3091,
+      "control_distance_mismatch::spatial": 1533,
+      "control_freq_mismatch": 628,
+      "control_freq_mismatch::comparative": 26,
+      "target_leaks_in_own_context::causal_connector": 4395,
+      "target_leaks_in_own_context::spatial": 3865,
+      "control_distance_mismatch::temporal": 2780,
+      "control_freq_mismatch::physical_change": 546,
+      "target_token_len_gt_max": 1429,
+      "target_token_len_gt_max::spatial": 300,
+      "target_token_len_gt_max::causal_connector": 76,
+      "control_distance_mismatch::comparative": 709,
+      "target_token_len_gt_max::temporal": 538,
+      "target_leaks_in_own_context::comparative": 521,
+      "target_token_len_gt_max::physical_change": 391,
+      "target_token_len_gt_max::negation": 94,
+      "control_freq_mismatch::spatial": 25,
+      "target_token_len_gt_max::comparative": 30,
+      "control_freq_mismatch::causal_connector": 31
+    },
+    "kept_by_category": {
+      "physical_change": 1134,
+      "negation": 3232,
+      "causal_connector": 3951,
+      "temporal": 3805,
+      "spatial": 3897,
+      "comparative": 81
+    },
+    "kept_sources": {
+      "open_subtitles": 3745,
+      "childes": 2966,
+      "gutenberg": 5221,
+      "qwen_pair_packed": 1077,
+      "simple_wiki": 1396,
+      "fw_preserved_compact_view": 488,
+      "bnc_spoken": 1156,
+      "switchboard": 51
+    },
+    "rows_with_events": 10720
+  },
+  "strict_strata_count": 1676,
+  "strict_strata_top20": [
+    [
+      "('causal_connector', 'content', 1, 'S', '1001+', '2')",
+      711
+    ],
+    [
+      "('temporal', 'content', 1, 'S', '1001+', '2')",
+      694
+    ],
+    [
+      "('negation', 'content', 1, 'S', '1001+', '1')",
+      543
+    ],
+    [
+      "('spatial', 'content', 1, 'S', '1001+', '2')",
+      541
+    ],
+    [
+      "('causal_connector', 'content', 1, 'S', '1001+', '3-4')",
+      373
+    ],
+    [
+      "('spatial', 'content', 2, 'SC', '1001+', '2')",
+      288
+    ],
+    [
+      "('negation', 'content', 1, 'S', '1001+', '2')",
+      266
+    ],
+    [
+      "('causal_connector', 'content', 2, 'SC', '1001+', '1')",
+      227
+    ],
+    [
+      "('temporal', 'content', 1, 'S', '1001+', '3-4')",
+      220
+    ],
+    [
+      "('spatial', 'content', 1, 'S', '1001+', '1')",
+      209
+    ],
+    [
+      "('negation', 'content', 1, 'S', '1001+', '3-4')",
+      182
+    ],
+    [
+      "('spatial', 'content', 1, 'S', '251-500', '2')",
+      175
+    ],
+    [
+      "('spatial', 'content', 1, 'S', '501-1000', '2')",
+      174
+    ],
+    [
+      "('physical_change', 'content', 1, 'S', '1001+', '2')",
+      166
+    ],
+    [
+      "('negation', 'verbish', 1, 'S', '1001+', '1')",
+      157
+    ],
+    [
+      "('temporal', 'content', 1, 'S', '1001+', '1')",
+      149
+    ],
+    [
+      "('negation', 'content', 1, 'S', '501-1000', '1')",
+      144
+    ],
+    [
+      "('spatial', 'content', 1, 'S', '101-250', '2')",
+      135
+    ],
+    [
+      "('temporal', 'content', 2, 'SC', '1001+', '1')",
+      134
+    ],
+    [
+      "('causal_connector', 'content', 1, 'S', '501-1000', '2')",
+      133
+    ]
+  ],
+  "pair_summary": {
+    "input_events": 16100,
+    "pairs": 6991,
+    "events_used": 13982,
+    "event_use_fraction": 0.8684472049689441,
+    "target_unique_used": 5014,
+    "target_use_top20": [
+      [
+        "give",
+        32
+      ],
+      [
+        "could",
+        32
+      ],
+      [
+        "now",
+        32
+      ],
+      [
+        "i'm",
+        32
+      ],
+      [
+        "find",
+        32
+      ],
+      [
+        "there's",
+        32
+      ],
+      [
+        "that's",
+        32
+      ],
+      [
+        "it's",
+        32
+      ],
+      [
+        "can",
+        32
+      ],
+      [
+        "time",
+        32
+      ],
+      [
+        "would",
+        32
+      ],
+      [
+        "room",
+        32
+      ],
+      [
+        "much",
+        32
+      ],
+      [
+        "keep",
+        32
+      ],
+      [
+        "knew",
+        32
+      ],
+      [
+        "found",
+        32
+      ],
+      [
+        "back",
+        32
+      ],
+      [
+        "went",
+        32
+      ],
+      [
+        "came",
+        32
+      ],
+      [
+        "thought",
+        32
+      ]
+    ],
+    "pairs_by_category": {
+      "causal_connector": 1791,
+      "comparative": 22,
+      "negation": 1431,
+      "physical_change": 469,
+      "spatial": 1704,
+      "temporal": 1574
+    },
+    "match_levels": {
+      "1": 640,
+      "0": 6351
+    },
+    "pair_cost": {
+      "n": 6991,
+      "mean": 0.1999367758546703,
+      "median": 0.0,
+      "std": 0.6130582638319603,
+      "p05": 0.0,
+      "p95": 2.1,
+      "min": 0.0,
+      "max": 2.5
+    },
+    "failure_counts": {
+      "no_partner": 1384,
+      "no_partner_detail::used_or_self": 472705,
+      "no_partner_detail::target_freq_delta": 229928,
+      "no_partner_detail::target_class_mismatch": 188174,
+      "no_partner_detail::same_target_norm": 5761,
+      "no_partner_detail::a_target_leaks_in_b_context": 187,
+      "no_partner_detail::same_source": 17890,
+      "no_partner_detail::b_target_leaks_in_a_context": 251,
+      "no_partner_detail::distance_delta": 5142,
+      "no_partner_detail::same_row": 123,
+      "target_cap_a": 744,
+      "no_partner_detail::target_cap_b": 34319
+    },
+    "source_pair_top20": [
+      [
+        "gutenberg||open_subtitles",
+        857
+      ],
+      [
+        "open_subtitles||gutenberg",
+        748
+      ],
+      [
+        "gutenberg||childes",
+        627
+      ],
+      [
+        "childes||gutenberg",
+        539
+      ],
+      [
+        "open_subtitles||childes",
+        468
+      ],
+      [
+        "childes||open_subtitles",
+        452
+      ],
+      [
+        "gutenberg||simple_wiki",
+        417
+      ],
+      [
+        "gutenberg||bnc_spoken",
+        292
+      ],
+      [
+        "qwen_pair_packed||gutenberg",
+        240
+      ],
+      [
+        "simple_wiki||gutenberg",
+        225
+      ],
+      [
+        "qwen_pair_packed||fw_preserved_compact_view",
+        173
+      ],
+      [
+        "bnc_spoken||gutenberg",
+        172
+      ],
+      [
+        "open_subtitles||bnc_spoken",
+        161
+      ],
+      [
+        "open_subtitles||simple_wiki",
+        150
+      ],
+      [
+        "gutenberg||qwen_pair_packed",
+        146
+      ],
+      [
+        "simple_wiki||open_subtitles",
+        131
+      ],
+      [
+        "bnc_spoken||open_subtitles",
+        130
+      ],
+      [
+        "childes||bnc_spoken",
+        115
+      ],
+      [
+        "childes||simple_wiki",
+        108
+      ],
+      [
+        "qwen_pair_packed||open_subtitles",
+        100
+      ]
+    ],
+    "sample_pairs": [
+      {
+        "pair_id": "p0000000",
+        "match_level": 1,
+        "pair_cost": 2.134,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "51-100",
+        "target_freq_bin_b": "51-100",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "1",
+        "distance_bin_delta": 1,
+        "row_a": 19772,
+        "row_b": 1649,
+        "source_a": "qwen_pair_packed",
+        "source_b": "gutenberg",
+        "target_norm_a": "fundamental",
+        "target_norm_b": "fearful",
+        "target_ids_a": [
+          13001
+        ],
+        "target_ids_b": [
+          14248
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "though",
+        "pivot_i_a": 51,
+        "pivot_i_b": 84,
+        "target_i_a": 53,
+        "target_i_b": 85,
+        "text_a": "He would not have allowed them to play where it could have aggrieved any one, for a prime article of his religion was to respect the religious feelings of others, even when he thought them wrong. He would not have permitted them to play in a location that might offend anyone, because a fundamental tenet of his faith was to honor the religious sentiments of others, even if he considered them mistaken. The whole nation mourned for him as one of the most renowned and beloved princes it had ever had; and he was buried with great lamentations in Canterbury Cathedral. The entire nation mourned for him as one of its most renowned and beloved princes; and he was interred with great lamentations in Canterbury Cathedral.",
+        "text_b": "worse than you, Ethel, for you did not see her. I gave her some sal volatile, and she got sleepy, and I put a shawl over her and left her. I am worse than either of you.\" \"Well,\" said Ethel, rousing herself, \"I don't believe it is as bad as this. I don't think it can be. I'll go up and find out.\" She went out of the room, but she tottered very badly as she went up the stairs, glancing behind her as though fearful of her own shadow. There was a light in the spare room; the door was partly open. She peeped in. Dr Anstruther was there. He was pacing up and down. \"Ah!\" he said, when he saw Ethel's face. \"Come in.\" He looked at her again, and then said quietly--\"Sit down.\" He went to the table, poured something into a glass, mixed it with water, and brought it to the girl. \"Drink this,\" he said."
+      },
+      {
+        "pair_id": "p0000001",
+        "match_level": 1,
+        "pair_cost": 2.121,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "51-100",
+        "target_freq_bin_b": "51-100",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 1,
+        "row_a": 13123,
+        "row_b": 10805,
+        "source_a": "simple_wiki",
+        "source_b": "qwen_pair_packed",
+        "target_norm_a": "competitive",
+        "target_norm_b": "inaugural",
+        "target_ids_a": [
+          15328
+        ],
+        "target_ids_b": [
+          15091
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 129,
+        "pivot_i_b": 28,
+        "target_i_a": 132,
+        "target_i_b": 30,
+        "text_a": "by Front de libération du Québec (FLQ) militants during the October Crisis of October 1970. On 5 October 1970, Cross was abducted at gunpoint from his British diplomatic residence at 1297 Redpath Crescent, in the Golden Square Mile district of Montreal, and held as a hostage for two months as the FLQ made a series of demands to the Quebec government. He was released on December 3 in exchange for safe passage for his abductors to Cuba. Cross died on 6 January 2021 from COVID-19. He was 99. = = = Elaine Tanner = = = Elaine Tanner-Watt, OC (born February 22, 1951) is a Canadian retired professional swimmer. She was a backstroke, butterfly, and freestyle swimmer. She was nicknamed \"Mighty Mouse\" because of her small height but also because of her competitive drive. Career. Tanner competed for Canada at the 1966 British Empire and Commonwealth Games in Kingston, Jamaica. While there, she was able to win four gold medals",
+        "text_b": "The first flight from Brussels to Hong Kong was planned October 2017, but this was planned for later because the airline didn't have an air operator's certificate (AOC). Although the inaugural Brussels to Hong Kong flight was originally scheduled for October 2017, the airline delayed its launch until it secured an air operator's certificate (AOC). This was about the time Japan's early Jōmon period ended and its Yayoi period started. This coincided with the transition from Japan's early Jōmon era to the beginning of the Yayoi period. Twenty pounds only, ten pounds, at ten pounds, thank you, ten is offered and I shall sell at ten if there's no further bid, at ten pounds. At ten pounds, I will sell if no higher bid is made; twenty was the opening, but ten is my final offer, so please proceed."
+      },
+      {
+        "pair_id": "p0000002",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 6721,
+        "row_b": 6670,
+        "source_a": "gutenberg",
+        "source_b": "bnc_spoken",
+        "target_norm_a": "delightful",
+        "target_norm_b": "arrive",
+        "target_ids_a": [
+          8314
+        ],
+        "target_ids_b": [
+          8570
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 103,
+        "pivot_i_b": 8,
+        "target_i_a": 106,
+        "target_i_b": 11,
+        "text_a": "counting and stick-sticks in them and----\" \"Lots of _what_?\" asked his uncle. \"Stick-sticks,\" said Ted simply. \"I don't know what it means, but mother told me it was a sort of counting--like how many days in a year were fine and how many rainy.\" \"Or how many old women with baskets, and how many without, passed down the road this morning--eh, Ted?\" said his other uncle, laughing heartily. \"Yes, I suppose so,\" said Ted. \"Are stick-sticks any good?\" he inquired, consideringly. \"It's to be hoped so,\" said Uncle Ted. A bright idea struck the little fellow. He must talk it over with Cissy. If only that delightful seat between the tree and the wall was arranged _they_ might make \"stick-sticks\"! What fun, and how pleased Uncle Ted would be! Already Ted's active brain began to plan it all. They should have a nice big ruled sheet of paper and divide it into rows, as for columns of sums: one row",
+        "text_b": "bulb, you need one without the other, so if that doesn't arrive so you're knackered. What do you reckon it's used for that? What do you reckon it's used for? That sort of thing. Probably used for machinery Yeah. If I looked on one of your er account entries, it would probably say fastening. Now to me, what's a fastening to you? Zip. A zip. Zip. Mm, yeah. A button. A button. Yeah. But fastening is a complete industry. It's how we've, on the actual er vehicles there is actual metal fastenings that's holding the whole trailer together. Rivets. Yeah. Rivets, or fastenings. Right? This'd probably be used for a construction of some sort I would imagine. Would you? Maybe er Bolting tasks. Bo , holding machinery through er a base of some sort. Yeah. Some, I mean it's the sort of item that people probably buy hundreds of to hold items down with or construct something, er er put"
+      },
+      {
+        "pair_id": "p0000003",
+        "match_level": 1,
+        "pair_cost": 2.1,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "5-8",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 1,
+        "row_a": 10744,
+        "row_b": 13881,
+        "source_a": "gutenberg",
+        "source_b": "simple_wiki",
+        "target_norm_a": "mental",
+        "target_norm_b": "administrative",
+        "target_ids_a": [
+          9421
+        ],
+        "target_ids_b": [
+          12202
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "thus",
+        "pivot_i_a": 57,
+        "pivot_i_b": 140,
+        "target_i_a": 62,
+        "target_i_b": 144,
+        "text_a": "outside a man of about forty, holding by the hand a boy of twelve. CHAPTER XIII. A VICTIM OF INJUSTICE. THE man who stood before Gerald was dressed like a mechanic in a working suit somewhat the worse for wear, but he had an honest, intelligent face that inspired confidence. He had an anxious look, however, as if he were in some mental trouble. “Good morning,” said Gerald courteously. “Won’t you come in and share our breakfast?” On hearing this invitation the boy’s face brightened up. “You are very kind, and I accept thankfully,” said the father. “Oscar and myself are both hungry, for we have eaten nothing since one o’clock yesterday.” “Come in then,” said Gerald hospitably. “I ought perhaps first to explain how I happen to be here in such a plight.” “I shall be glad to hear your story, and so will my friend, Mr. Brooke, but you must breakfast first. Then you will feel probably in",
+        "text_b": "source of the Saale is on its slopes. It forms the natural boundary with the neighbouring district of Wunsiedel. = = = Stammbach = = = Stammbach is a market town and municipality in Hof in Bavaria in Germany. = = = Töpen = = = Töpen is a municipality in Upper Franconia in Hof in Bavaria in Germany. = = = Trogen, Bavaria = = = Trogen is a municipality in Upper Franconia in Hof in Bavaria in Germany. Geography. Trogen is in between hills in a valley. The Town is about six kilometers northeast of the county seat Hof (Saale) on the Bundesautobahn 72 (junction 3 Hof / Töpen), and Bundesautobahn 93 (junction 2 Hof-East) and the federal highway B173. The community is in the Bavarian part of Vogtland. It is part of the district of Hof and thus also of the administrative region of Upper Franconia (\"Oberfranken\"). The neighboring village Feilitzsch is only a few hundred meters"
+      },
+      {
+        "pair_id": "p0000004",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 14682,
+        "row_b": 17078,
+        "source_a": "open_subtitles",
+        "source_b": "simple_wiki",
+        "target_norm_a": "useless",
+        "target_norm_b": "contrary",
+        "target_ids_a": [
+          11763
+        ],
+        "target_ids_b": [
+          12441
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 96,
+        "pivot_i_b": 97,
+        "target_i_a": 99,
+        "target_i_b": 100,
+        "text_a": "don't let him escape. Recuse Jung Ji Yong quickly! Yes, sir. What's up? It's nothing. Taste the smell of horse dung! Release him down! I..am....at fault. Say it! Yes... I rode my horse after drinking wine and raced the horse at the Southern Gate. When I saw a girl standing in the middle of the street I wanted to jump over her but the consequence..... I was so scared and then ran away. I'm at fault. It's my fault, my fault. That's true. It's so easy on him if he just apologizes. We've suffered like this because of that useless Forbidden Palace. That's right. They even aimed the arrows at us. How on earth could they treat their innocent citizens like that? Not wrong! We won't return him before the King apologizes us in person. What kind of King is he? We don't need a King like him. From now onward, our King is Jljimae. Is Iljimae. That's true, Iljimae",
+        "text_b": "the legitimacy of his designee that he did not even have a Ukrainian passport. Because of this, Yevgeny Saburov was forced to resign. After that, he managed to paralyze the work of the Supreme Council of Crimea. In 1995, the Ukrainian Parliament repealed the Crimean Constitution and abolished the office of president on March 17, 1995. After some previous warnings in September and November 1994 on March 17, 1995, the President of Ukraine Leonid Kuchma , signed the law of Ukraine that repeals the amended Constitution of Crimea and some other laws of the Republic of Crimea, because they were contrary to the Constitution of Ukraine and jeopardized the sovereignty of Ukraine. = = = Mark Zakharov = = = Mark Anatolyevich Zakharov (; 13 October 1933 – 28 September 2019) was a Soviet and Russian theater and movie director and playwright. He was best known for his Soviet-era fantasy movies. He was also known for his productions of plays"
+      },
+      {
+        "pair_id": "p0000005",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 12790,
+        "row_b": 15629,
+        "source_a": "bnc_spoken",
+        "source_b": "simple_wiki",
+        "target_norm_a": "valuable",
+        "target_norm_b": "practical",
+        "target_ids_a": [
+          8704
+        ],
+        "target_ids_b": [
+          9530
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 117,
+        "pivot_i_b": 114,
+        "target_i_a": 121,
+        "target_i_b": 118,
+        "text_a": "easy for me. Aha. Put that in quotes will you?. I I mean I well if you've got that confidence fine. And and when that when the when the assignment comes up when Ron is assigned to X club wherever that is erm that will be the sheet the sheet will be provided For me? for you to work on. Now one of the most important things that we've established erm is that er you need to sit down still with the secretary of the club and say right now you've got this list of businesses tell me more about them. Yes. It's not simple You should not just say, oh there's good I'll phone him now because you need some valuable information. So we make, but all that is is tau is is is Yes. directed on the course. So that's going to be very useful and you will get information about all these firms it could be that",
+        "text_b": "at the 1976 Summer Olympics. = = = If I Were a Carpenter (song) = = = \"If I Were a Carpenter\" is a 1966 folk song written by Tim Hardin and has been re-recorded by Bobby Darin and was nominated for a Grammy Award in 1967, Johnny Cash featuring June Carter and won a Grammy Award in 1971, Four Tops, Johnny Hallyday and Robert Plant for his sixth studio album \"Fate of Nations\" = = = Academic library = = = Academic libraries are a type of library that focuses on education materials. They are usually part of a university or college. Academic libraries need to choose carefully what items they should have, because it is not practical to try and have unlimited items in the library. Librarians can make this decision based on what students, faculty, and other people at the school need. Some academic libraries have special collections with original papers and rare items. Academic libraries can"
+      },
+      {
+        "pair_id": "p0000006",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 19075,
+        "row_b": 6598,
+        "source_a": "childes",
+        "source_b": "simple_wiki",
+        "target_norm_a": "magnetic",
+        "target_norm_b": "remarkable",
+        "target_ids_a": [
+          7366
+        ],
+        "target_ids_b": [
+          9685
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 94,
+        "pivot_i_b": 96,
+        "target_i_a": 97,
+        "target_i_b": 99,
+        "text_a": "*MOT: [holds up bolt] *CHI: oh yeah. *CHI: I xxx. *MOT: I don't know what you call that. *CHI: I'm not sure. *MOT: hexagon I think it's a hexagon. *CHI: I think I think this... *MOT: it's not a nut. *CHI: oh. *MOT: this is a nut. *CHI: I think that would stick. *MOT: what about this? *CHI: um yeah. *MOT: oh. *CHI: yeah. *MOT: yup. *CHI: yeah. *CHI: yeah I think that would stick. *MOT: I'm sure they would. *MOT: here. *CHI: no. *MOT: I don't know if it goes through it or if those are magnetic also. *MOT: I xxx they're not this goes through it. *CHI: hey. *CHI: xxx no. *MOT: nope you were right. *MOT: now look at these. *CHI: yeah those should stick. *CHI: but do you think there are xxx. *MOT: if you do them the opposite way doesn't it push away instead of sticking? *CHI: well I xxx think it will stick? *MOT:",
+        "text_b": "1925 – 27 December 2023) was a French politician. He served as the 8th President of the European Commission from 1985 to 1995. He served as Minister of Finance 1981 to 1984. He was a Member of the European Parliament from 1979 to 1981. Delors was in charge of the Delors Committee which proposed the monetary union to create the euro, a new single currency to replace individual national currencies in the European Union. In 2015, Donald Tusk announced that Delors would become the third person ever to have the title of Honorary Citizen of Europe because of \"his remarkable contribution to the development of the European project\". Delors was born in Paris. He studied at the University of Paris. In 1941, he married his wife Marie Lephaille. Together, they had two children. Their daughter Martine Aubry is the mayor of Lille and former First Secretary of the Socialist Party. Delors died in his sleep at his home in Paris,"
+      },
+      {
+        "pair_id": "p0000007",
+        "match_level": 0,
+        "pair_cost": 0.057,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 5452,
+        "row_b": 5659,
+        "source_a": "qwen_pair_packed",
+        "source_b": "gutenberg",
+        "target_norm_a": "practical",
+        "target_norm_b": "delightful",
+        "target_ids_a": [
+          9530
+        ],
+        "target_ids_b": [
+          8314
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 74,
+        "pivot_i_b": 6,
+        "target_i_a": 78,
+        "target_i_b": 10,
+        "text_a": "The majority of keys come directly from publishers, with the occasional need to offer keys for games from publishers that were not able to give them directly due to commercial limitations. While the majority of keys come directly from publishers, there is an occasional need to provide keys for games from publishers that were unable to give them directly due to commercial limitations. Academic libraries need to choose carefully what items they should have, because it is not practical to try and have unlimited items in the library. Academic libraries must select their holdings with care, as maintaining an unlimited collection is impractical.",
+        "text_b": "enjoy it one whit the more, although it was very delightful to be served by a man in livery, and to have such exquisite china and glass to look at during the meal. The child felt a little shy in the presence of so many strangers, and had little to say. Moreover, she had too often been told by Aunt Elizabeth that \"little children should be seen and not heard\" for her not to remember she must not chatter. Really the best time came when she and Jennie went up to bed when Jennie showed her all her treasures, her pretty room and her rows of books. They became very confidential as they snuggled down under the covers, and when Mrs. Ramsey came in to kiss them both good-night, Edna felt much happier than had seemed possible she could be when she first considered that she must spend the day and night away from her mother. The club meeting at"
+      },
+      {
+        "pair_id": "p0000008",
+        "match_level": 0,
+        "pair_cost": 0.10500000000000001,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 13939,
+        "row_b": 14539,
+        "source_a": "qwen_pair_packed",
+        "source_b": "bnc_spoken",
+        "target_norm_a": "faithful",
+        "target_norm_b": "enormous",
+        "target_ids_a": [
+          8844
+        ],
+        "target_ids_b": [
+          9322
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "thus",
+        "pivot_i_a": 101,
+        "pivot_i_b": 92,
+        "target_i_a": 105,
+        "target_i_b": 95,
+        "text_a": "Tremayne had brought the car round from the yard into the road opposite the front door of the farm, preparatory to paying his usual weekly visit to the Sanatorium. Tremayne had driven the car from the yard to the road opposite the farm's front door in preparation for his customary weekly visit to the Sanatorium. The claim that's being made here is that no one 's body is at all essential to them. The assertion being advanced here is that no one's body is in any way essential to them. We settled that we would like a collie best of all, because they are so faithful and intelligent, and as the dog in the story which had made us think of it first was a sheep-dog. We decided that a collie was our top choice due to their faithfulness and intelligence, especially since the dog in the story that initially inspired us was a sheep-dog.",
+        "text_b": "you have given us time, and particularly in the person of your colleague Sandra who is here, and her time to us has been enormously valuable and I want to thank you for that. I also, er, we are also putting in for your community computing scheme, erm, realising that it will not only, if we get it, increase our own expertise and make us more efficient, which heaven knows, all organisations need to be, but will also be ab enable us to give advice to all the organisations we represent, and thus have an enormous ripple effect. So I want to give you that positive feed-back. Please do not take it as an example that you may all leap to your feed to make your bids. No,San Sandra, make a note of that er, that bid will you. We have to look upon it with interest. Good, there, you see. Erm sorry. Gentleman energy council, I'm not make a"
+      },
+      {
+        "pair_id": "p0000009",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 4917,
+        "row_b": 5235,
+        "source_a": "simple_wiki",
+        "source_b": "gutenberg",
+        "target_norm_a": "internal",
+        "target_norm_b": "tremendous",
+        "target_ids_a": [
+          10186
+        ],
+        "target_ids_b": [
+          11413
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 18,
+        "pivot_i_b": 152,
+        "target_i_a": 20,
+        "target_i_b": 154,
+        "text_a": "were attempted several times but prevented. They were seen as necessary but did not succeed in large measure because of internal feuds, ongoing conflicts with the Ottoman Empire and Saracenes and the simony and nepotism practiced in the Renaissance Church of the 15th and early 16th centuries. As a result, rich, powerful and worldly men like Roderigo Borgia (Pope Alexander VI) were able to win election to the papacy. Reformation era wars. The Fifth Lateran Council issued some but only minor reforms in March 1517. A few months later, on 31 October 1517, Martin Luther posted his Ninety-Five Theses in public, hoping to spark debate. His theses protested key points of Catholic doctrine as well as the sale of indulgences. Huldrych Zwingli, John Calvin, and others also criticized Catholic teachings. These challenges, supported by powerful political forces in the region, developed into the Protestant Reformation. During this era, many people emigrated from their homes to areas which tolerated or practiced",
+        "text_b": "raised each friendly face, recalled an ancient name. 'These were his words, serene and firm, 'Dear brothers, it is best That here, with perfect trust in Heaven, we give our bodies rest; If we have borne, like faithful men, our part of toil and pain, Where'er we wake, for Christ's good sake, we shall not sleep in vain.' 'Some uttered, others looked assent--they had no heart to speak; Dumb hands were pressed, the pallid lip approached the callous cheek. They laid them side by side; and death to him at last did seem To come attired in mazy robe of variegated dream. 'Once more he floated on the breast of old familiar Rhine, His mother's and one other smile above him seemed to shine; A blessed dew of healing fell on every aching limb; Till the stream broadened, and the air thickened, and all was dim. 'Nature has bent to other laws if that tremendous night Passed o'er his frame,"
+      },
+      {
+        "pair_id": "p0000010",
+        "match_level": 1,
+        "pair_cost": 2.1,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 1,
+        "row_a": 16137,
+        "row_b": 13891,
+        "source_a": "open_subtitles",
+        "source_b": "simple_wiki",
+        "target_norm_a": "impressive",
+        "target_norm_b": "initial",
+        "target_ids_a": [
+          13083
+        ],
+        "target_ids_b": [
+          8362
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 80,
+        "pivot_i_b": 54,
+        "target_i_a": 83,
+        "target_i_b": 56,
+        "text_a": "it won't upset the odds. But it will gross us a tidy $10 million when the Dusters win. Only $1 million will do the trick. We'll be able to do to O'Hanlan what you thought he was doing to us. $1 million of Organization money. It's a sure bet, Mr. Beamer. Brubaker came up with implants that last two hours instead of 20 minutes. That means we just can't fail. I'm gonna trust you, Mr. Cappucci, you know why? Not because of your impressive educational background... or your youthful eagerness. But because I'm going to entrust you with $1 million... because I know, that you know... that if anything happens to those funds... you'll be one sorry man. Listen, there's no problem, Mr. Beamer. I'll be in touch. Has he promised you a promotion after we do the job on O'Hanlan's bookies? Yes, something like that. - Where's Brubaker? - In the kitchen. I'll get him. He's probably fixing himself",
+        "text_b": "In 1999, Rodger's mother filed an affidavit for more child support. She labeled her son as a \"high-functioning autistic child\" and claimed that she needed more child support to look after her son because of his special needs. Countering this, Rodger's father presented doctor Stephen M. Scappa, who stated the autism diagnosis was fake because the initial diagnosis might have missed conditions like \"depression or anxiety.\" Scappa recommended that Rodger should undergo additional evaluation by a child psychiatrist to secure a correct diagnosis and appropriate treatment. Around this time, this is when Rodger began having a difficult relationship with Akaaboune. As Rodger grew, he became more aware and uncomfortable with his height and slender frame, realizing he was the smallest person in his fourth-grade class. He compared himself to classmates who were taller, which led him to play basketball with the hope it might help him grow. When Rodger saw others outplaying him on the court, he felt defeated and"
+      },
+      {
+        "pair_id": "p0000011",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "101-250",
+        "target_freq_bin_b": "101-250",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "1",
+        "distance_bin_b": "1",
+        "distance_bin_delta": 0,
+        "row_a": 3888,
+        "row_b": 6712,
+        "source_a": "gutenberg",
+        "source_b": "simple_wiki",
+        "target_norm_a": "visible",
+        "target_norm_b": "illegal",
+        "target_ids_a": [
+          8742
+        ],
+        "target_ids_b": [
+          8580
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 156,
+        "pivot_i_b": 158,
+        "target_i_a": 157,
+        "target_i_b": 157,
+        "text_a": "luminousness with which he saw things and the relations among things. It was this quality that made him so successful as an expounder of scientific truths. In the course of his pondering over chemical facts which he was obliged to take at second hand, it occurred to him that most of the pupils in common schools who studied chemistry were practically no better off. It was easy enough for schools to buy textbooks, but difficult for them to provide laboratories and apparatus; and it was much easier withal to find teachers who could ask questions out of a book than those who could use apparatus if provided. It was customary, therefore, to learn chemistry by rote; or, in other words, pupils' heads were crammed with unintelligible statements about things with queer names,--such as manganese or tellurium,--which they had never seen, and would not know if they were to see them. It occurred to Mr. Youmans that if visible processes could",
+        "text_b": "the SS decided not to run away. They were captured by the British on 17 April 1945, and taken to prison. In her famous memoir called \"Five Chimneys\", Olga Lengyel (who had been a prisoner in a camp where Grese worked) wrote about how Grese acted there. Lengyel wrote that Grese liked hurting prisoners, making them afraid of her, and choosing which ones would be killed in the gas chambers. Trial and execution. Grese was put on trial for war crimes at the \"Belsen Trial.\" Instead of having one big trial with hundreds of defendants, the Nuremberg Trials were separated into smaller trials. For example, people who were accused of committing crimes at Bergen-Belsen were put on trial at the Belsen Trial. Grese was tried there with 44 other people. Her trial lasted from September to November 1945. She was given a lawyer named Major L. Cranfield. Grese was accused of treating prisoners in ways that were illegal because of"
+      },
+      {
+        "pair_id": "p0000012",
+        "match_level": 0,
+        "pair_cost": 0.042,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 14784,
+        "row_b": 370,
+        "source_a": "gutenberg",
+        "source_b": "qwen_pair_packed",
+        "target_norm_a": "critical",
+        "target_norm_b": "numerous",
+        "target_ids_a": [
+          6812
+        ],
+        "target_ids_b": [
+          5856
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 58,
+        "pivot_i_b": 107,
+        "target_i_a": 61,
+        "target_i_b": 110,
+        "text_a": "had been cruelly snubbed and ill-used, but truth would surely prevail over bigotry, as in Galileo's case. I took his address and let him leave his manuscript. Its recipe for physical immortality, diluted through 600 foolscap pages, was simply to learn how to go without food! Usually such a regimen will kill you by the fifth day, but if, at that critical moment, while at the point of death, you make one heroic effort and stay alive, why, then you will have overcome the King of Terrors once for all. I returned the gentleman's manuscript with a polite note, regretting that his line of research was so remote from those to which I was accustomed that I could not give him intelligent aid. On one of the beautiful hills of Petersham, near the centre of Massachusetts, there dwelt a few years since a small religious community of persons who believed that they were destined to escape death. Not science, but",
+        "text_b": "Then Sister Caroline, stepping forward, made a long metaphysical harangue, at the close of which she walked up one side of the room and down the other, taking each person by the hand and saying to each a few words. Then Sister Caroline, stepping forward, delivered a lengthy metaphysical harangue, and at its conclusion she traversed the room from one side to the other, grasping each person's hand and uttering a few words to each. Another name of the industrial area is \"Ramat Siv\", due to the number of fiber factories that were located there in the past. The industrial area is also known as \"Ramat Siv\" because of the numerous fiber factories that were once situated there."
+      },
+      {
+        "pair_id": "p0000013",
+        "match_level": 0,
+        "pair_cost": 0.003,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "1",
+        "distance_bin_b": "1",
+        "distance_bin_delta": 0,
+        "row_a": 13559,
+        "row_b": 15160,
+        "source_a": "fw_preserved_compact_view",
+        "source_b": "qwen_pair_packed",
+        "target_norm_a": "responsible",
+        "target_norm_b": "numerous",
+        "target_ids_a": [
+          5723
+        ],
+        "target_ids_b": [
+          5856
+        ],
+        "pivot_norm_a": "thus",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 46,
+        "pivot_i_b": 90,
+        "target_i_a": 47,
+        "target_i_b": 91,
+        "text_a": "At the same time, Dutch society is generally characterized as featuring robust civic activity due to the presence of several active political groups. Dutch society has strong civic activity because several active political groups exist. Vossnack finished this extensive enterprise entirely to their satisfaction, and was thus responsible for building the first grain elevator in the Maritime provinces. Vossnack built the first Maritime grain elevator entirely to their satisfaction. By 1860 Vossnack was living in Chicago where he was employed at the Illinois Central Railroad shops. By 1860 Vossnack lived in Chicago working at Illinois Central Railroad shops. When the Technological Institute of Halifax was established for this purpose late in 1877, Vossnack was appointed lecturer in mechanical engineering, naval architecture, and instrumental drawing. In late 1877, Vossnack became lecturer in mechanical engineering, naval architecture, and drawing at the newly established Technological Institute of Halifax.",
+        "text_b": "in a way, Howard's not only like your father, but he's also like the child that you're afraid to have. In a way, Howard resembles not only your father but also the child you are too afraid to bring into the world. \"Were you ever at Oakford?\" she asked, turning her grey eyes on me. Turning her grey eyes toward me, she inquired if I had ever been to Oakford. There were many other children there, but they were much too happy to take any notice of the Merryweather family. Although numerous other children were present, their overwhelming joy left them completely oblivious to the Merryweather family. I checked once more and discovered that the deaths that are beneficial to Yotsuba are concentrated around the weekend. Upon a final check, I found that the deaths advantageous to Yotsuba occur predominantly on weekends."
+      },
+      {
+        "pair_id": "p0000014",
+        "match_level": 0,
+        "pair_cost": 0.07,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 6182,
+        "row_b": 18646,
+        "source_a": "qwen_pair_packed",
+        "source_b": "gutenberg",
+        "target_norm_a": "unable",
+        "target_norm_b": "impossible",
+        "target_ids_a": [
+          7101
+        ],
+        "target_ids_b": [
+          4998
+        ],
+        "pivot_norm_a": "although",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 40,
+        "pivot_i_b": 130,
+        "target_i_a": 43,
+        "target_i_b": 133,
+        "text_a": "I appreciate obviously tonight we have are not not gonna carried today but nonetheless it is something that we believe in very firmly and I hope we have the opportunity to try and persuade you otherwise at some other time. Although we are unable to proceed with this matter tonight, we remain deeply committed to the idea and hope to persuade you otherwise at a future opportunity. You know, I was standing by, waiting to say good-bye by myself. Actually, I stood aside to say goodbye all on my own.",
+        "text_b": "so evidently, found the day long and uninteresting. Lady Sarah, however, had many questions to ask, and received each answer with an echo of the old complaint. \"If I had only gone with you! It has been a beautiful day, I should have taken no harm. If it had not been for that unfortunate shower I should have seen it all, instead of sitting here the whole day long, wearying to death.\" \"Dear Lady Sarah, haven't you been a drive? Why didn't you order the carriage, and go a nice long drive into the country?\" \"What is the use of driving by yourself? No, thank you, Bertha, I prefer to stay at home. Cecile? no--not for worlds. I think something must be wrong with the girl's nerves. It seems as if it were impossible for her to sit still the last few days. It fidgets me to be near a person who jumps up and down like a Jack-in-the-box. There"
+      },
+      {
+        "pair_id": "p0000015",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 550,
+        "row_b": 17984,
+        "source_a": "bnc_spoken",
+        "source_b": "simple_wiki",
+        "target_norm_a": "additional",
+        "target_norm_b": "official",
+        "target_ids_a": [
+          7171
+        ],
+        "target_ids_b": [
+          4830
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 32,
+        "pivot_i_b": 144,
+        "target_i_a": 36,
+        "target_i_b": 148,
+        "text_a": "er routine patients not being treated from Monday? Well, I don't think there's any action that's likely to be taken by the Regional Health Authority in time for next Monday. Er. Obviously if we get any additional cash allocation from any source, it will be deployed in er such a way as to treat the patients as soon as possible. But we're in the hands obviously of the Health Authority. You're listening to the Fox Report. Banbury's M P, Tony Baldrey says he's also very concerned about the Horton's cash crisis. Although he claims nothing can be done immediately to prevent the cancellation of non-urgent admissions, he's convinced the hospital will be one of the beneficiaries of the proposed N H S reforms. The budget of the Horton generally puts day to day work has got to better reflect the fact that there's a growing district Hospital, and has got to better reflect the size of the population it serves,",
+        "text_b": "Carlos Bilardo = = = Carlos Salvador Bilardo Digiano (born 16 March 1938) is a former Argentine physician, footballer, and manager. He won the 1986 FIFA World Cup with Argentina. He is known by fans and the media as \"el narigón\" (\"the big nosed one\"). = = = First Lady of South Korea = = = The First Lady of the Republic of Korea (Korean: ���� ��� ���; Hanja: ���� ��� ���, informally referred to as FLOTROK or FLOSK), commonly known as the First Lady of South Korea, is the titled held by the hostess of the presidential residence, usually the wife of the President of South Korea. Kim Keon-hee is the current First Lady of South Korea, as wife of the 13th and current President of South Korea, Yoon Suk-yeol. Role. The first lady is not elected by the citizens of South Korea, although there are no official jobs she is required to do and not paid for being"
+      },
+      {
+        "pair_id": "p0000016",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 1545,
+        "row_b": 17134,
+        "source_a": "open_subtitles",
+        "source_b": "gutenberg",
+        "target_norm_a": "active",
+        "target_norm_b": "trial",
+        "target_ids_a": [
+          5256
+        ],
+        "target_ids_b": [
+          4959
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "though",
+        "pivot_i_a": 104,
+        "pivot_i_b": 9,
+        "target_i_a": 106,
+        "target_i_b": 11,
+        "text_a": "dear. Now you rest. Original swedish text Imposter10 Translated and corrected for Hdbits As the bible says, \"Bear ye one another's burdens and so fulfil the law of Christ.\" To do this, Charles Williams promoted the concept of Coinherence which held that we are all spiritually connected and can, through ritual, share suffering, ease one another's burdens. For example,... guilt. But not intellectually or theologically, something much more real, practical. No, no, honestly, no need to help. - What do you want with all this junk anyway? - Not sure. Forgiveness is not a solitary affair. It can be and is a shared experience because through active engagement with the Holy Spirit, it's not only Christ who can forgive sins so can we! Don't be so naive! I mean, how is it literally possible to become as Christ? Well, because we are made in God's image -- - Mumbo-jumbo! - In your opinion. Not one the rest of us happen",
+        "text_b": "them. It was such constancy as makes martyrs; and though the trial stopped short of this, there is something in the homeliness of the whole scene, and the feminine form of passive resistance, that makes us so much honor and admire the good women that we cannot refrain from telling the story. It was in the year 1631, in the midst of the long Thirty Years' Was between Roman Catholics and Protestants, which finally decided that each state should have its own religion, Lowenburg, a city of Silesia, originally Protestant, had passed into the hands of the Emperor's Roman Catholic party. It was a fine old German city, standing amid woods and meadows, fortified with strong walls surrounded by a moat, and with gate towers to protect the entrance. In the centre was a large market-place, called the Ring, into which looked the Council-house and fourteen inns, or places of traffic, for the cloth that was woven in no less"
+      },
+      {
+        "pair_id": "p0000017",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 10027,
+        "row_b": 16918,
+        "source_a": "open_subtitles",
+        "source_b": "gutenberg",
+        "target_norm_a": "global",
+        "target_norm_b": "anxious",
+        "target_ids_a": [
+          7429
+        ],
+        "target_ids_b": [
+          5301
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 103,
+        "pivot_i_b": 62,
+        "target_i_a": 107,
+        "target_i_b": 66,
+        "text_a": "And kitty! how are you feeling... about the debate? Well, I feel confident. Sort of. Robert and I had a tiff. A tiff? About what? Uh, about - about work stuff. my gosh, at this rate, we're gonna run out of candy. I got so much more than last year, too. hold on! Coming! there it is, the republican debate on the scariest day of the year. So kitty's pregnant. What? But, you know, we're in \"not supposed to know\" mode. not supposed to know what? Oh, we're not supposed to know about kevin's car. Yeah, I'm gonna get a hybrid, you know, because of, you know, global warming, and i freckle too much when I get sun. Hey, kitty, come on, sit down over here. It's a great chair. Put your feet up. No, the-the couch is fine. here we go. It's starting. Good evening from boise, idaho. I'm patricia bower. Welcome to the republican primary debate. Let me",
+        "text_b": "forgot that he was only a cadet, forgot the discipline that had taught him to think only of his own duties, and rushing toward the boat he called to the third officer: The ruddy mate spun on his heel and glared at the boy as if about to knock him down. Just then a Norwegian seaman hung back, muttering to himself as if not at all anxious to join this forlorn hope. The mate glanced from him to the flushed face and quivering lip of the stalwart lad. Mr. Briggs was an American, and in this moment blood was thicker than water. \"Pile in amidships,\" said he. \"You are my kind, youngster.\" Mr. Briggs shoved the Norwegian headlong, and David leaped into the boat just as the creaking falls began to lower her from the davits. The boat swung between sea and sky as the liner rolled far down to leeward and back again. Then in a smother of broken"
+      },
+      {
+        "pair_id": "p0000018",
+        "match_level": 0,
+        "pair_cost": 0.1,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 174,
+        "row_b": 18042,
+        "source_a": "gutenberg",
+        "source_b": "simple_wiki",
+        "target_norm_a": "impossible",
+        "target_norm_b": "official",
+        "target_ids_a": [
+          4998
+        ],
+        "target_ids_b": [
+          4830
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 47,
+        "pivot_i_b": 74,
+        "target_i_a": 50,
+        "target_i_b": 78,
+        "text_a": "but the Queen came, and with her the Princess Catherine: who was a very lovely creature, and who made a real impression on King Henry, now that he saw her for the first time. This was the most important circumstance that arose out of the meeting. As if it were impossible for a French nobleman of that time to be true to his word of honour in anything, Henry discovered that the Duke of Burgundy was, at that very moment, in secret treaty with the Dauphin; and he therefore abandoned the negotiation. The Duke of Burgundy and the Dauphin, each of whom with the best reason distrusted the other as a noble ruffian surrounded by a party of noble ruffians, were rather at a loss how to proceed after this; but, at length they agreed to meet, on a bridge over the river Yonne, where it was arranged that there should be two strong gates put up, with an empty",
+        "text_b": "Located west of Gdańsk and the mouth of the Vistula river, it is inhabited by members of the Kashubian ethnic group. The region is home to the Kashubian Lake District. According to the 1999 basic study \"Geografia współczesnych Kaszub\" (Geography of present-day Kashubia) by the Gdańsk scholar Jan Mordawski 43 municipalities (\"gminas\") of the Pomeranian Voivodeship have a Kashubian share of at least one third of the total population: Culture. Kashubian emblem and flag. Although there are no official rules for the use of Kashubian symbols, the griffin is considered the emblem and symbol of the Kashubians. The Kashubian griffin is in black on a yellow or gold background. The colors of the Kashubian flag are taken from the emblem - the upper color is black, and the lower one is yellow or gold. A Kashubian flag with a griffin in the center is also used. If there is an emblem on the flag, then the background is yellow. ="
+      },
+      {
+        "pair_id": "p0000019",
+        "match_level": 1,
+        "pair_cost": 2.2,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 1,
+        "row_a": 9901,
+        "row_b": 2268,
+        "source_a": "gutenberg",
+        "source_b": "simple_wiki",
+        "target_norm_a": "impossible",
+        "target_norm_b": "previous",
+        "target_ids_a": [
+          4998
+        ],
+        "target_ids_b": [
+          5825
+        ],
+        "pivot_norm_a": "unless",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 135,
+        "pivot_i_b": 139,
+        "target_i_a": 139,
+        "target_i_b": 141,
+        "text_a": "you. My God! Effie, it is a hard world--it is hard, _hard_ to keep straight in it. Yes, I have done wrong--I know it--and father gave mother to me. If you turn away from me, Effie, I shall go to the bad--I shall go to the worst of all; there will not be a chance for me if you turn from me.\" The tone of despair in his voice changed Effie's frame of mind in a moment. She ran up to him and put her arms round his neck. \"I won't turn from you, poor George,\" she said. \"It did shock me for a moment--it frightened me rather more than I can express; but perhaps I did not hear you aright, perhaps you did not say the word 'prison.' You don't mean to say that unless you get that impossible sum of money you will have to go to prison, George?\" \"Before God, it is true,\" said George. \"I cannot,",
+        "text_b": "(232 per inch2), in modern terminology also called \"Ghiordes knot (or \"Turkish knot\"). The design and the systematic motifs of the Pazyryk rug would later be found in similar Turkmen carpets, carpets of the early Seljuq period, and subsequently modern Turkish carpets and kilims. Origins. The origin of the rug is unknown. There are different theories regarding the origin of the carpet. While a number of scholars presume a Oghuz-Turkic origin, Volkmar Gantzhorn assumes a Urartian and Armenian origin of the rug. A Persian theory also exists, but has not been further elaborated; The rug may have originated between the Iranian-Altaian corridor through ancient contacts. Some authors assume that the wool, the artistic conception, as well as the workmanship, may have been provided by Armenians of the Near East; The rug itself is considered as a Sakic funeral accessory. Although a previous study in 1983/1985 did not support an involvement of Armenian cochineal, a Soviet-based conference held in Riga (1987)"
+      },
+      {
+        "pair_id": "p0000020",
+        "match_level": 0,
+        "pair_cost": 0.2,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "5-8",
+        "distance_bin_b": "5-8",
+        "distance_bin_delta": 0,
+        "row_a": 2919,
+        "row_b": 6643,
+        "source_a": "open_subtitles",
+        "source_b": "gutenberg",
+        "target_norm_a": "ordinary",
+        "target_norm_b": "powerful",
+        "target_ids_a": [
+          7387
+        ],
+        "target_ids_b": [
+          5366
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 117,
+        "pivot_i_b": 35,
+        "target_i_a": 124,
+        "target_i_b": 40,
+        "text_a": "is a means of altering unwanted or dysfunctional behavior. The unwanted behavior in Simon's case is forgetting. You mean he's doing it deliberately? Not in the sense that you mean, Dominic. We keep secrets from lots of people, but most of all we keep them from ourselves. And we call that forgetting. Now, Simon I'd like you to close your eyes. I'd like you to think about being at home. Home is a place where you feel secure. In control. You are feeling refreshed and positive. (SIGHING DEEPLY) And when the doorbell rings... (RINGING) ...you feel a rush of enthusiasm. Parcel for Simon Newton, please. Er... coming. Hey, Mr. Postman. You are excited but you stay calm because you know that this is no ordinary package. Inside this package is the memory that you have been waiting for. And you know that when you open it up you will find what you did that day what you did with the",
+        "text_b": "ground, or gave it to some other fellow to hold; there were always lots of fellows eager to hold it. But you had to be careful how you let a little fellow hold it; for, if it was a very powerful kite, it would take him up. It was not certain just how strong a kite had to be to take a small boy up, and nobody had ever seen a kite do it, but everybody expected to see it. IX. CIRCUSES AND SHOWS. WHAT every boy expected to do, some time or other, was to run off. He expected to do this because the scheme offered an unlimited field to the imagination, and because its fulfilment would give him the highest distinction among the other fellows. To run off was held to be the only way for a boy to right himself against the wrongs and hardships of a boy's life. As far as the Boy's Town was concerned,"
+      },
+      {
+        "pair_id": "p0000021",
+        "match_level": 0,
+        "pair_cost": 0.007,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 3671,
+        "row_b": 9874,
+        "source_a": "simple_wiki",
+        "source_b": "qwen_pair_packed",
+        "target_norm_a": "specific",
+        "target_norm_b": "additional",
+        "target_ids_a": [
+          4137
+        ],
+        "target_ids_b": [
+          7171
+        ],
+        "pivot_norm_a": "although",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 48,
+        "pivot_i_b": 139,
+        "target_i_a": 50,
+        "target_i_b": 141,
+        "text_a": "had two daughters named Julia Major and Julia Minor. Julius Caesar, who was their only son, the Ancient Roman dictator, was born 100 BC. He was brother to Sextus Julius Caesar, who was active as consul in 91 BC. Caesar's progress through the \"cursus honorum\" is well known, although the specific dates and his offices are disputed. According to ancient Roman records, Caesar was commissioner in the Cercina Colony, a military tribune, a quaestor, a praetor, and a Governor of Asia. It is unknown specifically when Caesar held these offices. The colony is probably one of the Ancient Roman colonies owned by Marius 103 BC. Caesar died 85 BC, whilst putting his shoes on, in the morning hours. He died from undetermined and suspicious-like causes. Another man with the last name Caesar died similarly in Pisa. = = = Cercina = = = Cercina is a \"frazione\" (rural borough) of the municipality of Sesto Fiorentino, in the Metropolitan City of",
+        "text_b": "Well, these ones here, the burning will be less cos they've got so much moisture. Since these particular ones contain a high amount of moisture, their combustion will be less intense. Eagerly, as she awaited them, Psyche thought she might make the princely palace wherein she dwelt yet fairer than it was. While awaiting their arrival, Psyche, filled with eagerness, imagined she could render the princely palace where she lived even more magnificent than it already was. The campaign urged people to vote for a remote location, this location being Kodiak, Alaska. The campaign encouraged voters to cast their ballots for a distant site: Kodiak, Alaska. And I got the book it must have a bus you know ano , another, an extra bus on because he was allowed to get off at the tonight. I obtained the book because an additional bus was scheduled, allowing him to disembark at the intended time."
+      },
+      {
+        "pair_id": "p0000022",
+        "match_level": 0,
+        "pair_cost": 0.039,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "251-500",
+        "target_freq_bin_b": "251-500",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 6544,
+        "row_b": 12407,
+        "source_a": "fw_preserved_compact_view",
+        "source_b": "gutenberg",
+        "target_norm_a": "successful",
+        "target_norm_b": "active",
+        "target_ids_a": [
+          5639
+        ],
+        "target_ids_b": [
+          5256
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "unless",
+        "pivot_i_a": 63,
+        "pivot_i_b": 94,
+        "target_i_a": 65,
+        "target_i_b": 96,
+        "text_a": "Yet the alliances formed by the Novatlantis 2000 Watt Society and Oberlin Project are demonstrating that these barriers are not insurmountable. Novatlantis 2000 Watt Society and Oberlin Project alliances show barriers are not insurmountable. Being a new development also means that there are very few, if any, successfully completed past examples from which to learn. As a new development, there are very few, if any, successful past examples to learn from. Coal Combustion By-Products (CCBs) are generated when coal is used to generate electricity and power industrial processes. Coal use for electricity and industry generates Coal Combustion By-Products. His work is an example of non-traditional vernacular architecture and American Naïve art. His work shows non-traditional vernacular architecture and American Naïve art.",
+        "text_b": "side. \"Western, my lad, it is reported to me that you saved two lives from drowning yesterday,\" said the colonel. \"I have made enquiries about it and find that you behaved nobly, and have been a credit to this regiment. I may tell you that your name has already been mentioned as deserving of promotion, and there is no doubt but that you would have received your stripes ere long. But now you may feel doubly proud of them, for you have gained them by an act of bravery, which is seldom the case unless on active service. From this date you are a full corporal. Now, my lad, get your stripes put on, for we shall want to see them on parade.\" Motionless, looking straight to his front, Phil listened as if in a dream. Then he blurted out, \"Thank you, sir!\" and a second later was obeying the order, \"Right turn! Quick march!\" Outside, by order of the"
+      },
+      {
+        "pair_id": "p0000023",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "501-1000",
+        "target_freq_bin_b": "501-1000",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 7965,
+        "row_b": 7148,
+        "source_a": "open_subtitles",
+        "source_b": "bnc_spoken",
+        "target_norm_a": "various",
+        "target_norm_b": "final",
+        "target_ids_a": [
+          3362
+        ],
+        "target_ids_b": [
+          3335
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 13,
+        "pivot_i_b": 20,
+        "target_i_a": 16,
+        "target_i_b": 23,
+        "text_a": "It's a limited warhead. The damage should be slight. That's not the point! Because of your various attempts so far, Guilala's spores have re-energized to the same level as when it was created! If it's hit with a puny warhead like that, its spores will be scattered worldwide, producing thousands...no, billions of Guilalas everywhere! Earth will be covered with them... Lord Take-Majin! Careful! Sumire! Lord Take-Majin! Sumire! What do we do? Dear Lord, I promise to stop fooling around! It's Lord Take-Majin! Lord Take-Majin! Lord Take-Majin! Ow, that hurts! That hurts! That's better... Take-Majin! Neci-Coma! Neci-Coma! Neci-Coma! Neci-Coma! Lord Take-Majin! Take-Majin! Who're you? What's your deal? Quit messing around. Go for it, Take-Majin! Keep fighting! You can do it! Ow! Hot! Hot! You gotta be kidding me. You'll pay for that! Yeah, get 'em! Now's your chance! Take this! And this! That's right! Take 'em out! Oh, ow! That does it. Keep it up! Come on! Lord Take-Majin! Lord Take-Majin!",
+        "text_b": "stolen. It is. and me and your ma's sitting here, well ooh My stomach's turning yet. Dawn's missing the football because of the final of the Grand Prix. Did you watch the football on Sunday? She says I don't know about And left her poor st her brother standing in the hall. Och man don't talk nonsense! Aye. They didn't deserve to win. Nonsense. Our William was left standing out in the street for half an hour soaking. When? I drunk a bottle of wine and fell asleep after the match. Where was ? He was sleeping. Oh. We came up from York Street today, you know we walked Aha Court? And er whatever way I brought them we ended up in Street and you know the King George the Sixth Hall? Yes. The big hall there? Aha. I swear to God, in Willington Place I'll, pitch black, never forget it. And all I remember was saying oh! Oh aye?"
+      },
+      {
+        "pair_id": "p0000024",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "501-1000",
+        "target_freq_bin_b": "501-1000",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "5-8",
+        "distance_bin_b": "5-8",
+        "distance_bin_delta": 0,
+        "row_a": 18388,
+        "row_b": 15647,
+        "source_a": "bnc_spoken",
+        "source_b": "gutenberg",
+        "target_norm_a": "total",
+        "target_norm_b": "wonderful",
+        "target_ids_a": [
+          4271
+        ],
+        "target_ids_b": [
+          3322
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 28,
+        "pivot_i_b": 116,
+        "target_i_a": 33,
+        "target_i_b": 121,
+        "text_a": "maintain the equipment at second line requires quite extensive test equipment and facilities. However in this aircraft we have specified a very high degree of re reliability and if you look at the total number of occurrences for each piece of equipment that are going to require maintenance, it's so low that it doesn't justify the provision of maintenance facilities on every base. So what has been suggested is that er we examine the possibility of centralising the second line facilities that are normally provided on every base and only do that at perhaps two bases. I see thank you, yes that's very helpful that clarifies the position on that and finally I'll ask Michael Colgan to take us into the question of the management systems for the contract. Yes er Mr Chairman we have, at the moment, two intergovernmental management agencies involved in the same building in . First of all we've got N A M A managing the",
+        "text_b": "begins to sing the most beautiful songs. He sings so steadily that Elizabeth says it is a surprise to her that he doesn’t burst his little throat. “After Elizabeth gets up she always gives him a little piece of apple before she begins her breakfast. She puts it on her finger between two wires of the cage, and he hops right over on his little bar and takes it from her finger. [Illustration: “IN THE AFTERNOONS ELIZABETH LETS HIM OUT OF HIS CAGE.”—_Page 13_] “The next thing is his bath, which he takes soon after breakfast. He loves that. He spatters the water about and has just the best time in the world. He acts as if it were the most wonderful game. After his bath he has a treat of delicious lettuce to eat, and then he sits in the sun and smoothes down his feathers. “In his cage there is a swing, and he swings on it and"
+      },
+      {
+        "pair_id": "p0000025",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "501-1000",
+        "target_freq_bin_b": "501-1000",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 5352,
+        "row_b": 3146,
+        "source_a": "open_subtitles",
+        "source_b": "bnc_spoken",
+        "target_norm_a": "plastic",
+        "target_norm_b": "necessary",
+        "target_ids_a": [
+          3543
+        ],
+        "target_ids_b": [
+          4602
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "though",
+        "pivot_i_a": 74,
+        "pivot_i_b": 48,
+        "target_i_a": 78,
+        "target_i_b": 52,
+        "text_a": "I'm Anthony Mertz. - Albert Weinselstein. You're that kid who's always in the nurse's office, right? Sometimes they send me to the hospital. This one's for my allergies, and this one's for my asthma. And this is testosterone. My doctor says I'm dangerously close to being a girl. [BULLIES LAUGHING] Do you know any other tricks? I have a whole magic kit at home. An empty top hat. You're like a boy witch. What if you put a plastic bag of water in the hidden compartment? Then water would come out instead of confetti. - Do you wanna be my partner? - More than anything. I think we should start writing down our trick ideas. - Like in a notebook. ANTON: An enchanted notebook, with leather and buckles. - All I have is a regular notebook. So then our first trick should be \"Confetti Out of a Hat.\" - Ta-da. I want you to come work for me. Here, at",
+        "text_b": "in the industry or craft or trade for eighteen months prior to their nomination. Now, we could be denying a lot of very experienced noble colleagues the opportunity to contribute to debates, quite probably through no fault of their own, as we all realize. But it was felt though, that it was necessary to support the document in order to clear up a rather unsatisfactory situation er, where we're holding sectional and delegate conferences that don't have remits and guidelines er, which can clarify their position. I've been asked to ask er, a question also on appendix three, procedures for regional delegate conferences where it states that copies of the reports of regional delegate conferences shall be forwarded, forwarded to the regional secretary. Erm, the appropriate national industrial officers branch secretaries and the main workplaces in the industry. We would ask, because it's not actually clear erm, what that means, that the report from regional delegate conferences could be forwarded"
+      },
+      {
+        "pair_id": "p0000026",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "501-1000",
+        "target_freq_bin_b": "501-1000",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 12249,
+        "row_b": 7583,
+        "source_a": "simple_wiki",
+        "source_b": "gutenberg",
+        "target_norm_a": "medical",
+        "target_norm_b": "personal",
+        "target_ids_a": [
+          4881
+        ],
+        "target_ids_b": [
+          4488
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 153,
+        "pivot_i_b": 141,
+        "target_i_a": 157,
+        "target_i_b": 145,
+        "text_a": "= = The Clinical Institute Withdrawal Assessment for Alcohol (often called CIWA or CIWA-Ar (an updated version)), is a scale used to measure alcohol withdrawal symptoms. The scale lists ten common symptoms of alcohol withdrawal. Based on how bad a person's symptoms are, each of these is assigned a number. All ten numbers are added up to make one final score. The highest possible score is 67. Higher scores are a sign of more severe alcohol withdrawal: The CIWA is used not just to measure how bad withdrawal symptoms are, but also to guide decisions about what treatments to give, like when to give benzodiazepines. The CIWA Scale. The CIWA measures ten of the most common signs and symptoms of alcohol withdrawal: Uses. The CIWA scale is validated, which means it is proven to measure what it means to measure - alcohol withdrawal symptoms. It also has high inter-rater reliability. This means that if more than one medical professional used",
+        "text_b": "the mate, 'Set your jibs.' And next it is, 'Set your staysails.' And then it is, 'Loose your lower topsails.' Then the mate vill sing out to the men, 'Haul away the lee sail,' or 'Overhaul the main-top-gallant bunt-lines.' But I am an old fool and you are a young loafer. Get along mit you.\" As if by magic, the white canvas was spreading higher and higher above the low hull of the _Sea Witch_, until her royals seemed like bits of the clouds that drifted in the blue sky. As David answered a summons from the bridge, he overheard Captain Thrasher say: \"Very smartly done. The old man must have shipped a good crew. Wonder where he got 'em? That's the way Yankee ships used to make sail when I was a boy.\" David felt a thrill of pride as if he had a personal share in this welcome praise. The liner was overhauling the _Sea Witch_ hand over"
+      },
+      {
+        "pair_id": "p0000027",
+        "match_level": 1,
+        "pair_cost": 2.128,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "501-1000",
+        "target_freq_bin_b": "501-1000",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "5-8",
+        "distance_bin_delta": 1,
+        "row_a": 9515,
+        "row_b": 18082,
+        "source_a": "open_subtitles",
+        "source_b": "fw_preserved_compact_view",
+        "target_norm_a": "terrible",
+        "target_norm_b": "necessary",
+        "target_ids_a": [
+          3973
+        ],
+        "target_ids_b": [
+          4602
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "thus",
+        "pivot_i_a": 10,
+        "pivot_i_b": 101,
+        "target_i_a": 14,
+        "target_i_b": 106,
+        "text_a": "you can't be here right now. Why should I go? Because of all the terrible things I've done? When we both know... what you did... just last night? You think Chelsea would go to you first? I told her to go. Wanted to see what you'd do. Now I know. I just wanna make peace with you. That's it. Yeah, now. You just want me to absolve you. You were right about everything. I let the family scapegoat you. I did. No one ever stood up to Dad. Meg, Kevin... Mom. I never did. I could've made things better for you and I didn't. I'm sorry. Because you were never given the chance to have the life I have, and I see that. But you can't be here. John, I told you. I'm not leaving. You expect me to forget about this? I can forgive so much. - Not that. - You can't forgive yourself. - Because you should have",
+        "text_b": "And just three states — Delaware, Virginia and Nebraska — have 20 minutes of mandatory elementary-school recess a day, according to research published in the Archives of Pediatrics & Adolescent Medicine. Only Delaware, Virginia, and Nebraska have 20 minutes of mandatory elementary-school recess daily, per Archives of Pediatrics & Adolescent Medicine research. In 2003, Koppel was part of a research team that developed software that could successfully tell, four times out of five, if the author of a text was male or female. In 2003, Koppel helped create software that correctly identified a text's author gender four out of five times. Thus it is no longer necessary to obtain blood or tissue samples to study population genetics in animals. You no longer need blood or tissue samples to study animal population genetics."
+      },
+      {
+        "pair_id": "p0000028",
+        "match_level": 1,
+        "pair_cost": 2.2,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "501-1000",
+        "target_freq_bin_b": "501-1000",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 1,
+        "row_a": 17025,
+        "row_b": 14685,
+        "source_a": "bnc_spoken",
+        "source_b": "open_subtitles",
+        "target_norm_a": "total",
+        "target_norm_b": "personal",
+        "target_ids_a": [
+          4271
+        ],
+        "target_ids_b": [
+          4488
+        ],
+        "pivot_norm_a": "although",
+        "pivot_norm_b": "though",
+        "pivot_i_a": 49,
+        "pivot_i_b": 116,
+        "target_i_a": 51,
+        "target_i_b": 120,
+        "text_a": "oxygen. Now if you start analyzing the composition of sea salt, or the salt in, in sea water, what you find is that there is a remarkable constancy in the ratio of one element to the other. No matter where you go in the world ocean you find that although the total salinity may vary, the actual ratio of say silicon no that's , let's say potassium to aluminium is the same er so there is a constancy of composition there is a constant ratio between the elements. That constancy of composition relationship breaks down in enclosed seas and bays for example where er addition processes, I E er salts which have been eroded from river water, may alter the composition. So may, you may have a bay for example that's in an area where all the rivers draining into it are rich in copper because they're running over rocks which are copper. So in enclosed areas like that this",
+        "text_b": "where we lost it. We didn't focus on, let's just get four women to the final four. JEFF: Leann, why do you think women have such a hard time? Um, well, you know, it wasn't that we wanted to take all the women and-and have them at the end, and-and get rid of all the guys first, but the goal was-- at least my goal was-- to go to the final four with all women. And it was working for a while, and it got screwed up when they voted me off. ( laughter ) Julie, is there a difference in how Chris played this game, in that Chris, it seemed like, made people feel as though he did have personal relationships with them? JULIE: Right. When he actually didn't, but everybody else did. And I'm just figuring this out. I mean, I thought... I don't even know if you have feelings... sometimes. I'm still... I have feelings. I have"
+      },
+      {
+        "pair_id": "p0000029",
+        "match_level": 0,
+        "pair_cost": 0.1,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "5-8",
+        "distance_bin_b": "5-8",
+        "distance_bin_delta": 0,
+        "row_a": 7819,
+        "row_b": 9847,
+        "source_a": "childes",
+        "source_b": "gutenberg",
+        "target_norm_a": "five",
+        "target_norm_b": "able",
+        "target_ids_a": [
+          1067
+        ],
+        "target_ids_b": [
+          1838
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "though",
+        "pivot_i_a": 22,
+        "pivot_i_b": 33,
+        "target_i_a": 28,
+        "target_i_b": 38,
+        "text_a": "wow. [inhales as if in fear] *MAR: and you know what? *FAT: what? *MAR: and it had six legs. *FAT: [inhales as if in fear]. *MAR: and uh five eyes. *MAR: and... *FAT: do you wanna get under the covers? *MAR: huh? *MAR: no. *MAR: and you know what? *FAT: what? *MAR: well and there was a spider web in the coffin. *FAT: yuck. *FAT: creepy eh? %int: 1U1 lengthened *MAR: yeah and uh... *FAT: you like creepy things Marky? *MAR: no I'm just telling you that so you shouldn't go to Indian Guides. *FAT: okay I won't go any more. *MAR: and uh then I saw another one hanging then I saw um a uh a uh spider another spider web hanging on the tree. *FAT: mhm [yes]. *MAR: and um... *FAT: was there a ghost in it? *MAR: yeah. *FAT: hm. *MAR: and um I saw a uh another monster hanging on the road. *FAT: was he drinking",
+        "text_b": "go change your frocks so as to be ready.\" The three flew upstairs chattering like magpies, and when up they flew around excitedly so as to get down again to ask more questions, though this they were not able to do as the very first relay of guests arrived before they were quite dressed. These happened to be the Potters. They were followed by Louis and two other boys from the hotel, and then the arrivals did not cease till twenty children were established around Miss Eloise. For an hour they were delighted listeners, for it seemed as if this teller of tales had never been in better spirits nor had she ever told a more entrancing story, and when at last it came to an end there were many long drawn \"Ahs\" which showed that no one was ready to have her stop. Then the carriages and automobiles began coming up and the children were whirled away, though in"
+      },
+      {
+        "pair_id": "p0000030",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 15541,
+        "row_b": 5552,
+        "source_a": "gutenberg",
+        "source_b": "bnc_spoken",
+        "target_norm_a": "live",
+        "target_norm_b": "give",
+        "target_ids_a": [
+          1593
+        ],
+        "target_ids_b": [
+          929
+        ],
+        "pivot_norm_a": "though",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 110,
+        "pivot_i_b": 91,
+        "target_i_a": 113,
+        "target_i_b": 94,
+        "text_a": "waves.” People at that time thought it impossible for a woman to rule as well as a man, but under Elizabeth’s rule England in turn became the leading country of Europe. Then people said Elizabeth ruled _like_ a man, that she had a man’s brain, a man’s will. In fact they said she was more man than woman--that she was a tomboy grown up--that’s why I call her “King Elizabeth.” [Illustration] 65 The Age of Elizabeth This story is about the Age of Elizabeth. My father always told me that it was impolite to talk about a lady’s age. But I’m not going to tell you how old Elizabeth was, though she did live and reign a great many years. I’m going to tell you some of the things that happened during her long life, for the time when she lived is what is called the Age of Elizabeth. There was a young man named Raleigh living when Elizabeth became",
+        "text_b": "actually a grade four one. We'll lead up gradually to grade five . Yeah. I'm not going to go all the way back through grades two and three. You started on two I think. Or you've got Book Two. We'll go, we'll go from I think . here. And anything that you find you don't know then we can perhaps go back on just the bits that you don't know. Because you're not going to have to go back on many of the things. This book, these books are quite good because they do give you a little bit of explanation. You've also got er other books or another book at home which you can refer to if you need any extra. Erm it might be an idea to go back. You won't find you're going to take much time doing some of these. If you do exercise one for the time being don't worry about that one, exercise three."
+      },
+      {
+        "pair_id": "p0000031",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "1",
+        "distance_bin_b": "1",
+        "distance_bin_delta": 0,
+        "row_a": 9980,
+        "row_b": 17407,
+        "source_a": "open_subtitles",
+        "source_b": "gutenberg",
+        "target_norm_a": "give",
+        "target_norm_b": "possible",
+        "target_ids_a": [
+          929
+        ],
+        "target_ids_b": [
+          2785
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 123,
+        "pivot_i_b": 63,
+        "target_i_a": 124,
+        "target_i_b": 64,
+        "text_a": "believe Kal, krypton's first natural birth in centuries. That's why we risked so much save you. Why didn't you come with me. We couldn't Kal. No matter how we wanted to. And how much we loved you. Your mother Lara and I were products of failures of our world as much zod was. So, I'm alone. You are much as a child of earth now as you are of krypton. You can embodied best of both worlds. A dream your mother and I dedicated our lives to preserve. People of earth are different than us, its true. But ultimately I believe that is a good thing. They will not necessary make same mistake a we did. And if you guide them, Kal. And if give them hope. That is what this symbol means. The symbol of house of EL means hope. Embodied in within that help is fundamental believe, the potential of every person to be a force for good.",
+        "text_b": "me.\" The talk here took a financial turn, and Mrs Rimbolt presently joining the party, she and her brother were left to themselves while Mr Rimbolt and the colonel took a short stroll. Mr Rimbolt took the opportunity of telling his brother-in-law what he knew, not only of Jeffreys but of young Forrester, and the colonel told him of his obligation to find if possible the child of his dead companion-in-arms. \"It's a mixed-up business altogether,\" said he, \"and from all I can judge something of a family matter. My little girl, Rimbolt, whom you've been so good to, seems to me more interested in this librarian of yours than she would like any one to suspect--eh?\" \"I have fancied so,\" said Mr Rimbolt, \"sometimes.\" \"Pleasant to come home and find everybody in the dumps about some person one has never seen. The sooner the rascal comes to light, the better for everybody and for my holiday. By the way,"
+      },
+      {
+        "pair_id": "p0000032",
+        "match_level": 1,
+        "pair_cost": 2.1,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "1",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 1,
+        "row_a": 5227,
+        "row_b": 15546,
+        "source_a": "bnc_spoken",
+        "source_b": "open_subtitles",
+        "target_norm_a": "local",
+        "target_norm_b": "live",
+        "target_ids_a": [
+          3032
+        ],
+        "target_ids_b": [
+          1593
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 27,
+        "pivot_i_b": 47,
+        "target_i_a": 28,
+        "target_i_b": 49,
+        "text_a": "context, for further guidance to be given to fairly erm assess where the new settlement location er should be. We think it would be a sad day if local plans and structure plans were purely a restatement er of P P G three. The purpose of the planning system I think is to develop government guidance er and therefore we think there's a need for something further than P P G three. Secondly, er we think there's a need for a consistent overview of York, a consistent view of the issues and the matters that need to be assessed erm right across Greater York. We've already heard that Greater York os a very complex area with many interrelationships. I think there's a need to assess those relationships and those factors evenly and fairly across Greater York and if nothing else I think we owe that to the public er of Greater York. And indeed we did give them an an",
+        "text_b": "amazing dream. You're always hogging the TV! I don't like baby stuff. We're... sleeping. Get some Raisin Bran. You can eat it in the den. Out! Out! I should have locked the door. Here's number 2, sir. Thank you, Jeeves. Why are we in the living room? Because we live here. What did I say about the stereo? I wasn't touching it. Bobby, I saw you do it. - I didn't do it. - Go watch TV, both of you. I love this song. His voice is like silk, and you can really hear the words. He makes everything sound like Christmas. In high school, I used to love dancing to this song. Come dance with me. I thought we weren't doing anything today. Hurry. It's almost over. I hate to think about your reputation in high school. Are you going to sit at the table? Gerry, could you get it? Jesus, Anita, I can't move. Watch your language! And"
+      },
+      {
+        "pair_id": "p0000033",
+        "match_level": 0,
+        "pair_cost": 0.003,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 7779,
+        "row_b": 2908,
+        "source_a": "qwen_pair_packed",
+        "source_b": "simple_wiki",
+        "target_norm_a": "give",
+        "target_norm_b": "several",
+        "target_ids_a": [
+          929
+        ],
+        "target_ids_b": [
+          2205
+        ],
+        "pivot_norm_a": "though",
+        "pivot_norm_b": "although",
+        "pivot_i_a": 27,
+        "pivot_i_b": 45,
+        "target_i_a": 30,
+        "target_i_b": 48,
+        "text_a": "My boy and his brother groaned under their good resolution, I do not know how long; but the day came when they could bear it no longer, though I cannot give just the time or the terms of their backsliding. My boy and his brother groaned under their good resolution for an unknown duration, until the day arrived when they could endure it no longer, although I cannot specify the exact time or the terms of their backsliding. He died of Parkinson's disease in Ada Township, Michigan on December 7, 2004, at the age of 80. On December 7, 2004, he passed away from Parkinson's disease in Ada Township, Michigan, at the age of 80. Moreover, our old rector had gone, and the lately-appointed one was a stranger, and rather an eccentric stranger, by all accounts. Moreover, our old rector had departed, and the newly-appointed one was a stranger, and by all accounts, rather an eccentric stranger.",
+        "text_b": "eucalyptus forest. Private vehicles may not enter. Walkers go in through the entrance on \"Freeman Road\" in Heathcote. A trail begins behind the Boy Scout Hall on Freeman Road. It goes south past water holes and small waterfalls. The path ends at the Woronora Dam, although there are several other entrances to the park around Heathcote and Waterfall. History. Before the forest area became a park, a group of hikers had leased most of the area. Presumably they created some of the early hiking trails and campsites. The area later became a \"state park\" and again later a national park. Aboriginals lived in the area and left traces in various places. In addition, a number of European settlers lived during the Great Depression in the 1930s in simple huts, leaving only scant ruins in places like \"Myuna Creek\" back Geography. The park consists of the deeply furrowed Hawkesbury sandstone plateau, part of the \" Woronora Plateau \". \"Heathcote Creek\", a"
+      },
+      {
+        "pair_id": "p0000034",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 17034,
+        "row_b": 14697,
+        "source_a": "open_subtitles",
+        "source_b": "simple_wiki",
+        "target_norm_a": "give",
+        "target_norm_b": "special",
+        "target_ids_a": [
+          929
+        ],
+        "target_ids_b": [
+          2480
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 21,
+        "pivot_i_b": 3,
+        "target_i_a": 23,
+        "target_i_b": 5,
+        "text_a": "Norton's money. Severance pay for 19 years. Good morning, Portland Daily Bugle. Byron Hadley? You have the right to remain silent? If you give up the right to remain silent, anything you say will be held against you in court. I wasn't there to see it. But I hear Byron Hadley started sobbing like a little girl when they took him away. Norton had no intention of going that quietly. Samuel Norton? Norton! I'm not sure which key it is? Norton! Make it easy on yourself, Norton. I like to think the last thing that went through his head, other than that bullet, was to wonder how the hell Andy Dufresne ever got the best of him. Carter, James? .? Not long after the Warden deprived us of his company, I got a postcard in the mail. It was blank but the postmark said... Fort Hancock, Texas. Fort Hancock. Right on the border. That's where Andy crossed. When I picture",
+        "text_b": "in Esperanto even if the special letters are not available. L. L. Zamenhof, the creator of Esperanto, proposed the so-called \"h-system\" (\"h-sistemo\" in Esperanto). Instead of diacritics, the letter \"h\" is added, with the only exception being \"ŭ\". For example, \"ĝ\" becomes \"gh\", \"ĥ\" becomes \"hh\" and \"ŭ\" becomes \"u\". Words which appear to have a diacritic but do not actually can be \"broken\" with a hyphen or an apostrophe. For example, \"flughaveno\" (airport) becomes \"flug-haveno\" or \"flug'haveno\". Another system used to replace diacritics is the \"x-system\" (\"x-sistemo\" in Esperanto). The letter \"x\" is not used in the Esperanto alphabet, but it can be used to write diacritics. The x-system, unlike the h-system, does not treat ŭ differently from the other letters. For example, \"ĝ\" becomes \"gx\", \"ĥ\" becomes \"hx\" and \"ŭ\" becomes \"ux\". \"flughaveno\" remains the same, as there is no ambiguity. Unicode and HTML. The whole Esperanto alphabet is part of the Latin-3 and Unicode character sets, and"
+      },
+      {
+        "pair_id": "p0000035",
+        "match_level": 1,
+        "pair_cost": 2.1,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "1",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 1,
+        "row_a": 3964,
+        "row_b": 16559,
+        "source_a": "bnc_spoken",
+        "source_b": "gutenberg",
+        "target_norm_a": "give",
+        "target_norm_b": "able",
+        "target_ids_a": [
+          929
+        ],
+        "target_ids_b": [
+          1838
+        ],
+        "pivot_norm_a": "if",
+        "pivot_norm_b": "though",
+        "pivot_i_a": 154,
+        "pivot_i_b": 57,
+        "target_i_a": 155,
+        "target_i_b": 59,
+        "text_a": "putting on your and calling every six weeks Mandy, but, it might be worth asking it in a more open way. Because Sod's law'll say if you ask it open, you'll find summat out you never assumed. Mm. Yo you know. You never thought. Well actually, yes we're the head office for a regional group here and as well as have a, er an actual service for hairdressing we also have a distribution er control shop at the back. And, we have our own delivery service to our cu , to our own network. Now what's the question you can ask this hairdresser that got his own bus , I know I'm using a, a an extreme Mm mm. point, they've got their own delivery service. What else would you like to ask? Is there any place you can ever not go to? What areas does it, do they tend to serve? What happens if give me an scenario, a",
+        "text_b": "it would be not to be well by Christmas and by his birthday, and he smiled when his father told him, as was the case, that the doctor quite hoped he would be well by then; and one day when the post brought him his great wish--a beautiful book of travels--his face lighted up with pleasure, and, though not able to read it, the welcome present lay on his bed where he could see it and smile to himself to think it was there. There were happy times through his illness, weak and wearied though he grew, and now and then he seemed so bright that it was difficult, for a little, not to think him much better. But the illness which Ted had is a very deceitful one--it invisibly saps away the strength even when the worst sharp suffering is over--and slowly, slowly it came to be seen that his own feeling had been true; our Ted was not"
+      },
+      {
+        "pair_id": "p0000036",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 6280,
+        "row_b": 19831,
+        "source_a": "simple_wiki",
+        "source_b": "gutenberg",
+        "target_norm_a": "deal",
+        "target_norm_b": "give",
+        "target_ids_a": [
+          2038
+        ],
+        "target_ids_b": [
+          929
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "therefore",
+        "pivot_i_a": 36,
+        "pivot_i_b": 33,
+        "target_i_a": 38,
+        "target_i_b": 35,
+        "text_a": "his own death. Finally he goes into the forest, and he summons the Glass Man. He tells him, that he still has a last wish, and that he wants his heart back.The Schatzhauser cannot help him, because the deal \"heart against money\" wasn't made with him. He tels him a trick how he can outwit Michel. For a third time, he goes to Dutch Michael. Peter claims that Dutch Michael cheated, and that he did not receive a heart of stone. Michael wants to prove him wrong. As a test, he puts back Peter's real heart. Peter then takes a glass cross that he had received from the Glass Man. He points the cross in the direction of Michael. That way, he is able to keep furious Michael at a distance. He escapes to the Glass Man. Now, Peter regrets what he has done in his life. The Glass Man unites him with his mother, and with Lisbeth, who has",
+        "text_b": "heaven. Justinian found out about these caterpillars and had men bring these silkworms into Europe so that his people also might make silk cloth and have silk ribbons and fine silk garments, and therefore we give him the honor of starting the manufacture of silk in Europe. Outside of Justinian’s empire the ignorant Teutons were living. It took them nearly a thousand years to learn as much as any school-boy now knows, and the first thing they learned was not reading, nor writing, but the Christian religion. About the same time that Justinian lived there was a king in France named Clovis. Clovis, of course, was a Teuton and belonged to the tribe called the Franks, which gave the name “France” to that country. Clovis believed in Thor and Woden as all of his people did. Clovis had a wife named Clotilda, whom he loved very dearly. Clotilda, though a Teuton, thought all the fighting and cruelty which her people"
+      },
+      {
+        "pair_id": "p0000037",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 5509,
+        "row_b": 17340,
+        "source_a": "gutenberg",
+        "source_b": "open_subtitles",
+        "target_norm_a": "real",
+        "target_norm_b": "give",
+        "target_ids_a": [
+          1162
+        ],
+        "target_ids_b": [
+          929
+        ],
+        "pivot_norm_a": "though",
+        "pivot_norm_b": "if",
+        "pivot_i_a": 140,
+        "pivot_i_b": 137,
+        "target_i_a": 144,
+        "target_i_b": 141,
+        "text_a": "the keeper, ‘Zuzeppa will do his special trick. It has been done before by monkeys but Zuzeppa never did it before, and he has been practising it so he could do it beautifully for this performance.’ “The keeper took out a little wooden table and put a napkin upon it and a cloth. Then Zuzeppa spread the cloth over the table, reached down in a box the keeper had, and took out a knife and a fork and a spoon. He put all these on the table and then tied the napkin around his neck. “Next he took a little broken chair which was in his cage and sat upon it. “The keeper acted as the waiter, and passed things to Zuzeppa. And what do you suppose Zuzeppa did?” “What?” asked the children. “Zuzeppa behaved at the table just as though he were a real person. He ate with his fork and he cut with his knife. He peeled his",
+        "text_b": "come in his place. And between you and I, honey, I'm a lot better company. So, what now, boss? Now, nothing. We're here for Shaw. She's his right-hand woman. The CIA invading the home of a senior Soviet official. Are you crazy? So, you must be busy planning your next move. What with the Americans refusing to remove their missiles from Turkey. You know I can't talk about those things, miss frost. You don't have to say a word. He's gonna start world war III single-handed. You are beautiful, so beautiful! You can stop trying to read my mind, sugar. You're never going to get anything from me while I'm like this. So, then, you can just tell us. Where is Shaw? Erik, that's enough. Erik, that's enough! She won't be shifting into diamond form again. And if she does, just give her a gentle tap. We are the children of the atom. Radiation gave birth to mutants. What will"
+      },
+      {
+        "pair_id": "p0000038",
+        "match_level": 0,
+        "pair_cost": 0.0,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "3-4",
+        "distance_bin_b": "3-4",
+        "distance_bin_delta": 0,
+        "row_a": 16327,
+        "row_b": 9612,
+        "source_a": "open_subtitles",
+        "source_b": "childes",
+        "target_norm_a": "able",
+        "target_norm_b": "real",
+        "target_ids_a": [
+          1838
+        ],
+        "target_ids_b": [
+          1162
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "because",
+        "pivot_i_a": 26,
+        "pivot_i_b": 123,
+        "target_i_a": 29,
+        "target_i_b": 126,
+        "text_a": "making movies. Then I asked myself how I should keep on making them. Now I feel that everyday life is an essential aspect of making movies. Because I was able to make this 5 Centimeters Per Seoondin such favorable environment, I'm glad that I made it. It became an important piece for me. New challenges... New challenges attempted forthis movie New challenges... New challenges attempted forthis movie It's almost like I grope my way through each movie I make. New challenges attempted forthis movie Just like I mentioned earlier, even the environment that I make the movie in is different every time, New challenges attempted forthis movie so that itself is a new challenge also. so that itself is a new challenge also. If I must touch on the technical aspect and the contents aspect of it, technically it was basically the extension of what I've done in the past. However, all the main staff members who were working on",
+        "text_b": "been bossy? *CHI: yeah. *FAT: maybe. *CHI: were you bossy to your kids? *FAT: not very much. *CHI: but you were. *FAT: when was I bossy? *CHI: well just you told to me... *FAT: you mean at work? *CHI: yeah. *FAT: oh no I didn't boss anyone around at work. *FAT: I just work with the the computer. *CHI: you just stay in your room? *FAT: uhuh and work with the computer. *CHI: did people come in your room? *FAT: no no one came in. *CHI: why doesn't anybody come in your room? *FAT: because I'm busy. *CHI: why don't do they usually come in your room? *FAT: usually yeah they do. *CHI: oh then why don't they do it these days? *FAT: because I was real busy and no one was there. *FAT: it was Sunday and not very many people work on Sunday. *CHI: oh. *CHI: tomorrow is not... *FAT: most people stay home and play with their"
+      },
+      {
+        "pair_id": "p0000039",
+        "match_level": 0,
+        "pair_cost": 0.005,
+        "category": "causal_connector",
+        "target_class": "adjectival",
+        "target_token_len": 1,
+        "target_token_pattern": "S",
+        "target_freq_bin_a": "1001+",
+        "target_freq_bin_b": "1001+",
+        "target_freq_bin_delta": 0,
+        "distance_bin_a": "2",
+        "distance_bin_b": "2",
+        "distance_bin_delta": 0,
+        "row_a": 14798,
+        "row_b": 8345,
+        "source_a": "fw_preserved_compact_view",
+        "source_b": "qwen_pair_packed",
+        "target_norm_a": "several",
+        "target_norm_b": "give",
+        "target_ids_a": [
+          2205
+        ],
+        "target_ids_b": [
+          929
+        ],
+        "pivot_norm_a": "because",
+        "pivot_norm_b": "therefore",
+        "pivot_i_a": 54,
+        "pivot_i_b": 92,
+        "target_i_a": 56,
+        "target_i_b": 94,
+        "text_a": "- Dermoptera - this order is small, containing Colugos, arboreal gliding mammals found in South-east Asia. Dermoptera is a small order of South-east Asian gliding mammals called Colugos. His mother, a pacifist, cried when he enrolled in West Point. His pacifist mother cried when he joined West Point. Massachusetts is called \"the Bay State\" because of several large bays, which distinctly shape its coast: Massachusetts Bay and Cape Cod Bay, to the east, and Buzzards Bay, to the south. Massachusetts is \"the Bay State\" because large bays like Massachusetts Bay, Cape Cod Bay, and Buzzards Bay shape its coast. A few cities and towns on the Massachusetts–Rhode Island border are adjacent to Narragansett Bay. A few towns on the Massachusetts-Rhode Island border are adjacent to Narragansett Bay. The islands Martha's Vineyard and Nantucket lie south of Cape Cod, across Nantucket Sound. Martha's Vineyard and Nantucket lie south of Cape Cod across Nantucket Sound.",
+        "text_b": "It is said that she went to Palestine and found the actual cross on which Christ had been crucified three hundred years before and sent part of it to Rome. It is said that she traveled to Palestine, discovered the actual cross on which Christ had been crucified three hundred years prior, and dispatched a portion of it to Rome. Justinian found out about these caterpillars and had men bring these silkworms into Europe so that his people also might make silk cloth and have silk ribbons and fine silk garments, and therefore we give him the honor of starting the manufacture of silk in Europe. Justinian learned of these caterpillars and ordered men to transport these silkworms to Europe so that his people could produce silk cloth, silk ribbons, and fine silk garments, and thus we bestow upon him the honor of initiating silk manufacture in Europe."
+      }
+    ],
+    "runtime_sec_before_write": 23.44
+  },
+  "natural_mask_estimate": {
+    "wwm_group_mask_prob_assumed": 0.15,
+    "estimated_pairs_with_both_targets_masked_per_epoch": 157.29749999999999,
+    "estimated_pairs_with_both_targets_masked_10_epochs": 1572.975,
+    "interpretation": "This is an independence estimate only. A future no-update calibration should replay the exact WWM mask generator and count realized pairs; forced target masking would require a same-mask WWM reference."
+  },
+  "outputs": {
+    "pairs_jsonl": "experiments/archive/representation_and_objectives/data/relation_pair_funnel_pilot20k/relation_pair_pool.jsonl",
+    "pairs_csv": "experiments/archive/representation_and_objectives/data/relation_pair_funnel_pilot20k/relation_pair_pool_summary.csv",
+    "note": "research/notes/representation_and_objectives/relation_pair_funnel_pilot20k.md"
+  }
+}

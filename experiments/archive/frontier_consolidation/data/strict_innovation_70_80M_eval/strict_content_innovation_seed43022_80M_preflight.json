@@ -1,0 +1,147 @@
+{
+  "status": "COMPLIANT_EVAL_PREFLIGHT",
+  "created_utc": "2026-08-30T13:53:53Z",
+  "target": "strict_content_innovation_seed43022_80M",
+  "description": "compact_view_reinvest trained with legal research 16k tokenizer and strict content-innovation WWM reallocation: source-absent row-unique content-like rewrite groups p=0.5; copyable rewrite groups reduced with token-mass matching; source/filler/duplicate/function-like groups remain ordinary p=0.15",
+  "family": "end_to_end_legal16k_strict_content_innovation_wwm_density_reinvestment",
+  "run_dir": "experiments/archive/frontier_consolidation/training/runs/strict_content_innovation_wwm_reinvest_seed43022_80M",
+  "model_root": "experiments/archive/frontier_consolidation/training/runs/strict_content_innovation_wwm_reinvest_seed43022_80M/hf_model",
+  "model_path": "experiments/archive/frontier_consolidation/training/runs/strict_content_innovation_wwm_reinvest_seed43022_80M/hf_model/chck_80M",
+  "endpoint": "chck_80M",
+  "model_root_exists": false,
+  "model_path_exists": false,
+  "metrics_exists": false,
+  "out_root": "experiments/archive/frontier_consolidation/data/strict_innovation_70_80M_eval",
+  "collate_root": "experiments/archive/frontier_consolidation/data/strict_innovation_70_80M_collate/strict_content_innovation_seed43022_80M",
+  "columns_requested": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA_parallel",
+    "GlobalPIQA_nonparallel",
+    "Reading"
+  ],
+  "required_paths": {
+    "current_strict": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict",
+      "exists": true
+    },
+    "current_full_eval": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval",
+      "exists": true
+    },
+    "globalpiqa_full_eval": {
+      "path": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval",
+      "exists": true
+    },
+    "aoa_helper_minctx0": {
+      "path": "experiments/archive/frontier_consolidation/scripts/aoa_local_ckpts_minctx.py",
+      "exists": true
+    },
+    "compact_experience_base_runner": {
+      "path": "experiments/archive/compact_experience/scripts/full_overall_eval_runner.py",
+      "exists": true
+    },
+    "representation_and_objectives_pristine_collator": {
+      "path": "experiments/archive/representation_and_objectives/scripts/stage_pristine_collate.py",
+      "exists": true
+    }
+  },
+  "zero_shot_specs": [
+    {
+      "column": "BLiMP",
+      "task": "blimp",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/blimp_filtered",
+      "batch_size": 128
+    },
+    {
+      "column": "Supplement",
+      "task": "blimp",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/supplement_filtered",
+      "batch_size": 128
+    },
+    {
+      "column": "EWoK",
+      "task": "ewok",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/ewok_filtered",
+      "batch_size": 64
+    },
+    {
+      "column": "Entity",
+      "task": "entity_tracking",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/entity_tracking",
+      "batch_size": 128
+    },
+    {
+      "column": "COMPS",
+      "task": "comps",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/comps",
+      "batch_size": 128
+    },
+    {
+      "column": "GlobalPIQA_parallel",
+      "task": "global_piqa_parallel",
+      "data_path": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/global_piqa_parallel",
+      "batch_size": 128
+    },
+    {
+      "column": "GlobalPIQA_nonparallel",
+      "task": "global_piqa_nonparallel",
+      "data_path": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/global_piqa_nonparallel",
+      "batch_size": 128
+    }
+  ],
+  "reading_data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/reading/reading_data.csv",
+  "superglue_data_dir": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/glue_filtered",
+  "aoa_expected": {
+    "steps": [
+      "chck_1M",
+      "chck_2M",
+      "chck_3M",
+      "chck_4M",
+      "chck_5M",
+      "chck_6M",
+      "chck_7M",
+      "chck_8M",
+      "chck_9M",
+      "chck_10M",
+      "chck_20M",
+      "chck_30M",
+      "chck_40M",
+      "chck_50M",
+      "chck_60M",
+      "chck_70M",
+      "chck_80M",
+      "chck_90M",
+      "chck_100M"
+    ],
+    "row_count_per_step": 8005,
+    "min_context": 0
+  },
+  "budget_semantics": {
+    "reinvest": "end-to-end submission-relevant only for the reinvest arm because tokenizer training text and pretraining 10M pool are the same frozen pool",
+    "clean_qwen": "fixed-tokenizer scientific control only: it isolates pretraining-corpus effects under the reinvest tokenizer but its tokenizer-training text plus clean-Qwen pretraining text exceeds the 10M union"
+  },
+  "collate_command_template_after_predictions_exist": [
+    "data/external/python",
+    "experiments/archive/representation_and_objectives/scripts/stage_pristine_collate.py",
+    "--full-root",
+    "experiments/archive/frontier_consolidation/data/strict_innovation_70_80M_eval",
+    "--target",
+    "strict_content_innovation_seed43022_80M",
+    "--model-root",
+    "experiments/archive/frontier_consolidation/training/runs/strict_content_innovation_wwm_reinvest_seed43022_80M/hf_model",
+    "--out-dir",
+    "experiments/archive/frontier_consolidation/data/strict_innovation_70_80M_collate/strict_content_innovation_seed43022_80M",
+    "--pristine-ewok-predictions",
+    "experiments/archive/frontier_consolidation/data/strict_innovation_70_80M_eval/official_outputs/strict_content_innovation_seed43022_80M/EWoK/record<latest>/zero_shot/mlm/ewok/ewok_filtered/predictions.json",
+    "--aoa-dir",
+    "experiments/archive/frontier_consolidation/data/strict_innovation_70_80M_eval/aoa_outputs/strict_content_innovation_seed43022_80M",
+    "--endpoint",
+    "chck_80M",
+    "--tag",
+    "strict_content_innovation_seed43022_80M"
+  ]
+}

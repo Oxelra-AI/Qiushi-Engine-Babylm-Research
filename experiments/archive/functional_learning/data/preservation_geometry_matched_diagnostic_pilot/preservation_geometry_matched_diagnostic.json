@@ -1,0 +1,453 @@
+{
+  "status": "PRESERVATION_GEOMETRY_MATCHED_DIAGNOSTIC_DONE",
+  "created_utc": "2026-09-08T07:10:59Z",
+  "script": "experiments/archive/functional_learning/scripts/preservation_geometry_matched_diagnostic.py",
+  "scientific_question": "Do ordinary-WWM and dense-corrupted preservation prediction states impose different parent constraints at common target positions after acquisition?",
+  "scope": "local eval-mode gradient/uncertainty diagnostic at exact acquisition-only (M,S); not a training result or leaderboard score",
+  "student": {
+    "name": "densemask_sparselabel_seed62064_u0080",
+    "path": "experiments/archive/functional_learning/data/densemask_sparselabel_train_seed62064/correspondence_focus_weighted/checkpoints/update_0080",
+    "identity": {
+      "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+      "module": "frozen82_private_modeling",
+      "total_params": 36458592,
+      "private_adapter_tensors": 48,
+      "private_adapter_params": 995584,
+      "executed_private_scales": [
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "missing": 2,
+    "unexpected": 0
+  },
+  "teacher": {
+    "name": "coherent86_private_scale_0p75",
+    "path": "models/frontier",
+    "identity": {
+      "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+      "module": "frozen82_private_modeling",
+      "total_params": 36458592,
+      "private_adapter_tensors": 48,
+      "private_adapter_params": 995584,
+      "executed_private_scales": [
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "missing": 2,
+    "unexpected": 0
+  },
+  "private_trainable_info": {
+    "private_tensors": 48,
+    "private_params": 995584,
+    "names_head": [
+      "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+      "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+      "deberta.encoder.layer.0.private_adapter.down.weight",
+      "deberta.encoder.layer.0.private_adapter.down.bias",
+      "deberta.encoder.layer.0.private_adapter.up.weight",
+      "deberta.encoder.layer.0.private_adapter.up.bias",
+      "deberta.encoder.layer.1.private_adapter.layer_norm.weight",
+      "deberta.encoder.layer.1.private_adapter.layer_norm.bias"
+    ]
+  },
+  "prefix_info": {
+    "tail_jsonl": "experiments/archive/functional_learning/data/unchanged_pair_segments_tail/reference_tail_unchanged_qwen_segments.jsonl",
+    "requested_max_updates": 80,
+    "words_per_update": 39533,
+    "prefix_rows": 20475,
+    "prefix_words": 3162742,
+    "target_prefix_words": 3162640,
+    "qwen_rows": 3831,
+    "qwen_pair_segments": 11778,
+    "compact_modified_rows": 0,
+    "compact_modified_pair_occurrences": 0,
+    "topup_rows": 0,
+    "source_rows": {
+      "gutenberg": 3635,
+      "simple_wiki": 2063,
+      "qwen_pair_packed": 3831,
+      "open_subtitles": 3684,
+      "childes": 5173,
+      "cleanqwen_fineweb_compact_view_reinvest": 940,
+      "bnc_spoken": 1108,
+      "switchboard": 41
+    }
+  },
+  "selected_macro_indices0": [
+    0
+  ],
+  "macro_support_records": [
+    {
+      "update_index0": 0,
+      "rows": 252,
+      "words": 39652,
+      "qwen_rows": 33,
+      "ordinary_full_targets": 972,
+      "dense_masked_tokens": 1598,
+      "dense_sparse_label_targets": 247,
+      "dense_nonlabel_targets": 1351,
+      "common_targets": 213,
+      "candidate_groups": 1217,
+      "dense_masked_groups": 1217,
+      "dense_label_groups": 184,
+      "ordinary_common_examples": 33,
+      "dense_common_examples": 33,
+      "ordinary_full_examples": 33,
+      "dense_nonlabel_full_examples": 33
+    }
+  ],
+  "support_summary": {
+    "qwen_rows": 33,
+    "ordinary_full_targets": 972,
+    "dense_masked_tokens": 1598,
+    "dense_sparse_label_targets": 247,
+    "dense_nonlabel_targets": 1351,
+    "common_targets": 213,
+    "candidate_groups": 1217,
+    "dense_masked_groups": 1217,
+    "dense_label_groups": 184,
+    "ordinary_common_examples": 33,
+    "dense_common_examples": 33,
+    "ordinary_full_examples": 33,
+    "dense_nonlabel_full_examples": 33,
+    "selected_rows": 252,
+    "selected_words": 39652,
+    "common_over_ordinary_full_targets": 0.2191358024691358,
+    "common_over_dense_nonlabel_targets": 0.15766099185788304
+  },
+  "settings": {
+    "seq_length": 512,
+    "train_seed": 62064,
+    "mask_prob": 0.15,
+    "focus_prob": 0.35,
+    "max_focus_groups_per_row": 16,
+    "max_dense_mask_groups": 128,
+    "focus_lambda": 0.15,
+    "kl_temperature": 1.0,
+    "micro_batch": 8,
+    "device": "cuda:1",
+    "gradient_mode": "student eval mode for acquisition and preservation; teacher eval mode; private adapters only"
+  },
+  "acquisition": {
+    "acquisition_full_weighted": {
+      "mode": "full_weighted",
+      "nonempty_macros": 1,
+      "loss_mean_over_selected_macros": 2.654983902945169,
+      "focus_targets_total": 247,
+      "ordinary_targets_total": 7894,
+      "macro_records": [
+        {
+          "update_index0": 0,
+          "rows": 252,
+          "qwen_rows": 33,
+          "focus_targets": 247,
+          "ordinary_targets": 7894,
+          "focus_loss": 3.6101053813208455,
+          "ordinary_loss": 2.486433053820049,
+          "loss_used": 2.654983902945169
+        }
+      ],
+      "grad": {
+        "l2": 0.14002874493598938,
+        "linf": 0.00460237730294466,
+        "mean_abs": 9.009690256789327e-05,
+        "nonzero": 995584,
+        "numel": 995584
+      }
+    },
+    "acquisition_focus_mean": {
+      "mode": "focus_mean",
+      "nonempty_macros": 1,
+      "loss_mean_over_selected_macros": 3.6101053813208455,
+      "focus_targets_total": 247,
+      "ordinary_targets_total": 7894,
+      "macro_records": [
+        {
+          "update_index0": 0,
+          "rows": 252,
+          "qwen_rows": 33,
+          "focus_targets": 247,
+          "ordinary_targets": 7894,
+          "focus_loss": 3.6101053813208455,
+          "ordinary_loss": 2.486433053820049,
+          "loss_used": 3.6101053813208455
+        }
+      ],
+      "grad": {
+        "l2": 0.8252182006835938,
+        "linf": 0.018024815246462822,
+        "mean_abs": 0.0005303951911628246,
+        "nonzero": 995584,
+        "numel": 995584
+      },
+      "actual_training_scaled_l2_if_lambda_0p15": 0.12378273010253905
+    },
+    "acquisition_focus_mean_alignment_to_full": {
+      "cosine": 0.6248243231121509,
+      "dot": 0.07220111787319183
+    }
+  },
+  "branches": {
+    "ordinary_common": {
+      "nonempty_macros": 1,
+      "tokens_total": 213,
+      "kl_temperature": 1.0,
+      "kl_teacher_to_student_token_mean": 0.027507067426269603,
+      "kl_student_to_teacher_token_mean": 0.028174856528989586,
+      "teacher_entropy_token_mean": 2.2733884148754426,
+      "teacher_top1_prob_token_mean": 0.6288112810519939,
+      "teacher_target_ce_token_mean": 2.630337827082531,
+      "student_target_ce_token_mean": 2.6042460141607293,
+      "teacher_rank_token_mean": 130.70892018779344,
+      "student_rank_token_mean": 144.906103286385,
+      "macro_records": [
+        {
+          "macro_slot": 0,
+          "targets": 213,
+          "kl_teacher_to_student_mean": 0.027507067426269603,
+          "kl_student_to_teacher_mean": 0.028174856528989586,
+          "teacher_entropy_mean": 2.2733884148754426,
+          "teacher_top1_prob_mean": 0.6288112810519939,
+          "teacher_target_ce_mean": 2.630337827082531,
+          "student_target_ce_mean": 2.6042460141607293,
+          "teacher_rank_mean": 130.70892018779344,
+          "student_rank_mean": 144.906103286385
+        }
+      ],
+      "grad": {
+        "l2": 0.1292005181312561,
+        "linf": 0.004019284155219793,
+        "mean_abs": 7.901555363787338e-05,
+        "nonzero": 995584,
+        "numel": 995584
+      },
+      "alignment": {
+        "acquisition_full_weighted": {
+          "cosine": 0.17489922724145243,
+          "dot": 0.0031642394606024027
+        },
+        "acquisition_focus_mean": {
+          "cosine": -0.2869598723679284,
+          "dot": -0.030595265328884125
+        }
+      },
+      "alignment_to_preservation_branches": {
+        "dense_common": {
+          "cosine": 0.6060449834311841,
+          "dot": 0.12785226106643677
+        },
+        "ordinary_full": {
+          "cosine": 0.8370263125924496,
+          "dot": 0.010450650006532669
+        },
+        "dense_nonlabel_full": {
+          "cosine": 0.6155049564424577,
+          "dot": 0.10890620946884155
+        }
+      }
+    },
+    "dense_common": {
+      "nonempty_macros": 1,
+      "tokens_total": 213,
+      "kl_temperature": 1.0,
+      "kl_teacher_to_student_token_mean": 0.5329461164877448,
+      "kl_student_to_teacher_token_mean": 0.6336484559824769,
+      "teacher_entropy_token_mean": 4.264840533475921,
+      "teacher_top1_prob_token_mean": 0.38213083553761945,
+      "teacher_target_ce_token_mean": 4.459867298323224,
+      "student_target_ce_token_mean": 3.6668330089587,
+      "teacher_rank_token_mean": 479.981220657277,
+      "student_rank_token_mean": 264.96713615023475,
+      "macro_records": [
+        {
+          "macro_slot": 0,
+          "targets": 213,
+          "kl_teacher_to_student_mean": 0.5329461164877448,
+          "kl_student_to_teacher_mean": 0.6336484559824769,
+          "teacher_entropy_mean": 4.264840533475921,
+          "teacher_top1_prob_mean": 0.38213083553761945,
+          "teacher_target_ce_mean": 4.459867298323224,
+          "student_target_ce_mean": 3.6668330089587,
+          "teacher_rank_mean": 479.981220657277,
+          "student_rank_mean": 264.96713615023475
+        }
+      ],
+      "grad": {
+        "l2": 1.6328237056732178,
+        "linf": 0.04881346970796585,
+        "mean_abs": 0.0008097009849734604,
+        "nonzero": 995584,
+        "numel": 995584
+      },
+      "alignment": {
+        "acquisition_full_weighted": {
+          "cosine": 0.2460578373776931,
+          "dot": 0.056259218603372574
+        },
+        "acquisition_focus_mean": {
+          "cosine": -0.38330424897825793,
+          "dot": -0.5164778828620911
+        }
+      },
+      "alignment_to_preservation_branches": {
+        "ordinary_common": {
+          "cosine": 0.6060449834311841,
+          "dot": 0.12785226106643677
+        },
+        "ordinary_full": {
+          "cosine": 0.7323004045485899,
+          "dot": 0.11554961651563644
+        },
+        "dense_nonlabel_full": {
+          "cosine": 0.9707320094269677,
+          "dot": 2.1706783771514893
+        }
+      }
+    },
+    "ordinary_full": {
+      "nonempty_macros": 1,
+      "tokens_total": 972,
+      "kl_temperature": 1.0,
+      "kl_teacher_to_student_token_mean": 0.024876835261598045,
+      "kl_student_to_teacher_token_mean": 0.02562681901356811,
+      "teacher_entropy_token_mean": 1.7365004692548587,
+      "teacher_top1_prob_token_mean": 0.698845245220043,
+      "teacher_target_ce_token_mean": 1.823387271582835,
+      "student_target_ce_token_mean": 1.8628464844001174,
+      "teacher_rank_token_mean": 81.18621399176955,
+      "student_rank_token_mean": 89.0246913580247,
+      "macro_records": [
+        {
+          "macro_slot": 0,
+          "targets": 972,
+          "kl_teacher_to_student_mean": 0.024876835261598045,
+          "kl_student_to_teacher_mean": 0.02562681901356811,
+          "teacher_entropy_mean": 1.7365004692548587,
+          "teacher_top1_prob_mean": 0.698845245220043,
+          "teacher_target_ce_mean": 1.823387271582835,
+          "student_target_ce_mean": 1.8628464844001174,
+          "teacher_rank_mean": 81.18621399176955,
+          "student_rank_mean": 89.0246913580247
+        }
+      ],
+      "grad": {
+        "l2": 0.09663622081279755,
+        "linf": 0.0032857414335012436,
+        "mean_abs": 5.3618059610016644e-05,
+        "nonzero": 995584,
+        "numel": 995584
+      },
+      "alignment": {
+        "acquisition_full_weighted": {
+          "cosine": 0.2433597802173629,
+          "dot": 0.0032931077294051647
+        },
+        "acquisition_focus_mean": {
+          "cosine": -0.3409919153270923,
+          "dot": -0.027192730456590652
+        }
+      },
+      "alignment_to_preservation_branches": {
+        "ordinary_common": {
+          "cosine": 0.8370263125924496,
+          "dot": 0.010450650006532669
+        },
+        "dense_common": {
+          "cosine": 0.7323004045485899,
+          "dot": 0.11554961651563644
+        },
+        "dense_nonlabel_full": {
+          "cosine": 0.7568181107070029,
+          "dot": 0.10015860944986343
+        }
+      }
+    },
+    "dense_nonlabel_full": {
+      "nonempty_macros": 1,
+      "tokens_total": 1351,
+      "kl_temperature": 1.0,
+      "kl_teacher_to_student_token_mean": 0.48537787007544325,
+      "kl_student_to_teacher_token_mean": 0.5251492020997359,
+      "teacher_entropy_token_mean": 4.193750772539728,
+      "teacher_top1_prob_token_mean": 0.38287906378485553,
+      "teacher_target_ce_token_mean": 4.6277682899458155,
+      "student_target_ce_token_mean": 3.94329000454669,
+      "teacher_rank_token_mean": 516.4870466321244,
+      "student_rank_token_mean": 385.90673575129534,
+      "macro_records": [
+        {
+          "macro_slot": 0,
+          "targets": 1351,
+          "kl_teacher_to_student_mean": 0.48537787007544325,
+          "kl_student_to_teacher_mean": 0.5251492020997359,
+          "teacher_entropy_mean": 4.193750772539728,
+          "teacher_top1_prob_mean": 0.38287906378485553,
+          "teacher_target_ce_mean": 4.6277682899458155,
+          "student_target_ce_mean": 3.94329000454669,
+          "teacher_rank_mean": 516.4870466321244,
+          "student_rank_mean": 385.90673575129534
+        }
+      ],
+      "grad": {
+        "l2": 1.3694835901260376,
+        "linf": 0.04075627774000168,
+        "mean_abs": 0.0006470168009400368,
+        "nonzero": 995584,
+        "numel": 995584
+      },
+      "alignment": {
+        "acquisition_full_weighted": {
+          "cosine": 0.27368436362521875,
+          "dot": 0.05248364806175232
+        },
+        "acquisition_focus_mean": {
+          "cosine": -0.39564494965806624,
+          "dot": -0.4471273720264435
+        }
+      },
+      "alignment_to_preservation_branches": {
+        "ordinary_common": {
+          "cosine": 0.6155049564424577,
+          "dot": 0.10890620946884155
+        },
+        "dense_common": {
+          "cosine": 0.9707320094269677,
+          "dot": 2.1706783771514893
+        },
+        "ordinary_full": {
+          "cosine": 0.7568181107070029,
+          "dot": 0.10015860944986343
+        }
+      }
+    }
+  },
+  "common_rendering_contrast": {
+    "dense_minus_ordinary_teacher_entropy": 1.991452118600478,
+    "dense_minus_ordinary_teacher_top1_prob": -0.24668044551437446,
+    "dense_minus_ordinary_teacher_target_ce": 1.829529471240693,
+    "dense_minus_ordinary_student_target_ce": 1.0625869947979707,
+    "dense_minus_ordinary_kl_teacher_to_student": 0.5054390490614752,
+    "dense_over_ordinary_grad_l2": 12.637903696441958,
+    "cos_ordinary_dense_common_grad": 0.6060449834311841,
+    "cos_ordinary_common_vs_acq_full": 0.17489922724145243,
+    "cos_dense_common_vs_acq_full": 0.2460578373776931,
+    "cos_ordinary_common_vs_acq_focus": -0.2869598723679284,
+    "cos_dense_common_vs_acq_focus": -0.38330424897825793
+  },
+  "interpretation": "The common-support branch separates input rendering from target support: the same token positions are preserved under ordinary-WWM context and dense-corrupted context. Any difference in teacher entropy, KL, or gradient alignment here is a prediction-state geometry effect rather than a support-count effect for these positions. On the selected macros, dense-common KL has 12.6× the ordinary-common private-gradient L2. Its cosine with the full acquisition gradient is 0.2460578373776931, versus 0.17489922724145243 for ordinary-common. The full dense-nonlabel branch remains a joint rendering-and-support intervention because its target set differs from clean ordinary WWM. It should be interpreted through both the full-support measurements and the common-support diagnostic, not as a pure geometry isolation. Because gradients are evaluated at the acquisition-shifted exact `(M,S)` endpoint, nonzero KL reflects actual drift from the coherent86 parent. The same test at initialization would be uninformative: teacher and student predictions coincide and the deterministic KL gradient is zero.",
+  "elapsed_sec": 15.0
+}

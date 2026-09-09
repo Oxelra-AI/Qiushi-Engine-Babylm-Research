@@ -1,0 +1,464 @@
+{
+  "status": "PHASE2_STAGEWISE_EVAL_DONE",
+  "note": "Corrected stagewise Phase-2 fast-screen evaluation. This is not complete official nine-column Overall because SuperGLUE and AoA are not evaluated here; Entity_full is included as a reliability check.",
+  "targets_evaluated": [
+    "phase2s_official",
+    "phase2s_mix25"
+  ],
+  "initial_model_studies_baseline_source": "experiments/archive/compact_experience/data/mixture_eval/mixture_eval_summary.json",
+  "leader_reference": {
+    "source": "BabyLM 2026 leaderboard/model card for wwm_curriculum_simplification_40k; columns are official/card values, not local fast-screen reruns.",
+    "BLiMP": 67.2,
+    "Supplement": 56.01,
+    "EWoK": 56.07,
+    "Entity": 28.45,
+    "COMPS": 53.57,
+    "GlobalPIQA_mean": 39.67,
+    "SuperGLUE": 69.79,
+    "Reading": 5.42,
+    "AoA": 0.0,
+    "Overall": 41.8
+  },
+  "phase2_training_verification": {
+    "phase2s_official": {
+      "target": "phase2s_official",
+      "checks": {
+        "word_exposure_100M": true,
+        "steps_5984": true,
+        "param_count_34677184": true,
+        "vocab_40000": true,
+        "extra_init_seed_43200": true,
+        "train_rng_seed_43201": true,
+        "shared_tokenizer_path": true,
+        "mask_switch_words_70M": true,
+        "mask_switch_mode_token": true,
+        "chck_100M_exists": true,
+        "stage_words_30_30_40M": true,
+        "stage_visible_groups_near_one": true,
+        "training_log_records_5984": true,
+        "observed_token_after_70M": true
+      },
+      "all_passed": true,
+      "mask_switch_inspection": {
+        "training_log": "experiments/archive/compact_experience/training/runs/phase2s_official_40k_12x384_seed43200/training_log.jsonl",
+        "exists": true,
+        "records": 5984,
+        "mode_counts": {
+          "wwm": 4519,
+          "token": 1465
+        },
+        "first_token_record": {
+          "step": 4520,
+          "stage": 3,
+          "cumulative_word_exposure": 70035200,
+          "mask_mode": "token",
+          "loss": 2.5721404552459717
+        },
+        "last_wwm_record": {
+          "step": 4519,
+          "stage": 3,
+          "cumulative_word_exposure": 70014720,
+          "mask_mode": "wwm",
+          "loss": 2.769228219985962
+        }
+      },
+      "run_summary": {
+        "run_dir": "experiments/archive/compact_experience/training/runs/phase2s_official_40k_12x384_seed43200",
+        "scientific_metrics_path": "experiments/archive/compact_experience/training/runs/phase2s_official_40k_12x384_seed43200/scientific_metrics.json",
+        "variant": "phase2_stagewise_wwm_to_token",
+        "word_exposure": 100000000,
+        "loss_first": 10.63558292388916,
+        "loss_last": 2.3035318851470947,
+        "actual_training_steps": 5984,
+        "total_scheduled_steps": 5984,
+        "parameter_count": 34677184,
+        "embedding_parameter_count": 15360000,
+        "non_embedding_parameter_count": 19317184,
+        "vocab_size": 40000,
+        "tokenizer_label": "sp40k_shared_official7p5M",
+        "tokenizer_path": "experiments/archive/compact_experience/data/shared_tokenizer/hf_tokenizer_40k_shared",
+        "mask_mode": "wwm",
+        "mask_switch_mode": "token",
+        "mask_switch_words": 70000000,
+        "mask_prob": 0.15,
+        "optimizer": "lamb",
+        "learning_rate": 0.007,
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01,
+        "n_layer": 12,
+        "hidden_size": 384,
+        "n_head": 12,
+        "intermediate_size": 1280,
+        "share_att_key": "true",
+        "position_biased_input": "false",
+        "seed": 43,
+        "extra_init_seed": 43200,
+        "train_rng_seed": 43201,
+        "stage_config": [
+          {
+            "stage": 1,
+            "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/official_stage1_seq64_30M_v2.jsonl",
+            "seq": 64,
+            "batch": 512,
+            "words": 30000000
+          },
+          {
+            "stage": 2,
+            "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/official_stage2_seq128_30M_v2.jsonl",
+            "seq": 128,
+            "batch": 256,
+            "words": 30000000
+          },
+          {
+            "stage": 3,
+            "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/official_stage3_seq256_40M_v2.jsonl",
+            "seq": 256,
+            "batch": 128,
+            "words": 40000000
+          }
+        ],
+        "stage_metrics": [
+          {
+            "stage": 1,
+            "seq": 64,
+            "batch": 512,
+            "words": 30000000,
+            "visible_tokens": 43297398,
+            "visible_word_groups": 29936541,
+            "masked_tokens": 6498952,
+            "loss_first": 10.63558292388916,
+            "loss_last": 3.89558744430542,
+            "visible_tokens_per_word": 1.4432,
+            "visible_word_groups_per_word": 0.9979
+          },
+          {
+            "stage": 2,
+            "seq": 128,
+            "batch": 256,
+            "words": 30000000,
+            "visible_tokens": 43391187,
+            "visible_word_groups": 29974491,
+            "masked_tokens": 6511020,
+            "loss_first": 3.220122814178467,
+            "loss_last": 2.86387038230896,
+            "visible_tokens_per_word": 1.4464,
+            "visible_word_groups_per_word": 0.9991
+          },
+          {
+            "stage": 3,
+            "seq": 256,
+            "batch": 128,
+            "words": 40000000,
+            "visible_tokens": 56524816,
+            "visible_word_groups": 39226760,
+            "masked_tokens": 8479207,
+            "loss_first": 2.6822807788848877,
+            "loss_last": 2.3035318851470947,
+            "visible_tokens_per_word": 1.4131,
+            "visible_word_groups_per_word": 0.9807
+          }
+        ],
+        "saved_checkpoint_names": [
+          "chck_10M",
+          "chck_20M",
+          "chck_30M",
+          "chck_40M",
+          "chck_50M",
+          "chck_60M",
+          "chck_70M",
+          "chck_80M",
+          "chck_90M",
+          "chck_100M"
+        ],
+        "chck_100M_path": "experiments/archive/compact_experience/training/runs/phase2s_official_40k_12x384_seed43200/hf_model/chck_100M",
+        "chck_100M_exists": true
+      }
+    },
+    "phase2s_mix25": {
+      "target": "phase2s_mix25",
+      "checks": {
+        "word_exposure_100M": true,
+        "steps_5984": true,
+        "param_count_34677184": true,
+        "vocab_40000": true,
+        "extra_init_seed_43200": true,
+        "train_rng_seed_43201": true,
+        "shared_tokenizer_path": true,
+        "mask_switch_words_70M": true,
+        "mask_switch_mode_token": true,
+        "chck_100M_exists": true,
+        "stage_words_30_30_40M": true,
+        "stage_visible_groups_near_one": true,
+        "training_log_records_5984": true,
+        "observed_token_after_70M": true
+      },
+      "all_passed": true,
+      "mask_switch_inspection": {
+        "training_log": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/training_log.jsonl",
+        "exists": true,
+        "records": 5984,
+        "mode_counts": {
+          "wwm": 4519,
+          "token": 1465
+        },
+        "first_token_record": {
+          "step": 4520,
+          "stage": 3,
+          "cumulative_word_exposure": 70035200,
+          "mask_mode": "token",
+          "loss": 2.7093849182128906
+        },
+        "last_wwm_record": {
+          "step": 4519,
+          "stage": 3,
+          "cumulative_word_exposure": 70014720,
+          "mask_mode": "wwm",
+          "loss": 2.71217679977417
+        }
+      },
+      "run_summary": {
+        "run_dir": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200",
+        "scientific_metrics_path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/scientific_metrics.json",
+        "variant": "phase2_stagewise_wwm_to_token",
+        "word_exposure": 100000000,
+        "loss_first": 10.639985084533691,
+        "loss_last": 2.285299777984619,
+        "actual_training_steps": 5984,
+        "total_scheduled_steps": 5984,
+        "parameter_count": 34677184,
+        "embedding_parameter_count": 15360000,
+        "non_embedding_parameter_count": 19317184,
+        "vocab_size": 40000,
+        "tokenizer_label": "sp40k_shared_official7p5M",
+        "tokenizer_path": "experiments/archive/compact_experience/data/shared_tokenizer/hf_tokenizer_40k_shared",
+        "mask_mode": "wwm",
+        "mask_switch_mode": "token",
+        "mask_switch_words": 70000000,
+        "mask_prob": 0.15,
+        "optimizer": "lamb",
+        "learning_rate": 0.007,
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01,
+        "n_layer": 12,
+        "hidden_size": 384,
+        "n_head": 12,
+        "intermediate_size": 1280,
+        "share_att_key": "true",
+        "position_biased_input": "false",
+        "seed": 43,
+        "extra_init_seed": 43200,
+        "train_rng_seed": 43201,
+        "stage_config": [
+          {
+            "stage": 1,
+            "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/mix25_stage1_seq64_30M_v2.jsonl",
+            "seq": 64,
+            "batch": 512,
+            "words": 30000000
+          },
+          {
+            "stage": 2,
+            "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/mix25_stage2_seq128_30M_v2.jsonl",
+            "seq": 128,
+            "batch": 256,
+            "words": 30000000
+          },
+          {
+            "stage": 3,
+            "jsonl": "experiments/archive/compact_experience/data/phase2_stagewise_v2/mix25_stage3_seq256_40M_v2.jsonl",
+            "seq": 256,
+            "batch": 128,
+            "words": 40000000
+          }
+        ],
+        "stage_metrics": [
+          {
+            "stage": 1,
+            "seq": 64,
+            "batch": 512,
+            "words": 30000000,
+            "visible_tokens": 42047028,
+            "visible_word_groups": 29950341,
+            "masked_tokens": 6308717,
+            "loss_first": 10.639985084533691,
+            "loss_last": 3.4305832386016846,
+            "visible_tokens_per_word": 1.4016,
+            "visible_word_groups_per_word": 0.9983
+          },
+          {
+            "stage": 2,
+            "seq": 128,
+            "batch": 256,
+            "words": 30000000,
+            "visible_tokens": 42120006,
+            "visible_word_groups": 29980125,
+            "masked_tokens": 6317267,
+            "loss_first": 3.590167760848999,
+            "loss_last": 2.651385545730591,
+            "visible_tokens_per_word": 1.404,
+            "visible_word_groups_per_word": 0.9993
+          },
+          {
+            "stage": 3,
+            "seq": 256,
+            "batch": 128,
+            "words": 40000000,
+            "visible_tokens": 55169660,
+            "visible_word_groups": 39422544,
+            "masked_tokens": 8277580,
+            "loss_first": 2.751981735229492,
+            "loss_last": 2.285299777984619,
+            "visible_tokens_per_word": 1.3792,
+            "visible_word_groups_per_word": 0.9856
+          }
+        ],
+        "saved_checkpoint_names": [
+          "chck_10M",
+          "chck_20M",
+          "chck_30M",
+          "chck_40M",
+          "chck_50M",
+          "chck_60M",
+          "chck_70M",
+          "chck_80M",
+          "chck_90M",
+          "chck_100M"
+        ],
+        "chck_100M_path": "experiments/archive/compact_experience/training/runs/phase2s_mix25_40k_12x384_seed43200/hf_model/chck_100M",
+        "chck_100M_exists": true
+      }
+    }
+  },
+  "table": {
+    "phase2s_official": {
+      "BLiMP": 68.61,
+      "Supplement": 64.0,
+      "EWoK": 45.91,
+      "Entity": 22.83,
+      "Entity_full": 22.65,
+      "COMPS": 52.16,
+      "GlobalPIQA_parallel": 18.45,
+      "GlobalPIQA_nonparallel": 50.0,
+      "GlobalPIQA_mean": 34.225,
+      "Reading": 5.625,
+      "Reading_eye": 7.86,
+      "Reading_self_paced": 3.39,
+      "equal7_mean": 41.90857142857143,
+      "equal7_full_entity": 41.88285714285714,
+      "weighted_fast_proxy": 47.95583333333334
+    },
+    "phase2s_mix25": {
+      "BLiMP": 66.51,
+      "Supplement": 60.8,
+      "EWoK": 51.73,
+      "Entity": 25.06,
+      "Entity_full": 24.78,
+      "COMPS": 52.71,
+      "GlobalPIQA_parallel": 24.27,
+      "GlobalPIQA_nonparallel": 45.0,
+      "GlobalPIQA_mean": 34.635,
+      "Reading": 6.075,
+      "Reading_eye": 8.41,
+      "Reading_self_paced": 3.74,
+      "equal7_mean": 42.50285714285714,
+      "equal7_full_entity": 42.462857142857146,
+      "weighted_fast_proxy": 48.57416666666666
+    },
+    "initial_model_baseline": {
+      "BLiMP": 67.35,
+      "Supplement": 65.2,
+      "EWoK": 49.64,
+      "Entity": 21.24,
+      "Entity_full": 21.78,
+      "COMPS": 53.11,
+      "GlobalPIQA_parallel": 25.24,
+      "GlobalPIQA_nonparallel": 47.0,
+      "GlobalPIQA_mean": 36.12,
+      "Reading": 7.33,
+      "Reading_eye": 10.33,
+      "Reading_self_paced": 4.33,
+      "equal7_mean": 42.855714285714285,
+      "equal7_full_entity": 42.93285714285714,
+      "weighted_fast_proxy": 32.272678571428564
+    }
+  },
+  "contrasts": {
+    "phase2s_mix25_minus_phase2s_official": {
+      "BLiMP": -2.1,
+      "Supplement": -3.2,
+      "EWoK": 5.82,
+      "Entity": 2.23,
+      "Entity_full": 2.13,
+      "COMPS": 0.55,
+      "GlobalPIQA_parallel": 5.82,
+      "GlobalPIQA_nonparallel": -5.0,
+      "GlobalPIQA_mean": 0.41,
+      "Reading": 0.45,
+      "Reading_eye": 0.55,
+      "Reading_self_paced": 0.35,
+      "equal7_mean": 0.5943,
+      "equal7_full_entity": 0.58,
+      "weighted_fast_proxy": 0.6183
+    },
+    "phase2s_official_minus_initial_model_studies_baseline": {
+      "BLiMP": 1.26,
+      "Supplement": -1.2,
+      "EWoK": -3.73,
+      "Entity": 1.59,
+      "Entity_full": 0.87,
+      "COMPS": -0.95,
+      "GlobalPIQA_parallel": -6.79,
+      "GlobalPIQA_nonparallel": 3.0,
+      "GlobalPIQA_mean": -1.895,
+      "Reading": -1.705,
+      "Reading_eye": -2.47,
+      "Reading_self_paced": -0.94,
+      "equal7_mean": -0.9471,
+      "equal7_full_entity": -1.05,
+      "weighted_fast_proxy": 15.6832
+    },
+    "phase2s_mix25_minus_initial_model_studies_baseline": {
+      "BLiMP": -0.84,
+      "Supplement": -4.4,
+      "EWoK": 2.09,
+      "Entity": 3.82,
+      "Entity_full": 3.0,
+      "COMPS": -0.4,
+      "GlobalPIQA_parallel": -0.97,
+      "GlobalPIQA_nonparallel": -2.0,
+      "GlobalPIQA_mean": -1.485,
+      "Reading": -1.255,
+      "Reading_eye": -1.92,
+      "Reading_self_paced": -0.59,
+      "equal7_mean": -0.3529,
+      "equal7_full_entity": -0.47,
+      "weighted_fast_proxy": 16.3015
+    },
+    "phase2s_official_minus_leader_local_columns": {
+      "BLiMP": 1.41,
+      "Supplement": 7.99,
+      "EWoK": -10.16,
+      "Entity": -5.62,
+      "COMPS": -1.41,
+      "GlobalPIQA_mean": -5.445,
+      "Reading": 0.205
+    },
+    "phase2s_mix25_minus_leader_local_columns": {
+      "BLiMP": -0.69,
+      "Supplement": 4.79,
+      "EWoK": -4.34,
+      "Entity": -3.39,
+      "COMPS": -0.86,
+      "GlobalPIQA_mean": -5.035,
+      "Reading": 0.655
+    }
+  },
+  "best_by_equal7_fast": [
+    "initial_model_baseline",
+    42.855714285714285
+  ],
+  "raw_paths": {
+    "phase2s_official": "experiments/archive/compact_experience/data/phase2_stagewise_eval/per_target/phase2s_official.json",
+    "phase2s_mix25": "experiments/archive/compact_experience/data/phase2_stagewise_eval/per_target/phase2s_mix25.json"
+  }
+}

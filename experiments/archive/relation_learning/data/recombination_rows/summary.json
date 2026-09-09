@@ -1,0 +1,64 @@
+{
+  "status": "RECOMBINATION_ROWS_DONE",
+  "created_utc": "2026-09-07T04:15:29Z",
+  "source_shas": {
+    "train": "6c3a3c7c895247cdd8e8ffb99787ec3d1dce2dc5df512634137d2cca372484e7",
+    "heldout": "d944d75a8db828062002e0e43d552d6c34f46a5b446d067852fed1e004a9a08b"
+  },
+  "train_stats": {
+    "total_packets": 3332,
+    "distractor": 1666,
+    "updated": 1666,
+    "distractor_rows": 3332,
+    "updated_rows": 1666,
+    "skipped": 0
+  },
+  "heldout_stats": {
+    "total_packets": 400,
+    "distractor": 200,
+    "updated": 200,
+    "distractor_rows": 400,
+    "updated_rows": 200,
+    "skipped": 0
+  },
+  "row_counts": {
+    "train": 4998,
+    "heldout": 600,
+    "total": 5598
+  },
+  "binding_pairs_heldout": 200,
+  "context_word_length_distribution": {
+    "0-64": 5244,
+    "65-128": 354
+  },
+  "answer_word_length_distribution": {
+    "1": 1,
+    "2": 526,
+    "3": 1344,
+    "4": 1421,
+    "5": 1125,
+    "6": 676,
+    "7": 270,
+    "8": 117,
+    "9": 62,
+    "10": 22,
+    "11": 17,
+    "12": 6,
+    "13": 7,
+    "14": 1,
+    "17": 2,
+    "18": 1
+  },
+  "paths": {
+    "train": "experiments/archive/relation_learning/data/recombination_rows/recombination_train.jsonl",
+    "heldout": "experiments/archive/relation_learning/data/recombination_rows/recombination_heldout.jsonl",
+    "all": "experiments/archive/relation_learning/data/recombination_rows/recombination_all.jsonl",
+    "binding_pairs": "experiments/archive/relation_learning/data/recombination_rows/binding_pairs_heldout.jsonl"
+  },
+  "design": {
+    "distractor_pairs": "Each DISTRACTOR packet → 2 rows: query unchanged entity (source_state) + query updated entity (new_state). Same context, different entity name.",
+    "updated_singles": "Each UPDATED packet → 1 row: query entity (new_state). No second entity for pairing.",
+    "joint_criterion": "For DISTRACTOR pairs, model must get BOTH halves correct. This is the binding test.",
+    "training_contract": "Answer-only MLM: mask only answer tokens; source+update+query visible; freeze base; train adapter only."
+  }
+}

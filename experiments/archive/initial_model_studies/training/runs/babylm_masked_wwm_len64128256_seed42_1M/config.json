@@ -1,0 +1,71 @@
+{
+  "run_id": "babylm_masked_wwm_len64128256_seed42_1M",
+  "action": "train",
+  "script": "training/scripts/babylm_masked_train.py",
+  "script_args": [
+    "--output_dir",
+    "experiments/archive/initial_model_studies/training/runs/babylm_masked_wwm_len64128256_seed42_1M",
+    "--seed",
+    "42",
+    "--extra_init_seed",
+    "456",
+    "--train_rng_seed",
+    "789",
+    "--max_word_exposure",
+    "1000000",
+    "--example_pool_words",
+    "10000000",
+    "--checkpoint_words",
+    "1000000",
+    "--words_per_example",
+    "160",
+    "--mask_mode",
+    "wwm",
+    "--mask_prob",
+    "0.15",
+    "--seq_length",
+    "256",
+    "--max_seq_length",
+    "256",
+    "--max_position_embeddings",
+    "512",
+    "--seq_len_schedule",
+    "0.0:64,0.4:128,0.8:256",
+    "--batch_size",
+    "64",
+    "--lr_total_steps",
+    "98",
+    "--hidden_size",
+    "256",
+    "--n_layer",
+    "8",
+    "--n_head",
+    "8",
+    "--learning_rate",
+    "0.001",
+    "--log_every",
+    "50"
+  ],
+  "timeout_sec": 1800,
+  "cuda_required": true,
+  "execution": "synchronous",
+  "supersedes_run_id": "",
+  "research_metadata": {
+    "research_title": "BabyLM Strict-Small SOTA Research",
+    "primary_domain": "Data, Architecture and Pre-training",
+    "secondary_domains": [],
+    "method_tags": [
+      "babylm_wwm_length_schedule_1m"
+    ],
+    "intervention_object": [
+      "weights"
+    ],
+    "model_scope": []
+  },
+  "execution_environment": {
+    "torch": true,
+    "cuda_available": true,
+    "device_count": 2,
+    "gpu_ready": true
+  }
+}

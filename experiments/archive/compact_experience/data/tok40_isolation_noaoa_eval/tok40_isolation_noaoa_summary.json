@@ -1,0 +1,127 @@
+{
+  "status": "TOK40_ISOLATION_NOAOA_SUMMARY",
+  "purpose": "Compact isolated 40k-tokenizer data-interaction screen under the current 8x480 recipe; not final SOTA evidence.",
+  "targets": {
+    "official": {
+      "target": "tok40_official_20M_b128",
+      "model_path": "training/runs/tok40_official_20M_b128_seed43022/hf_model/chck_20M",
+      "endpoint": "chck_20M",
+      "scores": {
+        "BLiMP": 60.49,
+        "Supplement": 58.24,
+        "EWoK": 50.95,
+        "Entity": 19.1,
+        "COMPS": 50.49,
+        "GlobalPIQA": 32.695,
+        "Reading": 7.359999999999999
+      },
+      "equal7_noaoa_nosuperglue": 39.903571428571425,
+      "complete_noaoa_screen": true,
+      "run_summary": {
+        "variant": "masking_curriculum_wwm_fixed",
+        "word_exposure": 20000000,
+        "actual_training_steps": 1006,
+        "parameter_count": 45826720,
+        "vocab_size": 40000,
+        "tokenizer_label": "official7p5M_sp40k_shared",
+        "loss_first": 10.69633960723877,
+        "loss_last": 3.568091630935669,
+        "seed": 43,
+        "seq_length": 256,
+        "n_layer": 8,
+        "hidden_size": 480,
+        "n_head": 8,
+        "saved_checkpoint_names": [
+          "chck_1M",
+          "chck_2M",
+          "chck_3M",
+          "chck_4M",
+          "chck_5M",
+          "chck_6M",
+          "chck_7M",
+          "chck_8M",
+          "chck_9M",
+          "chck_10M",
+          "chck_11M",
+          "chck_12M",
+          "chck_13M",
+          "chck_14M",
+          "chck_15M",
+          "chck_16M",
+          "chck_17M",
+          "chck_18M",
+          "chck_19M",
+          "chck_20M"
+        ]
+      }
+    },
+    "qwen": {
+      "target": "tok40_qwen_20M_b128",
+      "model_path": "training/runs/tok40_qwen_20M_b128_seed43022/hf_model/chck_20M",
+      "endpoint": "chck_20M",
+      "scores": {
+        "BLiMP": 60.59,
+        "Supplement": 56.55,
+        "EWoK": 51.81,
+        "Entity": 19.55,
+        "COMPS": 50.04,
+        "GlobalPIQA": 36.725,
+        "Reading": 8.215
+      },
+      "equal7_noaoa_nosuperglue": 40.49714285714286,
+      "complete_noaoa_screen": true,
+      "run_summary": {
+        "variant": "masking_curriculum_wwm_fixed",
+        "word_exposure": 20000000,
+        "actual_training_steps": 1006,
+        "parameter_count": 45826720,
+        "vocab_size": 40000,
+        "tokenizer_label": "official7p5M_sp40k_shared",
+        "loss_first": 10.708248138427734,
+        "loss_last": 3.4909956455230713,
+        "seed": 43,
+        "seq_length": 256,
+        "n_layer": 8,
+        "hidden_size": 480,
+        "n_head": 8,
+        "saved_checkpoint_names": [
+          "chck_1M",
+          "chck_2M",
+          "chck_3M",
+          "chck_4M",
+          "chck_5M",
+          "chck_6M",
+          "chck_7M",
+          "chck_8M",
+          "chck_9M",
+          "chck_10M",
+          "chck_11M",
+          "chck_12M",
+          "chck_13M",
+          "chck_14M",
+          "chck_15M",
+          "chck_16M",
+          "chck_17M",
+          "chck_18M",
+          "chck_19M",
+          "chck_20M"
+        ]
+      }
+    }
+  },
+  "qwen_minus_official": {
+    "equal7_noaoa_nosuperglue": 0.5935714285714369,
+    "BLiMP": 0.10000000000000142,
+    "Supplement": -1.6900000000000048,
+    "EWoK": 0.8599999999999994,
+    "Entity": 0.4499999999999993,
+    "COMPS": -0.45000000000000284,
+    "GlobalPIQA": 4.030000000000001,
+    "Reading": 0.8550000000000004
+  },
+  "interpretation": {
+    "isolated_factors": "Shared official-only 40k tokenizer with current 8x480/AdamW/fixed-seq256/WWM recipe; data arm differs official-only vs clean-Qwen; batch128 is used only to fit the larger vocabulary logits and is matched across arms.",
+    "positive_signal": "A broad qwen-minus-official no-AoA gain, especially in EWoK/Entity/GlobalPIQA without Supplement collapse, would justify extending the tokenizer isolation to 100M and complete nine-column eval.",
+    "negative_signal": "Flat or narrow tradeoff would argue against spending a full run on tokenization and favor a minimal representation intervention on the current 16k clean-Qwen backbone."
+  }
+}

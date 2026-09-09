@@ -1,0 +1,555 @@
+{
+  "status": "PRISTINE_OFFICIAL_COORDINATE_AUDIT",
+  "created_utc": "2026-08-29T18:57:24Z",
+  "purpose": "Reconstruct a single unmodified upstream BabyLM strict evaluation coordinate and determine whether the EWoK mismatch belongs to local data or official code/data release inconsistency.",
+  "out_dir": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate",
+  "code_checkout": {
+    "expected_commit": "6f825c291e2c4c78ad33b1935fd64d45f52642dc",
+    "clone": {
+      "cmd": [
+        "git",
+        "clone",
+        "https://github.com/babylm-org/babylm-eval.git",
+        "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval"
+      ],
+      "cwd": null,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Cloning into 'experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval'...\n",
+      "elapsed_sec": 10.207231521606445
+    },
+    "checkout": {
+      "cmd": [
+        "git",
+        "checkout",
+        "6f825c291e2c4c78ad33b1935fd64d45f52642dc"
+      ],
+      "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Note: switching to '6f825c291e2c4c78ad33b1935fd64d45f52642dc'.\n\nYou are in 'detached HEAD' state. You can look around, make experimental\nchanges and commit them, and you can discard any commits you make in this\nstate without impacting any branches by switching back to a branch.\n\nIf you want to create a new branch to retain commits you create, you may\ndo so (now or later) by using -c with the switch command. Example:\n\n  git switch -c <new-branch-name>\n\nOr undo this operation with:\n\n  git switch -\n\nTurn off this advice by setting config variable advice.detachedHead to false\n\nHEAD is now at 6f825c2 Fix fast eval collation for EWoK\n",
+      "elapsed_sec": 0.26337313652038574
+    },
+    "head": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval",
+      "returncode": 0,
+      "stdout": "6f825c291e2c4c78ad33b1935fd64d45f52642dc\n",
+      "stderr": "",
+      "elapsed_sec": 0.0020949840545654297
+    },
+    "status_predata": {
+      "cmd": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_sec": 0.2581014633178711
+    }
+  },
+  "hf_dataset_revisions": {
+    "strict_eval_repo": "BabyLM-community/BabyLM-2026-Strict-Evals",
+    "strict_eval_sha": "8d52da9424a9ff30b9e8266c4f751aba9c504233",
+    "strict_eval_last_modified": "2026-04-22 16:49:57+00:00",
+    "ewok_repo": "ewok-core/ewok-core-1.0",
+    "ewok_sha": "34d912a608066c92e2990a0328ffc3bd9a716042",
+    "ewok_last_modified": "2024-05-23 19:48:59+00:00"
+  },
+  "strict_eval_snapshot_download": {
+    "ok": true,
+    "downloaded_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict"
+  },
+  "nltk_resources": [
+    {
+      "resource": "punkt",
+      "ok": false
+    },
+    {
+      "resource": "punkt_tab",
+      "ok": false
+    }
+  ],
+  "official_ewok_dl_and_filter_run": {
+    "cmd": [
+      "data/external/python",
+      "-m",
+      "evaluation_pipeline.ewok.dl_and_filter"
+    ],
+    "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/ewok/dl_and_filter.py\", line 17, in <module>\n    dataset = load_dataset(\"ewok-core/ewok-core-1.0\", split=\"test\")\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"data/external/load.py\", line 1688, in load_dataset\n    builder_instance = load_dataset_builder(\n                       ^^^^^^^^^^^^^^^^^^^^^\n  File \"data/external/load.py\", line 1315, in load_dataset_builder\n    dataset_module = dataset_module_factory(\n                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"data/external/load.py\", line 1207, in dataset_module_factory\n    raise e1 from None\n  File \"data/external/load.py\", line 1114, in dataset_module_factory\n    dataset_readme_path = api.hf_hub_download(\n                          ^^^^^^^^^^^^^^^^^^^^\n  File \"data/external/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"data/external/hf_api.py\", line 5467, in hf_hub_download\n    return hf_hub_download(\n           ^^^^^^^^^^^^^^^^\n  File \"data/external/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"data/external/file_download.py\", line 1014, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"data/external/file_download.py\", line 1131, in _hf_hub_download_to_cache_dir\n    os.makedirs(os.path.dirname(blob_path), exist_ok=True)\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: 'data/external/blobs'\n",
+    "elapsed_sec": 9.56398630142212
+  },
+  "code_cleanliness_after_data": {
+    "status_scoped": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--",
+        "strict/evaluation_pipeline",
+        "strict/scripts",
+        "strict/README.md"
+      ],
+      "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_sec": 0.006364345550537109
+    },
+    "diff_scoped": {
+      "cmd": [
+        "git",
+        "diff",
+        "--",
+        "strict/evaluation_pipeline",
+        "strict/scripts",
+        "strict/README.md"
+      ],
+      "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_sec": 0.0057239532470703125
+    }
+  },
+  "file_identities": {
+    "collate_preds": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/collate_preds.py",
+      "exists": true,
+      "size_bytes": 32604,
+      "sha256": "bbb36ebc1090873bbd526c385bb39af6b9a6289f55a5f5fbce5fe8e7f74a84ff"
+    },
+    "ewok_dl_and_filter": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/ewok/dl_and_filter.py",
+      "exists": true,
+      "size_bytes": 1572,
+      "sha256": "497a22d7afe09c5076d054f962d19e6ce8631e6736d5b9f8cad8bea79bf44b0f"
+    },
+    "ewok_vocab": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/ewok/vocab.txt",
+      "exists": true,
+      "size_bytes": 553088,
+      "sha256": "f812e2f4b723598964d3cbbd860e7b18a8d7e4902859fe74f4a6104694a41ceb"
+    },
+    "aoa_run": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/AoA_word/run.py",
+      "exists": true,
+      "size_bytes": 4846,
+      "sha256": "0066cef9b4c058b888736223fae1259c9a68e51c8b174bd95f59dfb413caca32"
+    },
+    "aoa_eval_util": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/AoA_word/eval_util.py",
+      "exists": true,
+      "size_bytes": 13483,
+      "sha256": "a5bea927fbf3c9e7b2f168233069d3b3d3ddb0938dc709fd2924ce2d00c7edce"
+    },
+    "readme": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/README.md",
+      "exists": true,
+      "size_bytes": 18185,
+      "sha256": "2ad510753618be87a21545c9a1b9f9ff5258cd5d52ccb0a74aaa1c8b0b9f155a"
+    }
+  },
+  "manifests": {
+    "strict_evaluation_data": {
+      "base": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data",
+      "n_files": 174,
+      "aggregate_sha256": "565499e4527e0b6bcbccbbcc38c78f8891faeaaab1d7f9c1584f5a7fc6da2c3d",
+      "manifest_jsonl": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/strict_evaluation_data_manifest.jsonl"
+    },
+    "official_generated_ewok_filtered": {
+      "base": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/ewok_filtered",
+      "n_files": 0,
+      "aggregate_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "manifest_jsonl": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/official_generated_ewok_filtered_manifest.jsonl"
+    },
+    "local_existing_ewok_filtered": {
+      "base": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/ewok_filtered",
+      "n_files": 11,
+      "aggregate_sha256": "457f9df5b149615ba74a0f061423415d5ec06fabb702f28356420795def5834e",
+      "manifest_jsonl": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/local_existing_ewok_filtered_manifest.jsonl"
+    }
+  },
+  "ewok_counts_and_release_test": {
+    "collator_EWOK_SIZES": {
+      "agent-properties": 2210,
+      "social-relations": 1548,
+      "physical-relations": 818,
+      "material-dynamics": 770,
+      "physical-interactions": 556,
+      "spatial-relations": 490,
+      "social-properties": 328,
+      "quantitative-properties": 314,
+      "social-interactions": 294,
+      "material-properties": 170,
+      "physical-dynamics": 120
+    },
+    "pristine_generated_ewok_filtered_line_counts": {},
+    "local_existing_ewok_filtered_line_counts": {
+      "agent-properties": 1846,
+      "material-dynamics": 770,
+      "material-properties": 130,
+      "physical-dynamics": 100,
+      "physical-interactions": 436,
+      "physical-relations": 818,
+      "quantitative-properties": 276,
+      "social-interactions": 294,
+      "social-properties": 308,
+      "social-relations": 1548,
+      "spatial-relations": 140
+    },
+    "source_dataset_raw_domain_counts_times2": {},
+    "source_dataset_filtered_with_official_vocab_counts_times2": {},
+    "source_count_error": {
+      "exception": "OSError",
+      "error": "[Errno 30] Read-only file system: 'data/external/blobs'"
+    },
+    "collator_vs_pristine_filtered": null,
+    "collator_vs_local_filtered": {
+      "all_equal": false,
+      "diffs": [
+        {
+          "key": "agent-properties",
+          "left": 2210,
+          "right": 1846,
+          "delta_left_minus_right": 364
+        },
+        {
+          "key": "material-properties",
+          "left": 170,
+          "right": 130,
+          "delta_left_minus_right": 40
+        },
+        {
+          "key": "physical-dynamics",
+          "left": 120,
+          "right": 100,
+          "delta_left_minus_right": 20
+        },
+        {
+          "key": "physical-interactions",
+          "left": 556,
+          "right": 436,
+          "delta_left_minus_right": 120
+        },
+        {
+          "key": "quantitative-properties",
+          "left": 314,
+          "right": 276,
+          "delta_left_minus_right": 38
+        },
+        {
+          "key": "social-properties",
+          "left": 328,
+          "right": 308,
+          "delta_left_minus_right": 20
+        },
+        {
+          "key": "spatial-relations",
+          "left": 490,
+          "right": 140,
+          "delta_left_minus_right": 350
+        }
+      ]
+    },
+    "collator_vs_source_raw": null,
+    "collator_vs_source_filtered_recomputed": null,
+    "pristine_filtered_vs_local_filtered_counts": null
+  },
+  "ewok_filtered_pristine_vs_local_file_hashes": [
+    {
+      "domain": "agent-properties",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 1846,
+      "pristine_sha256": null,
+      "local_sha256": "920699c3faf69cc2f50cf51e7401c7e043c6447dde64eaea0c30e9f3e079ef24",
+      "identical_file": false
+    },
+    {
+      "domain": "material-dynamics",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 770,
+      "pristine_sha256": null,
+      "local_sha256": "97c1a8a81f5290d6d56055ce1e0b8af340be23affcfff880fe26eb0fae2c3778",
+      "identical_file": false
+    },
+    {
+      "domain": "material-properties",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 130,
+      "pristine_sha256": null,
+      "local_sha256": "4b880daf6336321e3e987934aa8c01aeb93b0a9ed4ef43c553ca2d9f8fb1ed4c",
+      "identical_file": false
+    },
+    {
+      "domain": "physical-dynamics",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 100,
+      "pristine_sha256": null,
+      "local_sha256": "39966ee1865004f7115c36f7903825fe0efd90a49b24055933831f9c8eecf67b",
+      "identical_file": false
+    },
+    {
+      "domain": "physical-interactions",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 436,
+      "pristine_sha256": null,
+      "local_sha256": "bd37f1922d75321149ed04d510dbd74516761adb73af2ec4261e32636df5e501",
+      "identical_file": false
+    },
+    {
+      "domain": "physical-relations",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 818,
+      "pristine_sha256": null,
+      "local_sha256": "bfab24673fcd06148360a170f28979d917c285b0ccb55b8396192d1d59eafff8",
+      "identical_file": false
+    },
+    {
+      "domain": "quantitative-properties",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 276,
+      "pristine_sha256": null,
+      "local_sha256": "4c7f0223b4f4076972b027ac45afe50c53ae580ba9366488e9a87ef7d22307ff",
+      "identical_file": false
+    },
+    {
+      "domain": "social-interactions",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 294,
+      "pristine_sha256": null,
+      "local_sha256": "8e4efae5bb913abab7060e92eb76a8f25b98e30fd2964eca4d4aabe926905678",
+      "identical_file": false
+    },
+    {
+      "domain": "social-properties",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 308,
+      "pristine_sha256": null,
+      "local_sha256": "744542a6a2722f6f4290c9670635f8bb373a42f4584a7918a2a9d65e488d53e1",
+      "identical_file": false
+    },
+    {
+      "domain": "social-relations",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 1548,
+      "pristine_sha256": null,
+      "local_sha256": "8acfa47e1efca82f33ea3adb025533f6988423a6ce48c760eb9169d9ebcaf417",
+      "identical_file": false
+    },
+    {
+      "domain": "spatial-relations",
+      "pristine_exists": false,
+      "local_exists": true,
+      "pristine_count": -1,
+      "local_count": 140,
+      "pristine_sha256": null,
+      "local_sha256": "cacb9c8b33ac9190c37bc6e9ec7fc516b04b4cb8480f97442c40b645e699c6cb",
+      "identical_file": false
+    }
+  ],
+  "pristine_collation_probe_with_old_min20_aoa": {
+    "results_dir": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine",
+    "copied": [
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/BLiMP/chck_100M/full_compact_view_reinvest_BLiMP/zero_shot/mlm/blimp/blimp_filtered/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/blimp/blimp_filtered/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 5991078
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/Supplement/chck_100M/full_compact_view_reinvest_Supplement/zero_shot/mlm/blimp/supplement_filtered/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/blimp/supplement_filtered/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 637077
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/EWoK/chck_100M/full_compact_view_reinvest_EWoK/zero_shot/mlm/ewok/ewok_filtered/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/ewok/ewok_filtered/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 787871
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/Entity/chck_100M/full_compact_view_reinvest_Entity/zero_shot/mlm/entity_tracking/entity_tracking/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/entity_tracking/entity_tracking/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 469545
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/COMPS/chck_100M/full_compact_view_reinvest_COMPS/zero_shot/mlm/comps/comps/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/comps/comps/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 7586959
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/GlobalPIQA_parallel/chck_100M/full_compact_view_reinvest_GlobalPIQA_parallel/zero_shot/mlm/global_piqa_parallel/global_piqa_parallel/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/global_piqa_parallel/global_piqa_parallel/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 12888
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/GlobalPIQA_nonparallel/chck_100M/full_compact_view_reinvest_GlobalPIQA_nonparallel/zero_shot/mlm/global_piqa_nonparallel/global_piqa_nonparallel/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/global_piqa_nonparallel/global_piqa_nonparallel/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 19767
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/official_outputs/compact_view_reinvest/Reading/chck_100M/full_compact_view_reinvest_Reading/zero_shot/mlm/reading/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/reading/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 123051
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/boolq/chck_100M/main/finetune/boolq/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/boolq/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 52873
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/mnli/chck_100M/main/finetune/mnli/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/mnli/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 155973
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/mrpc/chck_100M/main/finetune/mrpc/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/mrpc/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 6241
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/multirc/chck_100M/main/finetune/multirc/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/multirc/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 83760
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/qqp/chck_100M/main/finetune/qqp/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/qqp/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 635796
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/rte/chck_100M/main/finetune/rte/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/rte/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 4086
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/superglue_results/compact_view_reinvest/wsc/chck_100M/main/finetune/wsc/predictions.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/finetune/wsc/predictions.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 1524
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/aoa_outputs/compact_view_reinvest/hf_model_local_ckpts/main/zero_shot/mlm/AoA_word/surprisal.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/AoA_word/surprisal.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 32394536
+      },
+      {
+        "src": "experiments/archive/representation_and_objectives/data/compact_reinvest_full_eval/aoa_outputs/compact_view_reinvest/hf_model_local_ckpts/main/zero_shot/mlm/AoA_word/aoa_score.json",
+        "dst": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/main/zero_shot/mlm/AoA_word/aoa_score.json",
+        "exists": true,
+        "mode": "symlink",
+        "size_bytes": 94
+      }
+    ],
+    "collate_run": {
+      "cmd": [
+        "data/external/python",
+        "evaluation_pipeline/collate_preds.py",
+        "--model_path_or_name",
+        "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model",
+        "--backend",
+        "mlm",
+        "--results_dir",
+        "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine",
+        "--revision_name",
+        "main",
+        "--track",
+        "strict-small"
+      ],
+      "cwd": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict",
+      "returncode": 0,
+      "stdout": "The sub-data agent-properties from ewok has 1846 datapoints, when it should have 2210 datapoints!\nThe sub-data material-properties from ewok has 130 datapoints, when it should have 170 datapoints!\nThe sub-data physical-dynamics from ewok has 100 datapoints, when it should have 120 datapoints!\nThe sub-data physical-interactions from ewok has 436 datapoints, when it should have 556 datapoints!\nThe sub-data quantitative-properties from ewok has 276 datapoints, when it should have 314 datapoints!\nThe sub-data social-properties from ewok has 308 datapoints, when it should have 328 datapoints!\nThe sub-data spatial-relations from ewok has 140 datapoints, when it should have 490 datapoints!\nWarning: EWoK data has incorrect size, setting to None\nThere are 6560 predictions for checkpoint chck_1M in AoA data, when there should be 8005\nWarning: AoA word data has incorrect size, setting to None\n",
+      "stderr": "",
+      "elapsed_sec": 3.295180559158325
+    },
+    "collated": {
+      "collated_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/collation_probe_min20_pristine/hf_model/all_full_preds_and_fast_scores_mlm.json",
+      "collated_exists": true,
+      "collated_size_bytes": 15780893,
+      "aoa_surprisals_is_null": true,
+      "aoa_score_is_null": false,
+      "ewok_is_null": true,
+      "ewok_domain_lengths": null,
+      "top_keys": [
+        "aoa",
+        "aoa_surprisals",
+        "blimp",
+        "blimp_supplement",
+        "comps",
+        "entity_tracking_filtered",
+        "ewok",
+        "global_piqa_nonparallel",
+        "global_piqa_parallel",
+        "glue",
+        "reading"
+      ]
+    }
+  },
+  "interpretation": {
+    "pristine_generated_filtered_counts_equal_local_counts": false,
+    "collator_constants_equal_raw_ewok_source_counts_times2": false,
+    "collator_constants_equal_pristine_filtered_counts": false,
+    "scientific_meaning": "If the pristine official script regenerates the same ewok_filtered counts/files as the local vendored data while EWOK_SIZES matches the raw source-domain counts rather than the filtered files, then the mismatch is an upstream code/data coordinate inconsistency, not an A01 local corruption. The endpoint must still be reproduced through one accepted official coordinate before using the scalar against the public leader."
+  },
+  "elapsed_sec": 52.122594356536865
+}

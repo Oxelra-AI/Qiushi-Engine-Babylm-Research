@@ -1,0 +1,431 @@
+{
+  "status": "INSERTION_MATRIX_DRY",
+  "created": "2026-09-04T10:42:24Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/coordinate_insertion_matrix_dry",
+    "seed": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": true
+  },
+  "construction": {
+    "train_arm": "unique_tag_direct",
+    "train_construction": {
+      "arm_name": "unique_tag_direct",
+      "ctx_mode": "unique",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=unique|q=direct_tag": 2560,
+          "base_stable_train|ctx=unique|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=unique|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=unique|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "unique_tag_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "unique_tag_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "unique_tag_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    },
+    "eval_ctx_modes": [
+      "unique",
+      "filler",
+      "labeldup",
+      "entrydup",
+      "slotdecl",
+      "roledecl"
+    ],
+    "eval_inventory": {
+      "train_total": 1320,
+      "held_total": 440
+    },
+    "eval_selection": {
+      "base_stable": {
+        "n": 80,
+        "changed": {
+          "False": 80
+        },
+        "dir": {
+          "A->A": 40,
+          "B->B": 40
+        },
+        "winner_initial_later": {
+          "1->1": 44,
+          "0->0": 36
+        }
+      },
+      "base_stable2": {
+        "n": 97,
+        "changed": {
+          "False": 97
+        },
+        "dir": {
+          "A->A": 49,
+          "B->B": 48
+        },
+        "winner_initial_later": {
+          "1->1": 53,
+          "0->0": 44
+        }
+      },
+      "sparse_changed": {
+        "n": 16,
+        "changed": {
+          "True": 16
+        },
+        "dir": {
+          "A->B": 8,
+          "B->A": 8
+        },
+        "winner_initial_later": {
+          "0->1": 13,
+          "1->0": 3
+        }
+      },
+      "sparse_stable": {
+        "n": 16,
+        "changed": {
+          "False": 16
+        },
+        "dir": {
+          "B->B": 8,
+          "A->A": 8
+        },
+        "winner_initial_later": {
+          "0->0": 9,
+          "1->1": 7
+        }
+      },
+      "sparse_secondary_stable": {
+        "n": 33,
+        "changed": {
+          "False": 33
+        },
+        "dir": {
+          "A->A": 17,
+          "B->B": 16
+        },
+        "winner_initial_later": {
+          "0->0": 14,
+          "1->1": 19
+        }
+      },
+      "eval_train_changed": {
+        "n": 40,
+        "changed": {
+          "True": 40
+        },
+        "dir": {
+          "A->B": 20,
+          "B->A": 20
+        },
+        "winner_initial_later": {
+          "1->0": 16,
+          "0->1": 24
+        }
+      },
+      "eval_train_stable": {
+        "n": 40,
+        "changed": {
+          "False": 40
+        },
+        "dir": {
+          "A->A": 20,
+          "B->B": 20
+        },
+        "winner_initial_later": {
+          "1->1": 22,
+          "0->0": 18
+        }
+      },
+      "eval_held_changed": {
+        "n": 40,
+        "changed": {
+          "True": 40
+        },
+        "dir": {
+          "A->B": 20,
+          "B->A": 20
+        },
+        "winner_initial_later": {
+          "0->1": 24,
+          "1->0": 16
+        }
+      },
+      "eval_held_stable": {
+        "n": 40,
+        "changed": {
+          "False": 40
+        },
+        "dir": {
+          "A->A": 20,
+          "B->B": 20
+        },
+        "winner_initial_later": {
+          "0->0": 22,
+          "1->1": 18
+        }
+      },
+      "eval_held_stable2": {
+        "n": 40,
+        "changed": {
+          "False": 40
+        },
+        "dir": {
+          "B->B": 20,
+          "A->A": 20
+        },
+        "winner_initial_later": {
+          "1->1": 23,
+          "0->0": 17
+        }
+      }
+    },
+    "eval_counts": {
+      "insert_entrydup_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_entrydup_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_entrydup_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_filler_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_filler_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_filler_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_labeldup_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_labeldup_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_labeldup_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_roledecl_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_roledecl_heldChanged_heldStable_directTag_roleSwap_heldHyp": 1280,
+      "insert_roledecl_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_roledecl_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_slotdecl_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_slotdecl_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_slotdecl_trainChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_unique_heldChanged_heldStable_directTag_heldHyp": 1280,
+      "insert_unique_heldStable_heldStable_directTag_heldHyp": 1280,
+      "insert_unique_trainChanged_heldStable_directTag_heldHyp": 1280
+    },
+    "boundary": "Evaluation-time insertion matrix after fitting supplied unique-tag address model."
+  },
+  "token_audit": {
+    "train": {
+      "n": 5632,
+      "min": 78,
+      "p50": 85.0,
+      "p90": 89.0,
+      "p99": 93.0,
+      "max": 97,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 24320,
+      "min": 80,
+      "p50": 125.0,
+      "p90": 140.0,
+      "p99": 145.0,
+      "max": 153,
+      "frac_gt_max_len": 0.0
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "status": "SPECIAL_TOKEN_CE_GAP_DONE",
+  "created_utc": "2026-09-07T19:57:29Z",
+  "purpose": "Measure frozen-trunk masked-MLM CE gap from add_special_tokens=True vs False on research coherent and isolated rows.",
+  "model": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+  "device": "cpu",
+  "total_params": 36458592,
+  "trainable_params_loaded_but_disabled_for_measurement": 995584,
+  "mask_seed": 99099,
+  "mask_prob": 0.15,
+  "batch_size": 64,
+  "max_length": 256,
+  "datasets": {
+    "coherent_leash": {
+      "rows": 256,
+      "words": 39553,
+      "source_path": "experiments/archive/relation_learning/data/held_coherent_sets/held_coherent_leash_256rows.jsonl",
+      "conditions": {
+        "without_special_tokens": {
+          "tokenization": {
+            "rows": 256,
+            "mean_full_len": 227.86328125,
+            "mean_trunc_len": 222.484375,
+            "max_full_len": 333,
+            "max_trunc_len": 256,
+            "truncated_rows": 63,
+            "truncated_row_fraction": 0.24609375,
+            "lost_tokens_to_truncation": 1377
+          },
+          "ce": {
+            "label": "coherent_leash:without_special_tokens",
+            "rows": 256,
+            "tokens_with_attention": 56956,
+            "non_special_tokens": 56956,
+            "targets": 8451,
+            "target_ratio": 0.14837769506285553,
+            "masked_ce": 2.35518246037821,
+            "elapsed_sec": 9.443
+          }
+        },
+        "with_special_tokens": {
+          "tokenization": {
+            "rows": 256,
+            "mean_full_len": 229.86328125,
+            "mean_trunc_len": 223.96484375,
+            "max_full_len": 335,
+            "max_trunc_len": 256,
+            "truncated_rows": 67,
+            "truncated_row_fraction": 0.26171875,
+            "lost_tokens_to_truncation": 1510
+          },
+          "ce": {
+            "label": "coherent_leash:with_special_tokens",
+            "rows": 256,
+            "tokens_with_attention": 57335,
+            "non_special_tokens": 56823,
+            "targets": 8349,
+            "target_ratio": 0.14692994034105908,
+            "masked_ce": 2.4327362605177267,
+            "elapsed_sec": 9.452
+          }
+        }
+      },
+      "gap_special_minus_no_special": {
+        "masked_ce": 0.07755380013951685,
+        "target_ratio": -0.0014477547217964515,
+        "interpretation_band": "intermediate"
+      }
+    },
+    "coherent_readout": {
+      "rows": 256,
+      "words": 39320,
+      "source_path": "experiments/archive/relation_learning/data/held_coherent_sets/held_coherent_readout_256rows.jsonl",
+      "conditions": {
+        "without_special_tokens": {
+          "tokenization": {
+            "rows": 256,
+            "mean_full_len": 220.70703125,
+            "mean_trunc_len": 217.0390625,
+            "max_full_len": 334,
+            "max_trunc_len": 256,
+            "truncated_rows": 49,
+            "truncated_row_fraction": 0.19140625,
+            "lost_tokens_to_truncation": 939
+          },
+          "ce": {
+            "label": "coherent_readout:without_special_tokens",
+            "rows": 256,
+            "tokens_with_attention": 55562,
+            "non_special_tokens": 55562,
+            "targets": 8135,
+            "target_ratio": 0.14641301609013355,
+            "masked_ce": 2.3407658122695145,
+            "elapsed_sec": 9.628
+          }
+        },
+        "with_special_tokens": {
+          "tokenization": {
+            "rows": 256,
+            "mean_full_len": 222.70703125,
+            "mean_trunc_len": 218.64453125,
+            "max_full_len": 336,
+            "max_trunc_len": 256,
+            "truncated_rows": 51,
+            "truncated_row_fraction": 0.19921875,
+            "lost_tokens_to_truncation": 1040
+          },
+          "ce": {
+            "label": "coherent_readout:with_special_tokens",
+            "rows": 256,
+            "tokens_with_attention": 55973,
+            "non_special_tokens": 55461,
+            "targets": 8194,
+            "target_ratio": 0.14774345936784408,
+            "masked_ce": 2.35096427502212,
+            "elapsed_sec": 9.084
+          }
+        }
+      },
+      "gap_special_minus_no_special": {
+        "masked_ce": 0.010198462752605497,
+        "target_ratio": 0.0013304432777105357,
+        "interpretation_band": "few-hundredths"
+      }
+    },
+    "isolated_first_macro": {
+      "rows": 3819,
+      "words": 39553,
+      "source_path": "experiments/archive/relation_learning/data/isolated_replay_streams/isolated_all_replay_3992800w.jsonl",
+      "conditions": {
+        "without_special_tokens": {
+          "tokenization": {
+            "rows": 3819,
+            "mean_full_len": 15.274417386750459,
+            "mean_trunc_len": 15.267871170463472,
+            "max_full_len": 281,
+            "max_trunc_len": 256,
+            "truncated_rows": 1,
+            "truncated_row_fraction": 0.0002618486514794449,
+            "lost_tokens_to_truncation": 25
+          },
+          "ce": {
+            "label": "isolated_first_macro:without_special_tokens",
+            "rows": 3819,
+            "tokens_with_attention": 58308,
+            "non_special_tokens": 58308,
+            "targets": 8632,
+            "target_ratio": 0.14804143513754545,
+            "masked_ce": 3.4567680712426783,
+            "elapsed_sec": 23.913
+          }
+        },
+        "with_special_tokens": {
+          "tokenization": {
+            "rows": 3819,
+            "mean_full_len": 17.274417386750457,
+            "mean_trunc_len": 17.267347473160513,
+            "max_full_len": 283,
+            "max_trunc_len": 256,
+            "truncated_rows": 1,
+            "truncated_row_fraction": 0.0002618486514794449,
+            "lost_tokens_to_truncation": 27
+          },
+          "ce": {
+            "label": "isolated_first_macro:with_special_tokens",
+            "rows": 3819,
+            "tokens_with_attention": 65944,
+            "non_special_tokens": 58306,
+            "targets": 8640,
+            "target_ratio": 0.14818372037183136,
+            "masked_ce": 3.7557110397904006,
+            "elapsed_sec": 28.827
+          }
+        }
+      },
+      "gap_special_minus_no_special": {
+        "masked_ce": 0.2989429685477223,
+        "target_ratio": 0.000142285234285916,
+        "interpretation_band": "tenths_or_larger"
+      }
+    }
+  },
+  "embedding_norms": {
+    "special_ids": [
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "special_tokens": [
+      "<s>",
+      "</s>",
+      "<unk>",
+      "<pad>",
+      "<mask>"
+    ],
+    "special_norms": {
+      "1": 0.9558433890342712,
+      "2": 0.9661931395530701,
+      "0": 0.9576342105865479,
+      "3": 1.383046269416809,
+      "4": 0.8305321931838989
+    },
+    "normal_first1000_mean_norm": 0.8861953020095825,
+    "normal_first1000_std_norm": 0.05465015396475792
+  },
+  "elapsed_sec": 94.167
+}

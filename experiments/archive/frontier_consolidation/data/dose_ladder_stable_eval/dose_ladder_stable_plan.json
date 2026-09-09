@@ -1,0 +1,196 @@
+{
+  "status": "DOSE_LADDER_STABLE_PLAN",
+  "created_utc": "2026-09-04T03:20:36Z",
+  "scientific_purpose": "Read dose response as exposure profiles, not a single 80M draw: treatment-vs-clean over 10M-80M and compact-minus-repeat over 10M-100M for 1x and MAX.",
+  "out_dir": "experiments/archive/frontier_consolidation/data/dose_ladder_stable_eval",
+  "columns": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "Reading"
+  ],
+  "arms": {
+    "clean0": {
+      "dose": 0.0,
+      "data_arm": "clean",
+      "arm_arg": "clean_qwen",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_cleanqwen_seed43022_80M",
+      "checkpoints": [
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M"
+      ],
+      "max_words": 80000000,
+      "role": "0x fixed-tokenizer clean-Qwen reference, trained through 80M",
+      "metric_ready": true,
+      "checkpoint_exists": {
+        "chck_10M": true,
+        "chck_20M": true,
+        "chck_30M": true,
+        "chck_40M": true,
+        "chck_50M": true,
+        "chck_60M": true,
+        "chck_70M": true,
+        "chck_80M": true
+      }
+    },
+    "dose1_view": {
+      "dose": 1.0,
+      "data_arm": "view",
+      "arm_arg": "reinvest",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "checkpoints": [
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "max_words": 100000000,
+      "role": "1x compact-view reinvest anchor",
+      "metric_ready": true,
+      "checkpoint_exists": {
+        "chck_10M": true,
+        "chck_20M": true,
+        "chck_30M": true,
+        "chck_40M": true,
+        "chck_50M": true,
+        "chck_60M": true,
+        "chck_70M": true,
+        "chck_80M": true,
+        "chck_90M": true,
+        "chck_100M": true
+      }
+    },
+    "dose1_repeat": {
+      "dose": 1.0,
+      "data_arm": "repeat",
+      "arm_arg": "reinvest",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_repeat_deberta100M_seed43022",
+      "checkpoints": [
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "max_words": 100000000,
+      "role": "1x hash-rotated repeat anchor",
+      "metric_ready": true,
+      "checkpoint_exists": {
+        "chck_10M": true,
+        "chck_20M": true,
+        "chck_30M": true,
+        "chck_40M": true,
+        "chck_50M": true,
+        "chck_60M": true,
+        "chck_70M": true,
+        "chck_80M": true,
+        "chck_90M": true,
+        "chck_100M": true
+      }
+    },
+    "max_view": {
+      "dose": 2.641480921798262,
+      "data_arm": "view",
+      "arm_arg": "reinvest",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_view_dose2p64x_matched_rowholdout_deberta100M_seed43022",
+      "checkpoints": [
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "max_words": 100000000,
+      "role": "matched MAX 2.64x compact-view arm",
+      "metric_ready": false,
+      "checkpoint_exists": {
+        "chck_10M": false,
+        "chck_20M": false,
+        "chck_30M": false,
+        "chck_40M": false,
+        "chck_50M": false,
+        "chck_60M": false,
+        "chck_70M": false,
+        "chck_80M": false,
+        "chck_90M": false,
+        "chck_100M": false
+      }
+    },
+    "max_repeat": {
+      "dose": 2.641480921798262,
+      "data_arm": "repeat",
+      "arm_arg": "reinvest",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_repeat_dose2p64x_matched_rowholdout_deberta100M_seed43022",
+      "checkpoints": [
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "max_words": 100000000,
+      "role": "matched MAX 2.64x hash-rotated repeat arm",
+      "metric_ready": false,
+      "checkpoint_exists": {
+        "chck_10M": false,
+        "chck_20M": false,
+        "chck_30M": false,
+        "chck_40M": false,
+        "chck_50M": false,
+        "chck_60M": false,
+        "chck_70M": false,
+        "chck_80M": false,
+        "chck_90M": false,
+        "chck_100M": false
+      }
+    }
+  },
+  "external_reuse_count": 23,
+  "gpu_rows_at_plan": [
+    {
+      "index": 0,
+      "total_mib": 81559,
+      "used_mib": 72244,
+      "free_mib": 8837,
+      "util_gpu_pct": 74
+    },
+    {
+      "index": 1,
+      "total_mib": 81559,
+      "used_mib": 68729,
+      "free_mib": 12353,
+      "util_gpu_pct": 70
+    }
+  ],
+  "seed_spread_reference": "experiments/archive/frontier_consolidation/data/full_deberta_seed_ladder_stable_eval/full_deberta_seed_ladder_seed_spread.csv",
+  "no_globalpiqa_superglue_aoa_upload_or_leaderboard": true
+}

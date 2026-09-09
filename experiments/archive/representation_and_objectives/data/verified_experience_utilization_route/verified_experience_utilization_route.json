@@ -1,0 +1,123 @@
+{
+  "status": "VERIFIED_EXPERIENCE_UTILIZATION_ROUTE",
+  "purpose": "Correct the research design after construction and independent_review verification so any later H100 run tests experience utilization rather than a misdescribed sequence schedule.",
+  "source_files": {
+    "design": "experiments/archive/representation_and_objectives/data/experience_utilization_design/experience_utilization_experiment_design.json",
+    "chunk_stream_preflight": "experiments/archive/representation_and_objectives/data/chunk_stream_preflight/chunk_stream_preflight.json",
+    "independent_review_verification": "data/external/independent_review01_verifier1_integration.md"
+  },
+  "tokenizers": {
+    "legal40k": {
+      "tokenizer": "legal40k",
+      "tokenizer_json_sha256": "94b44bcf5901d097e20294e8220740758eac29af3ec20d58d8da867c85197758",
+      "raw_tokens_per_epoch": 13942644,
+      "raw_tokens_per_word": 1.3942644,
+      "current_row256": {
+        "charged_words_total": 100000000,
+        "active_tokens_total": 137061620,
+        "hidden_words_but_debited_total": 1286640,
+        "hidden_word_fraction": 0.0128664,
+        "mask_prob": 0.15,
+        "steps_total_stage_reset": 2530
+      },
+      "U256_chunked": {
+        "charged_words_total": 100000000,
+        "active_tokens_total": 139426440,
+        "steps_total_stage_reset": 2530,
+        "chunks_total_with_overlong_split": 761640,
+        "active_token_ratio_vs_current_row256": 1.0172536994674366,
+        "expected_masked_targets_mask015": 20913966.0,
+        "targetmatched_mask_prob_vs_current": 0.14745584123068767
+      },
+      "U64_128_256_chunked": {
+        "charged_words_total": 100000000,
+        "active_tokens_total": 139426440,
+        "steps_total_stage_reset": 2530,
+        "chunks_total_with_overlong_split": 1546514,
+        "expected_masked_targets_mask015": 20913966.0,
+        "per_length_epochs": {
+          "64": 3,
+          "128": 4,
+          "256": 3
+        }
+      },
+      "matched_between_U256_and_U64_128_256": true,
+      "first_update_microbatches_by_length": {
+        "64": 16,
+        "128": 9,
+        "256": 5
+      },
+      "L64_overlong_words": 1,
+      "L64_overlong_continuation_chunks_per_epoch": 1
+    },
+    "minfreq25": {
+      "tokenizer": "minfreq25",
+      "tokenizer_json_sha256": "311e7a20cd8b20f512ab574b8d62b574b5106408e742c32b0bce152dfe8162e0",
+      "raw_tokens_per_epoch": 14138512,
+      "raw_tokens_per_word": 1.4138512,
+      "current_row256": {
+        "charged_words_total": 100000000,
+        "active_tokens_total": 138713400,
+        "hidden_words_but_debited_total": 1448730,
+        "hidden_word_fraction": 0.0144873,
+        "mask_prob": 0.15,
+        "steps_total_stage_reset": 2530
+      },
+      "U256_chunked": {
+        "charged_words_total": 100000000,
+        "active_tokens_total": 141385120,
+        "steps_total_stage_reset": 2530,
+        "chunks_total_with_overlong_split": 770920,
+        "active_token_ratio_vs_current_row256": 1.0192607203053201,
+        "expected_masked_targets_mask015": 21207768.0,
+        "targetmatched_mask_prob_vs_current": 0.14716548672165783
+      },
+      "U64_128_256_chunked": {
+        "charged_words_total": 100000000,
+        "active_tokens_total": 141385120,
+        "steps_total_stage_reset": 2530,
+        "chunks_total_with_overlong_split": 1564093,
+        "expected_masked_targets_mask015": 21207768.0,
+        "per_length_epochs": {
+          "64": 3,
+          "128": 4,
+          "256": 3
+        }
+      },
+      "matched_between_U256_and_U64_128_256": true,
+      "first_update_microbatches_by_length": {
+        "64": 16,
+        "128": 9,
+        "256": 5
+      },
+      "L64_overlong_words": 1,
+      "L64_overlong_continuation_chunks_per_epoch": 1
+    }
+  },
+  "scientific_interpretation": {
+    "current_row256_to_U256": "Reads the value of a chunk-stream intervention that restores most row-truncated charged words at fixed maximum length 256. It is not pure visibility, because row-to-chunk segmentation, update composition, boundaries, padding, and microbatch accumulation also change.",
+    "U256_to_U64_128_256": "Reads a short-to-long context/order/packing bundle after all words are visible. U256 and U64_128_256 match on charged words, active tokens, expected targets at shared mask probability, and stage-reset update count. It is not pure chronological order unless later compared with a length-mixture-matched interleaved or permuted stream.",
+    "targetmatched_variants": "Lower mask probability to match the current row256 expected masked-token count; useful if a gain needs separation from the extra 1.7-1.9 percent active target-token count. This still does not match target context distribution or actual realized WWM samples.",
+    "general_learning_principle": "Under a strict word budget, accounting should align with the experience actually visible to the model and eligible for learning. A positive U256 target-matched result would support this principle more directly than copying any public schedule."
+  },
+  "implementation_requirements_before_training": [
+    "Build stage-specific chunk streams from the exact 10M corpus and tokenizer SHA, with every whitespace word charged once per epoch and every tokenizer token visible once per epoch.",
+    "Use the preflight-corrected overlong split counts: one L64 overlong continuation chunk per epoch for both legal40k and minfreq25, charged_words=0 on continuation.",
+    "Form exactly 253 optimizer updates per 10M-word epoch for both U256 and U64_128_256 by distributing chunks across updates; do not add a tail update at stage boundaries.",
+    "Apply WWM once on the full effective batch before microbatch forwards; keep one mask generator stream and record realized masked tokens, selected groups, active tokens, charged words, and accumulation depth per update.",
+    "Weight microbatch losses by masked-token count so the update objective is the masked-token mean over the effective batch, not an average of microbatch means.",
+    "Keep optimizer, LR scheduler, warmup, clipping, global step, initialization seed, train RNG seed, and data order continuous across stage boundaries unless intentionally changed in a paired arm.",
+    "Verify a dry run over a full 10M stage epoch before H100 launch: exact 10M charged words, exact preflight active-token totals, no duplicate or missing chunks, no special-token insertion drift, and all checkpoint word thresholds reachable."
+  ],
+  "recommended_first_wave_after_depth_if_selected": {
+    "wait_for": "legal40k 12x384 depth vector and A02 support-floor vector",
+    "primary_pair": [
+      "U256_chunked_visibility_mask015",
+      "U64_128_256_chunked_order_mask015"
+    ],
+    "same_seed_first": 43022,
+    "why": "This pair separates restored charged-word experience from the short-to-long context/order/packing bundle, because both chunked arms match on words, tokens, expected targets, and update count.",
+    "if_U256_improves_row256": "experience utilization becomes a load-bearing mechanism; if target-matched U256 also improves, the explanation is not simply extra expected targets.",
+    "if_U64_128_256_improves_U256": "test a length-mixture matched interleaved or permuted stream before attributing the gain to chronological short-to-long order."
+  }
+}

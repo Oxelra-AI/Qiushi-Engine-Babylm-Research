@@ -1,0 +1,843 @@
+{
+  "status": "COMPACT_PROVENANCE_AND_OVERLAP_ADDENDUM",
+  "created_utc": "2026-08-29T19:55:12Z",
+  "scientific_purpose": "Protect the compact_view_reinvest seed43022 SOTA-facing endpoint by replacing inferred generator/source statements with trace-backed provenance and by summarizing exact score-text overlap ancestry while seed43122 full evaluation remains pending.",
+  "seed43022_official_coordinate": {
+    "summary_path": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/pristine_collate_seed43022_summary.json",
+    "scores": {
+      "BLiMP": 66.87232315173485,
+      "Supplement": 63.27576417952158,
+      "EWoK": 53.536575594886855,
+      "Entity": 27.745741097952372,
+      "COMPS": 51.968828052457084,
+      "SuperGLUE": 71.03604952825312,
+      "GlobalPIQA": 35.62135922330097,
+      "Reading": 8.241572282566393,
+      "AoA": 0.0
+    },
+    "overall": 42.0331347900748,
+    "nlp_average": 52.86523440401526,
+    "human_like_average": 4.1207861412831965,
+    "margin_over_visible_leader_41p8": 0.23313479007479998,
+    "collated_json": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/results/hf_model/all_full_preds_and_fast_scores_mlm.json",
+      "exists": true,
+      "size_bytes": 49342248,
+      "sha256": "a85aae3b29b3cecceb67e21792f75048af478cc9191011c9872a69a639fec192"
+    },
+    "ledger_path": "experiments/archive/representation_and_objectives/data/endpoint_provenance_ledger/compact_reinvest_seed43022_endpoint_provenance_ledger.json",
+    "ledger_status": "ENDPOINT_PROVENANCE_LEDGER"
+  },
+  "generator_identity": {
+    "source": "A02 experiment_process submission trace plus delivered task stdout, not inferred from memory",
+    "submit_trace": "data/external/tool_0002.json",
+    "delivery_trace": "data/external/background_delivery.json",
+    "task_result": "experiments/archive/frontier_consolidation/tasks/s14_t13_tool2/result.json",
+    "command": "CUDA_VISIBLE_DEVICES=1 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model qwen3.5-9b --prompts-jsonl experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl --output-jsonl experiments/archive/frontier_consolidation/training/runs/medium_compact_qwen_all/outputs.jsonl --batch-size 64 --max-new-tokens 80 --temperature 0.1 --device cuda",
+    "parsed_options": {
+      "--model": "qwen3.5-9b",
+      "--prompts-jsonl": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+      "--output-jsonl": "experiments/archive/frontier_consolidation/training/runs/medium_compact_qwen_all/outputs.jsonl",
+      "--batch-size": "64",
+      "--max-new-tokens": "80",
+      "--temperature": "0.1",
+      "--device": "cuda",
+      "program": "CUDA_VISIBLE_DEVICES=1"
+    },
+    "submitted_task_ref": "s14_t13_tool2",
+    "task_state": "ready",
+    "exit_code": 0,
+    "stdout_model": "Qwen/Qwen3.5-9B",
+    "stdout_resolved_model": "data/external/Qwen3.5-9B",
+    "stdout_adapter": "",
+    "dtype": "torch.bfloat16",
+    "requested_device": "cuda",
+    "actual_device": "cuda:0",
+    "cuda_device_name": "NVIDIA H100",
+    "prompts": 21465,
+    "batch_size": 64,
+    "generated_tokens": 754777,
+    "seconds": 962.2,
+    "aggregate_tok_s": 784.43,
+    "output_jsonl": "experiments/archive/frontier_consolidation/training/runs/medium_compact_qwen_all/outputs.jsonl",
+    "model_identity_closed": true,
+    "note": "The recorded generator for the seed43022 compact rewrites is Qwen/Qwen3.5-9B (alias qwen3.5-9b)."
+  },
+  "source_and_training_lineage": {
+    "source_chain": [
+      {
+        "stage": "cached FineWeb-Edu single-document rows to complete sentence sources",
+        "input": "experiments/archive/initial_model_studies/data/fineweb_relation_matched_3M/fineweb_random_quality_3000000w.jsonl",
+        "output": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_sources/fineweb_sentence_sources.jsonl",
+        "accepted_sentences": 61511,
+        "accepted_words": 1281741,
+        "unique_docs": 5539,
+        "output_sha256": "388be1158bcac02a1583cc65c1ca4fda1f06a0551f38c56d9f3335037f1de68e"
+      },
+      {
+        "stage": "A01 factual/expository sentence selection for rewrite substrate",
+        "source_jsonl": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_sources/fineweb_sentence_sources.jsonl",
+        "source_sha256": "388be1158bcac02a1583cc65c1ca4fda1f06a0551f38c56d9f3335037f1de68e",
+        "selected_sources": 13198,
+        "selected_source_words": 309191,
+        "unique_docs": 4484,
+        "selected_sources_path": "experiments/archive/representation_and_objectives/training/data/fineweb_factual_sentence_rewrite/fineweb_factual_complete_sentence_sources_selected.jsonl",
+        "selected_sources_sha256": "2ba527cdf043763f7dcfa6915ce5959673b39d976bc2f80923f4fafd7434485d"
+      },
+      {
+        "stage": "A02 repaired medium source tier from strict factual plus balanced sources",
+        "inputs": {
+          "strict_factual_sources": "experiments/archive/representation_and_objectives/training/data/fineweb_factual_sentence_rewrite/fineweb_factual_complete_sentence_sources_selected.jsonl",
+          "strict_factual_sha256": "2ba527cdf043763f7dcfa6915ce5959673b39d976bc2f80923f4fafd7434485d",
+          "balanced_sources": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_screens/balanced_source_by_rewrite_sources.jsonl",
+          "balanced_sha256": "283bd142f793d97fdbc54bdd30e560cf4247ad3a1d68fcd7aa3f01a1fbe0fea2"
+        },
+        "medium_rows": 21465,
+        "medium_words": 469887,
+        "medium_unique_docs": 5018,
+        "medium_repaired_sources": "experiments/archive/frontier_consolidation/data/fineweb_source_by_rewrite_repair/fineweb_factual_medium_repaired_sources.jsonl"
+      },
+      {
+        "stage": "A02 compact prompt preparation",
+        "input": "experiments/archive/frontier_consolidation/data/fineweb_source_by_rewrite_repair/fineweb_factual_medium_repaired_sources.jsonl",
+        "input_sha256": "1b73595051f18f042bacbfa7230eec0a35a29f1995de1e5cf678b9f697fc16a4",
+        "compact_prompt_file": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+        "compact_prompt_sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807",
+        "compact_rows": 21465,
+        "compact_source_words": 469887,
+        "compact_prompt_rule": "target=max(8, ceil(0.72*source_words), entity_words+number_count+5), lowered by one word when possible if target reaches source length",
+        "no_babylm_evaluation_signal_used": true
+      },
+      {
+        "stage": "Qwen compact generation and automatic acceptance analysis",
+        "prompts": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+        "prompts_sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807",
+        "outputs": "experiments/archive/frontier_consolidation/training/runs/medium_compact_qwen_all/outputs.jsonl",
+        "outputs_sha256": "85660e4af2179e38003a95942a01dc0bbac7d6a6a76ca8991bff3d80bc406cc5",
+        "accepted": 18682,
+        "accepted_rate": 0.8703470766363848,
+        "accepted_source_words_whitespace": 400665,
+        "accepted_rewrite_words_whitespace": 244568,
+        "weighted_rewrite_to_source_ratio_whitespace": 0.610405201352751,
+        "content_recall_mean": 0.6199460442176835,
+        "entity_recall_mean": 0.9364196976251483,
+        "number_recall_mean": 0.9805342029660689
+      },
+      {
+        "stage": "density reinvestment pair selection",
+        "candidate_counts": {
+          "near_analyzed_rows": 21465,
+          "compact_analyzed_rows": 21465,
+          "near_candidates": 14455,
+          "compact_candidates": 14633,
+          "shared_candidate_sources": 11036,
+          "near_candidate_pair_words": 610677,
+          "compact_candidate_pair_words": 499929,
+          "near_reject_reasons": {
+            "exact_copy": 2773,
+            "outside_near_ratio_band": 1536,
+            "source_risk": 1508,
+            "not_accepted_or_malformed": 994,
+            "near_low_content_recall": 199
+          },
+          "compact_reject_reasons": {
+            "not_accepted_or_malformed": 2783,
+            "compact_low_content_recall": 2259,
+            "source_risk": 1279,
+            "outside_compact_ratio_band": 493,
+            "exact_copy": 18
+          }
+        },
+        "selection": {
+          "core_sources": 10094,
+          "compact_added_sources": 2061,
+          "near_core_pair_words": 423503,
+          "compact_core_pair_words": 353945,
+          "saved_words_from_compact_core_vs_near_core_budget": 69575,
+          "compact_added_pair_words": 69566,
+          "compact_reinvest_pair_words": 423511,
+          "near_neutral_topup_words": 17,
+          "compact_core_neutral_topup_words": 69575,
+          "compact_reinvest_neutral_topup_words": 9,
+          "compact_reinvest_sources_total": 12155,
+          "source_multiplier_compact_reinvest_vs_near_core": 1.2041807014067762,
+          "added_source_fraction_of_reinvest": 0.1695598519127931
+        },
+        "compact_reinvest_summary": {
+          "pairs": 12155,
+          "source_words": 261803,
+          "rewrite_words": 161708,
+          "pair_words": 423511,
+          "neutral_official_topup_words_inside_changed_block": 9,
+          "changed_block_budget_words": 423520,
+          "unique_docs": 4529,
+          "rewrite_to_source_ratio_weighted": 0.6176705385346998,
+          "rewrite_to_source_ratio_stats": {
+            "n": 12155,
+            "mean": 0.6247153875185093,
+            "median": 0.625,
+            "min": 0.35,
+            "max": 0.85
+          },
+          "content_recall_stats": {
+            "n": 12155,
+            "mean": 0.6631212351812201,
+            "median": 0.6666666666666666,
+            "min": 0.45,
+            "max": 1.0
+          },
+          "entity_recall_stats": {
+            "n": 12155,
+            "mean": 0.9960414095708213,
+            "median": 1.0,
+            "min": 0.75,
+            "max": 1.0
+          },
+          "number_recall_stats": {
+            "n": 12155,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "domain_hit_counts": {
+            "no_domain": 6975,
+            "science_physical": 1589,
+            "causal_relational": 1537,
+            "quant_numeric": 974,
+            "institutions_society": 862,
+            "geography_places": 772,
+            "media_culture": 370,
+            "people_history": 358
+          },
+          "near_copy_like_soft_count": 30
+        }
+      },
+      {
+        "stage": "clean-Qwen row-holdout overlay into 10M/100M BabyLM training pool",
+        "base_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+        "base_pool_sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+        "preserve_source": "qwen_pair_packed",
+        "heldout_words": 423520,
+        "changed_block_budget_words": 423520,
+        "total_words_per_pool": 10000000,
+        "passes": 10,
+        "compact_reinvest_family": {
+          "family_name": "compact_reinvest",
+          "arm_names": {
+            "cleanqwen_lengthmatched": "cleanqwen_lengthmatched_compact_reinvest",
+            "repeat": "cleanqwen_fineweb_repeat_compact_reinvest",
+            "view": "cleanqwen_fineweb_compact_view_reinvest"
+          },
+          "pair_rows": 3005,
+          "changed_block_rows": 3006,
+          "pair_words": 423511,
+          "neutral_cleanqwen_topup_words_inside_changed_block": 9,
+          "changed_block_budget_words": 423520,
+          "row_length_sequence_identical_within_family": true,
+          "repeat_view_suffix_identical_after_pair_rows": true,
+          "common_filler_rows": 61734,
+          "common_filler_words": 9576480,
+          "word_totals": {
+            "cleanqwen_lengthmatched_compact_reinvest": 10000000,
+            "cleanqwen_fineweb_repeat_compact_reinvest": 10000000,
+            "cleanqwen_fineweb_compact_view_reinvest": 10000000
+          },
+          "row_counts": {
+            "cleanqwen_lengthmatched_compact_reinvest": 64740,
+            "cleanqwen_fineweb_repeat_compact_reinvest": 64740,
+            "cleanqwen_fineweb_compact_view_reinvest": 64740
+          }
+        },
+        "compact_reinvest_pair_summary": {
+          "pairs": 12155,
+          "source_words": 261803,
+          "rewrite_words": 161708,
+          "pair_words": 423511,
+          "neutral_cleanqwen_topup_words_inside_changed_block": 9,
+          "changed_block_budget_words": 423520,
+          "unique_docs": 4529,
+          "rewrite_to_source_ratio_weighted": 0.6176705385346998,
+          "rewrite_to_source_ratio_stats": {
+            "n": 12155,
+            "min": 0.35,
+            "mean": 0.6247153875185093,
+            "median": 0.625,
+            "max": 0.85,
+            "sum": 7593.41553528748
+          },
+          "content_recall_stats": {
+            "n": 12155,
+            "min": 0.45,
+            "mean": 0.6631212351812201,
+            "median": 0.6666666666666666,
+            "max": 1.0,
+            "sum": 8060.23861362773
+          },
+          "entity_recall_stats": {
+            "n": 12155,
+            "min": 0.75,
+            "mean": 0.9960414095708213,
+            "median": 1.0,
+            "max": 1.0,
+            "sum": 12106.883333333333
+          },
+          "number_recall_stats": {
+            "n": 12155,
+            "min": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "max": 1.0,
+            "sum": 12155.0
+          },
+          "domain_hit_counts": {
+            "no_domain": 6975,
+            "science_physical": 1589,
+            "causal_relational": 1537,
+            "quant_numeric": 974,
+            "institutions_society": 862,
+            "geography_places": 772,
+            "media_culture": 370,
+            "people_history": 358
+          },
+          "near_copy_like_soft_count": 30
+        }
+      }
+    ],
+    "current_reinvest_training_files": {
+      "train_10m": {
+        "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+        "exists": true,
+        "size_bytes": 59935251,
+        "sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+        "jsonl_rows": 64740
+      },
+      "train_100m": {
+        "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+        "exists": true,
+        "size_bytes": 599352510,
+        "sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+        "jsonl_rows": 647400
+      },
+      "selected_compact_reinvest_pairs": {
+        "path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+        "exists": true,
+        "size_bytes": 7772817,
+        "sha256": "d2a3110c110e216180b632ce7a181acdf348b804ea19f172e16b5afeb0d8c9fc",
+        "jsonl_rows": 12155
+      }
+    }
+  },
+  "overlap_ancestry": {
+    "source_file": "experiments/archive/representation_and_objectives/data/changed_block_overlap_ancestry_current_official/changed_block_overlap_ancestry_current_official_rows.jsonl",
+    "summary": {
+      "rows_with_strict_score_overlap": 7,
+      "unique_strict_score_ngrams": 9,
+      "strict_eval_hit_count": 11,
+      "strict_eval_hit_by_top_dir": {
+        "aoa": 4,
+        "glue_filtered": 7
+      },
+      "strict_eval_hit_by_file_role": {
+        "strict_small_score_text": 4,
+        "superglue_validation": 7
+      },
+      "longest_common_span_lengths_desc": [
+        8,
+        8,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ]
+    },
+    "recomputed_from_rows": {
+      "rows": 7,
+      "strict_eval_hits": 11,
+      "hit_top_dirs": {
+        "aoa": 4,
+        "glue_filtered": 7
+      },
+      "hit_file_roles": {
+        "strict_small_score_text": 4,
+        "superglue_validation": 7
+      },
+      "unique_ngrams": 9,
+      "ngrams": {
+        "at the height of the cold war": 2,
+        "in many other parts of the world": 1,
+        "can i help a friend who is": 1,
+        "how can i help a friend who": 1,
+        "i help a friend who is in": 1,
+        "effect of the 2004 indian ocean earthquake": 1,
+        "there are no hard and fast rules": 1,
+        "compared to other parts of the world": 1,
+        "it would be a good idea to": 2
+      },
+      "longest_common_span_max": 8,
+      "unique_pair_records_touched_by_overlap_rows": 32,
+      "matched_ngram_occurrences_in_original_source_text": 9,
+      "matched_ngram_occurrences_in_generated_rewrite_text": 0,
+      "all_strict_score_matches_are_in_original_source_text_not_rewrite": true
+    },
+    "matched_pair_details": [
+      {
+        "row_index": 19,
+        "example_id": 950019,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_049323",
+        "key": "sid:49323|doc:15081",
+        "doc_id": "15081",
+        "sentence_id": "49323",
+        "domain_hits": [
+          "people_history"
+        ],
+        "source_words": 32,
+        "rewrite_words": 19,
+        "matched_ngrams_in_source_text": [
+          "at the height of the cold war"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "Even at the height of the cold war, with potentially thousands or tens of thousands of warheads detonated in a conflict, no one was predicting anything close to 90% loss of life.",
+        "rewrite_text": "Even during the Cold War, no one predicted 90% life loss despite thousands or tens of thousands of warheads.",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "at the height of the cold war",
+            "eval_file": "aoa/cdi_childes.json",
+            "locator": "json",
+            "top_dir": "aoa",
+            "file_role": "strict_small_score_text",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "at the height of the cold war",
+            "row_start_token": 1,
+            "eval_start_token": 0,
+            "eval_text_prefix": "At the height of the Cold War’s nuclear arms race in the 1950s, Mallinckrodt relocated uranium production from"
+          },
+          {
+            "ngram": "at the height of the cold war",
+            "eval_file": "aoa/cdi_childes.json",
+            "locator": "json",
+            "top_dir": "aoa",
+            "file_role": "strict_small_score_text",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "at the height of the cold war",
+            "row_start_token": 1,
+            "eval_start_token": 0,
+            "eval_text_prefix": "At the height of the Cold War’s nuclear arms race in the 1950s, Mallinckrodt relocated uranium production from downtown St. Louis to a"
+          }
+        ]
+      },
+      {
+        "row_index": 221,
+        "example_id": 950221,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_051933",
+        "key": "sid:51933|doc:13930",
+        "doc_id": "13930",
+        "sentence_id": "51933",
+        "domain_hits": [
+          "people_history"
+        ],
+        "source_words": 18,
+        "rewrite_words": 11,
+        "matched_ngrams_in_source_text": [
+          "in many other parts of the world"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "As in many other parts of the world, surnames were a rarity until the late Joseon dynasty (1392-1910).",
+        "rewrite_text": "Like elsewhere, surnames were rare until the late Joseon dynasty (1392-1910).",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "in many other parts of the world",
+            "eval_file": "glue_filtered/boolq.valid.jsonl",
+            "locator": "line:130",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "in many other parts of the world",
+            "row_start_token": 117,
+            "eval_start_token": 80,
+            "eval_text_prefix": "Summer Time in Europe -- European Summer Time is the variation of standard clock time that is applied in most European countries, not including Iceland, Georgia, Azerbaijan, Belarus, Turkey and Russia -- in the period between spring and autumn, during which clocks are advanced by one hour from the time observed in the rest of the year, in order to make the most efficient use of seasonal daylight. It corresponds to the notion and practice of ``daylight saving time'' to be found in many other part"
+          }
+        ]
+      },
+      {
+        "row_index": 662,
+        "example_id": 950662,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_033634",
+        "key": "sid:33634|doc:5249",
+        "doc_id": "5249",
+        "sentence_id": "33634",
+        "domain_hits": [],
+        "source_words": 22,
+        "rewrite_words": 11,
+        "matched_ngrams_in_source_text": [
+          "can i help a friend who is",
+          "how can i help a friend who",
+          "i help a friend who is in"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "How can I help a friend who is in a violent relationship? - Tell your friend that you are worried about them.",
+        "rewrite_text": "Tell your worried friend you are concerned about their violent relationship.",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "can i help a friend who is",
+            "eval_file": "glue_filtered/qqp.valid.jsonl",
+            "locator": "line:6011",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 8,
+            "longest_common_token_span": "how can i help a friend who is",
+            "row_start_token": 0,
+            "eval_start_token": 0,
+            "eval_text_prefix": "How can I help a friend who is experiencing serious depression?"
+          },
+          {
+            "ngram": "how can i help a friend who",
+            "eval_file": "glue_filtered/qqp.valid.jsonl",
+            "locator": "line:6011",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 8,
+            "longest_common_token_span": "how can i help a friend who is",
+            "row_start_token": 0,
+            "eval_start_token": 0,
+            "eval_text_prefix": "How can I help a friend who is experiencing serious depression?"
+          },
+          {
+            "ngram": "i help a friend who is in",
+            "eval_file": "glue_filtered/qqp.valid.jsonl",
+            "locator": "line:6011",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "i help a friend who is in",
+            "row_start_token": 2,
+            "eval_start_token": 2,
+            "eval_text_prefix": "How do I help a friend who is in depression?"
+          }
+        ]
+      },
+      {
+        "row_index": 722,
+        "example_id": 950722,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_024961",
+        "key": "sid:24961|doc:8038",
+        "doc_id": "8038",
+        "sentence_id": "24961",
+        "domain_hits": [
+          "causal_relational",
+          "institutions_society"
+        ],
+        "source_words": 23,
+        "rewrite_words": 17,
+        "matched_ngrams_in_source_text": [
+          "effect of the 2004 indian ocean earthquake"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "GAM are the former rebel movement who fought the government for 29 years until the cataclysmic effect of the 2004 Indian Ocean Earthquake.",
+        "rewrite_text": "GAM, a former rebel group, fought the government for 29 years until the 2004 Indian Ocean Earthquake.",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "effect of the 2004 indian ocean earthquake",
+            "eval_file": "glue_filtered/boolq.valid.jsonl",
+            "locator": "line:269",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "effect of the 2004 indian ocean earthquake",
+            "row_start_token": 16,
+            "eval_start_token": 0,
+            "eval_text_prefix": "Effect of the 2004 Indian Ocean earthquake on the Maldives -- In the Maldives, 82 people were killed and 24 reported missing and presumed dead after it was hit by a tsunami caused by the 2004 Indian Ocean earthquake on 26 December 2004. Two-thirds of the capital city Malé was flooded during the first hours of the day. Outlying low-level atolls were badly affected, and some low-lying islands, including some of the major resorts, were submerged at the peak of the tsunami."
+          }
+        ]
+      },
+      {
+        "row_index": 1751,
+        "example_id": 951751,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_020188",
+        "key": "sid:20188|doc:6866",
+        "doc_id": "6866",
+        "sentence_id": "20188",
+        "domain_hits": [],
+        "source_words": 10,
+        "rewrite_words": 7,
+        "matched_ngrams_in_source_text": [
+          "there are no hard and fast rules"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "There are no hard and fast rules in this industry.",
+        "rewrite_text": "No hard rules exist in this industry.",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "there are no hard and fast rules",
+            "eval_file": "aoa/cdi_childes.json",
+            "locator": "json",
+            "top_dir": "aoa",
+            "file_role": "strict_small_score_text",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "there are no hard and fast rules",
+            "row_start_token": 77,
+            "eval_start_token": 19,
+            "eval_text_prefix": "Dr. Paul Bendheim, a clinical professor of neurology from the University of Arizona College of Medicine in Tucson, says “there are no hard-and-fast rules for staying well-hydrated, despite recommendations to drink eight"
+          }
+        ]
+      },
+      {
+        "row_index": 1752,
+        "example_id": 951752,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_008593",
+        "key": "sid:8593|doc:4861",
+        "doc_id": "4861",
+        "sentence_id": "8593",
+        "domain_hits": [],
+        "source_words": 22,
+        "rewrite_words": 12,
+        "matched_ngrams_in_source_text": [
+          "compared to other parts of the world"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "Everyone is aware that overall U.S. math achievement isn't very good in relative terms or compared to other parts of the world.",
+        "rewrite_text": "Everyone knows U.S. math achievement is poor compared to other world regions.",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "compared to other parts of the world",
+            "eval_file": "glue_filtered/boolq.valid.jsonl",
+            "locator": "line:365",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "compared to other parts of the world",
+            "row_start_token": 107,
+            "eval_start_token": 55,
+            "eval_text_prefix": "History of the Balkans -- Much of the Balkans was under Ottoman rule throughout the Early modern period. Ottoman rule was long, lasting from the 14th century up until the early 20th in some territories. The Ottoman Empire was religiously, linguistically and ethnically diverse, and, at times, a much more tolerant place for religious practices when compared to other parts of the world. The different groups in the empire were organised along confessional lines, in the so-called the Millet system. A"
+          }
+        ]
+      },
+      {
+        "row_index": 2606,
+        "example_id": 952606,
+        "pair_id": "compact:frontier_consolidation_fwcompact_medium_046138",
+        "key": "sid:46138|doc:9174",
+        "doc_id": "9174",
+        "sentence_id": "46138",
+        "domain_hits": [],
+        "source_words": 33,
+        "rewrite_words": 17,
+        "matched_ngrams_in_source_text": [
+          "it would be a good idea to"
+        ],
+        "matched_ngrams_in_rewrite_text": [],
+        "source_text": "There are some foods which carry more of a risk than others, and it would be a good idea to avoid or limit these foods if you want to maintain proper dental health.",
+        "rewrite_text": "Some foods carry more dental health risks, so avoid or limit them to maintain proper dental health.",
+        "strict_eval_hits_for_row": [
+          {
+            "ngram": "it would be a good idea to",
+            "eval_file": "aoa/cdi_childes.json",
+            "locator": "json",
+            "top_dir": "aoa",
+            "file_role": "strict_small_score_text",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "it would be a good idea to",
+            "row_start_token": 69,
+            "eval_start_token": 10,
+            "eval_text_prefix": "Since you’ll be buying an entire set of products, it would be a good idea to"
+          },
+          {
+            "ngram": "it would be a good idea to",
+            "eval_file": "glue_filtered/mnli.valid.jsonl",
+            "locator": "line:4316",
+            "top_dir": "glue_filtered",
+            "file_role": "superglue_validation",
+            "strict_small_score_text": true,
+            "longest_common_token_span_len": 7,
+            "longest_common_token_span": "it would be a good idea to",
+            "row_start_token": 69,
+            "eval_start_token": 3,
+            "eval_text_prefix": "The layman thought it would be a good idea to question every parishioner. "
+          }
+        ]
+      }
+    ],
+    "interpretation": "The research exact 7-token score-text hits remain sparse and confined to AoA phrase material or SuperGLUE validation. Recomputing over the row-level ancestry shows the matched n-grams occur in original FineWeb source sentences, not in the generated compact rewrites, so these hits are not evidence that Qwen generated evaluation strings; they still require caution as ordinary web/eval phrase overlap and do not establish semantic independence."
+  },
+  "artifact_records": {
+    "a02_compact_bg_submit_trace": {
+      "path": "data/external/tool_0002.json",
+      "exists": true,
+      "size_bytes": 2228,
+      "sha256": "c28f0f5f8cc724174cabcf089cabcc472ed1167141da1b0b88ff1a33a4e0a4fb"
+    },
+    "a02_compact_bg_delivery_trace": {
+      "path": "data/external/background_delivery.json",
+      "exists": true,
+      "size_bytes": 1733,
+      "sha256": "e45efced3b561bcbc0e18fd0d168c3147ffe58c31141950a39097cda1b01e391"
+    },
+    "a02_compact_task_result": {
+      "path": "experiments/archive/frontier_consolidation/tasks/s14_t13_tool2/result.json",
+      "exists": true,
+      "size_bytes": 353,
+      "sha256": "f691b5191bf76d2635a105ccf8b4b18d8872b607cebc612379e08583533a235a"
+    },
+    "a02_compact_task_stdout": {
+      "path": "experiments/archive/frontier_consolidation/tasks/s14_t13_tool2/stdout.log",
+      "exists": true,
+      "size_bytes": 612,
+      "sha256": "45136fdb44f7a49e5b49c58aa8a98f7893a0eb7eef794236648b9e41de4d267b"
+    },
+    "a02_compact_task_stderr": {
+      "path": "experiments/archive/frontier_consolidation/tasks/s14_t13_tool2/stderr.log",
+      "exists": true,
+      "size_bytes": 148,
+      "sha256": "8949eecb9b83bcf314d61a0d86bd02acd1abe0e979da1f3fadf0936575ec4e8d"
+    },
+    "compact_prompt_metadata": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_density_prompts/medium_density_prompt_metadata.json",
+      "exists": true,
+      "size_bytes": 2912,
+      "sha256": "9b5f2e1ad3859d99923481c65fe5fd193d8dcacd8332a40f6e2490d9689e9265"
+    },
+    "compact_prompt_file": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+      "exists": true,
+      "size_bytes": 31319259,
+      "sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807",
+      "jsonl_rows": 21465
+    },
+    "compact_raw_outputs": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/medium_compact_qwen_all/outputs.jsonl",
+      "exists": true,
+      "size_bytes": 15182718,
+      "sha256": "85660e4af2179e38003a95942a01dc0bbac7d6a6a76ca8991bff3d80bc406cc5",
+      "jsonl_rows": 21465
+    },
+    "compact_analysis_summary": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_summary.json",
+      "exists": true,
+      "size_bytes": 72263,
+      "sha256": "e4eb7534935168ef9e527ae5d2798587cb587120cfcc50cc8ba2372349428de0"
+    },
+    "compact_accepted_rewrites": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_accepted_rewrites.jsonl",
+      "exists": true,
+      "size_bytes": 12229492,
+      "sha256": "3565a130e2396ecc80291a91ca1f43f0f2fa8814c8915af9de581384b7154e9b",
+      "jsonl_rows": 18682
+    },
+    "compact_rows": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_rows.jsonl",
+      "exists": true,
+      "size_bytes": 23184074,
+      "sha256": "4768758e4b1a41e71105e0b60a344eb8fff8e3db5e6fcd5f7c41bf08a68370c7",
+      "jsonl_rows": 21465
+    },
+    "density_reinvestment_metadata": {
+      "path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/density_core_reinvestment_metadata.json",
+      "exists": true,
+      "size_bytes": 20666,
+      "sha256": "d1cb4893a2282c55bcde67daf1f59503295dd0644cd3036c802c83ad4272ed68"
+    },
+    "rowholdout_overlay_metadata": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+      "exists": true,
+      "size_bytes": 26393,
+      "sha256": "92aa4c00b09d201a09da27e7e16677643bc7cda321471e1ec46332600339b3e4"
+    },
+    "selected_compact_reinvest_pairs": {
+      "path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+      "exists": true,
+      "size_bytes": 7772817,
+      "sha256": "d2a3110c110e216180b632ce7a181acdf348b804ea19f172e16b5afeb0d8c9fc",
+      "jsonl_rows": 12155
+    },
+    "cleanqwen_compact_reinvest_10m": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "exists": true,
+      "size_bytes": 59935251,
+      "sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+      "jsonl_rows": 64740
+    },
+    "source_sentence_summary": {
+      "path": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_sources/sentence_source_summary.json",
+      "exists": true,
+      "size_bytes": 10045,
+      "sha256": "ef71e5f80faff2ef8eaf2e8565787cfdf37458c9551c942a5fe12afe6b5a4043"
+    },
+    "source_sentence_file": {
+      "path": "experiments/archive/representation_and_objectives/training/data/fineweb_sentence_sources/fineweb_sentence_sources.jsonl",
+      "exists": true,
+      "size_bytes": 22325155,
+      "sha256": "388be1158bcac02a1583cc65c1ca4fda1f06a0551f38c56d9f3335037f1de68e",
+      "jsonl_rows": 61511
+    },
+    "a01_factual_selection_metadata": {
+      "path": "experiments/archive/representation_and_objectives/training/data/fineweb_factual_sentence_rewrite/factual_source_by_rewrite_prompt_metadata.json",
+      "exists": true,
+      "size_bytes": 5604,
+      "sha256": "8a9483f2c4ab4101e1a5c25be9ac68c883beef6a79641dd2afb894d865879c24"
+    },
+    "a02_source_repair_metadata": {
+      "path": "experiments/archive/frontier_consolidation/data/fineweb_source_by_rewrite_repair/fineweb_source_by_rewrite_repair_metadata.json",
+      "exists": true,
+      "size_bytes": 19205,
+      "sha256": "69963255f721042d04c1f4e94a701b1990285eb7025906edf8a98f2a31e0e991"
+    },
+    "overlap_summary": {
+      "path": "experiments/archive/representation_and_objectives/data/changed_block_overlap_ancestry_current_official/changed_block_overlap_ancestry_current_official.json",
+      "exists": true,
+      "size_bytes": 91665,
+      "sha256": "195590b2925259761b6d9a9a54f17b2995ec10f663f53cae07061537548257d7"
+    },
+    "overlap_rows": {
+      "path": "experiments/archive/representation_and_objectives/data/changed_block_overlap_ancestry_current_official/changed_block_overlap_ancestry_current_official_rows.jsonl",
+      "exists": true,
+      "size_bytes": 74561,
+      "sha256": "abf1eb852a7111c94262aad7c7c31315469dd7bbaf341851e3ce3105097c7ba5",
+      "jsonl_rows": 7
+    },
+    "seed43022_official_summary": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/pristine_collate_seed43022_summary.json",
+      "exists": true,
+      "size_bytes": 27410,
+      "sha256": "530e8e1f4922014a148e4867898775b227e1e5470b2c1152cd312b4e01ec5688"
+    },
+    "ledger": {
+      "path": "experiments/archive/representation_and_objectives/data/endpoint_provenance_ledger/compact_reinvest_seed43022_endpoint_provenance_ledger.json",
+      "exists": true,
+      "size_bytes": 42278,
+      "sha256": "3778f7ce6be12f8bf6561d6d7fcacb1d46cfcc3c19d8dd2ea8cd0c6c922e1100"
+    },
+    "cleanqwen_compact_reinvest_100m": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "exists": true,
+      "size_bytes": 599352510,
+      "sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691"
+    }
+  },
+  "resolved_gaps": [
+    "Exact compact generator model identity: qwen3.5-9b command, stdout-resolved to Qwen/Qwen3.5-9B, no adapter, bfloat16 on H100.",
+    "Compact prompt/output/accepted-rewrite hashes and row counts tied together: 21,465 prompts; 754,777 generated tokens; 18,682 accepted compact rewrites; accepted pair words 645,233 in the full generated medium set.",
+    "Endpoint selected subset lineage tied to A02 medium density metadata: compact_reinvest selected 12,155 source-rewrite pairs / 423,511 pair words before clean-Qwen overlay; final pool exactness remains recorded in research ledger.",
+    "The seven exact score-text overlap rows have row-level pair ancestry; their matched n-grams are in original FineWeb source text rather than generated rewrite text."
+  ],
+  "remaining_gaps": [
+    "The seed43122 full official-compatible vector remains pending; no robustness conclusion changes here.",
+    "Qwen/Qwen3.5-9B model license and any required redistribution language should be recorded from an official model card or approved-source file before final public packaging.",
+    "FineWeb/FineWeb-Edu source license or redistribution conditions for the compact-view rows should be recorded explicitly before public data release or submission bundle publication.",
+    "If seed43122 clears the leader, adjacency-broken training remains the prepared mechanism experiment; if it falls short, variance-focused interpretation should precede any recipe change."
+  ]
+}

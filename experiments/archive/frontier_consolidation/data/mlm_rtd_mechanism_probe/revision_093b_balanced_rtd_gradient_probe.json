@@ -1,0 +1,117 @@
+{
+  "status": "BALANCED_RTD_PROBE_COMPLETE",
+  "config": {
+    "train_steps": 80,
+    "lr": 0.001,
+    "gradient_batches": 6,
+    "total_words": 799882,
+    "train_batches": 15,
+    "eval_batches": 6
+  },
+  "balanced_head": {
+    "loss_first": 0.6949224472045898,
+    "loss_last": 0.5738538503646851,
+    "class_weights_last": [
+      0.5442281365394592,
+      6.152511119842529
+    ],
+    "heldout_hard": {
+      "recall_original": 0.6492633464427819,
+      "recall_replaced": 0.7195663096576436,
+      "balanced_accuracy": 0.6844148280502127,
+      "auroc": 0.7584033197319848,
+      "n_batches": 6
+    },
+    "heldout_random": {
+      "recall_original": 0.5419003732146197,
+      "recall_replaced": 0.9666002992100835,
+      "balanced_accuracy": 0.7542503362123516,
+      "auroc": 0.9494540592364337,
+      "n_batches": 6
+    },
+    "random_minus_hard_balanced_accuracy": 0.0698355081621389,
+    "random_minus_hard_auroc": 0.19105073950444884,
+    "hard_replacement_rate": 0.5182322181915963
+  },
+  "trained_head_gradient_geometry": {
+    "per_group": {
+      "embedding": {
+        "cosine": 0.027271122050782044,
+        "mlm_norm": 0.2907438625892003,
+        "rtd_balanced_norm": 0.027234443152944248,
+        "rtd_mlm_norm_ratio": 0.09367160121768249
+      },
+      "embeddings_other": {
+        "cosine": 0.02930477789292733,
+        "mlm_norm": 0.15118442475795746,
+        "rtd_balanced_norm": 0.024996443030734856,
+        "rtd_mlm_norm_ratio": 0.16533742196495138
+      },
+      "layer_0": {
+        "cosine": 0.05209910993774732,
+        "mlm_norm": 0.11138458301623662,
+        "rtd_balanced_norm": 0.021000771162410576,
+        "rtd_mlm_norm_ratio": 0.18854288981222184
+      },
+      "layer_1": {
+        "cosine": 0.0661189326395591,
+        "mlm_norm": 0.12996315211057663,
+        "rtd_balanced_norm": 0.026704156460861366,
+        "rtd_mlm_norm_ratio": 0.2054748290356997
+      },
+      "layer_2": {
+        "cosine": 0.13527707693477473,
+        "mlm_norm": 0.17227218796809515,
+        "rtd_balanced_norm": 0.03903113926450411,
+        "rtd_mlm_norm_ratio": 0.2265666891729075
+      },
+      "layer_3": {
+        "cosine": 0.02908062069521596,
+        "mlm_norm": 0.14592104156812033,
+        "rtd_balanced_norm": 0.03114099024484555,
+        "rtd_mlm_norm_ratio": 0.21340986817386443
+      },
+      "layer_4": {
+        "cosine": 0.03507794626057148,
+        "mlm_norm": 0.16439351936181387,
+        "rtd_balanced_norm": 0.03832579776644707,
+        "rtd_mlm_norm_ratio": 0.23313448069747675
+      },
+      "layer_5": {
+        "cosine": 0.011812576189792404,
+        "mlm_norm": 0.17801672965288162,
+        "rtd_balanced_norm": 0.04520857147872448,
+        "rtd_mlm_norm_ratio": 0.2539568700474252
+      },
+      "layer_6": {
+        "cosine": 0.007108672716033955,
+        "mlm_norm": 0.1955130249261856,
+        "rtd_balanced_norm": 0.05155771039426327,
+        "rtd_mlm_norm_ratio": 0.2637047348314951
+      },
+      "layer_7": {
+        "cosine": 0.0066859372503434615,
+        "mlm_norm": 0.21665371706088385,
+        "rtd_balanced_norm": 0.07433081914981206,
+        "rtd_mlm_norm_ratio": 0.34308582450456493
+      },
+      "rel_embeddings": {
+        "cosine": -0.18755661944548288,
+        "mlm_norm": 0.046615976840257645,
+        "rtd_balanced_norm": 0.012483011465519667,
+        "rtd_mlm_norm_ratio": 0.26778397261299725
+      }
+    },
+    "trunk_cosine_mean": 0.0429076090780048,
+    "trunk_norm_ratio_mean": 0.24098452328445694,
+    "mlm_loss_mean": 2.45766814549764,
+    "balanced_rtd_loss_mean": 0.5706224938233694
+  },
+  "elapsed_sec": 227.9,
+  "interpretation": {
+    "context_requirement": "Random corruptions are easier by 0.070 balanced accuracy and 0.191 AUROC; hard model-sampled corruption discrimination therefore requires substantially more contextual knowledge than token-identity anomaly detection.",
+    "hard_signal": "Held-out hard RTD balanced accuracy=0.684, AUROC=0.758, replaced recall=0.720; the signal is learnable but not saturated.",
+    "gradient": "With a trained class-balanced head, mean trunk MLM-vs-RTD cosine=+0.0429 and raw norm ratio=0.241; this sets the local RTD loss-scale needed for a joint trainer rather than importing lambda=50.",
+    "gdes": "Embedding cosine=+0.0273, norm ratio=0.094; block RTD gradients from the shared MLM embedding/decoder path."
+  }
+}

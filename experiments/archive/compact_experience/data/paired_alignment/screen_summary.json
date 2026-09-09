@@ -1,0 +1,84 @@
+{
+  "status": "PAIRED_ALIGNMENT_MATERIALIZED",
+  "design": {
+    "principle": "Alignment visible within same 160-word sequence via self-attention",
+    "scientist_requirement": "Compare aligned pairs in same sequence vs random mismatch of same text; separate repetition consolidation, rewrite diversity, and semantic coverage",
+    "arms": {
+      "aligned": "[orig_i][simp_i][orig_j][simp_j]... both views adjacent, visible to attention",
+      "mismatched": "[orig_i][simp_k]... same sentences, scrambled pairing, no alignment",
+      "single_orig": "Diverse originals only — max coverage, no pairing or repetition",
+      "single_repeat": "Same originals 2x — repetition consolidation, no diversity"
+    },
+    "contrasts": {
+      "aligned_vs_mismatched": "Pure alignment effect (critical control)",
+      "aligned_vs_single_orig": "Multi-view alignment vs broad coverage",
+      "aligned_vs_single_repeat": "Multi-view diversity vs repetition consolidation",
+      "mismatched_vs_single_orig": "Effect of simplified text (unaligned) vs not"
+    }
+  },
+  "pair_pool": {
+    "total_pairs_available": 410436,
+    "selected_pairs": 288098,
+    "selected_pair_words": 9999943,
+    "selected_orig_words": 5306321,
+    "selected_simp_words": 4693622,
+    "source_mix": {
+      "wikilarge": 104255,
+      "syncse": 183843
+    },
+    "mean_pair_words": 34.710213191344614,
+    "mean_orig_words": 18.41845830238322,
+    "mean_simp_words": 16.291754888961396
+  },
+  "arms": {
+    "aligned": {
+      "path": "experiments/archive/compact_experience/data/paired_alignment/aligned_pool.jsonl",
+      "rows": 62499,
+      "total_words": 9999840,
+      "sha256_prefix": "dde73ffee5d86f39"
+    },
+    "mismatched": {
+      "path": "experiments/archive/compact_experience/data/paired_alignment/mismatched_pool.jsonl",
+      "rows": 62499,
+      "total_words": 9999840,
+      "sha256_prefix": "7d4f7c8dc8333885"
+    },
+    "single_orig": {
+      "path": "experiments/archive/compact_experience/data/paired_alignment/single_orig_pool.jsonl",
+      "rows": 59695,
+      "total_words": 9551200,
+      "sha256_prefix": "4dc208b7524bc323",
+      "note": "Slightly smaller than other arms (95.5%) because available diverse unique sentences exhaust at ~9.55M words. The critical ALIGNED vs MISMATCHED comparison is exactly matched."
+    },
+    "single_repeat": {
+      "path": "experiments/archive/compact_experience/data/paired_alignment/single_repeat_pool.jsonl",
+      "rows": 62499,
+      "total_words": 9999840,
+      "sha256_prefix": "d4b4bb1ff0aabd2f"
+    }
+  },
+  "validation": {
+    "word_multiset_aligned_eq_mismatched": false,
+    "max_pool_words": 9999840,
+    "within_budget": true,
+    "all_arms_same_words": false,
+    "words_per_example": 160,
+    "n_examples_per_arm": 62499,
+    "single_orig_budget_fraction": 0.9551352821645146,
+    "critical_pair_matched": true,
+    "note": "ALIGNED, MISMATCHED, and SINGLE_REPEAT are exactly matched at 62499 examples / 9,999,840 words. SINGLE_ORIG is a supplementary control at 95.5% budget."
+  },
+  "provenance": {
+    "wikilarge": {
+      "source": "Nechba/wikilarge-text-simplification",
+      "license": "Apache-2.0"
+    },
+    "syncse": {
+      "source": "hkust-nlp/SynCSE-partial-NLI",
+      "license": "MIT"
+    },
+    "seed": 43,
+    "target_pool_words": 10000000
+  },
+  "elapsed_sec": 29.3
+}

@@ -1,0 +1,142 @@
+{
+  "args": {
+    "hidden_size": 384,
+    "n_layer": 4,
+    "n_head": 12,
+    "intermediate_size": 1280,
+    "steps": 1000,
+    "batch_size": 32,
+    "episode_ratio": 0.5,
+    "anneal": true,
+    "encoder_lr": 0.0002,
+    "slot_lr": 0.001,
+    "gate_init": 0.03,
+    "probe_every": 250,
+    "seed": 42,
+    "train_pairs": 1200,
+    "eval_pairs": 200,
+    "official_examples": 5000,
+    "run_name": "smoke_384x4_anneal"
+  },
+  "device": "cuda",
+  "shortcut_audit": {
+    "first_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "last_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "nearest_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "majority_fixed_first_visible": {
+      "example_acc": 0.2525,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "prev_query_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    }
+  },
+  "train_eps": 2400,
+  "eval_eps": 400,
+  "official_examples": 5000,
+  "arms": {
+    "plain_mixed": {
+      "train_meta": [
+        {
+          "step": 250,
+          "ratio": 0.5,
+          "train_loss": 2.6215529441833496,
+          "gate": 0.029999999329447746
+        },
+        {
+          "step": 500,
+          "ratio": 0.5,
+          "train_loss": 2.1846845149993896,
+          "gate": 0.029999999329447746
+        },
+        {
+          "step": 750,
+          "ratio": 0.351,
+          "train_loss": 2.165440320968628,
+          "gate": 0.029999999329447746
+        },
+        {
+          "step": 1000,
+          "ratio": 0.25,
+          "train_loss": 2.2301392555236816,
+          "gate": 0.029999999329447746
+        }
+      ],
+      "official_loss_base_only": 3.602081909775734,
+      "synthetic_base_only": {
+        "example_acc": 0.4925,
+        "pair_acc": 0.16,
+        "mean_logodds": -0.06271687269210816,
+        "n_pairs": 200
+      },
+      "exported_plain_hf_model": "experiments/archive/initial_model_studies/training/runs/wess_aux_base_transfer_screen/smoke_384x4_anneal/plain_mixed/hf_model",
+      "params_plain_hf": 14343552,
+      "params_with_wess": 15969409
+    },
+    "wess_aux": {
+      "train_meta": [
+        {
+          "step": 250,
+          "ratio": 0.5,
+          "train_loss": 2.154367208480835,
+          "gate": 0.13417629897594452
+        },
+        {
+          "step": 500,
+          "ratio": 0.5,
+          "train_loss": 1.7859487533569336,
+          "gate": 0.14073176681995392
+        },
+        {
+          "step": 750,
+          "ratio": 0.351,
+          "train_loss": 1.8307815790176392,
+          "gate": 0.1425057351589203
+        },
+        {
+          "step": 1000,
+          "ratio": 0.25,
+          "train_loss": 1.9083524942398071,
+          "gate": 0.14266501367092133
+        }
+      ],
+      "official_loss_base_only": 3.48040072619915,
+      "synthetic_base_only": {
+        "example_acc": 0.0,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.0005988222360610962,
+        "n_pairs": 200
+      },
+      "synthetic_wess_on": {
+        "example_acc": 1.0,
+        "pair_acc": 1.0,
+        "mean_logodds": 9.039495609998703,
+        "n_pairs": 200
+      },
+      "interventions_wess_on": {
+        "swap_delta": 16.409738516807558,
+        "ablation_delta": 10.634054748217265
+      },
+      "exported_plain_hf_model": "experiments/archive/initial_model_studies/training/runs/wess_aux_base_transfer_screen/smoke_384x4_anneal/wess_aux/hf_model",
+      "params_plain_hf": 14343552,
+      "params_with_wess": 15969409
+    }
+  },
+  "elapsed_sec": 65.0,
+  "status": "WESS_AUX_BASE_TRANSFER_SCREEN"
+}

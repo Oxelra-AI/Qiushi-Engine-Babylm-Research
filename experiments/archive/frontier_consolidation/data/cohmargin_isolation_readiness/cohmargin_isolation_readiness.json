@@ -1,0 +1,62 @@
+{
+  "status": "COMPLETE",
+  "created_utc": "2026-09-01T09:40:52Z",
+  "endpoints": {
+    "cohmargin4M_lambda0p10": {
+      "role": "lambda>0 pilot under evaluation",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/cohmargin4M_scale1p75_seed43022",
+      "model_dir": "experiments/archive/frontier_consolidation/training/runs/cohmargin4M_scale1p75_seed43022/hf_model/final",
+      "model_exists": true,
+      "payload_path": "experiments/archive/frontier_consolidation/data/cohmargin4M_eval/per_target/cohmargin4M_scale1p75_seed43022.json",
+      "payload_exists": true,
+      "eval_command_not_run": "PYTHONDONTWRITEBYTECODE=1 python -B experiments/archive/frontier_consolidation/scripts/evaluate_compliant_endpoint.py --arm reinvest --run-dir experiments/archive/frontier_consolidation/training/runs/cohmargin4M_scale1p75_seed43022 --target cohmargin4M_scale1p75_seed43022 --endpoint final --out-root experiments/archive/frontier_consolidation/data/cohmargin4M_eval --collate-root experiments/archive/frontier_consolidation/data/cohmargin4M_collate --gpu <free_gpu> --columns BLiMP Supplement EWoK Entity COMPS GlobalPIQA_parallel GlobalPIQA_nonparallel Reading",
+      "scores": {
+        "BLiMP": 53.97,
+        "Supplement": 46.57,
+        "EWoK": 48.94,
+        "Entity": 16.5,
+        "COMPS": 50.3,
+        "GlobalPIQA": 34.195,
+        "Reading": 6.37
+      },
+      "cheap7": 36.692142857142855,
+      "cheap7_complete": true
+    },
+    "scale1p75_chck4M_ref": {
+      "role": "ordinary charged-word reference, not sufficient isolate",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder",
+      "model_dir": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_4M",
+      "model_exists": true,
+      "payload_path": "experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_eval/per_target/scale1p75_standard_chck4M_ref.json",
+      "payload_exists": false,
+      "eval_command_not_run": "PYTHONDONTWRITEBYTECODE=1 python -B experiments/archive/frontier_consolidation/scripts/evaluate_compliant_endpoint.py --arm reinvest --run-dir experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder --target scale1p75_standard_chck4M_ref --endpoint chck_4M --out-root experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_eval --collate-root experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_collate --gpu <free_gpu> --columns BLiMP Supplement EWoK Entity COMPS GlobalPIQA_parallel GlobalPIQA_nonparallel Reading",
+      "cheap7_complete": false
+    },
+    "cohmargin4M_lambda0": {
+      "role": "same-charge same-row no-margin-gradient isolate",
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/cohmargin4M_lambda0_scale1p75_seed43022",
+      "model_dir": "experiments/archive/frontier_consolidation/training/runs/cohmargin4M_lambda0_scale1p75_seed43022/hf_model/final",
+      "model_exists": false,
+      "payload_path": "experiments/archive/frontier_consolidation/data/cohmargin4M_lambda0_eval/per_target/cohmargin4M_lambda0_scale1p75_seed43022.json",
+      "payload_exists": false,
+      "eval_command_not_run": "PYTHONDONTWRITEBYTECODE=1 python -B experiments/archive/frontier_consolidation/scripts/evaluate_compliant_endpoint.py --arm reinvest --run-dir experiments/archive/frontier_consolidation/training/runs/cohmargin4M_lambda0_scale1p75_seed43022 --target cohmargin4M_lambda0_scale1p75_seed43022 --endpoint final --out-root experiments/archive/frontier_consolidation/data/cohmargin4M_lambda0_eval --collate-root experiments/archive/frontier_consolidation/data/cohmargin4M_lambda0_collate --gpu <free_gpu> --columns BLiMP Supplement EWoK Entity COMPS GlobalPIQA_parallel GlobalPIQA_nonparallel Reading",
+      "cheap7_complete": false
+    }
+  },
+  "comparisons": {},
+  "commands_not_run": [
+    {
+      "purpose": "train lambda-zero isolate if pilot score warrants it",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python -B experiments/archive/frontier_consolidation/scripts/coherence_margin_trainer.py --output_dir experiments/archive/frontier_consolidation/training/runs/cohmargin4M_lambda0_scale1p75_seed43022 --max_word_exposure 4000000 --view_charge_multiplier 2.0 --checkpoint_words 1000000 --micro_batch_size 128 --grad_accum_steps 2 --adapter_scale 1.75 --margin_lambda 0.0 --margin 0.20 --disrupt_span_tokens 8 --lr_total_steps 1265 --seed 43 --train_rng_seed 43022 --gpu <free_gpu>"
+    },
+    {
+      "purpose": "evaluate cheap7 for scale1p75_chck4M_ref",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python -B experiments/archive/frontier_consolidation/scripts/evaluate_compliant_endpoint.py --arm reinvest --run-dir experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder --target scale1p75_standard_chck4M_ref --endpoint chck_4M --out-root experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_eval --collate-root experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_collate --gpu <free_gpu> --columns BLiMP Supplement EWoK Entity COMPS GlobalPIQA_parallel GlobalPIQA_nonparallel Reading"
+    },
+    {
+      "purpose": "evaluate/complete cheap7 for scale1p75_chck4M_ref",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python -B experiments/archive/frontier_consolidation/scripts/evaluate_compliant_endpoint.py --arm reinvest --run-dir experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder --target scale1p75_standard_chck4M_ref --endpoint chck_4M --out-root experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_eval --collate-root experiments/archive/frontier_consolidation/data/scale1p75_chck4M_ref_collate --gpu <free_gpu> --columns BLiMP Supplement EWoK Entity COMPS GlobalPIQA_parallel GlobalPIQA_nonparallel Reading"
+    }
+  ],
+  "scientific_rule": "An encouraging coherence-margin pilot score cannot be escalated to 20M until the same-charge same-row lambda-zero arm shows the official movement and NLL separation are caused by the margin gradient rather than exposure/RNG/disruption geometry."
+}

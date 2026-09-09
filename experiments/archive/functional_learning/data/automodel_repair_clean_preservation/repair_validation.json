@@ -1,0 +1,115 @@
+{
+  "status": "AUTOMODEL_REPAIR_CLEAN_PRESERVATION",
+  "created_utc": "2026-09-08T00:59:03Z",
+  "script": "experiments/archive/functional_learning/scripts/repair_automodel_clean_preservation.py",
+  "repairs": [
+    {
+      "label": "clean_pres_lambda1_eval_seed62064_u0080",
+      "source": "experiments/archive/functional_learning/data/clean_preservation_lambda1_eval_full80/checkpoints/update_0080",
+      "repaired": "experiments/archive/functional_learning/data/automodel_repair_clean_preservation/repaired_clean_pres_lambda1_eval_seed62064_u0080",
+      "source_sha256": "1c6268a37a7774a78d725307f99bbaf1f5225b4315f9bfd9ddb2a5b47c680e4a",
+      "repaired_model_is_symlink": true,
+      "config_auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM",
+        "AutoModel": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2Model"
+      },
+      "config_architectures": [
+        "FrozenSlowPrivateDebertaV2ForMaskedLM"
+      ]
+    }
+  ],
+  "validations": [
+    {
+      "label": "clean_pres_lambda1_eval_seed62064_u0080",
+      "source": "experiments/archive/functional_learning/data/clean_preservation_lambda1_eval_full80/checkpoints/update_0080",
+      "repaired": "experiments/archive/functional_learning/data/automodel_repair_clean_preservation/repaired_clean_pres_lambda1_eval_seed62064_u0080",
+      "trusted_mlm": {
+        "class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+        "module": "trusted_504543193340",
+        "total_params": 36458592,
+        "adapter_params": 995584,
+        "private_adapter_params": 995584,
+        "adapter_scales": [
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75
+        ],
+        "private_adapter_scales": [
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ],
+        "missing_keys": [
+          "cls.predictions.decoder.weight",
+          "cls.predictions.decoder.bias"
+        ],
+        "unexpected_keys": []
+      },
+      "automodel": {
+        "class": "FrozenSlowPrivateDebertaV2Model",
+        "module": "transformers_modules.repaired_clean_pres_lambda1_eval_seed62064_u0080.frozen82_private_modeling",
+        "total_params": 36210368,
+        "adapter_params": 995584,
+        "private_adapter_params": 995584,
+        "adapter_scales": [
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75,
+          1.75
+        ],
+        "private_adapter_scales": [
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ]
+      },
+      "negative_original_automodel": {
+        "loaded": true,
+        "identity": {
+          "class": "DebertaV2Model",
+          "module": "transformers.models.deberta_v2.modeling_deberta_v2",
+          "total_params": 34219200,
+          "adapter_params": 0,
+          "private_adapter_params": 0,
+          "adapter_scales": [],
+          "private_adapter_scales": []
+        },
+        "is_stock_or_adapterless": true,
+        "hidden_max_abs_diff_vs_trusted": 2.2013394832611084,
+        "hidden_mean_abs_diff_vs_trusted": 0.2577073574066162
+      },
+      "hidden_state_comparison": {
+        "max_abs_diff": 0.0,
+        "mean_abs_diff": 0.0,
+        "exact_match": true,
+        "shape": [
+          3,
+          15,
+          480
+        ]
+      },
+      "valid": true
+    }
+  ],
+  "all_valid": true,
+  "scientific_use": "Repaired copies are the only valid paths for AutoModel-based SuperGLUE; original clean checkpoints remain valid for MLM/AoA through AutoModelForMaskedLM."
+}

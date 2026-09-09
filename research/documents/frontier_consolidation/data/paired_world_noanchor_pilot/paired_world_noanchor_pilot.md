@@ -1,0 +1,20 @@
+# commoncopy and paired world design no-anchor paired-world pilot
+
+Created UTC: `2026-09-02T14:14:36Z`
+
+- n_packets: `1192`
+- n_families: `149`
+- label_team_a_win_rate: `0.5`
+- template_by_entailed_direction: `{"active_winner_first": {"absolute_delta": 0, "team_a_over_team_b": 149, "team_b_over_team_a": 149}, "lost_to_loser_first": {"absolute_delta": 0, "team_a_over_team_b": 149, "team_b_over_team_a": 149}, "not_loser_winner_first": {"absolute_delta": 0, "team_a_over_team_b": 149, "team_b_over_team_a": 149}, "passive_loser_first": {"absolute_delta": 0, "team_a_over_team_b": 149, "team_b_over_team_a": 149}}`
+- max_template_direction_abs_delta: `0`
+- winner_first_rate: `0.5`
+- team_a_count_equal_rate: `1.0`
+- winner_loser_count_equal_rate: `1.0`
+- exact_query_verb_defeated_rate: `0.0`
+- any_digit_rate: `0.0`
+- hypothesis_bow_collision_rate: `1.0`
+- mean_text_token_count: `19.568791946308725`
+- baselines: `{"canonical_bow_upper_bound": {"accuracy_tie_half": 0.5, "coverage": 1.0, "covered": 1192, "n": 1192, "tie_rate": 1.0}, "lexical_overlap_context_hypothesis": {"accuracy_tie_half": 0.5, "coverage": 1.0, "covered": 1192, "n": 1192, "tie_rate": 1.0}, "majority": {"accuracy_tie_half": 0.5, "coverage": 1.0, "covered": 1192, "n": 1192, "tie_rate": 1.0}, "relation_erased_canonical_bow_upper_bound": {"accuracy_tie_half": 0.5, "coverage": 1.0, "covered": 1192, "n": 1192, "tie_rate": 1.0}, "relation_sentence_oracle": {"accuracy_tie_half": 1.0, "coverage": 1.0, "covered": 1192, "n": 1192, "tie_rate": 0.0}, "template_majority_upper_bound": {"accuracy_tie_half": 0.5, "coverage": 1.0, "covered": 1192, "n": 1192, "tie_rate": 1.0}}`
+
+## Boundary
+CPU construction and deterministic shortcut baselines only; no teacher generation, BabyLM training, selected evaluation, SuperGLUE, AoA, upload, or leaderboard submission.

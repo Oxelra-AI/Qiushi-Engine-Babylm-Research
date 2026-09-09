@@ -1,0 +1,165 @@
+{
+  "status": "SPARSE_TEMPORAL_PROBE_COMPLETE",
+  "purpose": "Sparse task-slice temporal comparison of compact_view_reinvest seeds 43022/43122 to distinguish early acquisition instability from later consolidation/noise effects.",
+  "seeds": [
+    "43022",
+    "43122"
+  ],
+  "exposures_m": [
+    1
+  ],
+  "task_groups": {
+    "supplement_all": {
+      "task": "blimp",
+      "description": "All fast BLiMP Supplement slices, including QA-congruence and preserved subject-aux/turn-taking.",
+      "stems": [
+        "qa_congruence_easy",
+        "qa_congruence_tricky",
+        "hypernym",
+        "subject_aux_inversion",
+        "turn_taking"
+      ]
+    },
+    "ewok_all": {
+      "task": "ewok",
+      "description": "All EWoK fast domains; the 100M seed43122 deficit is broad enough that all 11 domains are cheap and informative.",
+      "stems": [
+        "agent-properties",
+        "material-dynamics",
+        "material-properties",
+        "physical-dynamics",
+        "physical-interactions",
+        "physical-relations",
+        "quantitative-properties",
+        "social-interactions",
+        "social-properties",
+        "social-relations",
+        "spatial-relations"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "seed": "43022",
+      "exposure_m": 1,
+      "checkpoint_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_1M",
+      "scores": {
+        "supplement_all": {
+          "task_group": "supplement_all",
+          "task": "blimp",
+          "average_score": 56.4,
+          "subtask_scores": {
+            "qa_congruence_easy": 48.0,
+            "qa_congruence_tricky": 36.0,
+            "hypernym": 64.0,
+            "subject_aux_inversion": 70.0,
+            "turn_taking": 64.0
+          },
+          "n_subtasks": 5,
+          "elapsed_sec": 2.891,
+          "description": "All fast BLiMP Supplement slices, including QA-congruence and preserved subject-aux/turn-taking."
+        },
+        "ewok_all": {
+          "task_group": "ewok_all",
+          "task": "ewok",
+          "average_score": 50.18181818181818,
+          "subtask_scores": {
+            "agent-properties": 57.0,
+            "material-dynamics": 47.0,
+            "material-properties": 51.0,
+            "physical-dynamics": 56.0,
+            "physical-interactions": 47.0,
+            "physical-relations": 46.0,
+            "quantitative-properties": 47.0,
+            "social-interactions": 49.0,
+            "social-properties": 57.0,
+            "social-relations": 48.0,
+            "spatial-relations": 47.0
+          },
+          "n_subtasks": 11,
+          "elapsed_sec": 5.564,
+          "description": "All EWoK fast domains; the 100M seed43122 deficit is broad enough that all 11 domains are cheap and informative."
+        }
+      },
+      "started_utc": "2026-08-29T19:50:07Z",
+      "model_load_sec": 0.455,
+      "finished_utc": "2026-08-29T19:50:16Z"
+    },
+    {
+      "seed": "43122",
+      "exposure_m": 1,
+      "checkpoint_path": "experiments/archive/representation_and_objectives/training/runs/repl_compact_view_reinvest_seed43122/hf_model/chck_1M",
+      "scores": {
+        "supplement_all": {
+          "task_group": "supplement_all",
+          "task": "blimp",
+          "average_score": 50.4,
+          "subtask_scores": {
+            "qa_congruence_easy": 46.0,
+            "qa_congruence_tricky": 42.0,
+            "hypernym": 52.0,
+            "subject_aux_inversion": 70.0,
+            "turn_taking": 42.0
+          },
+          "n_subtasks": 5,
+          "elapsed_sec": 2.167,
+          "description": "All fast BLiMP Supplement slices, including QA-congruence and preserved subject-aux/turn-taking."
+        },
+        "ewok_all": {
+          "task_group": "ewok_all",
+          "task": "ewok",
+          "average_score": 50.54545454545455,
+          "subtask_scores": {
+            "agent-properties": 56.0,
+            "material-dynamics": 54.0,
+            "material-properties": 52.0,
+            "physical-dynamics": 51.0,
+            "physical-interactions": 49.0,
+            "physical-relations": 41.0,
+            "quantitative-properties": 40.0,
+            "social-interactions": 56.0,
+            "social-properties": 57.0,
+            "social-relations": 53.0,
+            "spatial-relations": 47.0
+          },
+          "n_subtasks": 11,
+          "elapsed_sec": 5.24,
+          "description": "All EWoK fast domains; the 100M seed43122 deficit is broad enough that all 11 domains are cheap and informative."
+        }
+      },
+      "started_utc": "2026-08-29T19:50:16Z",
+      "model_load_sec": 0.114,
+      "finished_utc": "2026-08-29T19:50:23Z"
+    }
+  ],
+  "failures": [],
+  "comparisons": {
+    "by_exposure": {
+      "1": {
+        "ewok_all": 0.36363636363636687,
+        "supplement_all": -6.0
+      }
+    },
+    "trajectory_classification": {
+      "ewok_all": {
+        "seed43122_minus_43022_by_exposure": {
+          "1": 0.36363636363636687
+        },
+        "early_mean_1_10M": 0.36363636363636687,
+        "late_mean_40_100M": null,
+        "final_100M": 0.36363636363636687,
+        "interpretation_label": "no_large_final_gap"
+      },
+      "supplement_all": {
+        "seed43122_minus_43022_by_exposure": {
+          "1": -6.0
+        },
+        "early_mean_1_10M": -6.0,
+        "late_mean_40_100M": null,
+        "final_100M": -6.0,
+        "interpretation_label": "early_seed_gap"
+      }
+    }
+  },
+  "elapsed_sec": 16.924
+}

@@ -1,0 +1,75 @@
+\chapterstart{Discussion}
+\label{sec:discussion}
+
+\subsection{The Value of Experience and Contextual Dependencies}
+
+Limited experience acquires learning value through the information relationships available during prediction and the demands placed on their use. Content, relative position, expression, and prediction targets jointly define a learning opportunity. Separating paired text across windows weakens source effects despite retaining the material. Different effects of repetition and restatement across targets show that practiced relationships shape subsequent information use.
+
+Coverage, compression, and repetition alter different aspects of experience. Broader coverage changes the range of content; compression changes expression and prediction clues; repetition changes frequency. Comparing them requires asking what information the intended capability needs, whether that information reaches the prediction window, and whether the targets train its use. Changing masking and supervision on existing text yields better results than ordinary continuation at equal cumulative exposure, connecting the relation studies to practical training design.
+
+Improvement at equal exposure directly supports more effective learning in this setting. Scaling studies fit relationships between data, compute, and performance~\citep{muennighoff2025scaling}; the present work complements them by explaining and testing choices about experience organization, learned computation, and continued training. Performance curves across data amounts and model sizes can further quantify how those benefits scale.
+
+\subsection{Coexistence of New Capabilities and Existing Functions}
+
+Acquisition requires model change; retention constrains some of that change. The two can be coordinated by their input conditions: permit learning on the new relational prediction task while limiting unnecessary drift on ordinary language inputs. In these experiments, strong preservation on densely masked inputs suppresses acquisition. Ordinary-input preservation retains most of the new prediction gain while reducing loss changes under ordinary masking.
+
+Preservation also concerns the range of inputs able to use a computation. In controlled tasks, familiar accuracy and unseen-symbol relation processing diverge. Changing supervision improves unseen-symbol behavior, and internal interventions alter the answers. Together with prior work on structural contextual learning~\citep{anand2025dual}, these results motivate evaluation of both familiar behavior and new-input access to learned computation.
+
+Ordinary-input preservation implements this concern in real language-model training and further improves complete evaluation under both continuation seeds. The result establishes the practical value of the full configuration. Input conditions, effective constraint strength, update magnitude, and additional presentations remain separately manipulable variables for explaining its components.
+
+\subsection{How Qiushi Engine Organizes and Builds on Research}
+\label{sec:research_organization}
+
+Qiushi Engine is a hierarchical multi-agent research system developed by the team. Its basic architecture and earlier work on a real optical platform are described by \citet{yang2026optical}. Core research agents divide responsibility for planning, method construction, experimentation, and critical review. Supporting agents provide retrieval, exploratory assistance, and independent checks. A knowledge system organizes literature, data, and methods; a memory system preserves research progress, experimental evidence, and accumulated methods for later use. Team-developed execution management and tool interfaces connect computing and storage infrastructure, scientific environments, and runtime support. The AI Lab skill supplies callable tools for model generation, training, evaluation, and mechanism experiments.
+
+Qiushi Engine led and executed the continuous scientific investigation, from forming questions to integrating results. The work followed the problem: reviewing literature, constructing data, proposing architectures and objectives, implementing experiments, comparing results, studying mechanisms, and selecting the next investigation. Early and late compact-restatement rankings motivated budget- and learning-stage comparisons. Coherent versus shuffled inputs motivated relation studies. Familiar/unseen performance separation motivated supervision and preservation experiments. Masking effects at fixed targets then revised an early target-count explanation.
+
+Continuity lay in the joint development of methods and scientific understanding. Compact restatements were both a training treatment and controllable material for comparing expression relationships. Residual increments were both a model improvement and an instrument for fixing the base while comparing objectives. Training and evaluation implementations were reused; explanations of why the methods worked were revised. Stage III could therefore build on the first model and data while changing the interaction between input, supervision, and preservation.
+
+\begin{table}[htbp]
+\caption{Research observations and subsequent decisions. Findings led to specific questions, controls, mechanism analyses, and training designs.}
+\label{tab:research_decisions}
+\small
+\begin{tabularx}{\linewidth}{@{}Y Y Y@{}}
+\toprule Observation & New question & Subsequent investigation\\\midrule
+Compact views lose early but win late & Does data value depend on budget and learning state? & Fixed-budget substitution, late trajectories, and architecture comparisons.\\
+Coherent and shuffled segments differ & Which relations do the same words practice? & Repetition, restatement, wrong-source, and split-window controls.\\
+Familiar behavior recovers without unseen access & Which inputs recover use of the computation? & Supervision allocation, signal removal, and relocation.\\
+Masking effects persist with sparse targets fixed & Is more supervision necessary for the gain? & Separate input-masking and target-set comparisons.\\
+Ordinary and dense inputs impose unequal preservation strength & How does preservation affect acquisition and retention? & Shared-target gradient comparisons and full-model evaluation.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+These connections show the value of sustained autonomous research: earlier findings change subsequent decisions, while earlier methods support new experiments. Qiushi Engine connects method construction, experimental implementation, analysis, and revision, making a model advance the starting point for further understanding and design.
+
+Idea generation, iterative experimentation, analysis, and writing have been studied in autonomous research systems~\citep{lu2026automation}. The present program supplies a three-stage case in data-efficient language learning: frontier results become scientific questions, and the resulting understanding changes later model training. Its open research materials support further study of how accumulated knowledge affects the quality and efficiency of autonomous science.
+
+\subsection{Research RSI: Recursive Self-Improvement of the Research Process}
+\label{sec:rsi}
+
+Long-horizon research accumulates more than the best model found so far. Judgments about data value, explanations of learning mechanisms, reusable methods, and experiments that distinguish competing accounts can all become resources for subsequent work. The three stages show these resources developing together: practical exploration expands the feasible designs, mechanism studies establish their conditions, and later model construction tests whether the resulting understanding is useful.
+
+We use \textbf{Research RSI}---Recursive Self-Improvement of the Research Process---to describe this recursive relationship. Qiushi Engine reuses the scientific understanding, method innovations, and experimental experience produced by its own research to change later question selection, experimental strategies, method construction, and evidence assessment. New experiments then test and revise that accumulation. The immediate object of change is the knowledge and methods guiding research, rather than the research agent's parameters or code. \textbf{A research result changes not only what the system has achieved, but how it conducts its next research.}
+
+The changes in this program involve understanding, experimental instruments, and training methods. Early/late differences in compact-restatement performance replace a static data ranking with comparisons conditioned on budget, displaced material, and learning stage. Residual increments develop from a training method into an instrument for studying functional change against a fixed base. Relation and capability-reuse experiments motivate separate input, supervision, and preservation design. These contributions are retained with their conditions, controls, and corrections, not reduced to a list of the best hyperparameters. Tables~\ref{tab:research_decisions} and~\ref{tab:bridge} connect the changing judgments to the actual training operations.
+
+Research continues after the new model improves. Fixed-target masking comparisons revise an early explanation based on increased supervision. Shared-position gradient measurements show that equal preservation coefficients need not impose equal constraints. Subsequent research can therefore reuse both a successful method and more accurate comparison conditions. Notes, plans, programs, and results preserve how a judgment arose, entered a method, and changed under new evidence. This is the main source of interpretability in the research cycle.
+
+Related systems investigate self-improvement through different objects. STOP applies a program improver to itself~\citep{zelikman2024stop}; the Darwin G\"odel Machine modifies agent code and selects changes by task performance~\citep{zhang2026dgm}; Reflexion stores verbal feedback for later attempts~\citep{shinn2023reflexion}. Co-Scientist combines hypothesis generation, debate, evolution, and persistent memory in a self-improving loop, with biomedical validation in collaboration with scientists~\citep{gottweis2026coscientist}. Recent reviews also include the research process among possible improvement targets~\citep{chen2026recursive}. Qiushi's contribution is the concrete connection, within one research program, between a real frontier model, the discovery of learning principles, principle-guided redesign, and complete model comparisons, with empirical records of how knowledge and methods develop, combine, and change.
+
+The evidence establishes a recursive research cycle within this BabyLM program: accumulated findings change later designs, model comparisons validate particular methods, and further experiments refine the understanding. It does not establish sustained improvement of general research ability across tasks. That broader question requires independent research goals and comparisons of how knowledge reuse affects experiment selection, research cost, and outcome quality. Here, a frontier advance becomes both a scientific result and knowledge that later research can inherit, test, and develop.
+
+\subsection{Reusable Contributions and Further Tests}
+
+Three connected contributions emerge: experiments identifying how relation type and window organization shape context use; supervision and internal-intervention studies establishing conditions for capability reuse; and a training method that improves complete model evaluation under repeated continuation. Independent work on compression, anchors, identity matching, and measurement controls broadens the range of methods available for further investigation.
+
+Natural-text controls reveal selective effects of relation organization; controlled tasks explain how new inputs access learned computations; real training tests the benefit of input, supervision, and preservation design. These complementary measurements retain their respective experimental scopes. Independent parent models, different budgets, and document-disjoint tests can establish how widely the connections apply.
+
+Component analysis clarifies the practical improvements. Relative to the parent, GlobalPIQA supplies about 74\% and 79\% of the full methods' Overall gains. Relative to ordinary continuation, Entity Tracking supplies the largest positive contribution. The added preservation benefit is the net change in other components, with GlobalPIQA unchanged. Two downstream fine-tuning seeds also show that the full method's (Super)GLUE advantage is not confined to one fine-tuning run. Each reference answers a different question about the design.
+
+The complete evaluations come from two continuations of one parent, and the full method includes extra preservation presentations. GlobalPIQA has 203 items; both continued models use the same evaluation set, and item-paired uncertainty intervals are not provided here. The reported result is the net Overall improvement and its component changes under the stated controls. Training randomness, evaluation-sample uncertainty, and transfer across parent models are separate quantities.
+
+Counterexamples and corrections are reusable knowledge too. Query-dependence checks, shared-parameter alignment, and text-overlap analysis remove confounds in answer construction, initialization, and sample selection. They provide stronger controls for later studies and identify earlier explanations superseded by subsequent evidence.
+
+Released weights provide experimental starting points. Data construction, target definitions, controls, component scores, and scientific notes explain how the methods formed and how to test them further. Together, the report and repository connect the usable models to their underlying scientific evidence; Appendix~\ref{app:assets} provides direct entry points.

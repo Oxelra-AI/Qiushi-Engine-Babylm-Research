@@ -1,0 +1,109 @@
+{
+  "status": "LAMB_SCORE_CONTEXT",
+  "purpose": "Correct comparison frame for research LAMB×curriculum endpoints: cheap7 vectors against matched cheap7 vectors.",
+  "cheap7_columns": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA",
+    "Reading"
+  ],
+  "references": {
+    "legal40k_8x480_adamw_fixed256_seed43022": {
+      "scores": {
+        "BLiMP": 67.94936507303161,
+        "Supplement": 60.96556978072759,
+        "EWoK": 51.47398439480199,
+        "Entity": 27.20367425262572,
+        "COMPS": 51.67466312375749,
+        "GlobalPIQA": 34.66504854368932,
+        "Reading": 7.822657545982009,
+        "SuperGLUE": 68.51023725569027,
+        "AoA": 0.0
+      },
+      "cheap7": 43.107851816373675,
+      "Overall": 41.140577774478444,
+      "NLP_average": 51.77750606061772,
+      "GlobalPIQA_parallel": 22.330097087378643,
+      "GlobalPIQA_nonparallel": 47.0,
+      "summary_path": "experiments/archive/representation_and_objectives/data/legal40k_accum_seed43022_pristine_collate/pristine_collate_legal40k_seed43022_summary.json",
+      "role": "matched legal40k compact-view AdamW 8×480 baseline, fixed 256-token row truncation, full official coordinate",
+      "delta_vs_visible_leader": {
+        "BLiMP": 0.7493650730316119,
+        "Supplement": 4.955569780727593,
+        "EWoK": -4.596015605198012,
+        "Entity": -1.2463257473742786,
+        "COMPS": -1.89533687624251,
+        "GlobalPIQA": -5.004951456310678,
+        "Reading": 2.4026575459820094,
+        "SuperGLUE": -1.2797627443097355,
+        "AoA": 0.0
+      },
+      "cheap7_delta_vs_visible_leader": -0.6621481836263285
+    },
+    "legal40k_12x384_adamw_fixed256_seed43022": {
+      "scores": {
+        "BLiMP": 67.47509961688662,
+        "Supplement": 60.13954967329228,
+        "EWoK": 50.54719004691065,
+        "Entity": 27.171427053823486,
+        "COMPS": 52.70234321016695,
+        "GlobalPIQA": 35.63592233009709,
+        "Reading": 7.349322294299417,
+        "SuperGLUE": 68.22750825670133,
+        "AoA": 0.0
+      },
+      "cheap7": 43.00297917506807,
+      "Overall": 41.02759583135309,
+      "NLP_average": 51.69986288398263,
+      "GlobalPIQA_parallel": 24.271844660194176,
+      "GlobalPIQA_nonparallel": 47.0,
+      "summary_path": "experiments/archive/representation_and_objectives/data/legal40k_12x384_depth_seed43022_pristine_collate/pristine_collate_legal40k_12x384_depth_seed43022_summary.json",
+      "role": "matched legal40k compact-view AdamW 12×384 depth baseline, fixed 256-token row truncation, full official coordinate",
+      "delta_vs_visible_leader": {
+        "BLiMP": 0.2750996168866209,
+        "Supplement": 4.129549673292281,
+        "EWoK": -5.52280995308935,
+        "Entity": -1.2785729461765136,
+        "COMPS": -0.867656789833049,
+        "GlobalPIQA": -4.0340776699029135,
+        "Reading": 1.9293222942994168,
+        "SuperGLUE": -1.5624917432986791,
+        "AoA": 0.0
+      },
+      "cheap7_delta_vs_visible_leader": -0.767020824931933
+    }
+  },
+  "visible_leader": {
+    "role": "visible public leader go76dof/wwm_curriculum_simplification_40k, displayed Overall 41.80; used here only as public frontier context",
+    "scores": {
+      "BLiMP": 67.2,
+      "Supplement": 56.01,
+      "EWoK": 56.07,
+      "Entity": 28.45,
+      "COMPS": 53.57,
+      "GlobalPIQA": 39.67,
+      "Reading": 5.42,
+      "SuperGLUE": 69.79,
+      "AoA": 0.0
+    },
+    "Overall": 41.8,
+    "cheap7": 43.77
+  },
+  "best_matched_baseline_key": "legal40k_8x480_adamw_fixed256_seed43022",
+  "thresholds": {
+    "leader_cheap7": 43.77,
+    "best_matched_baseline_cheap7": 43.107851816373675,
+    "cheap7_needed_for_overall_41p80_if_superglue_equals_8x480_baseline": 43.95568039204425,
+    "cheap7_needed_for_overall_41p80_if_superglue_equals_12x384_baseline": 43.99607024904266,
+    "cheap7_needed_for_overall_41p80_if_superglue_equals_visible_leader": 43.77285714285714,
+    "full_eval_priority_rule": "Run full official evaluation immediately if a research endpoint has cheap7 above the visible leader cheap7 or has a vector shape that could plausibly cross 41.80 with its expected SuperGLUE; otherwise analyze mechanism before spending full-eval compute."
+  },
+  "interpretation": {
+    "do_not_compare_to_full_overall_only": true,
+    "why": "Full Overall includes SuperGLUE and AoA; cheap7 is the immediate cheap endpoint readout and must be compared to cheap7 references.",
+    "coordinate": "joint LAMB×sequence-curriculum×chunking×masking intervention until matched LAMB-only and curriculum-only controls exist."
+  }
+}

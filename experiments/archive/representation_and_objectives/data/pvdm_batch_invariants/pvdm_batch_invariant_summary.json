@@ -1,0 +1,2077 @@
+{
+  "status": "PVDM_BATCH_INVARIANTS",
+  "created_utc": "2026-08-31T00:10:51Z",
+  "inputs": {
+    "tail": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/compact_tail_70M_100M.jsonl",
+    "labels": "experiments/archive/representation_and_objectives/data/pvdm_strict_labels/pvdm_strict_tail_70M_100M_labels.jsonl",
+    "tokenizer": "experiments/archive/representation_and_objectives/data/shared_tokenizer/shared_16k_tokenizer",
+    "tail_sha256": "19304f23a57a3809b50af496a99068a03417cb27886796604da5e755bf004675",
+    "labels_sha256": "39ed2b8eec610cb9f5e6456695d1b92057d6bb2af9fad0369790f1295589306a",
+    "tokenizer_sha256": "e70d167f620668130f88744998bd1bacbe05f6d0735012144fe501b271b04366"
+  },
+  "parameters": {
+    "rows": 8192,
+    "batch_size": 256,
+    "mask_prob": 0.15,
+    "target_prob": 0.6,
+    "seed": 43023,
+    "max_seq_length": 256
+  },
+  "aggregate": {
+    "rows": 8192,
+    "tokens": 1845049,
+    "selected_rows": 6283,
+    "selected_target_groups": 11450,
+    "treatment_masked_tokens": 274994,
+    "control_masked_tokens": 274994,
+    "masked_token_count_row_diff_abs_sum": 0,
+    "dependent_target_tokens_treatment": 18337,
+    "dependent_target_tokens_control": 18337,
+    "dependent_target_label_or_replacement_mismatches": 0,
+    "dependent_target_original_id_mismatches": 0,
+    "background_label_or_replacement_mismatches": 0,
+    "anchor_swap_action_mismatches": 0,
+    "true_pivot_visible_token_count_treatment": 11911,
+    "true_pivot_visible_token_count_control": 0,
+    "masked_input_difference_tokens_between_arms": 21430,
+    "masked_token_count_row_diff_max_abs": 0,
+    "effective_mask_rate_treatment": 0.1490442801248097,
+    "effective_mask_rate_control": 0.1490442801248097,
+    "selected_target_groups_per_row": 1.397705078125,
+    "selected_rows_fraction": 0.7669677734375,
+    "arm_difference_tokens_per_selected_event": 1.8716157205240174,
+    "true_pivot_visibility_fraction_treatment": 1.0,
+    "true_pivot_visibility_fraction_control": 0.0
+  },
+  "category_aggregate": {
+    "causal_connector": {
+      "events_selected": 2485,
+      "target_tokens": 3631,
+      "anchor_tokens": 2495,
+      "rows_with_selected_event": 1990
+    },
+    "comparative": {
+      "events_selected": 188,
+      "target_tokens": 282,
+      "anchor_tokens": 192,
+      "rows_with_selected_event": 171
+    },
+    "negation": {
+      "events_selected": 1360,
+      "target_tokens": 2024,
+      "anchor_tokens": 1574,
+      "rows_with_selected_event": 1176
+    },
+    "physical_change": {
+      "events_selected": 2922,
+      "target_tokens": 4648,
+      "anchor_tokens": 3136,
+      "rows_with_selected_event": 2317
+    },
+    "spatial": {
+      "events_selected": 2132,
+      "target_tokens": 3722,
+      "anchor_tokens": 2144,
+      "rows_with_selected_event": 1683
+    },
+    "temporal": {
+      "events_selected": 2363,
+      "target_tokens": 4030,
+      "anchor_tokens": 2370,
+      "rows_with_selected_event": 1938
+    }
+  },
+  "label_event_categories": {
+    "physical_change": 7646,
+    "negation": 5273,
+    "temporal": 4551,
+    "causal_connector": 4779,
+    "spatial": 3982,
+    "comparative": 558
+  },
+  "usable_event_categories_after_tokenization_and_anchor_length": {
+    "temporal": 3970,
+    "negation": 2267,
+    "physical_change": 4924,
+    "causal_connector": 4145,
+    "spatial": 3522,
+    "comparative": 323
+  },
+  "selected_event_categories": {
+    "physical_change": 2922,
+    "causal_connector": 2485,
+    "spatial": 2132,
+    "comparative": 188,
+    "negation": 1360,
+    "temporal": 2363
+  },
+  "reject_reasons": {
+    "anchor_token_length_mismatch::physical_change": 2614,
+    "anchor_token_length_mismatch": 7106,
+    "anchor_token_length_mismatch::negation": 2843,
+    "anchor_token_length_mismatch::temporal": 498,
+    "anchor_token_length_mismatch::causal_connector": 544,
+    "truncated_or_missing::physical_change": 108,
+    "truncated_or_missing": 532,
+    "truncated_or_missing::negation": 163,
+    "truncated_or_missing::spatial": 72,
+    "anchor_token_length_mismatch::comparative": 219,
+    "anchor_token_length_mismatch::spatial": 388,
+    "truncated_or_missing::temporal": 83,
+    "truncated_or_missing::causal_connector": 90,
+    "truncated_or_missing::comparative": 16
+  },
+  "replacement_action_counts_treatment": {
+    "mask_token": 219923,
+    "keep_original": 27792,
+    "random_token": 27279
+  },
+  "replacement_action_counts_control": {
+    "mask_token": 219923,
+    "keep_original": 27792,
+    "random_token": 27279
+  },
+  "first_8_batch_summaries": [
+    {
+      "rows": 256,
+      "tokens": 57719,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 39436,
+        "label_events_total": 844,
+        "events_tokenization_usable": 608,
+        "events_selected": 361,
+        "rows_with_label_events": 249,
+        "rows_with_usable_events": 239,
+        "rows_with_selected_events": 199,
+        "desired_group_count_sum": 5911,
+        "treatment_group_count_sum": 5911,
+        "control_group_count_sum": 5911,
+        "treatment_token_count_sum": 8631,
+        "control_token_count_sum": 8631,
+        "target_group_count_sum": 361,
+        "background_group_count_sum": 5189,
+        "anchor_swap_group_count_sum": 361,
+        "label_event_categories": {
+          "physical_change": 246,
+          "negation": 163,
+          "temporal": 129,
+          "causal_connector": 169,
+          "spatial": 118,
+          "comparative": 19
+        },
+        "usable_event_categories": {
+          "temporal": 109,
+          "negation": 72,
+          "physical_change": 165,
+          "causal_connector": 148,
+          "spatial": 99,
+          "comparative": 15
+        },
+        "selected_event_categories": {
+          "physical_change": 102,
+          "causal_connector": 86,
+          "spatial": 53,
+          "comparative": 10,
+          "negation": 38,
+          "temporal": 72
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 76,
+          "anchor_token_length_mismatch": 219,
+          "anchor_token_length_mismatch::negation": 85,
+          "anchor_token_length_mismatch::temporal": 19,
+          "anchor_token_length_mismatch::causal_connector": 19,
+          "truncated_or_missing::physical_change": 5,
+          "truncated_or_missing": 17,
+          "truncated_or_missing::negation": 6,
+          "truncated_or_missing::spatial": 3,
+          "anchor_token_length_mismatch::comparative": 4,
+          "anchor_token_length_mismatch::spatial": 16,
+          "truncated_or_missing::temporal": 1,
+          "truncated_or_missing::causal_connector": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 361,
+          "treatment_total": 361,
+          "control_visible": 0,
+          "control_total": 361
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8631,
+        "replacement_action_counts": {
+          "mask_token": 6955,
+          "keep_original": 832,
+          "random_token": 844
+        },
+        "replacement_action_digest": "b318c9f0386c5c222b48b5b5e4ed5c5003227fb43f9490d83260d00864d247d4"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 39436,
+        "label_events_total": 844,
+        "events_tokenization_usable": 608,
+        "events_selected": 361,
+        "rows_with_label_events": 249,
+        "rows_with_usable_events": 239,
+        "rows_with_selected_events": 199,
+        "desired_group_count_sum": 5911,
+        "treatment_group_count_sum": 5911,
+        "control_group_count_sum": 5911,
+        "treatment_token_count_sum": 8631,
+        "control_token_count_sum": 8631,
+        "target_group_count_sum": 361,
+        "background_group_count_sum": 5189,
+        "anchor_swap_group_count_sum": 361,
+        "label_event_categories": {
+          "physical_change": 246,
+          "negation": 163,
+          "temporal": 129,
+          "causal_connector": 169,
+          "spatial": 118,
+          "comparative": 19
+        },
+        "usable_event_categories": {
+          "temporal": 109,
+          "negation": 72,
+          "physical_change": 165,
+          "causal_connector": 148,
+          "spatial": 99,
+          "comparative": 15
+        },
+        "selected_event_categories": {
+          "physical_change": 102,
+          "causal_connector": 86,
+          "spatial": 53,
+          "comparative": 10,
+          "negation": 38,
+          "temporal": 72
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 76,
+          "anchor_token_length_mismatch": 219,
+          "anchor_token_length_mismatch::negation": 85,
+          "anchor_token_length_mismatch::temporal": 19,
+          "anchor_token_length_mismatch::causal_connector": 19,
+          "truncated_or_missing::physical_change": 5,
+          "truncated_or_missing": 17,
+          "truncated_or_missing::negation": 6,
+          "truncated_or_missing::spatial": 3,
+          "anchor_token_length_mismatch::comparative": 4,
+          "anchor_token_length_mismatch::spatial": 16,
+          "truncated_or_missing::temporal": 1,
+          "truncated_or_missing::causal_connector": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 361,
+          "treatment_total": 361,
+          "control_visible": 0,
+          "control_total": 361
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8631,
+        "replacement_action_counts": {
+          "mask_token": 6955,
+          "keep_original": 832,
+          "random_token": 844
+        },
+        "replacement_action_digest": "99e2e8fd7080ab2834c6ab4cfe2af8e82263dedf7d24c587d1b5d3a6d248c4c3"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 39436,
+        "label_events_total": 844,
+        "events_tokenization_usable": 608,
+        "events_selected": 361,
+        "rows_with_label_events": 249,
+        "rows_with_usable_events": 239,
+        "rows_with_selected_events": 199,
+        "desired_group_count_sum": 5911,
+        "treatment_group_count_sum": 5911,
+        "control_group_count_sum": 5911,
+        "treatment_token_count_sum": 8631,
+        "control_token_count_sum": 8631,
+        "target_group_count_sum": 361,
+        "background_group_count_sum": 5189,
+        "anchor_swap_group_count_sum": 361,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 361,
+          "treatment_total": 361,
+          "control_visible": 0,
+          "control_total": 361
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "physical_change": {
+          "events_selected": 102,
+          "target_tokens": 185,
+          "anchor_tokens": 110,
+          "rows_with_selected_event": 83
+        },
+        "causal_connector": {
+          "events_selected": 86,
+          "target_tokens": 135,
+          "anchor_tokens": 86,
+          "rows_with_selected_event": 68
+        },
+        "spatial": {
+          "events_selected": 53,
+          "target_tokens": 85,
+          "anchor_tokens": 53,
+          "rows_with_selected_event": 42
+        },
+        "comparative": {
+          "events_selected": 10,
+          "target_tokens": 15,
+          "anchor_tokens": 10,
+          "rows_with_selected_event": 9
+        },
+        "negation": {
+          "events_selected": 38,
+          "target_tokens": 55,
+          "anchor_tokens": 44,
+          "rows_with_selected_event": 32
+        },
+        "temporal": {
+          "events_selected": 72,
+          "target_tokens": 107,
+          "anchor_tokens": 72,
+          "rows_with_selected_event": 61
+        }
+      },
+      "selected_rows": 199,
+      "selected_target_groups": 361,
+      "treatment_masked_tokens": 8631,
+      "control_masked_tokens": 8631,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 582,
+      "dependent_target_tokens_control": 582,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 375,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 680,
+      "replacement_action_counts_treatment": {
+        "mask_token": 6955,
+        "keep_original": 832,
+        "random_token": 844
+      },
+      "replacement_action_counts_control": {
+        "mask_token": 6955,
+        "keep_original": 832,
+        "random_token": 844
+      },
+      "replacement_action_digest_treatment": "b318c9f0386c5c222b48b5b5e4ed5c5003227fb43f9490d83260d00864d247d4",
+      "replacement_action_digest_control": "99e2e8fd7080ab2834c6ab4cfe2af8e82263dedf7d24c587d1b5d3a6d248c4c3",
+      "batch_index": 0,
+      "row_start": 0,
+      "row_end_exclusive": 256
+    },
+    {
+      "rows": 256,
+      "tokens": 58244,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 38867,
+        "label_events_total": 829,
+        "events_tokenization_usable": 602,
+        "events_selected": 345,
+        "rows_with_label_events": 248,
+        "rows_with_usable_events": 229,
+        "rows_with_selected_events": 191,
+        "desired_group_count_sum": 5835,
+        "treatment_group_count_sum": 5835,
+        "control_group_count_sum": 5835,
+        "treatment_token_count_sum": 8646,
+        "control_token_count_sum": 8646,
+        "target_group_count_sum": 345,
+        "background_group_count_sum": 5145,
+        "anchor_swap_group_count_sum": 345,
+        "label_event_categories": {
+          "physical_change": 242,
+          "spatial": 134,
+          "negation": 159,
+          "temporal": 144,
+          "causal_connector": 131,
+          "comparative": 19
+        },
+        "usable_event_categories": {
+          "physical_change": 167,
+          "spatial": 120,
+          "negation": 59,
+          "temporal": 129,
+          "causal_connector": 114,
+          "comparative": 13
+        },
+        "selected_event_categories": {
+          "spatial": 65,
+          "physical_change": 84,
+          "temporal": 86,
+          "causal_connector": 73,
+          "comparative": 8,
+          "negation": 29
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 72,
+          "anchor_token_length_mismatch": 212,
+          "anchor_token_length_mismatch::negation": 97,
+          "anchor_token_length_mismatch::temporal": 12,
+          "anchor_token_length_mismatch::spatial": 12,
+          "anchor_token_length_mismatch::comparative": 6,
+          "anchor_token_length_mismatch::causal_connector": 13,
+          "truncated_or_missing::causal_connector": 4,
+          "truncated_or_missing": 15,
+          "truncated_or_missing::negation": 3,
+          "truncated_or_missing::physical_change": 3,
+          "truncated_or_missing::temporal": 3,
+          "truncated_or_missing::spatial": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 345,
+          "treatment_total": 345,
+          "control_visible": 0,
+          "control_total": 345
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8646,
+        "replacement_action_counts": {
+          "mask_token": 6924,
+          "keep_original": 881,
+          "random_token": 841
+        },
+        "replacement_action_digest": "68339862535764c0aaade0d79921c5022db465752f6ab79875842732d17d201a"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 38867,
+        "label_events_total": 829,
+        "events_tokenization_usable": 602,
+        "events_selected": 345,
+        "rows_with_label_events": 248,
+        "rows_with_usable_events": 229,
+        "rows_with_selected_events": 191,
+        "desired_group_count_sum": 5835,
+        "treatment_group_count_sum": 5835,
+        "control_group_count_sum": 5835,
+        "treatment_token_count_sum": 8646,
+        "control_token_count_sum": 8646,
+        "target_group_count_sum": 345,
+        "background_group_count_sum": 5145,
+        "anchor_swap_group_count_sum": 345,
+        "label_event_categories": {
+          "physical_change": 242,
+          "spatial": 134,
+          "negation": 159,
+          "temporal": 144,
+          "causal_connector": 131,
+          "comparative": 19
+        },
+        "usable_event_categories": {
+          "physical_change": 167,
+          "spatial": 120,
+          "negation": 59,
+          "temporal": 129,
+          "causal_connector": 114,
+          "comparative": 13
+        },
+        "selected_event_categories": {
+          "spatial": 65,
+          "physical_change": 84,
+          "temporal": 86,
+          "causal_connector": 73,
+          "comparative": 8,
+          "negation": 29
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 72,
+          "anchor_token_length_mismatch": 212,
+          "anchor_token_length_mismatch::negation": 97,
+          "anchor_token_length_mismatch::temporal": 12,
+          "anchor_token_length_mismatch::spatial": 12,
+          "anchor_token_length_mismatch::comparative": 6,
+          "anchor_token_length_mismatch::causal_connector": 13,
+          "truncated_or_missing::causal_connector": 4,
+          "truncated_or_missing": 15,
+          "truncated_or_missing::negation": 3,
+          "truncated_or_missing::physical_change": 3,
+          "truncated_or_missing::temporal": 3,
+          "truncated_or_missing::spatial": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 345,
+          "treatment_total": 345,
+          "control_visible": 0,
+          "control_total": 345
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8646,
+        "replacement_action_counts": {
+          "mask_token": 6924,
+          "keep_original": 881,
+          "random_token": 841
+        },
+        "replacement_action_digest": "b18c4dd727fd68e374760e591c102d133639f6256d8cffce95990f86380e31be"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 38867,
+        "label_events_total": 829,
+        "events_tokenization_usable": 602,
+        "events_selected": 345,
+        "rows_with_label_events": 248,
+        "rows_with_usable_events": 229,
+        "rows_with_selected_events": 191,
+        "desired_group_count_sum": 5835,
+        "treatment_group_count_sum": 5835,
+        "control_group_count_sum": 5835,
+        "treatment_token_count_sum": 8646,
+        "control_token_count_sum": 8646,
+        "target_group_count_sum": 345,
+        "background_group_count_sum": 5145,
+        "anchor_swap_group_count_sum": 345,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 345,
+          "treatment_total": 345,
+          "control_visible": 0,
+          "control_total": 345
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "spatial": {
+          "events_selected": 65,
+          "target_tokens": 122,
+          "anchor_tokens": 65,
+          "rows_with_selected_event": 50
+        },
+        "physical_change": {
+          "events_selected": 84,
+          "target_tokens": 114,
+          "anchor_tokens": 87,
+          "rows_with_selected_event": 67
+        },
+        "temporal": {
+          "events_selected": 86,
+          "target_tokens": 171,
+          "anchor_tokens": 86,
+          "rows_with_selected_event": 65
+        },
+        "causal_connector": {
+          "events_selected": 73,
+          "target_tokens": 108,
+          "anchor_tokens": 73,
+          "rows_with_selected_event": 56
+        },
+        "comparative": {
+          "events_selected": 8,
+          "target_tokens": 11,
+          "anchor_tokens": 8,
+          "rows_with_selected_event": 8
+        },
+        "negation": {
+          "events_selected": 29,
+          "target_tokens": 44,
+          "anchor_tokens": 35,
+          "rows_with_selected_event": 26
+        }
+      },
+      "selected_rows": 191,
+      "selected_target_groups": 345,
+      "treatment_masked_tokens": 8646,
+      "control_masked_tokens": 8646,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 570,
+      "dependent_target_tokens_control": 570,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 354,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 652,
+      "replacement_action_counts_treatment": {
+        "mask_token": 6924,
+        "keep_original": 881,
+        "random_token": 841
+      },
+      "replacement_action_counts_control": {
+        "mask_token": 6924,
+        "keep_original": 881,
+        "random_token": 841
+      },
+      "replacement_action_digest_treatment": "68339862535764c0aaade0d79921c5022db465752f6ab79875842732d17d201a",
+      "replacement_action_digest_control": "b18c4dd727fd68e374760e591c102d133639f6256d8cffce95990f86380e31be",
+      "batch_index": 1,
+      "row_start": 256,
+      "row_end_exclusive": 512
+    },
+    {
+      "rows": 256,
+      "tokens": 58165,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 39010,
+        "label_events_total": 869,
+        "events_tokenization_usable": 640,
+        "events_selected": 395,
+        "rows_with_label_events": 248,
+        "rows_with_usable_events": 229,
+        "rows_with_selected_events": 201,
+        "desired_group_count_sum": 5856,
+        "treatment_group_count_sum": 5856,
+        "control_group_count_sum": 5856,
+        "treatment_token_count_sum": 8681,
+        "control_token_count_sum": 8681,
+        "target_group_count_sum": 395,
+        "background_group_count_sum": 5066,
+        "anchor_swap_group_count_sum": 395,
+        "label_event_categories": {
+          "spatial": 152,
+          "physical_change": 247,
+          "comparative": 27,
+          "causal_connector": 157,
+          "negation": 148,
+          "temporal": 138
+        },
+        "usable_event_categories": {
+          "spatial": 135,
+          "physical_change": 164,
+          "comparative": 17,
+          "causal_connector": 139,
+          "negation": 71,
+          "temporal": 114
+        },
+        "selected_event_categories": {
+          "spatial": 84,
+          "physical_change": 103,
+          "causal_connector": 89,
+          "negation": 44,
+          "temporal": 70,
+          "comparative": 5
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::spatial": 14,
+          "anchor_token_length_mismatch": 205,
+          "anchor_token_length_mismatch::physical_change": 80,
+          "anchor_token_length_mismatch::negation": 68,
+          "anchor_token_length_mismatch::temporal": 20,
+          "anchor_token_length_mismatch::comparative": 10,
+          "truncated_or_missing::temporal": 4,
+          "truncated_or_missing": 24,
+          "anchor_token_length_mismatch::causal_connector": 13,
+          "truncated_or_missing::negation": 9,
+          "truncated_or_missing::physical_change": 3,
+          "truncated_or_missing::causal_connector": 5,
+          "truncated_or_missing::spatial": 3
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 395,
+          "treatment_total": 395,
+          "control_visible": 0,
+          "control_total": 395
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8681,
+        "replacement_action_counts": {
+          "mask_token": 6973,
+          "random_token": 827,
+          "keep_original": 881
+        },
+        "replacement_action_digest": "c1a8017e66e093367a49c77d29095fce117240fdadd17a16f1e896d348d882d8"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 39010,
+        "label_events_total": 869,
+        "events_tokenization_usable": 640,
+        "events_selected": 395,
+        "rows_with_label_events": 248,
+        "rows_with_usable_events": 229,
+        "rows_with_selected_events": 201,
+        "desired_group_count_sum": 5856,
+        "treatment_group_count_sum": 5856,
+        "control_group_count_sum": 5856,
+        "treatment_token_count_sum": 8681,
+        "control_token_count_sum": 8681,
+        "target_group_count_sum": 395,
+        "background_group_count_sum": 5066,
+        "anchor_swap_group_count_sum": 395,
+        "label_event_categories": {
+          "spatial": 152,
+          "physical_change": 247,
+          "comparative": 27,
+          "causal_connector": 157,
+          "negation": 148,
+          "temporal": 138
+        },
+        "usable_event_categories": {
+          "spatial": 135,
+          "physical_change": 164,
+          "comparative": 17,
+          "causal_connector": 139,
+          "negation": 71,
+          "temporal": 114
+        },
+        "selected_event_categories": {
+          "spatial": 84,
+          "physical_change": 103,
+          "causal_connector": 89,
+          "negation": 44,
+          "temporal": 70,
+          "comparative": 5
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::spatial": 14,
+          "anchor_token_length_mismatch": 205,
+          "anchor_token_length_mismatch::physical_change": 80,
+          "anchor_token_length_mismatch::negation": 68,
+          "anchor_token_length_mismatch::temporal": 20,
+          "anchor_token_length_mismatch::comparative": 10,
+          "truncated_or_missing::temporal": 4,
+          "truncated_or_missing": 24,
+          "anchor_token_length_mismatch::causal_connector": 13,
+          "truncated_or_missing::negation": 9,
+          "truncated_or_missing::physical_change": 3,
+          "truncated_or_missing::causal_connector": 5,
+          "truncated_or_missing::spatial": 3
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 395,
+          "treatment_total": 395,
+          "control_visible": 0,
+          "control_total": 395
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8681,
+        "replacement_action_counts": {
+          "mask_token": 6973,
+          "random_token": 827,
+          "keep_original": 881
+        },
+        "replacement_action_digest": "53ddb7d8981c8a2d84e21b593e186f03dd785db4c2f94527637916542df5b1a2"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 39010,
+        "label_events_total": 869,
+        "events_tokenization_usable": 640,
+        "events_selected": 395,
+        "rows_with_label_events": 248,
+        "rows_with_usable_events": 229,
+        "rows_with_selected_events": 201,
+        "desired_group_count_sum": 5856,
+        "treatment_group_count_sum": 5856,
+        "control_group_count_sum": 5856,
+        "treatment_token_count_sum": 8681,
+        "control_token_count_sum": 8681,
+        "target_group_count_sum": 395,
+        "background_group_count_sum": 5066,
+        "anchor_swap_group_count_sum": 395,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 395,
+          "treatment_total": 395,
+          "control_visible": 0,
+          "control_total": 395
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "spatial": {
+          "events_selected": 84,
+          "target_tokens": 165,
+          "anchor_tokens": 84,
+          "rows_with_selected_event": 63
+        },
+        "physical_change": {
+          "events_selected": 103,
+          "target_tokens": 171,
+          "anchor_tokens": 111,
+          "rows_with_selected_event": 80
+        },
+        "causal_connector": {
+          "events_selected": 89,
+          "target_tokens": 131,
+          "anchor_tokens": 89,
+          "rows_with_selected_event": 72
+        },
+        "negation": {
+          "events_selected": 44,
+          "target_tokens": 61,
+          "anchor_tokens": 50,
+          "rows_with_selected_event": 36
+        },
+        "temporal": {
+          "events_selected": 70,
+          "target_tokens": 117,
+          "anchor_tokens": 70,
+          "rows_with_selected_event": 59
+        },
+        "comparative": {
+          "events_selected": 5,
+          "target_tokens": 5,
+          "anchor_tokens": 5,
+          "rows_with_selected_event": 5
+        }
+      },
+      "selected_rows": 201,
+      "selected_target_groups": 395,
+      "treatment_masked_tokens": 8681,
+      "control_masked_tokens": 8681,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 650,
+      "dependent_target_tokens_control": 650,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 409,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 756,
+      "replacement_action_counts_treatment": {
+        "mask_token": 6973,
+        "random_token": 827,
+        "keep_original": 881
+      },
+      "replacement_action_counts_control": {
+        "mask_token": 6973,
+        "random_token": 827,
+        "keep_original": 881
+      },
+      "replacement_action_digest_treatment": "c1a8017e66e093367a49c77d29095fce117240fdadd17a16f1e896d348d882d8",
+      "replacement_action_digest_control": "53ddb7d8981c8a2d84e21b593e186f03dd785db4c2f94527637916542df5b1a2",
+      "batch_index": 2,
+      "row_start": 512,
+      "row_end_exclusive": 768
+    },
+    {
+      "rows": 256,
+      "tokens": 57272,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 39041,
+        "label_events_total": 822,
+        "events_tokenization_usable": 579,
+        "events_selected": 359,
+        "rows_with_label_events": 243,
+        "rows_with_usable_events": 225,
+        "rows_with_selected_events": 195,
+        "desired_group_count_sum": 5860,
+        "treatment_group_count_sum": 5860,
+        "control_group_count_sum": 5860,
+        "treatment_token_count_sum": 8562,
+        "control_token_count_sum": 8562,
+        "target_group_count_sum": 359,
+        "background_group_count_sum": 5142,
+        "anchor_swap_group_count_sum": 359,
+        "label_event_categories": {
+          "temporal": 138,
+          "physical_change": 256,
+          "spatial": 133,
+          "negation": 151,
+          "causal_connector": 128,
+          "comparative": 16
+        },
+        "usable_event_categories": {
+          "temporal": 118,
+          "physical_change": 158,
+          "spatial": 119,
+          "negation": 63,
+          "causal_connector": 112,
+          "comparative": 9
+        },
+        "selected_event_categories": {
+          "temporal": 75,
+          "spatial": 72,
+          "negation": 38,
+          "physical_change": 92,
+          "comparative": 5,
+          "causal_connector": 77
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::temporal": 17,
+          "anchor_token_length_mismatch": 227,
+          "anchor_token_length_mismatch::physical_change": 96,
+          "anchor_token_length_mismatch::spatial": 12,
+          "anchor_token_length_mismatch::causal_connector": 14,
+          "truncated_or_missing::physical_change": 2,
+          "truncated_or_missing": 16,
+          "anchor_token_length_mismatch::negation": 81,
+          "truncated_or_missing::negation": 7,
+          "anchor_token_length_mismatch::comparative": 7,
+          "truncated_or_missing::temporal": 3,
+          "truncated_or_missing::causal_connector": 2,
+          "truncated_or_missing::spatial": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 359,
+          "treatment_total": 359,
+          "control_visible": 0,
+          "control_total": 359
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8562,
+        "replacement_action_counts": {
+          "mask_token": 6892,
+          "random_token": 825,
+          "keep_original": 845
+        },
+        "replacement_action_digest": "dbc993f5a151b88e4545d2b587305f711a0a83babd140beb873615642ad33102"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 39041,
+        "label_events_total": 822,
+        "events_tokenization_usable": 579,
+        "events_selected": 359,
+        "rows_with_label_events": 243,
+        "rows_with_usable_events": 225,
+        "rows_with_selected_events": 195,
+        "desired_group_count_sum": 5860,
+        "treatment_group_count_sum": 5860,
+        "control_group_count_sum": 5860,
+        "treatment_token_count_sum": 8562,
+        "control_token_count_sum": 8562,
+        "target_group_count_sum": 359,
+        "background_group_count_sum": 5142,
+        "anchor_swap_group_count_sum": 359,
+        "label_event_categories": {
+          "temporal": 138,
+          "physical_change": 256,
+          "spatial": 133,
+          "negation": 151,
+          "causal_connector": 128,
+          "comparative": 16
+        },
+        "usable_event_categories": {
+          "temporal": 118,
+          "physical_change": 158,
+          "spatial": 119,
+          "negation": 63,
+          "causal_connector": 112,
+          "comparative": 9
+        },
+        "selected_event_categories": {
+          "temporal": 75,
+          "spatial": 72,
+          "negation": 38,
+          "physical_change": 92,
+          "comparative": 5,
+          "causal_connector": 77
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::temporal": 17,
+          "anchor_token_length_mismatch": 227,
+          "anchor_token_length_mismatch::physical_change": 96,
+          "anchor_token_length_mismatch::spatial": 12,
+          "anchor_token_length_mismatch::causal_connector": 14,
+          "truncated_or_missing::physical_change": 2,
+          "truncated_or_missing": 16,
+          "anchor_token_length_mismatch::negation": 81,
+          "truncated_or_missing::negation": 7,
+          "anchor_token_length_mismatch::comparative": 7,
+          "truncated_or_missing::temporal": 3,
+          "truncated_or_missing::causal_connector": 2,
+          "truncated_or_missing::spatial": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 359,
+          "treatment_total": 359,
+          "control_visible": 0,
+          "control_total": 359
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8562,
+        "replacement_action_counts": {
+          "mask_token": 6892,
+          "random_token": 825,
+          "keep_original": 845
+        },
+        "replacement_action_digest": "39dcb41a1c10138d23d58a56cc99bbd9ffc1253f135b59dd0caec3aaea06005a"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 39041,
+        "label_events_total": 822,
+        "events_tokenization_usable": 579,
+        "events_selected": 359,
+        "rows_with_label_events": 243,
+        "rows_with_usable_events": 225,
+        "rows_with_selected_events": 195,
+        "desired_group_count_sum": 5860,
+        "treatment_group_count_sum": 5860,
+        "control_group_count_sum": 5860,
+        "treatment_token_count_sum": 8562,
+        "control_token_count_sum": 8562,
+        "target_group_count_sum": 359,
+        "background_group_count_sum": 5142,
+        "anchor_swap_group_count_sum": 359,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 359,
+          "treatment_total": 359,
+          "control_visible": 0,
+          "control_total": 359
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "temporal": {
+          "events_selected": 75,
+          "target_tokens": 128,
+          "anchor_tokens": 75,
+          "rows_with_selected_event": 62
+        },
+        "spatial": {
+          "events_selected": 72,
+          "target_tokens": 123,
+          "anchor_tokens": 72,
+          "rows_with_selected_event": 57
+        },
+        "negation": {
+          "events_selected": 38,
+          "target_tokens": 50,
+          "anchor_tokens": 42,
+          "rows_with_selected_event": 34
+        },
+        "physical_change": {
+          "events_selected": 92,
+          "target_tokens": 148,
+          "anchor_tokens": 101,
+          "rows_with_selected_event": 72
+        },
+        "comparative": {
+          "events_selected": 5,
+          "target_tokens": 8,
+          "anchor_tokens": 5,
+          "rows_with_selected_event": 4
+        },
+        "causal_connector": {
+          "events_selected": 77,
+          "target_tokens": 118,
+          "anchor_tokens": 77,
+          "rows_with_selected_event": 57
+        }
+      },
+      "selected_rows": 195,
+      "selected_target_groups": 359,
+      "treatment_masked_tokens": 8562,
+      "control_masked_tokens": 8562,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 575,
+      "dependent_target_tokens_control": 575,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 372,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 662,
+      "replacement_action_counts_treatment": {
+        "mask_token": 6892,
+        "random_token": 825,
+        "keep_original": 845
+      },
+      "replacement_action_counts_control": {
+        "mask_token": 6892,
+        "random_token": 825,
+        "keep_original": 845
+      },
+      "replacement_action_digest_treatment": "dbc993f5a151b88e4545d2b587305f711a0a83babd140beb873615642ad33102",
+      "replacement_action_digest_control": "39dcb41a1c10138d23d58a56cc99bbd9ffc1253f135b59dd0caec3aaea06005a",
+      "batch_index": 3,
+      "row_start": 768,
+      "row_end_exclusive": 1024
+    },
+    {
+      "rows": 256,
+      "tokens": 57565,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 39185,
+        "label_events_total": 825,
+        "events_tokenization_usable": 579,
+        "events_selected": 323,
+        "rows_with_label_events": 247,
+        "rows_with_usable_events": 228,
+        "rows_with_selected_events": 186,
+        "desired_group_count_sum": 5878,
+        "treatment_group_count_sum": 5878,
+        "control_group_count_sum": 5878,
+        "treatment_token_count_sum": 8606,
+        "control_token_count_sum": 8606,
+        "target_group_count_sum": 323,
+        "background_group_count_sum": 5232,
+        "anchor_swap_group_count_sum": 323,
+        "label_event_categories": {
+          "temporal": 125,
+          "negation": 157,
+          "causal_connector": 152,
+          "spatial": 131,
+          "physical_change": 238,
+          "comparative": 22
+        },
+        "usable_event_categories": {
+          "temporal": 110,
+          "negation": 70,
+          "spatial": 113,
+          "causal_connector": 135,
+          "physical_change": 142,
+          "comparative": 9
+        },
+        "selected_event_categories": {
+          "temporal": 65,
+          "negation": 37,
+          "causal_connector": 81,
+          "spatial": 55,
+          "physical_change": 80,
+          "comparative": 5
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::negation": 83,
+          "anchor_token_length_mismatch": 234,
+          "anchor_token_length_mismatch::causal_connector": 16,
+          "anchor_token_length_mismatch::spatial": 18,
+          "anchor_token_length_mismatch::physical_change": 92,
+          "anchor_token_length_mismatch::temporal": 12,
+          "anchor_token_length_mismatch::comparative": 13,
+          "truncated_or_missing::physical_change": 4,
+          "truncated_or_missing": 12,
+          "truncated_or_missing::temporal": 3,
+          "truncated_or_missing::negation": 4,
+          "truncated_or_missing::causal_connector": 1
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 323,
+          "treatment_total": 323,
+          "control_visible": 0,
+          "control_total": 323
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8606,
+        "replacement_action_counts": {
+          "random_token": 841,
+          "mask_token": 6926,
+          "keep_original": 839
+        },
+        "replacement_action_digest": "5bd7a6b2108184e2ddc5c318bf55cb38fce99fff9294b3293b1f30fb6680494a"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 39185,
+        "label_events_total": 825,
+        "events_tokenization_usable": 579,
+        "events_selected": 323,
+        "rows_with_label_events": 247,
+        "rows_with_usable_events": 228,
+        "rows_with_selected_events": 186,
+        "desired_group_count_sum": 5878,
+        "treatment_group_count_sum": 5878,
+        "control_group_count_sum": 5878,
+        "treatment_token_count_sum": 8606,
+        "control_token_count_sum": 8606,
+        "target_group_count_sum": 323,
+        "background_group_count_sum": 5232,
+        "anchor_swap_group_count_sum": 323,
+        "label_event_categories": {
+          "temporal": 125,
+          "negation": 157,
+          "causal_connector": 152,
+          "spatial": 131,
+          "physical_change": 238,
+          "comparative": 22
+        },
+        "usable_event_categories": {
+          "temporal": 110,
+          "negation": 70,
+          "spatial": 113,
+          "causal_connector": 135,
+          "physical_change": 142,
+          "comparative": 9
+        },
+        "selected_event_categories": {
+          "temporal": 65,
+          "negation": 37,
+          "causal_connector": 81,
+          "spatial": 55,
+          "physical_change": 80,
+          "comparative": 5
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::negation": 83,
+          "anchor_token_length_mismatch": 234,
+          "anchor_token_length_mismatch::causal_connector": 16,
+          "anchor_token_length_mismatch::spatial": 18,
+          "anchor_token_length_mismatch::physical_change": 92,
+          "anchor_token_length_mismatch::temporal": 12,
+          "anchor_token_length_mismatch::comparative": 13,
+          "truncated_or_missing::physical_change": 4,
+          "truncated_or_missing": 12,
+          "truncated_or_missing::temporal": 3,
+          "truncated_or_missing::negation": 4,
+          "truncated_or_missing::causal_connector": 1
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 323,
+          "treatment_total": 323,
+          "control_visible": 0,
+          "control_total": 323
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8606,
+        "replacement_action_counts": {
+          "random_token": 841,
+          "mask_token": 6926,
+          "keep_original": 839
+        },
+        "replacement_action_digest": "bb4d8623016b697e17474c859b6901b93ff4c0a24af5288cbbc7c813edafa2a6"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 39185,
+        "label_events_total": 825,
+        "events_tokenization_usable": 579,
+        "events_selected": 323,
+        "rows_with_label_events": 247,
+        "rows_with_usable_events": 228,
+        "rows_with_selected_events": 186,
+        "desired_group_count_sum": 5878,
+        "treatment_group_count_sum": 5878,
+        "control_group_count_sum": 5878,
+        "treatment_token_count_sum": 8606,
+        "control_token_count_sum": 8606,
+        "target_group_count_sum": 323,
+        "background_group_count_sum": 5232,
+        "anchor_swap_group_count_sum": 323,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 323,
+          "treatment_total": 323,
+          "control_visible": 0,
+          "control_total": 323
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "temporal": {
+          "events_selected": 65,
+          "target_tokens": 103,
+          "anchor_tokens": 65,
+          "rows_with_selected_event": 58
+        },
+        "negation": {
+          "events_selected": 37,
+          "target_tokens": 54,
+          "anchor_tokens": 42,
+          "rows_with_selected_event": 32
+        },
+        "causal_connector": {
+          "events_selected": 81,
+          "target_tokens": 119,
+          "anchor_tokens": 81,
+          "rows_with_selected_event": 71
+        },
+        "spatial": {
+          "events_selected": 55,
+          "target_tokens": 98,
+          "anchor_tokens": 55,
+          "rows_with_selected_event": 45
+        },
+        "physical_change": {
+          "events_selected": 80,
+          "target_tokens": 127,
+          "anchor_tokens": 86,
+          "rows_with_selected_event": 60
+        },
+        "comparative": {
+          "events_selected": 5,
+          "target_tokens": 5,
+          "anchor_tokens": 5,
+          "rows_with_selected_event": 5
+        }
+      },
+      "selected_rows": 186,
+      "selected_target_groups": 323,
+      "treatment_masked_tokens": 8606,
+      "control_masked_tokens": 8606,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 506,
+      "dependent_target_tokens_control": 506,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 334,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 622,
+      "replacement_action_counts_treatment": {
+        "random_token": 841,
+        "mask_token": 6926,
+        "keep_original": 839
+      },
+      "replacement_action_counts_control": {
+        "random_token": 841,
+        "mask_token": 6926,
+        "keep_original": 839
+      },
+      "replacement_action_digest_treatment": "5bd7a6b2108184e2ddc5c318bf55cb38fce99fff9294b3293b1f30fb6680494a",
+      "replacement_action_digest_control": "bb4d8623016b697e17474c859b6901b93ff4c0a24af5288cbbc7c813edafa2a6",
+      "batch_index": 4,
+      "row_start": 1024,
+      "row_end_exclusive": 1280
+    },
+    {
+      "rows": 256,
+      "tokens": 57929,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 39149,
+        "label_events_total": 846,
+        "events_tokenization_usable": 587,
+        "events_selected": 328,
+        "rows_with_label_events": 244,
+        "rows_with_usable_events": 223,
+        "rows_with_selected_events": 184,
+        "desired_group_count_sum": 5872,
+        "treatment_group_count_sum": 5872,
+        "control_group_count_sum": 5872,
+        "treatment_token_count_sum": 8617,
+        "control_token_count_sum": 8617,
+        "target_group_count_sum": 328,
+        "background_group_count_sum": 5216,
+        "anchor_swap_group_count_sum": 328,
+        "label_event_categories": {
+          "physical_change": 239,
+          "temporal": 146,
+          "negation": 189,
+          "comparative": 11,
+          "causal_connector": 144,
+          "spatial": 117
+        },
+        "usable_event_categories": {
+          "physical_change": 158,
+          "temporal": 120,
+          "negation": 74,
+          "comparative": 9,
+          "causal_connector": 124,
+          "spatial": 102
+        },
+        "selected_event_categories": {
+          "negation": 49,
+          "temporal": 64,
+          "comparative": 4,
+          "spatial": 61,
+          "physical_change": 82,
+          "causal_connector": 68
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 79,
+          "anchor_token_length_mismatch": 241,
+          "anchor_token_length_mismatch::negation": 109,
+          "anchor_token_length_mismatch::temporal": 22,
+          "truncated_or_missing::causal_connector": 4,
+          "truncated_or_missing": 18,
+          "anchor_token_length_mismatch::spatial": 13,
+          "anchor_token_length_mismatch::comparative": 2,
+          "anchor_token_length_mismatch::causal_connector": 16,
+          "truncated_or_missing::temporal": 4,
+          "truncated_or_missing::negation": 6,
+          "truncated_or_missing::spatial": 2,
+          "truncated_or_missing::physical_change": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 328,
+          "treatment_total": 328,
+          "control_visible": 0,
+          "control_total": 328
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8617,
+        "replacement_action_counts": {
+          "mask_token": 6921,
+          "keep_original": 876,
+          "random_token": 820
+        },
+        "replacement_action_digest": "9dfe2e7cae6a318d3901155cad83be170c3738b93d9a1d04ed606b340c133917"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 39149,
+        "label_events_total": 846,
+        "events_tokenization_usable": 587,
+        "events_selected": 328,
+        "rows_with_label_events": 244,
+        "rows_with_usable_events": 223,
+        "rows_with_selected_events": 184,
+        "desired_group_count_sum": 5872,
+        "treatment_group_count_sum": 5872,
+        "control_group_count_sum": 5872,
+        "treatment_token_count_sum": 8617,
+        "control_token_count_sum": 8617,
+        "target_group_count_sum": 328,
+        "background_group_count_sum": 5216,
+        "anchor_swap_group_count_sum": 328,
+        "label_event_categories": {
+          "physical_change": 239,
+          "temporal": 146,
+          "negation": 189,
+          "comparative": 11,
+          "causal_connector": 144,
+          "spatial": 117
+        },
+        "usable_event_categories": {
+          "physical_change": 158,
+          "temporal": 120,
+          "negation": 74,
+          "comparative": 9,
+          "causal_connector": 124,
+          "spatial": 102
+        },
+        "selected_event_categories": {
+          "negation": 49,
+          "temporal": 64,
+          "comparative": 4,
+          "spatial": 61,
+          "physical_change": 82,
+          "causal_connector": 68
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 79,
+          "anchor_token_length_mismatch": 241,
+          "anchor_token_length_mismatch::negation": 109,
+          "anchor_token_length_mismatch::temporal": 22,
+          "truncated_or_missing::causal_connector": 4,
+          "truncated_or_missing": 18,
+          "anchor_token_length_mismatch::spatial": 13,
+          "anchor_token_length_mismatch::comparative": 2,
+          "anchor_token_length_mismatch::causal_connector": 16,
+          "truncated_or_missing::temporal": 4,
+          "truncated_or_missing::negation": 6,
+          "truncated_or_missing::spatial": 2,
+          "truncated_or_missing::physical_change": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 328,
+          "treatment_total": 328,
+          "control_visible": 0,
+          "control_total": 328
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8617,
+        "replacement_action_counts": {
+          "mask_token": 6921,
+          "keep_original": 876,
+          "random_token": 820
+        },
+        "replacement_action_digest": "ea8756d961a75b5b4c2a64817fb0ce426e7c43b5cfaa642edb6054c31fa25e42"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 39149,
+        "label_events_total": 846,
+        "events_tokenization_usable": 587,
+        "events_selected": 328,
+        "rows_with_label_events": 244,
+        "rows_with_usable_events": 223,
+        "rows_with_selected_events": 184,
+        "desired_group_count_sum": 5872,
+        "treatment_group_count_sum": 5872,
+        "control_group_count_sum": 5872,
+        "treatment_token_count_sum": 8617,
+        "control_token_count_sum": 8617,
+        "target_group_count_sum": 328,
+        "background_group_count_sum": 5216,
+        "anchor_swap_group_count_sum": 328,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 328,
+          "treatment_total": 328,
+          "control_visible": 0,
+          "control_total": 328
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "negation": {
+          "events_selected": 49,
+          "target_tokens": 73,
+          "anchor_tokens": 55,
+          "rows_with_selected_event": 42
+        },
+        "temporal": {
+          "events_selected": 64,
+          "target_tokens": 104,
+          "anchor_tokens": 64,
+          "rows_with_selected_event": 54
+        },
+        "comparative": {
+          "events_selected": 4,
+          "target_tokens": 5,
+          "anchor_tokens": 4,
+          "rows_with_selected_event": 4
+        },
+        "spatial": {
+          "events_selected": 61,
+          "target_tokens": 102,
+          "anchor_tokens": 63,
+          "rows_with_selected_event": 45
+        },
+        "physical_change": {
+          "events_selected": 82,
+          "target_tokens": 144,
+          "anchor_tokens": 91,
+          "rows_with_selected_event": 66
+        },
+        "causal_connector": {
+          "events_selected": 68,
+          "target_tokens": 98,
+          "anchor_tokens": 68,
+          "rows_with_selected_event": 55
+        }
+      },
+      "selected_rows": 184,
+      "selected_target_groups": 328,
+      "treatment_masked_tokens": 8617,
+      "control_masked_tokens": 8617,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 526,
+      "dependent_target_tokens_control": 526,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 345,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 630,
+      "replacement_action_counts_treatment": {
+        "mask_token": 6921,
+        "keep_original": 876,
+        "random_token": 820
+      },
+      "replacement_action_counts_control": {
+        "mask_token": 6921,
+        "keep_original": 876,
+        "random_token": 820
+      },
+      "replacement_action_digest_treatment": "9dfe2e7cae6a318d3901155cad83be170c3738b93d9a1d04ed606b340c133917",
+      "replacement_action_digest_control": "ea8756d961a75b5b4c2a64817fb0ce426e7c43b5cfaa642edb6054c31fa25e42",
+      "batch_index": 5,
+      "row_start": 1280,
+      "row_end_exclusive": 1536
+    },
+    {
+      "rows": 256,
+      "tokens": 57086,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 39003,
+        "label_events_total": 884,
+        "events_tokenization_usable": 626,
+        "events_selected": 361,
+        "rows_with_label_events": 251,
+        "rows_with_usable_events": 236,
+        "rows_with_selected_events": 207,
+        "desired_group_count_sum": 5849,
+        "treatment_group_count_sum": 5849,
+        "control_group_count_sum": 5849,
+        "treatment_token_count_sum": 8428,
+        "control_token_count_sum": 8428,
+        "target_group_count_sum": 361,
+        "background_group_count_sum": 5127,
+        "anchor_swap_group_count_sum": 361,
+        "label_event_categories": {
+          "physical_change": 269,
+          "causal_connector": 161,
+          "negation": 180,
+          "temporal": 138,
+          "spatial": 123,
+          "comparative": 13
+        },
+        "usable_event_categories": {
+          "physical_change": 159,
+          "causal_connector": 146,
+          "negation": 86,
+          "temporal": 121,
+          "spatial": 107,
+          "comparative": 7
+        },
+        "selected_event_categories": {
+          "physical_change": 98,
+          "causal_connector": 75,
+          "spatial": 55,
+          "temporal": 72,
+          "negation": 56,
+          "comparative": 5
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 105,
+          "anchor_token_length_mismatch": 246,
+          "anchor_token_length_mismatch::causal_connector": 15,
+          "truncated_or_missing::spatial": 2,
+          "truncated_or_missing": 12,
+          "truncated_or_missing::physical_change": 5,
+          "anchor_token_length_mismatch::temporal": 15,
+          "anchor_token_length_mismatch::negation": 91,
+          "truncated_or_missing::negation": 3,
+          "anchor_token_length_mismatch::spatial": 14,
+          "anchor_token_length_mismatch::comparative": 6,
+          "truncated_or_missing::temporal": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 361,
+          "treatment_total": 361,
+          "control_visible": 0,
+          "control_total": 361
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8428,
+        "replacement_action_counts": {
+          "keep_original": 836,
+          "mask_token": 6728,
+          "random_token": 864
+        },
+        "replacement_action_digest": "5576bb3be9d1a36db4fcccd5f47efb0720f9e5421610d200290b31bdcb41cc13"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 39003,
+        "label_events_total": 884,
+        "events_tokenization_usable": 626,
+        "events_selected": 361,
+        "rows_with_label_events": 251,
+        "rows_with_usable_events": 236,
+        "rows_with_selected_events": 207,
+        "desired_group_count_sum": 5849,
+        "treatment_group_count_sum": 5849,
+        "control_group_count_sum": 5849,
+        "treatment_token_count_sum": 8428,
+        "control_token_count_sum": 8428,
+        "target_group_count_sum": 361,
+        "background_group_count_sum": 5127,
+        "anchor_swap_group_count_sum": 361,
+        "label_event_categories": {
+          "physical_change": 269,
+          "causal_connector": 161,
+          "negation": 180,
+          "temporal": 138,
+          "spatial": 123,
+          "comparative": 13
+        },
+        "usable_event_categories": {
+          "physical_change": 159,
+          "causal_connector": 146,
+          "negation": 86,
+          "temporal": 121,
+          "spatial": 107,
+          "comparative": 7
+        },
+        "selected_event_categories": {
+          "physical_change": 98,
+          "causal_connector": 75,
+          "spatial": 55,
+          "temporal": 72,
+          "negation": 56,
+          "comparative": 5
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 105,
+          "anchor_token_length_mismatch": 246,
+          "anchor_token_length_mismatch::causal_connector": 15,
+          "truncated_or_missing::spatial": 2,
+          "truncated_or_missing": 12,
+          "truncated_or_missing::physical_change": 5,
+          "anchor_token_length_mismatch::temporal": 15,
+          "anchor_token_length_mismatch::negation": 91,
+          "truncated_or_missing::negation": 3,
+          "anchor_token_length_mismatch::spatial": 14,
+          "anchor_token_length_mismatch::comparative": 6,
+          "truncated_or_missing::temporal": 2
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 361,
+          "treatment_total": 361,
+          "control_visible": 0,
+          "control_total": 361
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8428,
+        "replacement_action_counts": {
+          "keep_original": 836,
+          "mask_token": 6728,
+          "random_token": 864
+        },
+        "replacement_action_digest": "aa50793e45c35967556ed10cef739207bda3b4b90936d48b207e05088ce6930c"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 39003,
+        "label_events_total": 884,
+        "events_tokenization_usable": 626,
+        "events_selected": 361,
+        "rows_with_label_events": 251,
+        "rows_with_usable_events": 236,
+        "rows_with_selected_events": 207,
+        "desired_group_count_sum": 5849,
+        "treatment_group_count_sum": 5849,
+        "control_group_count_sum": 5849,
+        "treatment_token_count_sum": 8428,
+        "control_token_count_sum": 8428,
+        "target_group_count_sum": 361,
+        "background_group_count_sum": 5127,
+        "anchor_swap_group_count_sum": 361,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 361,
+          "treatment_total": 361,
+          "control_visible": 0,
+          "control_total": 361
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "physical_change": {
+          "events_selected": 98,
+          "target_tokens": 158,
+          "anchor_tokens": 107,
+          "rows_with_selected_event": 79
+        },
+        "causal_connector": {
+          "events_selected": 75,
+          "target_tokens": 104,
+          "anchor_tokens": 76,
+          "rows_with_selected_event": 66
+        },
+        "spatial": {
+          "events_selected": 55,
+          "target_tokens": 115,
+          "anchor_tokens": 55,
+          "rows_with_selected_event": 47
+        },
+        "temporal": {
+          "events_selected": 72,
+          "target_tokens": 113,
+          "anchor_tokens": 72,
+          "rows_with_selected_event": 65
+        },
+        "negation": {
+          "events_selected": 56,
+          "target_tokens": 78,
+          "anchor_tokens": 61,
+          "rows_with_selected_event": 48
+        },
+        "comparative": {
+          "events_selected": 5,
+          "target_tokens": 6,
+          "anchor_tokens": 5,
+          "rows_with_selected_event": 5
+        }
+      },
+      "selected_rows": 207,
+      "selected_target_groups": 361,
+      "treatment_masked_tokens": 8428,
+      "control_masked_tokens": 8428,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 574,
+      "dependent_target_tokens_control": 574,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 376,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 700,
+      "replacement_action_counts_treatment": {
+        "keep_original": 836,
+        "mask_token": 6728,
+        "random_token": 864
+      },
+      "replacement_action_counts_control": {
+        "keep_original": 836,
+        "mask_token": 6728,
+        "random_token": 864
+      },
+      "replacement_action_digest_treatment": "5576bb3be9d1a36db4fcccd5f47efb0720f9e5421610d200290b31bdcb41cc13",
+      "replacement_action_digest_control": "aa50793e45c35967556ed10cef739207bda3b4b90936d48b207e05088ce6930c",
+      "batch_index": 6,
+      "row_start": 1536,
+      "row_end_exclusive": 1792
+    },
+    {
+      "rows": 256,
+      "tokens": 56979,
+      "stats_treatment": {
+        "rows": 256,
+        "valid_groups": 38831,
+        "label_events_total": 831,
+        "events_tokenization_usable": 608,
+        "events_selected": 373,
+        "rows_with_label_events": 246,
+        "rows_with_usable_events": 231,
+        "rows_with_selected_events": 200,
+        "desired_group_count_sum": 5825,
+        "treatment_group_count_sum": 5825,
+        "control_group_count_sum": 5825,
+        "treatment_token_count_sum": 8481,
+        "control_token_count_sum": 8481,
+        "target_group_count_sum": 373,
+        "background_group_count_sum": 5079,
+        "anchor_swap_group_count_sum": 373,
+        "label_event_categories": {
+          "physical_change": 233,
+          "spatial": 145,
+          "temporal": 131,
+          "comparative": 13,
+          "causal_connector": 142,
+          "negation": 167
+        },
+        "usable_event_categories": {
+          "spatial": 132,
+          "temporal": 121,
+          "comparative": 6,
+          "causal_connector": 123,
+          "negation": 82,
+          "physical_change": 144
+        },
+        "selected_event_categories": {
+          "spatial": 82,
+          "temporal": 78,
+          "negation": 48,
+          "causal_connector": 74,
+          "physical_change": 89,
+          "comparative": 2
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 84,
+          "anchor_token_length_mismatch": 204,
+          "anchor_token_length_mismatch::spatial": 10,
+          "anchor_token_length_mismatch::negation": 80,
+          "anchor_token_length_mismatch::causal_connector": 14,
+          "anchor_token_length_mismatch::temporal": 9,
+          "anchor_token_length_mismatch::comparative": 7,
+          "truncated_or_missing::physical_change": 5,
+          "truncated_or_missing": 19,
+          "truncated_or_missing::negation": 5,
+          "truncated_or_missing::temporal": 1,
+          "truncated_or_missing::causal_connector": 5,
+          "truncated_or_missing::spatial": 3
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 373,
+          "treatment_total": 373,
+          "control_visible": 0,
+          "control_total": 373
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "treatment",
+        "selected_tokens": 8481,
+        "replacement_action_counts": {
+          "mask_token": 6763,
+          "keep_original": 872,
+          "random_token": 846
+        },
+        "replacement_action_digest": "b7b33571ee8d8a3540e82f5d8ddbb296b80b46e40f242978f2142a36885c578e"
+      },
+      "stats_control": {
+        "rows": 256,
+        "valid_groups": 38831,
+        "label_events_total": 831,
+        "events_tokenization_usable": 608,
+        "events_selected": 373,
+        "rows_with_label_events": 246,
+        "rows_with_usable_events": 231,
+        "rows_with_selected_events": 200,
+        "desired_group_count_sum": 5825,
+        "treatment_group_count_sum": 5825,
+        "control_group_count_sum": 5825,
+        "treatment_token_count_sum": 8481,
+        "control_token_count_sum": 8481,
+        "target_group_count_sum": 373,
+        "background_group_count_sum": 5079,
+        "anchor_swap_group_count_sum": 373,
+        "label_event_categories": {
+          "physical_change": 233,
+          "spatial": 145,
+          "temporal": 131,
+          "comparative": 13,
+          "causal_connector": 142,
+          "negation": 167
+        },
+        "usable_event_categories": {
+          "spatial": 132,
+          "temporal": 121,
+          "comparative": 6,
+          "causal_connector": 123,
+          "negation": 82,
+          "physical_change": 144
+        },
+        "selected_event_categories": {
+          "spatial": 82,
+          "temporal": 78,
+          "negation": 48,
+          "causal_connector": 74,
+          "physical_change": 89,
+          "comparative": 2
+        },
+        "reject_reasons": {
+          "anchor_token_length_mismatch::physical_change": 84,
+          "anchor_token_length_mismatch": 204,
+          "anchor_token_length_mismatch::spatial": 10,
+          "anchor_token_length_mismatch::negation": 80,
+          "anchor_token_length_mismatch::causal_connector": 14,
+          "anchor_token_length_mismatch::temporal": 9,
+          "anchor_token_length_mismatch::comparative": 7,
+          "truncated_or_missing::physical_change": 5,
+          "truncated_or_missing": 19,
+          "truncated_or_missing::negation": 5,
+          "truncated_or_missing::temporal": 1,
+          "truncated_or_missing::causal_connector": 5,
+          "truncated_or_missing::spatial": 3
+        },
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 373,
+          "treatment_total": 373,
+          "control_visible": 0,
+          "control_total": 373
+        },
+        "rows_forced_above_desired_k": 0,
+        "arm": "control",
+        "selected_tokens": 8481,
+        "replacement_action_counts": {
+          "mask_token": 6763,
+          "keep_original": 872,
+          "random_token": 846
+        },
+        "replacement_action_digest": "305a5b97cabff42a947ba392566e6f80201342f5c83700288347c915ff174b36"
+      },
+      "pair_stats_selected": {
+        "rows": 256,
+        "valid_groups": 38831,
+        "label_events_total": 831,
+        "events_tokenization_usable": 608,
+        "events_selected": 373,
+        "rows_with_label_events": 246,
+        "rows_with_usable_events": 231,
+        "rows_with_selected_events": 200,
+        "desired_group_count_sum": 5825,
+        "treatment_group_count_sum": 5825,
+        "control_group_count_sum": 5825,
+        "treatment_token_count_sum": 8481,
+        "control_token_count_sum": 8481,
+        "target_group_count_sum": 373,
+        "background_group_count_sum": 5079,
+        "anchor_swap_group_count_sum": 373,
+        "pivot_visible_at_selected_target": {
+          "treatment_visible": 373,
+          "treatment_total": 373,
+          "control_visible": 0,
+          "control_total": 373
+        },
+        "rows_forced_above_desired_k": 0
+      },
+      "pair_category_counts": {
+        "spatial": {
+          "events_selected": 82,
+          "target_tokens": 135,
+          "anchor_tokens": 82,
+          "rows_with_selected_event": 61
+        },
+        "temporal": {
+          "events_selected": 78,
+          "target_tokens": 114,
+          "anchor_tokens": 78,
+          "rows_with_selected_event": 65
+        },
+        "negation": {
+          "events_selected": 48,
+          "target_tokens": 66,
+          "anchor_tokens": 56,
+          "rows_with_selected_event": 42
+        },
+        "causal_connector": {
+          "events_selected": 74,
+          "target_tokens": 107,
+          "anchor_tokens": 76,
+          "rows_with_selected_event": 56
+        },
+        "physical_change": {
+          "events_selected": 89,
+          "target_tokens": 148,
+          "anchor_tokens": 95,
+          "rows_with_selected_event": 68
+        },
+        "comparative": {
+          "events_selected": 2,
+          "target_tokens": 2,
+          "anchor_tokens": 2,
+          "rows_with_selected_event": 2
+        }
+      },
+      "selected_rows": 200,
+      "selected_target_groups": 373,
+      "treatment_masked_tokens": 8481,
+      "control_masked_tokens": 8481,
+      "masked_token_count_row_diff_abs_sum": 0,
+      "masked_token_count_row_diff_max_abs": 0,
+      "dependent_target_tokens_treatment": 572,
+      "dependent_target_tokens_control": 572,
+      "dependent_target_label_or_replacement_mismatches": 0,
+      "dependent_target_original_id_mismatches": 0,
+      "background_label_or_replacement_mismatches": 0,
+      "anchor_swap_action_mismatches": 0,
+      "true_pivot_visible_token_count_treatment": 389,
+      "true_pivot_visible_token_count_control": 0,
+      "masked_input_difference_tokens_between_arms": 702,
+      "replacement_action_counts_treatment": {
+        "mask_token": 6763,
+        "keep_original": 872,
+        "random_token": 846
+      },
+      "replacement_action_counts_control": {
+        "mask_token": 6763,
+        "keep_original": 872,
+        "random_token": 846
+      },
+      "replacement_action_digest_treatment": "b7b33571ee8d8a3540e82f5d8ddbb296b80b46e40f242978f2142a36885c578e",
+      "replacement_action_digest_control": "305a5b97cabff42a947ba392566e6f80201342f5c83700288347c915ff174b36",
+      "batch_index": 7,
+      "row_start": 1792,
+      "row_end_exclusive": 2048
+    }
+  ],
+  "legacy_k0_import_smoke": {
+    "rows": 256,
+    "masked_tokens": 8558,
+    "effective_mask_rate": 0.14827006704897866,
+    "changed_input_tokens": 7655
+  },
+  "pass_conditions": {
+    "dependent_targets_identical": true,
+    "masked_mass_equal_per_row": true,
+    "background_replacement_identical": true,
+    "anchor_swap_replacement_actions_matched": true,
+    "treatment_has_material_pivot_visibility_contrast": true,
+    "categories_present": true,
+    "legacy_wwm_callable": true
+  },
+  "runtime_sec": 53.29,
+  "ready_for_80m_two_arm_launch": true
+}

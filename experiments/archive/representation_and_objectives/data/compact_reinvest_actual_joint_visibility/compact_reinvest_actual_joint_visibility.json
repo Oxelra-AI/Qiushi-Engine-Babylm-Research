@@ -1,0 +1,380 @@
+{
+  "status": "COMPACT_REINVEST_ACTUAL_JOINT_VISIBILITY",
+  "scientific_purpose": "Measure whether packed source+compact rewrite units are jointly visible under the actual seq256 trainer interface.",
+  "tokenizer": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+  "seq_len": 256,
+  "special_overhead_samples": {
+    "empty": 2,
+    "hello": 2,
+    "two_words": 2
+  },
+  "cutoff_no_special_assuming_single_sequence": 254,
+  "inputs": {
+    "pairs": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "pool": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "row_meta": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl",
+    "overlay_metadata": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json"
+  },
+  "row_reconstruction": {
+    "changed_rows": 3006,
+    "nonpair_rows": 1,
+    "pair_rows": 3005,
+    "exact_string_reconstruction_rows": 3005,
+    "word_count_reconstruction_rows": 3005
+  },
+  "visibility_summary": {
+    "total_pair_occurrences": 12155,
+    "unique_pairs": 12155,
+    "source_visible_pairs": 12137,
+    "full_source_plus_rewrite_visible_pairs": 12061,
+    "partial_visible_pairs": 91,
+    "hidden_pairs": 3,
+    "source_visible_rate": 0.9985191279308926,
+    "full_pair_visible_rate": 0.9922665569724394,
+    "partial_visible_rate": 0.0074866310160427805,
+    "hidden_rate": 0.00024681201151789385,
+    "rows_over_seq256_with_special": 91,
+    "truncated_rows_with_pair_loss": 91
+  },
+  "row_stats": {
+    "pairs_per_row": {
+      "n": 3006,
+      "min": 0.0,
+      "p05": 3.0,
+      "p25": 3.0,
+      "mean": 4.043579507651364,
+      "median": 4.0,
+      "p75": 5.0,
+      "p95": 5.0,
+      "max": 7.0,
+      "sum": 12155.0
+    },
+    "row_tokens_with_special": {
+      "n": 3006,
+      "min": 13.0,
+      "p05": 165.0,
+      "p25": 190.0,
+      "mean": 208.1377245508982,
+      "median": 209.0,
+      "p75": 226.0,
+      "p95": 250.0,
+      "max": 330.0,
+      "sum": 625662.0
+    },
+    "full_visible_pairs_per_pair_row": {
+      "n": 3005,
+      "min": 1.0,
+      "p05": 3.0,
+      "p25": 3.0,
+      "mean": 4.013643926788686,
+      "median": 4.0,
+      "p75": 5.0,
+      "p95": 5.0,
+      "max": 7.0,
+      "sum": 12061.0
+    },
+    "lost_pairs_per_row": {
+      "n": 3005,
+      "min": 0.0,
+      "p05": 0.0,
+      "p25": 0.0,
+      "mean": 0.031281198003327786,
+      "median": 0.0,
+      "p75": 0.0,
+      "p95": 0.0,
+      "max": 2.0,
+      "sum": 94.0
+    }
+  },
+  "pair_position_loss_counts": {
+    "3": 46,
+    "4": 29,
+    "2": 17,
+    "1": 1,
+    "5": 1
+  },
+  "domain_visibility": {
+    "science_physical": {
+      "pairs": 1589,
+      "full_visible": 1582,
+      "partial_visible": 6,
+      "hidden": 1,
+      "full_visible_rate": 0.9955947136563876
+    },
+    "no_domain": {
+      "pairs": 6975,
+      "full_visible": 6918,
+      "partial_visible": 55,
+      "hidden": 2,
+      "full_visible_rate": 0.9918279569892473
+    },
+    "causal_relational": {
+      "pairs": 1537,
+      "full_visible": 1523,
+      "partial_visible": 14,
+      "hidden": 0,
+      "full_visible_rate": 0.9908913467794405
+    },
+    "quant_numeric": {
+      "pairs": 974,
+      "full_visible": 968,
+      "partial_visible": 6,
+      "hidden": 0,
+      "full_visible_rate": 0.9938398357289527
+    },
+    "geography_places": {
+      "pairs": 772,
+      "full_visible": 766,
+      "partial_visible": 6,
+      "hidden": 0,
+      "full_visible_rate": 0.9922279792746114
+    },
+    "institutions_society": {
+      "pairs": 862,
+      "full_visible": 859,
+      "partial_visible": 3,
+      "hidden": 0,
+      "full_visible_rate": 0.9965197215777262
+    },
+    "people_history": {
+      "pairs": 358,
+      "full_visible": 354,
+      "partial_visible": 4,
+      "hidden": 0,
+      "full_visible_rate": 0.9888268156424581
+    },
+    "media_culture": {
+      "pairs": 370,
+      "full_visible": 368,
+      "partial_visible": 2,
+      "hidden": 0,
+      "full_visible_rate": 0.9945945945945946
+    }
+  },
+  "non_full_visible_examples": [
+    {
+      "row_index": 35,
+      "pair_position_in_row": 4,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_010434",
+      "domain_hits": [
+        "institutions_society"
+      ],
+      "source_words": 22,
+      "rewrite_words": 15,
+      "content_recall": 0.5333333333333333,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 198,
+      "source_end_tok_no_special": 235,
+      "pair_end_tok_no_special": 261,
+      "pair_tok_len_no_special_in_row_context": 63,
+      "visible_tokens_inside_pair_no_special": 56,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 141,
+      "pair_position_in_row": 2,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_053815",
+      "domain_hits": [
+        "no_domain"
+      ],
+      "source_words": 20,
+      "rewrite_words": 17,
+      "content_recall": 0.7777777777777778,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 204,
+      "source_end_tok_no_special": 235,
+      "pair_end_tok_no_special": 263,
+      "pair_tok_len_no_special_in_row_context": 59,
+      "visible_tokens_inside_pair_no_special": 50,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 199,
+      "pair_position_in_row": 3,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_012941",
+      "domain_hits": [
+        "no_domain"
+      ],
+      "source_words": 31,
+      "rewrite_words": 18,
+      "content_recall": 0.5882352941176471,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 164,
+      "source_end_tok_no_special": 217,
+      "pair_end_tok_no_special": 257,
+      "pair_tok_len_no_special_in_row_context": 93,
+      "visible_tokens_inside_pair_no_special": 90,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 201,
+      "pair_position_in_row": 3,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_048618",
+      "domain_hits": [
+        "no_domain"
+      ],
+      "source_words": 11,
+      "rewrite_words": 6,
+      "content_recall": 0.6,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 232,
+      "source_end_tok_no_special": 252,
+      "pair_end_tok_no_special": 268,
+      "pair_tok_len_no_special_in_row_context": 36,
+      "visible_tokens_inside_pair_no_special": 22,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 201,
+      "pair_position_in_row": 4,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_061266",
+      "domain_hits": [
+        "no_domain"
+      ],
+      "source_words": 13,
+      "rewrite_words": 8,
+      "content_recall": 0.6666666666666666,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 268,
+      "source_end_tok_no_special": 282,
+      "pair_end_tok_no_special": 292,
+      "pair_tok_len_no_special_in_row_context": 24,
+      "visible_tokens_inside_pair_no_special": 0,
+      "source_visible_under_seq256": false,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": false
+    },
+    {
+      "row_index": 216,
+      "pair_position_in_row": 4,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_050034",
+      "domain_hits": [
+        "people_history"
+      ],
+      "source_words": 24,
+      "rewrite_words": 14,
+      "content_recall": 0.6153846153846154,
+      "entity_recall": 0.75,
+      "number_recall": 1.0,
+      "start_tok_no_special": 211,
+      "source_end_tok_no_special": 242,
+      "pair_end_tok_no_special": 261,
+      "pair_tok_len_no_special_in_row_context": 50,
+      "visible_tokens_inside_pair_no_special": 43,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 218,
+      "pair_position_in_row": 2,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_006871",
+      "domain_hits": [
+        "no_domain"
+      ],
+      "source_words": 35,
+      "rewrite_words": 20,
+      "content_recall": 0.6818181818181818,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 125,
+      "source_end_tok_no_special": 203,
+      "pair_end_tok_no_special": 260,
+      "pair_tok_len_no_special_in_row_context": 135,
+      "visible_tokens_inside_pair_no_special": 129,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 287,
+      "pair_position_in_row": 3,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_059304",
+      "domain_hits": [
+        "no_domain"
+      ],
+      "source_words": 14,
+      "rewrite_words": 10,
+      "content_recall": 0.75,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 232,
+      "source_end_tok_no_special": 254,
+      "pair_end_tok_no_special": 270,
+      "pair_tok_len_no_special_in_row_context": 38,
+      "visible_tokens_inside_pair_no_special": 22,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 362,
+      "pair_position_in_row": 4,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_040767",
+      "domain_hits": [
+        "causal_relational"
+      ],
+      "source_words": 23,
+      "rewrite_words": 14,
+      "content_recall": 0.45454545454545453,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 224,
+      "source_end_tok_no_special": 252,
+      "pair_end_tok_no_special": 267,
+      "pair_tok_len_no_special_in_row_context": 43,
+      "visible_tokens_inside_pair_no_special": 30,
+      "source_visible_under_seq256": true,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    },
+    {
+      "row_index": 385,
+      "pair_position_in_row": 3,
+      "pair_id": "compact:frontier_consolidation_fwcompact_medium_000633",
+      "domain_hits": [
+        "quant_numeric"
+      ],
+      "source_words": 13,
+      "rewrite_words": 10,
+      "content_recall": 0.8571428571428571,
+      "entity_recall": 1.0,
+      "number_recall": 1.0,
+      "start_tok_no_special": 235,
+      "source_end_tok_no_special": 255,
+      "pair_end_tok_no_special": 272,
+      "pair_tok_len_no_special_in_row_context": 37,
+      "visible_tokens_inside_pair_no_special": 19,
+      "source_visible_under_seq256": false,
+      "rewrite_visible_under_seq256": false,
+      "pair_full_visible_under_seq256": false,
+      "pair_partial_visible_under_seq256": true
+    }
+  ],
+  "scientific_reading": {
+    "main": "The compact-view reinvest changed block is interpretable as adjacent two-view learning only to the extent that source and rewrite survive in the same seq256 example; high full visibility supports the mechanism, while systematic last-pair loss would require caution.",
+    "downstream_dependency": "This remains a trainer-interface audit, not a BabyLM score; the running full and seed evaluations decide whether the visible signal improves official-compatible behavior."
+  }
+}

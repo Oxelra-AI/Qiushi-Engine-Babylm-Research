@@ -1,0 +1,162 @@
+{
+  "status": "FW_70M_MARGIN_SYNTHESIS_DONE",
+  "input_margin_jsons": {
+    "compact_view_70M": "experiments/archive/representation_and_objectives/data/fw_70m_globalpiqa_margin_reader/a02_fw_compact_70M_seed43022_margins.json",
+    "source_breadth_rowblock_70M": "experiments/archive/representation_and_objectives/data/fw_70m_globalpiqa_margin_reader/a02_fw_breadth_rowblock_70M_seed43022_margins.json"
+  },
+  "row_overlap_json": "experiments/archive/representation_and_objectives/data/fw_70m_globalpiqa_row_overlap/fw_70m_globalpiqa_row_overlap.json",
+  "implementation_repair": "The first margin wrapper used the local hf_model parent plus revision=chck_70M, but that parent also contains final weights. The repaired wrapper points model_root directly to hf_model/chck_70M with revision=main; the final margin summaries reproduce the official 70M parallel score of 26.2136 for both arms.",
+  "arm_summaries": [
+    {
+      "arm": "compact_view_70M",
+      "official_reproduced_parallel_accuracy": 26.21359223300971,
+      "all_rank1": 27,
+      "all_rank2": 26,
+      "all_rank3": 24,
+      "all_rank4": 26,
+      "all_mean_top_minus_correct": 1.0356364750470393,
+      "all_median_top_minus_correct": 0.6736047051169656,
+      "all_small_wrong_le_0p25": 7,
+      "all_small_wrong_le_0p50": 16,
+      "hard52_accuracy": 3.8461538461538463,
+      "hard52_rank1": 2,
+      "hard52_rank2": 12,
+      "hard52_rank3": 17,
+      "hard52_rank4": 21,
+      "hard52_mean_top_minus_correct": 1.7031002964455157,
+      "hard52_median_top_minus_correct": 1.4675402641296387,
+      "hard52_small_wrong_le_0p25": 1,
+      "hard52_small_wrong_le_0p50": 6,
+      "model_root": "experiments/archive/frontier_consolidation/training/runs/fw_compact_view_shared16k_seed43022/hf_model/chck_70M",
+      "revision": "main"
+    },
+    {
+      "arm": "source_breadth_rowblock_70M",
+      "official_reproduced_parallel_accuracy": 26.21359223300971,
+      "all_rank1": 27,
+      "all_rank2": 27,
+      "all_rank3": 33,
+      "all_rank4": 16,
+      "all_mean_top_minus_correct": 0.9190464588224496,
+      "all_median_top_minus_correct": 0.5545846939086916,
+      "all_small_wrong_le_0p25": 8,
+      "all_small_wrong_le_0p50": 20,
+      "hard52_accuracy": 1.9230769230769231,
+      "hard52_rank1": 1,
+      "hard52_rank2": 15,
+      "hard52_rank3": 25,
+      "hard52_rank4": 11,
+      "hard52_mean_top_minus_correct": 1.4763328583714115,
+      "hard52_median_top_minus_correct": 1.2441237767537432,
+      "hard52_small_wrong_le_0p25": 2,
+      "hard52_small_wrong_le_0p50": 9,
+      "model_root": "experiments/archive/frontier_consolidation/training/runs/fw_source_breadth_shared16k_seed43022/hf_model/chck_70M",
+      "revision": "main"
+    }
+  ],
+  "subset_deltas": [
+    {
+      "subset": "all103",
+      "n": 103,
+      "compact_correct": 27,
+      "breadth_correct": 27,
+      "breadth_minus_compact_correct": 0,
+      "breadth_better_rank_rows": 32,
+      "same_rank_rows": 49,
+      "breadth_worse_rank_rows": 22,
+      "breadth_lower_margin_rows": 48,
+      "breadth_higher_margin_rows": 37,
+      "mean_margin_delta_breadth_minus_compact": -0.11659001622458964,
+      "median_margin_delta_breadth_minus_compact": 0.0
+    },
+    {
+      "subset": "hard52",
+      "n": 52,
+      "compact_correct": 2,
+      "breadth_correct": 1,
+      "breadth_minus_compact_correct": -1,
+      "breadth_better_rank_rows": 18,
+      "same_rank_rows": 24,
+      "breadth_worse_rank_rows": 10,
+      "breadth_lower_margin_rows": 30,
+      "breadth_higher_margin_rows": 22,
+      "mean_margin_delta_breadth_minus_compact": -0.22676743807410427,
+      "median_margin_delta_breadth_minus_compact": -0.08646800177437919
+    },
+    {
+      "subset": "other51",
+      "n": 51,
+      "compact_correct": 25,
+      "breadth_correct": 26,
+      "breadth_minus_compact_correct": 1,
+      "breadth_better_rank_rows": 14,
+      "same_rank_rows": 25,
+      "breadth_worse_rank_rows": 12,
+      "breadth_lower_margin_rows": 18,
+      "breadth_higher_margin_rows": 15,
+      "mean_margin_delta_breadth_minus_compact": -0.004252252770182588,
+      "median_margin_delta_breadth_minus_compact": 0.0
+    }
+  ],
+  "historical_hard_margin_reference": [
+    {
+      "source": "previous_endpoint",
+      "target": "legal40k8x480_43022",
+      "parallel_accuracy": "22.33009708737864",
+      "hard52_mean_top_minus_correct": "1.953398905689513",
+      "hard52_rank2": "11",
+      "hard52_rank3": "18",
+      "hard52_rank4": "23"
+    },
+    {
+      "source": "previous_endpoint",
+      "target": "legal16k8x480_43022",
+      "parallel_accuracy": "26.21359223300971",
+      "hard52_mean_top_minus_correct": "1.7828714988464314",
+      "hard52_rank2": "10",
+      "hard52_rank3": "20",
+      "hard52_rank4": "22"
+    },
+    {
+      "source": "previous_endpoint",
+      "target": "depth12x384_43022",
+      "parallel_accuracy": "24.271844660194176",
+      "hard52_mean_top_minus_correct": "1.858921292610368",
+      "hard52_rank2": "13",
+      "hard52_rank3": "18",
+      "hard52_rank4": "21"
+    },
+    {
+      "source": "previous_endpoint",
+      "target": "inherited16k_noncompliant_43022",
+      "parallel_accuracy": "25.24271844660194",
+      "hard52_mean_top_minus_correct": "1.8377760893575519",
+      "hard52_rank2": "10",
+      "hard52_rank3": "24",
+      "hard52_rank4": "18"
+    },
+    {
+      "source": "A02_70M",
+      "target": "compact_view_70M",
+      "parallel_accuracy": 26.21359223300971,
+      "hard52_mean_top_minus_correct": 1.7031002964455157,
+      "hard52_rank2": 12,
+      "hard52_rank3": 17,
+      "hard52_rank4": 21
+    },
+    {
+      "source": "A02_70M",
+      "target": "source_breadth_rowblock_70M",
+      "parallel_accuracy": 26.21359223300971,
+      "hard52_mean_top_minus_correct": 1.4763328583714115,
+      "hard52_rank2": 15,
+      "hard52_rank3": 25,
+      "hard52_rank4": 11
+    }
+  ],
+  "scientific_reading": {
+    "accuracy": "At 70M, compact and row-block breadth tie on official GlobalPIQA_parallel accuracy at 26.21; on the research 52-row prior hard set compact gets 2/52 and breadth gets 1/52.",
+    "rank_and_margin": "Despite no accuracy gain, breadth shifts some hard-row probability mass toward the correct option: hard52 mean top-minus-correct drops from compact 1.703 to breadth 1.476 nats, hard52 rank4 count drops 21 to 11, and hard52 <=0.50-nat near rows rise 6 to 9. This is still far from solving the parallel weakness because only one hard row is correct.",
+    "overall_vector": "Row-block breadth's softer hard-row margins coexist with worse 70M cheap7, especially Entity and nonparallel GlobalPIQA. The signal is mechanistically interesting but too weak to support an expensive GlobalPIQA-specialized training route by itself."
+  }
+}

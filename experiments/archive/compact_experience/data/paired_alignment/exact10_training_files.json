@@ -1,0 +1,30 @@
+{
+  "status": "EXACT_10EPOCH_TRAINING_FILES_DONE",
+  "note": "Exact 10-pass training files for the existing 9,999,840-word paired pools. These fix the literal epoch issue without changing the pool text.",
+  "arms": [
+    {
+      "arm": "aligned",
+      "pool_path": "experiments/archive/compact_experience/data/paired_alignment/aligned_pool.jsonl",
+      "pool_words": 9999840,
+      "target_exposure": 99998400,
+      "expanded_path": "experiments/archive/compact_experience/data/paired_alignment/training_exact10/aligned_exact10_99998400.jsonl",
+      "rows": 624990,
+      "words": 99998400,
+      "run_name": "aligned_exact10_99998400_seed43",
+      "output_dir": "experiments/archive/compact_experience/training/runs/aligned_exact10_99998400_seed43",
+      "command": "CUDA_VISIBLE_DEVICES=0 TMPDIR=/tmp/q_compact_experience_exact10 python experiments/archive/initial_model_studies/training/scripts/babylm_masked_train_fullcycle.py --tokenizer_path experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model --example_jsonl experiments/archive/compact_experience/data/paired_alignment/training_exact10/aligned_exact10_99998400.jsonl --example_jsonl_label aligned_exact10 --max_word_exposure 99998400 --output_dir experiments/archive/compact_experience/training/runs/aligned_exact10_99998400_seed43 --model_type deberta_v2 --n_layer 8 --hidden_size 480 --n_head 8 --ffn_mult 4 --max_seq_length 256 --seq_length 256 --batch_size 256 --learning_rate 1e-3 --weight_decay 0.01 --warmup_fraction 0.05 --seed 43 --mask_prob 0.15 --mask_mode wwm --num_workers 0 --checkpoint_words 10000000 --log_every 50"
+    },
+    {
+      "arm": "mismatched",
+      "pool_path": "experiments/archive/compact_experience/data/paired_alignment/mismatched_pool.jsonl",
+      "pool_words": 9999840,
+      "target_exposure": 99998400,
+      "expanded_path": "experiments/archive/compact_experience/data/paired_alignment/training_exact10/mismatched_exact10_99998400.jsonl",
+      "rows": 624990,
+      "words": 99998400,
+      "run_name": "mismatched_exact10_99998400_seed43",
+      "output_dir": "experiments/archive/compact_experience/training/runs/mismatched_exact10_99998400_seed43",
+      "command": "CUDA_VISIBLE_DEVICES=0 TMPDIR=/tmp/q_compact_experience_exact10 python experiments/archive/initial_model_studies/training/scripts/babylm_masked_train_fullcycle.py --tokenizer_path experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model --example_jsonl experiments/archive/compact_experience/data/paired_alignment/training_exact10/mismatched_exact10_99998400.jsonl --example_jsonl_label mismatched_exact10 --max_word_exposure 99998400 --output_dir experiments/archive/compact_experience/training/runs/mismatched_exact10_99998400_seed43 --model_type deberta_v2 --n_layer 8 --hidden_size 480 --n_head 8 --ffn_mult 4 --max_seq_length 256 --seq_length 256 --batch_size 256 --learning_rate 1e-3 --weight_decay 0.01 --warmup_fraction 0.05 --seed 43 --mask_prob 0.15 --mask_mode wwm --num_workers 0 --checkpoint_words 10000000 --log_every 50"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "screen_name": "cs_4m_matched_content",
+  "pool_total_words": 10000000,
+  "pool_total_rows": 62500,
+  "arms": [
+    "R-a",
+    "R-b",
+    "C-high",
+    "C-control",
+    "S-high"
+  ],
+  "words_per_arm": 4000000,
+  "source_matching": "proportional to official corpus",
+  "source_quotas": {
+    "bnc_spoken.train.txt": 1905,
+    "childes.train.txt": 7103,
+    "gutenberg.train.txt": 6394,
+    "open_subtitles.train.txt": 5707,
+    "simple_wiki.train.txt": 3829,
+    "switchboard.train.txt": 62
+  },
+  "overlap": {
+    "c_high_s_high": {
+      "shared_ids": 17408,
+      "fraction_of_c_high": 0.6963,
+      "fraction_of_s_high": 0.6963
+    },
+    "c_high_c_control": {
+      "shared_ids": 0,
+      "note": "should be 0 by construction"
+    },
+    "r_a_r_b": {
+      "shared_ids": 9930,
+      "fraction_of_r_a": 0.3972
+    }
+  },
+  "global_unigram_freq_p50": 131.0,
+  "global_unigram_freq_p95": 1830.3,
+  "scoring_notes": "spacy en_core_web_sm for C-score, baseline16k tokenizer for S-score",
+  "pool_construction": "iter_examples(TRAIN_FILES, max_words=10000000, words_per_example=160)",
+  "trainer_interface": "--example_jsonl <arm>.jsonl --max_word_exposure 4000000",
+  "timestamp_utc": "2026-08-24T03:29:50+00:00",
+  "elapsed_sec": 999.0,
+  "validation_errors": [
+    "WARNING: C-high/S-high overlap 69.6% > 60%"
+  ],
+  "validation_passed": false
+}

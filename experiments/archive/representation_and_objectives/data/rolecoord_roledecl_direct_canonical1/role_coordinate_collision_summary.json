@@ -1,0 +1,1022 @@
+{
+  "status": "ROLE_COORDINATE_COLLISION",
+  "created": "2026-09-04T10:58:57Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/rolecoord_roledecl_direct_canonical1",
+    "arms": "roledecl_direct",
+    "n_seeds": 1,
+    "seed_base": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "roledecl_direct": {
+      "arm_name": "roledecl_direct",
+      "ctx_mode": "roledecl",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=roledecl|q=direct_tag": 2560,
+          "base_stable_train|ctx=roledecl|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=roledecl|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=roledecl|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "roledecl_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "roledecl_direct_heldChanged_heldStable_direct_tag_roleSwap_heldHyp": 1280,
+        "roledecl_direct_heldChanged_heldStable_role_exact_heldHyp": 1280,
+        "roledecl_direct_heldChanged_heldStable_role_exact_roleSwap_heldHyp": 1280,
+        "roledecl_direct_heldChanged_heldStable_role_sem_heldHyp": 1280,
+        "roledecl_direct_heldChanged_heldStable_role_sem_roleSwap_heldHyp": 1280,
+        "roledecl_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "roledecl_direct_heldStable_heldStable_role_exact_heldHyp": 1280,
+        "roledecl_direct_heldStable_heldStable_role_sem_heldHyp": 1280,
+        "roledecl_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280,
+        "roledecl_direct_trainChanged_heldStable_role_exact_heldHyp": 1280,
+        "roledecl_direct_trainChanged_heldStable_role_sem_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    }
+  },
+  "token_audit": {
+    "train_all": {
+      "n": 5632,
+      "min": 124,
+      "p50": 134.0,
+      "p90": 140.0,
+      "p99": 144.0,
+      "max": 150,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 15360,
+      "min": 123,
+      "p50": 135.0,
+      "p90": 141.0,
+      "p99": 146.0,
+      "max": 150,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "summary": {
+    "roledecl_direct": {
+      "best_train_acc": 0.5,
+      "train_fit": {
+        "overall": 0.5,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=roledecl|q=direct_tag": 0.5,
+          "base_stable_train|ctx=roledecl|q=direct_tag": 0.5,
+          "sparse_changed_focal|ctx=roledecl|q=direct_tag": 0.5,
+          "sparse_stable_focal|ctx=roledecl|q=direct_tag": 0.5
+        },
+        "by_query_family": {
+          "focal_after": 0.5,
+          "focal_before": 0.5,
+          "secondary_after": 0.5,
+          "secondary_before": 0.5
+        },
+        "by_changed_focal": {
+          "False": 0.5,
+          "True": 0.5
+        }
+      },
+      "evals": {
+        "roledecl_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.25,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 0.0,
+            "secondary_before": 0.0,
+            "secondary_after": 0.0
+          },
+          "by_query_margin": {
+            "focal_before": 0.00032668025232851505,
+            "focal_after": -0.0002512747887521982,
+            "secondary_before": -0.00017069070599973202,
+            "secondary_after": -0.0001859040930867195
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldChanged_heldStable_direct_tag_roleSwap_heldHyp": {
+          "contrastive_acc": 0.6875,
+          "by_query": {
+            "focal_before": 0.75,
+            "focal_after": 0.25,
+            "secondary_before": 1.0,
+            "secondary_after": 0.75
+          },
+          "by_query_margin": {
+            "focal_before": 6.382819265127182e-06,
+            "focal_after": -2.90044117718935e-05,
+            "secondary_before": 0.00010367180220782757,
+            "secondary_after": 7.98653345555067e-05
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldChanged_heldStable_role_exact_heldHyp": {
+          "contrastive_acc": 0.4375,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 0.25,
+            "secondary_before": 0.25,
+            "secondary_after": 0.25
+          },
+          "by_query_margin": {
+            "focal_before": 0.00016000284813344479,
+            "focal_after": -0.00011037127114832401,
+            "secondary_before": -6.535742431879044e-05,
+            "secondary_after": -8.350564166903496e-05
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldChanged_heldStable_role_exact_roleSwap_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 0.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -0.0004011704586446285,
+            "focal_after": 0.00042968010529875755,
+            "secondary_before": 0.0001933583989739418,
+            "secondary_after": 0.0001680278219282627
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldChanged_heldStable_role_sem_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 0.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -0.0002208349760621786,
+            "focal_after": 0.00026181992143392563,
+            "secondary_before": 0.00033725006505846977,
+            "secondary_after": 0.0003323040436953306
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldChanged_heldStable_role_sem_roleSwap_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 0.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 0.0003446536138653755,
+            "focal_after": -0.00032529188320040703,
+            "secondary_before": 0.0005228784866631031,
+            "secondary_after": 0.0005326061509549618
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldStable_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.5,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 0.0,
+            "secondary_after": 0.0
+          },
+          "by_query_margin": {
+            "focal_before": 0.0001955241896212101,
+            "focal_after": 0.00018177367746829987,
+            "secondary_before": -0.0002819725777953863,
+            "secondary_after": -0.0002623461186885834
+          },
+          "standard_acc": 0.50078125
+        },
+        "roledecl_direct_heldStable_heldStable_role_exact_heldHyp": {
+          "contrastive_acc": 0.625,
+          "by_query": {
+            "focal_before": 0.25,
+            "focal_after": 0.25,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -5.23887574672699e-05,
+            "focal_after": -3.1070318073034286e-05,
+            "secondary_before": 0.00040353694930672646,
+            "secondary_after": 0.0004998247604817152
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_heldStable_heldStable_role_sem_heldHyp": {
+          "contrastive_acc": 0.375,
+          "by_query": {
+            "focal_before": 0.25,
+            "focal_after": 0.5,
+            "secondary_before": 0.5,
+            "secondary_after": 0.25
+          },
+          "by_query_margin": {
+            "focal_before": 8.576083928346634e-06,
+            "focal_after": 1.8659047782421112e-05,
+            "secondary_before": -8.280854672193527e-06,
+            "secondary_after": -2.7633272111415863e-05
+          },
+          "standard_acc": 0.49921875
+        },
+        "roledecl_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.625,
+          "by_query": {
+            "focal_before": 0.0,
+            "focal_after": 1.0,
+            "secondary_before": 0.75,
+            "secondary_after": 0.75
+          },
+          "by_query_margin": {
+            "focal_before": -0.00034906109794974327,
+            "focal_after": 0.0003677741624414921,
+            "secondary_before": 6.56438060104847e-05,
+            "secondary_after": 8.740788325667381e-05
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_trainChanged_heldStable_role_exact_heldHyp": {
+          "contrastive_acc": 0.375,
+          "by_query": {
+            "focal_before": 0.0,
+            "focal_after": 1.0,
+            "secondary_before": 0.25,
+            "secondary_after": 0.25
+          },
+          "by_query_margin": {
+            "focal_before": -0.0003314199857413769,
+            "focal_after": 0.0003617310430854559,
+            "secondary_before": -2.782326191663742e-05,
+            "secondary_after": -4.0149083361029625e-05
+          },
+          "standard_acc": 0.5
+        },
+        "roledecl_direct_trainChanged_heldStable_role_sem_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 0.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -0.00029894057661294937,
+            "focal_after": 0.0002728512044996023,
+            "secondary_before": 0.0003751309122890234,
+            "secondary_after": 0.00037188432179391384
+          },
+          "standard_acc": 0.5
+        }
+      }
+    }
+  },
+  "per_seed": {
+    "roledecl_direct": [
+      {
+        "arm": "roledecl_direct",
+        "seed": 26700,
+        "best_train_acc": 0.5,
+        "train_fit": {
+          "overall": 0.5,
+          "by_train_kind": {
+            "base_stable_anchor|ctx=roledecl|q=direct_tag": 0.5,
+            "base_stable_train|ctx=roledecl|q=direct_tag": 0.5,
+            "sparse_changed_focal|ctx=roledecl|q=direct_tag": 0.5,
+            "sparse_stable_focal|ctx=roledecl|q=direct_tag": 0.5
+          },
+          "by_query_family": {
+            "focal_after": 0.5,
+            "focal_before": 0.5,
+            "secondary_after": 0.5,
+            "secondary_before": 0.5
+          },
+          "by_changed_focal": {
+            "False": 0.5,
+            "True": 0.5
+          }
+        },
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.7033553975210949,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 2,
+            "loss": 0.6952608881348913,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 3,
+            "loss": 0.6940392236309972,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 4,
+            "loss": 0.694675893226469,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 5,
+            "loss": 0.6932312804697589,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 6,
+            "loss": 0.6939216416159814,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 7,
+            "loss": 0.6933383322744207,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 8,
+            "loss": 0.6932550033723767,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 9,
+            "loss": 0.6933590263466943,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 10,
+            "loss": 0.6933050716973164,
+            "train_acc": 0.5
+          }
+        ],
+        "evals": {
+          "roledecl_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.503125,
+                "secondary_before": 0.5,
+                "secondary_after": 0.496875
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.25,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 0.0,
+                "secondary_before": 0.0,
+                "secondary_after": 0.0
+              },
+              "by_query_margin": {
+                "focal_before": 0.00032668025232851505,
+                "focal_after": -0.0002512747887521982,
+                "secondary_before": -0.00017069070599973202,
+                "secondary_after": -0.0001859040930867195
+              },
+              "by_changed_focal": {
+                "True": 0.25
+              },
+              "margin_mean": -7.029733387753367e-05
+            }
+          },
+          "roledecl_direct_heldChanged_heldStable_direct_tag_roleSwap_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.6875,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.75,
+                "focal_after": 0.25,
+                "secondary_before": 1.0,
+                "secondary_after": 0.75
+              },
+              "by_query_margin": {
+                "focal_before": 6.382819265127182e-06,
+                "focal_after": -2.90044117718935e-05,
+                "secondary_before": 0.00010367180220782757,
+                "secondary_after": 7.98653345555067e-05
+              },
+              "by_changed_focal": {
+                "True": 0.6875
+              },
+              "margin_mean": 4.022888606414199e-05
+            }
+          },
+          "roledecl_direct_heldChanged_heldStable_role_exact_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.4375,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 0.25,
+                "secondary_before": 0.25,
+                "secondary_after": 0.25
+              },
+              "by_query_margin": {
+                "focal_before": 0.00016000284813344479,
+                "focal_after": -0.00011037127114832401,
+                "secondary_before": -6.535742431879044e-05,
+                "secondary_after": -8.350564166903496e-05
+              },
+              "by_changed_focal": {
+                "True": 0.4375
+              },
+              "margin_mean": -2.4807872250676155e-05
+            }
+          },
+          "roledecl_direct_heldChanged_heldStable_role_exact_roleSwap_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -0.0004011704586446285,
+                "focal_after": 0.00042968010529875755,
+                "secondary_before": 0.0001933583989739418,
+                "secondary_after": 0.0001680278219282627
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 9.747396688908339e-05
+            }
+          },
+          "roledecl_direct_heldChanged_heldStable_role_sem_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -0.0002208349760621786,
+                "focal_after": 0.00026181992143392563,
+                "secondary_before": 0.00033725006505846977,
+                "secondary_after": 0.0003323040436953306
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 0.00017763476353138685
+            }
+          },
+          "roledecl_direct_heldChanged_heldStable_role_sem_roleSwap_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 0.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 0.0003446536138653755,
+                "focal_after": -0.00032529188320040703,
+                "secondary_before": 0.0005228784866631031,
+                "secondary_after": 0.0005326061509549618
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 0.00026871159207075834
+            }
+          },
+          "roledecl_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.625,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.0,
+                "focal_after": 1.0,
+                "secondary_before": 0.75,
+                "secondary_after": 0.75
+              },
+              "by_query_margin": {
+                "focal_before": -0.00034906109794974327,
+                "focal_after": 0.0003677741624414921,
+                "secondary_before": 6.56438060104847e-05,
+                "secondary_after": 8.740788325667381e-05
+              },
+              "by_changed_focal": {
+                "True": 0.625
+              },
+              "margin_mean": 4.294118843972683e-05
+            }
+          },
+          "roledecl_direct_trainChanged_heldStable_role_exact_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.375,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.0,
+                "focal_after": 1.0,
+                "secondary_before": 0.25,
+                "secondary_after": 0.25
+              },
+              "by_query_margin": {
+                "focal_before": -0.0003314199857413769,
+                "focal_after": 0.0003617310430854559,
+                "secondary_before": -2.782326191663742e-05,
+                "secondary_after": -4.0149083361029625e-05
+              },
+              "by_changed_focal": {
+                "True": 0.375
+              },
+              "margin_mean": -9.415321983397007e-06
+            }
+          },
+          "roledecl_direct_trainChanged_heldStable_role_sem_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -0.00029894057661294937,
+                "focal_after": 0.0002728512044996023,
+                "secondary_before": 0.0003751309122890234,
+                "secondary_after": 0.00037188432179391384
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 0.00018023146549239755
+            }
+          },
+          "roledecl_direct_heldStable_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.50078125,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.503125,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "False": 0.50078125
+              },
+              "by_stable_secondary": {
+                "True": 0.50078125
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.5,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 0.0,
+                "secondary_after": 0.0
+              },
+              "by_query_margin": {
+                "focal_before": 0.0001955241896212101,
+                "focal_after": 0.00018177367746829987,
+                "secondary_before": -0.0002819725777953863,
+                "secondary_after": -0.0002623461186885834
+              },
+              "by_changed_focal": {
+                "False": 0.5
+              },
+              "margin_mean": -4.175520734861493e-05
+            }
+          },
+          "roledecl_direct_heldStable_heldStable_role_exact_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "False": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.625,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.25,
+                "focal_after": 0.25,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -5.23887574672699e-05,
+                "focal_after": -3.1070318073034286e-05,
+                "secondary_before": 0.00040353694930672646,
+                "secondary_after": 0.0004998247604817152
+              },
+              "by_changed_focal": {
+                "False": 0.625
+              },
+              "margin_mean": 0.00020497565856203437
+            }
+          },
+          "roledecl_direct_heldStable_heldStable_role_sem_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.49921875,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.496875
+              },
+              "by_changed_focal": {
+                "False": 0.49921875
+              },
+              "by_stable_secondary": {
+                "True": 0.49921875
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.375,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.25,
+                "focal_after": 0.5,
+                "secondary_before": 0.5,
+                "secondary_after": 0.25
+              },
+              "by_query_margin": {
+                "focal_before": 8.576083928346634e-06,
+                "focal_after": 1.8659047782421112e-05,
+                "secondary_before": -8.280854672193527e-06,
+                "secondary_after": -2.7633272111415863e-05
+              },
+              "by_changed_focal": {
+                "False": 0.375
+              },
+              "margin_mean": -2.169748768210411e-06
+            }
+          }
+        }
+      }
+    ]
+  },
+  "boundary": "Small pretrained bridge probe; use as route-local evidence only after changed-row fit checks."
+}

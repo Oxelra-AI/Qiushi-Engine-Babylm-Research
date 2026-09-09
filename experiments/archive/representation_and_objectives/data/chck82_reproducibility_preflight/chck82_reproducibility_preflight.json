@@ -1,0 +1,386 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-31T22:33:45Z",
+  "purpose": "CPU/file-only preflight for launching an independent from-corpus reproduction of the legal scale1.75 trajectory only after the independent hardened chck_82M evaluation rerun agrees with research.",
+  "errors": [],
+  "warnings": [],
+  "fixed_selection_rule": {
+    "selected_checkpoint": "chck_82M",
+    "target_word_exposure": 82000000,
+    "actual_original_cumulative_word_exposure": 82012495,
+    "no_neighbor_search_in_reproduction": true,
+    "post_training_interpretation": "If reproduced chck_82M is bit-identical to the original hash, research/research evaluation evidence transfers. If not bit-identical, run the hardened full official-compatible evaluator on reproduced chck_82M before any score statement."
+  },
+  "reproduction_dependency": {
+    "must_wait_for": "independent hardened full-evaluation reproduction",
+    "reproduction_summary_path": "experiments/archive/representation_and_objectives/data/scale1p75_chck82_full_eval_reproduction/summary/scale1p75_100M_full_eval_hardened_summary.json",
+    "reproduction_summary_status": "available",
+    "reproduction_overall_if_available": 41.942481167385985
+  },
+  "original_endpoint": {
+    "run_dir": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder",
+    "endpoint_dir": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+    "endpoint_model_sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3",
+    "checkpoint_record": {
+      "name": "chck_82M",
+      "target_word_exposure": 82000000,
+      "actual_cumulative_word_exposure": 82012495,
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M"
+    },
+    "config_core": {
+      "architectures": [
+        "AdapterDebertaV2ForMaskedLM"
+      ],
+      "auto_map": {
+        "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+      },
+      "adapter_enabled": true,
+      "adapter_scale": 1.75,
+      "adapter_bottleneck": 128,
+      "hidden_size": 480,
+      "num_hidden_layers": 8,
+      "num_attention_heads": 8,
+      "vocab_size": 16384
+    }
+  },
+  "score": {
+    "summary_json": "experiments/archive/representation_and_objectives/data/scale1p75_chck82_full_verification/summary/scale1p75_chck82_full_verification.json",
+    "Overall": 41.94225421386936,
+    "scores": {
+      "BLiMP": 68.49,
+      "Supplement": 62.94,
+      "EWoK": 50.06,
+      "Entity": 28.31,
+      "COMPS": 52.19,
+      "SuperGLUE": 69.7602879248243,
+      "GlobalPIQA": 37.58,
+      "Reading": 8.15,
+      "AoA": 0.0
+    },
+    "cheap7": 43.96,
+    "margin_vs_41p8": 0.14225421386936432
+  },
+  "legal_data": {
+    "counts": {
+      "pool_10m": {
+        "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+        "rows": 64740,
+        "words": 10000000,
+        "first_meta": {
+          "words": 135,
+          "example_id": 950000,
+          "source": "cleanqwen_fineweb_compact_view_reinvest"
+        },
+        "last_meta": {
+          "words": 160,
+          "example_id": 54475,
+          "source": "simple_wiki"
+        }
+      },
+      "stream_100m": {
+        "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+        "rows": 647400,
+        "words": 100000000,
+        "first_meta": {
+          "words": 160,
+          "example_id": 10289,
+          "source": "childes"
+        },
+        "last_meta": {
+          "words": 160,
+          "example_id": 40450,
+          "source": "open_subtitles"
+        }
+      }
+    },
+    "hashes": {
+      "pool_10m": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+      "stream_100m": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691"
+    },
+    "tokenizer_metadata": {
+      "status": "COMPLIANT_TOKENIZER_TRAINED",
+      "scientific_purpose": "Train a compliant 16k BPE tokenizer from the 10M Strict-Small pool only, replacing the 100M-trained baseline16k.",
+      "training_data": {
+        "pool": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+        "pool_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+        "pool_rows": 64740,
+        "pool_words": 10000000
+      },
+      "tokenizer": {
+        "vocab_size": 16384,
+        "type": "BPE byte-level",
+        "special_tokens": [
+          "<unk>",
+          "<s>",
+          "</s>",
+          "<pad>",
+          "<mask>"
+        ],
+        "output_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+        "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9"
+      },
+      "template_source": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model/tokenizer.json",
+      "elapsed_sec": 7.8
+    },
+    "tokenizer_vocab_compare": {
+      "checked": true,
+      "training_vocab_size": 16384,
+      "endpoint_vocab_size": 16384,
+      "vocab_maps_identical": true
+    },
+    "overlay_metadata_core": {
+      "status": "DENSITY_CLEANQWEN_ROWHOLDOUT_OVERLAY_MATERIALIZED",
+      "total_words_per_pool": 10000000,
+      "passes": 10,
+      "compact_reinvest_family": {
+        "family_name": "compact_reinvest",
+        "arm_names": {
+          "cleanqwen_lengthmatched": "cleanqwen_lengthmatched_compact_reinvest",
+          "repeat": "cleanqwen_fineweb_repeat_compact_reinvest",
+          "view": "cleanqwen_fineweb_compact_view_reinvest"
+        },
+        "pair_rows": 3005,
+        "changed_block_rows": 3006,
+        "pair_words": 423511,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 9,
+        "changed_block_budget_words": 423520,
+        "row_length_sequence_identical_within_family": true,
+        "repeat_view_suffix_identical_after_pair_rows": true,
+        "common_filler_rows": 61734,
+        "common_filler_words": 9576480,
+        "word_totals": {
+          "cleanqwen_lengthmatched_compact_reinvest": 10000000,
+          "cleanqwen_fineweb_repeat_compact_reinvest": 10000000,
+          "cleanqwen_fineweb_compact_view_reinvest": 10000000
+        },
+        "row_counts": {
+          "cleanqwen_lengthmatched_compact_reinvest": 64740,
+          "cleanqwen_fineweb_repeat_compact_reinvest": 64740,
+          "cleanqwen_fineweb_compact_view_reinvest": 64740
+        }
+      }
+    }
+  },
+  "training_recipe": {
+    "train_script": "experiments/archive/frontier_consolidation/scripts/adapter_scaled_trainer.py",
+    "modeling_script": "experiments/archive/frontier_consolidation/scripts/adapter_scaled_modeling.py",
+    "base_trainer": "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+    "reproduction_run_dir": "experiments/archive/representation_and_objectives/training/runs/adapter128_scale1p75_from_corpus_fixed82M_seed43022",
+    "parameters": {
+      "adapter_bottleneck": 128,
+      "adapter_enabled": 1,
+      "adapter_scale": 1.75,
+      "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "example_jsonl_meta": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+      "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+      "hidden_size": 480,
+      "n_layer": 8,
+      "n_head": 8,
+      "ffn_mult": 4,
+      "seed": 43,
+      "extra_init_seed": 43022,
+      "train_rng_seed": 43023,
+      "batch_size": 256,
+      "seq_length": 256,
+      "max_seq_length": 256,
+      "learning_rate": 0.001,
+      "warmup_fraction": 0.06,
+      "weight_decay": 0.01,
+      "masking_curriculum": "wwm_fixed",
+      "mask_prob_start": 0.15,
+      "mask_prob_end": 0.15,
+      "checkpoint_words": 1000000,
+      "max_word_exposure": 100000000,
+      "lr_total_steps": 2529,
+      "num_workers": 0,
+      "log_every": 100,
+      "dynamics_trace_every": 500
+    },
+    "command_gpu0": [
+      "python",
+      "-B",
+      "experiments/archive/frontier_consolidation/scripts/adapter_scaled_trainer.py",
+      "--adapter_bottleneck",
+      "128",
+      "--adapter_enabled",
+      "1",
+      "--adapter_scale",
+      "1.75",
+      "--gpu",
+      "0",
+      "--example_jsonl",
+      "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "--example_jsonl_label",
+      "repro_adapter128_scale1p75_matched_100Mhorizon_fixed82M",
+      "--example_jsonl_meta",
+      "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+      "--output_dir",
+      "experiments/archive/representation_and_objectives/training/runs/adapter128_scale1p75_from_corpus_fixed82M_seed43022",
+      "--tokenizer_path",
+      "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+      "--tokenizer_label",
+      "compliant16k_reinvest10M",
+      "--hidden_size",
+      "480",
+      "--n_layer",
+      "8",
+      "--n_head",
+      "8",
+      "--ffn_mult",
+      "4",
+      "--seed",
+      "43",
+      "--extra_init_seed",
+      "43022",
+      "--train_rng_seed",
+      "43023",
+      "--batch_size",
+      "256",
+      "--seq_length",
+      "256",
+      "--max_seq_length",
+      "256",
+      "--learning_rate",
+      "0.001",
+      "--warmup_fraction",
+      "0.06",
+      "--weight_decay",
+      "0.01",
+      "--masking_curriculum",
+      "wwm_fixed",
+      "--mask_prob_start",
+      "0.15",
+      "--mask_prob_end",
+      "0.15",
+      "--checkpoint_words",
+      "1000000",
+      "--max_word_exposure",
+      "100000000",
+      "--lr_total_steps",
+      "2529",
+      "--num_workers",
+      "0",
+      "--log_every",
+      "100",
+      "--dynamics_trace_every",
+      "500"
+    ],
+    "command_gpu1": [
+      "python",
+      "-B",
+      "experiments/archive/frontier_consolidation/scripts/adapter_scaled_trainer.py",
+      "--adapter_bottleneck",
+      "128",
+      "--adapter_enabled",
+      "1",
+      "--adapter_scale",
+      "1.75",
+      "--gpu",
+      "1",
+      "--example_jsonl",
+      "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "--example_jsonl_label",
+      "repro_adapter128_scale1p75_matched_100Mhorizon_fixed82M",
+      "--example_jsonl_meta",
+      "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+      "--output_dir",
+      "experiments/archive/representation_and_objectives/training/runs/adapter128_scale1p75_from_corpus_fixed82M_seed43022",
+      "--tokenizer_path",
+      "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+      "--tokenizer_label",
+      "compliant16k_reinvest10M",
+      "--hidden_size",
+      "480",
+      "--n_layer",
+      "8",
+      "--n_head",
+      "8",
+      "--ffn_mult",
+      "4",
+      "--seed",
+      "43",
+      "--extra_init_seed",
+      "43022",
+      "--train_rng_seed",
+      "43023",
+      "--batch_size",
+      "256",
+      "--seq_length",
+      "256",
+      "--max_seq_length",
+      "256",
+      "--learning_rate",
+      "0.001",
+      "--warmup_fraction",
+      "0.06",
+      "--weight_decay",
+      "0.01",
+      "--masking_curriculum",
+      "wwm_fixed",
+      "--mask_prob_start",
+      "0.15",
+      "--mask_prob_end",
+      "0.15",
+      "--checkpoint_words",
+      "1000000",
+      "--max_word_exposure",
+      "100000000",
+      "--lr_total_steps",
+      "2529",
+      "--num_workers",
+      "0",
+      "--log_every",
+      "100",
+      "--dynamics_trace_every",
+      "500"
+    ]
+  },
+  "hashes": {
+    "chck82_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M/model.safetensors",
+      "size_bytes": 141878192,
+      "sha256": "93ceb76adf5a33d349f1de33e988e6ed0c2b2a547dbd92cf83cc952f8e2591b3"
+    },
+    "chck80_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_80M/model.safetensors",
+      "size_bytes": 141878192,
+      "sha256": "c37f6665df84109a266428e606e1bf665db70d9a5e7842816b5717d36922edda"
+    },
+    "chck100_model": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_100M/model.safetensors",
+      "size_bytes": 141878192,
+      "sha256": "7349475846ef2a193df850cc23876b2a86f99e82b9f051816064e4561b0f6f52"
+    },
+    "chck82_config": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M/config.json",
+      "size_bytes": 1043,
+      "sha256": "a7312dad35912988ca7cde751f85e9ed6b84ce812256a1ab4c61cde5d2debce0"
+    },
+    "training_tokenizer": {
+      "path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer/tokenizer.json",
+      "size_bytes": 1135416,
+      "sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9"
+    },
+    "endpoint_tokenizer": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M/tokenizer.json",
+      "size_bytes": 1135681,
+      "sha256": "a9cbb830495cb92bbb2996adc256207746282ee67f4f8d40a4f646a634ec139a"
+    },
+    "train_script": {
+      "path": "experiments/archive/frontier_consolidation/scripts/adapter_scaled_trainer.py",
+      "size_bytes": 5407,
+      "sha256": "8ddd463366b70db4f88057c29d83a89aede169d58137501a71974789d3e972de"
+    },
+    "modeling_script": {
+      "path": "experiments/archive/frontier_consolidation/scripts/adapter_scaled_modeling.py",
+      "size_bytes": 4341,
+      "sha256": "9fd4ef104f5f8e7d458c7ed10b996d238a6af53a866e8dea907a3cc0e4e156d2"
+    },
+    "base_trainer": {
+      "path": "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+      "size_bytes": 45256,
+      "sha256": "d3cd4a46c0dd28b5dbc3443e564b72879c393d6c7e5212590764aa7786fbd5d4"
+    }
+  },
+  "scientific_boundary": "This reproduction can establish measurement and training reproducibility of the above-frontier endpoint. It does not by itself establish the requested generalizable data-efficient learning principle; A02's dual-view pathway remains the mechanism route to test."
+}

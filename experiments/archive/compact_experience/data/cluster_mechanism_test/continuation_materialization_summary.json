@@ -1,0 +1,41 @@
+{
+  "status": "CLUSTER_CONTINUATION_MATERIALIZED",
+  "created_utc": "2026-08-27T11:46:51Z",
+  "design": "80M->100M continuation from clean-Qwen chck_80M with matched 10M pools",
+  "arms": {
+    "E1_true_cluster": "Cluster sentences packed adjacently (complementary predicate evidence), padded to 160w",
+    "E2_anchor_shuffle": "Same anchors, cross-block sentences (anchor-exposure control), padded to 160w",
+    "E3_anchor_repeat": "First sentence repeated (repetition/exposure control), padded to 160w",
+    "E4_untouched_tail": "Original clean-Qwen pool unchanged (pure continuation baseline)"
+  },
+  "clusters_used": 3107,
+  "cluster_packs_inserted": 1810,
+  "rows_replaced_per_arm": 1810,
+  "total_pool_rows": 64381,
+  "word_matching": "All arms have identical total word counts (rows padded to original filler row length)",
+  "pool_sha256": {
+    "E1_true_cluster": "be979e8766a2f908f654218c4522d4b4705067a17b6736c918fa1a9e08dc3d9d",
+    "E2_anchor_shuffle": "e3c998cc9d9af6195f7a5ee0e9ebc80b9c7a453ca555cb037b4e3d898b49e6c6",
+    "E3_anchor_repeat": "01f79fa2d357b2ec922a3ca2d64e72313e7a5755e02f15e0285ac54842b92ba5",
+    "E4_untouched_tail": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3"
+  },
+  "pool_paths": {
+    "E1_true_cluster": "experiments/archive/compact_experience/data/cluster_mechanism_test/continuation_10M_E1_true_cluster.jsonl",
+    "E2_anchor_shuffle": "experiments/archive/compact_experience/data/cluster_mechanism_test/continuation_10M_E2_anchor_shuffle.jsonl",
+    "E3_anchor_repeat": "experiments/archive/compact_experience/data/cluster_mechanism_test/continuation_10M_E3_anchor_repeat.jsonl",
+    "E4_untouched_tail": "experiments/archive/compact_experience/data/cluster_mechanism_test/continuation_10M_E4_untouched_tail.jsonl"
+  },
+  "continuation_spec": {
+    "init_checkpoint": "training/runs/qwen_clean_aligned_16k_seed43022/hf_model/chck_80M",
+    "exposure_budget": 20000000,
+    "passes_over_pool": 2,
+    "checkpoint_interval_words": 5000000,
+    "expected_checkpoints": [
+      "chck_85M",
+      "chck_90M",
+      "chck_95M",
+      "chck_100M"
+    ]
+  },
+  "non_leakage_statement": "No official AoA/CDI words, child curves, or downstream evaluation outputs used."
+}

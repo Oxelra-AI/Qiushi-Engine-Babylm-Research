@@ -1,0 +1,144 @@
+{
+  "status": "INNOVATION_INTERVENTION_COMPARISON",
+  "created_utc": "2026-08-30T14:00:19Z",
+  "purpose": "Separate the already-launched research strict copyable-funded probability intervention from the newly delivered exact-swap proposal, so the pending 80M score is interpreted correctly and not overgeneralized.",
+  "inputs": {
+    "summary": "experiments/archive/frontier_consolidation/data/strict_innovation_group_map/strict_innovation_group_map_summary.json",
+    "smoke": "experiments/archive/frontier_consolidation/data/strict_innovation_mask_smoke/strict_innovation_mask_smoke.json",
+    "gpu_smoke": "experiments/archive/frontier_consolidation/data/strict_innovation_gpu_smoke/scientific_metrics.json",
+    "codex_summary": "experiments/archive/frontier_consolidation/analysis/innovation_metadata_summary.json",
+    "codex_smoke": "experiments/archive/frontier_consolidation/analysis/innovation_wwm_smoke.json",
+    "codex_batch_audit": "experiments/archive/frontier_consolidation/analysis/frozen_stream_batch_audit.json"
+  },
+  "probability_reallocation": {
+    "definition": "row-unique content-like rewrite groups absent from paired source and from every other row occurrence; p_strict=0.5; copyable rewrite groups p_copy chosen from token mass; source/filler/other ordinary groups remain at 0.15 in expectation",
+    "target_counts_per_10m": {
+      "strict_groups": 17968,
+      "strict_tokens": 28007,
+      "copyable_groups": 131675,
+      "copyable_tokens": 205941,
+      "rows_with_strict": 2999
+    },
+    "probabilities": {
+      "mask_prob": 0.15,
+      "p_strict": 0.5,
+      "p_copy_token_basis": 0.10240165872749962,
+      "p_copy_group_basis_for_reference_only": 0.1022399848110879
+    },
+    "expected_per_10m": {
+      "baseline_strict_group_labels": 2695.2,
+      "treatment_strict_group_labels": 8984.0,
+      "extra_strict_group_labels": 6288.8,
+      "baseline_strict_token_labels": 4201.05,
+      "treatment_strict_token_labels": 14003.5,
+      "extra_strict_token_labels": 9802.45,
+      "baseline_copy_group_labels": 19751.25,
+      "treatment_copy_group_labels_token_basis": 13483.738413,
+      "removed_copy_group_labels_token_basis": 6267.511587,
+      "baseline_copy_token_labels": 30891.15,
+      "treatment_copy_token_labels": 21088.7,
+      "removed_copy_token_labels": 9802.45,
+      "expected_token_mass_error": 0.0,
+      "expected_group_mass_error_token_basis": 21.288413,
+      "extra_strict_group_fraction_of_global_selected_groups": 0.004277,
+      "strict_group_exposure_multiplier": 3.333333,
+      "strict_token_exposure_multiplier": 3.333333,
+      "copy_group_exposure_multiplier_token_basis": 0.682678,
+      "copy_token_exposure_multiplier": 0.682678
+    },
+    "expected_80m": {
+      "baseline_strict_group_labels": 21561.6,
+      "treatment_strict_group_labels": 71872.0,
+      "extra_strict_group_labels": 50310.4,
+      "baseline_strict_token_labels": 33608.4,
+      "treatment_strict_token_labels": 112028.0,
+      "extra_strict_token_labels": 78419.6,
+      "baseline_copy_group_labels": 158010.0,
+      "treatment_copy_group_labels_token_basis": 107869.907304,
+      "removed_copy_group_labels_token_basis": 50140.092696,
+      "baseline_copy_token_labels": 247129.2,
+      "treatment_copy_token_labels": 168709.6,
+      "removed_copy_token_labels": 78419.6
+    },
+    "cpu_smoke_key_checks": {
+      "strict_rate": 0.4984991423670669,
+      "copyable_rate": 0.10016390999850991,
+      "source_rate": 0.14844919465900244,
+      "rewrite_other_rate": 0.14555702917771884,
+      "selected_token_mass_ratio": 1.0001655464688939,
+      "all_checks_passed": true
+    },
+    "gpu_smoke_key_checks": {
+      "total_words": 1000078,
+      "total_steps": 26,
+      "final_loss": 6.850553,
+      "strict_selected_groups": 1002,
+      "strict_available_groups": 2000,
+      "copy_selected_groups": 1478,
+      "copy_available_groups": 14323
+    }
+  },
+  "codex_exact_swap": {
+    "definition": "pair-local source-absent rewrite innovations with strict whole-group containment; one hash-rotated proposal per changed row; if not already selected, swap with same-token-length selected donor outside every pair span, preferring ordinary rows; copyable and source pair masks unchanged exactly",
+    "target_counts_per_10m": {
+      "innovation_groups": 26315,
+      "innovation_tokens": 36899,
+      "copyable_groups": 129472,
+      "rows_with_innovation": 3004,
+      "relation_cue_innovation_groups": 3500,
+      "content_or_other_innovation_groups": 22815
+    },
+    "projected_per_10m_from_broad_smoke": {
+      "baseline_innovation_group_labels": 3947.25,
+      "projected_extra_innovation_group_labels": 2545.75,
+      "projected_treatment_innovation_group_labels": 6493.0,
+      "innovation_group_exposure_multiplier": 1.644943,
+      "copyable_group_delta": 0.0,
+      "source_group_delta": 0.0,
+      "selected_group_delta_per_batch": 0.0,
+      "selected_token_delta_per_batch": 0.0,
+      "extra_innovation_group_fraction_of_global_selected_groups": 0.001731,
+      "empirical_collision_rate": 0.151631,
+      "empirical_no_donor_rate_given_noncollision_approx": 0.001079
+    },
+    "projected_80m_from_broad_smoke": {
+      "baseline_innovation_group_labels": 31578.0,
+      "projected_extra_innovation_group_labels": 20366.0,
+      "projected_treatment_innovation_group_labels": 51944.0,
+      "copyable_group_delta": 0.0,
+      "source_group_delta": 0.0
+    },
+    "broad_smoke_key_checks": {
+      "baseline_selected_groups": 527935,
+      "biased_selected_groups": 527935,
+      "baseline_selected_tokens": 764428,
+      "biased_selected_tokens": 764428,
+      "per_batch_group_mismatches": 0,
+      "per_batch_token_mismatches": 0,
+      "successful_swaps": 10183,
+      "copyable_delta": 0,
+      "source_selection_changed_rows": 0,
+      "donor_ordinary_row_fraction": 1.0
+    },
+    "actual_frozen_batch_context": {
+      "batches": 2529,
+      "changed_per_batch_mean": 11.88216686437327,
+      "changed_per_batch_min": 2,
+      "changed_per_batch_max": 24,
+      "all_changed_batches": 0
+    }
+  },
+  "interpretation": {
+    "not_equivalent": true,
+    "answers": "Does a strong strict-content innovation upweight, funded by lower copyable-rewrite supervision while source/filler remain ordinary in expectation, improve mature BabyLM surfaces?",
+    "codex_answers": "Does a smaller exact same-token donor swap from non-pair ordinary groups give each changed row an added source-absent innovation signal while leaving source and copyable pair masks exactly baseline?",
+    "do_not_overclose": "A negative research score should close the running p_strict/p_copy intervention, but it should not by itself close the exact-swap variant because the donor source, target breadth, perturbation size, and copyable-mask behavior differ.",
+    "do_not_cancel_pending_from_codex_alone": "The research run still tests a meaningful copyable-to-strict-innovation hypothesis built from research; the exact-swap proposal supplies a cleaner dormant alternative rather than evidence that the launched run cannot improve.",
+    "score_reading": [
+      "Broad BLiMP/Supplement/EWoK gains at 70M/80M versus research would support continuing research to 100M/full evaluation.",
+      "Innovation-probe improvement with broad score damage or copyable-like damage would suggest the target is real but copyable suppression/pressure size is harmful; then exact-swap becomes the next lower-perturbation test.",
+      "No innovation-probe improvement and weak cheap columns would weaken the whole masking-pressure route, not only the probability schedule.",
+      "A gain confined to GlobalPIQA_nonparallel or COMPS repeats the redistribution pattern that closed word-mean and minfreq50 and should stop research without 100M continuation."
+    ]
+  }
+}

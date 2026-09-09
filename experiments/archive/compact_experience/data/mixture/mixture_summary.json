@@ -1,0 +1,91 @@
+{
+  "status": "MIXTURE_MATERIALIZED",
+  "design": {
+    "hypothesis": "Optimal mix of official (syntax/diagnostic) + aligned (entity-coherent) data can exceed either pure endpoint on Overall",
+    "official_pool": "62500 examples, 10000000 words",
+    "aligned_pool": "62499 examples, 9999840 words",
+    "mixture_total": "10000000 words per arm",
+    "training_exposure": "100000000 words (10 exact passes)",
+    "recipe": "DeBERTa-v2 8×480, baseline16k, WWM 0.15, b256, seq256, LR 1e-3, seed 43"
+  },
+  "arms": {
+    "mix_25pct": {
+      "n_official": 46875,
+      "n_aligned": 15625,
+      "official_words": 7500000,
+      "aligned_words": 2500000,
+      "total_words": 10000000,
+      "pool_path": "experiments/archive/compact_experience/data/mixture/mix_25pct_pool.jsonl",
+      "pool_sha256_prefix": "1d5bbc883fd0ee69",
+      "training_path": "experiments/archive/compact_experience/data/mixture/training_files/mix_25pct_100M.jsonl",
+      "training_sha256_prefix": "7c278c127699b016",
+      "training_exposure": 100000000,
+      "training_epochs": 10,
+      "train_command": "python experiments/archive/initial_model_studies/training/scripts/babylm_masked_train_fullcycle.py --example_jsonl experiments/archive/compact_experience/data/mixture/training_files/mix_25pct_100M.jsonl --output_dir experiments/archive/compact_experience/training/runs/mix_25pct_100M_seed43 --tokenizer_path experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model --tokenizer_label baseline16k --max_word_exposure 100000000 --example_pool_words 10000000 --model_type deberta_v2 --n_layer 8 --hidden_size 480 --n_head 8 --ffn_mult 4 --max_seq_length 256 --seq_length 256 --batch_size 256 --learning_rate 1e-3 --weight_decay 0.01 --warmup_fraction 0.05 --seed 43 --mask_prob 0.15 --mask_mode wwm --num_workers 0 --checkpoint_words 10000000 --log_every 50",
+      "output_dir": "experiments/archive/compact_experience/training/runs/mix_25pct_100M_seed43"
+    },
+    "mix_50pct": {
+      "n_official": 31250,
+      "n_aligned": 31250,
+      "official_words": 5000000,
+      "aligned_words": 5000000,
+      "total_words": 10000000,
+      "pool_path": "experiments/archive/compact_experience/data/mixture/mix_50pct_pool.jsonl",
+      "pool_sha256_prefix": "a2d001ccd3b6b55c",
+      "training_path": "experiments/archive/compact_experience/data/mixture/training_files/mix_50pct_100M.jsonl",
+      "training_sha256_prefix": "c452cf116391abb5",
+      "training_exposure": 100000000,
+      "training_epochs": 10,
+      "train_command": "python experiments/archive/initial_model_studies/training/scripts/babylm_masked_train_fullcycle.py --example_jsonl experiments/archive/compact_experience/data/mixture/training_files/mix_50pct_100M.jsonl --output_dir experiments/archive/compact_experience/training/runs/mix_50pct_100M_seed43 --tokenizer_path experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model --tokenizer_label baseline16k --max_word_exposure 100000000 --example_pool_words 10000000 --model_type deberta_v2 --n_layer 8 --hidden_size 480 --n_head 8 --ffn_mult 4 --max_seq_length 256 --seq_length 256 --batch_size 256 --learning_rate 1e-3 --weight_decay 0.01 --warmup_fraction 0.05 --seed 43 --mask_prob 0.15 --mask_mode wwm --num_workers 0 --checkpoint_words 10000000 --log_every 50",
+      "output_dir": "experiments/archive/compact_experience/training/runs/mix_50pct_100M_seed43"
+    },
+    "mix_75pct": {
+      "n_official": 15625,
+      "n_aligned": 46875,
+      "official_words": 2500000,
+      "aligned_words": 7500000,
+      "total_words": 10000000,
+      "pool_path": "experiments/archive/compact_experience/data/mixture/mix_75pct_pool.jsonl",
+      "pool_sha256_prefix": "92e00e183ba9e96f",
+      "training_path": "experiments/archive/compact_experience/data/mixture/training_files/mix_75pct_100M.jsonl",
+      "training_sha256_prefix": "7847ff8d73321425",
+      "training_exposure": 100000000,
+      "training_epochs": 10,
+      "train_command": "python experiments/archive/initial_model_studies/training/scripts/babylm_masked_train_fullcycle.py --example_jsonl experiments/archive/compact_experience/data/mixture/training_files/mix_75pct_100M.jsonl --output_dir experiments/archive/compact_experience/training/runs/mix_75pct_100M_seed43 --tokenizer_path experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model --tokenizer_label baseline16k --max_word_exposure 100000000 --example_pool_words 10000000 --model_type deberta_v2 --n_layer 8 --hidden_size 480 --n_head 8 --ffn_mult 4 --max_seq_length 256 --seq_length 256 --batch_size 256 --learning_rate 1e-3 --weight_decay 0.01 --warmup_fraction 0.05 --seed 43 --mask_prob 0.15 --mask_mode wwm --num_workers 0 --checkpoint_words 10000000 --log_every 50",
+      "output_dir": "experiments/archive/compact_experience/training/runs/mix_75pct_100M_seed43"
+    }
+  },
+  "existing_endpoints": {
+    "0pct_aligned": {
+      "name": "INITIAL_MODEL_STUDIES research official baseline",
+      "path": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model/chck_100M",
+      "scores": {
+        "Entity": 21.24,
+        "BLiMP": 67.34,
+        "Supplement": 65.2,
+        "EWoK": 49.64,
+        "COMPS": 53.11,
+        "GlobalPIQA_mean": 36.12,
+        "Reading": 7.33,
+        "equal7_mean": 42.854
+      }
+    },
+    "100pct_aligned": {
+      "name": "research ALIGNED 100M",
+      "path": "experiments/archive/compact_experience/training/runs/aligned_100M_seed43/hf_model/chck_100M",
+      "scores": {
+        "Entity_full": 29.16,
+        "Entity_fast": 27.74,
+        "BLiMP": 64.12,
+        "Supplement": 60.8,
+        "EWoK": 51.18,
+        "COMPS": 51.42,
+        "GlobalPIQA_mean": 37.52,
+        "Reading": 7.16,
+        "equal7_mean": 42.849
+      }
+    }
+  },
+  "elapsed_sec": 21.0,
+  "seed": 43
+}

@@ -1,0 +1,271 @@
+{
+  "status": "PAIRAWARE_SEQUENCE_ACCOUNTING",
+  "created_utc": "2026-08-30T10:39:18Z",
+  "purpose": "Combine full-pool greedy WWM-group chunk accounting with changed-block pair-atomic chunk accounting to quantify a faithful pair-aware sequence stream before any GPU sequence run.",
+  "input_json": "experiments/archive/frontier_consolidation/data/tokenizer_group_chunk_measurement/tokenizer_group_chunk_measurement.json",
+  "sha256": {
+    "pool_expected": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "pool_actual": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "pool_matches": true
+  },
+  "tokenizers": {
+    "legal16k": {
+      "path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+      "len": 16384,
+      "vocab_size": 16384,
+      "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+      "sha_matches": true
+    },
+    "minfreq50_supportfloor": {
+      "path": "experiments/archive/frontier_consolidation/data/supportfloor_tokenizers/legal_byte_bpe_40k_minfreq50",
+      "len": 19609,
+      "vocab_size": 19609,
+      "tokenizer_json_sha256": "9900f42b392fb69dd55c9c9fd7f539da09b3a33487e4e3542f9b953f48310922",
+      "sha_matches": true
+    }
+  },
+  "by_tokenizer": {
+    "legal16k": {
+      "declared_words_per_epoch": 10000000,
+      "raw_tokens_per_epoch": 14664519,
+      "changed_rows": 3005,
+      "changed_pairs": 12155,
+      "by_length": {
+        "64": {
+          "stage_length": 64,
+          "inverse_scaled_row_batch": 1024,
+          "prefix_steps_per_epoch_current_loop": 253,
+          "prefix_active_tokens_per_epoch": 4143305,
+          "pairaware_active_tokens_per_epoch": 14664519,
+          "pairaware_active_token_ratio_vs_prefix": 3.5393288691032883,
+          "full_pool_greedy_chunks_per_epoch": 264588,
+          "changed_row_greedy_chunks": 11067,
+          "changed_row_pair_atomic_chunks": 13078,
+          "pairaware_chunks_per_epoch": 266599,
+          "pairaware_chunk_delta_vs_greedy": 2011,
+          "greedy_steps_per_epoch_inverse_batch": 259,
+          "pairaware_steps_per_epoch_inverse_batch": 261,
+          "pairaware_step_delta_vs_greedy": 2,
+          "pairaware_step_ratio_vs_prefix": 1.0316205533596838,
+          "pairaware_step_ratio_vs_greedy": 1.0077220077220077,
+          "prefix_pair_full_fraction": 0.18403948992184285,
+          "greedy_pair_full_fraction": 0.3865076100370218,
+          "pair_atomic_pair_full_fraction": 0.7967091731797614,
+          "pair_atomic_pair_overlong_fraction": 0.20329082682023858
+        },
+        "128": {
+          "stage_length": 128,
+          "inverse_scaled_row_batch": 512,
+          "prefix_steps_per_epoch_current_loop": 253,
+          "prefix_active_tokens_per_epoch": 8277792,
+          "pairaware_active_tokens_per_epoch": 14664519,
+          "pairaware_active_token_ratio_vs_prefix": 1.7715495871362799,
+          "full_pool_greedy_chunks_per_epoch": 144471,
+          "changed_row_greedy_chunks": 6062,
+          "changed_row_pair_atomic_chunks": 6623,
+          "pairaware_chunks_per_epoch": 145032,
+          "pairaware_chunk_delta_vs_greedy": 561,
+          "greedy_steps_per_epoch_inverse_batch": 283,
+          "pairaware_steps_per_epoch_inverse_batch": 284,
+          "pairaware_step_delta_vs_greedy": 1,
+          "pairaware_step_ratio_vs_prefix": 1.1225296442687747,
+          "pairaware_step_ratio_vs_greedy": 1.0035335689045937,
+          "prefix_pair_full_fraction": 0.4955985191279309,
+          "greedy_pair_full_fraction": 0.7563142739613328,
+          "pair_atomic_pair_full_fraction": 0.9979432332373509,
+          "pair_atomic_pair_overlong_fraction": 0.0020567667626491155
+        },
+        "256": {
+          "stage_length": 256,
+          "inverse_scaled_row_batch": 256,
+          "prefix_steps_per_epoch_current_loop": 253,
+          "prefix_active_tokens_per_epoch": 14294893,
+          "pairaware_active_tokens_per_epoch": 14664519,
+          "pairaware_active_token_ratio_vs_prefix": 1.0258572064862606,
+          "full_pool_greedy_chunks_per_epoch": 79882,
+          "changed_row_greedy_chunks": 3057,
+          "changed_row_pair_atomic_chunks": 3057,
+          "pairaware_chunks_per_epoch": 79882,
+          "pairaware_chunk_delta_vs_greedy": 0,
+          "greedy_steps_per_epoch_inverse_batch": 313,
+          "pairaware_steps_per_epoch_inverse_batch": 313,
+          "pairaware_step_delta_vs_greedy": 0,
+          "pairaware_step_ratio_vs_prefix": 1.2371541501976284,
+          "pairaware_step_ratio_vs_greedy": 1.0,
+          "prefix_pair_full_fraction": 0.995475113122172,
+          "greedy_pair_full_fraction": 0.9957219251336898,
+          "pair_atomic_pair_full_fraction": 1.0,
+          "pair_atomic_pair_overlong_fraction": 0.0
+        }
+      },
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "epochs_by_length": {
+            "64": 3,
+            "128": 4,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 88425762,
+          "pairaware_active_tokens_total": 146645190,
+          "pairaware_active_token_ratio_vs_prefix": 1.6583989403450095,
+          "prefix_optimizer_steps_total": 2530,
+          "greedy_group_optimizer_steps_total": 2848,
+          "pairaware_optimizer_steps_total": 2858,
+          "pairaware_step_delta_vs_greedy": 10,
+          "pairaware_step_ratio_vs_prefix": 1.1296442687747035,
+          "pairaware_step_ratio_vs_greedy": 1.0035112359550562,
+          "prefix_pair_full_fraction_epoch_mean": 0.5520937885643769,
+          "greedy_pair_full_fraction_epoch_mean": 0.7171945701357466,
+          "pairaware_pair_full_fraction_epoch_mean": 0.9381900452488688,
+          "pairaware_pair_overlong_fraction_epoch_mean": 0.06180995475113123
+        },
+        "64x7_256x3": {
+          "epochs_by_length": {
+            "64": 7,
+            "128": 0,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 71887814,
+          "pairaware_active_tokens_total": 146645190,
+          "pairaware_active_token_ratio_vs_prefix": 2.0399172243573855,
+          "prefix_optimizer_steps_total": 2530,
+          "greedy_group_optimizer_steps_total": 2752,
+          "pairaware_optimizer_steps_total": 2766,
+          "pairaware_step_delta_vs_greedy": 14,
+          "pairaware_step_ratio_vs_prefix": 1.093280632411067,
+          "pairaware_step_ratio_vs_greedy": 1.0050872093023255,
+          "prefix_pair_full_fraction_epoch_mean": 0.42747017688194155,
+          "greedy_pair_full_fraction_epoch_mean": 0.5692719045660223,
+          "pairaware_pair_full_fraction_epoch_mean": 0.857696421225833,
+          "pairaware_pair_overlong_fraction_epoch_mean": 0.14230357877416702
+        }
+      }
+    },
+    "minfreq50_supportfloor": {
+      "declared_words_per_epoch": 10000000,
+      "raw_tokens_per_epoch": 14483600,
+      "changed_rows": 3005,
+      "changed_pairs": 12155,
+      "by_length": {
+        "64": {
+          "stage_length": 64,
+          "inverse_scaled_row_batch": 1024,
+          "prefix_steps_per_epoch_current_loop": 253,
+          "prefix_active_tokens_per_epoch": 4143305,
+          "pairaware_active_tokens_per_epoch": 14483600,
+          "pairaware_active_token_ratio_vs_prefix": 3.4956634860334925,
+          "full_pool_greedy_chunks_per_epoch": 261722,
+          "changed_row_greedy_chunks": 10844,
+          "changed_row_pair_atomic_chunks": 12787,
+          "pairaware_chunks_per_epoch": 263665,
+          "pairaware_chunk_delta_vs_greedy": 1943,
+          "greedy_steps_per_epoch_inverse_batch": 256,
+          "pairaware_steps_per_epoch_inverse_batch": 258,
+          "pairaware_step_delta_vs_greedy": 2,
+          "pairaware_step_ratio_vs_prefix": 1.0197628458498025,
+          "pairaware_step_ratio_vs_greedy": 1.0078125,
+          "prefix_pair_full_fraction": 0.19243109831345126,
+          "greedy_pair_full_fraction": 0.40156314273961335,
+          "pair_atomic_pair_full_fraction": 0.8158782394076511,
+          "pair_atomic_pair_overlong_fraction": 0.18412176059234883
+        },
+        "128": {
+          "stage_length": 128,
+          "inverse_scaled_row_batch": 512,
+          "prefix_steps_per_epoch_current_loop": 253,
+          "prefix_active_tokens_per_epoch": 8276722,
+          "pairaware_active_tokens_per_epoch": 14483600,
+          "pairaware_active_token_ratio_vs_prefix": 1.749919835413102,
+          "full_pool_greedy_chunks_per_epoch": 143340,
+          "changed_row_greedy_chunks": 6030,
+          "changed_row_pair_atomic_chunks": 6475,
+          "pairaware_chunks_per_epoch": 143785,
+          "pairaware_chunk_delta_vs_greedy": 445,
+          "greedy_steps_per_epoch_inverse_batch": 280,
+          "pairaware_steps_per_epoch_inverse_batch": 281,
+          "pairaware_step_delta_vs_greedy": 1,
+          "pairaware_step_ratio_vs_prefix": 1.1106719367588933,
+          "pairaware_step_ratio_vs_greedy": 1.0035714285714286,
+          "prefix_pair_full_fraction": 0.5127108185931716,
+          "greedy_pair_full_fraction": 0.7588646647470176,
+          "pair_atomic_pair_full_fraction": 0.9986836692719046,
+          "pair_atomic_pair_overlong_fraction": 0.0013163307280954339
+        },
+        "256": {
+          "stage_length": 256,
+          "inverse_scaled_row_batch": 256,
+          "prefix_steps_per_epoch_current_loop": 253,
+          "prefix_active_tokens_per_epoch": 14152904,
+          "pairaware_active_tokens_per_epoch": 14483600,
+          "pairaware_active_token_ratio_vs_prefix": 1.023365946663667,
+          "full_pool_greedy_chunks_per_epoch": 78857,
+          "changed_row_greedy_chunks": 3031,
+          "changed_row_pair_atomic_chunks": 3031,
+          "pairaware_chunks_per_epoch": 78857,
+          "pairaware_chunk_delta_vs_greedy": 0,
+          "greedy_steps_per_epoch_inverse_batch": 309,
+          "pairaware_steps_per_epoch_inverse_batch": 309,
+          "pairaware_step_delta_vs_greedy": 0,
+          "pairaware_step_ratio_vs_prefix": 1.2213438735177866,
+          "pairaware_step_ratio_vs_greedy": 1.0,
+          "prefix_pair_full_fraction": 0.9977786918963389,
+          "greedy_pair_full_fraction": 0.9978609625668449,
+          "pair_atomic_pair_full_fraction": 1.0,
+          "pair_atomic_pair_overlong_fraction": 0.0
+        }
+      },
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "epochs_by_length": {
+            "64": 3,
+            "128": 4,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 87995515,
+          "pairaware_active_tokens_total": 144836000,
+          "pairaware_active_token_ratio_vs_prefix": 1.6459475235754912,
+          "prefix_optimizer_steps_total": 2530,
+          "greedy_group_optimizer_steps_total": 2815,
+          "pairaware_optimizer_steps_total": 2825,
+          "pairaware_step_delta_vs_greedy": 10,
+          "pairaware_step_ratio_vs_prefix": 1.116600790513834,
+          "pairaware_step_ratio_vs_greedy": 1.0035523978685612,
+          "prefix_pair_full_fraction_epoch_mean": 0.5621472645002057,
+          "greedy_pair_full_fraction_epoch_mean": 0.7233730974907445,
+          "pairaware_pair_full_fraction_epoch_mean": 0.9442369395310571,
+          "pairaware_pair_overlong_fraction_epoch_mean": 0.05576306046894282
+        },
+        "64x7_256x3": {
+          "epochs_by_length": {
+            "64": 7,
+            "128": 0,
+            "256": 3
+          },
+          "charged_words_total": 100000000,
+          "prefix_active_tokens_total": 71461847,
+          "pairaware_active_tokens_total": 144836000,
+          "pairaware_active_token_ratio_vs_prefix": 2.0267598177248343,
+          "prefix_optimizer_steps_total": 2530,
+          "greedy_group_optimizer_steps_total": 2719,
+          "pairaware_optimizer_steps_total": 2733,
+          "pairaware_step_delta_vs_greedy": 14,
+          "pairaware_step_ratio_vs_prefix": 1.0802371541501976,
+          "pairaware_step_ratio_vs_greedy": 1.0051489518205223,
+          "prefix_pair_full_fraction_epoch_mean": 0.4340353763883176,
+          "greedy_pair_full_fraction_epoch_mean": 0.5804524886877828,
+          "pairaware_pair_full_fraction_epoch_mean": 0.8711147675853559,
+          "pairaware_pair_overlong_fraction_epoch_mean": 0.12888523241464417
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "word_budget": "Pair-aware chunks reorganize the same frozen 10M declared words per epoch. The ten-epoch schedules remain 100M charged words.",
+    "active_tokens": "Full-pool active tokens equal the greedy tokenizer-group chunk stream because pair-atomic packing does not drop tokens; it changes only boundaries and step count.",
+    "compact_view": "The changed compact block uses source+rewrite pairs as atoms when they fit the stage length, preserving the load-bearing same-window second-view signal for most pairs at short lengths.",
+    "launch_status": "No model training was launched. A sequence-training comparison remains conditional on the word-mean/support-floor evidence."
+  }
+}

@@ -1,0 +1,547 @@
+{
+  "status": "SEMANTIC_VIEW_CONTRAST_MATERIALIZED",
+  "created_utc_unix": 1787993375,
+  "purpose": "matched semantic-view vs original-only source contrast under BabyLM strict-small word accounting",
+  "prompts": "experiments/archive/representation_and_objectives/training/data/factual_prompts_shard1_simpara.jsonl",
+  "outputs": "experiments/archive/representation_and_objectives/training/runs/gen_simpara_full_qwen/outputs.jsonl",
+  "prompt_sha256": "155a5f4f6044e51ded46de69d1a8e231ff62cf922c8e33bb157bc6f67e880525",
+  "output_sha256": "7cc4bcdc5b5d4e13234aa95679ed8cf0dda78d88cad5ab33b90d36d49ad2fe46",
+  "official_pool": "experiments/archive/compact_experience/data/mixture/official_pool.jsonl",
+  "official_pool_sha256": "072eb2a9ecb52e6e6022d46d233c99c2ad9758843c2ae29f4eb653fb38902f02",
+  "total_words_per_pool": 10000000,
+  "passes": 10,
+  "word_exposure_per_training_file": 100000000,
+  "strict_numbers": false,
+  "prompt_rows_loaded": 30000,
+  "output_rows_loaded": 30000,
+  "missing_outputs_for_prompts": 0,
+  "accepted_views": 16394,
+  "accepted_views_by_type": {
+    "simplification": 7077,
+    "paraphrase": 9317
+  },
+  "rejected_prompt_outputs": 13606,
+  "rejection_reasons_prefix_counts": {
+    "entity": 9928,
+    "number": 4324,
+    "incomplete_or_fragment": 592,
+    "copy": 721,
+    "repetition": 647,
+    "new": 437,
+    "bad_pattern": 17,
+    "low": 93,
+    "len": 10
+  },
+  "semantic_packet_rows": 10840,
+  "semantic_packet_words": 820830,
+  "semantic_packet_fraction_of_pool": 0.082083,
+  "official_filler_words_identical": 9179170,
+  "official_filler_rows_identical": 57370,
+  "row_length_sequence_identical": true,
+  "official_filler_identical_after_semantic_prefix": true,
+  "control_construction": "three source-only controls are written: original_stream_matched chunks a shuffled/cycled stream of the same selected SimpleWiki sources to the treatment row-length sequence; original_packet_local is the packet-local balanced-repetition control preserving each row's own source identity, boundary, length, and repetition without generated wording (first copy starts with the exact source; extra repetitions use cyclic offsets); original_packet_exact_matched is a naive rowwise prefix-repeated original kept only as a forensic artifact because it over-emphasizes source prefixes",
+  "pool_rows": {
+    "treatment": 68210,
+    "stream_control": 68210,
+    "packet_local_control": 68210,
+    "packet_exact_control": 68210
+  },
+  "semantic_row_word_stats": {
+    "n": 10840,
+    "min": 22,
+    "p05": 36,
+    "mean": 75.7223,
+    "median": 72.0,
+    "p95": 132,
+    "max": 297,
+    "sum": 820830
+  },
+  "semantic_original_source_word_stats": {
+    "n": 10840,
+    "min": 15,
+    "p05": 16,
+    "mean": 32.119,
+    "median": 30.0,
+    "p95": 55,
+    "max": 60,
+    "sum": 348170
+  },
+  "accepted_view_word_stats_by_type": {
+    "simplification": {
+      "n": 7077,
+      "min": 6,
+      "p05": 13,
+      "mean": 27.2936,
+      "median": 26,
+      "p95": 46,
+      "max": 62,
+      "sum": 193157
+    },
+    "paraphrase": {
+      "n": 9317,
+      "min": 11,
+      "p05": 16,
+      "mean": 29.9992,
+      "median": 28,
+      "p95": 49,
+      "max": 66,
+      "sum": 279503
+    }
+  },
+  "accepted_view_quality_by_type": {
+    "simplification": {
+      "len_ratio": {
+        "n": 7077,
+        "min": 0.3684210526315789,
+        "p05": 0.6136363636363636,
+        "mean": 0.898,
+        "median": 0.8823529411764706,
+        "p95": 1.2352941176470589,
+        "max": 1.9047619047619047,
+        "sum": 6355.290045078385
+      },
+      "content_overlap": {
+        "n": 7077,
+        "min": 0.1,
+        "p05": 0.4444444444444444,
+        "mean": 0.7364,
+        "median": 0.7647058823529411,
+        "p95": 0.9333333333333333,
+        "max": 1.0,
+        "sum": 5211.221618186259
+      },
+      "entity_recall": {
+        "n": 7077,
+        "min": 0.75,
+        "p05": 0.75,
+        "mean": 0.9347,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 6614.821442252351
+      },
+      "number_recall": {
+        "n": 7077,
+        "min": 0.7,
+        "p05": 1.0,
+        "mean": 0.994,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 7034.609523809524
+      },
+      "new_entities": {
+        "n": 7077,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.3595,
+        "median": 0,
+        "p95": 2,
+        "max": 3,
+        "sum": 2544
+      },
+      "new_numbers": {
+        "n": 7077,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.0162,
+        "median": 0,
+        "p95": 0,
+        "max": 1,
+        "sum": 115
+      }
+    },
+    "paraphrase": {
+      "len_ratio": {
+        "n": 9317,
+        "min": 0.4576271186440678,
+        "p05": 0.7037037037037037,
+        "mean": 0.9729,
+        "median": 0.9615384615384616,
+        "p95": 1.2857142857142858,
+        "max": 1.9375,
+        "sum": 9064.629671418597
+      },
+      "content_overlap": {
+        "n": 9317,
+        "min": 0.1,
+        "p05": 0.3333333333333333,
+        "mean": 0.6689,
+        "median": 0.7,
+        "p95": 0.9090909090909091,
+        "max": 1.0,
+        "sum": 6232.380104650685
+      },
+      "entity_recall": {
+        "n": 9317,
+        "min": 0.75,
+        "p05": 0.75,
+        "mean": 0.9359,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 8719.414818639589
+      },
+      "number_recall": {
+        "n": 9317,
+        "min": 0.6875,
+        "p05": 1.0,
+        "mean": 0.9918,
+        "median": 1.0,
+        "p95": 1.0,
+        "max": 1.0,
+        "sum": 9240.505158730159
+      },
+      "new_entities": {
+        "n": 9317,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.6256,
+        "median": 0,
+        "p95": 2,
+        "max": 3,
+        "sum": 5829
+      },
+      "new_numbers": {
+        "n": 9317,
+        "min": 0,
+        "p05": 0,
+        "mean": 0.0082,
+        "median": 0,
+        "p95": 0,
+        "max": 1,
+        "sum": 76
+      }
+    }
+  },
+  "semantic_unique_source_keys": 10840,
+  "semantic_source_articles": 7161,
+  "top_semantic_source_articles_by_rows": [
+    [
+      "Jeremy Corbyn",
+      15
+    ],
+    [
+      "Alcohol withdrawal",
+      15
+    ],
+    [
+      "High Court of Justiciary",
+      14
+    ],
+    [
+      "History of the Catholic Church",
+      13
+    ],
+    [
+      "Mike Pence",
+      13
+    ],
+    [
+      "Hamis Kiggundu",
+      13
+    ],
+    [
+      "Lipan Apache people",
+      12
+    ],
+    [
+      "Glosa (auxiliary language)",
+      11
+    ],
+    [
+      "Charles Reid",
+      11
+    ],
+    [
+      "Brihadeshwara Temple",
+      10
+    ],
+    [
+      "Doug Sahm",
+      10
+    ],
+    [
+      "Laramie",
+      9
+    ],
+    [
+      "1st Provisional Marine Brigade",
+      9
+    ],
+    [
+      "Mery Godigna Collet",
+      9
+    ],
+    [
+      "Charlie Crist",
+      9
+    ],
+    [
+      "Choking agent",
+      9
+    ],
+    [
+      "Psychedelic trance",
+      9
+    ],
+    [
+      "Romance movie",
+      9
+    ],
+    [
+      "Vatnajökull National Park",
+      9
+    ],
+    [
+      "Fetal alcohol syndrome",
+      9
+    ],
+    [
+      "Odell Beckham Jr.",
+      8
+    ],
+    [
+      "Rudolf Höss",
+      8
+    ],
+    [
+      "Novial",
+      8
+    ],
+    [
+      "Arrowverse",
+      8
+    ],
+    [
+      "Melania Trump",
+      8
+    ],
+    [
+      "Jewel Changi Airport",
+      8
+    ],
+    [
+      "Goicoechea (canton)",
+      8
+    ],
+    [
+      "Muhammed Majeed",
+      7
+    ],
+    [
+      "José Andrade",
+      7
+    ],
+    [
+      "Pháo",
+      7
+    ]
+  ],
+  "top_semantic_source_articles_by_original_words": [
+    [
+      "Jeremy Corbyn",
+      613
+    ],
+    [
+      "Lipan Apache people",
+      553
+    ],
+    [
+      "High Court of Justiciary",
+      515
+    ],
+    [
+      "Hamis Kiggundu",
+      479
+    ],
+    [
+      "Alcohol withdrawal",
+      457
+    ],
+    [
+      "Mike Pence",
+      448
+    ],
+    [
+      "Charles Reid",
+      421
+    ],
+    [
+      "1st Provisional Marine Brigade",
+      415
+    ],
+    [
+      "History of the Catholic Church",
+      394
+    ],
+    [
+      "Vatnajökull National Park",
+      371
+    ],
+    [
+      "Jewel Changi Airport",
+      369
+    ],
+    [
+      "Glosa (auxiliary language)",
+      358
+    ],
+    [
+      "Arrowverse",
+      352
+    ],
+    [
+      "Romance movie",
+      350
+    ],
+    [
+      "Free Syrian Army",
+      346
+    ],
+    [
+      "Brihadeshwara Temple",
+      343
+    ],
+    [
+      "Melania Trump",
+      331
+    ],
+    [
+      "Mery Godigna Collet",
+      323
+    ],
+    [
+      "Fetal alcohol syndrome",
+      311
+    ],
+    [
+      "Rudolf Höss",
+      307
+    ],
+    [
+      "Psychedelic trance",
+      302
+    ],
+    [
+      "Doug Sahm",
+      302
+    ],
+    [
+      "Goicoechea (canton)",
+      292
+    ],
+    [
+      "The Last Dragonlord",
+      286
+    ],
+    [
+      "Andrade El Idolo",
+      285
+    ],
+    [
+      "Microsoft Edge",
+      283
+    ],
+    [
+      "Lisa del Giocondo",
+      278
+    ],
+    [
+      "Laramie",
+      273
+    ],
+    [
+      "Emmanuel Macron",
+      273
+    ],
+    [
+      "Biplab Kumar Deb",
+      272
+    ]
+  ],
+  "domain_row_hits_selected_sources": {
+    "geography_places": 2095,
+    "media_culture": 1618,
+    "causal_relational": 1129,
+    "quant_numeric": 3652,
+    "people_history": 2989,
+    "institutions_society": 1683,
+    "science_physical": 389
+  },
+  "source_word_counts_treatment": {
+    "simplewiki_semantic_view": 820830,
+    "simple_wiki": 1403200,
+    "open_subtitles": 2086880,
+    "bnc_spoken": 693280,
+    "childes": 2609920,
+    "gutenberg": 2363040,
+    "switchboard": 22720,
+    "simple_wiki::partial_filler": 130
+  },
+  "source_word_counts_stream_control": {
+    "simplewiki_original_stream_matched": 820830,
+    "simple_wiki": 1403200,
+    "open_subtitles": 2086880,
+    "bnc_spoken": 693280,
+    "childes": 2609920,
+    "gutenberg": 2363040,
+    "switchboard": 22720,
+    "simple_wiki::partial_filler": 130
+  },
+  "source_word_counts_packet_local_control": {
+    "simplewiki_original_packet_local": 820830,
+    "simple_wiki": 1403200,
+    "open_subtitles": 2086880,
+    "bnc_spoken": 693280,
+    "childes": 2609920,
+    "gutenberg": 2363040,
+    "switchboard": 22720,
+    "simple_wiki::partial_filler": 130
+  },
+  "source_word_counts_packet_exact_control": {
+    "simplewiki_original_only_matched": 820830,
+    "simple_wiki": 1403200,
+    "open_subtitles": 2086880,
+    "bnc_spoken": 693280,
+    "childes": 2609920,
+    "gutenberg": 2363040,
+    "switchboard": 22720,
+    "simple_wiki::partial_filler": 130
+  },
+  "files": {
+    "treatment_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/semantic_view_treatment_10M.jsonl",
+    "control_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/original_stream_matched_10M.jsonl",
+    "packet_local_control_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/original_packet_local_10M.jsonl",
+    "packet_exact_control_pool": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/original_packet_exact_matched_10M.jsonl",
+    "treatment_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/semantic_view_treatment_100M.jsonl",
+    "control_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/original_stream_matched_100M.jsonl",
+    "packet_local_control_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/original_packet_local_100M.jsonl",
+    "packet_exact_control_training": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/original_packet_exact_matched_100M.jsonl",
+    "semantic_packet_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/semantic_packet_rows_meta.jsonl",
+    "matched_packet_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/matched_packet_rows_meta.jsonl",
+    "packet_local_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/packet_local_rows_meta.jsonl",
+    "stream_packet_meta": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/stream_matched_packet_rows_meta.jsonl",
+    "accepted_views": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/accepted_views.jsonl",
+    "view_validation_rows": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/view_validation_rows.jsonl",
+    "materialization_metadata": "experiments/archive/representation_and_objectives/training/data/semantic_view/full_contrast/semantic_view_materialization_metadata.json",
+    "report_note": "research/notes/representation_and_objectives/semantic_view_contrast_materialization.md"
+  },
+  "sha256": {
+    "treatment_pool": "ad6da10508f5086e7bd76c615a67bbda57b0295d79379c9bb529f858c2e692ee",
+    "control_pool": "6677530eaf67db2aeb7196828f0e156c7864dc2916863ee8769d0e697d536c79",
+    "packet_local_control_pool": "5e15330f40b05d43fe8f4fe449b6011617e23fdf0529ce1223be6365a2389c9c",
+    "packet_exact_control_pool": "9e6535613af8eb8b67082570bd62a0b23513e816658ea1fd0083ab801af678c1",
+    "treatment_training": "d582c96b07f93cd8a44ceb6daa8408fdd66b35920f70f3f25e656c8b9c2e1cea",
+    "control_training": "dc63ca23b31dd504983c4285f45a955e6ea3a777ccae204347b15ef41af621ee",
+    "packet_local_control_training": "d1be4c1c4d9390bef62fd3eec87abe9d80190ed7829cc6b58b25ea7a5df532cb",
+    "packet_exact_control_training": "6170060fc92d94a07781b8f6b9c60c1af4d47d686c80fc8c027d0ed466bc5328",
+    "semantic_packet_meta": "6f7755709d6e3615b5dab4b1e1beca4a5b86ff398f1c73c4134448f9601ce411",
+    "matched_packet_meta": "032d226f041f69ba18d90db88e649f73404f923d31dddaa520a1cc15b227289a",
+    "packet_local_meta": "2d76559083c13bc486aedd49b349a91a92b8b5cbb899402296d1840d9a6c1563",
+    "stream_packet_meta": "e76524b1eff8fc4c4afe3cd57274821558a5e64ec5b81b5eb63629b107faee6e",
+    "accepted_views": "0caeff39ed6474f893865bc6f80915ab55919950456c3aa9ad5680afd1ec1b57",
+    "view_validation_rows": "894fd6caa37996dd47bfca7defa69b87c2bdf207bebbd2be3f926dba85ecd8b6"
+  },
+  "elapsed_sec": 34.712
+}

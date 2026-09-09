@@ -1,0 +1,323 @@
+{
+  "status": "CAUSAL_TRANSFER_CONTRAST_REDESIGNED",
+  "created_utc": "2026-09-01T13:41:05Z",
+  "elapsed_sec": 87.65,
+  "purpose": "Repair the A02 causal-GPT transfer contrast before H100 spend: match treatment token mass and boundary/copy opportunity so compact/repeat-like outcomes are interpretable in both directions.",
+  "inputs": {
+    "pairs_file": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "pairs_sha256": "d2a3110c110e216180b632ce7a181acdf348b804ea19f172e16b5afeb0d8c9fc",
+    "filler_file": "experiments/archive/frontier_consolidation/data/causal_transfer_scaffold/filler_rows.jsonl",
+    "filler_sha256": "01ddc430cd656d7303feed36b778102f2bbdb110290292ae56e6bd8f962bb7cf",
+    "tokenizer_dir": "experiments/archive/frontier_consolidation/data/causal_transfer_scaffold/neutral_tokenizer",
+    "tokenizer_json_sha256": "e6723383f9642945134a09a9641d52e595624d3c5a99622e2a47e4d912378102",
+    "order_seed": 171043
+  },
+  "word_budget": {
+    "filler_words": 9576489,
+    "pair_words": 423511,
+    "total_words_each_pool": 10000000,
+    "pair_count": 12155,
+    "filler_rows": 61735
+  },
+  "design": {
+    "own_vs_adjbreak_compact": "Same compact rewrite multiset and neutral tokenizer; own pairs preserve source--rewrite correspondence, adjbreak pairs derange rewrites to break local correspondence while preserving compact token mass and boundary novelty.",
+    "semantic_vs_random_extractive": "Both sides are source-token extracts and thus copyable from the same source context; semantic extracts are selected using the compact rewrite as a language-tool-free guide, random extracts are sampled from the same source with same word count and near-matched BPE token count.",
+    "not_a_training_result": "These are CPU data/audit assets only; any H100 run should begin with a small pilot and official-compatible causal evaluation after evaluator repair."
+  },
+  "adjbreak_assignment": {
+    "is_permutation": true,
+    "self_assignments": 0,
+    "same_rewrite_word_length_pairs": 12151,
+    "same_rewrite_word_length_fraction": 0.9996709173179762,
+    "local_length_mismatch_count": 4,
+    "local_length_mismatch_examples_first200": []
+  },
+  "arm_summaries": {
+    "own_compact": {
+      "pair_items": 12155,
+      "pair_words_total": 423511,
+      "side_words_total": 161708,
+      "side_tokens_total": 254671,
+      "pair_tokens_total": 615821,
+      "side_tokens_per_word": {
+        "n": 12155,
+        "mean": 1.5956461387853953,
+        "median": 1.5454545454545454,
+        "p10": 1.25,
+        "p90": 2.0,
+        "min": 1.0434782608695652,
+        "max": 3.8
+      },
+      "side_words": {
+        "n": 12155,
+        "mean": 13.303825586178528,
+        "median": 13.0,
+        "p10": 8.0,
+        "p90": 20.0,
+        "min": 4.0,
+        "max": 39.0
+      },
+      "boundary_suffix_prefix_overlap_words": {
+        "n": 12155,
+        "mean": 0.0029617441382147267,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.0,
+        "min": 0.0,
+        "max": 9.0
+      },
+      "source_prefix_match_fraction": {
+        "n": 12155,
+        "mean": 0.0765822695097526,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.25,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "side_words_in_source_fraction": {
+        "n": 12155,
+        "mean": 0.8351546680939397,
+        "median": 0.8461538461538461,
+        "p10": 0.6875,
+        "p90": 1.0,
+        "min": 0.3,
+        "max": 1.0
+      },
+      "side_words_in_rewrite_fraction": {
+        "n": 12155,
+        "mean": 1.0,
+        "median": 1.0,
+        "p10": 1.0,
+        "p90": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      }
+    },
+    "adjbreak_compact": {
+      "pair_items": 12155,
+      "pair_words_total": 423511,
+      "side_words_total": 161708,
+      "side_tokens_total": 254671,
+      "pair_tokens_total": 615823,
+      "side_tokens_per_word": {
+        "n": 12155,
+        "mean": 1.5956461387853953,
+        "median": 1.5454545454545454,
+        "p10": 1.25,
+        "p90": 2.0,
+        "min": 1.0434782608695652,
+        "max": 3.8
+      },
+      "side_words": {
+        "n": 12155,
+        "mean": 13.303825586178528,
+        "median": 13.0,
+        "p10": 8.0,
+        "p90": 20.0,
+        "min": 4.0,
+        "max": 39.0
+      },
+      "boundary_suffix_prefix_overlap_words": {
+        "n": 12155,
+        "mean": 0.0,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_prefix_match_fraction": {
+        "n": 12155,
+        "mean": 0.001635743249316347,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.0,
+        "min": 0.0,
+        "max": 0.16666666666666666
+      },
+      "side_words_in_source_fraction": {
+        "n": 12155,
+        "mean": 0.09005375934689439,
+        "median": 0.08333333333333333,
+        "p10": 0.0,
+        "p90": 0.2,
+        "min": 0.0,
+        "max": 0.5
+      },
+      "side_words_in_rewrite_fraction": {
+        "n": 12155,
+        "mean": 0.05040159302098723,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.14285714285714285,
+        "min": 0.0,
+        "max": 0.5384615384615384
+      }
+    },
+    "semantic_extractive": {
+      "pair_items": 12155,
+      "pair_words_total": 423511,
+      "side_words_total": 161708,
+      "side_tokens_total": 251564,
+      "pair_tokens_total": 612613,
+      "side_tokens_per_word": {
+        "n": 12155,
+        "mean": 1.5764028545386457,
+        "median": 1.5,
+        "p10": 1.2142857142857142,
+        "p90": 2.0,
+        "min": 1.0,
+        "max": 4.0
+      },
+      "side_words": {
+        "n": 12155,
+        "mean": 13.303825586178528,
+        "median": 13.0,
+        "p10": 8.0,
+        "p90": 20.0,
+        "min": 4.0,
+        "max": 39.0
+      },
+      "boundary_suffix_prefix_overlap_words": {
+        "n": 12155,
+        "mean": 0.04088852324146442,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.0,
+        "min": 0.0,
+        "max": 14.0
+      },
+      "source_prefix_match_fraction": {
+        "n": 12155,
+        "mean": 0.1289798059801338,
+        "median": 0.07142857142857142,
+        "p10": 0.0,
+        "p90": 0.375,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "side_words_in_source_fraction": {
+        "n": 12155,
+        "mean": 1.0,
+        "median": 1.0,
+        "p10": 1.0,
+        "p90": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "side_words_in_rewrite_fraction": {
+        "n": 12155,
+        "mean": 0.8863727597293283,
+        "median": 0.9090909090909091,
+        "p10": 0.7142857142857143,
+        "p90": 1.0,
+        "min": 0.3,
+        "max": 1.0
+      }
+    },
+    "random_extractive": {
+      "pair_items": 12155,
+      "pair_words_total": 423511,
+      "side_words_total": 161708,
+      "side_tokens_total": 250957,
+      "pair_tokens_total": 611014,
+      "side_tokens_per_word": {
+        "n": 12155,
+        "mean": 1.5724976647395816,
+        "median": 1.5,
+        "p10": 1.2142857142857142,
+        "p90": 2.0,
+        "min": 1.0,
+        "max": 4.2
+      },
+      "side_words": {
+        "n": 12155,
+        "mean": 13.303825586178528,
+        "median": 13.0,
+        "p10": 8.0,
+        "p90": 20.0,
+        "min": 4.0,
+        "max": 39.0
+      },
+      "boundary_suffix_prefix_overlap_words": {
+        "n": 12155,
+        "mean": 0.17778691896338955,
+        "median": 0.0,
+        "p10": 0.0,
+        "p90": 0.0,
+        "min": 0.0,
+        "max": 29.0
+      },
+      "source_prefix_match_fraction": {
+        "n": 12155,
+        "mean": 0.11540054399287185,
+        "median": 0.058823529411764705,
+        "p10": 0.0,
+        "p90": 0.3333333333333333,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "side_words_in_source_fraction": {
+        "n": 12155,
+        "mean": 1.0,
+        "median": 1.0,
+        "p10": 1.0,
+        "p90": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "side_words_in_rewrite_fraction": {
+        "n": 12155,
+        "mean": 0.5051358659028826,
+        "median": 0.5,
+        "p10": 0.3,
+        "p90": 0.7142857142857143,
+        "min": 0.0,
+        "max": 1.0
+      }
+    }
+  },
+  "matched_factor_checks": {
+    "own_vs_adjbreak_side_token_delta": {
+      "a": "own_compact",
+      "b": "adjbreak_compact",
+      "a_side_tokens": 254671,
+      "b_side_tokens": 254671,
+      "diff_a_minus_b": 0,
+      "pct_of_b": 0.0
+    },
+    "semantic_vs_random_extractive_side_token_delta": {
+      "a": "semantic_extractive",
+      "b": "random_extractive",
+      "a_side_tokens": 251564,
+      "b_side_tokens": 250957,
+      "diff_a_minus_b": 607,
+      "pct_of_b": 0.24187410592252856
+    },
+    "semantic_vs_random_extractive_per_pair_abs_token_diff": {
+      "n": 12155,
+      "mean": 0.052570958453311396,
+      "median": 0.0,
+      "p10": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 5.0
+    },
+    "semantic_vs_random_extractive_exact_token_matched_pairs": 11647,
+    "semantic_vs_random_extractive_le1_token_matched_pairs": 12052,
+    "semantic_vs_random_extractive_le1_fraction": 0.9915261209378856
+  },
+  "interpretation_rules": {
+    "own_compact_gt_adjbreak": "Evidence that local source-own compact correspondence/consolidation transfers to causal training when token mass and boundary novelty are matched.",
+    "adjbreak_ge_own_compact": "Evidence against local correspondence as the causal-transfer driver at this coordinate, because compact distribution/token mass and boundary novelty were held constant.",
+    "semantic_extractive_gt_random_extractive": "Evidence that information-dense source-token selection helps beyond literal copyability under causal training.",
+    "random_extractive_ge_semantic_extractive": "Evidence that causal transfer is dominated by generic source copy/repetition rather than semantic selection, because both arms are copyable and token-matched.",
+    "do_not_compare_directly": "Do not directly read own_compact vs semantic_extractive as one mechanism verdict; they differ in abstractive novelty vs copyability. Use them as complementary factor tests."
+  },
+  "outputs": {
+    "out_dir": "experiments/archive/representation_and_objectives/data/causal_transfer_redesign",
+    "pair_table": "experiments/archive/representation_and_objectives/data/causal_transfer_redesign/pair_redesign_table.jsonl",
+    "pools_written": {}
+  }
+}

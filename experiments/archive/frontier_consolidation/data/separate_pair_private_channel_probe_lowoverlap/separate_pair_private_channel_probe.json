@@ -1,0 +1,378 @@
+{
+  "status": "SEPARATE_PAIR_PRIVATE_CHANNEL_PROBE",
+  "created_utc": "2026-08-31T18:24:34Z",
+  "purpose": "Remove packed-row attention leakage and test whether legal compact source/rewrite pairs support a detached private invariant channel while preserving the research LM function.",
+  "inputs": {
+    "pair_jsonl": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "row_meta_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl",
+    "pool_10m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "pool_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "tokenizer": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "checkpoint": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_100M"
+  },
+  "args": {
+    "out_dir": "experiments/archive/frontier_consolidation/data/separate_pair_private_channel_probe_lowoverlap",
+    "max_rows": 900,
+    "seed": 8120,
+    "train_frac": 0.7,
+    "max_length": 128,
+    "encode_batch": 96,
+    "device": "cuda",
+    "low_overlap_focus": true,
+    "proj_dim": 64,
+    "proj_epochs": 60,
+    "proj_batch": 256,
+    "proj_lr": 0.003,
+    "proj_wd": 0.0001,
+    "temperature": 0.07,
+    "hard_margin": 0.1,
+    "hard_weight": 0.3,
+    "hard_every": 2
+  },
+  "sample": {
+    "all_pairs": 12155,
+    "selected_pairs": 3779,
+    "selected_rows": 900,
+    "row_pair_count_stats": {
+      "n": 900,
+      "mean": 4.198888888888889,
+      "median": 4.0,
+      "p05": 3.0,
+      "p95": 6.0,
+      "min": 2.0,
+      "max": 7.0,
+      "std": 0.8507505763793972
+    },
+    "train_rows": 630,
+    "test_rows": 270,
+    "train_pairs": 2652,
+    "test_pairs": 1127,
+    "domain_counts": {
+      "no_domain": 2196,
+      "causal_relational": 513,
+      "science_physical": 489,
+      "quant_numeric": 297,
+      "institutions_society": 271,
+      "geography_places": 219,
+      "media_culture": 112,
+      "people_history": 103
+    },
+    "content_overlap": {
+      "n": 3779,
+      "mean": 0.5539073669731032,
+      "median": 0.5384615384615384,
+      "p05": 0.35714285714285715,
+      "p95": 0.857142857142857,
+      "min": 0.25,
+      "max": 1.0,
+      "std": 0.1608349772511779
+    },
+    "content_recall": {
+      "n": 3779,
+      "mean": 0.6317058247354884,
+      "median": 0.6153846153846154,
+      "p05": 0.46153846153846156,
+      "p95": 0.875,
+      "min": 0.45,
+      "max": 1.0,
+      "std": 0.13491865011748366
+    }
+  },
+  "encoding": {
+    "device": "cuda",
+    "embedding_shape": [
+      3779,
+      480
+    ],
+    "max_length": 128,
+    "source_norms": {
+      "n": 3779,
+      "mean": 11.356797971874357,
+      "median": 11.288331985473633,
+      "p05": 10.067247009277343,
+      "p95": 12.951228523254395,
+      "min": 8.87581729888916,
+      "max": 14.681445121765137,
+      "std": 0.8672168464864884
+    },
+    "rewrite_norms": {
+      "n": 3779,
+      "mean": 12.524759729945114,
+      "median": 12.452143669128418,
+      "p05": 10.729799270629883,
+      "p95": 14.512966728210449,
+      "min": 9.160785675048828,
+      "max": 16.531862258911133,
+      "std": 1.1481220555331086
+    },
+    "packed_row_partner_attention_removed": true
+  },
+  "identity_metrics": {
+    "train": {
+      "label": "separate_identity_train",
+      "n_pairs": 2652,
+      "n_rows": 630,
+      "true_cos": {
+        "n": 2652,
+        "mean": 0.7400708587764345,
+        "median": 0.7549037039279938,
+        "p05": 0.524471116065979,
+        "p95": 0.8994477182626724,
+        "min": 0.1862131506204605,
+        "max": 0.9593079090118408,
+        "std": 0.11520216786258344
+      },
+      "random_other_cos": {
+        "n": 2652,
+        "mean": -0.0021225381172880206,
+        "median": -0.0061605703085660934,
+        "p05": -0.24912317171692847,
+        "p95": 0.2554280892014503,
+        "min": -0.42308473587036133,
+        "max": 0.5738522410392761,
+        "std": 0.15367047423761376
+      },
+      "same_row_decoy_cos": {
+        "n": 8968,
+        "mean": -0.0019751585075565743,
+        "median": -0.006117542507126927,
+        "p05": -0.2450069390237331,
+        "p95": 0.25915424376726126,
+        "min": -0.5175721049308777,
+        "max": 0.5738522410392761,
+        "std": 0.15323503546549122
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 2652,
+        "mean": 0.6019051512103664,
+        "median": 0.6075362637639046,
+        "p05": 0.3198403760790825,
+        "p95": 0.8615893084555862,
+        "min": -0.0011080801486968994,
+        "max": 1.1548630595207214,
+        "std": 0.1665520869287624
+      },
+      "same_row_top1": 0.9996229260935143,
+      "same_row_mean_rank": 1.0003770739064857,
+      "global_top1": 0.9645550527903469,
+      "global_top5": 0.9894419306184012,
+      "global_mean_rank": 1.4287330316742082
+    },
+    "test": {
+      "label": "separate_identity_test",
+      "n_pairs": 1127,
+      "n_rows": 270,
+      "true_cos": {
+        "n": 1127,
+        "mean": 0.735162111595868,
+        "median": 0.7468014359474182,
+        "p05": 0.5285639047622681,
+        "p95": 0.8956860721111297,
+        "min": 0.13220301270484924,
+        "max": 0.9580621719360352,
+        "std": 0.11577472095933991
+      },
+      "random_other_cos": {
+        "n": 1127,
+        "mean": 0.004279415004373509,
+        "median": 0.0016556987538933754,
+        "p05": -0.23917770236730573,
+        "p95": 0.2757341533899308,
+        "min": -0.469094455242157,
+        "max": 0.5880599021911621,
+        "std": 0.15618573284830992
+      },
+      "same_row_decoy_cos": {
+        "n": 3772,
+        "mean": -0.00028339532255174094,
+        "median": -0.0026823378866538405,
+        "p05": -0.23930273503065108,
+        "p95": 0.2534122556447982,
+        "min": -0.4690944254398346,
+        "max": 0.5129654407501221,
+        "std": 0.15029704779389078
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 1127,
+        "mean": 0.599218396243292,
+        "median": 0.5994160771369934,
+        "p05": 0.3330564260482788,
+        "p95": 0.8604763243347409,
+        "min": 0.07849288731813431,
+        "max": 1.0403010994195938,
+        "std": 0.15933361804982973
+      },
+      "same_row_top1": 1.0,
+      "same_row_mean_rank": 1,
+      "global_top1": 0.9724933451641526,
+      "global_top5": 0.9955634427684117,
+      "global_mean_rank": 1.2484472049689441
+    }
+  },
+  "private_channel": {
+    "projector": "dual_linear_detached_private_channel",
+    "proj_dim": 64,
+    "temperature": 0.07,
+    "epochs": 60,
+    "train_pairs": 2652,
+    "test_pairs": 1127,
+    "hard_same_row_pairs": 2652,
+    "history": [
+      {
+        "epoch": 1,
+        "nce_loss_mean": 1.8179246349768206,
+        "hard_margin_loss": 0.00046874754480086267
+      },
+      {
+        "epoch": 2,
+        "nce_loss_mean": 0.35465960610996594,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 3,
+        "nce_loss_mean": 0.24282340840859848,
+        "hard_margin_loss": 0.00018533245020080358
+      },
+      {
+        "epoch": 5,
+        "nce_loss_mean": 0.14778198098594492,
+        "hard_margin_loss": 8.37762127048336e-05
+      },
+      {
+        "epoch": 10,
+        "nce_loss_mean": 0.08624743907289072,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 20,
+        "nce_loss_mean": 0.05296033045107668,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 40,
+        "nce_loss_mean": 0.03188384857706048,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 60,
+        "nce_loss_mean": 0.02433379079130563,
+        "hard_margin_loss": 0.0
+      }
+    ],
+    "train_metrics": {
+      "label": "private_projected_train",
+      "n_pairs": 2652,
+      "n_rows": 630,
+      "true_cos": {
+        "n": 2652,
+        "mean": 0.8212301837642808,
+        "median": 0.8171072006225586,
+        "p05": 0.7521196097135544,
+        "p95": 0.9007777154445649,
+        "min": 0.7153156995773315,
+        "max": 0.958207368850708,
+        "std": 0.045455098111942566
+      },
+      "random_other_cos": {
+        "n": 2652,
+        "mean": 0.0014521620437561859,
+        "median": 0.001515944954007864,
+        "p05": -0.25108571350574493,
+        "p95": 0.25382672399282447,
+        "min": -0.532645583152771,
+        "max": 0.5385633707046509,
+        "std": 0.15392062804798906
+      },
+      "same_row_decoy_cos": {
+        "n": 8968,
+        "mean": 0.0011321480784962019,
+        "median": -0.0014559272676706314,
+        "p05": -0.2435008458793163,
+        "p95": 0.2565366610884666,
+        "min": -0.532645583152771,
+        "max": 0.6033323407173157,
+        "std": 0.15165980360997652
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 2652,
+        "mean": 0.6838711437772834,
+        "median": 0.6841273978352547,
+        "p05": 0.4677061825990677,
+        "p95": 0.8913161294534802,
+        "min": 0.2566923499107361,
+        "max": 1.1126995533704758,
+        "std": 0.1274874270567708
+      },
+      "same_row_top1": 1.0,
+      "same_row_mean_rank": 1,
+      "global_top1": 1.0,
+      "global_top5": 1.0,
+      "global_mean_rank": 1
+    },
+    "test_metrics": {
+      "label": "private_projected_test",
+      "n_pairs": 1127,
+      "n_rows": 270,
+      "true_cos": {
+        "n": 1127,
+        "mean": 0.7532574049632637,
+        "median": 0.7705622911453247,
+        "p05": 0.5539344668388366,
+        "p95": 0.8960217595100403,
+        "min": 0.10497277230024338,
+        "max": 0.9469400644302368,
+        "std": 0.10909899984124634
+      },
+      "random_other_cos": {
+        "n": 1127,
+        "mean": 0.0055712363025720605,
+        "median": 0.005164727568626404,
+        "p05": -0.2511249005794525,
+        "p95": 0.27314983010292054,
+        "min": -0.43961650133132935,
+        "max": 0.5579212307929993,
+        "std": 0.1566683912775415
+      },
+      "same_row_decoy_cos": {
+        "n": 3772,
+        "mean": 0.004492578495245154,
+        "median": 0.002128523774445057,
+        "p05": -0.23637091517448428,
+        "p95": 0.2601239457726478,
+        "min": -0.44565796852111816,
+        "max": 0.5099671483039856,
+        "std": 0.15155653588097728
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 1127,
+        "mean": 0.6099552660915282,
+        "median": 0.6224893927574158,
+        "p05": 0.3234961122274399,
+        "p95": 0.8409568388015032,
+        "min": -0.006287954747676849,
+        "max": 1.0128507241606712,
+        "std": 0.15974617055845317
+      },
+      "same_row_top1": 0.9991126885536823,
+      "same_row_mean_rank": 1.0008873114463177,
+      "global_top1": 0.9778172138420586,
+      "global_top5": 0.9937888198757764,
+      "global_mean_rank": 1.3043478260869565
+    },
+    "backbone_updated": false,
+    "lm_logits_connected_to_private_channel": false,
+    "function_preservation": "Exact during this test: source/rewrite embeddings were detached from a frozen research checkpoint and the learned private channel is not connected to the MLM head."
+  },
+  "private_vs_identity": {
+    "same_row_top1_private_minus_identity_test": -0.0008873114463177068,
+    "same_row_margin_private_minus_identity_test": 0.010736869848236186,
+    "global_top1_private_minus_identity_test": 0.0053238686779059075
+  },
+  "route_readout": {
+    "private_channel_signal_present": true,
+    "private_channel_adds_over_identity": true,
+    "interpretation": "A positive result supports a frozen/slow backbone plus private pair channel as a learnable corpus-derived signal; a non-positive result argues against spending a full run on paired-view alignment without a richer architecture or better supervision."
+  },
+  "elapsed_sec": 34.332
+}

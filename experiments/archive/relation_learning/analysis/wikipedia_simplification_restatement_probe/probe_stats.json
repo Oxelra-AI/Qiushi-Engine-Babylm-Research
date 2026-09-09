@@ -1,0 +1,361 @@
+{
+  "status": "WIKILARGE_CLEAN_TUN_RESTATEMENT_PROBE_BUILT",
+  "created_local": "2026-09-06T18:06:35+0800",
+  "seed": 90621021,
+  "dataset": {
+    "name": "eilamc14/wikilarge-clean",
+    "revision": "216fedb399e10141b390c8b89039737c934d43be",
+    "url": "https://huggingface.co/datasets/eilamc14/wikilarge-clean",
+    "license": "CC-BY-SA-4.0",
+    "fields": [
+      "source",
+      "target"
+    ],
+    "article_or_title_fields_available": false,
+    "split_rows": {
+      "train": 123862,
+      "validation": 417,
+      "test": 121
+    }
+  },
+  "tokenizer": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "tokenizer_vocab_size": 16384,
+  "special_token_ids": {
+    "bos_as_cls": 1,
+    "eos_as_sep": 2,
+    "mask": 4,
+    "pad": 3,
+    "unk": 0
+  },
+  "overlap_bin_boundaries": {
+    "low": "[0, 0.25)",
+    "medium": "[0.25, 0.50)",
+    "high": "[0.50, 0.90) after near-copy rejection"
+  },
+  "lexical_filter": {
+    "split_input_rows": {
+      "train": 123862,
+      "validation": 417,
+      "test": 121
+    },
+    "first_fail_counts": {
+      "input_rows": 124400,
+      "reject_encoding_or_markup_noise": 12362,
+      "reject_insufficient_shared_or_novel_content": 54851,
+      "reject_target_introduced_capitalized_content": 15799,
+      "lexically_eligible": 20284,
+      "reject_sentence_boundary": 7335,
+      "reject_short_content": 6393,
+      "reject_single_token_target_denominator": 3208,
+      "reject_novel_number": 1569,
+      "reject_length_ratio": 770,
+      "reject_lexical_relation": 1829
+    }
+  },
+  "semantic_filter": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "minimum_cosine_similarity": 0.65,
+    "before_by_bin": {
+      "medium": 12328,
+      "high": 6155,
+      "low": 1801
+    },
+    "rejected_by_bin": {
+      "medium": 1144,
+      "low": 544,
+      "high": 132
+    },
+    "retained_by_bin": {
+      "medium": 11184,
+      "high": 6023,
+      "low": 1257
+    },
+    "similarity_all_lexical_candidates": {
+      "n": 20284,
+      "min": 0.14257284998893738,
+      "mean": 0.8270001092272218,
+      "median": 0.853020966053009,
+      "p90": 0.9540048837661743,
+      "max": 0.9964234232902527
+    }
+  },
+  "entailment_filter": {
+    "model": "cross-encoder/nli-MiniLM2-L6-H768",
+    "model_revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+    "label_order": [
+      "contradiction",
+      "entailment",
+      "neutral"
+    ],
+    "direction": "source premise -> target hypothesis",
+    "minimum_entailment_probability": 0.8,
+    "before_by_bin": {
+      "medium": 11184,
+      "high": 6023,
+      "low": 1257
+    },
+    "rejected_by_bin": {
+      "medium": 4157,
+      "high": 1436,
+      "low": 695
+    },
+    "retained_by_bin": {
+      "medium": 7027,
+      "high": 4587,
+      "low": 562
+    },
+    "entailment_probability_all_semantic_candidates": {
+      "n": 18464,
+      "min": 0.00032507447758689523,
+      "mean": 0.724807861017787,
+      "median": 0.9604109823703766,
+      "p90": 0.9915109276771545,
+      "max": 0.9949100613594055
+    },
+    "caveat": "MNLI/SNLI NLI probability is an automated filter, not a gold semantic judgment"
+  },
+  "shortlist": {
+    "low": {
+      "available": 562,
+      "external_available": 5,
+      "shortlisted": 562,
+      "shortlisted_splits": {
+        "validation": 4,
+        "test": 1,
+        "train": 557
+      }
+    },
+    "medium": {
+      "available": 7027,
+      "external_available": 31,
+      "shortlisted": 1800,
+      "shortlisted_splits": {
+        "validation": 24,
+        "test": 7,
+        "train": 1769
+      }
+    },
+    "high": {
+      "available": 4587,
+      "external_available": 20,
+      "shortlisted": 1800,
+      "shortlisted_splits": {
+        "test": 5,
+        "validation": 15,
+        "train": 1780
+      }
+    }
+  },
+  "exposure_scan": {
+    "criterion": "reject target or concatenated T-body exact tokenizer-ID subsequence exposure; source-only exposure is retained but reported",
+    "patterns": 12400,
+    "automaton_states": 387871,
+    "scanned": {
+      "clean": {
+        "rows": 65313,
+        "whitespace_words": 10000000
+      },
+      "view": {
+        "rows": 65313,
+        "whitespace_words": 10000000
+      },
+      "repeat": {
+        "rows": 65313,
+        "whitespace_words": 10000000
+      }
+    },
+    "target_hits_by_arm": {
+      "clean": 0,
+      "view": 0,
+      "repeat": 0
+    },
+    "pair_hits_by_arm": {
+      "clean": 0,
+      "view": 0,
+      "repeat": 0
+    },
+    "source_hits_by_arm": {
+      "clean": 0,
+      "view": 0,
+      "repeat": 0
+    }
+  },
+  "selection": {
+    "n_per_bin": 400,
+    "bins": {
+      "low": {
+        "surface_safe_available": 562,
+        "selected": 400,
+        "selected_splits": {
+          "validation": 4,
+          "test": 1,
+          "train": 395
+        }
+      },
+      "medium": {
+        "surface_safe_available": 1800,
+        "selected": 400,
+        "selected_splits": {
+          "validation": 24,
+          "test": 7,
+          "train": 369
+        }
+      },
+      "high": {
+        "surface_safe_available": 1800,
+        "selected": 400,
+        "selected_splits": {
+          "validation": 15,
+          "test": 5,
+          "train": 380
+        }
+      }
+    }
+  },
+  "selected_pairs": 1200,
+  "selected_pair_bins": {
+    "high": 400,
+    "low": 400,
+    "medium": 400
+  },
+  "selected_splits": {
+    "validation": 43,
+    "train": 1144,
+    "test": 13
+  },
+  "surface_holdout": {
+    "all_target_sentences_unexposed": true,
+    "all_full_T_bodies_unexposed": true,
+    "selected_source_only_hits_by_arm": {
+      "clean": 0,
+      "view": 0,
+      "repeat": 0
+    },
+    "article_level_holdout_possible": false
+  },
+  "unrelated_control_audit": {
+    "all_different_pair": true,
+    "all_exact_token_length": true,
+    "zero_target_content_overlap": 1200,
+    "overlap_word_count": {
+      "n": 1200,
+      "min": 0,
+      "mean": 0.0,
+      "median": 0.0,
+      "p90": 0,
+      "max": 0
+    }
+  },
+  "neutral_pool_audit": {
+    "input_path": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/heldout_cleanqwen_rows.jsonl",
+    "input_rows": 6992,
+    "sentence_candidates": 90949,
+    "rejected_possible_packed_row_fragments": 19743,
+    "note": "rowholdout slice is used only as an ordinary N-register source pool; it is not claimed evaluation-held-out"
+  },
+  "neutral_control_audit": {
+    "all_exact_token_length": true,
+    "zero_target_content_overlap": 1200,
+    "unique_neutral_sources": 1200,
+    "max_reuse": 1,
+    "overlap_word_count": {
+      "n": 1200,
+      "min": 0,
+      "mean": 0.0,
+      "median": 0.0,
+      "p90": 0,
+      "max": 0
+    }
+  },
+  "records": 10800,
+  "paired_targets": 3600,
+  "record_counts_by_bin_class_condition": {
+    "low|overlap|T": 400,
+    "low|overlap|U": 400,
+    "low|overlap|N": 400,
+    "low|nonoverlap|T": 800,
+    "low|nonoverlap|U": 800,
+    "low|nonoverlap|N": 800,
+    "medium|overlap|T": 400,
+    "medium|overlap|U": 400,
+    "medium|overlap|N": 400,
+    "medium|nonoverlap|T": 800,
+    "medium|nonoverlap|U": 800,
+    "medium|nonoverlap|N": 800,
+    "high|overlap|T": 400,
+    "high|overlap|U": 400,
+    "high|overlap|N": 400,
+    "high|nonoverlap|T": 800,
+    "high|nonoverlap|U": 800,
+    "high|nonoverlap|N": 800
+  },
+  "pair_metrics": {
+    "content_jaccard": {
+      "n": 1200,
+      "min": 0.125,
+      "mean": 0.3914630799977907,
+      "median": 0.3771551724137931,
+      "p90": 0.625,
+      "max": 0.8333333333333334
+    },
+    "semantic_similarity": {
+      "n": 1200,
+      "min": 0.6503741145133972,
+      "mean": 0.8500786019861698,
+      "median": 0.8620072305202484,
+      "p90": 0.9599162340164185,
+      "max": 0.9958305954933167
+    },
+    "nli_entailment_probability": {
+      "n": 1200,
+      "min": 0.8012524247169495,
+      "mean": 0.9610833842058977,
+      "median": 0.9818696677684784,
+      "p90": 0.9919900298118591,
+      "max": 0.9948284029960632
+    },
+    "source_token_len": {
+      "n": 1200,
+      "min": 12,
+      "mean": 41.810833333333335,
+      "median": 40.0,
+      "p90": 63,
+      "max": 108
+    },
+    "target_token_len": {
+      "n": 1200,
+      "min": 7,
+      "mean": 28.055833333333332,
+      "median": 26.0,
+      "p90": 45,
+      "max": 81
+    },
+    "target_source_token_length_ratio": {
+      "n": 1200,
+      "min": 0.4,
+      "mean": 0.6831705274623683,
+      "median": 0.6846978557504874,
+      "p90": 0.8947368421052632,
+      "max": 1.0
+    }
+  },
+  "target_policy": "exactly one whole-word single-token occurrence whose tokenizer ID occurs in the true source and two distinct-word whole-word single-token occurrences whose tokenizer IDs are absent from the true source per pair",
+  "condition_policy": "T/U/N source slots have exactly equal tokenizer length; U is another WikiLarge source; N is a punctuation-delimited ordinary sentence from the BabyLM rowholdout construction slice",
+  "childes_denominator_comparison": {
+    "available": true,
+    "path": "experiments/archive/relation_learning/analysis/childes_variation_set_probe/probe_stats.json",
+    "pairs": 732,
+    "records": 4222,
+    "targets_per_condition": {
+      "overlap": 689,
+      "nonoverlap": 1422
+    },
+    "pair_bins": {
+      "low": 498,
+      "partial": 217,
+      "high": 17
+    }
+  },
+  "elapsed_seconds": 221.35325980186462
+}

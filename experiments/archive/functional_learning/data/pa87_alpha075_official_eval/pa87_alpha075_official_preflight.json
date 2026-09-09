@@ -1,0 +1,110 @@
+{
+  "status": "ARBITRARY_OFFICIAL_EVAL_PREFLIGHT",
+  "created_utc": "2026-09-06T22:23:34Z",
+  "target": "pa87_alpha075_official",
+  "description": "research official-style evaluation of arbitrary checkpoint pa87_alpha075_official",
+  "family": "arbitrary_single_checkpoint",
+  "source_model_path": "experiments/archive/functional_learning/training/runs/coherent86_continue_parent_anchor_seed43023/hf_model/chck_total_87005295w",
+  "run_dir": "experiments/archive/functional_learning/data/pa87_alpha075_official_eval/staged_model_roots/pa87_alpha075_official",
+  "model_root": "experiments/archive/functional_learning/data/pa87_alpha075_official_eval/staged_model_roots/pa87_alpha075_official/hf_model",
+  "endpoint": "final",
+  "out_root": "experiments/archive/functional_learning/data/pa87_alpha075_official_eval",
+  "columns_requested": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "GlobalPIQA_parallel",
+    "GlobalPIQA_nonparallel",
+    "Reading",
+    "SuperGLUE",
+    "AoA"
+  ],
+  "required_paths": {
+    "current_strict": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict",
+      "exists": true
+    },
+    "current_full_eval": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval",
+      "exists": true
+    },
+    "globalpiqa_full_eval": {
+      "path": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval",
+      "exists": true
+    },
+    "compact_experience_base_runner": {
+      "path": "experiments/archive/compact_experience/scripts/full_overall_eval_runner.py",
+      "exists": true
+    },
+    "babylm_official_scoring": {
+      "path": "experiments/archive/compact_experience/scripts/babylm_official_scoring.py",
+      "exists": true
+    },
+    "model_path": {
+      "path": "experiments/archive/functional_learning/training/runs/coherent86_continue_parent_anchor_seed43023/hf_model/chck_total_87005295w",
+      "exists": true
+    },
+    "staged_run_dir": {
+      "path": "experiments/archive/functional_learning/data/pa87_alpha075_official_eval/staged_model_roots/pa87_alpha075_official",
+      "exists": true
+    },
+    "staged_model_path": {
+      "path": "experiments/archive/functional_learning/data/pa87_alpha075_official_eval/staged_model_roots/pa87_alpha075_official/hf_model/final",
+      "exists": true
+    },
+    "scientific_metrics": {
+      "path": "experiments/archive/functional_learning/data/pa87_alpha075_official_eval/staged_model_roots/pa87_alpha075_official/scientific_metrics.json",
+      "exists": true
+    }
+  },
+  "zero_shot_specs": [
+    {
+      "column": "BLiMP",
+      "task": "blimp",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/blimp_filtered",
+      "batch_size": 128
+    },
+    {
+      "column": "Supplement",
+      "task": "blimp",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/supplement_filtered",
+      "batch_size": 128
+    },
+    {
+      "column": "EWoK",
+      "task": "ewok",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/ewok_filtered",
+      "batch_size": 64
+    },
+    {
+      "column": "Entity",
+      "task": "entity_tracking",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/entity_tracking",
+      "batch_size": 128
+    },
+    {
+      "column": "COMPS",
+      "task": "comps",
+      "data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/comps",
+      "batch_size": 128
+    },
+    {
+      "column": "GlobalPIQA_parallel",
+      "task": "global_piqa_parallel",
+      "data_path": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/global_piqa_parallel",
+      "batch_size": 128
+    },
+    {
+      "column": "GlobalPIQA_nonparallel",
+      "task": "global_piqa_nonparallel",
+      "data_path": "experiments/archive/initial_model_studies/repos/babylm-eval/strict/evaluation_data/full_eval/global_piqa_nonparallel",
+      "batch_size": 128
+    }
+  ],
+  "reading_data_path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/reading/reading_data.csv",
+  "superglue_data_dir": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_data/full_eval/glue_filtered",
+  "aoa_handling": "Records not_official_missing_checkpoints and provisional leaderboard AoA=0.0 unless all 19 strict-small checkpoints are staged.",
+  "official_like_arithmetic": "mean(BLiMP, Supplement, EWoK, Entity, COMPS, SuperGLUE primary metric mean, GlobalPIQA mean, Reading, AoA leaderboard score); submit_ready_aoa remains false if AoA ladder is missing."
+}

@@ -1,0 +1,34 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily\fontsize{8}{10}\selectfont]
+\definecolor{inputblue}{HTML}{315C8A}
+\definecolor{inputgray}{HTML}{C9CFD6}
+\path[use as bounding box] (0,-3.65) rectangle (15.7,1.65);
+\node[anchor=west,font=\sffamily\bfseries\fontsize{8}{10}\selectfont] at (0,1.25) {Same source};
+\node[anchor=west] at (4.0,1.25) {Mira placed a silver compass against the lantern.};
+\draw[inputgray,line width=.5pt] (0,.82)--(15.5,.82);
+\node[anchor=west,align=left] at (0,.15) {Sparse masking\\Sparse supervision};
+\node[anchor=west,align=left] at (0,-1.05) {Dense masking\\Sparse supervision};
+\node[anchor=west,align=left] at (0,-2.25) {Dense masking\\Dense supervision};
+\foreach \y in {.15,-1.05,-2.25}{
+  \foreach \x/\word in {0/The,1/silver,2/compass,3/touches,4/the,5/lantern}{
+    \draw[inputgray,line width=.5pt,fill=white] (4.0+\x*1.68,\y-.28) rectangle +(1.43,.56);
+  }
+}
+\foreach \x/\word in {0/The,1/silver,2/compass,3/touches,4/the}{
+  \node at (4.715+\x*1.68,.15) {\word};
+}
+\draw[inputblue,line width=.7pt,fill=inputblue!7] (12.4,-.13) rectangle +(1.43,.56);
+\node[text=inputblue] at (13.115,.15) {$\square$};
+\foreach \y in {-1.05,-2.25}{
+  \node at (4.715,\y) {The};
+  \node at (11.435,\y) {the};
+  \foreach \x in {1,2,3,5}{
+    \draw[inputblue,line width=.7pt,fill=inputblue!7] (4.0+\x*1.68,\y-.28) rectangle +(1.43,.56);
+    \node[text=inputblue] at (4.715+\x*1.68,\y) {$\square$};
+  }
+}
+\foreach \y in {.15,-1.05}{\fill[inputblue] (13.115,\y-.45) circle[radius=.055];}
+\foreach \x in {1,2,3,5}{\fill[inputblue] (4.715+\x*1.68,-2.70) circle[radius=.055];}
+\node[anchor=west,text=inputblue] at (0,-3.35) {$\square$\quad Masked input};
+\fill[inputblue] (4.10,-3.35) circle[radius=.055];
+\node[anchor=west] at (4.35,-3.35) {Included in prediction loss};
+\end{tikzpicture}

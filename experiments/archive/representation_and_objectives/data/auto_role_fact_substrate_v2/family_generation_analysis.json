@@ -1,0 +1,90 @@
+{
+  "status": "V2_ROLE_FAMILIES_PARSED_LABEL_PROMPTS_READY",
+  "created_utc": "2026-09-02T11:22:15Z",
+  "family_outputs": "experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/family_generation_outputs_qwen.jsonl",
+  "cases_total": 53,
+  "json_parse_errors": 9,
+  "empty_or_model_rejects": 2,
+  "ok_counterfactual_families": 42,
+  "label_prompts_per_teacher": 504,
+  "role_types_ok": {
+    "cause_effect": 11,
+    "entity_state": 6,
+    "condition_outcome": 11,
+    "agent_patient": 6,
+    "cause_effect_agent_patient_entity_state_location_relation_condition_outcome_comparison_beneficiary_instrument_temporal_order_other_role_relation": 1,
+    "agent_instrument_outcome": 1,
+    "comparison": 1,
+    "beneficiary": 1,
+    "temporal_order": 1,
+    "location_relation": 1,
+    "cause_effect_agent_patient": 1,
+    "cause_effect_entity_state": 1
+  },
+  "parse_errors_sample": [
+    {
+      "case_id": "B006",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1049 (char 1048)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"cause_effect\",\"role_slots\":{\"slot_a\":\"HFP program in Bangladesh\",\"relation\":\"improved\",\"slot_b\":\"food security\",\"outcome_or_state\":\"for more than 5 million vulnerable people in diverse agro-ecological zone\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"The HFP program in Bangladesh caused an improvement in food security.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"More than 5 million vulnerable people in diverse agro-ecological zones experienced improved food security.\",\"purpose\":\"untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"The diverse agro-ecological zones caused an improvement in the HFP program.\",\"purpose\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"The HFP program in Bangladesh improved the vulnerable people themselves.\",\"purpose\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 reverses the causal direction (effect causing cause), and n2 assigns the outcome (improvement) to the wrong entity (people instead of food security).\",\"reject_reason\":\"\"}"
+    },
+    {
+      "case_id": "B039",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 877 (char 876)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"agent_patient\",\"role_slots\":{\"slot_a\":\"frog\",\"relation\":\"allowed\",\"slot_b\":\"photographs\",\"outcome_or_state\":\"close-up with 50mm lens and macro tubes\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"The frog allowed close-up photographs.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"The frog cooperated to enable close-up photography.\",\"purpose\":\"paraphrase_or_untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"The photographs allowed the frog.\",\"purpose\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"The frog allowed the macro tubes.\",\"purpose\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 reverses the agent-patient relation (photographs cannot be the agent allowing the frog), and n2 assigns the outcome (allowing) to the instrument (macro tubes) instead of the agent (frog).\",\"reject_reason\":\"\"}"
+    },
+    {
+      "case_id": "B046",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1107 (char 1106)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"entity_state\",\"role_slots\":{\"slot_a\":\"researches\",\"relation\":\"focus_on\",\"slot_b\":\"natural colour variations\",\"outcome_or_state\":\"in populations of Californian wildflower called Mimilus aurantiacus\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"The researches focus on natural colour variations in Mimilus aurantiacus populations.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"The researches focus on the natural colour variations of Californian wildflowers.\",\"purpose\":\"paraphrase_or_untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"The researches focus on natural colour variations in populations of Californian wildflower called Mimilus albus.\",\"purpose\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"The researches focus on the natural colour variations of Californian wildflowers.\",\"purpose\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 swaps the specific species (aurantiacus -> albus), changing the target entity state. n2 removes the specific species identifier, altering the precise scope of the entity state relation.\"],\"reject_reason\":\"\"}"
+    },
+    {
+      "case_id": "B050",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1103 (char 1102)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"cause_effect\",\"role_slots\":{\"slot_a\":\"Brown's controversial 1836 re-survey of the Honey War line\",\"relation\":\"caused\",\"slot_b\":\"Missouri to claim its border extended 13 miles into Iowa\",\"outcome_or_state\":\"Missouri's border claim\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"The re-survey caused Missouri to claim its border extended 13 miles into Iowa.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"Brown's controversial survey was the re-survey of the Sullivan Line.\",\"purpose\":\"paraphrase_or_untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"Missouri's border claim caused Brown's controversial 1836 re-survey of the Honey War line.\",\"swap_type\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"The re-survey caused Iowa to claim its border extended 13 miles into Missouri.\",\"swap_type\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 reverses the causal direction (effect becoming cause), and n2 swaps the beneficiary of the border claim (Iowa/Missouri swap), both violating the original causal and directional constraints.\"],\"reject_reason\":\"\"}"
+    },
+    {
+      "case_id": "B056",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1290 (char 1289)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"agent_patient\",\"role_slots\":{\"slot_a\":\"he\",\"relation\":\"found\",\"slot_b\":\"Jackie Robinson\",\"outcome_or_state\":\"believed could best endure the hardships\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"he found Jackie Robinson\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"he believed Jackie Robinson could best endure the hardships\",\"purpose\":\"untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"Jackie Robinson found he\",\"swap_type\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"he believed Jackie Robinson could best endure the hardships to pull off the idea\",\"swap_type\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 reverses the agent-patient relation of the core event 'found', which is impossible given the source. n2 adds the purpose clause 'to pull off the idea' as a condition for enduring hardships, which is not entailed by the source (the source states the hardships are required to pull off the idea, not that enduring them is conditional on pulling off the idea in the same way); more critically, n2 attempts to swap the logical dependency of the belief clause, treating the outcome of the search as a condition for"
+    },
+    {
+      "case_id": "B074",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1074 (char 1073)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"agent_patient\",\"role_slots\":{\"slot_a\":\"radiologist\",\"relation\":\"creating\",\"slot_b\":\"tunnel\",\"outcome_or_state\":\"for catheter to thread through\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"The radiologist creates a tunnel for the catheter to thread through.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"The tunnel is created by the radiologist for the catheter to thread through.\",\"purpose\":\"paraphrase_or_untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"The catheter creates a tunnel for the radiologist to thread through.\",\"swap_type\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"The radiologist creates a tunnel for the needle to thread through.\",\"swap_type\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 swaps the agent (radiologist) with the patient/instrument (catheter), reversing the causal direction of creation. n2 swaps the intended recipient/instrument (catheter) with a different entity (needle), changing the specific role condition while keeping the agent and action constant.\"],\"reject_reason\":\"\"}"
+    },
+    {
+      "case_id": "B080",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1423 (char 1422)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"condition_outcome\",\"role_slots\":{\"slot_a\":\"seeing bats around\",\"relation\":\"suggests\",\"slot_b\":\"local area has good habitat\",\"outcome_or_state\":\"support wildlife and keep insect numbers down\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"Seeing bats around suggests your local area has good habitat to support a whole range of wildlife and keep insect numbers down.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"Bats need roosts, water, and insects; seeing them means your area has good habitat supporting wildlife and keeping insect numbers down.\",\"purpose\":\"paraphrase_or_untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"Seeing insects around suggests your local area has good habitat to support a whole range of wildlife and keep insect numbers down.\",\"swap_type\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"Seeing bats around suggests your local area has poor habitat to support a whole range of wildlife and keep insect numbers down.\",\"swap_type\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"The source explicitly states that seeing bats is the condition that suggests good habitat. Swapping the subject to 'insects' ("
+    },
+    {
+      "case_id": "B087",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 34 column 10 (char 1130)",
+      "raw_head": "{\n  \"families\": [\n    {\n      \"family_id\": \"r1\",\n      \"role_type\": \"cause_effect\",\n      \"role_slots\": {\n        \"slot_a\": \"phosgene\",\n        \"relation\": \"caused\",\n        \"slot_b\": \"85% of the 100,000 deaths\",\n        \"outcome_or_state\": \"deaths from chemical weapons\"\n      },\n      \"entailed\": [\n        {\n          \"id\": \"p1\",\n          \"hypothesis\": \"Phosgene caused approximately 85% of the 100,000 deaths from chemical weapons.\",\n          \"purpose\": \"main_relation\"\n        },\n        {\n          \"id\": \"p2\",\n          \"hypothesis\": \"Approximately 85% of the 100,000 deaths from chemical weapons were caused by phosgene.\",\n          \"purpose\": \"paraphrase_or_untouched_stability\"\n        }\n      ],\n      \"not_entailed\": [\n        {\n          \"id\": \"n1\",\n          \"hypothesis\": \"Mustard gas caused approximately 85% of the 100,000 deaths from chemical weapons.\",\n          \"swap_type\": \"role_exchange\"\n        },\n        {\n          \"id\": \"n2\",\n          \"hypothesis\": \"Phosgene caused approximately 15% of the 100,000 deaths from chemical weapons.\",\n          \"swap_type\": \"wrong_query_or_single_role_change\"\n        }\n      ],\n      \"why_counterfactual_closed\": \"n1 swaps the agent (phos"
+    },
+    {
+      "case_id": "B099",
+      "error": "json_parse_error:JSONDecodeError:Expecting ',' delimiter: line 1 column 1014 (char 1013)",
+      "raw_head": "{\"families\":[{\"family_id\":\"r1\",\"role_type\":\"cause_effect\",\"role_slots\":{\"slot_a\":\"pregnant_female_bed_bugs\",\"relation\":\"travel_to_avoid\",\"slot_b\":\"being_mated_again\",\"outcome_or_state\":\"avoidance_of_re_mating\"},\"entailed\":[{\"id\":\"p1\",\"hypothesis\":\"Pregnant female bed bugs travel to avoid being mated again.\",\"purpose\":\"main_relation\"},{\"id\":\"p2\",\"hypothesis\":\"Pregnant female bed bugs are likely to travel to avoid being mated again.\",\"purpose\":\"paraphrase_or_untouched_stability\"}],\"not_entailed\":[{\"id\":\"n1\",\"hypothesis\":\"Mated female bed bugs travel to avoid being mated again.\",\"swap_type\":\"role_exchange\"},{\"id\":\"n2\",\"hypothesis\":\"Pregnant female bed bugs travel to avoid being eaten by predators.\",\"swap_type\":\"wrong_query_or_single_role_change\"}],\"why_counterfactual_closed\":\"n1 swaps the subject role from 'pregnant' to 'mated', violating the specific condition required for the avoidance behavior. n2 swaps the outcome state from 'being mated' to 'being eaten', changing the causal motivation entirely.\"],\"reject_reason\":\"\"}"
+    }
+  ],
+  "rejects_sample": [
+    {
+      "case_id": "B073",
+      "reject_reason": "no_counterfactual_role_family",
+      "raw_head": "{\"families\":[],\"reject_reason\":\"no_counterfactual_role_family\"}"
+    },
+    {
+      "case_id": "B101",
+      "reject_reason": "no_counterfactual_role_family",
+      "raw_head": "{\"families\":[],\"reject_reason\":\"no_counterfactual_role_family\"}"
+    }
+  ],
+  "label_prompt_qwen": "experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/label_prompts_qwen.jsonl",
+  "label_prompt_llama": "experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/label_prompts_llama.jsonl",
+  "suggested_label_commands": {
+    "qwen": "CUDA_VISIBLE_DEVICES=0 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model qwen3.5-9b --prompts-jsonl experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/label_prompts_qwen.jsonl --output-jsonl experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/label_outputs_qwen.jsonl --batch-size 32 --max-new-tokens 8 --temperature 0.0 --device cuda",
+    "llama": "CUDA_VISIBLE_DEVICES=1 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model llama3.1-8b-instruct --prompts-jsonl experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/label_prompts_llama.jsonl --output-jsonl experiments/archive/representation_and_objectives/training/data/auto_role_fact_substrate_v2/label_outputs_llama.jsonl --batch-size 32 --max-new-tokens 8 --temperature 0.0 --device cuda"
+  },
+  "no_babylm_training_eval_upload_submission": true
+}

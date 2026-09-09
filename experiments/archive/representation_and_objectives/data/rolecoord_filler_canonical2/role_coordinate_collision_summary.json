@@ -1,0 +1,527 @@
+{
+  "status": "ROLE_COORDINATE_COLLISION",
+  "created": "2026-09-04T10:39:37Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/rolecoord_filler_canonical2",
+    "arms": "filler_direct",
+    "n_seeds": 1,
+    "seed_base": 26700,
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false
+  },
+  "construction": {
+    "filler_direct": {
+      "arm_name": "filler_direct",
+      "ctx_mode": "filler",
+      "train_modes": [
+        "direct_tag"
+      ],
+      "inventory": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "base": {
+        "n": 5120,
+        "by_query": {
+          "focal_after": 1280,
+          "focal_before": 1280,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2560,
+          "1": 2560
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=filler|q=direct_tag": 2560,
+          "base_stable_train|ctx=filler|q=direct_tag": 2560
+        },
+        "by_changed_focal": {
+          "False": 5120
+        },
+        "by_stable_secondary": {
+          "True": 5120
+        }
+      },
+      "updates": {
+        "balanced_temporal": {
+          "n": 512,
+          "by_query": {
+            "focal_after": 256,
+            "focal_before": 256
+          },
+          "by_label": {
+            "0": 256,
+            "1": 256
+          },
+          "by_kind": {
+            "sparse_changed_focal|ctx=filler|q=direct_tag": 256,
+            "sparse_stable_focal|ctx=filler|q=direct_tag": 256
+          },
+          "by_changed_focal": {
+            "False": 256,
+            "True": 256
+          },
+          "by_stable_secondary": {
+            "True": 512
+          }
+        }
+      },
+      "eval_counts": {
+        "filler_direct_heldChanged_heldStable_direct_tag_heldHyp": 1280,
+        "filler_direct_heldStable_heldStable_direct_tag_heldHyp": 1280,
+        "filler_direct_trainChanged_heldStable_direct_tag_heldHyp": 1280
+      },
+      "boundary": "Matched research collision/indirection arm; small pretrained bridge only."
+    }
+  },
+  "token_audit": {
+    "train_all": {
+      "n": 5632,
+      "min": 131,
+      "p50": 138.0,
+      "p90": 143.0,
+      "p99": 147.0,
+      "max": 151,
+      "frac_gt_max_len": 0.0
+    },
+    "eval_all": {
+      "n": 3840,
+      "min": 133,
+      "p50": 139.0,
+      "p90": 143.0,
+      "p99": 146.0,
+      "max": 149,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "summary": {
+    "filler_direct": {
+      "best_train_acc": 0.5001775622367859,
+      "train_fit": {
+        "overall": 0.5001775568181818,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=filler|q=direct_tag": 0.500390625,
+          "base_stable_train|ctx=filler|q=direct_tag": 0.50078125,
+          "sparse_changed_focal|ctx=filler|q=direct_tag": 0.49609375,
+          "sparse_stable_focal|ctx=filler|q=direct_tag": 0.49609375
+        },
+        "by_query_family": {
+          "focal_after": 0.4986979166666667,
+          "focal_before": 0.5006510416666666,
+          "secondary_after": 0.50078125,
+          "secondary_before": 0.50078125
+        },
+        "by_changed_focal": {
+          "False": 0.5003720238095238,
+          "True": 0.49609375
+        }
+      },
+      "evals": {
+        "filler_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.75,
+          "by_query": {
+            "focal_before": 0.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -0.000779618276283145,
+            "focal_after": 0.000505947507917881,
+            "secondary_before": 0.0025966514367610216,
+            "secondary_after": 0.0024015146773308516
+          },
+          "standard_acc": 0.5
+        },
+        "filler_direct_heldStable_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 1.0,
+          "by_query": {
+            "focal_before": 1.0,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": 0.002955028321594,
+            "focal_after": 0.0028185879345983267,
+            "secondary_before": 0.000714124646037817,
+            "secondary_after": 0.0007535761687904596
+          },
+          "standard_acc": 0.503125
+        },
+        "filler_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+          "contrastive_acc": 0.875,
+          "by_query": {
+            "focal_before": 0.5,
+            "focal_after": 1.0,
+            "secondary_before": 1.0,
+            "secondary_after": 1.0
+          },
+          "by_query_margin": {
+            "focal_before": -7.792958058416843e-05,
+            "focal_after": 0.00018264143727719784,
+            "secondary_before": 0.0009994516149163246,
+            "secondary_after": 0.0009736334905028343
+          },
+          "standard_acc": 0.4953125
+        }
+      }
+    }
+  },
+  "per_seed": {
+    "filler_direct": [
+      {
+        "arm": "filler_direct",
+        "seed": 26700,
+        "best_train_acc": 0.5001775622367859,
+        "train_fit": {
+          "overall": 0.5001775568181818,
+          "by_train_kind": {
+            "base_stable_anchor|ctx=filler|q=direct_tag": 0.500390625,
+            "base_stable_train|ctx=filler|q=direct_tag": 0.50078125,
+            "sparse_changed_focal|ctx=filler|q=direct_tag": 0.49609375,
+            "sparse_stable_focal|ctx=filler|q=direct_tag": 0.49609375
+          },
+          "by_query_family": {
+            "focal_after": 0.4986979166666667,
+            "focal_before": 0.5006510416666666,
+            "secondary_after": 0.50078125,
+            "secondary_before": 0.50078125
+          },
+          "by_changed_focal": {
+            "False": 0.5003720238095238,
+            "True": 0.49609375
+          }
+        },
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.7000221428038045,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 2,
+            "loss": 0.6949523335153406,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 3,
+            "loss": 0.6958853731524538,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 4,
+            "loss": 0.6952436690811407,
+            "train_acc": 0.5001775622367859
+          },
+          {
+            "epoch": 5,
+            "loss": 0.6947108789093115,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 6,
+            "loss": 0.6940022913569753,
+            "train_acc": 0.4998224675655365
+          },
+          {
+            "epoch": 7,
+            "loss": 0.6940507506105033,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 8,
+            "loss": 0.6939277179877866,
+            "train_acc": 0.49875712394714355
+          },
+          {
+            "epoch": 9,
+            "loss": 0.6978459409861402,
+            "train_acc": 0.5
+          },
+          {
+            "epoch": 10,
+            "loss": 0.7036744049242274,
+            "train_acc": 0.5
+          }
+        ],
+        "evals": {
+          "filler_direct_heldChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.5,
+              "by_query_family": {
+                "focal_before": 0.503125,
+                "focal_after": 0.496875,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "True": 0.5
+              },
+              "by_stable_secondary": {
+                "True": 0.5
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.75,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -0.000779618276283145,
+                "focal_after": 0.000505947507917881,
+                "secondary_before": 0.0025966514367610216,
+                "secondary_after": 0.0024015146773308516
+              },
+              "by_changed_focal": {
+                "True": 0.75
+              },
+              "margin_mean": 0.0011811238364316523
+            }
+          },
+          "filler_direct_trainChanged_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.4953125,
+              "by_query_family": {
+                "focal_before": 0.5,
+                "focal_after": 0.5,
+                "secondary_before": 0.4875,
+                "secondary_after": 0.49375
+              },
+              "by_changed_focal": {
+                "True": 0.4953125
+              },
+              "by_stable_secondary": {
+                "True": 0.4953125
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 0.875,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 0.5,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": -7.792958058416843e-05,
+                "focal_after": 0.00018264143727719784,
+                "secondary_before": 0.0009994516149163246,
+                "secondary_after": 0.0009736334905028343
+              },
+              "by_changed_focal": {
+                "True": 0.875
+              },
+              "margin_mean": 0.0005194492405280471
+            }
+          },
+          "filler_direct_heldStable_heldStable_direct_tag_heldHyp": {
+            "standard": {
+              "n": 1280,
+              "acc": 0.503125,
+              "by_query_family": {
+                "focal_before": 0.503125,
+                "focal_after": 0.509375,
+                "secondary_before": 0.5,
+                "secondary_after": 0.5
+              },
+              "by_changed_focal": {
+                "False": 0.503125
+              },
+              "by_stable_secondary": {
+                "True": 0.503125
+              }
+            },
+            "contrastive": {
+              "contrastive_acc": 1.0,
+              "n_pairs": 16,
+              "by_query": {
+                "focal_before": 1.0,
+                "focal_after": 1.0,
+                "secondary_before": 1.0,
+                "secondary_after": 1.0
+              },
+              "by_query_margin": {
+                "focal_before": 0.002955028321594,
+                "focal_after": 0.0028185879345983267,
+                "secondary_before": 0.000714124646037817,
+                "secondary_after": 0.0007535761687904596
+              },
+              "by_changed_focal": {
+                "False": 1.0
+              },
+              "margin_mean": 0.0018103292677551508
+            }
+          }
+        }
+      }
+    ]
+  },
+  "boundary": "Small pretrained bridge probe; use as route-local evidence only after changed-row fit checks."
+}

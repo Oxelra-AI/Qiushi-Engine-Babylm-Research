@@ -1,0 +1,378 @@
+{
+  "status": "SEPARATE_PAIR_PRIVATE_CHANNEL_PROBE",
+  "created_utc": "2026-08-31T18:22:50Z",
+  "purpose": "Remove packed-row attention leakage and test whether legal compact source/rewrite pairs support a detached private invariant channel while preserving the research LM function.",
+  "inputs": {
+    "pair_jsonl": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "row_meta_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl",
+    "pool_10m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "pool_sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "tokenizer": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "checkpoint": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_100M"
+  },
+  "args": {
+    "out_dir": "experiments/archive/frontier_consolidation/data/separate_pair_private_channel_probe",
+    "max_rows": 900,
+    "seed": 8120,
+    "train_frac": 0.7,
+    "max_length": 128,
+    "encode_batch": 96,
+    "device": "cuda",
+    "low_overlap_focus": false,
+    "proj_dim": 64,
+    "proj_epochs": 60,
+    "proj_batch": 256,
+    "proj_lr": 0.003,
+    "proj_wd": 0.0001,
+    "temperature": 0.07,
+    "hard_margin": 0.1,
+    "hard_weight": 0.3,
+    "hard_every": 2
+  },
+  "sample": {
+    "all_pairs": 12155,
+    "selected_pairs": 3625,
+    "selected_rows": 900,
+    "row_pair_count_stats": {
+      "n": 900,
+      "mean": 4.027777777777778,
+      "median": 4.0,
+      "p05": 3.0,
+      "p95": 5.0,
+      "min": 2.0,
+      "max": 7.0,
+      "std": 0.8447915953098568
+    },
+    "train_rows": 630,
+    "test_rows": 270,
+    "train_pairs": 2530,
+    "test_pairs": 1095,
+    "domain_counts": {
+      "no_domain": 2080,
+      "science_physical": 473,
+      "causal_relational": 459,
+      "quant_numeric": 269,
+      "institutions_society": 267,
+      "geography_places": 245,
+      "people_history": 112,
+      "media_culture": 105
+    },
+    "content_overlap": {
+      "n": 3625,
+      "mean": 0.5955306287414717,
+      "median": 0.5714285714285714,
+      "p05": 0.38461538461538464,
+      "p95": 0.8571428571428571,
+      "min": 0.3076923076923077,
+      "max": 1.0,
+      "std": 0.14713359497474984
+    },
+    "content_recall": {
+      "n": 3625,
+      "mean": 0.6635502157755255,
+      "median": 0.6666666666666666,
+      "p05": 0.5,
+      "p95": 0.8888888888888888,
+      "min": 0.45,
+      "max": 1.0,
+      "std": 0.1262532318698049
+    }
+  },
+  "encoding": {
+    "device": "cuda",
+    "embedding_shape": [
+      3625,
+      480
+    ],
+    "max_length": 128,
+    "source_norms": {
+      "n": 3625,
+      "mean": 11.351519916402882,
+      "median": 11.259654998779297,
+      "p05": 10.044842147827149,
+      "p95": 12.942713737487793,
+      "min": 8.825779914855957,
+      "max": 14.792284965515137,
+      "std": 0.889085069364841
+    },
+    "rewrite_norms": {
+      "n": 3625,
+      "mean": 12.439558147298879,
+      "median": 12.362104415893555,
+      "p05": 10.656851768493652,
+      "p95": 14.414522743225097,
+      "min": 9.660999298095703,
+      "max": 16.626773834228516,
+      "std": 1.1581538263794944
+    },
+    "packed_row_partner_attention_removed": true
+  },
+  "identity_metrics": {
+    "train": {
+      "label": "separate_identity_train",
+      "n_pairs": 2530,
+      "n_rows": 630,
+      "true_cos": {
+        "n": 2530,
+        "mean": 0.7594252824724428,
+        "median": 0.7733717560768127,
+        "p05": 0.5670485705137253,
+        "p95": 0.9039143115282058,
+        "min": 0.1122475117444992,
+        "max": 0.9621627330780029,
+        "std": 0.10785264013629021
+      },
+      "random_other_cos": {
+        "n": 2530,
+        "mean": 0.0027871478357713066,
+        "median": 0.0007242807187139988,
+        "p05": -0.24419687390327455,
+        "p95": 0.26451900154352187,
+        "min": -0.469637006521225,
+        "max": 0.6702763438224792,
+        "std": 0.15473312347098786
+      },
+      "same_row_decoy_cos": {
+        "n": 8086,
+        "mean": 0.002029425768193732,
+        "median": -0.002311792108230293,
+        "p05": -0.2394002228975296,
+        "p95": 0.2628806084394455,
+        "min": -0.46963703632354736,
+        "max": 0.6420581936836243,
+        "std": 0.15218070795183575
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 2530,
+        "mean": 0.6237719764902736,
+        "median": 0.628453953191638,
+        "p05": 0.35189103037118913,
+        "p95": 0.8948587439954281,
+        "min": -0.08134768903255463,
+        "max": 1.0569985061883926,
+        "std": 0.16461406192012157
+      },
+      "same_row_top1": 0.9992094861660079,
+      "same_row_mean_rank": 1.0011857707509881,
+      "global_top1": 0.974703557312253,
+      "global_top5": 0.9924901185770751,
+      "global_mean_rank": 1.3312252964426878
+    },
+    "test": {
+      "label": "separate_identity_test",
+      "n_pairs": 1095,
+      "n_rows": 270,
+      "true_cos": {
+        "n": 1095,
+        "mean": 0.759290076526877,
+        "median": 0.7771976590156555,
+        "p05": 0.5616999447345734,
+        "p95": 0.909191870689392,
+        "min": 0.13414421677589417,
+        "max": 0.9565837383270264,
+        "std": 0.11122224731056814
+      },
+      "random_other_cos": {
+        "n": 1095,
+        "mean": 0.0042093523954504835,
+        "median": 0.003657011315226555,
+        "p05": -0.23555114716291425,
+        "p95": 0.25201647877693173,
+        "min": -0.4298766553401947,
+        "max": 0.5341286659240723,
+        "std": 0.14994341168165046
+      },
+      "same_row_decoy_cos": {
+        "n": 3532,
+        "mean": 0.0036363269898637093,
+        "median": 0.0018312964239157736,
+        "p05": -0.23276711404323577,
+        "p95": 0.2536183729767797,
+        "min": -0.4298766553401947,
+        "max": 0.5851693153381348,
+        "std": 0.14942695902316602
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 1095,
+        "mean": 0.623751377014985,
+        "median": 0.6320116966962814,
+        "p05": 0.36124271154403687,
+        "p95": 0.8688415020704268,
+        "min": 0.021983861923217773,
+        "max": 1.1512204110622406,
+        "std": 0.1576213215064205
+      },
+      "same_row_top1": 1.0,
+      "same_row_mean_rank": 1,
+      "global_top1": 0.9835616438356164,
+      "global_top5": 0.9972602739726028,
+      "global_mean_rank": 1.2127853881278539
+    }
+  },
+  "private_channel": {
+    "projector": "dual_linear_detached_private_channel",
+    "proj_dim": 64,
+    "temperature": 0.07,
+    "epochs": 60,
+    "train_pairs": 2530,
+    "test_pairs": 1095,
+    "hard_same_row_pairs": 2530,
+    "history": [
+      {
+        "epoch": 1,
+        "nce_loss_mean": 1.9061251550912857,
+        "hard_margin_loss": 0.0004489142447710037
+      },
+      {
+        "epoch": 2,
+        "nce_loss_mean": 0.3342257857322693,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 3,
+        "nce_loss_mean": 0.22067301124334335,
+        "hard_margin_loss": 0.00013502928777597845
+      },
+      {
+        "epoch": 5,
+        "nce_loss_mean": 0.13079238384962083,
+        "hard_margin_loss": 4.74695407319814e-05
+      },
+      {
+        "epoch": 10,
+        "nce_loss_mean": 0.07601751163601875,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 20,
+        "nce_loss_mean": 0.046579042077064516,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 40,
+        "nce_loss_mean": 0.02953946404159069,
+        "hard_margin_loss": null
+      },
+      {
+        "epoch": 60,
+        "nce_loss_mean": 0.023107950948178767,
+        "hard_margin_loss": 0.0
+      }
+    ],
+    "train_metrics": {
+      "label": "private_projected_train",
+      "n_pairs": 2530,
+      "n_rows": 630,
+      "true_cos": {
+        "n": 2530,
+        "mean": 0.8296226197551833,
+        "median": 0.8278631567955017,
+        "p05": 0.7605895638465882,
+        "p95": 0.9067391842603683,
+        "min": 0.7165732979774475,
+        "max": 0.9555917978286743,
+        "std": 0.04469159647613579
+      },
+      "random_other_cos": {
+        "n": 2530,
+        "mean": 0.0050910238235482115,
+        "median": 0.0005155811086297035,
+        "p05": -0.23697338774800303,
+        "p95": 0.26532056331634524,
+        "min": -0.4493791460990906,
+        "max": 0.538722038269043,
+        "std": 0.15114860490686308
+      },
+      "same_row_decoy_cos": {
+        "n": 8086,
+        "mean": 0.004606338830742801,
+        "median": 0.00225662998855114,
+        "p05": -0.23262176290154457,
+        "p95": 0.2563180550932884,
+        "min": -0.4995640218257904,
+        "max": 0.5815809965133667,
+        "std": 0.1490818300390754
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 2530,
+        "mean": 0.695354430685288,
+        "median": 0.6973014362156391,
+        "p05": 0.474912317097187,
+        "p95": 0.9009861706756054,
+        "min": 0.281915545463562,
+        "max": 1.1169636249542236,
+        "std": 0.12835531675492376
+      },
+      "same_row_top1": 1.0,
+      "same_row_mean_rank": 1,
+      "global_top1": 1.0,
+      "global_top5": 1.0,
+      "global_mean_rank": 1
+    },
+    "test_metrics": {
+      "label": "private_projected_test",
+      "n_pairs": 1095,
+      "n_rows": 270,
+      "true_cos": {
+        "n": 1095,
+        "mean": 0.7775662369515798,
+        "median": 0.7934743165969849,
+        "p05": 0.5965471267700195,
+        "p95": 0.9017685770988464,
+        "min": 0.2076365202665329,
+        "max": 0.9504309892654419,
+        "std": 0.09840639206272601
+      },
+      "random_other_cos": {
+        "n": 1095,
+        "mean": 0.009523033856767225,
+        "median": 0.005150016397237778,
+        "p05": -0.22774529010057448,
+        "p95": 0.26036547124385834,
+        "min": -0.43534600734710693,
+        "max": 0.5730960369110107,
+        "std": 0.14767269095399518
+      },
+      "same_row_decoy_cos": {
+        "n": 3532,
+        "mean": 0.005109393206875379,
+        "median": 0.003258589073084295,
+        "p05": -0.24203656017780303,
+        "p95": 0.2573139891028404,
+        "min": -0.4862310588359833,
+        "max": 0.5730960369110107,
+        "std": 0.15195090994043914
+      },
+      "same_row_true_minus_max_decoy": {
+        "n": 1095,
+        "mean": 0.6407146120200478,
+        "median": 0.643996849656105,
+        "p05": 0.37215276062488556,
+        "p95": 0.8826428305357694,
+        "min": -0.04327338933944702,
+        "max": 1.0957710593938828,
+        "std": 0.1566421693935153
+      },
+      "same_row_top1": 0.9990867579908675,
+      "same_row_mean_rank": 1.0009132420091325,
+      "global_top1": 0.9872146118721461,
+      "global_top5": 0.9963470319634703,
+      "global_mean_rank": 1.184474885844749
+    },
+    "backbone_updated": false,
+    "lm_logits_connected_to_private_channel": false,
+    "function_preservation": "Exact during this test: source/rewrite embeddings were detached from a frozen research checkpoint and the learned private channel is not connected to the MLM head."
+  },
+  "private_vs_identity": {
+    "same_row_top1_private_minus_identity_test": -0.0009132420091324533,
+    "same_row_margin_private_minus_identity_test": 0.016963235005062804,
+    "global_top1_private_minus_identity_test": 0.0036529680365297024
+  },
+  "route_readout": {
+    "private_channel_signal_present": true,
+    "private_channel_adds_over_identity": true,
+    "interpretation": "A positive result supports a frozen/slow backbone plus private pair channel as a learnable corpus-derived signal; a non-positive result argues against spending a full run on paired-view alignment without a richer architecture or better supervision."
+  },
+  "elapsed_sec": 31.848
+}

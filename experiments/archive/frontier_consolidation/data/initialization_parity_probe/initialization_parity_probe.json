@@ -1,0 +1,3194 @@
+{
+  "status": "INITIALIZATION_PARITY_PROBE",
+  "created_utc": "2026-09-02T11:47:06Z",
+  "trainer_path": "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+  "tokenizer_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+  "recipe": {
+    "hidden_size": 480,
+    "n_layer": 8,
+    "n_head": 8,
+    "ffn_mult": 4,
+    "max_seq_length": 256,
+    "max_position_embeddings": 512,
+    "max_relative_positions": 256,
+    "position_buckets": 256,
+    "seed": 43,
+    "extra_init_seed": 43022,
+    "train_rng_seed": 43023
+  },
+  "variants": {
+    "full_p2c_c2p_abs": "p2c,c2p",
+    "c2p_only_abs": "c2p",
+    "p2c_only_abs": "p2c",
+    "no_disentangle_abs": ""
+  },
+  "same_seed_comparisons": {
+    "full_vs_no_disentangle_same_seed": {
+      "left_n_keys": 172,
+      "right_n_keys": 140,
+      "common_key_count": 140,
+      "only_left_count": 32,
+      "only_right_count": 0,
+      "only_left_sample": [
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.weight"
+      ],
+      "only_right_sample": [],
+      "exact_common_count": 87,
+      "nonexact_common_count": 53,
+      "allclose_zero_atol_count": 87,
+      "groups": {
+        "mlm_head_after_optional": {
+          "count": 7,
+          "exact": 5,
+          "allclose": 5,
+          "numel": 8128928,
+          "n_mismatched": 2,
+          "max_abs_max": 0.14699462056159973,
+          "mean_abs_mean_over_tensors": 0.022576105780899525
+        },
+        "embeddings": {
+          "count": 4,
+          "exact": 2,
+          "allclose": 2,
+          "numel": 8111040,
+          "n_mismatched": 2,
+          "max_abs_max": 0.14699462056159973,
+          "mean_abs_mean_over_tensors": 0.02255069650709629
+        },
+        "attention_output_after_optional": {
+          "count": 32,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 1854720,
+          "n_mismatched": 8,
+          "max_abs_max": 0.15306472778320312,
+          "mean_abs_mean_over_tensors": 0.02256352617405355
+        },
+        "attention_qkv": {
+          "count": 48,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 5541120,
+          "n_mismatched": 24,
+          "max_abs_max": 0.14837807416915894,
+          "mean_abs_mean_over_tensors": 0.022567366094638903
+        },
+        "intermediate_after_optional": {
+          "count": 16,
+          "exact": 8,
+          "allclose": 8,
+          "numel": 7388160,
+          "n_mismatched": 8,
+          "max_abs_max": 0.14827796816825867,
+          "mean_abs_mean_over_tensors": 0.022558006457984447
+        },
+        "layer_output_after_optional": {
+          "count": 32,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 7384320,
+          "n_mismatched": 8,
+          "max_abs_max": 0.1422167867422104,
+          "mean_abs_mean_over_tensors": 0.022559548262506723
+        },
+        "encoder_rel_embeddings": {
+          "count": 1,
+          "exact": 0,
+          "allclose": 0,
+          "numel": 245760,
+          "n_mismatched": 1,
+          "max_abs_max": 0.12625719606876373,
+          "mean_abs_mean_over_tensors": 0.022532084956765175
+        }
+      },
+      "first_mismatches": [
+        {
+          "key": "cls.predictions.decoder.weight",
+          "group": "mlm_head_after_optional",
+          "shape": [
+            16384,
+            480
+          ],
+          "numel": 7864320,
+          "max_abs": 0.14699462056159973,
+          "mean_abs": 0.02255220152437687
+        },
+        {
+          "key": "cls.predictions.transform.dense.weight",
+          "group": "mlm_head_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12913574278354645,
+          "mean_abs": 0.02260001003742218
+        },
+        {
+          "key": "deberta.embeddings.position_embeddings.weight",
+          "group": "embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.12377073615789413,
+          "mean_abs": 0.022549191489815712
+        },
+        {
+          "key": "deberta.embeddings.word_embeddings.weight",
+          "group": "embeddings",
+          "shape": [
+            16384,
+            480
+          ],
+          "numel": 7864320,
+          "max_abs": 0.14699462056159973,
+          "mean_abs": 0.02255220152437687
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13274365663528442,
+          "mean_abs": 0.02253776416182518
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14280223846435547,
+          "mean_abs": 0.022544458508491516
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12893325090408325,
+          "mean_abs": 0.022510098293423653
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13350990414619446,
+          "mean_abs": 0.02259543538093567
+        },
+        {
+          "key": "deberta.encoder.layer.0.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.1413373351097107,
+          "mean_abs": 0.022561922669410706
+        },
+        {
+          "key": "deberta.encoder.layer.0.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.13490667939186096,
+          "mean_abs": 0.022549143061041832
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12608668208122253,
+          "mean_abs": 0.02256196178495884
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13044793903827667,
+          "mean_abs": 0.02262125164270401
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1255691796541214,
+          "mean_abs": 0.022537613287568092
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13800179958343506,
+          "mean_abs": 0.02253464236855507
+        },
+        {
+          "key": "deberta.encoder.layer.1.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.1365879327058792,
+          "mean_abs": 0.022554617375135422
+        },
+        {
+          "key": "deberta.encoder.layer.1.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.13619284331798553,
+          "mean_abs": 0.022547977045178413
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14252415299415588,
+          "mean_abs": 0.022551337257027626
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12916307151317596,
+          "mean_abs": 0.022539867088198662
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12656231224536896,
+          "mean_abs": 0.022617755457758904
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12275022268295288,
+          "mean_abs": 0.022603077813982964
+        },
+        {
+          "key": "deberta.encoder.layer.2.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.12939117848873138,
+          "mean_abs": 0.022564930841326714
+        },
+        {
+          "key": "deberta.encoder.layer.2.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.13302534818649292,
+          "mean_abs": 0.022535862401127815
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13025589287281036,
+          "mean_abs": 0.022559192031621933
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14537164568901062,
+          "mean_abs": 0.022563032805919647
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.134303480386734,
+          "mean_abs": 0.02255368046462536
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13609832525253296,
+          "mean_abs": 0.022594789043068886
+        },
+        {
+          "key": "deberta.encoder.layer.3.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14671014249324799,
+          "mean_abs": 0.022556016221642494
+        },
+        {
+          "key": "deberta.encoder.layer.3.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.13062512874603271,
+          "mean_abs": 0.022586606442928314
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.15306472778320312,
+          "mean_abs": 0.022517912089824677
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14121615886688232,
+          "mean_abs": 0.022515282034873962
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1416037678718567,
+          "mean_abs": 0.022575099021196365
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14009694755077362,
+          "mean_abs": 0.022609561681747437
+        },
+        {
+          "key": "deberta.encoder.layer.4.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13864676654338837,
+          "mean_abs": 0.022532964125275612
+        },
+        {
+          "key": "deberta.encoder.layer.4.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.13131077587604523,
+          "mean_abs": 0.022545477375388145
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13723501563072205,
+          "mean_abs": 0.02260996215045452
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13324537873268127,
+          "mean_abs": 0.022540045902132988
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1304319053888321,
+          "mean_abs": 0.022617314010858536
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14679470658302307,
+          "mean_abs": 0.022594856098294258
+        },
+        {
+          "key": "deberta.encoder.layer.5.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14636088907718658,
+          "mean_abs": 0.022574907168745995
+        },
+        {
+          "key": "deberta.encoder.layer.5.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.1422167867422104,
+          "mean_abs": 0.022583583369851112
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12655681371688843,
+          "mean_abs": 0.022589078173041344
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14837807416915894,
+          "mean_abs": 0.02258828468620777
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13261522352695465,
+          "mean_abs": 0.022512376308441162
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13463278114795685,
+          "mean_abs": 0.022561654448509216
+        },
+        {
+          "key": "deberta.encoder.layer.6.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13804346323013306,
+          "mean_abs": 0.022570190951228142
+        },
+        {
+          "key": "deberta.encoder.layer.6.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14064785838127136,
+          "mean_abs": 0.022570252418518066
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1278977245092392,
+          "mean_abs": 0.022581001743674278
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13633663952350616,
+          "mean_abs": 0.022588510066270828
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.131195068359375,
+          "mean_abs": 0.022563671693205833
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.128248393535614,
+          "mean_abs": 0.022534428164362907
+        },
+        {
+          "key": "deberta.encoder.layer.7.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14827796816825867,
+          "mean_abs": 0.022548502311110497
+        },
+        {
+          "key": "deberta.encoder.layer.7.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.1415565311908722,
+          "mean_abs": 0.022557483986020088
+        },
+        {
+          "key": "deberta.encoder.rel_embeddings.weight",
+          "group": "encoder_rel_embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.12625719606876373,
+          "mean_abs": 0.022532084956765175
+        }
+      ],
+      "last_mismatches": [
+        {
+          "key": "deberta.encoder.layer.4.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.13131077587604523,
+          "mean_abs": 0.022545477375388145
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13723501563072205,
+          "mean_abs": 0.02260996215045452
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13324537873268127,
+          "mean_abs": 0.022540045902132988
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1304319053888321,
+          "mean_abs": 0.022617314010858536
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14679470658302307,
+          "mean_abs": 0.022594856098294258
+        },
+        {
+          "key": "deberta.encoder.layer.5.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14636088907718658,
+          "mean_abs": 0.022574907168745995
+        },
+        {
+          "key": "deberta.encoder.layer.5.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.1422167867422104,
+          "mean_abs": 0.022583583369851112
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12655681371688843,
+          "mean_abs": 0.022589078173041344
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14837807416915894,
+          "mean_abs": 0.02258828468620777
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13261522352695465,
+          "mean_abs": 0.022512376308441162
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13463278114795685,
+          "mean_abs": 0.022561654448509216
+        },
+        {
+          "key": "deberta.encoder.layer.6.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13804346323013306,
+          "mean_abs": 0.022570190951228142
+        },
+        {
+          "key": "deberta.encoder.layer.6.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14064785838127136,
+          "mean_abs": 0.022570252418518066
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1278977245092392,
+          "mean_abs": 0.022581001743674278
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13633663952350616,
+          "mean_abs": 0.022588510066270828
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.131195068359375,
+          "mean_abs": 0.022563671693205833
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.128248393535614,
+          "mean_abs": 0.022534428164362907
+        },
+        {
+          "key": "deberta.encoder.layer.7.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14827796816825867,
+          "mean_abs": 0.022548502311110497
+        },
+        {
+          "key": "deberta.encoder.layer.7.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.1415565311908722,
+          "mean_abs": 0.022557483986020088
+        },
+        {
+          "key": "deberta.encoder.rel_embeddings.weight",
+          "group": "encoder_rel_embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.12625719606876373,
+          "mean_abs": 0.022532084956765175
+        }
+      ]
+    },
+    "full_vs_c2p_only_same_seed": {
+      "left_n_keys": 172,
+      "right_n_keys": 156,
+      "common_key_count": 156,
+      "only_left_count": 16,
+      "only_right_count": 0,
+      "only_left_sample": [
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.6.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.6.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.7.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.7.attention.self.pos_query_proj.weight"
+      ],
+      "only_right_sample": [],
+      "exact_common_count": 95,
+      "nonexact_common_count": 61,
+      "allclose_zero_atol_count": 95,
+      "groups": {
+        "mlm_head_after_optional": {
+          "count": 7,
+          "exact": 5,
+          "allclose": 5,
+          "numel": 8128928,
+          "n_mismatched": 2,
+          "max_abs_max": 0.1480090469121933,
+          "mean_abs_mean_over_tensors": 0.022574858739972115
+        },
+        "embeddings": {
+          "count": 4,
+          "exact": 2,
+          "allclose": 2,
+          "numel": 8111040,
+          "n_mismatched": 2,
+          "max_abs_max": 0.1480090469121933,
+          "mean_abs_mean_over_tensors": 0.02255453635007143
+        },
+        "attention_output_after_optional": {
+          "count": 32,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 1854720,
+          "n_mismatched": 8,
+          "max_abs_max": 0.13936388492584229,
+          "mean_abs_mean_over_tensors": 0.022560043493285775
+        },
+        "attention_qkv": {
+          "count": 48,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 5541120,
+          "n_mismatched": 24,
+          "max_abs_max": 0.14458046853542328,
+          "mean_abs_mean_over_tensors": 0.022578506109615166
+        },
+        "removed_pos_projection": {
+          "count": 16,
+          "exact": 8,
+          "allclose": 8,
+          "numel": 1847040,
+          "n_mismatched": 8,
+          "max_abs_max": 0.14930839836597443,
+          "mean_abs_mean_over_tensors": 0.022537484765052795
+        },
+        "intermediate_after_optional": {
+          "count": 16,
+          "exact": 8,
+          "allclose": 8,
+          "numel": 7388160,
+          "n_mismatched": 8,
+          "max_abs_max": 0.15816283226013184,
+          "mean_abs_mean_over_tensors": 0.022563923383131623
+        },
+        "layer_output_after_optional": {
+          "count": 32,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 7384320,
+          "n_mismatched": 8,
+          "max_abs_max": 0.15448695421218872,
+          "mean_abs_mean_over_tensors": 0.02255889237858355
+        },
+        "encoder_rel_embeddings": {
+          "count": 1,
+          "exact": 0,
+          "allclose": 0,
+          "numel": 245760,
+          "n_mismatched": 1,
+          "max_abs_max": 0.1264944076538086,
+          "mean_abs_mean_over_tensors": 0.022550372406840324
+        }
+      },
+      "first_mismatches": [
+        {
+          "key": "cls.predictions.decoder.weight",
+          "group": "mlm_head_after_optional",
+          "shape": [
+            16384,
+            480
+          ],
+          "numel": 7864320,
+          "max_abs": 0.1480090469121933,
+          "mean_abs": 0.02254313975572586
+        },
+        {
+          "key": "cls.predictions.transform.dense.weight",
+          "group": "mlm_head_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12555837631225586,
+          "mean_abs": 0.02260657772421837
+        },
+        {
+          "key": "deberta.embeddings.position_embeddings.weight",
+          "group": "embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.13055263459682465,
+          "mean_abs": 0.022565932944417
+        },
+        {
+          "key": "deberta.embeddings.word_embeddings.weight",
+          "group": "embeddings",
+          "shape": [
+            16384,
+            480
+          ],
+          "numel": 7864320,
+          "max_abs": 0.1480090469121933,
+          "mean_abs": 0.02254313975572586
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13318124413490295,
+          "mean_abs": 0.022550402209162712
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1301758736371994,
+          "mean_abs": 0.022551370784640312
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14930839836597443,
+          "mean_abs": 0.022570068016648293
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1282682716846466,
+          "mean_abs": 0.022599974647164345
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1408575475215912,
+          "mean_abs": 0.022597989067435265
+        },
+        {
+          "key": "deberta.encoder.layer.0.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.1424112766981125,
+          "mean_abs": 0.022572798654437065
+        },
+        {
+          "key": "deberta.encoder.layer.0.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.1386224627494812,
+          "mean_abs": 0.02257061004638672
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13936388492584229,
+          "mean_abs": 0.022565308958292007
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1259816437959671,
+          "mean_abs": 0.02257559821009636
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1388780176639557,
+          "mean_abs": 0.022534813731908798
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13953307271003723,
+          "mean_abs": 0.022615615278482437
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12955805659294128,
+          "mean_abs": 0.02257281355559826
+        },
+        {
+          "key": "deberta.encoder.layer.1.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13575512170791626,
+          "mean_abs": 0.02254365012049675
+        },
+        {
+          "key": "deberta.encoder.layer.1.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14426255226135254,
+          "mean_abs": 0.022555800154805183
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13689526915550232,
+          "mean_abs": 0.022536473348736763
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1288573145866394,
+          "mean_abs": 0.02251512184739113
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12495651096105576,
+          "mean_abs": 0.022551683709025383
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13497096300125122,
+          "mean_abs": 0.022577771916985512
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13721951842308044,
+          "mean_abs": 0.022570112720131874
+        },
+        {
+          "key": "deberta.encoder.layer.2.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.15816283226013184,
+          "mean_abs": 0.02254839614033699
+        },
+        {
+          "key": "deberta.encoder.layer.2.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14235569536685944,
+          "mean_abs": 0.022572653368115425
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13069301843643188,
+          "mean_abs": 0.02257060818374157
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1371469646692276,
+          "mean_abs": 0.02253011427819729
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14388829469680786,
+          "mean_abs": 0.02257164940237999
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12885119020938873,
+          "mean_abs": 0.022592991590499878
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14273594319820404,
+          "mean_abs": 0.02258562296628952
+        },
+        {
+          "key": "deberta.encoder.layer.3.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.1365535855293274,
+          "mean_abs": 0.022557640448212624
+        },
+        {
+          "key": "deberta.encoder.layer.3.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.15284860134124756,
+          "mean_abs": 0.022527392953634262
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12568515539169312,
+          "mean_abs": 0.022583479061722755
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1359618604183197,
+          "mean_abs": 0.022583363577723503
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13492831587791443,
+          "mean_abs": 0.022592680528759956
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13022401928901672,
+          "mean_abs": 0.022591542452573776
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1408025622367859,
+          "mean_abs": 0.022608304396271706
+        },
+        {
+          "key": "deberta.encoder.layer.4.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14091865718364716,
+          "mean_abs": 0.0225796177983284
+        },
+        {
+          "key": "deberta.encoder.layer.4.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14174814522266388,
+          "mean_abs": 0.022563595324754715
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1340714693069458,
+          "mean_abs": 0.0225673820823431
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12097179889678955,
+          "mean_abs": 0.022644581273198128
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13151463866233826,
+          "mean_abs": 0.022534096613526344
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12725380063056946,
+          "mean_abs": 0.022533774375915527
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13838501274585724,
+          "mean_abs": 0.0226138886064291
+        },
+        {
+          "key": "deberta.encoder.layer.5.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13243627548217773,
+          "mean_abs": 0.02255021594464779
+        },
+        {
+          "key": "deberta.encoder.layer.5.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14588521420955658,
+          "mean_abs": 0.022561462596058846
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12148687988519669,
+          "mean_abs": 0.022579258307814598
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14458046853542328,
+          "mean_abs": 0.022585734724998474
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1237231194972992,
+          "mean_abs": 0.02241886407136917
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1279088407754898,
+          "mean_abs": 0.022542200982570648
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12850379943847656,
+          "mean_abs": 0.022569339722394943
+        },
+        {
+          "key": "deberta.encoder.layer.6.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14208447933197021,
+          "mean_abs": 0.022575464099645615
+        },
+        {
+          "key": "deberta.encoder.layer.6.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.15448695421218872,
+          "mean_abs": 0.022566791623830795
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13422809541225433,
+          "mean_abs": 0.022527435794472694
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12919698655605316,
+          "mean_abs": 0.0225517675280571
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1306009441614151,
+          "mean_abs": 0.022526022046804428
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12858307361602783,
+          "mean_abs": 0.022622326388955116
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1322077512741089,
+          "mean_abs": 0.02255222573876381
+        },
+        {
+          "key": "deberta.encoder.layer.7.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13848401606082916,
+          "mean_abs": 0.022583603858947754
+        },
+        {
+          "key": "deberta.encoder.layer.7.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14450064301490784,
+          "mean_abs": 0.02255283296108246
+        },
+        {
+          "key": "deberta.encoder.rel_embeddings.weight",
+          "group": "encoder_rel_embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.1264944076538086,
+          "mean_abs": 0.022550372406840324
+        }
+      ],
+      "last_mismatches": [
+        {
+          "key": "deberta.encoder.layer.5.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13151463866233826,
+          "mean_abs": 0.022534096613526344
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12725380063056946,
+          "mean_abs": 0.022533774375915527
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13838501274585724,
+          "mean_abs": 0.0226138886064291
+        },
+        {
+          "key": "deberta.encoder.layer.5.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13243627548217773,
+          "mean_abs": 0.02255021594464779
+        },
+        {
+          "key": "deberta.encoder.layer.5.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14588521420955658,
+          "mean_abs": 0.022561462596058846
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12148687988519669,
+          "mean_abs": 0.022579258307814598
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14458046853542328,
+          "mean_abs": 0.022585734724998474
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1237231194972992,
+          "mean_abs": 0.02241886407136917
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1279088407754898,
+          "mean_abs": 0.022542200982570648
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12850379943847656,
+          "mean_abs": 0.022569339722394943
+        },
+        {
+          "key": "deberta.encoder.layer.6.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14208447933197021,
+          "mean_abs": 0.022575464099645615
+        },
+        {
+          "key": "deberta.encoder.layer.6.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.15448695421218872,
+          "mean_abs": 0.022566791623830795
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13422809541225433,
+          "mean_abs": 0.022527435794472694
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12919698655605316,
+          "mean_abs": 0.0225517675280571
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.pos_key_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1306009441614151,
+          "mean_abs": 0.022526022046804428
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12858307361602783,
+          "mean_abs": 0.022622326388955116
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1322077512741089,
+          "mean_abs": 0.02255222573876381
+        },
+        {
+          "key": "deberta.encoder.layer.7.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13848401606082916,
+          "mean_abs": 0.022583603858947754
+        },
+        {
+          "key": "deberta.encoder.layer.7.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14450064301490784,
+          "mean_abs": 0.02255283296108246
+        },
+        {
+          "key": "deberta.encoder.rel_embeddings.weight",
+          "group": "encoder_rel_embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.1264944076538086,
+          "mean_abs": 0.022550372406840324
+        }
+      ]
+    },
+    "full_vs_p2c_only_same_seed": {
+      "left_n_keys": 172,
+      "right_n_keys": 156,
+      "common_key_count": 156,
+      "only_left_count": 16,
+      "only_right_count": 0,
+      "only_left_sample": [
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.6.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.6.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.7.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.7.attention.self.pos_key_proj.weight"
+      ],
+      "only_right_sample": [],
+      "exact_common_count": 95,
+      "nonexact_common_count": 61,
+      "allclose_zero_atol_count": 95,
+      "groups": {
+        "mlm_head_after_optional": {
+          "count": 7,
+          "exact": 5,
+          "allclose": 5,
+          "numel": 8128928,
+          "n_mismatched": 2,
+          "max_abs_max": 0.1480090469121933,
+          "mean_abs_mean_over_tensors": 0.022574858739972115
+        },
+        "embeddings": {
+          "count": 4,
+          "exact": 2,
+          "allclose": 2,
+          "numel": 8111040,
+          "n_mismatched": 2,
+          "max_abs_max": 0.1480090469121933,
+          "mean_abs_mean_over_tensors": 0.02255453635007143
+        },
+        "attention_output_after_optional": {
+          "count": 32,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 1854720,
+          "n_mismatched": 8,
+          "max_abs_max": 0.13936388492584229,
+          "mean_abs_mean_over_tensors": 0.022560043493285775
+        },
+        "attention_qkv": {
+          "count": 48,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 5541120,
+          "n_mismatched": 24,
+          "max_abs_max": 0.14458046853542328,
+          "mean_abs_mean_over_tensors": 0.022578506109615166
+        },
+        "removed_pos_projection": {
+          "count": 16,
+          "exact": 8,
+          "allclose": 8,
+          "numel": 1847040,
+          "n_mismatched": 8,
+          "max_abs_max": 0.14855703711509705,
+          "mean_abs_mean_over_tensors": 0.022559828124940395
+        },
+        "intermediate_after_optional": {
+          "count": 16,
+          "exact": 8,
+          "allclose": 8,
+          "numel": 7388160,
+          "n_mismatched": 8,
+          "max_abs_max": 0.15816283226013184,
+          "mean_abs_mean_over_tensors": 0.022563923383131623
+        },
+        "layer_output_after_optional": {
+          "count": 32,
+          "exact": 24,
+          "allclose": 24,
+          "numel": 7384320,
+          "n_mismatched": 8,
+          "max_abs_max": 0.15448695421218872,
+          "mean_abs_mean_over_tensors": 0.02255889237858355
+        },
+        "encoder_rel_embeddings": {
+          "count": 1,
+          "exact": 0,
+          "allclose": 0,
+          "numel": 245760,
+          "n_mismatched": 1,
+          "max_abs_max": 0.1264944076538086,
+          "mean_abs_mean_over_tensors": 0.022550372406840324
+        }
+      },
+      "first_mismatches": [
+        {
+          "key": "cls.predictions.decoder.weight",
+          "group": "mlm_head_after_optional",
+          "shape": [
+            16384,
+            480
+          ],
+          "numel": 7864320,
+          "max_abs": 0.1480090469121933,
+          "mean_abs": 0.02254313975572586
+        },
+        {
+          "key": "cls.predictions.transform.dense.weight",
+          "group": "mlm_head_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12555837631225586,
+          "mean_abs": 0.02260657772421837
+        },
+        {
+          "key": "deberta.embeddings.position_embeddings.weight",
+          "group": "embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.13055263459682465,
+          "mean_abs": 0.022565932944417
+        },
+        {
+          "key": "deberta.embeddings.word_embeddings.weight",
+          "group": "embeddings",
+          "shape": [
+            16384,
+            480
+          ],
+          "numel": 7864320,
+          "max_abs": 0.1480090469121933,
+          "mean_abs": 0.02254313975572586
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13318124413490295,
+          "mean_abs": 0.022550402209162712
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1301758736371994,
+          "mean_abs": 0.022551370784640312
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14757239818572998,
+          "mean_abs": 0.022494183853268623
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1282682716846466,
+          "mean_abs": 0.022599974647164345
+        },
+        {
+          "key": "deberta.encoder.layer.0.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1408575475215912,
+          "mean_abs": 0.022597989067435265
+        },
+        {
+          "key": "deberta.encoder.layer.0.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.1424112766981125,
+          "mean_abs": 0.022572798654437065
+        },
+        {
+          "key": "deberta.encoder.layer.0.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.1386224627494812,
+          "mean_abs": 0.02257061004638672
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13936388492584229,
+          "mean_abs": 0.022565308958292007
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1259816437959671,
+          "mean_abs": 0.02257559821009636
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12519866228103638,
+          "mean_abs": 0.022582314908504486
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13953307271003723,
+          "mean_abs": 0.022615615278482437
+        },
+        {
+          "key": "deberta.encoder.layer.1.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12955805659294128,
+          "mean_abs": 0.02257281355559826
+        },
+        {
+          "key": "deberta.encoder.layer.1.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13575512170791626,
+          "mean_abs": 0.02254365012049675
+        },
+        {
+          "key": "deberta.encoder.layer.1.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14426255226135254,
+          "mean_abs": 0.022555800154805183
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13689526915550232,
+          "mean_abs": 0.022536473348736763
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1288573145866394,
+          "mean_abs": 0.02251512184739113
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1297449767589569,
+          "mean_abs": 0.02257194183766842
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13497096300125122,
+          "mean_abs": 0.022577771916985512
+        },
+        {
+          "key": "deberta.encoder.layer.2.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13721951842308044,
+          "mean_abs": 0.022570112720131874
+        },
+        {
+          "key": "deberta.encoder.layer.2.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.15816283226013184,
+          "mean_abs": 0.02254839614033699
+        },
+        {
+          "key": "deberta.encoder.layer.2.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14235569536685944,
+          "mean_abs": 0.022572653368115425
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13069301843643188,
+          "mean_abs": 0.02257060818374157
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1371469646692276,
+          "mean_abs": 0.02253011427819729
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13088195025920868,
+          "mean_abs": 0.022598739713430405
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12885119020938873,
+          "mean_abs": 0.022592991590499878
+        },
+        {
+          "key": "deberta.encoder.layer.3.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14273594319820404,
+          "mean_abs": 0.02258562296628952
+        },
+        {
+          "key": "deberta.encoder.layer.3.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.1365535855293274,
+          "mean_abs": 0.022557640448212624
+        },
+        {
+          "key": "deberta.encoder.layer.3.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.15284860134124756,
+          "mean_abs": 0.022527392953634262
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12568515539169312,
+          "mean_abs": 0.022583479061722755
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1359618604183197,
+          "mean_abs": 0.022583363577723503
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1256272792816162,
+          "mean_abs": 0.022628091275691986
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13022401928901672,
+          "mean_abs": 0.022591542452573776
+        },
+        {
+          "key": "deberta.encoder.layer.4.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1408025622367859,
+          "mean_abs": 0.022608304396271706
+        },
+        {
+          "key": "deberta.encoder.layer.4.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14091865718364716,
+          "mean_abs": 0.0225796177983284
+        },
+        {
+          "key": "deberta.encoder.layer.4.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14174814522266388,
+          "mean_abs": 0.022563595324754715
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1340714693069458,
+          "mean_abs": 0.0225673820823431
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12097179889678955,
+          "mean_abs": 0.022644581273198128
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12645572423934937,
+          "mean_abs": 0.022513410076498985
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12725380063056946,
+          "mean_abs": 0.022533774375915527
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13838501274585724,
+          "mean_abs": 0.0226138886064291
+        },
+        {
+          "key": "deberta.encoder.layer.5.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13243627548217773,
+          "mean_abs": 0.02255021594464779
+        },
+        {
+          "key": "deberta.encoder.layer.5.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14588521420955658,
+          "mean_abs": 0.022561462596058846
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12148687988519669,
+          "mean_abs": 0.022579258307814598
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14458046853542328,
+          "mean_abs": 0.022585734724998474
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13495340943336487,
+          "mean_abs": 0.022543756291270256
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1279088407754898,
+          "mean_abs": 0.022542200982570648
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12850379943847656,
+          "mean_abs": 0.022569339722394943
+        },
+        {
+          "key": "deberta.encoder.layer.6.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14208447933197021,
+          "mean_abs": 0.022575464099645615
+        },
+        {
+          "key": "deberta.encoder.layer.6.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.15448695421218872,
+          "mean_abs": 0.022566791623830795
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13422809541225433,
+          "mean_abs": 0.022527435794472694
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12919698655605316,
+          "mean_abs": 0.0225517675280571
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14855703711509705,
+          "mean_abs": 0.022546187043190002
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12858307361602783,
+          "mean_abs": 0.022622326388955116
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1322077512741089,
+          "mean_abs": 0.02255222573876381
+        },
+        {
+          "key": "deberta.encoder.layer.7.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13848401606082916,
+          "mean_abs": 0.022583603858947754
+        },
+        {
+          "key": "deberta.encoder.layer.7.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14450064301490784,
+          "mean_abs": 0.02255283296108246
+        },
+        {
+          "key": "deberta.encoder.rel_embeddings.weight",
+          "group": "encoder_rel_embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.1264944076538086,
+          "mean_abs": 0.022550372406840324
+        }
+      ],
+      "last_mismatches": [
+        {
+          "key": "deberta.encoder.layer.5.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12645572423934937,
+          "mean_abs": 0.022513410076498985
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12725380063056946,
+          "mean_abs": 0.022533774375915527
+        },
+        {
+          "key": "deberta.encoder.layer.5.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13838501274585724,
+          "mean_abs": 0.0226138886064291
+        },
+        {
+          "key": "deberta.encoder.layer.5.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13243627548217773,
+          "mean_abs": 0.02255021594464779
+        },
+        {
+          "key": "deberta.encoder.layer.5.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14588521420955658,
+          "mean_abs": 0.022561462596058846
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12148687988519669,
+          "mean_abs": 0.022579258307814598
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14458046853542328,
+          "mean_abs": 0.022585734724998474
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13495340943336487,
+          "mean_abs": 0.022543756291270256
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1279088407754898,
+          "mean_abs": 0.022542200982570648
+        },
+        {
+          "key": "deberta.encoder.layer.6.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12850379943847656,
+          "mean_abs": 0.022569339722394943
+        },
+        {
+          "key": "deberta.encoder.layer.6.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.14208447933197021,
+          "mean_abs": 0.022575464099645615
+        },
+        {
+          "key": "deberta.encoder.layer.6.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.15448695421218872,
+          "mean_abs": 0.022566791623830795
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.output.dense.weight",
+          "group": "attention_output_after_optional",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.13422809541225433,
+          "mean_abs": 0.022527435794472694
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.key_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12919698655605316,
+          "mean_abs": 0.0225517675280571
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.pos_query_proj.weight",
+          "group": "removed_pos_projection",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.14855703711509705,
+          "mean_abs": 0.022546187043190002
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.query_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.12858307361602783,
+          "mean_abs": 0.022622326388955116
+        },
+        {
+          "key": "deberta.encoder.layer.7.attention.self.value_proj.weight",
+          "group": "attention_qkv",
+          "shape": [
+            480,
+            480
+          ],
+          "numel": 230400,
+          "max_abs": 0.1322077512741089,
+          "mean_abs": 0.02255222573876381
+        },
+        {
+          "key": "deberta.encoder.layer.7.intermediate.dense.weight",
+          "group": "intermediate_after_optional",
+          "shape": [
+            1920,
+            480
+          ],
+          "numel": 921600,
+          "max_abs": 0.13848401606082916,
+          "mean_abs": 0.022583603858947754
+        },
+        {
+          "key": "deberta.encoder.layer.7.output.dense.weight",
+          "group": "layer_output_after_optional",
+          "shape": [
+            480,
+            1920
+          ],
+          "numel": 921600,
+          "max_abs": 0.14450064301490784,
+          "mean_abs": 0.02255283296108246
+        },
+        {
+          "key": "deberta.encoder.rel_embeddings.weight",
+          "group": "encoder_rel_embeddings",
+          "shape": [
+            512,
+            480
+          ],
+          "numel": 245760,
+          "max_abs": 0.1264944076538086,
+          "mean_abs": 0.022550372406840324
+        }
+      ]
+    },
+    "c2p_only_vs_p2c_only_same_seed": {
+      "left_n_keys": 156,
+      "right_n_keys": 156,
+      "common_key_count": 140,
+      "only_left_count": 16,
+      "only_right_count": 16,
+      "only_left_sample": [
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.6.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.6.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.7.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.7.attention.self.pos_key_proj.weight"
+      ],
+      "only_right_sample": [
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.6.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.6.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.7.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.7.attention.self.pos_query_proj.weight"
+      ],
+      "exact_common_count": 140,
+      "nonexact_common_count": 0,
+      "allclose_zero_atol_count": 140,
+      "groups": {
+        "mlm_head_after_optional": {
+          "count": 7,
+          "exact": 7,
+          "allclose": 7,
+          "numel": 8128928,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "embeddings": {
+          "count": 4,
+          "exact": 4,
+          "allclose": 4,
+          "numel": 8111040,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "attention_output_after_optional": {
+          "count": 32,
+          "exact": 32,
+          "allclose": 32,
+          "numel": 1854720,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "attention_qkv": {
+          "count": 48,
+          "exact": 48,
+          "allclose": 48,
+          "numel": 5541120,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "intermediate_after_optional": {
+          "count": 16,
+          "exact": 16,
+          "allclose": 16,
+          "numel": 7388160,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "layer_output_after_optional": {
+          "count": 32,
+          "exact": 32,
+          "allclose": 32,
+          "numel": 7384320,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "encoder_rel_embeddings": {
+          "count": 1,
+          "exact": 1,
+          "allclose": 1,
+          "numel": 245760,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        }
+      },
+      "first_mismatches": [],
+      "last_mismatches": []
+    }
+  },
+  "common_copied_no_disentangle": {
+    "copy_record": {
+      "copied_common_tensors": 140,
+      "target_total_tensors": 140,
+      "skipped_shape_mismatch": []
+    },
+    "full_vs_copied_nodis_state": {
+      "left_n_keys": 172,
+      "right_n_keys": 140,
+      "common_key_count": 140,
+      "only_left_count": 32,
+      "only_right_count": 0,
+      "only_left_sample": [
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.0.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.1.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.2.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.3.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.4.attention.self.pos_query_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_key_proj.weight",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.bias",
+        "deberta.encoder.layer.5.attention.self.pos_query_proj.weight"
+      ],
+      "only_right_sample": [],
+      "exact_common_count": 140,
+      "nonexact_common_count": 0,
+      "allclose_zero_atol_count": 140,
+      "groups": {
+        "mlm_head_after_optional": {
+          "count": 7,
+          "exact": 7,
+          "allclose": 7,
+          "numel": 8128928,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "embeddings": {
+          "count": 4,
+          "exact": 4,
+          "allclose": 4,
+          "numel": 8111040,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "attention_output_after_optional": {
+          "count": 32,
+          "exact": 32,
+          "allclose": 32,
+          "numel": 1854720,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "attention_qkv": {
+          "count": 48,
+          "exact": 48,
+          "allclose": 48,
+          "numel": 5541120,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "intermediate_after_optional": {
+          "count": 16,
+          "exact": 16,
+          "allclose": 16,
+          "numel": 7388160,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "layer_output_after_optional": {
+          "count": 32,
+          "exact": 32,
+          "allclose": 32,
+          "numel": 7384320,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        },
+        "encoder_rel_embeddings": {
+          "count": 1,
+          "exact": 1,
+          "allclose": 1,
+          "numel": 245760,
+          "n_mismatched": 0,
+          "max_abs_max": 0.0,
+          "mean_abs_mean_over_tensors": 0.0
+        }
+      },
+      "first_mismatches": [],
+      "last_mismatches": []
+    }
+  },
+  "sample_texts": [
+    "ah! [another child asks Mot a question] *CHI: wanna come play with me? %add: another child [the other child agrees] *CHI: okay. *CHI: come on. %add: other child *CHI: look at. [points to plastic turtle] *CHI: there's a turtle. *CHI: here. *CHI: want this one [yellow wand]? [holds out yellow wand to Bro] *CHI: pick up stuff with that [yellow wand] see? *CHI: you have two... [pushes two silver men toward Bro] *CHI: I have two. [pushes two silver men in front of himself] *CHI: one there. [puts a ball on the silver circle on the black base] *CHI: one there. [puts another ball on the silver circle; it rolls down and sticks to the side of the black base] *CHI: whoop'. [moves the ball back to the top of the black base] *CHI: oh yeah. [pulls a silver man from the bottom of the base and pushes it toward Mot] *CHI: mom. *CHI: you get one [silver man]. *MOT:",
+    "= = = [Home Visit 3; CHI is sitting next to mother listening to EXP tell his story] [EXP is telling story to CHI] *MOT: wow! *MOT: that's scary isn't it? *CHI: [laughing]. *MOT: yeah. *INV1: can you tell me something scary that happened to you? *CHI: Mom knows the part. [waits for Mot to start story] *CHI: Mom was almost... *MOT: what? *CHI: those kind of in the street xxx [mumbling]. *CHI: you were at the... *MOT: what? *CHI: your car was there. *CHI: the people that were bumping the street [coughing]. *MOT: oh! *MOT: that's right. *CHI: with Carisse and me. *MOT: that's right. *MOT: you wanna tell what happened? *CHI: you moved the car [laughing and high voice]. *MOT: mhm. *MOT: you wanna tell them what happened from the beginning? *MOT: hm? *CHI: Carisse's xxx... *MOT: we went to go pick up Chi's cousin Carisse who was spending the night on Saturday! *MOT: right? *CHI: yep! *MOT:",
+    "He had a very long beard, but he didn't look so awfully big as Sunny had expected, for she knew he must be the giant. Although he had a very long beard, he didn't appear as awfully big as Sunny had expected, for she knew he must be the giant. His writing has a purity of style that sets it on a very high pinnacle in literature, and his thoughts are most exquisite. His thoughts are most exquisite, and his writing possesses a purity of style that places it on a very high pinnacle in literature.",
+    "Partly because we're doing a survey but partly to warn partly because of the emergency services aspect. The initiative is driven partly by the need for a survey, partly to issue a warning, and partly due to its connection with emergency services. This was a war between our own people, a family quarrel, which we call the Civil War. Known as the Civil War, this conflict was essentially a family dispute fought among our own people. For dinner all the visitors put on other still more gorgeous dresses. All visitors changed into even more magnificent gowns for dinner. Founded in 2008, MOD has more than 500 locations in the United States and one location in Canada. Established in 2008, MOD operates over 500 stores across the United States, with a single location in Canada.",
+    "multi-level marketing companies by \"Direct Selling News\" in 2016. It was founded in 1959 by Jay Van Andel and Richard DeVos and is based in Ada Township, Michigan. = = = Pazyryk rug = = = The Pazyryk rug is one of the oldest carpets in the world, dating around the 4th–3rd centuries BC. It is now in the Hermitage Museum in St. Petersburg, Russia. The Pazyryk rug was found in 1949 in the grave of a Scythian nobleman in the Bolshoy Ulagan dry valley of the Altai Mountains in Kazakhstan. The Pazyryk rug had been frozen in the ice and it was very well preserved. The rug has a ribbon pattern in the middle, and a border which has deer, and warriors riding on horses. All parts of the rug are made of wool, including the pile and the base. Being produced either in Ancient Armenia, Persia, or Central Asia, this carpet has 3600 symmetrical double knots per dm2",
+    "drum set. - Where are you going? - I'm going upstairs. Okay? Don't you do that. I am warning you right now: Don't wanna miss a spot. I swear to God. I swear to God! No! I warned you. There's one rule in the house, and you broke it! I'm pre-diabetic! Come back here! I think it's gonna go generic soon, okay? - Line three. - Oh, thanks, Miles. Yeah. Jules? Wait, what's wrong? - Back! Stop it! Stop it! - Stop it! Stop! Stop. - Stay out of this, Nancy! - Stop it, you guys. - Oh, my God, you're hurting him! - No, Nancy! Cinnamon! Stop it! - No, a story has a... - Excuse me. Dr. Doback, the phone's for you. I think it's urgent. Hello? Robert, they're like animals! I can't stop them! Stop screaming. Please. I'm on my way. There seems to be some savage fight going on between my son and stepson, so I...",
+    "my other remarks apparently proposing a washed-over status for the village as a whole. However, it may incidentally erm come into the words that I use that erm er I'm referring to the washed-over or other status of these two sites. I shall endeavour to avoid that, and I ask your indulgence if this happens, since to a great extent one cannot erm select particular sentences erm that have not already documents. Sir, if it is your wish, I will now open the case. Please, yes. A are you going to be reading from your summary? Er when I give my expert evidence, I will read from the summary. Sir it is my wont to open er a case of this kind with a quotation. In nineteen fifty three, the Ministry of Housing and Local Government issued their Design Town and Village manual and because of difficulties attending design concepts, the manual was made up of essays by eminent planners",
+    "- And you're sure we've killed every last one of them? I saw their whole planet destroyed. How do you know there isn't another colony or another Queen out there? )We WON! The way, we win, matters. You need to let him rest. - Can I stay with him? Just so he's not alone... Let's let him rest. ...What if they could talk to us what were they thinking... Valentine! ...What if we could think to them... - Valentine! - Ender! Ender, wait! Ender! What are you doing, Ender? - I know what she wants! - Ender? #Warning! You are leaving an oxygen - balanced environment! ) # Ender, stop! Ender! In my game, I saw this place. The Formics accessed the game through me. Their thoughts, my dreams, all mixed together. They were trying to communicate. \"Dear Valentine, ...I now know my dreams were never my own. They came from her. She was always trying to communicate with me."
+  ],
+  "initial_logits": {
+    "n_texts": 8,
+    "shape": [
+      8,
+      64,
+      16384
+    ],
+    "pairs": {
+      "full_same_seed__vs__nodis_common_copied_from_full": {
+        "max_abs_logit_diff": 0.01801055669784546,
+        "mean_abs_logit_diff": 0.0024165224749594927,
+        "rms_logit_diff": 0.0030399172101169825
+      },
+      "full_same_seed__vs__nodis_same_seed": {
+        "max_abs_logit_diff": 3.4475786685943604,
+        "mean_abs_logit_diff": 0.4944456219673157,
+        "rms_logit_diff": 0.6196970343589783
+      },
+      "nodis_common_copied_from_full__vs__nodis_same_seed": {
+        "max_abs_logit_diff": 3.4507827758789062,
+        "mean_abs_logit_diff": 0.49444580078125,
+        "rms_logit_diff": 0.6196985244750977
+      }
+    }
+  },
+  "interpretation": "Same numeric seeds do not make the full and no-disentangle variants common-initialized: 53/140 same-named tensors differ before training. Therefore the running research four-cell result remains a valid architecture-coordinate data-treatment interaction, but attenuation or survival must be interpreted as including architecture-dependent initialization stream changes, not as a perfectly common-weight ablation of only c2p/p2c score terms. A cleaner follow-up, if the research result is scientifically important but ambiguous, is to train no-disentangle compact/repeat models initialized by copying all common tensors from the same full DeBERTa initialization while omitting the positional projection tensors.",
+  "boundary": "CPU-only fresh initialization probe; no training, selected official-compatible evaluation, SuperGLUE, AoA, upload, or leaderboard submission."
+}

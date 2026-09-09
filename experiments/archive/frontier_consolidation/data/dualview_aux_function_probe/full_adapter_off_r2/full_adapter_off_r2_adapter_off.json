@@ -1,0 +1,365 @@
+{
+  "status": "DUALVIEW_AUX_FUNCTION_PROBE",
+  "label": "full_adapter_off_r2",
+  "created_utc": "2026-08-31T22:57:33Z",
+  "args": {
+    "label": "full_adapter_off_r2",
+    "models": [
+      "aligned",
+      "shuffled",
+      "mlm_only"
+    ],
+    "endpoint": "auto",
+    "device": "cuda",
+    "gpu": 0,
+    "charged_cap": 20000000,
+    "main_word_cap": 20000000,
+    "max_batches": 0,
+    "micro_batch": 48,
+    "disable_adapters": true
+  },
+  "runs": {
+    "aligned": "experiments/archive/frontier_consolidation/training/runs/dualview_aligned_20M_seed43022",
+    "shuffled": "experiments/archive/frontier_consolidation/training/runs/dualview_shuffled_20M_seed43022",
+    "mlm_only": "experiments/archive/frontier_consolidation/training/runs/dualview_mlm_only_20M_seed43022"
+  },
+  "replay_summary": {
+    "batches": 481,
+    "cum_main_words": 19021584,
+    "cum_aux_words": 966720,
+    "cum_charged_words": 19988304,
+    "aligned_aux_rows": 19339,
+    "shuffled_aux_rows": 19339,
+    "aligned_targets": 68432,
+    "shuffled_targets": 68432,
+    "aux_summary": {
+      "status": "AUX_PAIR_DATA",
+      "n_pair_rows": 3006,
+      "n_ok": 3005,
+      "n_fail": 1,
+      "n_used_pairs": 12155,
+      "shuffle_seed": 43022,
+      "shuffle_singleton_groups_flagged": 0,
+      "shuffle_diff_doc": 12151,
+      "shuffle_same_doc": 4,
+      "shuffle_missing_fallback_selfsource": 0,
+      "tokenizer_sha": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+      "pool_sha": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+      "seq_length": 256,
+      "elapsed_sec": 13.55
+    },
+    "stop_record": {
+      "loader_step": 482,
+      "event": "stop_before_cap",
+      "current_charged": 19988304,
+      "next_main_words": 39785,
+      "next_aux_words": 1113
+    }
+  },
+  "replay_log_sample": [
+    {
+      "loader_step": 1,
+      "main_words": 39370,
+      "aux_words": 1911,
+      "n_units_rows": 36,
+      "cum_main": 39370,
+      "cum_aux": 1911,
+      "cum_charged": 41281
+    },
+    {
+      "loader_step": 2,
+      "main_words": 39517,
+      "aux_words": 2977,
+      "n_units_rows": 61,
+      "cum_main": 78887,
+      "cum_aux": 4888,
+      "cum_charged": 83775
+    },
+    {
+      "loader_step": 3,
+      "main_words": 39717,
+      "aux_words": 1178,
+      "n_units_rows": 21,
+      "cum_main": 118604,
+      "cum_aux": 6066,
+      "cum_charged": 124670
+    },
+    {
+      "loader_step": 480,
+      "main_words": 39737,
+      "aux_words": 2602,
+      "n_units_rows": 53,
+      "cum_main": 18982068,
+      "cum_aux": 964657,
+      "cum_charged": 19946725
+    },
+    {
+      "loader_step": 481,
+      "main_words": 39516,
+      "aux_words": 2063,
+      "n_units_rows": 43,
+      "cum_main": 19021584,
+      "cum_aux": 966720,
+      "cum_charged": 19988304
+    },
+    {
+      "loader_step": 482,
+      "event": "stop_before_cap",
+      "current_charged": 19988304,
+      "next_main_words": 39785,
+      "next_aux_words": 1113
+    }
+  ],
+  "model_results": {
+    "aligned": {
+      "label": "aligned",
+      "model_path": "experiments/archive/frontier_consolidation/training/runs/dualview_aligned_20M_seed43022/hf_model/final",
+      "adapter_enabled": false,
+      "training_metrics": {
+        "status": "DUAL_VIEW_CORRECTED",
+        "mode": "aligned",
+        "aux_lambda": 1.0,
+        "aux_gradient": "adapter_only",
+        "aux_views": "conditioned_plus_source_free",
+        "max_word_exposure_is_charged": true,
+        "stopped_before_cap": true,
+        "updates": 481,
+        "schedule_total": 2529,
+        "total_main_word_exposure": 19021584,
+        "total_aux_word_exposure": 966720,
+        "total_charged_words": 19988304,
+        "total_params": 35463008,
+        "adapter_params": 995584,
+        "gradient_checkpointing": true,
+        "aux_micro_batch_size": 8,
+        "first_loss": 9.837543487548828,
+        "final_loss": 4.379467487335205,
+        "mean_loss": 5.580605917313986,
+        "mean_aux_loss": 7.470588489233876,
+        "aux_loss_batches": 481,
+        "elapsed_sec": 1015.04
+      },
+      "views": {
+        "aligned": {
+          "cond": {
+            "loss_sum": 634287.5146484375,
+            "targets": 68432,
+            "nll": 9.268872963649134,
+            "n_rows": 19339
+          },
+          "free": {
+            "loss_sum": 653876.5275878906,
+            "targets": 68432,
+            "nll": 9.555128121169783,
+            "n_rows": 19339
+          }
+        },
+        "shuffled": {
+          "cond": {
+            "loss_sum": 638325.3043212891,
+            "targets": 68432,
+            "nll": 9.32787737200855,
+            "n_rows": 19339
+          },
+          "free": {
+            "loss_sum": 653876.5275878906,
+            "targets": 68432,
+            "nll": 9.555128121169783,
+            "n_rows": 19339
+          }
+        }
+      }
+    },
+    "shuffled": {
+      "label": "shuffled",
+      "model_path": "experiments/archive/frontier_consolidation/training/runs/dualview_shuffled_20M_seed43022/hf_model/final",
+      "adapter_enabled": false,
+      "training_metrics": {
+        "status": "DUAL_VIEW_CORRECTED",
+        "mode": "shuffled",
+        "aux_lambda": 1.0,
+        "aux_gradient": "adapter_only",
+        "aux_views": "conditioned_plus_source_free",
+        "max_word_exposure_is_charged": true,
+        "stopped_before_cap": true,
+        "updates": 481,
+        "schedule_total": 2529,
+        "total_main_word_exposure": 19021584,
+        "total_aux_word_exposure": 966720,
+        "total_charged_words": 19988304,
+        "total_params": 35463008,
+        "adapter_params": 995584,
+        "gradient_checkpointing": true,
+        "aux_micro_batch_size": 8,
+        "first_loss": 9.837543487548828,
+        "final_loss": 4.439597129821777,
+        "mean_loss": 5.612265186349468,
+        "mean_aux_loss": 7.532271432331365,
+        "aux_loss_batches": 481,
+        "elapsed_sec": 1822.2
+      },
+      "views": {
+        "aligned": {
+          "cond": {
+            "loss_sum": 615061.4888916016,
+            "targets": 68432,
+            "nll": 8.987922154717115,
+            "n_rows": 19339
+          },
+          "free": {
+            "loss_sum": 626637.0290527344,
+            "targets": 68432,
+            "nll": 9.157076061677788,
+            "n_rows": 19339
+          }
+        },
+        "shuffled": {
+          "cond": {
+            "loss_sum": 622506.2801513672,
+            "targets": 68432,
+            "nll": 9.096713235786872,
+            "n_rows": 19339
+          },
+          "free": {
+            "loss_sum": 626637.0290527344,
+            "targets": 68432,
+            "nll": 9.157076061677788,
+            "n_rows": 19339
+          }
+        }
+      }
+    },
+    "mlm_only": {
+      "label": "mlm_only",
+      "model_path": "experiments/archive/frontier_consolidation/training/runs/dualview_mlm_only_20M_seed43022/hf_model/chck_20M",
+      "adapter_enabled": false,
+      "training_metrics": {
+        "status": "DUAL_VIEW_CORRECTED",
+        "mode": "mlm_only",
+        "aux_lambda": 1.0,
+        "aux_gradient": "adapter_only",
+        "aux_views": "conditioned_plus_source_free",
+        "max_word_exposure_is_charged": true,
+        "stopped_before_cap": false,
+        "updates": 506,
+        "schedule_total": 2529,
+        "total_main_word_exposure": 20000000,
+        "total_aux_word_exposure": 0,
+        "total_charged_words": 20000000,
+        "total_params": 35463008,
+        "adapter_params": 995584,
+        "gradient_checkpointing": true,
+        "aux_micro_batch_size": 8,
+        "first_loss": 9.837543487548828,
+        "final_loss": 3.870621681213379,
+        "mean_loss": 5.162463127388785,
+        "mean_aux_loss": 0.0,
+        "aux_loss_batches": 0,
+        "elapsed_sec": 981.27
+      },
+      "views": {
+        "aligned": {
+          "cond": {
+            "loss_sum": 430055.8728027344,
+            "targets": 68432,
+            "nll": 6.284426478880266,
+            "n_rows": 19339
+          },
+          "free": {
+            "loss_sum": 446444.2788696289,
+            "targets": 68432,
+            "nll": 6.523911019254572,
+            "n_rows": 19339
+          }
+        },
+        "shuffled": {
+          "cond": {
+            "loss_sum": 448104.55560302734,
+            "targets": 68432,
+            "nll": 6.548172720408981,
+            "n_rows": 19339
+          },
+          "free": {
+            "loss_sum": 446444.2788696289,
+            "targets": 68432,
+            "nll": 6.523911019254572,
+            "n_rows": 19339
+          }
+        }
+      }
+    }
+  },
+  "pairwise_nll_deltas": {
+    "aligned_minus_shuffled": {
+      "aligned": {
+        "cond": 0.28095080893201896,
+        "free": 0.3980520594919952
+      },
+      "shuffled": {
+        "cond": 0.2311641362216772,
+        "free": 0.3980520594919952
+      }
+    },
+    "aligned_minus_mlm_only": {
+      "aligned": {
+        "cond": 2.984446484768868,
+        "free": 3.031217101915211
+      },
+      "shuffled": {
+        "cond": 2.7797046515995687,
+        "free": 3.031217101915211
+      }
+    },
+    "shuffled_minus_aligned": {
+      "aligned": {
+        "cond": -0.28095080893201896,
+        "free": -0.3980520594919952
+      },
+      "shuffled": {
+        "cond": -0.2311641362216772,
+        "free": -0.3980520594919952
+      }
+    },
+    "shuffled_minus_mlm_only": {
+      "aligned": {
+        "cond": 2.703495675836849,
+        "free": 2.633165042423216
+      },
+      "shuffled": {
+        "cond": 2.5485405153778915,
+        "free": 2.633165042423216
+      }
+    },
+    "mlm_only_minus_aligned": {
+      "aligned": {
+        "cond": -2.984446484768868,
+        "free": -3.031217101915211
+      },
+      "shuffled": {
+        "cond": -2.7797046515995687,
+        "free": -3.031217101915211
+      }
+    },
+    "mlm_only_minus_shuffled": {
+      "aligned": {
+        "cond": -2.703495675836849,
+        "free": -2.633165042423216
+      },
+      "shuffled": {
+        "cond": -2.5485405153778915,
+        "free": -2.633165042423216
+      }
+    }
+  },
+  "key_deltas": {
+    "aligned_model_minus_shuffled_model_on_true_free_view": 0.3980520594919952,
+    "aligned_model_minus_shuffled_model_on_true_conditioned_view": 0.28095080893201896,
+    "aligned_model_minus_mlm_only_on_true_free_view": 3.031217101915211,
+    "aligned_model_minus_mlm_only_on_true_conditioned_view": 2.984446484768868,
+    "aligned_model_minus_shuffled_model_on_shuffled_free_view": 0.3980520594919952,
+    "shuffled_model_minus_mlm_only_on_shuffled_free_view": 2.633165042423216
+  },
+  "interpretation": "For each delta, negative means the first model has lower held auxiliary NLL. Source-free deltas, especially aligned model vs shuffled/mlm_only on the same free rows, test whether the trained pathway improves inference-time rewrite-only prediction rather than merely exploiting source presence in conditioned views.",
+  "out_json": "experiments/archive/frontier_consolidation/data/dualview_aux_function_probe/full_adapter_off_r2/full_adapter_off_r2_adapter_off.json",
+  "out_md": "research/documents/frontier_consolidation/data/dualview_aux_function_probe/full_adapter_off_r2/full_adapter_off_r2_adapter_off.md"
+}

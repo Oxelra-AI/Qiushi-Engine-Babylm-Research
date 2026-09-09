@@ -1,0 +1,993 @@
+{
+  "status": "STRICTSMALL_TOKENIZER_VISIBILITY_AUDIT",
+  "scientific_purpose": "Measure what the compliant 10M-trained tokenizer changes at the actual seq256 trainer interface before corrected-tokenizer downstream scores arrive.",
+  "seq_len": 256,
+  "trainer_interface": "masking_curriculum_trainer tokenizes with add_special_tokens=False, truncation=True, max_length=256; WWM groups are inferred from tokens starting with Ġ or ▁.",
+  "inputs": {
+    "old_tokenizer": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+    "new_tokenizer": "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer",
+    "pool10m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+    "changed_row_meta": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl",
+    "selected_pairs": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+    "changed_rows": 3006,
+    "pool_rows": 64740
+  },
+  "old_tokenizer_summary": {
+    "full_pool": {
+      "rows": 64740,
+      "tokenizer_len": 16384,
+      "row_tokens_no_special": {
+        "n": 64740,
+        "min": 11.0,
+        "p05": 167.0,
+        "p25": 203.0,
+        "mean": 228.44451652764906,
+        "median": 224.0,
+        "p75": 256.0,
+        "p95": 292.0,
+        "max": 784.0,
+        "sum": 14789498.0
+      },
+      "row_words": {
+        "n": 64740,
+        "min": 9.0,
+        "p05": 125.0,
+        "p25": 160.0,
+        "mean": 154.46400988569664,
+        "median": 160.0,
+        "p75": 160.0,
+        "p95": 160.0,
+        "max": 160.0,
+        "sum": 10000000.0
+      },
+      "tokens_per_whitespace_word": {
+        "n": 64740,
+        "min": 1.05,
+        "p05": 1.2092947256421949,
+        "p25": 1.31875,
+        "mean": 1.4755519248928188,
+        "median": 1.4375,
+        "p75": 1.610447075048845,
+        "p95": 1.83125,
+        "max": 4.9,
+        "sum": 95527.23161756109
+      },
+      "rows_over_seq256_no_special": 15883,
+      "rows_over_seq256_rate": 0.24533518690145195,
+      "wwm_groups_in_truncated_input": {
+        "n": 5000,
+        "min": 9.0,
+        "p05": 117.0,
+        "p25": 136.0,
+        "mean": 145.1174,
+        "median": 148.0,
+        "p75": 159.0,
+        "p95": 160.0,
+        "max": 160.0,
+        "sum": 725587.0
+      },
+      "tokens_per_wwm_group_in_truncated_input": {
+        "n": 5000,
+        "min": 1.1,
+        "p05": 1.2428571428571429,
+        "p25": 1.3541666666666667,
+        "mean": 1.4676205994128333,
+        "median": 1.4444444444444444,
+        "p75": 1.5555555555555556,
+        "p95": 1.7534246575342465,
+        "max": 6.918918918918919,
+        "sum": 7338.102997064167
+      }
+    },
+    "changed_block": {
+      "rows": 3006,
+      "tokenizer_len": 16384,
+      "row_tokens_no_special": {
+        "n": 3006,
+        "min": 11.0,
+        "p05": 163.0,
+        "p25": 188.0,
+        "mean": 206.1377245508982,
+        "median": 207.0,
+        "p75": 224.0,
+        "p95": 248.0,
+        "max": 328.0,
+        "sum": 619650.0
+      },
+      "row_words": {
+        "n": 3006,
+        "min": 9.0,
+        "p05": 116.0,
+        "p25": 133.0,
+        "mean": 140.8915502328676,
+        "median": 143.0,
+        "p75": 151.0,
+        "p95": 159.0,
+        "max": 160.0,
+        "sum": 423520.0
+      },
+      "tokens_per_whitespace_word": {
+        "n": 3006,
+        "min": 1.1375,
+        "p05": 1.2816778690565098,
+        "p25": 1.376,
+        "mean": 1.462849220638897,
+        "median": 1.4513888888888888,
+        "p75": 1.5403225806451613,
+        "p95": 1.678908777789375,
+        "max": 2.1491228070175437,
+        "sum": 4397.324757240524
+      },
+      "rows_over_seq256_no_special": 78,
+      "rows_over_seq256_rate": 0.02594810379241517,
+      "wwm_groups_in_truncated_input": {
+        "n": 3006,
+        "min": 9.0,
+        "p05": 116.0,
+        "p25": 133.0,
+        "mean": 140.71057884231536,
+        "median": 143.0,
+        "p75": 151.0,
+        "p95": 159.0,
+        "max": 160.0,
+        "sum": 422976.0
+      },
+      "tokens_per_wwm_group_in_truncated_input": {
+        "n": 3006,
+        "min": 1.1375,
+        "p05": 1.2816778690565098,
+        "p25": 1.376,
+        "mean": 1.4626995404393344,
+        "median": 1.4513888888888888,
+        "p75": 1.5403225806451613,
+        "p95": 1.6777345761664435,
+        "max": 2.1491228070175437,
+        "sum": 4396.874818560639
+      }
+    },
+    "pair_visibility": {
+      "row_reconstruction": {
+        "changed_rows": 3006,
+        "nonpair_rows": 1,
+        "pair_rows": 3005,
+        "exact_string_reconstruction_rows": 3005,
+        "word_count_reconstruction_rows": 3005
+      },
+      "visibility_summary": {
+        "total_pair_occurrences": 12155,
+        "unique_pairs": 12155,
+        "source_visible_pairs": 12142,
+        "full_source_plus_rewrite_visible_pairs": 12074,
+        "partial_visible_pairs": 78,
+        "hidden_pairs": 3,
+        "source_visible_rate": 0.9989304812834224,
+        "full_pair_visible_rate": 0.9933360756890168,
+        "partial_visible_rate": 0.006417112299465241,
+        "hidden_rate": 0.00024681201151789385,
+        "rows_over_seq256_no_special": 78,
+        "truncated_rows_with_pair_loss": 78
+      },
+      "row_stats": {
+        "pairs_per_row": {
+          "n": 3006,
+          "min": 0.0,
+          "p05": 3.0,
+          "p25": 3.0,
+          "mean": 4.043579507651364,
+          "median": 4.0,
+          "p75": 5.0,
+          "p95": 5.0,
+          "max": 7.0,
+          "sum": 12155.0
+        },
+        "row_tokens_no_special": {
+          "n": 3006,
+          "min": 11.0,
+          "p05": 163.0,
+          "p25": 188.0,
+          "mean": 206.1377245508982,
+          "median": 207.0,
+          "p75": 224.0,
+          "p95": 248.0,
+          "max": 328.0,
+          "sum": 619650.0
+        },
+        "full_visible_pairs_per_pair_row": {
+          "n": 3005,
+          "min": 1.0,
+          "p05": 3.0,
+          "p25": 3.0,
+          "mean": 4.017970049916805,
+          "median": 4.0,
+          "p75": 5.0,
+          "p95": 5.0,
+          "max": 7.0,
+          "sum": 12074.0
+        },
+        "lost_pairs_per_pair_row": {
+          "n": 3005,
+          "min": 0.0,
+          "p05": 0.0,
+          "p25": 0.0,
+          "mean": 0.02695507487520799,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 0.0,
+          "max": 2.0,
+          "sum": 81.0
+        }
+      },
+      "pair_position_loss_counts": {
+        "3": 40,
+        "4": 24,
+        "2": 15,
+        "1": 1,
+        "5": 1
+      },
+      "domain_visibility": {
+        "science_physical": {
+          "pairs": 1589,
+          "full_visible": 1582,
+          "partial_visible": 6,
+          "hidden": 1,
+          "full_visible_rate": 0.9955947136563876
+        },
+        "no_domain": {
+          "pairs": 6975,
+          "full_visible": 6925,
+          "partial_visible": 48,
+          "hidden": 2,
+          "full_visible_rate": 0.992831541218638
+        },
+        "causal_relational": {
+          "pairs": 1537,
+          "full_visible": 1524,
+          "partial_visible": 13,
+          "hidden": 0,
+          "full_visible_rate": 0.9915419648666233
+        },
+        "quant_numeric": {
+          "pairs": 974,
+          "full_visible": 969,
+          "partial_visible": 5,
+          "hidden": 0,
+          "full_visible_rate": 0.9948665297741273
+        },
+        "geography_places": {
+          "pairs": 772,
+          "full_visible": 769,
+          "partial_visible": 3,
+          "hidden": 0,
+          "full_visible_rate": 0.9961139896373057
+        },
+        "institutions_society": {
+          "pairs": 862,
+          "full_visible": 860,
+          "partial_visible": 2,
+          "hidden": 0,
+          "full_visible_rate": 0.9976798143851509
+        },
+        "people_history": {
+          "pairs": 358,
+          "full_visible": 354,
+          "partial_visible": 4,
+          "hidden": 0,
+          "full_visible_rate": 0.9888268156424581
+        },
+        "media_culture": {
+          "pairs": 370,
+          "full_visible": 368,
+          "partial_visible": 2,
+          "hidden": 0,
+          "full_visible_rate": 0.9945945945945946
+        }
+      },
+      "non_full_visible_examples": [
+        {
+          "row_index": 35,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_010434",
+          "domain_hits": [
+            "institutions_society"
+          ],
+          "source_words": 22,
+          "rewrite_words": 15,
+          "content_recall": 0.5333333333333333,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 198,
+          "source_end_tok_no_special": 235,
+          "pair_end_tok_no_special": 261,
+          "pair_tok_len_no_special_in_row_context": 63,
+          "visible_tokens_inside_pair_no_special": 58,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 141,
+          "pair_position_in_row": 2,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_053815",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 20,
+          "rewrite_words": 17,
+          "content_recall": 0.7777777777777778,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 204,
+          "source_end_tok_no_special": 235,
+          "pair_end_tok_no_special": 263,
+          "pair_tok_len_no_special_in_row_context": 59,
+          "visible_tokens_inside_pair_no_special": 52,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 199,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_012941",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 31,
+          "rewrite_words": 18,
+          "content_recall": 0.5882352941176471,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 164,
+          "source_end_tok_no_special": 217,
+          "pair_end_tok_no_special": 257,
+          "pair_tok_len_no_special_in_row_context": 93,
+          "visible_tokens_inside_pair_no_special": 92,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 201,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_048618",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 11,
+          "rewrite_words": 6,
+          "content_recall": 0.6,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 232,
+          "source_end_tok_no_special": 252,
+          "pair_end_tok_no_special": 268,
+          "pair_tok_len_no_special_in_row_context": 36,
+          "visible_tokens_inside_pair_no_special": 24,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 201,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_061266",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 13,
+          "rewrite_words": 8,
+          "content_recall": 0.6666666666666666,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 268,
+          "source_end_tok_no_special": 282,
+          "pair_end_tok_no_special": 292,
+          "pair_tok_len_no_special_in_row_context": 24,
+          "visible_tokens_inside_pair_no_special": 0,
+          "source_visible_under_seq256": false,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": false
+        },
+        {
+          "row_index": 216,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_050034",
+          "domain_hits": [
+            "people_history"
+          ],
+          "source_words": 24,
+          "rewrite_words": 14,
+          "content_recall": 0.6153846153846154,
+          "entity_recall": 0.75,
+          "number_recall": 1.0,
+          "start_tok_no_special": 211,
+          "source_end_tok_no_special": 242,
+          "pair_end_tok_no_special": 261,
+          "pair_tok_len_no_special_in_row_context": 50,
+          "visible_tokens_inside_pair_no_special": 45,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 218,
+          "pair_position_in_row": 2,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_006871",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 35,
+          "rewrite_words": 20,
+          "content_recall": 0.6818181818181818,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 125,
+          "source_end_tok_no_special": 203,
+          "pair_end_tok_no_special": 260,
+          "pair_tok_len_no_special_in_row_context": 135,
+          "visible_tokens_inside_pair_no_special": 131,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 287,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_059304",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 14,
+          "rewrite_words": 10,
+          "content_recall": 0.75,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 232,
+          "source_end_tok_no_special": 254,
+          "pair_end_tok_no_special": 270,
+          "pair_tok_len_no_special_in_row_context": 38,
+          "visible_tokens_inside_pair_no_special": 24,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 362,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_040767",
+          "domain_hits": [
+            "causal_relational"
+          ],
+          "source_words": 23,
+          "rewrite_words": 14,
+          "content_recall": 0.45454545454545453,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 224,
+          "source_end_tok_no_special": 252,
+          "pair_end_tok_no_special": 267,
+          "pair_tok_len_no_special_in_row_context": 43,
+          "visible_tokens_inside_pair_no_special": 32,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 385,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_000633",
+          "domain_hits": [
+            "quant_numeric"
+          ],
+          "source_words": 13,
+          "rewrite_words": 10,
+          "content_recall": 0.8571428571428571,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 235,
+          "source_end_tok_no_special": 255,
+          "pair_end_tok_no_special": 272,
+          "pair_tok_len_no_special_in_row_context": 37,
+          "visible_tokens_inside_pair_no_special": 21,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        }
+      ]
+    }
+  },
+  "new_tokenizer_summary": {
+    "full_pool": {
+      "rows": 64740,
+      "tokenizer_len": 16384,
+      "row_tokens_no_special": {
+        "n": 64740,
+        "min": 11.0,
+        "p05": 164.0,
+        "p25": 201.0,
+        "mean": 226.58751930800125,
+        "median": 222.0,
+        "p75": 254.0,
+        "p95": 290.0,
+        "max": 754.0,
+        "sum": 14669276.0
+      },
+      "row_words": {
+        "n": 64740,
+        "min": 9.0,
+        "p05": 125.0,
+        "p25": 160.0,
+        "mean": 154.46400988569664,
+        "median": 160.0,
+        "p75": 160.0,
+        "p95": 160.0,
+        "max": 160.0,
+        "sum": 10000000.0
+      },
+      "tokens_per_whitespace_word": {
+        "n": 64740,
+        "min": 1.03125,
+        "p05": 1.2,
+        "p25": 1.30625,
+        "mean": 1.4632152590897667,
+        "median": 1.4249183006535948,
+        "p75": 1.6,
+        "p95": 1.81875,
+        "max": 4.7125,
+        "sum": 94728.5558734715
+      },
+      "rows_over_seq256_no_special": 15143,
+      "rows_over_seq256_rate": 0.23390485016991042,
+      "wwm_groups_in_truncated_input": {
+        "n": 5000,
+        "min": 9.0,
+        "p05": 117.0,
+        "p25": 136.0,
+        "mean": 145.2486,
+        "median": 148.0,
+        "p75": 159.0,
+        "p95": 160.0,
+        "max": 160.0,
+        "sum": 726243.0
+      },
+      "tokens_per_wwm_group_in_truncated_input": {
+        "n": 5000,
+        "min": 1.10625,
+        "p05": 1.22783781002367,
+        "p25": 1.33125,
+        "mean": 1.446932021467247,
+        "median": 1.4246575342465753,
+        "p75": 1.5342465753424657,
+        "p95": 1.7297297297297298,
+        "max": 6.4,
+        "sum": 7234.660107336235
+      }
+    },
+    "changed_block": {
+      "rows": 3006,
+      "tokenizer_len": 16384,
+      "row_tokens_no_special": {
+        "n": 3006,
+        "min": 11.0,
+        "p05": 160.0,
+        "p25": 185.0,
+        "mean": 202.3459747172322,
+        "median": 202.0,
+        "p75": 220.0,
+        "p95": 244.0,
+        "max": 323.0,
+        "sum": 608252.0
+      },
+      "row_words": {
+        "n": 3006,
+        "min": 9.0,
+        "p05": 116.0,
+        "p25": 133.0,
+        "mean": 140.8915502328676,
+        "median": 143.0,
+        "p75": 151.0,
+        "p95": 159.0,
+        "max": 160.0,
+        "sum": 423520.0
+      },
+      "tokens_per_whitespace_word": {
+        "n": 3006,
+        "min": 1.1398601398601398,
+        "p05": 1.26,
+        "p25": 1.3509933774834437,
+        "mean": 1.4360105828676835,
+        "median": 1.4260869565217391,
+        "p75": 1.5106382978723405,
+        "p95": 1.6532395566922422,
+        "max": 2.0526315789473686,
+        "sum": 4316.6478121002565
+      },
+      "rows_over_seq256_no_special": 54,
+      "rows_over_seq256_rate": 0.017964071856287425,
+      "wwm_groups_in_truncated_input": {
+        "n": 3006,
+        "min": 9.0,
+        "p05": 116.0,
+        "p25": 133.0,
+        "mean": 140.77644710578844,
+        "median": 143.0,
+        "p75": 151.0,
+        "p95": 159.0,
+        "max": 160.0,
+        "sum": 423174.0
+      },
+      "tokens_per_wwm_group_in_truncated_input": {
+        "n": 3006,
+        "min": 1.1398601398601398,
+        "p05": 1.26,
+        "p25": 1.3509933774834437,
+        "mean": 1.4359730188419886,
+        "median": 1.4260869565217391,
+        "p75": 1.5106382978723405,
+        "p95": 1.6516129032258065,
+        "max": 2.064516129032258,
+        "sum": 4316.534894639018
+      }
+    },
+    "pair_visibility": {
+      "row_reconstruction": {
+        "changed_rows": 3006,
+        "nonpair_rows": 1,
+        "pair_rows": 3005,
+        "exact_string_reconstruction_rows": 3005,
+        "word_count_reconstruction_rows": 3005
+      },
+      "visibility_summary": {
+        "total_pair_occurrences": 12155,
+        "unique_pairs": 12155,
+        "source_visible_pairs": 12147,
+        "full_source_plus_rewrite_visible_pairs": 12098,
+        "partial_visible_pairs": 54,
+        "hidden_pairs": 3,
+        "source_visible_rate": 0.9993418346359523,
+        "full_pair_visible_rate": 0.99531057178116,
+        "partial_visible_rate": 0.00444261620732209,
+        "hidden_rate": 0.00024681201151789385,
+        "rows_over_seq256_no_special": 54,
+        "truncated_rows_with_pair_loss": 54
+      },
+      "row_stats": {
+        "pairs_per_row": {
+          "n": 3006,
+          "min": 0.0,
+          "p05": 3.0,
+          "p25": 3.0,
+          "mean": 4.043579507651364,
+          "median": 4.0,
+          "p75": 5.0,
+          "p95": 5.0,
+          "max": 7.0,
+          "sum": 12155.0
+        },
+        "row_tokens_no_special": {
+          "n": 3006,
+          "min": 11.0,
+          "p05": 160.0,
+          "p25": 185.0,
+          "mean": 202.3459747172322,
+          "median": 202.0,
+          "p75": 220.0,
+          "p95": 244.0,
+          "max": 323.0,
+          "sum": 608252.0
+        },
+        "full_visible_pairs_per_pair_row": {
+          "n": 3005,
+          "min": 1.0,
+          "p05": 3.0,
+          "p25": 3.0,
+          "mean": 4.025956738768719,
+          "median": 4.0,
+          "p75": 5.0,
+          "p95": 5.0,
+          "max": 7.0,
+          "sum": 12098.0
+        },
+        "lost_pairs_per_pair_row": {
+          "n": 3005,
+          "min": 0.0,
+          "p05": 0.0,
+          "p25": 0.0,
+          "mean": 0.01896838602329451,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 0.0,
+          "max": 2.0,
+          "sum": 57.0
+        }
+      },
+      "pair_position_loss_counts": {
+        "3": 26,
+        "4": 19,
+        "2": 10,
+        "1": 1,
+        "5": 1
+      },
+      "domain_visibility": {
+        "science_physical": {
+          "pairs": 1589,
+          "full_visible": 1583,
+          "partial_visible": 5,
+          "hidden": 1,
+          "full_visible_rate": 0.9962240402769037
+        },
+        "no_domain": {
+          "pairs": 6975,
+          "full_visible": 6944,
+          "partial_visible": 29,
+          "hidden": 2,
+          "full_visible_rate": 0.9955555555555555
+        },
+        "causal_relational": {
+          "pairs": 1537,
+          "full_visible": 1525,
+          "partial_visible": 12,
+          "hidden": 0,
+          "full_visible_rate": 0.9921925829538061
+        },
+        "quant_numeric": {
+          "pairs": 974,
+          "full_visible": 971,
+          "partial_visible": 3,
+          "hidden": 0,
+          "full_visible_rate": 0.9969199178644764
+        },
+        "geography_places": {
+          "pairs": 772,
+          "full_visible": 769,
+          "partial_visible": 3,
+          "hidden": 0,
+          "full_visible_rate": 0.9961139896373057
+        },
+        "institutions_society": {
+          "pairs": 862,
+          "full_visible": 861,
+          "partial_visible": 1,
+          "hidden": 0,
+          "full_visible_rate": 0.9988399071925754
+        },
+        "people_history": {
+          "pairs": 358,
+          "full_visible": 355,
+          "partial_visible": 3,
+          "hidden": 0,
+          "full_visible_rate": 0.9916201117318436
+        },
+        "media_culture": {
+          "pairs": 370,
+          "full_visible": 368,
+          "partial_visible": 2,
+          "hidden": 0,
+          "full_visible_rate": 0.9945945945945946
+        }
+      },
+      "non_full_visible_examples": [
+        {
+          "row_index": 35,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_010434",
+          "domain_hits": [
+            "institutions_society"
+          ],
+          "source_words": 22,
+          "rewrite_words": 15,
+          "content_recall": 0.5333333333333333,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 196,
+          "source_end_tok_no_special": 233,
+          "pair_end_tok_no_special": 260,
+          "pair_tok_len_no_special_in_row_context": 64,
+          "visible_tokens_inside_pair_no_special": 60,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 141,
+          "pair_position_in_row": 2,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_053815",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 20,
+          "rewrite_words": 17,
+          "content_recall": 0.7777777777777778,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 198,
+          "source_end_tok_no_special": 229,
+          "pair_end_tok_no_special": 257,
+          "pair_tok_len_no_special_in_row_context": 59,
+          "visible_tokens_inside_pair_no_special": 58,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 201,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_048618",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 11,
+          "rewrite_words": 6,
+          "content_recall": 0.6,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 223,
+          "source_end_tok_no_special": 243,
+          "pair_end_tok_no_special": 259,
+          "pair_tok_len_no_special_in_row_context": 36,
+          "visible_tokens_inside_pair_no_special": 33,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 201,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_061266",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 13,
+          "rewrite_words": 8,
+          "content_recall": 0.6666666666666666,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 259,
+          "source_end_tok_no_special": 273,
+          "pair_end_tok_no_special": 283,
+          "pair_tok_len_no_special_in_row_context": 24,
+          "visible_tokens_inside_pair_no_special": 0,
+          "source_visible_under_seq256": false,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": false
+        },
+        {
+          "row_index": 216,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_050034",
+          "domain_hits": [
+            "people_history"
+          ],
+          "source_words": 24,
+          "rewrite_words": 14,
+          "content_recall": 0.6153846153846154,
+          "entity_recall": 0.75,
+          "number_recall": 1.0,
+          "start_tok_no_special": 210,
+          "source_end_tok_no_special": 243,
+          "pair_end_tok_no_special": 264,
+          "pair_tok_len_no_special_in_row_context": 54,
+          "visible_tokens_inside_pair_no_special": 46,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 287,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_059304",
+          "domain_hits": [
+            "no_domain"
+          ],
+          "source_words": 14,
+          "rewrite_words": 10,
+          "content_recall": 0.75,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 229,
+          "source_end_tok_no_special": 251,
+          "pair_end_tok_no_special": 265,
+          "pair_tok_len_no_special_in_row_context": 36,
+          "visible_tokens_inside_pair_no_special": 27,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 362,
+          "pair_position_in_row": 4,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_040767",
+          "domain_hits": [
+            "causal_relational"
+          ],
+          "source_words": 23,
+          "rewrite_words": 14,
+          "content_recall": 0.45454545454545453,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 216,
+          "source_end_tok_no_special": 243,
+          "pair_end_tok_no_special": 258,
+          "pair_tok_len_no_special_in_row_context": 42,
+          "visible_tokens_inside_pair_no_special": 40,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 465,
+          "pair_position_in_row": 2,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_033420",
+          "domain_hits": [
+            "geography_places"
+          ],
+          "source_words": 23,
+          "rewrite_words": 16,
+          "content_recall": 0.7857142857142857,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 200,
+          "source_end_tok_no_special": 234,
+          "pair_end_tok_no_special": 258,
+          "pair_tok_len_no_special_in_row_context": 58,
+          "visible_tokens_inside_pair_no_special": 56,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 472,
+          "pair_position_in_row": 3,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_008070",
+          "domain_hits": [
+            "media_culture"
+          ],
+          "source_words": 39,
+          "rewrite_words": 19,
+          "content_recall": 0.48,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 173,
+          "source_end_tok_no_special": 231,
+          "pair_end_tok_no_special": 265,
+          "pair_tok_len_no_special_in_row_context": 92,
+          "visible_tokens_inside_pair_no_special": 83,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        },
+        {
+          "row_index": 483,
+          "pair_position_in_row": 1,
+          "pair_id": "compact:frontier_consolidation_fwcompact_medium_005960",
+          "domain_hits": [
+            "causal_relational"
+          ],
+          "source_words": 41,
+          "rewrite_words": 22,
+          "content_recall": 0.6521739130434783,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "start_tok_no_special": 107,
+          "source_end_tok_no_special": 197,
+          "pair_end_tok_no_special": 262,
+          "pair_tok_len_no_special_in_row_context": 155,
+          "visible_tokens_inside_pair_no_special": 149,
+          "source_visible_under_seq256": true,
+          "pair_full_visible_under_seq256": false,
+          "pair_partial_visible_under_seq256": true
+        }
+      ]
+    }
+  },
+  "delta_new_minus_old": {
+    "full_pool_mean_tokens_per_word": -0.01233666580305215,
+    "full_pool_rows_over_seq256": -740,
+    "changed_block_mean_tokens_per_word": -0.026838637771213536,
+    "changed_block_rows_over_seq256": -24,
+    "full_pair_visible_pairs": 24,
+    "full_pair_visible_rate": 0.0019744960921431742,
+    "source_visible_pairs": 5
+  },
+  "scientific_reading": "The research retrain is not merely a compliance relabeling: the 10M-trained tokenizer changes token density, row truncation, and WWM grouping. These geometry changes should be considered when interpreting the corrected official scores, but only full official evaluation can decide whether compact_view_reinvest survives the corrected Strict-Small coordinate."
+}

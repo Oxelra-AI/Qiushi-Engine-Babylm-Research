@@ -1,0 +1,102 @@
+{
+  "variant": "curriculum_adamw_wwm_fixed",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "parameter_count": 45826720,
+  "vocab_size": 40000,
+  "tokenizer_label": "legal_byte_bpe_40k",
+  "word_exposure": 200064,
+  "loss_first": 10.697919241849277,
+  "loss_last": 8.053310869206541,
+  "actual_training_steps": 11,
+  "effective_batch_size": 256,
+  "micro_batch_size": 64,
+  "gradient_accumulation_steps": 4,
+  "curriculum": [
+    [
+      64,
+      40000
+    ],
+    [
+      128,
+      100000
+    ],
+    [
+      256,
+      200064
+    ]
+  ],
+  "phase_summary": [
+    {
+      "phase": 0,
+      "seq_len": 64,
+      "word_budget": 40000,
+      "chunks": 999,
+      "steps": 4,
+      "phase_words": 40010,
+      "tail_drops": 0
+    },
+    {
+      "phase": 1,
+      "seq_len": 128,
+      "word_budget": 100000,
+      "chunks": 810,
+      "steps": 4,
+      "phase_words": 60047,
+      "tail_drops": 0
+    },
+    {
+      "phase": 2,
+      "seq_len": 256,
+      "word_budget": 200064,
+      "chunks": 648,
+      "steps": 3,
+      "phase_words": 100007,
+      "tail_drops": 0
+    }
+  ],
+  "masking_curriculum": "wwm_fixed",
+  "mask_prob": 0.15,
+  "learning_rate": 0.001,
+  "warmup_fraction": 0.05,
+  "weight_decay": 0.01,
+  "amp": false,
+  "hidden_size": 480,
+  "n_layer": 8,
+  "n_head": 8,
+  "ffn_mult": 4,
+  "seed": 43,
+  "init_seed": 43022,
+  "train_rng_seed": 43023,
+  "max_seq_length": 256,
+  "saved_checkpoints": [
+    {
+      "name": "chck_100000w",
+      "target_word_exposure": 100000,
+      "actual_cumulative_word_exposure": 100057,
+      "global_step": 8,
+      "phase": 1,
+      "seq_len": 128,
+      "path": "experiments/archive/representation_and_objectives/data/curriculum_trainer_smoke/hf_model/chck_100000w"
+    },
+    {
+      "name": "chck_200000w",
+      "target_word_exposure": 200000,
+      "actual_cumulative_word_exposure": 200064,
+      "global_step": 11,
+      "phase": 2,
+      "seq_len": 256,
+      "path": "experiments/archive/representation_and_objectives/data/curriculum_trainer_smoke/hf_model/chck_200000w"
+    }
+  ],
+  "source_words_consumed": {
+    "childes": 48160,
+    "qwen_pair_packed": 34214,
+    "simple_wiki": 22080,
+    "open_subtitles": 35520,
+    "bnc_spoken": 12000,
+    "gutenberg": 39360,
+    "cleanqwen_fineweb_compact_view_reinvest": 8250,
+    "switchboard": 480
+  }
+}

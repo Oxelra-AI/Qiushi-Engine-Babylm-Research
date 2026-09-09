@@ -1,0 +1,200 @@
+{
+  "status": "WORDMEAN_TRAINING_DYNAMICS",
+  "purpose": "Verify matched training geometry and summarize dynamics after word-mean training, without running or polling official-compatible evaluation.",
+  "runs": {
+    "token_mean": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "metrics": {
+        "variant": "masking_curriculum_wwm_fixed",
+        "word_exposure": 100000000,
+        "actual_training_steps": 2529,
+        "loss_first": 9.837543487548828,
+        "loss_last": 2.5525617599487305,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "seed": 43,
+        "seq_length": 256,
+        "max_seq_length": 256,
+        "seq_len_schedule": ""
+      }
+    },
+    "word_mean": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/wordmean_mlm_complianttok_reinvest_seed43022_80M",
+      "metrics": {
+        "variant": "masking_curriculum_wwm_fixed_word_mean",
+        "word_exposure": 80000000,
+        "actual_training_steps": 2024,
+        "loss_first": 9.836424827575684,
+        "loss_last": 2.5136709213256836,
+        "parameter_count": 34467424,
+        "vocab_size": 16384,
+        "tokenizer_label": "compliant16k_reinvest10M",
+        "loss_normalization": "word_mean",
+        "mean_tokens_per_selected_group_trace_mean": 1.4582687232596976,
+        "seed": 43,
+        "extra_init_seed": 43022,
+        "train_rng_seed": 43023,
+        "seq_length": 256,
+        "max_seq_length": 256,
+        "seq_len_schedule": ""
+      }
+    }
+  },
+  "checkpoint_alignment": {
+    "common_checkpoint_count": 80,
+    "first_delta": {
+      "name": "chck_1M",
+      "target": 1000000,
+      "token_actual": 1027470,
+      "word_actual": 1027470,
+      "delta_word_actual_minus_token_actual": 0
+    },
+    "last_delta": {
+      "name": "chck_80M",
+      "target": 80000000,
+      "token_actual": 80034368,
+      "word_actual": 80000000,
+      "delta_word_actual_minus_token_actual": -34368
+    },
+    "max_abs_actual_exposure_delta": 34368,
+    "all_actual_exposures_identical": false
+  },
+  "exposure_snapshots": {
+    "20000000": {
+      "token_mean": {
+        "step": 506,
+        "actual_exposure": 20008711,
+        "loss": 3.755582332611084,
+        "masked_tokens": 8546,
+        "effective_mask_rate": 0.1507
+      },
+      "word_mean": {
+        "step": 506,
+        "actual_exposure": 20008711,
+        "loss": 3.7512614727020264,
+        "masked_tokens": 8546,
+        "effective_mask_rate": 0.1507
+      }
+    },
+    "70000000": {
+      "token_mean": {
+        "step": 1770,
+        "actual_exposure": 69990941,
+        "loss": 2.5259814262390137,
+        "masked_tokens": 8462,
+        "effective_mask_rate": 0.1497
+      },
+      "word_mean": {
+        "step": 1770,
+        "actual_exposure": 69990941,
+        "loss": 2.5193474292755127,
+        "masked_tokens": 8462,
+        "effective_mask_rate": 0.1497
+      }
+    },
+    "80000000": {
+      "token_mean": {
+        "step": 2023,
+        "actual_exposure": 79994979,
+        "loss": 2.5405397415161133,
+        "masked_tokens": 8575,
+        "effective_mask_rate": 0.1496
+      },
+      "word_mean": {
+        "step": 2024,
+        "actual_exposure": 80000000,
+        "loss": 2.5136709213256836,
+        "masked_tokens": 1047,
+        "effective_mask_rate": 0.1428
+      }
+    }
+  },
+  "windows": {
+    "0-5M": {
+      "token_mean": {
+        "n": 126,
+        "loss_mean": 7.070271745560661,
+        "loss_last": 5.9490227699279785,
+        "masked_tokens_mean": 8495.47619047619,
+        "effective_mask_rate_mean": 0.1501873015873016,
+        "first_step": 1,
+        "last_step": 126
+      },
+      "word_mean": {
+        "n": 126,
+        "loss_mean": 6.970031965346563,
+        "loss_last": 5.614962577819824,
+        "masked_tokens_mean": 8495.47619047619,
+        "effective_mask_rate_mean": 0.1501873015873016,
+        "first_step": 1,
+        "last_step": 126
+      }
+    },
+    "15-20M": {
+      "token_mean": {
+        "n": 129,
+        "loss_mean": 3.8028972647910892,
+        "loss_last": 3.7194743156433105,
+        "masked_tokens_mean": 8478.387596899225,
+        "effective_mask_rate_mean": 0.15002713178294574,
+        "first_step": 380,
+        "last_step": 508
+      },
+      "word_mean": {
+        "n": 129,
+        "loss_mean": 3.776321765988372,
+        "loss_last": 3.6979494094848633,
+        "masked_tokens_mean": 8478.387596899225,
+        "effective_mask_rate_mean": 0.15002713178294574,
+        "first_step": 380,
+        "last_step": 508
+      }
+    },
+    "65-70M": {
+      "token_mean": {
+        "n": 129,
+        "loss_mean": 2.603985071182251,
+        "loss_last": 2.536165475845337,
+        "masked_tokens_mean": 8480.046511627907,
+        "effective_mask_rate_mean": 0.15013410852713177,
+        "first_step": 1644,
+        "last_step": 1772
+      },
+      "word_mean": {
+        "n": 129,
+        "loss_mean": 2.607699943143268,
+        "loss_last": 2.592703342437744,
+        "masked_tokens_mean": 8480.046511627907,
+        "effective_mask_rate_mean": 0.15013410852713177,
+        "first_step": 1644,
+        "last_step": 1772
+      }
+    },
+    "75-80M": {
+      "token_mean": {
+        "n": 127,
+        "loss_mean": 2.5276126260832537,
+        "loss_last": 2.5405397415161133,
+        "masked_tokens_mean": 8493.952755905511,
+        "effective_mask_rate_mean": 0.15031732283464566,
+        "first_step": 1897,
+        "last_step": 2023
+      },
+      "word_mean": {
+        "n": 128,
+        "loss_mean": 2.573056073859334,
+        "loss_last": 2.5136709213256836,
+        "masked_tokens_mean": 8435.7734375,
+        "effective_mask_rate_mean": 0.15025859375,
+        "first_step": 1897,
+        "last_step": 2024
+      }
+    }
+  },
+  "interpretation": {
+    "matched_geometry": "The word-mean screen has identical corpus/tokenizer/architecture/seeds/exposure checkpoint targets through 80M; objective reduction is the intended changed factor.",
+    "loss_caution": "Loss values are objective-coordinate scalars and cannot be read as downstream BabyLM competence or as route success.",
+    "next_evidence": "Read the completed word-mean cheap-column results; then run wordmean_subtask_interpreter.py before any 100M continuation or fallback launch."
+  }
+}

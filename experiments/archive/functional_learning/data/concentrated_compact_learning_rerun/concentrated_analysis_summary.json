@@ -1,0 +1,39 @@
+{
+  "status": "CONCENTRATED_COMPACT_ANALYZED",
+  "run_dir": "experiments/archive/functional_learning/data/concentrated_compact_learning_rerun",
+  "table_csv": "experiments/archive/functional_learning/data/concentrated_compact_learning_rerun/concentrated_gain_table.csv",
+  "sample": {
+    "reviewed_label_counts": {
+      "altered_meaning": 34,
+      "faithful_shortening": 17,
+      "unclear": 22,
+      "information_losing_summary": 2,
+      "supported_partial_view": 6,
+      "correspondence_repair": 1
+    },
+    "n_faithful_reviewed": 17,
+    "n_common_train_pairs": 17,
+    "current_row_words_per_epoch": 1306,
+    "compact_row_words_per_epoch": 1147,
+    "saved_words_per_epoch": 159,
+    "eval_tasks": 542
+  },
+  "key_metrics": {
+    "current_equal_current_with_source_gain": 0.5888358899559103,
+    "current_equal_compact_with_source_cross_gain": 0.16829895471588485,
+    "compact_equal_compact_with_source_gain": 0.531388410020718,
+    "compact_equal_current_with_source_cross_gain": 0.1617976829046368,
+    "compact_wordmatched_compact_with_source_gain": 0.6411532221977486,
+    "compact_wordmatched_current_with_source_cross_gain": 0.16259764679567734,
+    "current_equal_current_source_help_shift": 0.20137662079950536,
+    "compact_equal_compact_source_help_shift": 0.27555202292179626,
+    "compact_wordmatched_compact_source_help_shift": 0.34322246374022747,
+    "compact_wordmatched_minus_compact_equal_compact_gain": 0.1097648121770306
+  },
+  "interpretation": [
+    "Each arm mainly improves the view it trained on; cross-view gains are much smaller, so the first signal is view-specific acquisition rather than broad reusable semantic transfer.",
+    "The compact view has stronger parent source-conditioned reconstruction than the inherited current view on this reviewed subset; compact training preserves and slightly increases that source help.",
+    "At roughly matched charged words, compact_wordmatched improves compact-with-source NLL slightly more than current_equal improves current-with-source NLL, but target sets differ and the sample is only 17 pairs, so this is a promising bounded signal rather than a model-improvement result.",
+    "The result supports running a larger reviewed subset and a more diagnostic held-source/content-probe before committing to full legal tail training; it does not certify unreviewed automatic rows."
+  ]
+}

@@ -1,0 +1,102 @@
+% Shared English figure for Chinese and English reports, drawn at 160 mm.
+% Branches schematically represent parallel research exploration.
+\input{model_pictogram.tex}
+\begin{tikzpicture}[
+  x=1mm,y=1mm,
+  every node/.style={font=\LabelFont,text=Ink,inner sep=0pt,
+    outer sep=0pt,align=center},
+  heading/.style={font=\HeadingFont},
+  detail/.style={font=\DetailFont,text=Muted},
+  relation/.style={draw=Blue,line width=.65bp,line cap=round,
+    -{Latex[length=1.8mm,width=1.25mm]}},
+  branch/.style={draw=Blue!65,line width=.55bp,line cap=round,line join=round},
+  hypothesis/.style={circle,minimum size=2.2mm,draw=Blue!75,
+    line width=.55bp,fill=white},
+  rule/.style={draw=Rule,line width=.5bp}
+]
+\path[use as bounding box] (0,0) rectangle (160,108);
+\fill[white] (0,0) rectangle (160,108);
+
+\node[detail] at (80,104) {Human-specified research goal};
+\node[heading,text width=152mm] at (80,97.5)
+  {Improve language learning under limited data and training budgets};
+\draw[relation] (80,93.5) -- (80,88.1);
+
+% Only the scientific program is shown, not the engine's internal architecture.
+\draw[draw=Blue!60,line width=.65bp,rounded corners=1mm]
+  (1,29) rectangle (159,85.5);
+\node[heading,fill=white,inner xsep=3mm] at (80,85.5)
+  {Qiushi Discovery Loop};
+
+\node[detail] at (27,78.8) {Stage I};
+\node[detail] at (80,78.8) {Stage II};
+\node[detail] at (133,78.8) {Stage III};
+\node[heading,text width=44mm] at (27,72.4) {Frontier\\advancement};
+\node[heading,text width=44mm] at (80,72.4) {Principle\\discovery};
+\node[heading,text width=44mm] at (133,72.4)
+  {Principle-guided\\model improvement};
+
+% I. Finite text enters model development. Tiles do not encode corpus counts.
+\begin{scope}[shift={(7.5,49.8)}]
+  \foreach \y in {0,3.3,6.6}{
+    \draw[draw=Rule,fill=white,line width=.45bp,rounded corners=.3mm]
+      (0,\y) rectangle (11,\y+2.4);
+  }
+  \foreach \x/\w in {1/2.1,3.8/1.7,6.2/1.4,8.3/1.6}
+    \fill[Blue!25] (\x,7.2) rectangle (\x+\w,8.4);
+  \foreach \x/\w in {1/1.3,3/2.1,5.8/1.2,7.7/2.2}
+    \fill[Blue!18] (\x,3.9) rectangle (\x+\w,5.1);
+  \foreach \x/\w in {1/2.3,4/1.6,6.3/2.3}
+    \fill[Blue!35] (\x,.6) rectangle (\x+\w,1.8);
+\end{scope}
+\draw[relation] (20.2,54.5) -- (25.1,54.5);
+\ResearchModelGlyph{34}{54.5}{Blue}
+
+% II. A branching tree shows diversification into parallel research routes.
+\coordinate (root) at (60,54.5);
+\coordinate (upper) at (77,62.1);
+\coordinate (middle) at (77,54.5);
+\coordinate (lower) at (77,46.9);
+\coordinate (leaf1) at (97,64);
+\coordinate (leaf2) at (97,60.2);
+\coordinate (leaf3) at (97,56.4);
+\coordinate (leaf4) at (97,52.6);
+\coordinate (leaf5) at (97,48.8);
+\coordinate (leaf6) at (97,45);
+\foreach \parent/\first/\second in {
+  upper/leaf1/leaf2,middle/leaf3/leaf4,lower/leaf5/leaf6}{
+  \draw[branch] (root) -- (\parent) -- (\first);
+  \draw[branch] (\parent) -- (\second);
+}
+\foreach \point in {root,upper,middle,lower,leaf1,leaf2,leaf3,leaf4,leaf5,leaf6}
+  \node[hypothesis] at (\point) {};
+
+% III. The same model symbol makes comparison, not a change of scale, visible.
+\ResearchModelGlyph{121}{54.5}{Blue}
+\ResearchModelGlyph{145}{54.5}{Violet}
+\node[detail] at (133,54.5) {vs.};
+\draw[relation] (44.5,54.5) -- (55.5,54.5);
+\draw[relation] (102,54.5) -- (111.5,54.5);
+
+\node at (27,41.5) {Build \& evaluate};
+\node at (80,41.5) {Parallel exploration};
+\node at (133,41.5) {Design \& validate};
+
+\draw[relation,rounded corners=1mm]
+  (133,36.7) -- (133,32.8) -- (80,32.8) -- (80,36.7);
+\node[detail,fill=white,inner xsep=1.8mm] at (106.5,32.8)
+  {Results refine principles};
+
+% Three scientific outcomes, rather than an inventory of repository files.
+\draw[relation] (80,29) -- (80,25.1);
+\node[heading] at (80,21) {Research outcomes};
+\draw[rule] (1,21) -- (60,21);
+\draw[rule] (100,21) -- (159,21);
+
+\node[heading,text width=45mm] at (27,13.8) {Two successive\\frontier models};
+\node[heading,text width=49mm] at (80,13.8) {Data-efficient\\learning principle};
+\node[heading,text width=45mm] at (133,13.8) {Open research\\materials};
+\node[detail] at (27,5.5) {Frontier \textperiodcentered\ Principle-guided};
+\node[detail] at (80,5.5) {Context use \textperiodcentered\ Supervision \textperiodcentered\ Preservation};
+\node[detail] at (133,5.5) {Code \textperiodcentered\ Experiments \textperiodcentered\ Reports};
+\end{tikzpicture}

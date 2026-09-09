@@ -1,0 +1,411 @@
+{
+  "status": "CONSISTENCY_COLLATE_SMOKE",
+  "created_utc": "2026-08-30T04:58:55Z",
+  "purpose": "Prototype the dataset/collate interface needed for a future source-view consistency objective, using frozen training-side spans and tokenizer but no training/evaluation.",
+  "inputs": {
+    "train_100m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "train_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "span_jsonl": "experiments/archive/frontier_consolidation/data/pair_span_map/pair_span_map.jsonl",
+    "span_examples": 3005,
+    "tokenizer": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "seq_len": 256,
+    "batch_size": 256
+  },
+  "sample_summaries": [
+    {
+      "name": "front_4096_rows",
+      "rows": 4096,
+      "words": 632389,
+      "batches": 16,
+      "first_batch_shapes": {
+        "input_ids": [
+          256,
+          256
+        ],
+        "attention_mask": [
+          256,
+          256
+        ],
+        "word_group": [
+          256,
+          256
+        ]
+      },
+      "aux_batches": 16,
+      "fraction_batches_with_aux": 1.0,
+      "aux_rows": 214,
+      "aux_pair_records": 862,
+      "aux_source_tokens": 25418,
+      "aux_rewrite_tokens": 17449,
+      "aux_rows_per_batch": {
+        "n": 16,
+        "mean": 13.375,
+        "median": 13.5,
+        "min": 6.0,
+        "max": 18.0,
+        "std": 2.912795049432761
+      },
+      "aux_pairs_per_batch": {
+        "n": 16,
+        "mean": 53.875,
+        "median": 55.0,
+        "min": 23.0,
+        "max": 74.0,
+        "std": 12.323123589415145
+      },
+      "pair_source_token_counts": {
+        "n": 862,
+        "mean": 29.48723897911833,
+        "median": 28.0,
+        "min": 11.0,
+        "max": 71.0,
+        "std": 11.283900180417943
+      },
+      "pair_rewrite_token_counts": {
+        "n": 862,
+        "mean": 20.24245939675174,
+        "median": 19.0,
+        "min": 2.0,
+        "max": 52.0,
+        "std": 7.870789927991901
+      },
+      "aux_errors": {},
+      "first_aux_records": [
+        {
+          "batch_row": 20,
+          "global_row_1based": 21,
+          "example_id": 952994,
+          "pair_id": "frontier_consolidation_fwcompact_medium_004006",
+          "source_ranges": [
+            [
+              0,
+              25
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              25,
+              38
+            ]
+          ],
+          "source_token_count": 25,
+          "rewrite_token_count": 13
+        },
+        {
+          "batch_row": 20,
+          "global_row_1based": 21,
+          "example_id": 952994,
+          "pair_id": "frontier_consolidation_fwcompact_medium_049005",
+          "source_ranges": [
+            [
+              38,
+              68
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              68,
+              87
+            ]
+          ],
+          "source_token_count": 30,
+          "rewrite_token_count": 19
+        },
+        {
+          "batch_row": 20,
+          "global_row_1based": 21,
+          "example_id": 952994,
+          "pair_id": "frontier_consolidation_fwcompact_medium_018985",
+          "source_ranges": [
+            [
+              87,
+              117
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              117,
+              136
+            ]
+          ],
+          "source_token_count": 30,
+          "rewrite_token_count": 19
+        },
+        {
+          "batch_row": 20,
+          "global_row_1based": 21,
+          "example_id": 952994,
+          "pair_id": "frontier_consolidation_fwcompact_medium_006213",
+          "source_ranges": [
+            [
+              136,
+              154
+            ],
+            [
+              155,
+              181
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              181,
+              190
+            ],
+            [
+              191,
+              207
+            ]
+          ],
+          "source_token_count": 44,
+          "rewrite_token_count": 25
+        },
+        {
+          "batch_row": 26,
+          "global_row_1based": 27,
+          "example_id": 952818,
+          "pair_id": "frontier_consolidation_fwcompact_medium_010267",
+          "source_ranges": [
+            [
+              0,
+              27
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              27,
+              45
+            ]
+          ],
+          "source_token_count": 27,
+          "rewrite_token_count": 18
+        },
+        {
+          "batch_row": 26,
+          "global_row_1based": 27,
+          "example_id": 952818,
+          "pair_id": "frontier_consolidation_fwcompact_medium_013848",
+          "source_ranges": [
+            [
+              45,
+              84
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              84,
+              106
+            ]
+          ],
+          "source_token_count": 39,
+          "rewrite_token_count": 22
+        }
+      ]
+    },
+    {
+      "name": "stride_4096_rows",
+      "rows": 4096,
+      "words": 633531,
+      "batches": 16,
+      "first_batch_shapes": {
+        "input_ids": [
+          256,
+          256
+        ],
+        "attention_mask": [
+          256,
+          256
+        ],
+        "word_group": [
+          256,
+          256
+        ]
+      },
+      "aux_batches": 16,
+      "fraction_batches_with_aux": 1.0,
+      "aux_rows": 158,
+      "aux_pair_records": 648,
+      "aux_source_tokens": 18849,
+      "aux_rewrite_tokens": 12920,
+      "aux_rows_per_batch": {
+        "n": 16,
+        "mean": 9.875,
+        "median": 9.5,
+        "min": 4.0,
+        "max": 16.0,
+        "std": 3.2185982973959333
+      },
+      "aux_pairs_per_batch": {
+        "n": 16,
+        "mean": 40.5,
+        "median": 38.0,
+        "min": 17.0,
+        "max": 66.0,
+        "std": 13.619838471876236
+      },
+      "pair_source_token_counts": {
+        "n": 648,
+        "mean": 29.087962962962962,
+        "median": 27.0,
+        "min": 11.0,
+        "max": 69.0,
+        "std": 10.960365331327196
+      },
+      "pair_rewrite_token_counts": {
+        "n": 648,
+        "mean": 19.938271604938272,
+        "median": 18.0,
+        "min": 7.0,
+        "max": 58.0,
+        "std": 7.815536408867246
+      },
+      "aux_errors": {},
+      "first_aux_records": [
+        {
+          "batch_row": 55,
+          "global_row_1based": 8696,
+          "example_id": 952888,
+          "pair_id": "frontier_consolidation_fwcompact_medium_054005",
+          "source_ranges": [
+            [
+              0,
+              6
+            ],
+            [
+              7,
+              19
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              19,
+              25
+            ],
+            [
+              26,
+              33
+            ]
+          ],
+          "source_token_count": 18,
+          "rewrite_token_count": 13
+        },
+        {
+          "batch_row": 55,
+          "global_row_1based": 8696,
+          "example_id": 952888,
+          "pair_id": "frontier_consolidation_fwcompact_medium_018873",
+          "source_ranges": [
+            [
+              33,
+              59
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              59,
+              77
+            ]
+          ],
+          "source_token_count": 26,
+          "rewrite_token_count": 18
+        },
+        {
+          "batch_row": 55,
+          "global_row_1based": 8696,
+          "example_id": 952888,
+          "pair_id": "frontier_consolidation_fwcompact_medium_004856",
+          "source_ranges": [
+            [
+              77,
+              115
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              115,
+              145
+            ]
+          ],
+          "source_token_count": 38,
+          "rewrite_token_count": 30
+        },
+        {
+          "batch_row": 55,
+          "global_row_1based": 8696,
+          "example_id": 952888,
+          "pair_id": "frontier_consolidation_fwcompact_medium_023197",
+          "source_ranges": [
+            [
+              145,
+              176
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              176,
+              177
+            ],
+            [
+              178,
+              200
+            ]
+          ],
+          "source_token_count": 31,
+          "rewrite_token_count": 23
+        },
+        {
+          "batch_row": 62,
+          "global_row_1based": 9803,
+          "example_id": 951017,
+          "pair_id": "frontier_consolidation_fwcompact_medium_025633",
+          "source_ranges": [
+            [
+              0,
+              31
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              31,
+              52
+            ]
+          ],
+          "source_token_count": 31,
+          "rewrite_token_count": 21
+        },
+        {
+          "batch_row": 62,
+          "global_row_1based": 9803,
+          "example_id": 951017,
+          "pair_id": "frontier_consolidation_fwcompact_medium_000446",
+          "source_ranges": [
+            [
+              52,
+              71
+            ]
+          ],
+          "rewrite_ranges": [
+            [
+              71,
+              83
+            ]
+          ],
+          "source_token_count": 19,
+          "rewrite_token_count": 12
+        }
+      ]
+    }
+  ],
+  "combined_aux_errors": {},
+  "interface_contract_for_future_trainer": [
+    "Dataset returns the inherited MLM tensors plus example_id, global_row_1based, and aux_pairs looked up by example_id.",
+    "Collate keeps tensor stacking unchanged and adds an aux_records list with batch_row, example_id, pair_id, source_ranges, rewrite_ranges, and per-side token counts for both-visible pairs only.",
+    "A future auxiliary loss should compute pooled source/rewrite representations from model hidden states after the forward pass, average within pair records, then normalize per eligible row or per eligible pair so batches with many changed rows do not dominate.",
+    "No in-batch negatives or static-prior masking are part of this first source-view consistency interface; it must stay a single-variable auxiliary-loss screen if selected."
+  ],
+  "scientific_interpretation": [
+    "Successful smoke testing means source-view consistency is implementable without changing corpus order or tokenizer, but it is not evidence that it improves BabyLM scores.",
+    "The mature legal-tokenizer treatment pattern remains necessary before spending GPU on this objective; this script only removes one engineering uncertainty from the broad-disappearance branch."
+  ],
+  "elapsed_sec": 18.784
+}

@@ -1,0 +1,173 @@
+{
+  "status": "TWO_SEED_FULL_EVAL_PLAN",
+  "created_utc": "2026-08-30T00:29:40Z",
+  "visible_leader_overall": 41.8,
+  "policy": {
+    "scientific_object": "corrected-tokenizer compact_view_reinvest two-seed official-coordinate endpoint",
+    "must_full_evaluate_both_completed_retrains": true,
+    "surface_first_role": "scheduling aid only; may decide which seed is evaluated first but must not remove the second seed from full official measurement",
+    "full_coordinate_components": [
+      "inherited full wrapper for BLiMP, Supplement, Entity, COMPS, GlobalPIQA, Reading, SuperGLUE, excluding stale EWoK and old AoA",
+      "current official 7,618-row EWoK replacement via official_ewok_reeval.py",
+      "official min_context=0 AoA over 8,005 contexts at all required checkpoints via official_aoa_min0.py",
+      "unmodified current official collator via stage_pristine_collate.py"
+    ],
+    "why_both_seeds_matter": "The inherited-tokenizer 42.033 endpoint was seed-sensitive, the compliant tokenizer changed late relation dynamics and EWoK target segmentation, and a stable Strict-Small advance requires measuring tokenizer-by-seed behavior rather than selecting one favorable draw.",
+    "do_not_use_for_submission": "Any inherited-tokenizer model or clean-Qwen fixed-tokenizer control whose tokenizer+pretraining union exceeds 10M words."
+  },
+  "scheduling_hint": {
+    "source": "experiments/archive/representation_and_objectives/data/relation_phase_dynamics_summary/relation_phase_dynamics_summary.json",
+    "basis": "official-compatible 553-row old-instability EWoK probe at corrected-tokenizer chck_80M; not an Overall score",
+    "accuracy_on_subset": {
+      "43022": 51.89873417721519,
+      "43122": 46.47377938517179
+    },
+    "preferred_first_if_single_gpu_free": "43022",
+    "why_only_scheduling": "Earlier 50M relation signal reversed, old-tokenizer dynamics do not predict corrected-tokenizer endpoint, and full official columns can move independently."
+  },
+  "seeds": [
+    {
+      "seed": "43022",
+      "suggested_gpu": 0,
+      "run_dir": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43022",
+      "preflight_errors": [],
+      "ready_for_full_eval_now": true,
+      "latest_training_record": {
+        "step": 2529,
+        "loss": 2.571291208267212,
+        "lr": 0.0,
+        "batch_words": 35791,
+        "cumulative_word_exposure": 100000000,
+        "seq_len": 256,
+        "masked_tokens": 7512,
+        "effective_mask_rate": 0.1475,
+        "mask_mode": "wwm",
+        "mask_prob_nominal": 0.15,
+        "elapsed_sec": 3769.4
+      },
+      "tokenizer_sha_expected": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+      "tokenizer_check": {
+        "chck_1M/tokenizer.json": {
+          "record": {
+            "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43022/hf_model/chck_1M/tokenizer.json",
+            "exists": true,
+            "size_bytes": 1131787
+          },
+          "sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+          "matches_expected": true
+        },
+        "chck_100M/tokenizer.json": {
+          "record": {
+            "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43022/hf_model/chck_100M/tokenizer.json",
+            "exists": true,
+            "size_bytes": 1131787
+          },
+          "sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+          "matches_expected": true
+        }
+      },
+      "official_full_eval_command": [
+        "python3",
+        "-B",
+        "experiments/archive/representation_and_objectives/scripts/strictsmalltok_posttrain_eval_controller.py",
+        "--seed",
+        "43022",
+        "--gpu",
+        "0"
+      ],
+      "surface_first_scheduling_command": [
+        "python3",
+        "-B",
+        "experiments/archive/representation_and_objectives/scripts/strictsmalltok_surface_first_eval_controller.py",
+        "--seed",
+        "43022",
+        "--gpu",
+        "0"
+      ],
+      "full_eval_outputs": {
+        "full_eval_root": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43022_full_eval",
+        "official_ewok_out": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43022_official_ewok",
+        "official_aoa_out": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43022_official_aoa_min0",
+        "pristine_collate_out": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43022_pristine_collate",
+        "posttrain_controller_summary": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43022_posttrain_eval_controller/posttrain_eval_seed43022_summary.json"
+      }
+    },
+    {
+      "seed": "43122",
+      "suggested_gpu": 1,
+      "run_dir": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122",
+      "preflight_errors": [],
+      "ready_for_full_eval_now": true,
+      "latest_training_record": {
+        "step": 2529,
+        "loss": 2.6958017349243164,
+        "lr": 0.0,
+        "batch_words": 35791,
+        "cumulative_word_exposure": 100000000,
+        "seq_len": 256,
+        "masked_tokens": 7642,
+        "effective_mask_rate": 0.1501,
+        "mask_mode": "wwm",
+        "mask_prob_nominal": 0.15,
+        "elapsed_sec": 3771.2
+      },
+      "tokenizer_sha_expected": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+      "tokenizer_check": {
+        "chck_1M/tokenizer.json": {
+          "record": {
+            "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/hf_model/chck_1M/tokenizer.json",
+            "exists": true,
+            "size_bytes": 1131787
+          },
+          "sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+          "matches_expected": true
+        },
+        "chck_100M/tokenizer.json": {
+          "record": {
+            "path": "experiments/archive/representation_and_objectives/training/runs/strictsmalltok_compact_view_reinvest_seed43122/hf_model/chck_100M/tokenizer.json",
+            "exists": true,
+            "size_bytes": 1131787
+          },
+          "sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+          "matches_expected": true
+        }
+      },
+      "official_full_eval_command": [
+        "python3",
+        "-B",
+        "experiments/archive/representation_and_objectives/scripts/strictsmalltok_posttrain_eval_controller.py",
+        "--seed",
+        "43122",
+        "--gpu",
+        "1"
+      ],
+      "surface_first_scheduling_command": [
+        "python3",
+        "-B",
+        "experiments/archive/representation_and_objectives/scripts/strictsmalltok_surface_first_eval_controller.py",
+        "--seed",
+        "43122",
+        "--gpu",
+        "1"
+      ],
+      "full_eval_outputs": {
+        "full_eval_root": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43122_full_eval",
+        "official_ewok_out": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43122_official_ewok",
+        "official_aoa_out": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43122_official_aoa_min0",
+        "pristine_collate_out": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43122_pristine_collate",
+        "posttrain_controller_summary": "experiments/archive/representation_and_objectives/data/strictsmalltok_seed43122_posttrain_eval_controller/posttrain_eval_seed43122_summary.json"
+      }
+    }
+  ],
+  "ready_seeds": [
+    "43022",
+    "43122"
+  ],
+  "not_ready_preflight_errors": {},
+  "recommended_execution_after_retrains_finish": [
+    "If both seeds are ready and two GPUs are free, run both official_full_eval_command entries in parallel as managed/background tasks with separate exact output directories.",
+    "If only one GPU/eval slot is free, run seed43022 first based on the late 80M focused relation scheduling hint, then run seed43122 on the same pristine full coordinate as soon as possible.",
+    "Surface-first evaluation may be inserted before full evaluation to order work or estimate urgency, but must not be used to omit full SuperGLUE/AoA/pristine collation for either completed retrain.",
+    "After both full collations exist, build a two-seed comparison summary with official nine-column vectors, Overall mean, per-column seed deltas, and a corrected-tokenizer vs inherited-tokenizer comparison against research/44."
+  ]
+}

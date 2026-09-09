@@ -1,0 +1,33 @@
+{
+  "status": "TEACHER_REALIZATION_PROMPTS_READY",
+  "created_utc": "2026-09-03T21:08:20Z",
+  "selected_families": 200,
+  "selected_family_split_counts": {
+    "train": 100,
+    "held": 100
+  },
+  "selected_sport_counts": {
+    "tennis": 139,
+    "badminton": 42,
+    "football": 19
+  },
+  "prompts_per_teacher": 3200,
+  "variant_counts": {
+    "original_ablated": 800,
+    "original_score_visible": 800,
+    "name_swapped_context": 800,
+    "hyp_lost_to": 800
+  },
+  "gold_counts": {
+    "ENTAILED": 1600,
+    "NOT_ENTAILED": 1600
+  },
+  "prompt_qwen": "experiments/archive/representation_and_objectives/training/data/paired_world_teacher_verify/teacher_prompts_qwen.jsonl",
+  "prompt_llama": "experiments/archive/representation_and_objectives/training/data/paired_world_teacher_verify/teacher_prompts_llama.jsonl",
+  "intended_commands": {
+    "qwen": "CUDA_VISIBLE_DEVICES=0 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model qwen3.5-9b --prompts-jsonl experiments/archive/representation_and_objectives/training/data/paired_world_teacher_verify/teacher_prompts_qwen.jsonl --output-jsonl experiments/archive/representation_and_objectives/training/data/paired_world_teacher_verify/teacher_outputs_qwen.jsonl --batch-size 32 --max-new-tokens 8 --temperature 0.0 --device cuda",
+    "llama": "CUDA_VISIBLE_DEVICES=1 \"${BABYLM_GENERATOR:?configure-an-external-generator}\" --model llama3.1-8b-instruct --prompts-jsonl experiments/archive/representation_and_objectives/training/data/paired_world_teacher_verify/teacher_prompts_llama.jsonl --output-jsonl experiments/archive/representation_and_objectives/training/data/paired_world_teacher_verify/teacher_outputs_llama.jsonl --batch-size 32 --max-new-tokens 8 --temperature 0.0 --device cuda"
+  },
+  "scientific_use": "Verify language realization of the paired worlds, including score ablation, score visibility, name-swap perturbations, and lost-to hypothesis paraphrases. This is not evidence that a small student has learned a transferable principle.",
+  "no_babylm_training_eval_upload_submission": true
+}

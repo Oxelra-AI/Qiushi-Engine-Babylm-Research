@@ -1,0 +1,66 @@
+{
+  "status": "MINFREQ50_SUPPORTFLOOR_CLOSED",
+  "evidence": {
+    "training_task": "s67_t14_tool1",
+    "evaluation_task": "s67_t16_tool1",
+    "training_metrics": "experiments/archive/frontier_consolidation/training/runs/minfreq50_initmatched_reinvest_seed43022_80M/scientific_metrics.json",
+    "evaluation_70M": "experiments/archive/frontier_consolidation/data/minfreq50_initmatched_70_80M_eval/per_target/minfreq50_initmatched_seed43022_70M.json",
+    "evaluation_80M": "experiments/archive/frontier_consolidation/data/minfreq50_initmatched_70_80M_eval/per_target/minfreq50_initmatched_seed43022_80M.json",
+    "comparison": "experiments/archive/frontier_consolidation/data/minfreq50_initmatched_trajectory/minfreq50_vs_trajectory.json"
+  },
+  "minfreq50_scores": {
+    "70M": {
+      "BLiMP": 65.5,
+      "Supplement": 58.65,
+      "EWoK": 49.52,
+      "Entity": 26.54,
+      "COMPS": 52.02,
+      "GlobalPIQA": 37.12,
+      "Reading": 8.545,
+      "mean7": 42.55642857142857
+    },
+    "80M": {
+      "BLiMP": 65.69,
+      "Supplement": 58.37,
+      "EWoK": 49.57,
+      "Entity": 27.31,
+      "COMPS": 51.9,
+      "GlobalPIQA": 38.12,
+      "Reading": 8.505,
+      "mean7": 42.78071428571428
+    }
+  },
+  "delta_minfreq50_minus_step35_reinvest": {
+    "70M": {
+      "mean7": -0.05214285714286149,
+      "BLiMP": 0.11,
+      "Supplement": -0.66,
+      "EWoK": -0.95,
+      "Entity": -0.44,
+      "COMPS": 0.2,
+      "GlobalPIQA": 1.57,
+      "Reading": -0.195
+    },
+    "80M": {
+      "mean7": -0.16785714285714448,
+      "BLiMP": -0.42,
+      "Supplement": -2.29,
+      "EWoK": -1.44,
+      "Entity": 0.25,
+      "COMPS": -0.03,
+      "GlobalPIQA": 2.54,
+      "Reading": 0.215,
+      "GlobalPIQA_parallel": -2.92,
+      "GlobalPIQA_nonparallel": 8.0
+    }
+  },
+  "score_calibration": {
+    "legal_endpoint_overall": 41.257770896404615,
+    "target_overall": 41.8,
+    "needed_overall_gain": 0.542229103595385,
+    "needed_cheap7_mean_gain_if_superglue_aoa_flat": 0.6972,
+    "minfreq50_80M_delta_vs_reference_mean7": -0.16785714285714448
+  },
+  "decision": "Close minfreq50 support-floor: no 100M continuation, no seed change, no LR retune; it is negative vs the token-mean reinvest reference and damages Supplement/EWoK while gaining only GlobalPIQA_nonparallel.",
+  "route_implication": "Representation/segmentation reshuffles and global credit shifts have now both produced GlobalPIQA-nonparallel-for-language tradeoffs. Next expensive work should target a genuinely unsaturated broad-transfer quantity and incorporate A01 sequence evidence before launch."
+}

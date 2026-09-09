@@ -1,0 +1,102 @@
+{
+  "status": "SEQUENCE_VS_FIXED256_ACCOUNTING",
+  "created_utc": "2026-08-30T10:40:24Z",
+  "purpose": "Clarify that faithful sequence-stream ratios should be compared to the actual fixed-seq256 legal endpoint recipe, not only to the flawed prefix-sliced sequence path.",
+  "input_json": "experiments/archive/frontier_consolidation/data/pairaware_sequence_accounting/pairaware_sequence_accounting.json",
+  "sha256": {
+    "pool_expected": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "pool_actual": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+    "pool_matches": true
+  },
+  "by_tokenizer": {
+    "legal16k": {
+      "declared_words_total_fixed_and_sequence": 100000000,
+      "fixed_seq256_active_tokens_total": 142948930,
+      "fixed_seq256_expected_masked_tokens_total": 21442339.5,
+      "fixed_seq256_optimizer_steps_total": 2530,
+      "raw_untruncated_tokens_total": 146645190,
+      "raw_untruncated_token_ratio_vs_fixed_seq256": 1.0258572064862606,
+      "raw_minus_fixed_seq256_tokens_total": 3696260,
+      "raw_minus_fixed_seq256_tokens_per_100M_words": 3696260,
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "charged_words_total": 100000000,
+          "sequence_active_tokens_total": 146645190,
+          "sequence_expected_masked_tokens_total": 21996778.5,
+          "active_token_ratio_vs_fixed_seq256": 1.0258572064862606,
+          "active_token_delta_vs_fixed_seq256": 3696260,
+          "expected_masked_token_delta_vs_fixed_seq256": 554439.0,
+          "sequence_optimizer_steps_total": 2858,
+          "optimizer_step_ratio_vs_fixed_seq256": 1.1296442687747035,
+          "optimizer_step_delta_vs_fixed_seq256": 328,
+          "active_token_ratio_vs_flawed_prefix_sequence": 1.6583989403450095,
+          "optimizer_step_ratio_vs_flawed_prefix_sequence": 1.1296442687747035,
+          "pair_full_fraction_epoch_mean": 0.9381900452488688,
+          "pair_overlong_fraction_epoch_mean": 0.06180995475113123
+        },
+        "64x7_256x3": {
+          "charged_words_total": 100000000,
+          "sequence_active_tokens_total": 146645190,
+          "sequence_expected_masked_tokens_total": 21996778.5,
+          "active_token_ratio_vs_fixed_seq256": 1.0258572064862606,
+          "active_token_delta_vs_fixed_seq256": 3696260,
+          "expected_masked_token_delta_vs_fixed_seq256": 554439.0,
+          "sequence_optimizer_steps_total": 2766,
+          "optimizer_step_ratio_vs_fixed_seq256": 1.093280632411067,
+          "optimizer_step_delta_vs_fixed_seq256": 236,
+          "active_token_ratio_vs_flawed_prefix_sequence": 2.0399172243573855,
+          "optimizer_step_ratio_vs_flawed_prefix_sequence": 1.093280632411067,
+          "pair_full_fraction_epoch_mean": 0.857696421225833,
+          "pair_overlong_fraction_epoch_mean": 0.14230357877416702
+        }
+      }
+    },
+    "minfreq50_supportfloor": {
+      "declared_words_total_fixed_and_sequence": 100000000,
+      "fixed_seq256_active_tokens_total": 141529040,
+      "fixed_seq256_expected_masked_tokens_total": 21229356.0,
+      "fixed_seq256_optimizer_steps_total": 2530,
+      "raw_untruncated_tokens_total": 144836000,
+      "raw_untruncated_token_ratio_vs_fixed_seq256": 1.023365946663667,
+      "raw_minus_fixed_seq256_tokens_total": 3306960,
+      "raw_minus_fixed_seq256_tokens_per_100M_words": 3306960,
+      "schedules": {
+        "64x3_128x4_256x3": {
+          "charged_words_total": 100000000,
+          "sequence_active_tokens_total": 144836000,
+          "sequence_expected_masked_tokens_total": 21725400.0,
+          "active_token_ratio_vs_fixed_seq256": 1.023365946663667,
+          "active_token_delta_vs_fixed_seq256": 3306960,
+          "expected_masked_token_delta_vs_fixed_seq256": 496044.0,
+          "sequence_optimizer_steps_total": 2825,
+          "optimizer_step_ratio_vs_fixed_seq256": 1.116600790513834,
+          "optimizer_step_delta_vs_fixed_seq256": 295,
+          "active_token_ratio_vs_flawed_prefix_sequence": 1.6459475235754912,
+          "optimizer_step_ratio_vs_flawed_prefix_sequence": 1.116600790513834,
+          "pair_full_fraction_epoch_mean": 0.9442369395310571,
+          "pair_overlong_fraction_epoch_mean": 0.05576306046894282
+        },
+        "64x7_256x3": {
+          "charged_words_total": 100000000,
+          "sequence_active_tokens_total": 144836000,
+          "sequence_expected_masked_tokens_total": 21725400.0,
+          "active_token_ratio_vs_fixed_seq256": 1.023365946663667,
+          "active_token_delta_vs_fixed_seq256": 3306960,
+          "expected_masked_token_delta_vs_fixed_seq256": 496044.0,
+          "sequence_optimizer_steps_total": 2733,
+          "optimizer_step_ratio_vs_fixed_seq256": 1.0802371541501976,
+          "optimizer_step_delta_vs_fixed_seq256": 203,
+          "active_token_ratio_vs_flawed_prefix_sequence": 2.0267598177248343,
+          "optimizer_step_ratio_vs_flawed_prefix_sequence": 1.0802371541501976,
+          "pair_full_fraction_epoch_mean": 0.8711147675853559,
+          "pair_overlong_fraction_epoch_mean": 0.12888523241464417
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "fixed_reference": "The best legal endpoint used fixed seq256; each epoch exposes only the first 256 tokenizer tokens of each row, so it sees visible seq256 active tokens, not the full untruncated tokenizer stream.",
+    "sequence_reference": "Faithful group chunks expose the full untruncated tokenizer stream at every stage length while preserving the same 10M declared words per epoch; the main direct difference from fixed seq256 is recovering the small truncated-token tail plus changing context-length and update geometry.",
+    "routing_reading": "Large ratios against prefix slicing show why the old seq_len_schedule path was not a valid sequence experiment. Against fixed seq256, the active-token gain is only the truncation tail; any real score change would have to come from shorter-context curriculum and pair-aware packing, not from a massive increase in text seen."
+  }
+}

@@ -1,0 +1,4978 @@
+{
+  "status": "PROJECTED_CONSISTENCY_CALIBRATION",
+  "created_utc": "2026-08-30T11:56:31Z",
+  "purpose": "CPU-only calibration of fixed-subspace source/rewrite consistency losses on actual legal16k token-mean compact-view checkpoints.",
+  "inputs": {
+    "train_100m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "train_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "span_jsonl": "experiments/archive/frontier_consolidation/data/pair_span_map/pair_span_map.jsonl",
+    "span_examples": 3005,
+    "tokenizer_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "sample_mode": "front",
+    "sample_rows_loaded": 384,
+    "batch_size": 32,
+    "max_batches": 4,
+    "train_rng_seed": 43023,
+    "proj_dims": [
+      32,
+      64,
+      128,
+      480
+    ],
+    "center_modes": [
+      "raw",
+      "row_centered"
+    ],
+    "proj_seed": 70070,
+    "torch_threads": 8,
+    "checkpoints": [
+      "tokenmean_20M",
+      "tokenmean_80M",
+      "tokenmean_100M"
+    ]
+  },
+  "checkpoint_results": [
+    {
+      "label": "tokenmean_20M",
+      "path": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_20M",
+      "status": "ok",
+      "hidden_size": 480,
+      "batches_seen": 4,
+      "usable_batches": 3,
+      "records": [
+        {
+          "batch_index": 0,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 2,
+          "aux_records": 8,
+          "selected_mlm_tokens": 992,
+          "aux_span_tokens": 405,
+          "mlm_loss": 3.381197452545166,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.2339417040348053,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.8769297326353738,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.3963083301718897,
+              "grad_cosine_all_hidden": 0.0018356208372958948,
+              "grad_cosine_aux_spans": 0.007109274216620545,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.7660582885146141,
+                  "median": 0.7822865843772888,
+                  "min": 0.5899468660354614,
+                  "max": 0.8849232196807861,
+                  "std": 0.09579528437198201
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.5589945539832115,
+                  "median": 0.5831259489059448,
+                  "min": 0.14908790588378906,
+                  "max": 0.7675203680992126,
+                  "std": 0.17764091393477097
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5865462198853493,
+                  "median": 0.6398026943206787,
+                  "min": 0.14908790588378906,
+                  "max": 0.7675203680992126,
+                  "std": 0.17729875126603778
+                },
+                "actual_minus_shuffled_mean": 0.2070637345314026,
+                "actual_minus_same_row_other_mean": 0.17951206862926483
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.12556618452072144,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.36741701874112925,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.4229891346565595,
+              "grad_cosine_all_hidden": 0.001654879969125505,
+              "grad_cosine_aux_spans": 0.00640927463671498,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.874433808028698,
+                  "median": 0.8783170580863953,
+                  "min": 0.8278529047966003,
+                  "max": 0.9138125777244568,
+                  "std": 0.029760727655164795
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.6997693255543709,
+                  "median": 0.7053861916065216,
+                  "min": 0.587414026260376,
+                  "max": 0.8122081160545349,
+                  "std": 0.08431176167444866
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.7176159545779228,
+                  "median": 0.7337006628513336,
+                  "min": 0.587414026260376,
+                  "max": 0.8122081160545349,
+                  "std": 0.07777288832926028
+                },
+                "actual_minus_shuffled_mean": 0.1746644824743271,
+                "actual_minus_same_row_other_mean": 0.15681785345077515
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.15532875061035156,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.29679307538844774,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.1494658656969543,
+              "grad_cosine_all_hidden": 0.0029000244513244233,
+              "grad_cosine_aux_spans": 0.011231663672057782,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.844671256840229,
+                  "median": 0.8273371756076813,
+                  "min": 0.7917867302894592,
+                  "max": 0.9024628400802612,
+                  "std": 0.03889733587076791
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.6653556488454342,
+                  "median": 0.6817300617694855,
+                  "min": 0.4822189509868622,
+                  "max": 0.784520149230957,
+                  "std": 0.10146597766278723
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.6796928010880947,
+                  "median": 0.6986871957778931,
+                  "min": 0.4822189509868622,
+                  "max": 0.784520149230957,
+                  "std": 0.09519957727918947
+                },
+                "actual_minus_shuffled_mean": 0.17931560799479485,
+                "actual_minus_same_row_other_mean": 0.16497845575213432
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.15153533220291138,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.15376518307872053,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.5955254483289466,
+              "grad_cosine_all_hidden": 0.004931113560650992,
+              "grad_cosine_aux_spans": 0.019097974936819563,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.8484646752476692,
+                  "median": 0.8461786508560181,
+                  "min": 0.7792727947235107,
+                  "max": 0.906892716884613,
+                  "std": 0.036793048543129724
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.656401950865984,
+                  "median": 0.6632382571697235,
+                  "min": 0.45677414536476135,
+                  "max": 0.7885473966598511,
+                  "std": 0.09336528065634245
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.6675011999905109,
+                  "median": 0.69716876745224,
+                  "min": 0.45677414536476135,
+                  "max": 0.7885473966598511,
+                  "std": 0.0945382059154476
+                },
+                "actual_minus_shuffled_mean": 0.19206272438168526,
+                "actual_minus_same_row_other_mean": 0.18096347525715828
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.7161760330200195,
+              "aux_over_mlm_l2_all_hidden_lambda1": 2.336796635346665,
+              "aux_over_mlm_l2_aux_spans_lambda1": 9.050305381589224,
+              "grad_cosine_all_hidden": 0.00225188545763351,
+              "grad_cosine_aux_spans": 0.008721446816689316,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.28382399305701256,
+                  "median": 0.2292782887816429,
+                  "min": 0.031876206398010254,
+                  "max": 0.6361956000328064,
+                  "std": 0.19582178033263214
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.12896549422293901,
+                  "median": -0.03799259662628174,
+                  "min": -0.7665432691574097,
+                  "max": 0.2813927233219147,
+                  "std": 0.3591406388859103
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.2597819780930877,
+                  "median": -0.16988497227430344,
+                  "min": -0.7665432691574097,
+                  "max": 0.07556400448083878,
+                  "std": 0.28291077446332186
+                },
+                "actual_minus_shuffled_mean": 0.4127894872799516,
+                "actual_minus_same_row_other_mean": 0.5436059711501002
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.5957379937171936,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.5325483408199498,
+              "aux_over_mlm_l2_aux_spans_lambda1": 5.935488902486716,
+              "grad_cosine_all_hidden": 0.002790550206037301,
+              "grad_cosine_aux_spans": 0.01080767417083984,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.40426199324429035,
+                  "median": 0.3992258161306381,
+                  "min": 0.15171772241592407,
+                  "max": 0.6182734966278076,
+                  "std": 0.15600981258369948
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.19103723322041333,
+                  "median": -0.13631952553987503,
+                  "min": -0.634171187877655,
+                  "max": 0.2558240294456482,
+                  "std": 0.2904451551461208
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.30214409274049103,
+                  "median": -0.25560595095157623,
+                  "min": -0.634171187877655,
+                  "max": 0.021104371175169945,
+                  "std": 0.22110150299584894
+                },
+                "actual_minus_shuffled_mean": 0.5952992264647037,
+                "actual_minus_same_row_other_mean": 0.7064060859847814
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.633423924446106,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.0512717709621022,
+              "aux_over_mlm_l2_aux_spans_lambda1": 4.071526987986994,
+              "grad_cosine_all_hidden": 0.0035151212614730827,
+              "grad_cosine_aux_spans": 0.013613901756170619,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.36657607555389404,
+                  "median": 0.3284911960363388,
+                  "min": 0.13414685428142548,
+                  "max": 0.5949671864509583,
+                  "std": 0.15272283705549825
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.13614659756422043,
+                  "median": -0.071975814178586,
+                  "min": -0.7031041979789734,
+                  "max": 0.337613582611084,
+                  "std": 0.32598182971939
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.2911200374364853,
+                  "median": -0.20878825336694717,
+                  "min": -0.7031041979789734,
+                  "max": -0.0014084689319133759,
+                  "std": 0.24649366281496835
+                },
+                "actual_minus_shuffled_mean": 0.5027226731181145,
+                "actual_minus_same_row_other_mean": 0.6576961129903793
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.602920651435852,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5351958941461951,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.072788965770315,
+              "grad_cosine_all_hidden": 0.005714082310523195,
+              "grad_cosine_aux_spans": 0.02213037836317495,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.39707930013537407,
+                  "median": 0.3813803941011429,
+                  "min": 0.18620219826698303,
+                  "max": 0.6066279411315918,
+                  "std": 0.14702538883930935
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.15898488741368055,
+                  "median": -0.12038719654083252,
+                  "min": -0.6962841749191284,
+                  "max": 0.31891366839408875,
+                  "std": 0.3117506469044701
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.29996861796826124,
+                  "median": -0.23651519417762756,
+                  "min": -0.6962841749191284,
+                  "max": -0.07410197705030441,
+                  "std": 0.20521798009461725
+                },
+                "actual_minus_shuffled_mean": 0.5560641875490546,
+                "actual_minus_same_row_other_mean": 0.6970479181036353
+              }
+            }
+          ]
+        },
+        {
+          "batch_index": 1,
+          "aux_records": 0,
+          "skipped": "no_aux"
+        },
+        {
+          "batch_index": 2,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 3,
+          "aux_records": 12,
+          "selected_mlm_tokens": 1115,
+          "aux_span_tokens": 584,
+          "mlm_loss": 3.8323137760162354,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.14273034036159515,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5494736737910335,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.7390688220001493,
+              "grad_cosine_all_hidden": 0.0011615536482640154,
+              "grad_cosine_aux_spans": 0.0036762861257687257,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8572696646054586,
+                  "median": 0.8697696626186371,
+                  "min": 0.6799952387809753,
+                  "max": 0.9598674178123474,
+                  "std": 0.07777254069126495
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.670516071220239,
+                  "median": 0.7112964987754822,
+                  "min": 0.3729687035083771,
+                  "max": 0.7928610444068909,
+                  "std": 0.11883564310945165
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.677438219388326,
+                  "median": 0.6881876587867737,
+                  "min": 0.49853360652923584,
+                  "max": 0.7928610444068909,
+                  "std": 0.08284158570167471
+                },
+                "actual_minus_shuffled_mean": 0.18675359338521957,
+                "actual_minus_same_row_other_mean": 0.17983144521713257
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.10075458139181137,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.27691302611998986,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.8764219890799175,
+              "grad_cosine_all_hidden": 0.002141690510595405,
+              "grad_cosine_aux_spans": 0.006778389806443868,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8992454210917155,
+                  "median": 0.8973512649536133,
+                  "min": 0.8395336270332336,
+                  "max": 0.9630151391029358,
+                  "std": 0.03685832493702943
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.7569300979375839,
+                  "median": 0.7631197869777679,
+                  "min": 0.6570587158203125,
+                  "max": 0.8527866005897522,
+                  "std": 0.049919330822294265
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.762864371140798,
+                  "median": 0.76683709025383,
+                  "min": 0.6994580626487732,
+                  "max": 0.8527866005897522,
+                  "std": 0.0421438068564259
+                },
+                "actual_minus_shuffled_mean": 0.14231532315413153,
+                "actual_minus_same_row_other_mean": 0.1363810499509175
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.1160387322306633,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.22463101898645774,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.7109508975711858,
+              "grad_cosine_all_hidden": 0.003133189836301101,
+              "grad_cosine_aux_spans": 0.009916458175954455,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8839612652858099,
+                  "median": 0.8751342594623566,
+                  "min": 0.7980502843856812,
+                  "max": 0.9672669172286987,
+                  "std": 0.04923553024922423
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6976177593072256,
+                  "median": 0.705346405506134,
+                  "min": 0.5885322093963623,
+                  "max": 0.8191418051719666,
+                  "std": 0.06855177446838669
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.7067785412073135,
+                  "median": 0.7085898518562317,
+                  "min": 0.5885322093963623,
+                  "max": 0.8191418051719666,
+                  "std": 0.06179622907543476
+                },
+                "actual_minus_shuffled_mean": 0.1863435059785843,
+                "actual_minus_same_row_other_mean": 0.17718272407849633
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.11866731196641922,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.1174727130848512,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.3717978540302679,
+              "grad_cosine_all_hidden": 0.006357205127155844,
+              "grad_cosine_aux_spans": 0.02012037663865701,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.881332685550054,
+                  "median": 0.8648125231266022,
+                  "min": 0.8237001299858093,
+                  "max": 0.9664409756660461,
+                  "std": 0.045009084671500416
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.7148916472991308,
+                  "median": 0.7206976413726807,
+                  "min": 0.6392030119895935,
+                  "max": 0.8195236325263977,
+                  "std": 0.0542041621783048
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.7192025283972422,
+                  "median": 0.7278108596801758,
+                  "min": 0.6392030119895935,
+                  "max": 0.8195236325263977,
+                  "std": 0.05248648661063731
+                },
+                "actual_minus_shuffled_mean": 0.16644103825092316,
+                "actual_minus_same_row_other_mean": 0.16213015715281176
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.5259938836097717,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.736318323147025,
+              "aux_over_mlm_l2_aux_spans_lambda1": 5.495398969743773,
+              "grad_cosine_all_hidden": 0.0015640668746568797,
+              "grad_cosine_aux_spans": 0.004950228950009017,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.47400615954150754,
+                  "median": 0.4677020013332367,
+                  "min": -0.023843560367822647,
+                  "max": 0.851403534412384,
+                  "std": 0.25702013914750793
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.16677340391712883,
+                  "median": -0.17009705305099487,
+                  "min": -0.5503372550010681,
+                  "max": 0.2836208641529083,
+                  "std": 0.2511392415896259
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.2747402306025227,
+                  "median": -0.29206083714962006,
+                  "min": -0.6937564611434937,
+                  "max": 0.07303491234779358,
+                  "std": 0.2407246071125682
+                },
+                "actual_minus_shuffled_mean": 0.6407795634586364,
+                "actual_minus_same_row_other_mean": 0.7487463901440302
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.5542245507240295,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.2555509240266731,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.973783587016133,
+              "grad_cosine_all_hidden": 0.0029613668616656004,
+              "grad_cosine_aux_spans": 0.009372641751045392,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.4457753946383794,
+                  "median": 0.4885714650154114,
+                  "min": -0.014992877840995789,
+                  "max": 0.8591199517250061,
+                  "std": 0.26254106211063444
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.17267399157087007,
+                  "median": -0.11275468580424786,
+                  "min": -0.5952833294868469,
+                  "max": 0.11599255353212357,
+                  "std": 0.211104750568252
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.26484225131571293,
+                  "median": -0.27813737094402313,
+                  "min": -0.5952833294868469,
+                  "max": 0.11599255353212357,
+                  "std": 0.2171475895933563
+                },
+                "actual_minus_shuffled_mean": 0.6184493862092495,
+                "actual_minus_same_row_other_mean": 0.7106176459540923
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.5318875908851624,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.8668328151275754,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.74350163543647,
+              "grad_cosine_all_hidden": 0.003946029494825931,
+              "grad_cosine_aux_spans": 0.012489072198951671,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.4681123932823539,
+                  "median": 0.5161305665969849,
+                  "min": 0.02307795360684395,
+                  "max": 0.8440099358558655,
+                  "std": 0.2444511170612414
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.24815084288517633,
+                  "median": -0.23822717368602753,
+                  "min": -0.6550282835960388,
+                  "max": 0.11975742876529694,
+                  "std": 0.2172416079737843
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.32009326790769893,
+                  "median": -0.3626450002193451,
+                  "min": -0.6550282835960388,
+                  "max": 0.11975742876529694,
+                  "std": 0.21498642241369492
+                },
+                "actual_minus_shuffled_mean": 0.7162632361675302,
+                "actual_minus_same_row_other_mean": 0.7882056611900528
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.5531098246574402,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.4614432919391967,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.4604551235292778,
+              "grad_cosine_all_hidden": 0.008391978256093892,
+              "grad_cosine_aux_spans": 0.026560380251321885,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.44689020079871017,
+                  "median": 0.47227348387241364,
+                  "min": 0.1066705659031868,
+                  "max": 0.8368790149688721,
+                  "std": 0.23378134415241275
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.2197654169673721,
+                  "median": -0.21131928265094757,
+                  "min": -0.6229589581489563,
+                  "max": 0.09159045666456223,
+                  "std": 0.20086331930088425
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.30098652963836986,
+                  "median": -0.2890951931476593,
+                  "min": -0.6229589581489563,
+                  "max": 0.09159045666456223,
+                  "std": 0.20295867149396585
+                },
+                "actual_minus_shuffled_mean": 0.6666556177660823,
+                "actual_minus_same_row_other_mean": 0.74787673043708
+              }
+            }
+          ]
+        },
+        {
+          "batch_index": 3,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 2,
+          "aux_records": 7,
+          "selected_mlm_tokens": 1120,
+          "aux_span_tokens": 411,
+          "mlm_loss": 3.9344635009765625,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.1459684669971466,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.75890981756386,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.8110420756877454,
+              "grad_cosine_all_hidden": 0.0015232133710701313,
+              "grad_cosine_aux_spans": 0.005642061980199045,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8489904659135001,
+                  "median": 0.8737846612930298,
+                  "min": 0.7109421491622925,
+                  "max": 0.9438142776489258,
+                  "std": 0.0731890189597675
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.6034606610025678,
+                  "median": 0.6061883568763733,
+                  "min": 0.4833851456642151,
+                  "max": 0.7350710034370422,
+                  "std": 0.09469944917678723
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.6523729903357369,
+                  "median": 0.6676836013793945,
+                  "min": 0.4837955832481384,
+                  "max": 0.8046295046806335,
+                  "std": 0.10463306385098209
+                },
+                "actual_minus_shuffled_mean": 0.24552980491093235,
+                "actual_minus_same_row_other_mean": 0.1966174755777632
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.09685128927230835,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.35276944776060987,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.306676679787134,
+              "grad_cosine_all_hidden": 0.0016712346662315373,
+              "grad_cosine_aux_spans": 0.006190341965612816,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.9000672783170428,
+                  "median": 0.9086062908172607,
+                  "min": 0.8238581418991089,
+                  "max": 0.9551767706871033,
+                  "std": 0.0370072898527282
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.7148965512003217,
+                  "median": 0.7529146671295166,
+                  "min": 0.6125255227088928,
+                  "max": 0.7796803712844849,
+                  "std": 0.06493472277310904
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.7492831945419312,
+                  "median": 0.7529146671295166,
+                  "min": 0.6125255227088928,
+                  "max": 0.8974871635437012,
+                  "std": 0.08020893258722274
+                },
+                "actual_minus_shuffled_mean": 0.1851707271167211,
+                "actual_minus_same_row_other_mean": 0.15078408377511165
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.12204691767692566,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.2790732356412869,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.0337020149564293,
+              "grad_cosine_all_hidden": 0.0022107387608565512,
+              "grad_cosine_aux_spans": 0.008188693900197906,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8735852922712054,
+                  "median": 0.8901418447494507,
+                  "min": 0.7771123051643372,
+                  "max": 0.9478741884231567,
+                  "std": 0.05565367856747447
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.6930769511631557,
+                  "median": 0.6848961710929871,
+                  "min": 0.624110996723175,
+                  "max": 0.7819775938987732,
+                  "std": 0.04947963120605017
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.7175921286855426,
+                  "median": 0.6916031837463379,
+                  "min": 0.624110996723175,
+                  "max": 0.8304201364517212,
+                  "std": 0.0657723685197234
+                },
+                "actual_minus_shuffled_mean": 0.1805083411080497,
+                "actual_minus_same_row_other_mean": 0.15599316358566284
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.12776395678520203,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.1507969810709508,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.5585599881127661,
+              "grad_cosine_all_hidden": 0.0045536271262648755,
+              "grad_cosine_aux_spans": 0.01686687619834164,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8673084633690971,
+                  "median": 0.8838456869125366,
+                  "min": 0.7494174838066101,
+                  "max": 0.9484350085258484,
+                  "std": 0.061650673769869165
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.6751871875354222,
+                  "median": 0.666631281375885,
+                  "min": 0.6103076934814453,
+                  "max": 0.7518873810768127,
+                  "std": 0.03963057841059665
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.7007504020418439,
+                  "median": 0.6818329691886902,
+                  "min": 0.6103076934814453,
+                  "max": 0.833408772945404,
+                  "std": 0.06662695054381189
+                },
+                "actual_minus_shuffled_mean": 0.1921212758336749,
+                "actual_minus_same_row_other_mean": 0.16655806132725315
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.5844775438308716,
+              "aux_over_mlm_l2_all_hidden_lambda1": 2.581700527694044,
+              "aux_over_mlm_l2_aux_spans_lambda1": 9.562755207818267,
+              "grad_cosine_all_hidden": 0.0019473075547391475,
+              "grad_cosine_aux_spans": 0.00721293040055108,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.40667338243552614,
+                  "median": 0.4497474730014801,
+                  "min": -0.13394713401794434,
+                  "max": 0.7778401374816895,
+                  "std": 0.29382281120388065
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.21960872943912232,
+                  "median": -0.16207553446292877,
+                  "min": -0.6186079978942871,
+                  "max": 0.0765979140996933,
+                  "std": 0.22034857927906554
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.2701748412634645,
+                  "median": -0.21663185954093933,
+                  "min": -0.6186079978942871,
+                  "max": 0.03678617253899574,
+                  "std": 0.20099922928047972
+                },
+                "actual_minus_shuffled_mean": 0.6262821118746484,
+                "actual_minus_same_row_other_mean": 0.6768482236989907
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.5688138008117676,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.7144898858189828,
+              "aux_over_mlm_l2_aux_spans_lambda1": 6.350561154748393,
+              "grad_cosine_all_hidden": 0.0017536137023878952,
+              "grad_cosine_aux_spans": 0.006495477414300353,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.4297392224626882,
+                  "median": 0.4925042986869812,
+                  "min": -0.007622700184583664,
+                  "max": 0.6388540863990784,
+                  "std": 0.21633230600201436
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.30261915922164917,
+                  "median": -0.42960986495018005,
+                  "min": -0.5307035446166992,
+                  "max": 0.09964893758296967,
+                  "std": 0.2086017419984813
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3890422965799059,
+                  "median": -0.4309717118740082,
+                  "min": -0.5332602262496948,
+                  "max": -0.13127101957798004,
+                  "std": 0.14759603792889686
+                },
+                "actual_minus_shuffled_mean": 0.7323583816843373,
+                "actual_minus_same_row_other_mean": 0.8187815190425941
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.6193869113922119,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.195071154832573,
+              "aux_over_mlm_l2_aux_spans_lambda1": 4.426606721809108,
+              "grad_cosine_all_hidden": 0.003026542806189002,
+              "grad_cosine_aux_spans": 0.011210473099329637,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.37024526936667307,
+                  "median": 0.44066521525382996,
+                  "min": -0.3106499910354614,
+                  "max": 0.657130241394043,
+                  "std": 0.3000774565247202
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.2500124052166939,
+                  "median": -0.19396495819091797,
+                  "min": -0.602439284324646,
+                  "max": 0.05185585469007492,
+                  "std": 0.22067991391602387
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3699643058436258,
+                  "median": -0.3163171112537384,
+                  "min": -0.602439284324646,
+                  "max": -0.14002278447151184,
+                  "std": 0.17225089321790354
+                },
+                "actual_minus_shuffled_mean": 0.620257674583367,
+                "actual_minus_same_row_other_mean": 0.7402095752102988
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.6212748885154724,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.6197689621446121,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.2956569930619315,
+              "grad_cosine_all_hidden": 0.006363501185372328,
+              "grad_cosine_aux_spans": 0.0235707434581409,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.3698174549000604,
+                  "median": 0.4095654785633087,
+                  "min": -0.22837914526462555,
+                  "max": 0.6386547088623047,
+                  "std": 0.27668064361585265
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.2875738569668361,
+                  "median": -0.304829478263855,
+                  "min": -0.5350176095962524,
+                  "max": -0.04909341037273407,
+                  "std": 0.1978419787804014
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3728905756558691,
+                  "median": -0.4576472043991089,
+                  "min": -0.5350176095962524,
+                  "max": -0.12196045368909836,
+                  "std": 0.14189771098223403
+                },
+                "actual_minus_shuffled_mean": 0.6573913118668966,
+                "actual_minus_same_row_other_mean": 0.7427080305559295
+              }
+            }
+          ]
+        }
+      ],
+      "summary_by_mode": {
+        "raw|d128": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.13113813350598016,
+            "median": 0.12204691767692566,
+            "min": 0.1160387322306633,
+            "max": 0.15532875061035156,
+            "std": 0.017280317126852716
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.2668324433387308,
+            "median": 0.2790732356412869,
+            "min": 0.22463101898645774,
+            "max": 0.29679307538844774,
+            "std": 0.030705247577428128
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.9647062594081898,
+            "median": 1.0337020149564293,
+            "min": 0.7109508975711858,
+            "max": 1.1494658656969543,
+            "std": 0.18555170893013492
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.002747984349494025,
+            "median": 0.0029000244513244233,
+            "min": 0.0022107387608565512,
+            "max": 0.003133189836301101,
+            "std": 0.0003916343031201855
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.009778938582736714,
+            "median": 0.009916458175954455,
+            "min": 0.008188693900197906,
+            "max": 0.011231663672057782,
+            "std": 0.001246087205884167
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.18205581836047627,
+            "median": 0.1805083411080497,
+            "min": 0.17931560799479485,
+            "max": 0.1863435059785843,
+            "std": 0.003070705880056595
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.16605144780543116,
+            "median": 0.16497845575213432,
+            "min": 0.15599316358566284,
+            "max": 0.17718272407849633,
+            "std": 0.008683810700750031
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8674059381324147,
+            "median": 0.8735852922712054,
+            "min": 0.844671256840229,
+            "max": 0.8839612652858099,
+            "std": 0.016624570251947267
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.6853501197719385,
+            "median": 0.6930769511631557,
+            "min": 0.6653556488454342,
+            "max": 0.6976177593072256,
+            "std": 0.014259239937047422
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.7013544903269836,
+            "median": 0.7067785412073135,
+            "min": 0.6796928010880947,
+            "max": 0.7175921286855426,
+            "std": 0.015940619060521122
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.18738351069449016,
+          "lambda_for_10pct_all_hidden_l2": 0.3747670213889803,
+          "lambda_for_5pct_aux_span_l2": 0.051829248035223784
+        },
+        "raw|d32": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.17421350379784903,
+            "median": 0.1459684669971466,
+            "min": 0.14273034036159515,
+            "max": 0.2339417040348053,
+            "std": 0.042254899468869685
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.7284377413300891,
+            "median": 0.75890981756386,
+            "min": 0.5494736737910335,
+            "max": 0.8769297326353738,
+            "std": 0.13540871018504083
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 2.648806409286595,
+            "median": 2.8110420756877454,
+            "min": 1.7390688220001493,
+            "max": 3.3963083301718897,
+            "std": 0.6862220269712503
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0015067959522100138,
+            "median": 0.0015232133710701313,
+            "min": 0.0011615536482640154,
+            "max": 0.0018356208372958948,
+            "std": 0.00027543153119405947
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.005475874107529439,
+            "median": 0.005642061980199045,
+            "min": 0.0036762861257687257,
+            "max": 0.007109274216620545,
+            "std": 0.0014064294305674546
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.21311571094251816,
+            "median": 0.2070637345314026,
+            "min": 0.18675359338521957,
+            "max": 0.24552980491093235,
+            "std": 0.02437390098977945
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.18532032980805355,
+            "median": 0.17983144521713257,
+            "min": 0.17951206862926483,
+            "max": 0.1966174755777632,
+            "std": 0.007989352383340025
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8241061396778576,
+            "median": 0.8489904659135001,
+            "min": 0.7660582885146141,
+            "max": 0.8572696646054586,
+            "std": 0.041184957215369994
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.6109904287353395,
+            "median": 0.6034606610025678,
+            "min": 0.5589945539832115,
+            "max": 0.670516071220239,
+            "std": 0.04583874091707635
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.638785809869804,
+            "median": 0.6523729903357369,
+            "min": 0.5865462198853493,
+            "max": 0.677438219388326,
+            "std": 0.03833012303808979
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.06864004589973967,
+          "lambda_for_10pct_all_hidden_l2": 0.13728009179947934,
+          "lambda_for_5pct_aux_span_l2": 0.018876426689660022
+        },
+        "raw|d480": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.13265553365151087,
+            "median": 0.12776395678520203,
+            "min": 0.11866731196641922,
+            "max": 0.15153533220291138,
+            "std": 0.013856943668449412
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.1406782924115075,
+            "median": 0.1507969810709508,
+            "min": 0.1174727130848512,
+            "max": 0.15376518307872053,
+            "std": 0.01645350499040728
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.5086277634906602,
+            "median": 0.5585599881127661,
+            "min": 0.3717978540302679,
+            "max": 0.5955254483289466,
+            "std": 0.09792319917313728
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.005280648604690571,
+            "median": 0.004931113560650992,
+            "min": 0.0045536271262648755,
+            "max": 0.006357205127155844,
+            "std": 0.0007766828874915333
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.01869507592460607,
+            "median": 0.019097974936819563,
+            "min": 0.01686687619834164,
+            "max": 0.02012037663865701,
+            "std": 0.0013584456778036268
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.1835416794887611,
+            "median": 0.19206272438168526,
+            "min": 0.16644103825092316,
+            "max": 0.1921212758336749,
+            "std": 0.012092003008243788
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.16988389791240774,
+            "median": 0.16655806132725315,
+            "min": 0.16213015715281176,
+            "max": 0.18096347525715828,
+            "std": 0.008040288529161173
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8657019413889401,
+            "median": 0.8673084633690971,
+            "min": 0.8484646752476692,
+            "max": 0.881332685550054,
+            "std": 0.013466308822736413
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.682160261900179,
+            "median": 0.6751871875354222,
+            "min": 0.656401950865984,
+            "max": 0.7148916472991308,
+            "std": 0.024382083200343904
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.6958180434765323,
+            "median": 0.7007504020418439,
+            "min": 0.6675011999905109,
+            "max": 0.7192025283972422,
+            "std": 0.021393191448336558
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.3554208623299297,
+          "lambda_for_10pct_all_hidden_l2": 0.7108417246598594,
+          "lambda_for_5pct_aux_span_l2": 0.09830371754946118
+        },
+        "raw|d64": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.10772401839494705,
+            "median": 0.10075458139181137,
+            "min": 0.09685128927230835,
+            "max": 0.12556618452072144,
+            "std": 0.012716553290556414
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.33236649754057634,
+            "median": 0.35276944776060987,
+            "min": 0.27691302611998986,
+            "max": 0.36741701874112925,
+            "std": 0.03966487491767906
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 1.2020292678412037,
+            "median": 1.306676679787134,
+            "min": 0.8764219890799175,
+            "max": 1.4229891346565595,
+            "std": 0.23508469647651883
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0018226017153174824,
+            "median": 0.0016712346662315373,
+            "min": 0.001654879969125505,
+            "max": 0.002141690510595405,
+            "std": 0.000225728618010351
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.006459335469590555,
+            "median": 0.00640927463671498,
+            "min": 0.006190341965612816,
+            "max": 0.006778389806443868,
+            "std": 0.00024266524406771147
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.1673835109150599,
+            "median": 0.1746644824743271,
+            "min": 0.14231532315413153,
+            "max": 0.1851707271167211,
+            "std": 0.01823743078276703
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.14799432905893475,
+            "median": 0.15078408377511165,
+            "min": 0.1363810499509175,
+            "max": 0.15681785345077515,
+            "std": 0.008573322298668584
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8912488358124854,
+            "median": 0.8992454210917155,
+            "min": 0.874433808028698,
+            "max": 0.9000672783170428,
+            "std": 0.01189475323694901
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.7238653248974255,
+            "median": 0.7148965512003217,
+            "min": 0.6997693255543709,
+            "max": 0.7569300979375839,
+            "std": 0.02418219249894115
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.7432545067535506,
+            "median": 0.7492831945419312,
+            "min": 0.7176159545779228,
+            "max": 0.762864371140798,
+            "std": 0.018958087240000324
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.1504363417191164,
+          "lambda_for_10pct_all_hidden_l2": 0.3008726834382328,
+          "lambda_for_5pct_aux_span_l2": 0.0415963249295901
+        },
+        "row_centered|d128": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.5948994755744934,
+            "median": 0.6193869113922119,
+            "min": 0.5318875908851624,
+            "max": 0.633423924446106,
+            "std": 0.0449231391226167
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 1.0377252469740834,
+            "median": 1.0512717709621022,
+            "min": 0.8668328151275754,
+            "max": 1.195071154832573,
+            "std": 0.1343446640726551
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 3.747211781744191,
+            "median": 4.071526987986994,
+            "min": 2.74350163543647,
+            "max": 4.426606721809108,
+            "std": 0.72438293173965
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.003495897854162672,
+            "median": 0.0035151212614730827,
+            "min": 0.003026542806189002,
+            "max": 0.003946029494825931,
+            "std": 0.0003756248990563084
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.012437815684817308,
+            "median": 0.012489072198951671,
+            "min": 0.011210473099329637,
+            "max": 0.013613901756170619,
+            "std": 0.0009818648073307635
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.6130811946230039,
+            "median": 0.620257674583367,
+            "min": 0.5027226731181145,
+            "max": 0.7162632361675302,
+            "std": 0.08732513733296383
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.7287037831302436,
+            "median": 0.7402095752102988,
+            "min": 0.6576961129903793,
+            "max": 0.7882056611900528,
+            "std": 0.05389788481541006
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.40164457940097364,
+            "median": 0.37024526936667307,
+            "min": 0.36657607555389404,
+            "max": 0.4681123932823539,
+            "std": 0.04702370648539085
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.21143661522203022,
+            "median": -0.24815084288517633,
+            "min": -0.2500124052166939,
+            "max": -0.13614659756422043,
+            "std": 0.05324350616280833
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.32705920372927,
+            "median": -0.32009326790769893,
+            "min": -0.3699643058436258,
+            "max": -0.2911200374364853,
+            "std": 0.03256273802540759
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.04818231043891016,
+          "lambda_for_10pct_all_hidden_l2": 0.09636462087782031,
+          "lambda_for_5pct_aux_span_l2": 0.013343254374783915
+        },
+        "row_centered|d32": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.608882486820221,
+            "median": 0.5844775438308716,
+            "min": 0.5259938836097717,
+            "max": 0.7161760330200195,
+            "std": 0.07953621154463963
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 2.218271828729245,
+            "median": 2.336796635346665,
+            "min": 1.736318323147025,
+            "max": 2.581700527694044,
+            "std": 0.35515617717558867
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 8.036153186383755,
+            "median": 9.050305381589224,
+            "min": 5.495398969743773,
+            "max": 9.562755207818267,
+            "std": 1.8087242646187447
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0019210866290098457,
+            "median": 0.0019473075547391475,
+            "min": 0.0015640668746568797,
+            "max": 0.00225188545763351,
+            "std": 0.000281412216604718
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.006961535389083138,
+            "median": 0.00721293040055108,
+            "min": 0.004950228950009017,
+            "max": 0.008721446816689316,
+            "std": 0.00154982163238987
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.5599503875377455,
+            "median": 0.6262821118746484,
+            "min": 0.4127894872799516,
+            "max": 0.6407795634586364,
+            "std": 0.10422665029994581
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.6564001949977071,
+            "median": 0.6768482236989907,
+            "min": 0.5436059711501002,
+            "max": 0.7487463901440302,
+            "std": 0.08498721191872605
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.38816784501134877,
+            "median": 0.40667338243552614,
+            "min": 0.28382399305701256,
+            "max": 0.47400615954150754,
+            "std": 0.07873650275317992
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.17178254252639671,
+            "median": -0.16677340391712883,
+            "min": -0.21960872943912232,
+            "max": -0.12896549422293901,
+            "std": 0.03717407362503449
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.2682323499863583,
+            "median": -0.2701748412634645,
+            "min": -0.2747402306025227,
+            "max": -0.2597819780930877,
+            "std": 0.0062592482938038695
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.022540068963794627,
+          "lambda_for_10pct_all_hidden_l2": 0.045080137927589255,
+          "lambda_for_5pct_aux_span_l2": 0.006221882390783525
+        },
+        "row_centered|d480": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.5924351215362549,
+            "median": 0.602920651435852,
+            "min": 0.5531098246574402,
+            "max": 0.6212748885154724,
+            "std": 0.02879905942502188
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.538802716076668,
+            "median": 0.5351958941461951,
+            "min": 0.4614432919391967,
+            "max": 0.6197689621446121,
+            "std": 0.06468648150799926
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 1.9429670274538413,
+            "median": 2.072788965770315,
+            "min": 1.4604551235292778,
+            "max": 2.2956569930619315,
+            "std": 0.35311078759023556
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.006823187250663138,
+            "median": 0.006363501185372328,
+            "min": 0.005714082310523195,
+            "max": 0.008391978256093892,
+            "std": 0.0011405452300816204
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.024087167357545913,
+            "median": 0.0235707434581409,
+            "min": 0.02213037836317495,
+            "max": 0.026560380251321885,
+            "std": 0.0018450382859900873
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.6267037057273445,
+            "median": 0.6573913118668966,
+            "min": 0.5560641875490546,
+            "max": 0.6666556177660823,
+            "std": 0.05009266737620142
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.729210893032215,
+            "median": 0.7427080305559295,
+            "min": 0.6970479181036353,
+            "max": 0.74787673043708,
+            "std": 0.022840338319264346
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.40459565194471486,
+            "median": 0.39707930013537407,
+            "min": 0.3698174549000604,
+            "max": 0.44689020079871017,
+            "std": 0.03191053847326715
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.2221080537826296,
+            "median": -0.2197654169673721,
+            "min": -0.2875738569668361,
+            "max": -0.15898488741368055,
+            "std": 0.052522355450618945
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.32461524108750006,
+            "median": -0.30098652963836986,
+            "min": -0.3728905756558691,
+            "max": -0.29996861796826124,
+            "std": 0.03413834580846988
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.09279834438118412,
+          "lambda_for_10pct_all_hidden_l2": 0.18559668876236823,
+          "lambda_for_5pct_aux_span_l2": 0.02573383865681058
+        },
+        "row_centered|d64": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.5729254484176636,
+            "median": 0.5688138008117676,
+            "min": 0.5542245507240295,
+            "max": 0.5957379937171936,
+            "std": 0.01719536220056585
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 1.5008630502218685,
+            "median": 1.5325483408199498,
+            "min": 1.2555509240266731,
+            "max": 1.7144898858189828,
+            "std": 0.1886958944845107
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 5.419944548083747,
+            "median": 5.935488902486716,
+            "min": 3.973783587016133,
+            "max": 6.350561154748393,
+            "std": 1.0365350573381167
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0025018435900302657,
+            "median": 0.002790550206037301,
+            "min": 0.0017536137023878952,
+            "max": 0.0029613668616656004,
+            "std": 0.0005336544175344157
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.008891931112061862,
+            "median": 0.009372641751045392,
+            "min": 0.006495477414300353,
+            "max": 0.01080767417083984,
+            "std": 0.0017929625866335273
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.6487023314527635,
+            "median": 0.6184493862092495,
+            "min": 0.5952992264647037,
+            "max": 0.7323583816843373,
+            "std": 0.05990399836021075
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.7452684169938226,
+            "median": 0.7106176459540923,
+            "min": 0.7064060859847814,
+            "max": 0.8187815190425941,
+            "std": 0.052010040306134465
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.42659220344845267,
+            "median": 0.4297392224626882,
+            "min": 0.40426199324429035,
+            "max": 0.4457753946383794,
+            "std": 0.01709324272597525
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.22211012800431085,
+            "median": -0.19103723322041333,
+            "min": -0.30261915922164917,
+            "max": -0.17267399157087007,
+            "std": 0.05741997469891261
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.31867621354536996,
+            "median": -0.30214409274049103,
+            "min": -0.3890422965799059,
+            "max": -0.26484225131571293,
+            "std": 0.05203457872503136
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.03331416546806761,
+          "lambda_for_10pct_all_hidden_l2": 0.06662833093613522,
+          "lambda_for_5pct_aux_span_l2": 0.009225186633630374
+        }
+      }
+    },
+    {
+      "label": "tokenmean_80M",
+      "path": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_80M",
+      "status": "ok",
+      "hidden_size": 480,
+      "batches_seen": 4,
+      "usable_batches": 3,
+      "records": [
+        {
+          "batch_index": 0,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 2,
+          "aux_records": 8,
+          "selected_mlm_tokens": 992,
+          "aux_span_tokens": 405,
+          "mlm_loss": 2.093259334564209,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.1386161744594574,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.4818432068864564,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.6795813894516232,
+              "grad_cosine_all_hidden": -0.00014292794318264158,
+              "grad_cosine_aux_spans": -0.0004982094569512202,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.861383818089962,
+                  "median": 0.8666593432426453,
+                  "min": 0.7585945129394531,
+                  "max": 0.9483575224876404,
+                  "std": 0.06010333922719783
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.46081188321113586,
+                  "median": 0.5167155265808105,
+                  "min": -0.055817365646362305,
+                  "max": 0.7379204034805298,
+                  "std": 0.23899834902243908
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.43955420330166817,
+                  "median": 0.4350489377975464,
+                  "min": -0.055817365646362305,
+                  "max": 0.7379204034805298,
+                  "std": 0.22921915083190378
+                },
+                "actual_minus_shuffled_mean": 0.40057193487882614,
+                "actual_minus_same_row_other_mean": 0.42182961478829384
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.09555772691965103,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.24734402836235853,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.8621776148175658,
+              "grad_cosine_all_hidden": 0.0003735023774397277,
+              "grad_cosine_aux_spans": 0.0013019330250655197,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.904442273080349,
+                  "median": 0.9074630439281464,
+                  "min": 0.8578833341598511,
+                  "max": 0.9411942362785339,
+                  "std": 0.028644347782827578
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.5698076821863651,
+                  "median": 0.5807976126670837,
+                  "min": 0.3874594271183014,
+                  "max": 0.7212774753570557,
+                  "std": 0.11751321687941896
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5484525635838509,
+                  "median": 0.5312282890081406,
+                  "min": 0.3874594271183014,
+                  "max": 0.7212774753570557,
+                  "std": 0.1145738277206485
+                },
+                "actual_minus_shuffled_mean": 0.33463459089398384,
+                "actual_minus_same_row_other_mean": 0.3559897094964981
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.1134767159819603,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.1853223653943401,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.6459860625135571,
+              "grad_cosine_all_hidden": -0.00018411181199655207,
+              "grad_cosine_aux_spans": -0.0006417669115170126,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.8865232840180397,
+                  "median": 0.8948434889316559,
+                  "min": 0.8273647427558899,
+                  "max": 0.9449586868286133,
+                  "std": 0.037940129205963916
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.5799818933010101,
+                  "median": 0.6200083792209625,
+                  "min": 0.33588463068008423,
+                  "max": 0.7261286377906799,
+                  "std": 0.11950699183977688
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5788777396082878,
+                  "median": 0.6048790812492371,
+                  "min": 0.33588463068008423,
+                  "max": 0.7261286377906799,
+                  "std": 0.11447263866877101
+                },
+                "actual_minus_shuffled_mean": 0.30654139071702957,
+                "actual_minus_same_row_other_mean": 0.3076455444097519
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.10201279819011688,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.09172067833758119,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.3197146751515407,
+              "grad_cosine_all_hidden": 0.0005640660086508328,
+              "grad_cosine_aux_spans": 0.001966188183118867,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.8979872018098831,
+                  "median": 0.900469958782196,
+                  "min": 0.8567220568656921,
+                  "max": 0.9503070712089539,
+                  "std": 0.02831643268446009
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.587037455290556,
+                  "median": 0.6058102548122406,
+                  "min": 0.35239842534065247,
+                  "max": 0.7247508764266968,
+                  "std": 0.11963723117869124
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5779177658259869,
+                  "median": 0.5763973295688629,
+                  "min": 0.35239842534065247,
+                  "max": 0.7247508764266968,
+                  "std": 0.11958728955991908
+                },
+                "actual_minus_shuffled_mean": 0.31094974651932716,
+                "actual_minus_same_row_other_mean": 0.32006943598389626
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.3363913297653198,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.1319462240624634,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.9456731663405122,
+              "grad_cosine_all_hidden": -5.362638331062998e-06,
+              "grad_cosine_aux_spans": -1.8693361730236522e-05,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.6636086888611317,
+                  "median": 0.6668539941310883,
+                  "min": 0.4214533865451813,
+                  "max": 0.8777719736099243,
+                  "std": 0.13973065989600644
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.20148445013910532,
+                  "median": -0.061997901648283005,
+                  "min": -0.8075823783874512,
+                  "max": 0.1377553790807724,
+                  "std": 0.358761307515456
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.32530946005135775,
+                  "median": -0.45753198862075806,
+                  "min": -0.8075823783874512,
+                  "max": 0.13552214205265045,
+                  "std": 0.35912054620155065
+                },
+                "actual_minus_shuffled_mean": 0.865093139000237,
+                "actual_minus_same_row_other_mean": 0.9889181489124894
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.3064260482788086,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.7301945307321549,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.545270177039329,
+              "grad_cosine_all_hidden": -6.054218453547008e-05,
+              "grad_cosine_aux_spans": -0.00021103324364677757,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.693573959171772,
+                  "median": 0.7249978482723236,
+                  "min": 0.5713256001472473,
+                  "max": 0.8574385643005371,
+                  "std": 0.09111672193427735
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.20330233639106154,
+                  "median": -0.12833727151155472,
+                  "min": -0.7482578158378601,
+                  "max": 0.17861662805080414,
+                  "std": 0.3324976464853855
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.38066128781065345,
+                  "median": -0.35299186408519745,
+                  "min": -0.7482578158378601,
+                  "max": -0.04804887995123863,
+                  "std": 0.26613448173007825
+                },
+                "actual_minus_shuffled_mean": 0.8968762955628335,
+                "actual_minus_same_row_other_mean": 1.0742352469824255
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.37303927540779114,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5669006257073586,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.9760696570968366,
+              "grad_cosine_all_hidden": 3.3843659208163934e-05,
+              "grad_cosine_aux_spans": 0.00011797046130633884,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.6269607320427895,
+                  "median": 0.6477467119693756,
+                  "min": 0.39048928022384644,
+                  "max": 0.8365514278411865,
+                  "std": 0.12545403938293073
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.21696576476097107,
+                  "median": -0.09737326949834824,
+                  "min": -0.7569742798805237,
+                  "max": 0.13742049038410187,
+                  "std": 0.29313709348309
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.3290164303034544,
+                  "median": -0.24189147353172302,
+                  "min": -0.7569742798805237,
+                  "max": -0.07395496964454651,
+                  "std": 0.257318300823404
+                },
+                "actual_minus_shuffled_mean": 0.8439264968037605,
+                "actual_minus_same_row_other_mean": 0.9559771623462439
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.33333820104599,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.28125355659565515,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.9803775016931117,
+              "grad_cosine_all_hidden": 0.00022277022615362757,
+              "grad_cosine_aux_spans": 0.0007765203052058557,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.66666179895401,
+                  "median": 0.6625836789608002,
+                  "min": 0.5577849745750427,
+                  "max": 0.836592435836792,
+                  "std": 0.08899398447221431
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.2113025754224509,
+                  "median": -0.1255820393562317,
+                  "min": -0.7561768889427185,
+                  "max": 0.14481481909751892,
+                  "std": 0.30607544836023687
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.3406551673542708,
+                  "median": -0.2918395772576332,
+                  "min": -0.7561768889427185,
+                  "max": -0.01361062191426754,
+                  "std": 0.2585180882464985
+                },
+                "actual_minus_shuffled_mean": 0.8779643743764609,
+                "actual_minus_same_row_other_mean": 1.0073169663082808
+              }
+            }
+          ]
+        },
+        {
+          "batch_index": 1,
+          "aux_records": 0,
+          "skipped": "no_aux"
+        },
+        {
+          "batch_index": 2,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 3,
+          "aux_records": 12,
+          "selected_mlm_tokens": 1115,
+          "aux_span_tokens": 584,
+          "mlm_loss": 2.4947662353515625,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.14631377160549164,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.41651870504421074,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.2260048795533232,
+              "grad_cosine_all_hidden": 0.0024452861095273087,
+              "grad_cosine_aux_spans": 0.007197593240366417,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8536862383286158,
+                  "median": 0.8355579972267151,
+                  "min": 0.7447047829627991,
+                  "max": 0.9701992273330688,
+                  "std": 0.06670231323779803
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.5237487306197485,
+                  "median": 0.5228930115699768,
+                  "min": 0.2905176281929016,
+                  "max": 0.7528000473976135,
+                  "std": 0.15283897419466333
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.5255970607201258,
+                  "median": 0.5207757353782654,
+                  "min": 0.3036572337150574,
+                  "max": 0.7255547642707825,
+                  "std": 0.12582102420225222
+                },
+                "actual_minus_shuffled_mean": 0.3299375077088673,
+                "actual_minus_same_row_other_mean": 0.32808917760849
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.09534291177988052,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.2097684627814483,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.6174444408664855,
+              "grad_cosine_all_hidden": 0.001082874799277536,
+              "grad_cosine_aux_spans": 0.0031873949845461643,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.9046570807695389,
+                  "median": 0.890200287103653,
+                  "min": 0.8419561982154846,
+                  "max": 0.9736363291740417,
+                  "std": 0.04003031925174425
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6467993060747782,
+                  "median": 0.6663801372051239,
+                  "min": 0.47592926025390625,
+                  "max": 0.8188408613204956,
+                  "std": 0.09700609310691188
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.650213415424029,
+                  "median": 0.6663801372051239,
+                  "min": 0.47592926025390625,
+                  "max": 0.8188408613204956,
+                  "std": 0.08180915820875426
+                },
+                "actual_minus_shuffled_mean": 0.2578577746947607,
+                "actual_minus_same_row_other_mean": 0.2544436653455099
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.11039640754461288,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.16318697240862604,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.48033382902041133,
+              "grad_cosine_all_hidden": 0.005006914189580306,
+              "grad_cosine_aux_spans": 0.014737633612492168,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8896035949389139,
+                  "median": 0.893584281206131,
+                  "min": 0.7884731888771057,
+                  "max": 0.9797561764717102,
+                  "std": 0.051074631789736896
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6203027367591858,
+                  "median": 0.6056016683578491,
+                  "min": 0.49678897857666016,
+                  "max": 0.7313872575759888,
+                  "std": 0.06569938965174882
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.6178631633520126,
+                  "median": 0.603480190038681,
+                  "min": 0.5550071597099304,
+                  "max": 0.7153385877609253,
+                  "std": 0.04609087342828195
+                },
+                "actual_minus_shuffled_mean": 0.26930085817972815,
+                "actual_minus_same_row_other_mean": 0.2717404315869013
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.10587134212255478,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.08189954112381546,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.24106777399184998,
+              "grad_cosine_all_hidden": 0.006577312138762112,
+              "grad_cosine_aux_spans": 0.019360034423432794,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8941286553939184,
+                  "median": 0.8974711894989014,
+                  "min": 0.8073310852050781,
+                  "max": 0.9726513028144836,
+                  "std": 0.04439109809080256
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6087233896056811,
+                  "median": 0.5912927687168121,
+                  "min": 0.4641651213169098,
+                  "max": 0.721559464931488,
+                  "std": 0.07865188146839618
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.6066108345985413,
+                  "median": 0.5912927687168121,
+                  "min": 0.5225625038146973,
+                  "max": 0.7178085446357727,
+                  "std": 0.06108803887610714
+                },
+                "actual_minus_shuffled_mean": 0.28540526578823733,
+                "actual_minus_same_row_other_mean": 0.28751782079537713
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.39359012246131897,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.0379050412021908,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.055028812912049,
+              "grad_cosine_all_hidden": 0.0021310762346241356,
+              "grad_cosine_aux_spans": 0.006272730977491119,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6064098663628101,
+                  "median": 0.6559246480464935,
+                  "min": 0.10751937329769135,
+                  "max": 0.8842447996139526,
+                  "std": 0.19949411906934547
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.26563812668124837,
+                  "median": -0.3344420939683914,
+                  "min": -0.4640636444091797,
+                  "max": 0.022330347448587418,
+                  "std": 0.16566216525876812
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.3244576615591844,
+                  "median": -0.36054860055446625,
+                  "min": -0.4793090522289276,
+                  "max": -0.11943481862545013,
+                  "std": 0.12394483777520526
+                },
+                "actual_minus_shuffled_mean": 0.8720479930440586,
+                "actual_minus_same_row_other_mean": 0.9308675279219945
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.357214093208313,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.7311620937451336,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.1521441505989753,
+              "grad_cosine_all_hidden": 0.0012014749960410178,
+              "grad_cosine_aux_spans": 0.0035364901456269786,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6427859043081602,
+                  "median": 0.6395439207553864,
+                  "min": 0.42201533913612366,
+                  "max": 0.8964142799377441,
+                  "std": 0.1461067259629439
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.26131973353525,
+                  "median": -0.27153855562210083,
+                  "min": -0.5556774735450745,
+                  "max": 0.140275776386261,
+                  "std": 0.1883459952017892
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.33477198394636315,
+                  "median": -0.3284902125597,
+                  "min": -0.5654972195625305,
+                  "max": -0.11349151283502579,
+                  "std": 0.13470816615488404
+                },
+                "actual_minus_shuffled_mean": 0.9041056378434102,
+                "actual_minus_same_row_other_mean": 0.9775578882545233
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.3620728552341461,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.49587508010611187,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.4595869537106594,
+              "grad_cosine_all_hidden": 0.004055793026135879,
+              "grad_cosine_aux_spans": 0.011938056312193386,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6379271124800047,
+                  "median": 0.5996160805225372,
+                  "min": 0.4868715703487396,
+                  "max": 0.9113917350769043,
+                  "std": 0.12199517311553408
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.260303342094024,
+                  "median": -0.3033321797847748,
+                  "min": -0.5858309268951416,
+                  "max": 0.14609241485595703,
+                  "std": 0.1975039341113961
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.33851563433806103,
+                  "median": -0.324070543050766,
+                  "min": -0.5858309268951416,
+                  "max": 0.059398263692855835,
+                  "std": 0.15716607745378666
+                },
+                "actual_minus_shuffled_mean": 0.8982304545740287,
+                "actual_minus_same_row_other_mean": 0.9764427468180656
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.35570576786994934,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.25483749890812957,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.7501032087415351,
+              "grad_cosine_all_hidden": 0.005078097642718125,
+              "grad_cosine_aux_spans": 0.014947160736370988,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6442942246794701,
+                  "median": 0.6089489459991455,
+                  "min": 0.3814511299133301,
+                  "max": 0.8899314403533936,
+                  "std": 0.135230813931084
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.27197915874421597,
+                  "median": -0.32550737261772156,
+                  "min": -0.5330092906951904,
+                  "max": 0.1819629967212677,
+                  "std": 0.1962884458218995
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.3560715379814307,
+                  "median": -0.3385661095380783,
+                  "min": -0.5330092906951904,
+                  "max": -0.08133397996425629,
+                  "std": 0.13297004962437034
+                },
+                "actual_minus_shuffled_mean": 0.916273383423686,
+                "actual_minus_same_row_other_mean": 1.0003657626609008
+              }
+            }
+          ]
+        },
+        {
+          "batch_index": 3,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 2,
+          "aux_records": 7,
+          "selected_mlm_tokens": 1120,
+          "aux_span_tokens": 411,
+          "mlm_loss": 2.6835787296295166,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.13020014762878418,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.4839949115130081,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.4774984509934213,
+              "grad_cosine_all_hidden": 0.00027761073857215257,
+              "grad_cosine_aux_spans": 0.000847466059325358,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8716150947979519,
+                  "median": 0.8899310231208801,
+                  "min": 0.7768815159797668,
+                  "max": 0.9112697839736938,
+                  "std": 0.04534139927462964
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.45940030898366657,
+                  "median": 0.4754399359226227,
+                  "min": 0.35699236392974854,
+                  "max": 0.5472457408905029,
+                  "std": 0.059125031006048545
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.4615365947995867,
+                  "median": 0.4754399359226227,
+                  "min": 0.35699236392974854,
+                  "max": 0.5727053880691528,
+                  "std": 0.06397177041192638
+                },
+                "actual_minus_shuffled_mean": 0.4122147858142853,
+                "actual_minus_same_row_other_mean": 0.41007849999836515
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.08692213892936707,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.23716608846044682,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.724000438833252,
+              "grad_cosine_all_hidden": 0.0009904824165128993,
+              "grad_cosine_aux_spans": 0.00302366027550217,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.9129996810640607,
+                  "median": 0.9140704870223999,
+                  "min": 0.9006994366645813,
+                  "max": 0.9243568181991577,
+                  "std": 0.008787352888220735
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.5966425836086273,
+                  "median": 0.6036237478256226,
+                  "min": 0.4393835961818695,
+                  "max": 0.6746715903282166,
+                  "std": 0.0748502882367185
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.6103730499744415,
+                  "median": 0.6005688309669495,
+                  "min": 0.4393835961818695,
+                  "max": 0.7738397717475891,
+                  "std": 0.09500020748600094
+                },
+                "actual_minus_shuffled_mean": 0.3163570974554334,
+                "actual_minus_same_row_other_mean": 0.3026266310896192
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.10030253231525421,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.1787106443715249,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.5455526369265715,
+              "grad_cosine_all_hidden": 0.0014639142256302464,
+              "grad_cosine_aux_spans": 0.004468912542029637,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8995829224586487,
+                  "median": 0.9006074666976929,
+                  "min": 0.8753957152366638,
+                  "max": 0.9175798892974854,
+                  "std": 0.013672945447687495
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.5790623426437378,
+                  "median": 0.6007314920425415,
+                  "min": 0.4307911992073059,
+                  "max": 0.6803722977638245,
+                  "std": 0.07175424951247966
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.5807400345802307,
+                  "median": 0.6007314920425415,
+                  "min": 0.4307911992073059,
+                  "max": 0.7247277498245239,
+                  "std": 0.0991920999272026
+                },
+                "actual_minus_shuffled_mean": 0.3205205798149109,
+                "actual_minus_same_row_other_mean": 0.31884288787841797
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.10029177367687225,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.09452450621052697,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.2885563632691581,
+              "grad_cosine_all_hidden": 0.0016082826219118483,
+              "grad_cosine_aux_spans": 0.004909627642345529,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8997657895088196,
+                  "median": 0.8982018232345581,
+                  "min": 0.8750356435775757,
+                  "max": 0.9181352853775024,
+                  "std": 0.013890732667680582
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.567908797945295,
+                  "median": 0.5941693186759949,
+                  "min": 0.41138648986816406,
+                  "max": 0.6302158832550049,
+                  "std": 0.07117999373906739
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.5748028073992048,
+                  "median": 0.580928385257721,
+                  "min": 0.41138648986816406,
+                  "max": 0.7482227683067322,
+                  "std": 0.09633722107449999
+                },
+                "actual_minus_shuffled_mean": 0.33185699156352455,
+                "actual_minus_same_row_other_mean": 0.32496298210961483
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.3376121520996094,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.2175298785256456,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.7167715336848155,
+              "grad_cosine_all_hidden": 0.0009662648278578899,
+              "grad_cosine_aux_spans": 0.0029497297796237817,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6740566108907972,
+                  "median": 0.723953366279602,
+                  "min": 0.3695662319660187,
+                  "max": 0.8451483249664307,
+                  "std": 0.14734639320503481
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.24344351568392344,
+                  "median": -0.2411961555480957,
+                  "min": -0.6247661709785461,
+                  "max": 0.10397288203239441,
+                  "std": 0.22414910637441174
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.30345690889017923,
+                  "median": -0.27696526050567627,
+                  "min": -0.6247661709785461,
+                  "max": 0.07645558565855026,
+                  "std": 0.2341924053772818
+                },
+                "actual_minus_shuffled_mean": 0.9175001265747206,
+                "actual_minus_same_row_other_mean": 0.9775135197809763
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.3330407738685608,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.8264031217010085,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.52277307708131,
+              "grad_cosine_all_hidden": 0.0011062986643537846,
+              "grad_cosine_aux_spans": 0.0033772144028847146,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6704513430595398,
+                  "median": 0.7201955318450928,
+                  "min": 0.49421873688697815,
+                  "max": 0.8428879380226135,
+                  "std": 0.13415642318148466
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.24715757263558252,
+                  "median": -0.35321730375289917,
+                  "min": -0.5145344734191895,
+                  "max": 0.12397123128175735,
+                  "std": 0.1980675651565281
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.31374213059565853,
+                  "median": -0.3546944260597229,
+                  "min": -0.5145344734191895,
+                  "max": 0.012885126285254955,
+                  "std": 0.17957626460734097
+                },
+                "actual_minus_shuffled_mean": 0.9176089156951224,
+                "actual_minus_same_row_other_mean": 0.9841934736551983
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.3650166392326355,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5933561757120717,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.8113472056170656,
+              "grad_cosine_all_hidden": 0.0022225613658047256,
+              "grad_cosine_aux_spans": 0.006784847557036551,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6363731452396938,
+                  "median": 0.6896533966064453,
+                  "min": 0.38058656454086304,
+                  "max": 0.822574257850647,
+                  "std": 0.1510427236686184
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.2716443900551115,
+                  "median": -0.36743873357772827,
+                  "min": -0.5956042408943176,
+                  "max": 0.1106458380818367,
+                  "std": 0.23037615756379712
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.35145280935934614,
+                  "median": -0.36859700083732605,
+                  "min": -0.5956042408943176,
+                  "max": 0.1106458380818367,
+                  "std": 0.2040957936137401
+                },
+                "actual_minus_shuffled_mean": 0.9080175352948052,
+                "actual_minus_same_row_other_mean": 0.98782595459904
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.3606017529964447,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.3139209324264446,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.9583110903884298,
+              "grad_cosine_all_hidden": 0.0032414040759091013,
+              "grad_cosine_aux_spans": 0.009895083856183106,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6446150413581303,
+                  "median": 0.7305192947387695,
+                  "min": 0.4496149718761444,
+                  "max": 0.8018159866333008,
+                  "std": 0.14039252494885568
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.27001666623566833,
+                  "median": -0.34941789507865906,
+                  "min": -0.554963231086731,
+                  "max": 0.04089078679680824,
+                  "std": 0.23347877234735692
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3422808663121292,
+                  "median": -0.4053282141685486,
+                  "min": -0.554963231086731,
+                  "max": 0.04089078679680824,
+                  "std": 0.19268777405127158
+                },
+                "actual_minus_shuffled_mean": 0.9146317075937986,
+                "actual_minus_same_row_other_mean": 0.9868959076702595
+              }
+            }
+          ]
+        }
+      ],
+      "summary_by_mode": {
+        "raw|d128": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.1080585519472758,
+            "median": 0.11039640754461288,
+            "min": 0.10030253231525421,
+            "max": 0.1134767159819603,
+            "std": 0.005626660076014699
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.17573999405816368,
+            "median": 0.1787106443715249,
+            "min": 0.16318697240862604,
+            "max": 0.1853223653943401,
+            "std": 0.009277660557173693
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.5572908428201799,
+            "median": 0.5455526369265715,
+            "min": 0.48033382902041133,
+            "max": 0.6459860625135571,
+            "std": 0.06813469367616606
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0020955722010713336,
+            "median": 0.0014639142256302464,
+            "min": -0.00018411181199655207,
+            "max": 0.005006914189580306,
+            "std": 0.0021657841667958675
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.006188259747668264,
+            "median": 0.004468912542029637,
+            "min": -0.0006417669115170126,
+            "max": 0.014737633612492168,
+            "std": 0.006395238136281634
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.2987876095705562,
+            "median": 0.30654139071702957,
+            "min": 0.26930085817972815,
+            "max": 0.3205205798149109,
+            "std": 0.02161721247288768
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.2994096212916904,
+            "median": 0.3076455444097519,
+            "min": 0.2717404315869013,
+            "max": 0.31884288787841797,
+            "std": 0.020092007853514362
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8919032671385341,
+            "median": 0.8896035949389139,
+            "min": 0.8865232840180397,
+            "max": 0.8995829224586487,
+            "std": 0.005574041515162782
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.5931156575679779,
+            "median": 0.5799818933010101,
+            "min": 0.5790623426437378,
+            "max": 0.6203027367591858,
+            "std": 0.01922783311703079
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.5924936458468437,
+            "median": 0.5807400345802307,
+            "min": 0.5788777396082878,
+            "max": 0.6178631633520126,
+            "std": 0.01795506148647107
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.2845112193610965,
+          "lambda_for_10pct_all_hidden_l2": 0.569022438722193,
+          "lambda_for_5pct_aux_span_l2": 0.08971975880130048
+        },
+        "raw|d32": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.13837669789791107,
+            "median": 0.1386161744594574,
+            "min": 0.13020014762878418,
+            "max": 0.14631377160549164,
+            "std": 0.006580538538414006
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.4607856078145584,
+            "median": 0.4818432068864564,
+            "min": 0.41651870504421074,
+            "max": 0.4839949115130081,
+            "std": 0.03131375064152639
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 1.4610282399994559,
+            "median": 1.4774984509934213,
+            "min": 1.2260048795533232,
+            "max": 1.6795813894516232,
+            "std": 0.18553771129794605
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0008599896349722732,
+            "median": 0.00027761073857215257,
+            "min": -0.00014292794318264158,
+            "max": 0.0024452861095273087,
+            "std": 0.0011340449373490403
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0025156166142468518,
+            "median": 0.000847466059325358,
+            "min": -0.0004982094569512202,
+            "max": 0.007197593240366417,
+            "std": 0.0033559290312742533
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.3809080761339929,
+            "median": 0.40057193487882614,
+            "min": 0.3299375077088673,
+            "max": 0.4122147858142853,
+            "std": 0.036353708005847564
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.3866657641317163,
+            "median": 0.41007849999836515,
+            "min": 0.32808917760849,
+            "max": 0.42182961478829384,
+            "std": 0.041696798767901326
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8622283837388433,
+            "median": 0.861383818089962,
+            "min": 0.8536862383286158,
+            "max": 0.8716150947979519,
+            "std": 0.007343747541320031
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.4813203076048503,
+            "median": 0.46081188321113586,
+            "min": 0.45940030898366657,
+            "max": 0.5237487306197485,
+            "std": 0.030006959693802918
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.47556261960712687,
+            "median": 0.4615365947995867,
+            "min": 0.43955420330166817,
+            "max": 0.5255970607201258,
+            "std": 0.03650014024730642
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.10851033355217625,
+          "lambda_for_10pct_all_hidden_l2": 0.2170206671043525,
+          "lambda_for_5pct_aux_span_l2": 0.03422247334522338
+        },
+        "raw|d480": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.1027253046631813,
+            "median": 0.10201279819011688,
+            "min": 0.10029177367687225,
+            "max": 0.10587134212255478,
+            "std": 0.002332901643252176
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.08938157522397454,
+            "median": 0.09172067833758119,
+            "min": 0.08189954112381546,
+            "max": 0.09452450621052697,
+            "std": 0.005413008306677186
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.2831129374708496,
+            "median": 0.2885563632691581,
+            "min": 0.24106777399184998,
+            "max": 0.3197146751515407,
+            "std": 0.03233735640423531
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0029165535897749313,
+            "median": 0.0016082826219118483,
+            "min": 0.0005640660086508328,
+            "max": 0.006577312138762112,
+            "std": 0.002623415324767776
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.008745283416299064,
+            "median": 0.004909627642345529,
+            "min": 0.001966188183118867,
+            "max": 0.019360034423432794,
+            "std": 0.007601344756910584
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.309404001290363,
+            "median": 0.31094974651932716,
+            "min": 0.28540526578823733,
+            "max": 0.33185699156352455,
+            "std": 0.018995310002037694
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.3108500796296294,
+            "median": 0.32006943598389626,
+            "min": 0.28751782079537713,
+            "max": 0.32496298210961483,
+            "std": 0.016618913425222103
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8972938822375404,
+            "median": 0.8979872018098831,
+            "min": 0.8941286553939184,
+            "max": 0.8997657895088196,
+            "std": 0.002352989485653071
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.5878898809471773,
+            "median": 0.587037455290556,
+            "min": 0.567908797945295,
+            "max": 0.6087233896056811,
+            "std": 0.016673385883418382
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.586443802607911,
+            "median": 0.5779177658259869,
+            "min": 0.5748028073992048,
+            "max": 0.6066108345985413,
+            "std": 0.01431683451939184
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.5593994050195331,
+          "lambda_for_10pct_all_hidden_l2": 1.1187988100390662,
+          "lambda_for_5pct_aux_span_l2": 0.1766079658763323
+        },
+        "raw|d64": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.0926075925429662,
+            "median": 0.09534291177988052,
+            "min": 0.08692213892936707,
+            "max": 0.09555772691965103,
+            "std": 0.004021179220109387
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.23142619320141788,
+            "median": 0.23716608846044682,
+            "min": 0.2097684627814483,
+            "max": 0.24734402836235853,
+            "std": 0.015868009334712576
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.7345408315057678,
+            "median": 0.724000438833252,
+            "min": 0.6174444408664855,
+            "max": 0.8621776148175658,
+            "std": 0.10018950881973804
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0008156198644100543,
+            "median": 0.0009904824165128993,
+            "min": 0.0003735023774397277,
+            "max": 0.001082874799277536,
+            "std": 0.0003148915075725283
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0025043294283712846,
+            "median": 0.00302366027550217,
+            "min": 0.0013019330250655197,
+            "max": 0.0031873949845461643,
+            "std": 0.0008528462529469229
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.30294982101472595,
+            "median": 0.3163570974554334,
+            "min": 0.2578577746947607,
+            "max": 0.33463459089398384,
+            "std": 0.03274636033302516
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.30435333531054237,
+            "median": 0.3026266310896192,
+            "min": 0.2544436653455099,
+            "max": 0.3559897094964981,
+            "std": 0.04147397498253998
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.9073663449713162,
+            "median": 0.9046570807695389,
+            "min": 0.904442273080349,
+            "max": 0.9129996810640607,
+            "std": 0.003984335347013968
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.6044165239565902,
+            "median": 0.5966425836086273,
+            "min": 0.5698076821863651,
+            "max": 0.6467993060747782,
+            "std": 0.03190875688212646
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.6030130096607738,
+            "median": 0.6103730499744415,
+            "min": 0.5484525635838509,
+            "max": 0.650213415424029,
+            "std": 0.04186840803337509
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.21605160292501266,
+          "lambda_for_10pct_all_hidden_l2": 0.4321032058500253,
+          "lambda_for_5pct_aux_span_l2": 0.0680697353440554
+        },
+        "row_centered|d128": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.3667095899581909,
+            "median": 0.3650166392326355,
+            "min": 0.3620728552341461,
+            "max": 0.37303927540779114,
+            "std": 0.004634303577712699
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.552043960508514,
+            "median": 0.5669006257073586,
+            "min": 0.49587508010611187,
+            "max": 0.5933561757120717,
+            "std": 0.04115970015891343
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 1.7490012721415205,
+            "median": 1.8113472056170656,
+            "min": 1.4595869537106594,
+            "max": 1.9760696570968366,
+            "std": 0.2154125612090689
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0021040660170495895,
+            "median": 0.0022225613658047256,
+            "min": 3.3843659208163934e-05,
+            "max": 0.004055793026135879,
+            "std": 0.00164409043512211
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.006280291443512092,
+            "median": 0.006784847557036551,
+            "min": 0.00011797046130633884,
+            "max": 0.011938056312193386,
+            "std": 0.004838700929957421
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.8833914955575315,
+            "median": 0.8982304545740287,
+            "min": 0.8439264968037605,
+            "max": 0.9080175352948052,
+            "std": 0.028190557901953704
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.9734152879211165,
+            "median": 0.9764427468180656,
+            "min": 0.9559771623462439,
+            "max": 0.98782595459904,
+            "std": 0.013177266345743064
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6337536632541626,
+            "median": 0.6363731452396938,
+            "min": 0.6269607320427895,
+            "max": 0.6379271124800047,
+            "std": 0.004845041408686189
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.24963783230336886,
+            "median": -0.260303342094024,
+            "min": -0.2716443900551115,
+            "max": -0.21696576476097107,
+            "std": 0.023562015198693196
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.3396616246669539,
+            "median": -0.33851563433806103,
+            "min": -0.35145280935934614,
+            "max": -0.3290164303034544,
+            "std": 0.009195388215852238
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.09057249707784615,
+          "lambda_for_10pct_all_hidden_l2": 0.1811449941556923,
+          "lambda_for_5pct_aux_span_l2": 0.028587743643421575
+        },
+        "row_centered|d32": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.3558645347754161,
+            "median": 0.3376121520996094,
+            "min": 0.3363913297653198,
+            "max": 0.39359012246131897,
+            "std": 0.02668067436026855
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 1.1291270479300999,
+            "median": 1.1319462240624634,
+            "min": 1.0379050412021908,
+            "max": 1.2175298785256456,
+            "std": 0.0733586230396871
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 3.5724911709791254,
+            "median": 3.7167715336848155,
+            "min": 3.055028812912049,
+            "max": 3.9456731663405122,
+            "std": 0.37764574084748215
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0010306594747169875,
+            "median": 0.0009662648278578899,
+            "min": -5.362638331062998e-06,
+            "max": 0.0021310762346241356,
+            "std": 0.0008733852786243502
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0030679224651282214,
+            "median": 0.0029497297796237817,
+            "min": -1.8693361730236522e-05,
+            "max": 0.006272730977491119,
+            "std": 0.0025698225862520524
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.884880419539672,
+            "median": 0.8720479930440586,
+            "min": 0.865093139000237,
+            "max": 0.9175001265747206,
+            "std": 0.023239714054207744
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.96576639887182,
+            "median": 0.9775135197809763,
+            "min": 0.9308675279219945,
+            "max": 0.9889181489124894,
+            "std": 0.02511261020000743
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6480250553715796,
+            "median": 0.6636086888611317,
+            "min": 0.6064098663628101,
+            "max": 0.6740566108907972,
+            "std": 0.029733905852423772
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.23685536416809239,
+            "median": -0.24344351568392344,
+            "min": -0.26563812668124837,
+            "max": -0.20148445013910532,
+            "std": 0.02660170870157453
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.31774134350024047,
+            "median": -0.3244576615591844,
+            "min": -0.32530946005135775,
+            "max": -0.30345690889017923,
+            "std": 0.010106604911794177
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.04428199651373095,
+          "lambda_for_10pct_all_hidden_l2": 0.0885639930274619,
+          "lambda_for_5pct_aux_span_l2": 0.013995835848712909
+        },
+        "row_centered|d480": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.349881907304128,
+            "median": 0.35570576786994934,
+            "min": 0.33333820104599,
+            "max": 0.3606017529964447,
+            "std": 0.011867696495287317
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.28333732931007644,
+            "median": 0.28125355659565515,
+            "min": 0.25483749890812957,
+            "max": 0.3139209324264446,
+            "std": 0.024165672769754936
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.8962639336076922,
+            "median": 0.9583110903884298,
+            "min": 0.7501032087415351,
+            "max": 0.9803775016931117,
+            "std": 0.10374311140831534
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.002847423981593618,
+            "median": 0.0032414040759091013,
+            "min": 0.00022277022615362757,
+            "max": 0.005078097642718125,
+            "std": 0.0020016603635562734
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.008539588299253317,
+            "median": 0.009895083856183106,
+            "min": 0.0007765203052058557,
+            "max": 0.014947160736370988,
+            "std": 0.005864002541551591
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.9029564884646485,
+            "median": 0.9146317075937986,
+            "min": 0.8779643743764609,
+            "max": 0.916273383423686,
+            "std": 0.01768479761132611
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.9981928788798137,
+            "median": 1.0003657626609008,
+            "min": 0.9868959076702595,
+            "max": 1.0073169663082808,
+            "std": 0.008477262801909595
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6518570216638702,
+            "median": 0.6446150413581303,
+            "min": 0.6442942246794701,
+            "max": 0.66666179895401,
+            "std": 0.010469377689029018
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.2510994668007784,
+            "median": -0.27001666623566833,
+            "min": -0.27197915874421597,
+            "max": -0.2113025754224509,
+            "std": 0.028152054593407857
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.34633585721594357,
+            "median": -0.3422808663121292,
+            "min": -0.3560715379814307,
+            "max": -0.3406551673542708,
+            "std": 0.006916084357062295
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.17646809942674868,
+          "lambda_for_10pct_all_hidden_l2": 0.35293619885349736,
+          "lambda_for_5pct_aux_span_l2": 0.055787138280503135
+        },
+        "row_centered|d64": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.3322269717852275,
+            "median": 0.3330407738685608,
+            "min": 0.3064260482788086,
+            "max": 0.357214093208313,
+            "std": 0.020742116290508508
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.7625865820594323,
+            "median": 0.7311620937451336,
+            "min": 0.7301945307321549,
+            "max": 0.8264031217010085,
+            "std": 0.045126836756078724
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 2.4067291349065383,
+            "median": 2.52277307708131,
+            "min": 2.1521441505989753,
+            "max": 2.545270177039329,
+            "std": 0.18025290668537872
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0007490771586197775,
+            "median": 0.0011062986643537846,
+            "min": -6.054218453547008e-05,
+            "max": 0.0012014749960410178,
+            "std": 0.0005738044057787813
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0022342237682883054,
+            "median": 0.0033772144028847146,
+            "min": -0.00021103324364677757,
+            "max": 0.0035364901456269786,
+            "std": 0.001730280050814471
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.9061969497004554,
+            "median": 0.9041056378434102,
+            "min": 0.8968762955628335,
+            "max": 0.9176089156951224,
+            "std": 0.008592266808008628
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 1.0119955362973823,
+            "median": 0.9841934736551983,
+            "min": 0.9775578882545233,
+            "max": 1.0742352469824255,
+            "std": 0.04409341551766972
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6689370688464906,
+            "median": 0.6704513430595398,
+            "min": 0.6427859043081602,
+            "max": 0.693573959171772,
+            "std": 0.02076176612592709
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.23725988085396468,
+            "median": -0.24715757263558252,
+            "min": -0.26131973353525,
+            "max": -0.20330233639106154,
+            "std": 0.024697878718620767
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.3430584674508917,
+            "median": -0.33477198394636315,
+            "min": -0.38066128781065345,
+            "max": -0.31374213059565853,
+            "std": 0.02794092288197152
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.0655663254196928,
+          "lambda_for_10pct_all_hidden_l2": 0.1311326508393856,
+          "lambda_for_5pct_aux_span_l2": 0.020775084023712406
+        }
+      }
+    },
+    {
+      "label": "tokenmean_100M",
+      "path": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_100M",
+      "status": "ok",
+      "hidden_size": 480,
+      "batches_seen": 4,
+      "usable_batches": 3,
+      "records": [
+        {
+          "batch_index": 0,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 2,
+          "aux_records": 8,
+          "selected_mlm_tokens": 992,
+          "aux_span_tokens": 405,
+          "mlm_loss": 2.0474138259887695,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.14680281281471252,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5015692808997372,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.7879002421748318,
+              "grad_cosine_all_hidden": -0.00034018787269437037,
+              "grad_cosine_aux_spans": -0.0012126384537624918,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.8531971871852875,
+                  "median": 0.8559471368789673,
+                  "min": 0.723695695400238,
+                  "max": 0.949190080165863,
+                  "std": 0.07073089662225096
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.43841957673430443,
+                  "median": 0.5019421428442001,
+                  "min": -0.1139860451221466,
+                  "max": 0.7175008654594421,
+                  "std": 0.24706546088668938
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.42033883556723595,
+                  "median": 0.4252765476703644,
+                  "min": -0.1139860451221466,
+                  "max": 0.7175008654594421,
+                  "std": 0.23788750452190152
+                },
+                "actual_minus_shuffled_mean": 0.41477761045098305,
+                "actual_minus_same_row_other_mean": 0.43285835161805153
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.09733571857213974,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.2524622425816438,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.8999301229972088,
+              "grad_cosine_all_hidden": -0.00012511256323481684,
+              "grad_cosine_aux_spans": -0.0004459782493679461,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.9026642814278603,
+                  "median": 0.90836101770401,
+                  "min": 0.8575071692466736,
+                  "max": 0.9359294772148132,
+                  "std": 0.029263940459097595
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.5737582258880138,
+                  "median": 0.5750115811824799,
+                  "min": 0.4017537832260132,
+                  "max": 0.715043306350708,
+                  "std": 0.10700743529792531
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5514017753303051,
+                  "median": 0.5453641712665558,
+                  "min": 0.4017537832260132,
+                  "max": 0.715043306350708,
+                  "std": 0.10653300720828753
+                },
+                "actual_minus_shuffled_mean": 0.3289060555398464,
+                "actual_minus_same_row_other_mean": 0.35126250609755516
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.11402352154254913,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.18647754625203947,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.6647202346724987,
+              "grad_cosine_all_hidden": -0.0003029471885228058,
+              "grad_cosine_aux_spans": -0.0010798883508234588,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.8859764784574509,
+                  "median": 0.8996055126190186,
+                  "min": 0.8188725709915161,
+                  "max": 0.9443395137786865,
+                  "std": 0.0417505473995549
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.5793509520590305,
+                  "median": 0.6267403960227966,
+                  "min": 0.34815388917922974,
+                  "max": 0.7299612760543823,
+                  "std": 0.1181585558034026
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5784007199108601,
+                  "median": 0.6085600256919861,
+                  "min": 0.34815388917922974,
+                  "max": 0.7299612760543823,
+                  "std": 0.11325739196425741
+                },
+                "actual_minus_shuffled_mean": 0.30662552639842033,
+                "actual_minus_same_row_other_mean": 0.3075757585465908
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.10175139456987381,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.0912445003816696,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.3252513073306003,
+              "grad_cosine_all_hidden": -0.00011557802695664338,
+              "grad_cosine_aux_spans": -0.0004119898948105168,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.8982486054301262,
+                  "median": 0.903378039598465,
+                  "min": 0.8508681654930115,
+                  "max": 0.9502164721488953,
+                  "std": 0.029135967735061934
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": 0.5874344557523727,
+                  "median": 0.603127509355545,
+                  "min": 0.3643167018890381,
+                  "max": 0.721171498298645,
+                  "std": 0.11488924342243644
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": 0.5779207423329353,
+                  "median": 0.5852473676204681,
+                  "min": 0.3643167018890381,
+                  "max": 0.721171498298645,
+                  "std": 0.11512156174014002
+                },
+                "actual_minus_shuffled_mean": 0.31081414967775345,
+                "actual_minus_same_row_other_mean": 0.32032786309719086
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.33669960498809814,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.1196612466271665,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.991158729672381,
+              "grad_cosine_all_hidden": -0.00037334904071140585,
+              "grad_cosine_aux_spans": -0.0013308440450757227,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.6633003652095795,
+                  "median": 0.67212975025177,
+                  "min": 0.3986136317253113,
+                  "max": 0.8801835775375366,
+                  "std": 0.14447268014993045
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.2120618773624301,
+                  "median": -0.12578268349170685,
+                  "min": -0.7778974771499634,
+                  "max": 0.15191113948822021,
+                  "std": 0.3388838718659473
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.3244049847126007,
+                  "median": -0.46091459691524506,
+                  "min": -0.7778974771499634,
+                  "max": 0.15191113948822021,
+                  "std": 0.34317057768623327
+                },
+                "actual_minus_shuffled_mean": 0.8753622425720096,
+                "actual_minus_same_row_other_mean": 0.9877053499221802
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.30894818902015686,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.73904964559012,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.6344257725662708,
+              "grad_cosine_all_hidden": -0.0005808195828074627,
+              "grad_cosine_aux_spans": -0.0020703968984423548,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.6910518109798431,
+                  "median": 0.7019117474555969,
+                  "min": 0.5857748985290527,
+                  "max": 0.8510448932647705,
+                  "std": 0.08632715492900572
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.1996721914038062,
+                  "median": -0.14599573612213135,
+                  "min": -0.7252770066261292,
+                  "max": 0.18771791458129883,
+                  "std": 0.32515728792703136
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.3766705496236682,
+                  "median": -0.3659242317080498,
+                  "min": -0.7252770066261292,
+                  "max": 0.006661795079708099,
+                  "std": 0.26505119163912133
+                },
+                "actual_minus_shuffled_mean": 0.8907240023836493,
+                "actual_minus_same_row_other_mean": 1.0677223606035113
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.36796489357948303,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5636516172201383,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.009199728345343,
+              "grad_cosine_all_hidden": 6.223390421728702e-05,
+              "grad_cosine_aux_spans": 0.00022183909403340301,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.632035106420517,
+                  "median": 0.6312213242053986,
+                  "min": 0.4190749526023865,
+                  "max": 0.8444638252258301,
+                  "std": 0.1259707427688593
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.21464702766388655,
+                  "median": -0.09749873727560043,
+                  "min": -0.7171033024787903,
+                  "max": 0.0852886214852333,
+                  "std": 0.2772726774674695
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.3227989487349987,
+                  "median": -0.2661459892988205,
+                  "min": -0.7171033024787903,
+                  "max": -0.05189410597085953,
+                  "std": 0.2536550019114384
+                },
+                "actual_minus_shuffled_mean": 0.8466821340844035,
+                "actual_minus_same_row_other_mean": 0.9548340551555157
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.3297916054725647,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.2786522593864562,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.9932873902203728,
+              "grad_cosine_all_hidden": -0.0002484601259863086,
+              "grad_cosine_aux_spans": -0.0008856645108922748,
+              "geometry": {
+                "n": 8,
+                "actual_cos": {
+                  "n": 8,
+                  "mean": 0.6702083796262741,
+                  "median": 0.6682942807674408,
+                  "min": 0.5607443451881409,
+                  "max": 0.8411763310432434,
+                  "std": 0.08615197133935311
+                },
+                "shuffled_cos": {
+                  "n": 8,
+                  "mean": -0.21506727079395205,
+                  "median": -0.11220753192901611,
+                  "min": -0.7246584892272949,
+                  "max": 0.11802312731742859,
+                  "std": 0.28988799351772776
+                },
+                "same_row_other_cos": {
+                  "n": 8,
+                  "mean": -0.3415502612479031,
+                  "median": -0.30303727090358734,
+                  "min": -0.7246584892272949,
+                  "max": -0.05405646935105324,
+                  "std": 0.24890716065480886
+                },
+                "actual_minus_shuffled_mean": 0.8852756504202262,
+                "actual_minus_same_row_other_mean": 1.0117586408741772
+              }
+            }
+          ]
+        },
+        {
+          "batch_index": 1,
+          "aux_records": 0,
+          "skipped": "no_aux"
+        },
+        {
+          "batch_index": 2,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 3,
+          "aux_records": 12,
+          "selected_mlm_tokens": 1115,
+          "aux_span_tokens": 584,
+          "mlm_loss": 2.4503087997436523,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.143515482544899,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.4101607758489956,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.2435182517950196,
+              "grad_cosine_all_hidden": 0.0021092227731132267,
+              "grad_cosine_aux_spans": 0.006394703004307784,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.856484517455101,
+                  "median": 0.842641144990921,
+                  "min": 0.7565497756004333,
+                  "max": 0.9710987210273743,
+                  "std": 0.06586692702277162
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.5000675991177559,
+                  "median": 0.49306023120880127,
+                  "min": 0.24580055475234985,
+                  "max": 0.7314603924751282,
+                  "std": 0.16543568063689262
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.5019067277510961,
+                  "median": 0.4975259006023407,
+                  "min": 0.2868196964263916,
+                  "max": 0.7131684422492981,
+                  "std": 0.13686274954304847
+                },
+                "actual_minus_shuffled_mean": 0.3564169183373451,
+                "actual_minus_same_row_other_mean": 0.3545777897040049
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.09575166553258896,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.20813214236367375,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.6310113815215554,
+              "grad_cosine_all_hidden": 0.0009847916402557122,
+              "grad_cosine_aux_spans": 0.0029856750184231715,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.9042483369509379,
+                  "median": 0.8969436287879944,
+                  "min": 0.841265082359314,
+                  "max": 0.9739730358123779,
+                  "std": 0.040496418467986434
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6285691658655802,
+                  "median": 0.65826815366745,
+                  "min": 0.45593202114105225,
+                  "max": 0.8119310140609741,
+                  "std": 0.10791872890249711
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.6331265419721603,
+                  "median": 0.65826815366745,
+                  "min": 0.45593202114105225,
+                  "max": 0.8119310140609741,
+                  "std": 0.09011815721267255
+                },
+                "actual_minus_shuffled_mean": 0.27567917108535767,
+                "actual_minus_same_row_other_mean": 0.27112179497877753
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.10704333335161209,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.15849178807210523,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.480512625370717,
+              "grad_cosine_all_hidden": 0.004519444346738542,
+              "grad_cosine_aux_spans": 0.01370197200186827,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8929566641648611,
+                  "median": 0.8919710516929626,
+                  "min": 0.8043221831321716,
+                  "max": 0.9782746434211731,
+                  "std": 0.04887071845660174
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6210514654715856,
+                  "median": 0.6154749393463135,
+                  "min": 0.5149872303009033,
+                  "max": 0.7261239290237427,
+                  "std": 0.06129442789422277
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.6189465522766113,
+                  "median": 0.6139454245567322,
+                  "min": 0.5605701208114624,
+                  "max": 0.7101787328720093,
+                  "std": 0.044914662699683826
+                },
+                "actual_minus_shuffled_mean": 0.27190519869327545,
+                "actual_minus_same_row_other_mean": 0.27401011188824975
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.10290729999542236,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.07982853061506472,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.24202274005439514,
+              "grad_cosine_all_hidden": 0.005651824746620401,
+              "grad_cosine_aux_spans": 0.01713510322813989,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.8970927049716314,
+                  "median": 0.8972309231758118,
+                  "min": 0.815440833568573,
+                  "max": 0.9721581339836121,
+                  "std": 0.0428649517668006
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": 0.6031825741132101,
+                  "median": 0.5815849304199219,
+                  "min": 0.4629579782485962,
+                  "max": 0.7190004587173462,
+                  "std": 0.08116168786545384
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": 0.5998895565668741,
+                  "median": 0.5815849304199219,
+                  "min": 0.517611026763916,
+                  "max": 0.7102752923965454,
+                  "std": 0.06400329029879107
+                },
+                "actual_minus_shuffled_mean": 0.2939101308584213,
+                "actual_minus_same_row_other_mean": 0.29720314840475726
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.3711564838886261,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.9855654746859972,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.9880201332617533,
+              "grad_cosine_all_hidden": 0.002092160992149108,
+              "grad_cosine_aux_spans": 0.006342979192607906,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6288435061772665,
+                  "median": 0.6850074827671051,
+                  "min": 0.14328891038894653,
+                  "max": 0.8870047330856323,
+                  "std": 0.19486126669915335
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.26657237818775076,
+                  "median": -0.33561599254608154,
+                  "min": -0.4340805113315582,
+                  "max": -0.002328387461602688,
+                  "std": 0.15394522342613848
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.32200027133027714,
+                  "median": -0.36425237357616425,
+                  "min": -0.5016653537750244,
+                  "max": -0.10129387676715851,
+                  "std": 0.12548064078788682
+                },
+                "actual_minus_shuffled_mean": 0.8954158843650173,
+                "actual_minus_same_row_other_mean": 0.9508437775075436
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.3502468764781952,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.7101518873869775,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.153026046150996,
+              "grad_cosine_all_hidden": 0.0010872008532731732,
+              "grad_cosine_aux_spans": 0.003296156692583769,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6497531284888586,
+                  "median": 0.6381578147411346,
+                  "min": 0.3933227062225342,
+                  "max": 0.9023457169532776,
+                  "std": 0.15202145024622563
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.26265293918550014,
+                  "median": -0.26550179719924927,
+                  "min": -0.5112552046775818,
+                  "max": 0.1278960257768631,
+                  "std": 0.18009277828105585
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.33336258803804714,
+                  "median": -0.30647699534893036,
+                  "min": -0.5782544612884521,
+                  "max": -0.1101822704076767,
+                  "std": 0.13776967456548983
+                },
+                "actual_minus_shuffled_mean": 0.9124060676743587,
+                "actual_minus_same_row_other_mean": 0.9831157165269058
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.35373803973197937,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.48585951006460354,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.4730203475038117,
+              "grad_cosine_all_hidden": 0.0038995344234593857,
+              "grad_cosine_aux_spans": 0.01182254214873876,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6462619677186012,
+                  "median": 0.6132591664791107,
+                  "min": 0.4544154107570648,
+                  "max": 0.9045373201370239,
+                  "std": 0.12671998808332688
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.25536487996578217,
+                  "median": -0.2992578595876694,
+                  "min": -0.5407283902168274,
+                  "max": 0.1292845904827118,
+                  "std": 0.18442927325344524
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.33398880002399284,
+                  "median": -0.3271922916173935,
+                  "min": -0.5407283902168274,
+                  "max": 0.036259718239307404,
+                  "std": 0.14473603266988433
+                },
+                "actual_minus_shuffled_mean": 0.9016268476843834,
+                "actual_minus_same_row_other_mean": 0.980250767742594
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.3423924148082733,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.24672978317207725,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.7480310324672824,
+              "grad_cosine_all_hidden": 0.0045542283013459564,
+              "grad_cosine_aux_spans": 0.013807426875393557,
+              "geometry": {
+                "n": 12,
+                "actual_cos": {
+                  "n": 12,
+                  "mean": 0.6576075628399849,
+                  "median": 0.6352982521057129,
+                  "min": 0.3654387295246124,
+                  "max": 0.8885072469711304,
+                  "std": 0.13878596404778828
+                },
+                "shuffled_cos": {
+                  "n": 12,
+                  "mean": -0.2645475622266531,
+                  "median": -0.31087861955165863,
+                  "min": -0.5063091516494751,
+                  "max": 0.1637221872806549,
+                  "std": 0.18679426501673654
+                },
+                "same_row_other_cos": {
+                  "n": 12,
+                  "mean": -0.34847857678929967,
+                  "median": -0.32923415303230286,
+                  "min": -0.5135003328323364,
+                  "max": -0.07493633031845093,
+                  "std": 0.13022071250753223
+                },
+                "actual_minus_shuffled_mean": 0.922155125066638,
+                "actual_minus_same_row_other_mean": 1.0060861396292846
+              }
+            }
+          ]
+        },
+        {
+          "batch_index": 3,
+          "rows": 32,
+          "tokens_per_row": 256,
+          "aux_rows": 2,
+          "aux_records": 7,
+          "selected_mlm_tokens": 1120,
+          "aux_span_tokens": 411,
+          "mlm_loss": 2.640244483947754,
+          "mode_records": [
+            {
+              "center_mode": "raw",
+              "proj_dim": 32,
+              "aux_loss": 0.12748515605926514,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.46595667781000033,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.451756599940617,
+              "grad_cosine_all_hidden": 0.00010472389425597296,
+              "grad_cosine_aux_spans": 0.00032628270890536714,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.8739138075283596,
+                  "median": 0.8985047936439514,
+                  "min": 0.787867546081543,
+                  "max": 0.9099334478378296,
+                  "std": 0.041743872268229384
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.43658422572272165,
+                  "median": 0.45945483446121216,
+                  "min": 0.34394943714141846,
+                  "max": 0.5071572661399841,
+                  "std": 0.06064387987058979
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.44704967737197876,
+                  "median": 0.46854162216186523,
+                  "min": 0.34394943714141846,
+                  "max": 0.5713286399841309,
+                  "std": 0.07430708002872008
+                },
+                "actual_minus_shuffled_mean": 0.4373295818056379,
+                "actual_minus_same_row_other_mean": 0.4268641301563808
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 64,
+              "aux_loss": 0.08740118145942688,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.23257298618446745,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.7246153639177486,
+              "grad_cosine_all_hidden": 0.0010468991818253874,
+              "grad_cosine_aux_spans": 0.0032617684292385253,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.9116177729197911,
+                  "median": 0.9178218841552734,
+                  "min": 0.8845901489257812,
+                  "max": 0.9226558208465576,
+                  "std": 0.01301482516325986
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.5837142637797764,
+                  "median": 0.6117725968360901,
+                  "min": 0.41785937547683716,
+                  "max": 0.6762300729751587,
+                  "std": 0.07979939448534287
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.6039067762238639,
+                  "median": 0.6117725968360901,
+                  "min": 0.41785937547683716,
+                  "max": 0.7757249474525452,
+                  "std": 0.10019739118968687
+                },
+                "actual_minus_shuffled_mean": 0.32790350914001465,
+                "actual_minus_same_row_other_mean": 0.30771099669592716
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 128,
+              "aux_loss": 0.09733358770608902,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.17211744869636011,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.5362572402316124,
+              "grad_cosine_all_hidden": 0.0014233329721497529,
+              "grad_cosine_aux_spans": 0.004434602984615524,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.9017549327441624,
+                  "median": 0.8944713473320007,
+                  "min": 0.8787145614624023,
+                  "max": 0.9279111623764038,
+                  "std": 0.01674007222067469
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.5723973342350551,
+                  "median": 0.5922249555587769,
+                  "min": 0.39638686180114746,
+                  "max": 0.6639585494995117,
+                  "std": 0.07730855384034879
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.576827870947974,
+                  "median": 0.5937983989715576,
+                  "min": 0.39638686180114746,
+                  "max": 0.7216598987579346,
+                  "std": 0.10146958504365251
+                },
+                "actual_minus_shuffled_mean": 0.3293575985091073,
+                "actual_minus_same_row_other_mean": 0.32492706179618835
+              }
+            },
+            {
+              "center_mode": "raw",
+              "proj_dim": 480,
+              "aux_loss": 0.09851419925689697,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.09164290343330521,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.2855269518237734,
+              "grad_cosine_all_hidden": 0.0014983426868272387,
+              "grad_cosine_aux_spans": 0.004668306949329484,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.9008366976465497,
+                  "median": 0.8996057510375977,
+                  "min": 0.8783391118049622,
+                  "max": 0.9256157875061035,
+                  "std": 0.016861071241389025
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": 0.5629912061350686,
+                  "median": 0.5954275131225586,
+                  "min": 0.39587321877479553,
+                  "max": 0.6180779337882996,
+                  "std": 0.07203737305045951
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": 0.571815869637898,
+                  "median": 0.5824525952339172,
+                  "min": 0.39587321877479553,
+                  "max": 0.744070291519165,
+                  "std": 0.09616975063881228
+                },
+                "actual_minus_shuffled_mean": 0.33784549151148113,
+                "actual_minus_same_row_other_mean": 0.32902082800865173
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 32,
+              "aux_loss": 0.32603931427001953,
+              "aux_over_mlm_l2_all_hidden_lambda1": 1.1698517673924897,
+              "aux_over_mlm_l2_aux_spans_lambda1": 3.644845336794941,
+              "grad_cosine_all_hidden": 0.0008590325976706938,
+              "grad_cosine_aux_spans": 0.0026764429199614592,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6854546921593803,
+                  "median": 0.7332647442817688,
+                  "min": 0.39118194580078125,
+                  "max": 0.839804470539093,
+                  "std": 0.1449578176144859
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.24149029276200704,
+                  "median": -0.222065731883049,
+                  "min": -0.6737985610961914,
+                  "max": 0.0587024912238121,
+                  "std": 0.23026899571280784
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3019570005791528,
+                  "median": -0.26372799277305603,
+                  "min": -0.6737985610961914,
+                  "max": 0.08494861423969269,
+                  "std": 0.24772745585109898
+                },
+                "actual_minus_shuffled_mean": 0.9269449849213873,
+                "actual_minus_same_row_other_mean": 0.987411692738533
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 64,
+              "aux_loss": 0.3253600001335144,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.7932125521608194,
+              "aux_over_mlm_l2_aux_spans_lambda1": 2.4713704354823522,
+              "grad_cosine_all_hidden": 0.0011319734463075936,
+              "grad_cosine_aux_spans": 0.003526830645875551,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6747759793485913,
+                  "median": 0.6652475595474243,
+                  "min": 0.4961661994457245,
+                  "max": 0.8599525690078735,
+                  "std": 0.12392946120239405
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.2505027098315103,
+                  "median": -0.3387296199798584,
+                  "min": -0.5128059387207031,
+                  "max": 0.13958165049552917,
+                  "std": 0.20153904374627185
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.30912150336163385,
+                  "median": -0.3576580286026001,
+                  "min": -0.5128059387207031,
+                  "max": 0.05366278439760208,
+                  "std": 0.18740378959010273
+                },
+                "actual_minus_shuffled_mean": 0.9252786891801017,
+                "actual_minus_same_row_other_mean": 0.9838974827102251
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 128,
+              "aux_loss": 0.3486006259918213,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.5690967424688104,
+              "aux_over_mlm_l2_aux_spans_lambda1": 1.7731046494856553,
+              "grad_cosine_all_hidden": 0.0021182846369036216,
+              "grad_cosine_aux_spans": 0.006599826871748346,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6499817541667393,
+                  "median": 0.6888235807418823,
+                  "min": 0.3923143148422241,
+                  "max": 0.8526039123535156,
+                  "std": 0.14378127647648134
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.2629412588264261,
+                  "median": -0.3726285994052887,
+                  "min": -0.5535797476768494,
+                  "max": 0.09456723928451538,
+                  "std": 0.23668926101106474
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3485507496765682,
+                  "median": -0.39137980341911316,
+                  "min": -0.5535797476768494,
+                  "max": 0.09456723928451538,
+                  "std": 0.19506404228859167
+                },
+                "actual_minus_shuffled_mean": 0.9129230129931654,
+                "actual_minus_same_row_other_mean": 0.9985325038433075
+              }
+            },
+            {
+              "center_mode": "row_centered",
+              "proj_dim": 480,
+              "aux_loss": 0.34963011741638184,
+              "aux_over_mlm_l2_all_hidden_lambda1": 0.30263078193489756,
+              "aux_over_mlm_l2_aux_spans_lambda1": 0.9428907362892782,
+              "grad_cosine_all_hidden": 0.0032097504842166047,
+              "grad_cosine_aux_spans": 0.010000450986773168,
+              "geometry": {
+                "n": 7,
+                "actual_cos": {
+                  "n": 7,
+                  "mean": 0.6534128572259631,
+                  "median": 0.7048274874687195,
+                  "min": 0.46156033873558044,
+                  "max": 0.8241353631019592,
+                  "std": 0.13159046234800315
+                },
+                "shuffled_cos": {
+                  "n": 7,
+                  "mean": -0.2665271551481315,
+                  "median": -0.36316579580307007,
+                  "min": -0.5231442451477051,
+                  "max": 0.05698484554886818,
+                  "std": 0.24366859737501678
+                },
+                "same_row_other_cos": {
+                  "n": 7,
+                  "mean": -0.3453324979969433,
+                  "median": -0.40629658102989197,
+                  "min": -0.5231442451477051,
+                  "max": 0.0253835991024971,
+                  "std": 0.1923240481412949
+                },
+                "actual_minus_shuffled_mean": 0.9199400123740946,
+                "actual_minus_same_row_other_mean": 0.9987453552229064
+              }
+            }
+          ]
+        }
+      ],
+      "summary_by_mode": {
+        "raw|d128": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.10613348086675008,
+            "median": 0.10704333335161209,
+            "min": 0.09733358770608902,
+            "max": 0.11402352154254913,
+            "std": 0.006843943625547639
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.17236226100683494,
+            "median": 0.17211744869636011,
+            "min": 0.15849178807210523,
+            "max": 0.18647754625203947,
+            "std": 0.011426449288878237
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.5604967000916093,
+            "median": 0.5362572402316124,
+            "min": 0.480512625370717,
+            "max": 0.6647202346724987,
+            "std": 0.07713094662929951
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0018799433767884963,
+            "median": 0.0014233329721497529,
+            "min": -0.0003029471885228058,
+            "max": 0.004519444346738542,
+            "std": 0.0019950329698292107
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.005685562211886778,
+            "median": 0.004434602984615524,
+            "min": -0.0010798883508234588,
+            "max": 0.01370197200186827,
+            "std": 0.00609915420982512
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.3026294412002677,
+            "median": 0.30662552639842033,
+            "min": 0.27190519869327545,
+            "max": 0.3293575985091073,
+            "std": 0.023624437684069428
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.302170977410343,
+            "median": 0.3075757585465908,
+            "min": 0.27401011188824975,
+            "max": 0.32492706179618835,
+            "std": 0.021135163296111332
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8935626917888247,
+            "median": 0.8929566641648611,
+            "min": 0.8859764784574509,
+            "max": 0.9017549327441624,
+            "std": 0.006455765228600803
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.5909332505885571,
+            "median": 0.5793509520590305,
+            "min": 0.5723973342350551,
+            "max": 0.6210514654715856,
+            "std": 0.02148516311342455
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.5913917143784818,
+            "median": 0.5784007199108601,
+            "min": 0.576827870947974,
+            "max": 0.6189465522766113,
+            "std": 0.01949479045213804
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.29008670290080074,
+          "lambda_for_10pct_all_hidden_l2": 0.5801734058016015,
+          "lambda_for_5pct_aux_span_l2": 0.08920659121066697
+        },
+        "raw|d32": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.13926781713962555,
+            "median": 0.143515482544899,
+            "min": 0.12748515605926514,
+            "max": 0.14680281281471252,
+            "std": 0.00843899526707961
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.4592289115195777,
+            "median": 0.46595667781000033,
+            "min": 0.4101607758489956,
+            "max": 0.5015692808997372,
+            "std": 0.03761937292005077
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 1.4943916979701561,
+            "median": 1.451756599940617,
+            "min": 1.2435182517950196,
+            "max": 1.7879002421748318,
+            "std": 0.2242784750415768
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0006245862648916097,
+            "median": 0.00010472389425597296,
+            "min": -0.00034018787269437037,
+            "max": 0.0021092227731132267,
+            "std": 0.0010653937585860217
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0018361157531502199,
+            "median": 0.00032628270890536714,
+            "min": -0.0012126384537624918,
+            "max": 0.006394703004307784,
+            "std": 0.0032840633247080723
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.4028413701979887,
+            "median": 0.41477761045098305,
+            "min": 0.3564169183373451,
+            "max": 0.4373295818056379,
+            "std": 0.034093695907173246
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.4047667571594791,
+            "median": 0.4268641301563808,
+            "min": 0.3545777897040049,
+            "max": 0.43285835161805153,
+            "std": 0.035573229760761334
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8611985040562493,
+            "median": 0.856484517455101,
+            "min": 0.8531971871852875,
+            "max": 0.8739138075283596,
+            "std": 0.00909068541114481
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.45835713385826066,
+            "median": 0.43841957673430443,
+            "min": 0.43658422572272165,
+            "max": 0.5000675991177559,
+            "std": 0.029503268886194048
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.4564317468967703,
+            "median": 0.44704967737197876,
+            "min": 0.42033883556723595,
+            "max": 0.5019067277510961,
+            "std": 0.03395435838745375
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.10887816238431326,
+          "lambda_for_10pct_all_hidden_l2": 0.21775632476862652,
+          "lambda_for_5pct_aux_span_l2": 0.03345842998720844
+        },
+        "raw|d480": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.10105763127406438,
+            "median": 0.10175139456987381,
+            "min": 0.09851419925689697,
+            "max": 0.10290729999542236,
+            "std": 0.001859357264875393
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.08757197814334651,
+            "median": 0.0912445003816696,
+            "min": 0.07982853061506472,
+            "max": 0.09164290343330521,
+            "std": 0.005477859433837772
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.2842669997362563,
+            "median": 0.2855269518237734,
+            "min": 0.24202274005439514,
+            "max": 0.3252513073306003,
+            "std": 0.03398959852817311
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0023448631354969986,
+            "median": 0.0014983426868272387,
+            "min": -0.00011557802695664338,
+            "max": 0.005651824746620401,
+            "std": 0.0024294281001473145
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.007130473427552952,
+            "median": 0.004668306949329484,
+            "min": -0.0004119898948105168,
+            "max": 0.01713510322813989,
+            "std": 0.007372101332783342
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.3141899240158853,
+            "median": 0.31081414967775345,
+            "min": 0.2939101308584213,
+            "max": 0.33784549151148113,
+            "std": 0.018094674505962634
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.3155172798368666,
+            "median": 0.32032786309719086,
+            "min": 0.29720314840475726,
+            "max": 0.32902082800865173,
+            "std": 0.013427520677633293
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.8987260026827691,
+            "median": 0.8982486054301262,
+            "min": 0.8970927049716314,
+            "max": 0.9008366976465497,
+            "std": 0.0015653117666211114
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.5845360786668838,
+            "median": 0.5874344557523727,
+            "min": 0.5629912061350686,
+            "max": 0.6031825741132101,
+            "std": 0.016535556785018557
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.5832087228459025,
+            "median": 0.5779207423329353,
+            "min": 0.571815869637898,
+            "max": 0.5998895565668741,
+            "std": 0.012055566566962115
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.5709588964423646,
+          "lambda_for_10pct_all_hidden_l2": 1.1419177928847293,
+          "lambda_for_5pct_aux_span_l2": 0.17589097590079095
+        },
+        "raw|d64": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.09349618852138519,
+            "median": 0.09575166553258896,
+            "min": 0.08740118145942688,
+            "max": 0.09733571857213974,
+            "std": 0.004358068327597966
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.231055790376595,
+            "median": 0.23257298618446745,
+            "min": 0.20813214236367375,
+            "max": 0.2524622425816438,
+            "std": 0.018129457772244343
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.7518522894788376,
+            "median": 0.7246153639177486,
+            "min": 0.6310113815215554,
+            "max": 0.8999301229972088,
+            "std": 0.11146213098246281
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0006355260862820943,
+            "median": 0.0009847916402557122,
+            "min": -0.00012511256323481684,
+            "max": 0.0010468991818253874,
+            "std": 0.000538450061462924
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0019338217327645837,
+            "median": 0.0029856750184231715,
+            "min": -0.0004459782493679461,
+            "max": 0.0032617684292385253,
+            "std": 0.0016865433800315574
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.31082957858840626,
+            "median": 0.32790350914001465,
+            "min": 0.27567917108535767,
+            "max": 0.3289060555398464,
+            "std": 0.024858461142284925
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.3100317659240866,
+            "median": 0.30771099669592716,
+            "min": 0.27112179497877753,
+            "max": 0.35126250609755516,
+            "std": 0.03275843781392942
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.9061767970995297,
+            "median": 0.9042483369509379,
+            "min": 0.9026642814278603,
+            "max": 0.9116177729197911,
+            "std": 0.00390132211628738
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": 0.5953472185111235,
+            "median": 0.5837142637797764,
+            "min": 0.5737582258880138,
+            "max": 0.6285691658655802,
+            "std": 0.02384049792743814
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": 0.5961450311754432,
+            "median": 0.6039067762238639,
+            "min": 0.5514017753303051,
+            "max": 0.6331265419721603,
+            "std": 0.03381240290498875
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.21639795271308984,
+          "lambda_for_10pct_all_hidden_l2": 0.4327959054261797,
+          "lambda_for_5pct_aux_span_l2": 0.06650242434542371
+        },
+        "row_centered|d128": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.35676785310109455,
+            "median": 0.35373803973197937,
+            "min": 0.3486006259918213,
+            "max": 0.36796489357948303,
+            "std": 0.00819058571737063
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.5395359565845175,
+            "median": 0.5636516172201383,
+            "min": 0.48585951006460354,
+            "max": 0.5690967424688104,
+            "std": 0.03802002130893066
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 1.7517749084449366,
+            "median": 1.7731046494856553,
+            "min": 1.4730203475038117,
+            "max": 2.009199728345343,
+            "std": 0.21941330937988548
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.002026684321526765,
+            "median": 0.0021182846369036216,
+            "min": 6.223390421728702e-05,
+            "max": 0.0038995344234593857,
+            "std": 0.0015679098150248258
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.006214736038173503,
+            "median": 0.006599826871748346,
+            "min": 0.00022183909403340301,
+            "max": 0.01182254214873876,
+            "std": 0.004743788855155063
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.8870773315873174,
+            "median": 0.9016268476843834,
+            "min": 0.8466821340844035,
+            "max": 0.9129230129931654,
+            "std": 0.028933600117572636
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.9778724422471391,
+            "median": 0.980250767742594,
+            "min": 0.9548340551555157,
+            "max": 0.9985325038433075,
+            "std": 0.017918908607978744
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6427596094352859,
+            "median": 0.6462619677186012,
+            "min": 0.632035106420517,
+            "max": 0.6499817541667393,
+            "std": 0.00773392640643711
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.2443177221520316,
+            "median": -0.25536487996578217,
+            "min": -0.2629412588264261,
+            "max": -0.21464702766388655,
+            "std": 0.02120712085938171
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.3351128328118532,
+            "median": -0.33398880002399284,
+            "min": -0.3485507496765682,
+            "max": -0.3227989487349987,
+            "std": 0.010543130471692412
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.0926722295146377,
+          "lambda_for_10pct_all_hidden_l2": 0.1853444590292754,
+          "lambda_for_5pct_aux_span_l2": 0.02854247983514353
+        },
+        "row_centered|d32": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.3446318010489146,
+            "median": 0.33669960498809814,
+            "min": 0.32603931427001953,
+            "max": 0.3711564838886261,
+            "std": 0.019254082672842017
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 1.091692829568551,
+            "median": 1.1196612466271665,
+            "min": 0.9855654746859972,
+            "max": 1.1698517673924897,
+            "std": 0.07779046078815083
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 3.5413413999096917,
+            "median": 3.644845336794941,
+            "min": 2.9880201332617533,
+            "max": 3.991158729672381,
+            "std": 0.4160180762220398
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0008592815163694653,
+            "median": 0.0008590325976706938,
+            "min": -0.00037334904071140585,
+            "max": 0.002092160992149108,
+            "std": 0.001006540271426286
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.002562859355831214,
+            "median": 0.0026764429199614592,
+            "min": -0.0013308440450757227,
+            "max": 0.006342979192607906,
+            "std": 0.0031338545690925853
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.899241037286138,
+            "median": 0.8954158843650173,
+            "min": 0.8753622425720096,
+            "max": 0.9269449849213873,
+            "std": 0.02123155942181421
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 0.975320273389419,
+            "median": 0.987411692738533,
+            "min": 0.9508437775075436,
+            "max": 0.9877053499221802,
+            "std": 0.01730791142083051
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6591995211820754,
+            "median": 0.6633003652095795,
+            "min": 0.6288435061772665,
+            "max": 0.6854546921593803,
+            "std": 0.023292620947112642
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.24004151610406263,
+            "median": -0.24149029276200704,
+            "min": -0.26657237818775076,
+            "max": -0.2120618773624301,
+            "std": 0.022277385998814653
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.31612075220734354,
+            "median": -0.32200027133027714,
+            "min": -0.3244049847126007,
+            "max": -0.3019570005791528,
+            "std": 0.010063284975645823
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.04580042906369601,
+          "lambda_for_10pct_all_hidden_l2": 0.09160085812739202,
+          "lambda_for_5pct_aux_span_l2": 0.014118943742976902
+        },
+        "row_centered|d480": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.34060471256573993,
+            "median": 0.3423924148082733,
+            "min": 0.3297916054725647,
+            "max": 0.34963011741638184,
+            "std": 0.00819709495358825
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.27600427483114365,
+            "median": 0.2786522593864562,
+            "min": 0.24672978317207725,
+            "max": 0.30263078193489756,
+            "std": 0.022898169975263522
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 0.8947363863256445,
+            "median": 0.9428907362892782,
+            "min": 0.7480310324672824,
+            "max": 0.9932873902203728,
+            "std": 0.10575695822621807
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0025051728865254177,
+            "median": 0.0032097504842166047,
+            "min": -0.0002484601259863086,
+            "max": 0.0045542283013459564,
+            "std": 0.00202299715371097
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.00764073778375815,
+            "median": 0.010000450986773168,
+            "min": -0.0008856645108922748,
+            "max": 0.013807426875393557,
+            "std": 0.0062261769126701
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.9091235959536529,
+            "median": 0.9199400123740946,
+            "min": 0.8852756504202262,
+            "max": 0.922155125066638,
+            "std": 0.016887274512368457
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 1.0055300452421227,
+            "median": 1.0060861396292846,
+            "min": 0.9987453552229064,
+            "max": 1.0117586408741772,
+            "std": 0.005327183845520841
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.6604095998974073,
+            "median": 0.6576075628399849,
+            "min": 0.6534128572259631,
+            "max": 0.6702083796262741,
+            "std": 0.0071372708102473755
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.24871399605624556,
+            "median": -0.2645475622266531,
+            "min": -0.2665271551481315,
+            "max": -0.21506727079395205,
+            "std": 0.02380554960075328
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.34512044534471537,
+            "median": -0.3453324979969433,
+            "min": -0.34847857678929967,
+            "max": -0.3415502612479031,
+            "std": 0.0028324446220861286
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.1811566144422562,
+          "lambda_for_10pct_all_hidden_l2": 0.3623132288845124,
+          "lambda_for_5pct_aux_span_l2": 0.05588238140770349
+        },
+        "row_centered|d64": {
+          "aux_loss": {
+            "n": 3,
+            "mean": 0.3281850218772888,
+            "median": 0.3253600001335144,
+            "min": 0.30894818902015686,
+            "max": 0.3502468764781952,
+            "std": 0.016978043808181235
+          },
+          "aux_over_mlm_l2_all_hidden_lambda1": {
+            "n": 3,
+            "mean": 0.747471361712639,
+            "median": 0.73904964559012,
+            "min": 0.7101518873869775,
+            "max": 0.7932125521608194,
+            "std": 0.03442830700653516
+          },
+          "aux_over_mlm_l2_aux_spans_lambda1": {
+            "n": 3,
+            "mean": 2.4196074180665397,
+            "median": 2.4713704354823522,
+            "min": 2.153026046150996,
+            "max": 2.6344257725662708,
+            "std": 0.1999099491057038
+          },
+          "grad_cosine_all_hidden": {
+            "n": 3,
+            "mean": 0.0005461182389244348,
+            "median": 0.0010872008532731732,
+            "min": -0.0005808195828074627,
+            "max": 0.0011319734463075936,
+            "std": 0.0007970749805002169
+          },
+          "grad_cosine_aux_spans": {
+            "n": 3,
+            "mean": 0.0015841968133389883,
+            "median": 0.003296156692583769,
+            "min": -0.0020703968984423548,
+            "max": 0.003526830645875551,
+            "std": 0.002585903325961177
+          },
+          "actual_minus_shuffled_mean": {
+            "n": 3,
+            "mean": 0.9094695864127033,
+            "median": 0.9124060676743587,
+            "min": 0.8907240023836493,
+            "max": 0.9252786891801017,
+            "std": 0.014258886972698111
+          },
+          "actual_minus_same_row_other_mean": {
+            "n": 3,
+            "mean": 1.0115785199468807,
+            "median": 0.9838974827102251,
+            "min": 0.9831157165269058,
+            "max": 1.0677223606035113,
+            "std": 0.03970097330754155
+          },
+          "actual_cos_mean": {
+            "n": 3,
+            "mean": 0.671860306272431,
+            "median": 0.6747759793485913,
+            "min": 0.6497531284888586,
+            "max": 0.6910518109798431,
+            "std": 0.0169857029289944
+          },
+          "shuffled_cos_mean": {
+            "n": 3,
+            "mean": -0.23760928014027222,
+            "median": -0.2505027098315103,
+            "min": -0.26265293918550014,
+            "max": -0.1996721914038062,
+            "std": 0.027280323124766578
+          },
+          "same_row_other_cos_mean": {
+            "n": 3,
+            "mean": -0.3397182136744497,
+            "median": -0.33336258803804714,
+            "min": -0.3766705496236682,
+            "max": -0.30912150336163385,
+            "std": 0.027940578562969276
+          },
+          "lambda_for_5pct_all_hidden_l2": 0.06689219488682192,
+          "lambda_for_10pct_all_hidden_l2": 0.13378438977364385,
+          "lambda_for_5pct_aux_span_l2": 0.020664509302899235
+        }
+      }
+    }
+  ],
+  "scientific_interpretation": [
+    "This CPU run measures local hidden-state pressure and pair geometry for future construction; it is not BabyLM task-score evidence and does not justify a GPU run by itself.",
+    "Raw cosine mostly measures already high same-row/topic anisotropy; row-centered variants subtract each row's hidden mean before span pooling, so they put more pressure on pair-specific residual content while still using only training-side source/rewrite spans.",
+    "A future consistency trainer should use these measured λ scales with a small auxiliary weight and should not combine the auxiliary loss with fractional credit, minfreq50, static masking, or sequence changes in the first screen."
+  ],
+  "elapsed_sec": 21.75
+}

@@ -1,0 +1,96 @@
+\chapterstart{Stage I: Frontier Advancement}
+\label{sec:frontier}
+
+Building a frontier model under strict data limits required coordinated choices about text, architecture, and training. Qiushi Engine compared data processing and model designs, then investigated how to improve a mature model as its exposure budget approached the limit. Complete evaluation determined which combinations succeeded. Beyond the resulting model, this work established the experimental basis for continued training and mechanism analysis.
+
+\subsection{Choosing Representations, Architectures, and Objectives}
+
+Text representation determines the units a model learns from. Character representations produce longer sequences of finer units; subword representations combine frequent fragments and require embeddings for a larger vocabulary. Autoregressive models predict subsequent text from preceding text, while masked language models recover hidden tokens from visible context. Qiushi Engine compared these choices along with depth, width, vocabulary, and training schedules.
+
+Other candidates used sparse computation, auxiliary memory, or additional word-form features. Lower loss on one objective was informative but insufficient: a configuration still had to improve the relevant language abilities under comparable budgets. Architecture comparisons therefore required shared-parameter checks; tokenizer comparisons required revised sequence and exposure accounting; objective comparisons required measuring both gains and costs. The investigation moved from local component effects to a training design whose parts worked together.
+
+The final route combined compact restatements, residual learning, and evaluation-based selection of a late-training increment. Other architectural studies retain their independent results in Section~\ref{sec:lineage} and Appendix~\ref{app:catalog}. The following sections describe the actual formation of the released model.
+
+\subsection{Compact Restatements and Budget Reinvestment}
+
+Original passages are paired with corresponding rewrites. An original passage is the \emph{source}; an alternative expression of its content is the \emph{restatement}. Experimental records also use \emph{text view} and \emph{aligned paraphrase} for this second expression. A source--restatement pair creates a prediction problem different from exact repetition, but both expressions consume words. Compact restatements reduce redundancy while retaining their connection to the source, freeing budget for additional material.
+
+Shortening each restatement released words for additional passage pairs. The core collection grew from 10,094 to 12,155 pairs, an increase of 2,061 or 20.42\%, within a fixed-size corpus subset called the replacement block. Its 423,520 words comprise 261,803 source words, 161,708 restatement words, and nine padding words. The pairs came from 4,529 source documents, each of which could supply multiple passages.
+
+\begin{table}[htbp]
+\caption{Compact restatements expand paired experience within a fixed word budget. The replacement block remains at 423,520 words.}
+\label{tab:compact}
+\small
+\begin{tabularx}{\linewidth}{@{}Y r Y@{}}
+\toprule Quantity & Count & Interpretation\\\midrule
+Original core pairs & 10,094 & Initial paired experience\\
+Additional pairs & 2,061 & Reinvestment of saved words\\
+Final pairs & 12,155 & 20.42\% more than the original set\\
+Source documents & 4,529 & May contribute multiple pairs\\
+Source/restatement words & 261,803/161,708 & Both expressions retained\\
+Replacement-block words & 423,520 & Includes nine padding words\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Compression and reinvestment change both expression and coverage: the restatement becomes shorter, and additional pairs broaden the available source information. Distinguishing these effects subsequently motivated fixed-budget substitution and target-deletion studies.
+
+Training revealed a reversal in relative performance. A seven-metric screening average combined BLiMP, Supplement, EWoK, Entity Tracking, COMPS, GlobalPIQA, and Reading. Because it includes Reading and excludes (Super)GLUE, it is not the official NLP Average. In the corresponding matched comparison, the compact-restatement method was about 0.83 points below its reference at 20M cumulative words, but 1.29 and 1.35 points above at 70M and 80M. An early ranking would therefore have missed the benefit that emerged later, motivating study of data value across learning trajectories.
+
+The stage also investigated continuous window packing, which organizes adjacent text into sequences the model can process. These studies produced methods for word-budget use, truncation, and context organization. Only the adopted data and weights entered the final model's lineage; the remaining implementations are retained as separate research outputs.
+
+\subsection{Residual Structure and Continued Incremental Learning}
+
+The representative model uses a DeBERTa-v2-style masked language architecture~\citep{he2021deberta,microsoft2021debertav2}: eight layers, hidden width 480, eight attention heads, and a vocabulary of 16,384. Hidden width is the size of the internal vector at each position; attention heads extract information from different contextual positions. Pretraining uses a 256-token prediction window. A byte-level BPE tokenizer, trained on the restricted corpus, merges frequent byte sequences into vocabulary units. The ordinary objective uses 15\% whole-word masking, masking a selected word's subword tokens together.
+
+A residual branch adds a learned correction to an existing representation. Here the branch projects width 480 down to 128 and then back to the original width. During joint backbone training, its form is
+\begin{equation}
+h'=h+s\,U\,\sigma\!\left(D\,\operatorname{Norm}(h)\right),
+\label{eq:residual}
+\end{equation}
+where $D$ and $U$ reduce and restore dimensionality, $\sigma$ is a nonlinear transformation, $\operatorname{Norm}$ normalizes the representation, and $s$ scales the correction. The upward projection is initialized to zero, so the new branch initially leaves the representation unchanged. Joint training uses $s=1.75$, with the relevant parameters learned together from random initialization. The construction draws on residual and parameter-efficient learning~\citep{bachlechner2021rezero,houlsby2019adapters}; here it is combined with budget-constrained data organization, training from scratch, and later incremental learning.
+
+At 82,012,495 words of cumulative exposure, the jointly trained model has 35,463,008 parameters. Qiushi Engine then froze those parameters and added a dedicated trainable increment containing 995,584 parameters in 48 tensors. Total model size became 36,458,592 parameters. This stage used 101 updates and 3,992,800 additional words, bringing cumulative exposure to 86,005,295.
+
+\begin{table}[htbp]
+\caption{The two training phases in the first-generation model's lineage. Trainable parameter counts and computational savings are separate quantities.}
+\label{tab:lineage}
+\small
+\begin{tabularx}{\linewidth}{@{}Y Y r r@{}}
+\toprule Phase & Updated parameters & Total parameters & Cumulative words\\\midrule
+Joint backbone training & Backbone and residual branches & 35,463,008 & 82,012,495\\
+Frozen-base incremental training & New branch only & 36,458,592 & 86,005,295\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Incremental training used both ordinary prediction loss and a KL preservation term. Kullback--Leibler divergence measures the difference between predictive probability distributions; the preservation loss constrains changes to the previous model's predictions. Thus, the first generation already used output preservation. The subsequent question was more specific: under which inputs should which functions be preserved, and how should this constraint coexist with new learning?
+
+The dedicated increment provides a useful control. Disabling it restores the frozen base's output; enabling it adds the learned correction. Retention is evaluated with the branch enabled. Only about 2.73\% of parameters are trainable. Freezing the base removes its parameter updates, but gradients must still pass through intervening frozen operations to train incremental modules at earlier layers. Computation also includes reference-model predictions. The trainable parameter fraction is therefore not a compute-saving estimate.
+
+\subsection{Coherent Relations in Late Training}
+
+Freezing a common base permits direct comparisons of text organization. A key control held the starting model, increment, exposure, and update count fixed while shuffling coherent segments within each training row. At residual scale 1.0, coherent training achieved 44.1064 on the seven-metric average, compared with 43.1214 after segment shuffling: a difference of approximately 0.9850. The same words produced different outcomes when their coherent organization changed.
+
+\begin{table}[htbp]
+\caption{Late-training references and controls. The screening average comprises BLiMP, Supplement, EWoK, Entity, COMPS, GlobalPIQA, and Reading. The final two rows are the closest organization-only comparison; ordinary and incremental continuation also differ in updated parameters, optimizer, and objectives.}
+\label{tab:late}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule Condition & Cumulative words & Seven-metric mean\\\midrule
+Backbone before continuation & 82,012,495 & 43.9594\\
+Ordinary joint continuation & 86,006,729 & 43.7707\\
+Increment with mismatched correspondence & 86,005,413 & 44.0129\\
+Coherent increment, scale 1.0 & 86,005,295 & 44.1064\\
+Increment with within-row segment shuffling & 86,005,295 & 43.1214\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+After training the increment at scale 1.0, evaluation of alternative inference scales selected 0.75 for release: three quarters of the learned branch output is added to the original representation. This was an evaluation-based model-selection decision. The final first-generation local Overall was 42.0240, displayed publicly as 42.02.
+
+Individual answers and local capabilities also changed as aggregate performance improved. These observations led directly to the next questions: how does incremental learning balance new functions with established abilities, and which inputs can still use the computation that has been learned?
+
+\subsection{The Experimental Basis for Principle Discovery}
+
+Stage I produced a model that could be trained further, reusable source--restatement data, and phenomena requiring explanation. Coherent organization outperformed segment shuffling; compact-restatement benefits changed over training; local improvements did not always yield aggregate gains. Qiushi Engine used these observations to move from configuration selection to mechanism studies of learned relations, reuse on new inputs, and retention during further learning.

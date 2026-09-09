@@ -1,0 +1,67 @@
+{
+  "status": "DOSE_PROBE_LEAKAGE_AUDIT",
+  "created_utc": "2026-09-07T00:42:13Z",
+  "elapsed_sec": 121.39,
+  "query_meta": {
+    "dose21_pairs": 9385,
+    "dose25_topup_pairs": 8419,
+    "dose25_superset_pairs": 17804,
+    "selected_texts_audited": 35608
+  },
+  "reference_meta": {
+    "heldout6992_rows": 6992,
+    "heldout2647_rows": 2647,
+    "compact_probe_pairs": 1626,
+    "wiki_pairs": 1200,
+    "reference_texts": 225109,
+    "reference_texts_by_screen": {
+      "heldout6992": 158295,
+      "heldout2647": 59962,
+      "compact_probe1626": 3252,
+      "wikilarge_probe1200": 3600
+    }
+  },
+  "thresholds": {
+    "jaccard_threshold": 0.8,
+    "heldout_query_containment_threshold": 0.95
+  },
+  "blocking_hit_count": 35341,
+  "blocking_pair_count": 2330,
+  "affected_dose21_pair_count": 1209,
+  "affected_dose25_topup_pair_count": 1121,
+  "blocking_hits_by_screen": {
+    "heldout2647": 9597,
+    "heldout6992": 25744
+  },
+  "blocking_hits_by_type": {
+    "exact_norm": 3806,
+    "exact_token_subsequence": 11101,
+    "heldout_high_query_containment": 14273,
+    "high_jaccard": 6161
+  },
+  "blocking_pair_ids_to_exclude": "experiments/archive/relation_learning/data/dose_leakage_audit/blocking_pair_ids_to_exclude.txt",
+  "outputs": {
+    "blocking_hits_csv": "experiments/archive/relation_learning/data/dose_leakage_audit/blocking_hits.csv",
+    "blocking_hits_jsonl": "experiments/archive/relation_learning/data/dose_leakage_audit/blocking_hits.jsonl"
+  },
+  "inputs": {
+    "dose21_selected": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose21_selected_pairs.jsonl",
+    "dose25_superset": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_selected_pairs_superset.jsonl",
+    "dose25_topup": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/dose25_topup_selected_pairs_from_shard0.jsonl",
+    "heldout6992": "experiments/archive/frontier_consolidation/data/dose_2p64x_rowholdout_pools/heldout_cleanqwen_rows.jsonl",
+    "heldout2647": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+    "compact_all_accepted": "experiments/archive/frontier_consolidation/data/expansion_analysis/combined_all_accepted_pairs.jsonl",
+    "compact_selected_max_excluded": "experiments/archive/frontier_consolidation/data/dose_distribution_select/selected_matched_max_pairs.jsonl",
+    "wiki_pairs": "experiments/archive/relation_learning/analysis/wikipedia_simplification_restatement_probe/wikipedia_simplification_pairs.jsonl"
+  },
+  "input_sha256": {
+    "dose21_selected": "8caf660aecca5354851e443c1103516c70c1ccd370caeefcc24c9cf18709985c",
+    "dose25_superset": "0c1de7044d5a38f9a8fce4703118833ab48a92fb9130bb385b7f15da4e015514",
+    "dose25_topup": "96ad50494c75555b314c7eeed49ab72f9242423af8d8038fe7a84fbd7d322999",
+    "heldout6992": "e1a28130141d52aaca34d752864cddc509bdc5a44a99994c44ca813db630fb0c",
+    "heldout2647": "5b56a820783963a3da33785b8dd7a7478c95e08f72d27ec4af2d3947f1d67c6d",
+    "wiki_pairs": "71d7399c02b9534fa342dbdd9f0f63fe2ac89ea1b7870ada21062dd53d6ad867"
+  },
+  "scientific_interpretation": "blocking_hit_count == 0 means no selected dose source/rewrite matched the primary heldout/probe texts under exact normalized, heldout token-subsequence, high-Jaccard, or high-query-containment screens. A positive count means the selected pair IDs should be excluded, dose streams re-materialized, and the audit rerun before training.",
+  "metadata_updated": "experiments/archive/relation_learning/data/nested_restatement_dose_streams/nested_dose_materialization_metadata.json"
+}

@@ -1,0 +1,928 @@
+{
+  "status": "ENDPOINT_PROVENANCE_LEDGER",
+  "created_utc": "2026-08-29T19:31:59Z",
+  "purpose": "Submission-facing provenance ledger for compact_view_reinvest seed43022 official-coordinate endpoint; preserves exact evidence carriers for later review/packaging without modifying results.",
+  "endpoint_result": {
+    "model_name": "compact_view_reinvest seed43022",
+    "official_coordinate_summary": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/pristine_collate_seed43022_summary.json",
+    "official_path_scores": {
+      "scores": {
+        "BLiMP": 66.87232315173485,
+        "Supplement": 63.27576417952158,
+        "EWoK": 53.536575594886855,
+        "Entity": 27.745741097952372,
+        "COMPS": 51.968828052457084,
+        "SuperGLUE": 71.03604952825312,
+        "GlobalPIQA": 35.62135922330097,
+        "Reading": 8.241572282566393,
+        "AoA": 0.0
+      },
+      "Overall": 42.0331347900748,
+      "NLP_average": 52.86523440401526,
+      "Human_like_average": 4.1207861412831965,
+      "official_like_arithmetic": "mean(BLiMP, Supplement, EWoK, Entity, COMPS, SuperGLUE, GlobalPIQA, Reading, AoA_leaderboard_score)",
+      "aoa_unit": "leaderboard_score=100*raw_correlation",
+      "visible_leader_overall": 41.8,
+      "margin_over_visible_leader": 0.23313479007479998,
+      "delta_vs_step036_corrected_arithmetic": -0.03920648461891574
+    },
+    "collated_json": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/results/hf_model/all_full_preds_and_fast_scores_mlm.json",
+    "collated_json_sha256": "a85aae3b29b3cecceb67e21792f75048af478cc9191011c9872a69a639fec192",
+    "visible_leader_reference_overall": 41.8,
+    "margin_over_visible_leader": 0.23313479007479998
+  },
+  "training_recipe": {
+    "train_command_json": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/train_command.json",
+    "recipe": {
+      "tokenizer_path": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+      "tokenizer_label": "baseline16k",
+      "model_family": "DeBERTa-v2 masked LM",
+      "hidden_size": 480,
+      "n_layer": 8,
+      "n_head": 8,
+      "ffn_mult": 4,
+      "seed": 43,
+      "extra_init_seed": 43022,
+      "train_rng_seed": 43023,
+      "batch_size": 256,
+      "seq_length": 256,
+      "max_seq_length": 256,
+      "learning_rate": 0.001,
+      "warmup_fraction": 0.06,
+      "weight_decay": 0.01,
+      "masking_curriculum": "wwm_fixed",
+      "mask_prob_start": 0.15,
+      "mask_prob_end": 0.15,
+      "checkpoint_words": 1000000,
+      "max_word_exposure": 100000000,
+      "num_workers": 0,
+      "log_every": 50,
+      "dynamics_trace_every": 200
+    },
+    "command": [
+      "data/external/python",
+      "experiments/archive/compact_experience/scripts/masking_curriculum_trainer.py",
+      "--example_jsonl",
+      "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "--example_jsonl_label",
+      "cleanqwen_fineweb_compact_view_reinvest",
+      "--example_jsonl_meta",
+      "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+      "--output_dir",
+      "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022",
+      "--tokenizer_path",
+      "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+      "--tokenizer_label",
+      "baseline16k",
+      "--hidden_size",
+      "480",
+      "--n_layer",
+      "8",
+      "--n_head",
+      "8",
+      "--ffn_mult",
+      "4",
+      "--seed",
+      "43",
+      "--extra_init_seed",
+      "43022",
+      "--train_rng_seed",
+      "43023",
+      "--batch_size",
+      "256",
+      "--seq_length",
+      "256",
+      "--max_seq_length",
+      "256",
+      "--learning_rate",
+      "0.001",
+      "--warmup_fraction",
+      "0.06",
+      "--weight_decay",
+      "0.01",
+      "--masking_curriculum",
+      "wwm_fixed",
+      "--mask_prob_start",
+      "0.15",
+      "--mask_prob_end",
+      "0.15",
+      "--checkpoint_words",
+      "1000000",
+      "--max_word_exposure",
+      "100000000",
+      "--num_workers",
+      "0",
+      "--log_every",
+      "50",
+      "--dynamics_trace_every",
+      "200"
+    ],
+    "cuda_visible_devices_recorded": "1",
+    "scientific_metrics_summary": {
+      "variant": "masking_curriculum_wwm_fixed",
+      "backend": "mlm",
+      "model_family": "DebertaV2ForMaskedLM",
+      "parameter_count": 34467424,
+      "vocab_size": 16384,
+      "tokenizer_label": "baseline16k",
+      "word_exposure": 100000000,
+      "loss_first": 9.809807777404785,
+      "loss_last": 2.565617084503174,
+      "actual_training_steps": 2529,
+      "masking_curriculum": "wwm_fixed",
+      "mask_prob_start": 0.15,
+      "mask_prob_end": 0.15,
+      "hidden_size": 480,
+      "n_layer": 8,
+      "n_head": 8,
+      "ffn_mult": 4,
+      "seed": 43,
+      "seq_length": 256,
+      "max_seq_length": 256
+    },
+    "checkpoint_ladder": {
+      "required_for_strict_small_aoa": [
+        "chck_1M",
+        "chck_2M",
+        "chck_3M",
+        "chck_4M",
+        "chck_5M",
+        "chck_6M",
+        "chck_7M",
+        "chck_8M",
+        "chck_9M",
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "present_required": [
+        "chck_1M",
+        "chck_2M",
+        "chck_3M",
+        "chck_4M",
+        "chck_5M",
+        "chck_6M",
+        "chck_7M",
+        "chck_8M",
+        "chck_9M",
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "missing_required": [],
+      "num_all_checkpoint_dirs": 100,
+      "first_10_all": [
+        "chck_1M",
+        "chck_2M",
+        "chck_3M",
+        "chck_4M",
+        "chck_5M",
+        "chck_6M",
+        "chck_7M",
+        "chck_8M",
+        "chck_9M",
+        "chck_10M"
+      ],
+      "last_10_all": [
+        "chck_91M",
+        "chck_92M",
+        "chck_93M",
+        "chck_94M",
+        "chck_95M",
+        "chck_96M",
+        "chck_97M",
+        "chck_98M",
+        "chck_99M",
+        "chck_100M"
+      ]
+    }
+  },
+  "model_and_tokenizer": {
+    "hf_model_root": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model",
+    "checkpoint_100m": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "model_config": {
+      "architectures": [
+        "DebertaV2ForMaskedLM"
+      ],
+      "attention_probs_dropout_prob": 0.1,
+      "bos_token_id": 1,
+      "dtype": "float32",
+      "eos_token_id": 2,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 480,
+      "initializer_range": 0.02,
+      "intermediate_size": 1920,
+      "layer_norm_eps": 1e-07,
+      "legacy": true,
+      "max_position_embeddings": 512,
+      "max_relative_positions": 256,
+      "model_type": "deberta-v2",
+      "num_attention_heads": 8,
+      "num_hidden_layers": 8,
+      "pad_token_id": 3,
+      "pooler_dropout": 0,
+      "pooler_hidden_act": "gelu",
+      "pooler_hidden_size": 480,
+      "pos_att_type": [
+        "p2c",
+        "c2p"
+      ],
+      "position_biased_input": true,
+      "position_buckets": 256,
+      "relative_attention": true,
+      "transformers_version": "4.57.6",
+      "type_vocab_size": 0,
+      "vocab_size": 16384
+    },
+    "tokenizer_source_path_recorded": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+    "tokenizer_label": "baseline16k",
+    "tokenizer_vocab_size_config": 16384,
+    "hashes": {
+      "model_config": {
+        "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/config.json",
+        "exists": true,
+        "size_bytes": 812,
+        "sha256": "2ed28483121ddea2ce5ed2256acb75d4b3d998e0466c4485e716b517558a588a"
+      },
+      "tokenizer_json": {
+        "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/tokenizer.json",
+        "exists": true,
+        "size_bytes": 1130547,
+        "sha256": "9cc4f9073675da3f817a6020e7b0833cf3234c0131515d68f4065b00f14933ac"
+      },
+      "tokenizer_config": {
+        "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/tokenizer_config.json",
+        "exists": true,
+        "size_bytes": 1325,
+        "sha256": "3537db0258447674df689a0bfede6503f0ce808333b9604c25be68b647361593"
+      },
+      "special_tokens_map": {
+        "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/special_tokens_map.json",
+        "exists": true,
+        "size_bytes": 122,
+        "sha256": "2be97b602cd0e4a6c2874cbf03c0d1025b3af5474666da931bc04f6c23a9a39d"
+      },
+      "checkpoint_100m_safetensors": {
+        "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M/model.safetensors",
+        "exists": true,
+        "size_bytes": 137890400,
+        "sha256": "6aa03d469281558d5a6d2fd490698a33584e8d3a157dc5040bdfaffe3a450a44"
+      }
+    }
+  },
+  "data_accounting": {
+    "train_10m_pool_counts": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "rows": 64740,
+      "words": 10000000,
+      "source_words": {
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9,
+        "qwen_pair_packed": 1656800,
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "switchboard": 21120
+      },
+      "source_rows": {
+        "cleanqwen_fineweb_compact_view_reinvest": 3005,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 1,
+        "qwen_pair_packed": 12236,
+        "childes": 16093,
+        "gutenberg": 11621,
+        "open_subtitles": 11434,
+        "simple_wiki": 6619,
+        "bnc_spoken": 3599,
+        "switchboard": 132
+      },
+      "first_row": {
+        "text": "Based on the home's plans, the Home Energy Rater uses an energy efficiency software package to perform an energy analysis of the home's design. The Home Energy Rater uses software to analyze the home's design based on its plans. Just like the physical environment, the virtual environment has become polluted in some way shape or form - some areas are worse than others. Like the physical environment, the virtual environment is polluted, with some areas worse than others. The polar regions become much colder than they are presently and there are noticeably large differences in temperature from the equator There have actually been a number of ice ages in the history of the Earth. Polar regions become much colder than now, with large temperature differences from the equator, and Earth has had many ice ages.",
+        "words": 135,
+        "example_id": 950000,
+        "source": "cleanqwen_fineweb_compact_view_reinvest"
+      },
+      "last_row": {
+        "text": "as Gunna, is an American rapper and singer. He is signed to Young Thug's record label YSL Records, as well as 300 Entertainment and Atlantic Records. He released his first studio album, \"Drip or Drown 2\", in 2019. His second studio album \"Wunna\" followed in 2020. It debuted at number one on the \"Billboard\" 200. His third album \"DS4Ever\" was released in 2022, becoming his second number one album. = = = Met Gala = = = Met Gala or Met Ball is an annual festival for the benefit of the Metropolitan Museum of Art's Costume Institute in New York City. It's also about annual fashion exhibit where the celebrities take part in. The Met Gala was established in 1948. Since 1973 this event has become \"a jewel in New York City’s social crown\". This is also called as the Super Bowl of fashion. History. The Costume Institute at the Met has been existed since 1959. Firstly the gala was",
+        "words": 160,
+        "example_id": 54475,
+        "source": "simple_wiki"
+      }
+    },
+    "train_100m_stream_counts": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "rows": 647400,
+      "words": 100000000,
+      "source_words": {
+        "childes": 25748800,
+        "qwen_pair_packed": 16568000,
+        "simple_wiki": 10590400,
+        "open_subtitles": 18294400,
+        "bnc_spoken": 5758400,
+        "gutenberg": 18593600,
+        "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+        "switchboard": 211200,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+      },
+      "source_rows": {
+        "childes": 160930,
+        "qwen_pair_packed": 122360,
+        "simple_wiki": 66190,
+        "open_subtitles": 114340,
+        "bnc_spoken": 35990,
+        "gutenberg": 116210,
+        "cleanqwen_fineweb_compact_view_reinvest": 30050,
+        "switchboard": 1320,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 10
+      },
+      "first_row": {
+        "text": "ah! [another child asks Mot a question] *CHI: wanna come play with me? %add: another child [the other child agrees] *CHI: okay. *CHI: come on. %add: other child *CHI: look at. [points to plastic turtle] *CHI: there's a turtle. *CHI: here. *CHI: want this one [yellow wand]? [holds out yellow wand to Bro] *CHI: pick up stuff with that [yellow wand] see? *CHI: you have two... [pushes two silver men toward Bro] *CHI: I have two. [pushes two silver men in front of himself] *CHI: one there. [puts a ball on the silver circle on the black base] *CHI: one there. [puts another ball on the silver circle; it rolls down and sticks to the side of the black base] *CHI: whoop'. [moves the ball back to the top of the black base] *CHI: oh yeah. [pulls a silver man from the bottom of the base and pushes it toward Mot] *CHI: mom. *CHI: you get one [silver man]. *MOT:",
+        "words": 160,
+        "example_id": 10289,
+        "source": "childes"
+      },
+      "last_row": {
+        "text": "? ? YOU KNOW, I ACTUALLY THINK IT'S BETTER WE'RE HAVING THE WEDDING AT YOUR PARENTS' HOUSE AND NOT THEIR CLUB. I AGREE. THE GAZEBO WAS SO- WHAT'S THE WORD? NOT THERE ANYMORE. HEY, I'M SORRY, BUT YOU PUT A GOLF CART AT A CLUB WITH A GAZEBO, AND I THINK YOU'RE ASKING FOR TROUBLE. ALL RIGHTY, WHAT'S ON TODAY'S \"WEDDULE\"? COMBINATION OF SCHEDULE AND WEDDING. UH-HUH. A LITTLE TIMESAVER I CAME UP WITH. OF COURSE, IF I HAVE TO TALK ABOUT IT AS A TIMESAVER, THEN IT'S NOT MUCH OF A TIMESER. I WAS GONNA SAY SCHEDDING, BUT THEN WEDDULE SEEMED FUNNIER. ANYWAY, YOU TALK. MM. OKAY. WELL, THE CATERER IS COMING BY AT 3:00 FOR A TASTING. AND MY MOM AND I ARE DOING THE FINAALTERATIONS ON THE DRESS. I THINK IT'S SO COOL THAT YOU'RE WEARING YOUR MOM'S DRESS. YEAH. WHAT WAS THAT? OH, NOTHING. I HATE THE DRESS. THAT'S NOT NOTHING. I KNOW, BUT SHE WAS",
+        "words": 160,
+        "example_id": 40450,
+        "source": "open_subtitles"
+      }
+    },
+    "example_order_manifest": {
+      "seed": 43,
+      "selected_for_training_words": 100000000,
+      "num_consumed_examples": 647400,
+      "masking_curriculum": "wwm_fixed",
+      "mask_prob_start": 0.15,
+      "mask_prob_end": 0.15,
+      "switch_frac": 0.7,
+      "source_words_consumed": {
+        "childes": 25748800,
+        "qwen_pair_packed": 16568000,
+        "simple_wiki": 10590400,
+        "open_subtitles": 18294400,
+        "bnc_spoken": 5758400,
+        "gutenberg": 18593600,
+        "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+        "switchboard": 211200,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+      },
+      "data_source_type": "example_jsonl",
+      "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "example_jsonl_label": "cleanqwen_fineweb_compact_view_reinvest"
+    },
+    "train_command_hash_ok": true,
+    "train_command_expected_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "train_command_actual_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "all_exact_10M_recorded": true,
+    "metadata_status": "DENSITY_CLEANQWEN_ROWHOLDOUT_OVERLAY_MATERIALIZED",
+    "compact_pair_stats": {
+      "pairs": 12155,
+      "source_words": 261803,
+      "rewrite_words": 161708,
+      "pair_words": 423511,
+      "unique_doc_ids": 4529,
+      "unique_sentence_ids": 12155,
+      "domain_hit_counts": {
+        "science_physical": 1589,
+        "causal_relational": 1537,
+        "quant_numeric": 974,
+        "geography_places": 772,
+        "institutions_society": 862,
+        "people_history": 358,
+        "media_culture": 370
+      },
+      "mean_content_recall": 0.6631212351812201
+    },
+    "changed_block_row_meta_count": 3006,
+    "selected_pair_count": 12155,
+    "prompt_count": 21465,
+    "accepted_rewrite_count": 18682,
+    "raw_generation_row_count": 21465,
+    "overlay_metadata_keys": [
+      "audit",
+      "base_split",
+      "changed_block_budget_words",
+      "created_utc",
+      "elapsed_sec",
+      "families",
+      "files",
+      "inputs",
+      "interpretation",
+      "pair_summaries",
+      "passes",
+      "scientific_purpose",
+      "sha256",
+      "source_word_counts_by_arm",
+      "status",
+      "total_words_per_pool",
+      "write_training"
+    ]
+  },
+  "evaluation_coordinate": {
+    "pristine_strict_root": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict",
+    "official_eval_commit_recorded_step036": "6f825c291e2c4c78ad33b1935fd64d45f52642dc",
+    "strict_eval_dataset_revision_recorded_step036": "8d52da9424a9ff30b9e8266c4f751aba9c504233",
+    "ewok_source_revision_recorded_step036": "34d912a608066c92e2990a0328ffc3bd9a716042",
+    "globalpiqa_lineage": {
+      "summary_path": "experiments/archive/representation_and_objectives/data/globalpiqa_official_lineage/globalpiqa_official_lineage.json",
+      "checks": {
+        "official_dl_exists": true,
+        "official_dl_sha256": "be1a0bb84fc4efee4278d140279523cd1da0962c9598298cc3cef98f1f24da8c",
+        "collator_sha256": "bbb36ebc1090873bbd526c385bb39af6b9a6289f55a5f5fbce5fe8e7f74a84ff",
+        "initial_model_studies_dl_identical_to_pristine_dl": true,
+        "official_dl_returncode": 0,
+        "all_generated_files_exist": true,
+        "all_generated_counts_match_collator_expectation": true,
+        "all_generated_match_inherited_bytes": true,
+        "generated_full_equals_fast": true,
+        "inherited_full_equals_fast": true
+      },
+      "upstream_dataset_revisions": {
+        "parallel": {
+          "repo_id": "mrlbenchmarks/global-piqa-parallel",
+          "repo_type": "dataset",
+          "sha": "b0b18516a8bc2cb1106bce3dd4db32848ca715ea",
+          "last_modified": "2026-06-02 16:48:48+00:00",
+          "private": false,
+          "gated": false,
+          "num_files": 135,
+          "eng_candidate_files": [
+            "data/parallel_ben_beng.tsv",
+            "data/parallel_eng_latn.tsv",
+            "data/parallel_mni_beng.tsv"
+          ],
+          "first_20_files": [
+            ".gitattributes",
+            "README.md",
+            "data/parallel_acm_arab.tsv",
+            "data/parallel_acq_arab.tsv",
+            "data/parallel_aeb_arab.tsv",
+            "data/parallel_afb_arab.tsv",
+            "data/parallel_als_latn.tsv",
+            "data/parallel_amh_ethi.tsv",
+            "data/parallel_apc_arab_jord.tsv",
+            "data/parallel_apc_arab_leba.tsv",
+            "data/parallel_apc_arab_pale.tsv",
+            "data/parallel_apc_arab_syri.tsv",
+            "data/parallel_arb_arab.tsv",
+            "data/parallel_arq_arab.tsv",
+            "data/parallel_ars_arab.tsv",
+            "data/parallel_ary_arab.tsv",
+            "data/parallel_arz_arab.tsv",
+            "data/parallel_azj_latn.tsv",
+            "data/parallel_bam_latn.tsv",
+            "data/parallel_bcc_arab.tsv"
+          ]
+        },
+        "nonparallel": {
+          "repo_id": "mrlbenchmarks/global-piqa-nonparallel",
+          "repo_type": "dataset",
+          "sha": "6777742fa3634c0583cda3b7f8a482ea7b1b0937",
+          "last_modified": "2026-06-02 16:48:02+00:00",
+          "private": false,
+          "gated": false,
+          "num_files": 392,
+          "eng_candidate_files": [
+            "data/nonparallel_asm_beng.tsv",
+            "data/nonparallel_ben_beng.tsv",
+            "data/nonparallel_eng_latn.tsv",
+            "data/nonparallel_mni_beng.tsv",
+            "data_v0p1/nonparallel_asm_beng.tsv",
+            "data_v0p1/nonparallel_ben_beng.tsv",
+            "data_v0p1/nonparallel_eng_latn.tsv",
+            "data_v0p1/nonparallel_mni_beng.tsv",
+            "unsampled_full/unsampled_nonparallel_asm_beng.tsv",
+            "unsampled_full/unsampled_nonparallel_ben_beng.tsv",
+            "unsampled_full/unsampled_nonparallel_eng_latn.tsv",
+            "unsampled_full/unsampled_nonparallel_mni_beng.tsv"
+          ],
+          "first_20_files": [
+            ".gitattributes",
+            "README.md",
+            "data/nonparallel_acm_arab.tsv",
+            "data/nonparallel_acq_arab.tsv",
+            "data/nonparallel_aeb_arab.tsv",
+            "data/nonparallel_afb_arab.tsv",
+            "data/nonparallel_als_latn.tsv",
+            "data/nonparallel_amh_ethi.tsv",
+            "data/nonparallel_apc_arab_jord.tsv",
+            "data/nonparallel_apc_arab_leba.tsv",
+            "data/nonparallel_apc_arab_pale.tsv",
+            "data/nonparallel_apc_arab_syri.tsv",
+            "data/nonparallel_arb_arab.tsv",
+            "data/nonparallel_arq_arab.tsv",
+            "data/nonparallel_ars_arab.tsv",
+            "data/nonparallel_ary_arab.tsv",
+            "data/nonparallel_arz_arab.tsv",
+            "data/nonparallel_asm_beng.tsv",
+            "data/nonparallel_azj_latn.tsv",
+            "data/nonparallel_bam_latn.tsv"
+          ]
+        }
+      },
+      "generated_parallel_sha256": "cb9513ed5096ad8115becbe42fdfc97711980f519ada87808e3ddc5f8d5e4453",
+      "generated_nonparallel_sha256": "aeec831d3adb09bf268ce1b847a854d105b3922c440a164a2c5893b96b228a8f"
+    },
+    "code_hashes": {
+      "pristine_collate_preds_py": {
+        "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/collate_preds.py",
+        "exists": true,
+        "size_bytes": 32604,
+        "sha256": "bbb36ebc1090873bbd526c385bb39af6b9a6289f55a5f5fbce5fe8e7f74a84ff"
+      },
+      "pristine_globalpiqa_dl_py": {
+        "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/global_piqa/dl.py",
+        "exists": true,
+        "size_bytes": 1060,
+        "sha256": "be1a0bb84fc4efee4278d140279523cd1da0962c9598298cc3cef98f1f24da8c"
+      },
+      "pristine_print_results_table_py": {
+        "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/scripts/print_results_table.py",
+        "exists": true,
+        "size_bytes": 4348,
+        "sha256": "556f9312f179662921058ad3947b7a33d63f4ea4c4fe64e07a55c2773698adee"
+      }
+    },
+    "collated_shape": {
+      "top_keys": [
+        "aoa",
+        "aoa_surprisals",
+        "blimp",
+        "blimp_supplement",
+        "comps",
+        "entity_tracking_filtered",
+        "ewok",
+        "global_piqa_nonparallel",
+        "global_piqa_parallel",
+        "glue",
+        "reading"
+      ],
+      "null_keys": [],
+      "blimp_lengths": {
+        "adjunct_island": 928,
+        "anaphor_gender_agreement": 971,
+        "anaphor_number_agreement": 931,
+        "animate_subject_passive": 895,
+        "animate_subject_trans": 923,
+        "causative": 818,
+        "complex_NP_island": 846,
+        "coordinate_structure_constraint_complex_left_branch": 906,
+        "coordinate_structure_constraint_object_extraction": 949,
+        "determiner_noun_agreement_1": 929,
+        "determiner_noun_agreement_2": 931,
+        "determiner_noun_agreement_irregular_1": 681,
+        "determiner_noun_agreement_with_adj_2": 941,
+        "determiner_noun_agreement_irregular_2": 820,
+        "determiner_noun_agreement_with_adj_irregular_1": 718,
+        "determiner_noun_agreement_with_adjective_1": 933,
+        "determiner_noun_agreement_with_adj_irregular_2": 840,
+        "distractor_agreement_relational_noun": 788,
+        "distractor_agreement_relative_clause": 871,
+        "drop_argument": 920,
+        "ellipsis_n_bar_1": 802,
+        "ellipsis_n_bar_2": 828,
+        "existential_there_object_raising": 812,
+        "existential_there_quantifiers_1": 930,
+        "existential_there_quantifiers_2": 911,
+        "expletive_it_object_raising": 759,
+        "existential_there_subject_raising": 924,
+        "inchoative": 855,
+        "intransitive": 868,
+        "irregular_past_participle_adjectives": 961,
+        "irregular_past_participle_verbs": 942,
+        "irregular_plural_subject_verb_agreement_1": 804,
+        "irregular_plural_subject_verb_agreement_2": 892,
+        "left_branch_island_echo_question": 947,
+        "left_branch_island_simple_question": 951,
+        "matrix_question_npi_licensor_present": 929,
+        "npi_present_1": 909,
+        "only_npi_licensor_present": 882,
+        "npi_present_2": 914,
+        "passive_1": 840,
+        "only_npi_scope": 837,
+        "passive_2": 903,
+        "principle_A_c_command": 946,
+        "principle_A_case_1": 912,
+        "principle_A_case_2": 915,
+        "principle_A_domain_1": 914,
+        "principle_A_domain_2": 915,
+        "principle_A_domain_3": 941,
+        "principle_A_reconstruction": 967,
+        "regular_plural_subject_verb_agreement_1": 890,
+        "regular_plural_subject_verb_agreement_2": 945,
+        "sentential_negation_npi_licensor_present": 919,
+        "sentential_negation_npi_scope": 871,
+        "superlative_quantifiers_1": 979,
+        "sentential_subject_island": 961,
+        "superlative_quantifiers_2": 986,
+        "tough_vs_raising_1": 948,
+        "tough_vs_raising_2": 920,
+        "wh_questions_object_gap": 859,
+        "wh_island": 960,
+        "transitive": 868,
+        "wh_questions_subject_gap": 898,
+        "wh_questions_subject_gap_long_distance": 857,
+        "wh_vs_that_no_gap": 861,
+        "wh_vs_that_no_gap_long_distance": 875,
+        "wh_vs_that_with_gap_long_distance": 910,
+        "wh_vs_that_with_gap": 919
+      },
+      "blimp_supplement_lengths": {
+        "qa_congruence_easy": 64,
+        "qa_congruence_tricky": 165,
+        "turn_taking": 280,
+        "subject_aux_inversion": 3867,
+        "hypernym": 842
+      },
+      "ewok_lengths": {
+        "agent-properties": 2210,
+        "material-dynamics": 770,
+        "material-properties": 170,
+        "physical-dynamics": 120,
+        "physical-interactions": 556,
+        "physical-relations": 818,
+        "quantitative-properties": 314,
+        "social-interactions": 294,
+        "social-properties": 328,
+        "social-relations": 1548,
+        "spatial-relations": 490
+      },
+      "entity_tracking_filtered_lengths": {
+        "regular_0_ops": 517,
+        "regular_1_ops": 409,
+        "regular_2_ops": 405,
+        "regular_3_ops": 425,
+        "regular_4_ops": 388,
+        "regular_5_ops": 94,
+        "ambiref_0_ops": 508,
+        "ambiref_1_ops": 428,
+        "ambiref_2_ops": 413,
+        "ambiref_3_ops": 409,
+        "ambiref_4_ops": 434,
+        "ambiref_5_ops": 123,
+        "move_contents_0_ops": 516,
+        "move_contents_1_ops": 437,
+        "move_contents_2_ops": 399,
+        "move_contents_3_ops": 406,
+        "move_contents_4_ops": 353,
+        "move_contents_5_ops": 116
+      },
+      "comps_lengths": {
+        "wugs_dist_in_between": 13896,
+        "wugs_dist_before": 13896,
+        "wugs": 13896,
+        "base": 49340
+      },
+      "global_piqa_parallel_example_count": 103,
+      "global_piqa_parallel_prediction_total": 103,
+      "global_piqa_nonparallel_example_count": 100,
+      "global_piqa_nonparallel_prediction_total": 100,
+      "reading_lengths": {
+        "reading": 1726
+      },
+      "glue_lengths": {
+        "boolq": 1635,
+        "mnli": 4908,
+        "mrpc": 204,
+        "multirc": 2424,
+        "qqp": 20215,
+        "rte": 139,
+        "wsc": 52
+      },
+      "aoa_surprisal_num_rows": 152095,
+      "aoa_surprisal_num_steps": 19,
+      "aoa_surprisal_row_count_values": [
+        8005
+      ],
+      "aoa_surprisal_steps": [
+        "chck_1M",
+        "chck_2M",
+        "chck_3M",
+        "chck_4M",
+        "chck_5M",
+        "chck_6M",
+        "chck_7M",
+        "chck_8M",
+        "chck_9M",
+        "chck_10M",
+        "chck_20M",
+        "chck_30M",
+        "chck_40M",
+        "chck_50M",
+        "chck_60M",
+        "chck_70M",
+        "chck_80M",
+        "chck_90M",
+        "chck_100M"
+      ],
+      "aoa_score_keys": [
+        "aoa",
+        "curve_fitness_record"
+      ],
+      "aoa_score_results_keys": null
+    }
+  },
+  "teacher_and_generation_trace": {
+    "compact_rewrite_prompt_file": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+    "accepted_rewrite_file": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_accepted_rewrites.jsonl",
+    "raw_generation_file": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_rows.jsonl",
+    "prompt_count": 21465,
+    "accepted_rewrite_count": 18682,
+    "raw_generation_row_count": 21465,
+    "hashes": {
+      "generation_prompts_all": {
+        "path": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+        "exists": true,
+        "size_bytes": 31319259,
+        "sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807"
+      },
+      "accepted_rewrites": {
+        "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_accepted_rewrites.jsonl",
+        "exists": true,
+        "size_bytes": 12229492,
+        "sha256": "3565a130e2396ecc80291a91ca1f43f0f2fa8814c8915af9de581384b7154e9b"
+      },
+      "raw_generation_rows": {
+        "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_rows.jsonl",
+        "exists": true,
+        "size_bytes": 23184074,
+        "sha256": "4768758e4b1a41e71105e0b60a344eb8fff8e3db5e6fcd5f7c41bf08a68370c7"
+      }
+    },
+    "teacher_identity_status": "Generator identity/model must be read from A02 generation logs or reconstructed from group/source notes before final submission; this ledger records prompt/output artifacts but has not yet located a definitive model-name line.",
+    "known_context": "Session memory indicates compact rewrites were generated by a Qwen 3.5/9B-family approved teacher and filtered for faithful compactness, but final ledger still needs exact generator model identifier, runtime, and any license terms from source files/logs."
+  },
+  "overlap_and_contamination_protection": {
+    "current_official_overlap_ancestry": "experiments/archive/representation_and_objectives/data/changed_block_overlap_ancestry_current_official/changed_block_overlap_ancestry_current_official.json",
+    "rows_with_strict_score_overlap": 7,
+    "unique_strict_score_ngrams": 9,
+    "strict_eval_hit_by_top_dir": {
+      "aoa": 4,
+      "glue_filtered": 7
+    },
+    "interpretation": "This file makes the exact changed-block overlaps auditable under the current official coordinate. Sparse overlaps are provenance signals to inspect, not by themselves evidence that the model saw target labels or that the endpoint score is explained by direct text reuse."
+  },
+  "file_hashes": {
+    "train_10m_pool": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "exists": true,
+      "size_bytes": 59935251,
+      "sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23"
+    },
+    "train_100m_stream": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "exists": true,
+      "size_bytes": 599352510,
+      "sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691"
+    },
+    "changed_block_row_meta": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl",
+      "exists": true,
+      "size_bytes": 993138,
+      "sha256": "4c30b7f6d1a90ab6e8f1b618f5ef445e4dd80b9a6817a5ce3d299e1744924e2c"
+    },
+    "overlay_metadata": {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+      "exists": true,
+      "size_bytes": 26393,
+      "sha256": "92aa4c00b09d201a09da27e7e16677643bc7cda321471e1ec46332600339b3e4"
+    },
+    "selected_compact_pairs": {
+      "path": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/selected_compact_reinvest_pairs.jsonl",
+      "exists": true,
+      "size_bytes": 7772817,
+      "sha256": "d2a3110c110e216180b632ce7a181acdf348b804ea19f172e16b5afeb0d8c9fc"
+    },
+    "generation_prompts_all": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_density_prompts/fineweb_medium_compact_prompts_all.jsonl",
+      "exists": true,
+      "size_bytes": 31319259,
+      "sha256": "c0ef389b6168b707996d807a2f8567dfdc3ff59025a913bf047d79ba75d2a807"
+    },
+    "accepted_rewrites": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_accepted_rewrites.jsonl",
+      "exists": true,
+      "size_bytes": 12229492,
+      "sha256": "3565a130e2396ecc80291a91ca1f43f0f2fa8814c8915af9de581384b7154e9b"
+    },
+    "raw_generation_rows": {
+      "path": "experiments/archive/frontier_consolidation/data/medium_compact_analysis/medium_compact_ws_rows.jsonl",
+      "exists": true,
+      "size_bytes": 23184074,
+      "sha256": "4768758e4b1a41e71105e0b60a344eb8fff8e3db5e6fcd5f7c41bf08a68370c7"
+    },
+    "train_command": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/train_command.json",
+      "exists": true,
+      "size_bytes": 3321,
+      "sha256": "6e0649dfbfed10c424150eb5514bb13b0bb8d914141c1c46b544af018b60d513"
+    },
+    "example_order_manifest": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/example_order_manifest.json",
+      "exists": true,
+      "size_bytes": 827,
+      "sha256": "8587a38458a7e74ef2cd15d3f064381497a6a535be30d1606ed25b8d52eaf4e9"
+    },
+    "scientific_metrics": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/scientific_metrics.json",
+      "exists": true,
+      "size_bytes": 28015,
+      "sha256": "66acab0a00f51f5f952ef1350530849bcebd7b2ef86574c25425411e67125f6d"
+    },
+    "model_config": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/config.json",
+      "exists": true,
+      "size_bytes": 812,
+      "sha256": "2ed28483121ddea2ce5ed2256acb75d4b3d998e0466c4485e716b517558a588a"
+    },
+    "tokenizer_json": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/tokenizer.json",
+      "exists": true,
+      "size_bytes": 1130547,
+      "sha256": "9cc4f9073675da3f817a6020e7b0833cf3234c0131515d68f4065b00f14933ac"
+    },
+    "tokenizer_config": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/tokenizer_config.json",
+      "exists": true,
+      "size_bytes": 1325,
+      "sha256": "3537db0258447674df689a0bfede6503f0ce808333b9604c25be68b647361593"
+    },
+    "special_tokens_map": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/special_tokens_map.json",
+      "exists": true,
+      "size_bytes": 122,
+      "sha256": "2be97b602cd0e4a6c2874cbf03c0d1025b3af5474666da931bc04f6c23a9a39d"
+    },
+    "checkpoint_100m_safetensors": {
+      "path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M/model.safetensors",
+      "exists": true,
+      "size_bytes": 137890400,
+      "sha256": "6aa03d469281558d5a6d2fd490698a33584e8d3a157dc5040bdfaffe3a450a44"
+    },
+    "official_coordinate_summary": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/pristine_collate_seed43022_summary.json",
+      "exists": true,
+      "size_bytes": 27410,
+      "sha256": "530e8e1f4922014a148e4867898775b227e1e5470b2c1152cd312b4e01ec5688"
+    },
+    "collated_submission_json": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_collate_seed43022/results/hf_model/all_full_preds_and_fast_scores_mlm.json",
+      "exists": true,
+      "size_bytes": 49342248,
+      "sha256": "a85aae3b29b3cecceb67e21792f75048af478cc9191011c9872a69a639fec192"
+    },
+    "globalpiqa_lineage": {
+      "path": "experiments/archive/representation_and_objectives/data/globalpiqa_official_lineage/globalpiqa_official_lineage.json",
+      "exists": true,
+      "size_bytes": 46188,
+      "sha256": "478f98e7c245b62874bec1c968d31ab79f332c0798f0d43fdb72e9839985a552"
+    },
+    "overlap_ancestry": {
+      "path": "experiments/archive/representation_and_objectives/data/changed_block_overlap_ancestry_current_official/changed_block_overlap_ancestry_current_official.json",
+      "exists": true,
+      "size_bytes": 91665,
+      "sha256": "195590b2925259761b6d9a9a54f17b2995ec10f663f53cae07061537548257d7"
+    },
+    "pristine_collate_preds_py": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/collate_preds.py",
+      "exists": true,
+      "size_bytes": 32604,
+      "sha256": "bbb36ebc1090873bbd526c385bb39af6b9a6289f55a5f5fbce5fe8e7f74a84ff"
+    },
+    "pristine_globalpiqa_dl_py": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/evaluation_pipeline/global_piqa/dl.py",
+      "exists": true,
+      "size_bytes": 1060,
+      "sha256": "be1a0bb84fc4efee4278d140279523cd1da0962c9598298cc3cef98f1f24da8c"
+    },
+    "pristine_print_results_table_py": {
+      "path": "experiments/archive/representation_and_objectives/data/pristine_official_coordinate/babylm-eval/strict/scripts/print_results_table.py",
+      "exists": true,
+      "size_bytes": 4348,
+      "sha256": "556f9312f179662921058ad3947b7a33d63f4ea4c4fe64e07a55c2773698adee"
+    }
+  },
+  "remaining_for_submission_package": [
+    "Locate exact compact-rewrite generator model/tool log and source license lineage, not only prompt/output hashes.",
+    "Compare the completed seed43122 results on the same official coordinate; if its full vector is weak, analyze seed variance before packaging as robust principle.",
+    "A portable path-independent model package remains conditional on the completed evidence.",
+    "Coordinate submission ownership with frontier_consolidation to avoid divergent bundles."
+  ]
+}

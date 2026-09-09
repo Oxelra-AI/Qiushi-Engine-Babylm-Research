@@ -1,0 +1,86 @@
+{
+  "status": "COHMARGIN_NLL_GAP_PROBE_COMPLETE",
+  "created_utc": "2026-09-01T09:19:12Z",
+  "label": "scale1p75_chck4M_ref8_smoke",
+  "model_path": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_4M",
+  "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "device": "cpu",
+  "gpu": null,
+  "probe_seed": 15900,
+  "row_meta": {
+    "rows_seen_until_stop": 8,
+    "words_seen_until_stop": 1190,
+    "row_offset": 0,
+    "skip_coherent_words": null,
+    "rows_skipped_by_words": 0,
+    "num_rows_requested": 8,
+    "num_rows_loaded": 8,
+    "loaded_words": 1190,
+    "loaded_example_ids_first10": [
+      10289,
+      14184,
+      300801,
+      308289,
+      57335,
+      42019,
+      4211,
+      51924
+    ],
+    "loaded_sources_first10": [
+      "childes",
+      "childes",
+      "qwen_pair_packed",
+      "qwen_pair_packed",
+      "simple_wiki",
+      "open_subtitles",
+      "bnc_spoken",
+      "open_subtitles"
+    ]
+  },
+  "seq_length": 256,
+  "max_seq_length": 256,
+  "mask_prob": 0.15,
+  "disrupt_span_tokens": 8,
+  "batch_size": 4,
+  "n_batches": 2,
+  "n_masked_tokens": 262,
+  "coherent_nll_mean": 5.950919190236858,
+  "disrupted_nll_mean": 5.99110866355077,
+  "bad_minus_coh_nll_mean": 0.04018947331391218,
+  "bad_minus_coh_nll_std_population": 0.24505504665854136,
+  "bad_minus_coh_nll_se": 0.015139551342694773,
+  "bad_minus_coh_nll_z_vs_zero": 2.654601342153025,
+  "gap_positive_fraction": 0.549618320610687,
+  "smoke_totals": {
+    "target_mismatch_tokens": 0,
+    "special_or_pad_mismatch_tokens": 0,
+    "mask_position_mismatch_tokens": 0,
+    "rows_with_context_multiset_mismatch": 0,
+    "moved_context_tokens_min": 79,
+    "moved_context_tokens_max": 210,
+    "moved_context_tokens_mean": 161.5
+  },
+  "batch_records": [
+    {
+      "batch_index": 1,
+      "n_masked_tokens": 123,
+      "coh_nll_mean": 5.478658676147461,
+      "bad_nll_mean": 5.5410590171813965,
+      "bad_minus_coh_nll_mean": 0.06239943206310272,
+      "gap_positive_fraction": 0.6016260385513306,
+      "moved_context_tokens_mean": 152.75
+    },
+    {
+      "batch_index": 2,
+      "n_masked_tokens": 139,
+      "coh_nll_mean": 6.368818283081055,
+      "bad_nll_mean": 6.389355182647705,
+      "bad_minus_coh_nll_mean": 0.02053605578839779,
+      "gap_positive_fraction": 0.5035971403121948,
+      "moved_context_tokens_mean": 170.25
+    }
+  ],
+  "elapsed_sec": 0.445,
+  "scientific_reading": "Positive bad_minus_coh_nll means the model assigns lower NLL to coherent context than to block-shuffled context for the same masked targets. Compare lambda>0 and lambda=0 same-charge arms before interpreting official-score movement as caused by the margin signal."
+}

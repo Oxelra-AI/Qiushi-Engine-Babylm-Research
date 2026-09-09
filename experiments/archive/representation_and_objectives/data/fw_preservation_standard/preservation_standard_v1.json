@@ -1,0 +1,28 @@
+{
+  "name": "fw_compact_preservation_standard_v1_step100",
+  "created_utc": "2026-08-30T17:17:49Z",
+  "purpose": "Use the same preservation standard for old and new Qwen3.5 compact rewrites before constructing compact_view/source_repeat BabyLM corpora.",
+  "hard_failure_rules": [
+    "empty or malformed non-sentence output",
+    "rewrite/source whitespace-word ratio <0.33 or >1.25",
+    "exact copy of source text",
+    "any missing source number or any new number",
+    "any missing real named entity after sentence-starter false positives are trimmed",
+    "content recall <0.28 for sources with at least 14 words or content overlap <0.10 for sources with at least 10 words",
+    "negative polarity in source lost, or explicit negative polarity introduced when source has none",
+    "explicit modality/hedge in source lost, or introduced when source has none",
+    "causal relation in source lost unless a light causal bridge preserves both sides; new strong causal relation introduced when source has none",
+    "comparison/order direction in source not retained; new up/down/before/after direction introduced when source has none"
+  ],
+  "soft_annotations": [
+    "rewrite/source ratio >1.05",
+    "near-copy view",
+    "new soft contrast/similarity relation"
+  ],
+  "inputs": {
+    "frozen_sources": "experiments/archive/representation_and_objectives/data/fw_mechanism_source_selection/fw_mechanism_frozen_sources.jsonl",
+    "frozen_sources_sha256": "d113cc91a84cd779313228556bb80b9bcf38eb9c15fdf4ede1331ece600df216",
+    "pilot_rows": "experiments/archive/representation_and_objectives/data/qwen35_teacher_recovery/qwen35_generation_merged_quality.jsonl",
+    "pilot_rows_sha256": "70b315c91a64074835593834ce1956a052a93883189d4a184127b08f8877ff89"
+  }
+}

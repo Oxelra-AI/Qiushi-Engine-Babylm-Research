@@ -1,0 +1,337 @@
+{
+  "run_dir": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke",
+  "files": {
+    "data_manifest.json": {
+      "exists": true,
+      "bytes": 3155,
+      "json": {
+        "dataset_id": "BabyLM-community/BabyLM-2026-Strict-Small",
+        "dataset_revision": "c92ab16b4f08858304b0815706065b3354d8fc0a",
+        "download_dir": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset",
+        "files": [
+          {
+            "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset/bnc_spoken.train.txt",
+            "name": "bnc_spoken.train.txt",
+            "bytes": 4064608,
+            "sha256": "8f3042f4104cf356052fda784682d8e8170fd1fd8c795a1c3e172f9eb2ebfa3c",
+            "whitespace_words": 762073
+          },
+          {
+            "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset/childes.train.txt",
+            "name": "childes.train.txt",
+            "bytes": 15159891,
+            "sha256": "c898c0a44f4380ce7a66766acd01e70eebbbd9410a1701ddf89452ea6f5aea45",
+            "whitespace_words": 2841101
+          },
+          {
+            "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset/gutenberg.train.txt",
+            "name": "gutenberg.train.txt",
+            "bytes": 14031163,
+            "sha256": "4ddcf5774a7947293ceb56dc76774f553b534231e7ac636c071559229cf2cb9b",
+            "whitespace_words": 2557721
+          },
+          {
+            "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset/open_subtitles.train.txt",
+            "name": "open_subtitles.train.txt",
+            "bytes": 12159704,
+            "sha256": "9b21adecf57dd97f611d9442a2f993d2f843278eb24fc98f4165322c1ba5670a",
+            "whitespace_words": 2282877
+          },
+          {
+            "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset/simple_wiki.train.txt",
+            "name": "simple_wiki.train.txt",
+            "bytes": 8861946,
+            "sha256": "0ac614aa069ea3908c07c9755bf80bb500d4cee15cd972e9f93cccf89639e9a7",
+            "whitespace_words": 1531437
+          },
+          {
+            "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/raw_dataset/switchboard.train.txt",
+            "name": "switchboard.train.txt",
+            "bytes": 122528,
+            "sha256": "89c99649777be2f76f5054e9f1aa364b7e1a62844e219fe810205be6d99399b5",
+            "whitespace_words": 24791
+          }
+        ],
+        "total_official_dataset_whitespace_words_counted": 10000000,
+        "example_pool_words_requested": 20000,
+        "example_pool_words_actual": 20000,
+        "selected_for_this_run_whitespace_words": 10000,
+        "max_word_exposure_requested": 10000,
+        "example_order_manifest": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/example_order_manifest.json",
+        "order_mode": "random",
+        "word_exposure_count_method": "Python str.split() over selected training text; examples are built from example_pool_words, shuffled once by seed, consumed until max_word_exposure, then optionally reordered without changing the selected example set."
+      }
+    },
+    "tokenizer_manifest.json": {
+      "exists": true,
+      "bytes": 323,
+      "json": {
+        "mode": "baseline16k",
+        "source_repo": "BabyLM-community/BabyLM-2026-Baseline-GPT2-Strict-Small",
+        "source_revision": "main",
+        "vocab_size": 16384,
+        "tokenizer_language_training_exposure_words": 0,
+        "rule_note": "Uses official BabyLM 2026 baseline tokenizer, re-saved as PreTrainedTokenizerFast for portability."
+      }
+    },
+    "hf_model/tokenizer_config.json": {
+      "exists": true,
+      "bytes": 225,
+      "json": {
+        "backend": "tokenizers",
+        "bos_token": "<s>",
+        "eos_token": "</s>",
+        "mask_token": "<mask>",
+        "model_max_length": 1024,
+        "pad_token": "<pad>",
+        "tokenizer_class": "PreTrainedTokenizerFast",
+        "unk_token": "<unk>"
+      }
+    },
+    "hf_model/chck_1M/tokenizer_config.json": {
+      "exists": true,
+      "bytes": 225,
+      "json": {
+        "backend": "tokenizers",
+        "bos_token": "<s>",
+        "eos_token": "</s>",
+        "mask_token": "<mask>",
+        "model_max_length": 1024,
+        "pad_token": "<pad>",
+        "tokenizer_class": "PreTrainedTokenizerFast",
+        "unk_token": "<unk>"
+      }
+    },
+    "hf_model/config.json": {
+      "exists": true,
+      "bytes": 770,
+      "json": {
+        "architectures": [
+          "BabyLMSurfaceForCausalLM"
+        ],
+        "attn_pdrop": 0.1,
+        "auto_map": {
+          "AutoConfig": "configuration_babylm_surface.BabyLMSurfaceConfig",
+          "AutoModelForCausalLM": "modeling_babylm_surface.BabyLMSurfaceForCausalLM"
+        },
+        "bos_token_id": 1,
+        "dtype": "float32",
+        "embd_pdrop": 0.1,
+        "eos_token_id": 2,
+        "ffn_mult": 4,
+        "layer_norm_epsilon": 1e-05,
+        "lookup_rank": 5,
+        "max_ngrams_per_token": 16,
+        "model_type": "babylm_surface",
+        "n_ctx": 128,
+        "n_embd": 128,
+        "n_head": 4,
+        "n_layer": 2,
+        "n_positions": 128,
+        "ngram_vocab_size": 1024,
+        "pad_token_id": 3,
+        "resid_pdrop": 0.1,
+        "surface_dim": 64,
+        "surface_mode": "lookup",
+        "tie_word_embeddings": false,
+        "transformers_version": "5.13.0.dev0",
+        "vocab_size": 16384
+      }
+    },
+    "hf_model/chck_1M/config.json": {
+      "exists": true,
+      "bytes": 770,
+      "json": {
+        "architectures": [
+          "BabyLMSurfaceForCausalLM"
+        ],
+        "attn_pdrop": 0.1,
+        "auto_map": {
+          "AutoConfig": "configuration_babylm_surface.BabyLMSurfaceConfig",
+          "AutoModelForCausalLM": "modeling_babylm_surface.BabyLMSurfaceForCausalLM"
+        },
+        "bos_token_id": 1,
+        "dtype": "float32",
+        "embd_pdrop": 0.1,
+        "eos_token_id": 2,
+        "ffn_mult": 4,
+        "layer_norm_epsilon": 1e-05,
+        "lookup_rank": 5,
+        "max_ngrams_per_token": 16,
+        "model_type": "babylm_surface",
+        "n_ctx": 128,
+        "n_embd": 128,
+        "n_head": 4,
+        "n_layer": 2,
+        "n_positions": 128,
+        "ngram_vocab_size": 1024,
+        "pad_token_id": 3,
+        "resid_pdrop": 0.1,
+        "surface_dim": 64,
+        "surface_mode": "lookup",
+        "tie_word_embeddings": false,
+        "transformers_version": "5.13.0.dev0",
+        "vocab_size": 16384
+      }
+    }
+  },
+  "loads": [
+    {
+      "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/hf_model",
+      "ok": true,
+      "tokenizer_class": "PreTrainedTokenizerFast",
+      "vocab_size": 16384,
+      "pad_token_id": 3,
+      "bos_token_id": 1,
+      "eos_token_id": 2,
+      "model_class": "BabyLMSurfaceForCausalLM",
+      "parameter_count": 4722944,
+      "n_layer": 2,
+      "n_embd": 128,
+      "n_head": 4
+    },
+    {
+      "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/hf_model/chck_1M",
+      "ok": true,
+      "tokenizer_class": "PreTrainedTokenizerFast",
+      "vocab_size": 16384,
+      "pad_token_id": 3,
+      "bos_token_id": 1,
+      "eos_token_id": 2,
+      "model_class": "BabyLMSurfaceForCausalLM",
+      "parameter_count": 4722944,
+      "n_layer": 2,
+      "n_embd": 128,
+      "n_head": 4
+    }
+  ],
+  "metrics": {
+    "variant": "lookup_adapter_causal",
+    "status": "completed",
+    "parameter_count": 4722944,
+    "device": "cuda",
+    "cuda_device_count": 2,
+    "seq_length": 128,
+    "words_per_example": 80,
+    "batch_size": 16,
+    "steps": 8,
+    "lr_schedule_total_steps": 16,
+    "warmup_steps": 1,
+    "word_exposure": 10000,
+    "requested_max_word_exposure": 10000,
+    "example_pool_words_actual": 20000,
+    "order_mode": "random",
+    "loss_first": 9.729790687561035,
+    "loss_last": 9.261555671691895,
+    "loss_mean_last_20": 9.48300313949585,
+    "elapsed_sec": 12.08804202079773,
+    "hf_model_dir": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/hf_model",
+    "checkpoint_chck_1M_dir": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/hf_model/chck_1M",
+    "saved_checkpoints": [
+      {
+        "name": "chck_1M",
+        "target_word_exposure": 10000,
+        "actual_cumulative_word_exposure": 10000,
+        "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/hf_model/chck_1M"
+      }
+    ],
+    "router_summary_last": null,
+    "morph_summary_last": null,
+    "memory_summary_last": null,
+    "surface_summary_last": {
+      "surface_gate_mean": 0.5000599026679993,
+      "surface_delta_norm": 0.004308285657316446,
+      "surface_side_norm": 0.008615368977189064,
+      "surface_base_norm": 0.22841227054595947,
+      "surface_ngram_count_mean": 0.0,
+      "surface_mode_is_char_ngram": 0.0
+    },
+    "model_family": "BabyLMSurfaceForCausalLM",
+    "surface_mode": "lookup",
+    "surface_dim": 64,
+    "ngram_vocab_size": 1024,
+    "max_ngrams_per_token": 16,
+    "lookup_rank": 5,
+    "surface_manifest": {
+      "method": "lookup_adapter_causal learned token-ID side adapter with same fusion path and no cross-token character/n-gram sharing",
+      "lookup_rank": 5,
+      "feature_source": "token IDs only; added-capacity control for learned char_ngram surface composition",
+      "examples": [
+        {
+          "id": 0,
+          "token": "<unk>"
+        },
+        {
+          "id": 1,
+          "token": "<s>"
+        },
+        {
+          "id": 2,
+          "token": "</s>"
+        },
+        {
+          "id": 3,
+          "token": "<pad>"
+        },
+        {
+          "id": 4,
+          "token": "<mask>"
+        },
+        {
+          "id": 5,
+          "token": "!"
+        },
+        {
+          "id": 6,
+          "token": "\""
+        },
+        {
+          "id": 7,
+          "token": "#"
+        },
+        {
+          "id": 8,
+          "token": "$"
+        },
+        {
+          "id": 9,
+          "token": "%"
+        },
+        {
+          "id": 10,
+          "token": "&"
+        },
+        {
+          "id": 11,
+          "token": "'"
+        },
+        {
+          "id": 12,
+          "token": "("
+        },
+        {
+          "id": 13,
+          "token": ")"
+        },
+        {
+          "id": 14,
+          "token": "*"
+        },
+        {
+          "id": 15,
+          "token": "+"
+        }
+      ]
+    },
+    "shared_core_seed": 123,
+    "shared_core_init_applied": true,
+    "shared_core_target": "BabyLMSurfaceForCausalLM"
+  },
+  "revision_load": {
+    "path": "experiments/archive/initial_model_studies/training/runs/babylm_lookup_adapter_smoke/hf_model",
+    "revision": "chck_1M",
+    "ok": true,
+    "tokenizer_class": "PreTrainedTokenizerFast",
+    "parameter_count": 4722944
+  }
+}

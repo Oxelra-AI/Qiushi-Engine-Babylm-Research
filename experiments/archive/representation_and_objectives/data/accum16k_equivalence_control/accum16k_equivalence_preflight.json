@@ -1,0 +1,161 @@
+{
+  "status": "PREFLIGHT_OK",
+  "errors": [],
+  "purpose": "bounds the microbatching-only confound between research legal-16k base trainer and research legal-40k accumulated trainer",
+  "run_dir": "experiments/archive/representation_and_objectives/training/runs/accum16k_equivalence_seed43022_4M",
+  "tokenizer16_dir": "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer",
+  "tokenizer16_sha256": "4a95a2a2ead21813a409c5ad7c2c008fbf418dcf3e0dc17bd970bd9ce25ea738",
+  "train_100m": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "train_100m_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+  "stop_words": 4030900,
+  "compare_steps": 102,
+  "lr_total_steps": 2529,
+  "base_prefix_summary": {
+    "steps": 102,
+    "last_step": 102,
+    "last_cumulative_word_exposure": 4030900,
+    "last_lr": 0.0006754966887417219,
+    "last_loss": 6.116403102874756,
+    "mean_loss_first_10": 9.632885932922363,
+    "mean_loss_last_10": 6.2313109874725345,
+    "masked_tokens_first_step": 8593,
+    "batch_words_first_step": 39370,
+    "checksum_first_5": [
+      [
+        1,
+        39370,
+        8593,
+        6.622517e-06,
+        9.821743
+      ],
+      [
+        2,
+        39517,
+        8543,
+        1.3245033e-05,
+        9.826254
+      ],
+      [
+        3,
+        39717,
+        8462,
+        1.986755e-05,
+        9.808482
+      ],
+      [
+        4,
+        39422,
+        8423,
+        2.6490066e-05,
+        9.769173
+      ],
+      [
+        5,
+        39617,
+        8448,
+        3.3112583e-05,
+        9.709332
+      ]
+    ],
+    "checksum_last_5": [
+      [
+        98,
+        39529,
+        8513,
+        0.000649006623,
+        6.190011
+      ],
+      [
+        99,
+        39332,
+        8406,
+        0.000655629139,
+        6.27324
+      ],
+      [
+        100,
+        39571,
+        8266,
+        0.000662251656,
+        6.305251
+      ],
+      [
+        101,
+        39476,
+        8544,
+        0.000668874172,
+        6.278475
+      ],
+      [
+        102,
+        39326,
+        8487,
+        0.000675496689,
+        6.116403
+      ]
+    ]
+  },
+  "command": [
+    "data/external/python",
+    "-B",
+    "experiments/archive/representation_and_objectives/scripts/accumulated_masking_curriculum_trainer.py",
+    "--example_jsonl",
+    "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "--example_jsonl_label",
+    "cleanqwen_fineweb_compact_view_reinvest_accum16k_equivalence_4M",
+    "--example_jsonl_meta",
+    "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/density_cleanqwen_rowholdout_overlay_metadata.json",
+    "--output_dir",
+    "experiments/archive/representation_and_objectives/training/runs/accum16k_equivalence_seed43022_4M",
+    "--tokenizer_path",
+    "experiments/archive/representation_and_objectives/data/strictsmall_tokenizer_retrain/strictsmall_compact_reinvest_16k_tokenizer",
+    "--tokenizer_label",
+    "strictsmall_compact_reinvest_16k_accum_equivalence",
+    "--hidden_size",
+    "480",
+    "--n_layer",
+    "8",
+    "--n_head",
+    "8",
+    "--ffn_mult",
+    "4",
+    "--seed",
+    "43",
+    "--extra_init_seed",
+    "43022",
+    "--train_rng_seed",
+    "43023",
+    "--batch_size",
+    "256",
+    "--micro_batch_size",
+    "64",
+    "--seq_length",
+    "256",
+    "--max_seq_length",
+    "256",
+    "--learning_rate",
+    "0.001",
+    "--warmup_fraction",
+    "0.06",
+    "--lr_total_steps",
+    "2529",
+    "--weight_decay",
+    "0.01",
+    "--masking_curriculum",
+    "wwm_fixed",
+    "--mask_prob_start",
+    "0.15",
+    "--mask_prob_end",
+    "0.15",
+    "--checkpoint_words",
+    "1000000",
+    "--max_word_exposure",
+    "4030900",
+    "--num_workers",
+    "0",
+    "--log_every",
+    "10",
+    "--dynamics_trace_every",
+    "200"
+  ]
+}

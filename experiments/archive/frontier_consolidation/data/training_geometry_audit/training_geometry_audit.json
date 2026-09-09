@@ -1,0 +1,98 @@
+{
+  "status": "TRAINING_GEOMETRY_AUDIT",
+  "created_utc": "2026-09-04T03:37:18Z",
+  "runs": {
+    "clean0_80M": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_cleanqwen_seed43022_80M",
+      "rows": 515048,
+      "words": 80000000,
+      "mean_words_per_row": 155.32532890138395,
+      "batch_size": 256,
+      "ceil_rows_over_batch": 2012,
+      "actual_training_steps_metrics": 2012,
+      "lr_total_steps_metrics": null,
+      "checkpoint_words": 1000000,
+      "loss_first": 9.837512016296387,
+      "loss_last": 2.550567150115967
+    },
+    "dose1_view_100M": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+      "rows": 647400,
+      "words": 100000000,
+      "mean_words_per_row": 154.46400988569664,
+      "batch_size": 256,
+      "ceil_rows_over_batch": 2529,
+      "actual_training_steps_metrics": 2529,
+      "lr_total_steps_metrics": null,
+      "checkpoint_words": 1000000,
+      "loss_first": 9.837543487548828,
+      "loss_last": 2.5525617599487305
+    },
+    "dose1_repeat_100M": {
+      "run_dir": "experiments/archive/frontier_consolidation/training/runs/full_p2c_c2p_abs_repeat_deberta100M_seed43022",
+      "rows": 647400,
+      "words": 100000000,
+      "mean_words_per_row": 154.46400988569664,
+      "batch_size": 256,
+      "ceil_rows_over_batch": 2529,
+      "actual_training_steps_metrics": 2529,
+      "lr_total_steps_metrics": null,
+      "checkpoint_words": 10000000,
+      "loss_first": 9.839323997497559,
+      "loss_last": 2.5566213130950928
+    }
+  },
+  "max_static_geometry": {
+    "one_pass_rows": 65313,
+    "one_pass_words": 10000000,
+    "training_rows_100M": 653130,
+    "training_words_100M": 100000000,
+    "mean_words_per_row": 153.10887572152558,
+    "ceil_rows_over_batch": 2552,
+    "lr_total_steps_used_by_step256_wrapper": 2529,
+    "extra_updates_beyond_lr_total_steps_if_trained_all_rows": 23
+  },
+  "roberta_scaffold_geometry": {
+    "view": {
+      "rows": 653130,
+      "words": 100000000,
+      "sha256": "11a5cf7281a4b9e4a281fd155aef3103825ade1489f8dead59e3c0225186137f",
+      "updates_at_batch256": 2552
+    },
+    "repeat": {
+      "rows": 653130,
+      "words": 100000000,
+      "sha256": "4cb41afc73bc07869df097050a0e1731a4b5ec90dc61f1c129e9158321cfa980",
+      "updates_at_batch256": 2552
+    },
+    "clean": {
+      "rows": 653130,
+      "words": 100000000,
+      "sha256": "64e686d16e0d7d5e81acecc73494d8670a1d6f8ddaffb4ce517277c983a9bed8",
+      "updates_at_batch256": 2552
+    }
+  },
+  "lr_horizon_summary_for_max_if_lr_total_steps_2529": {
+    "configured_total": 2529,
+    "actual_steps": 2552,
+    "warmup_steps": 151,
+    "sum_lr_multipliers_all_steps": 1264.501886604348,
+    "mean_lr_multiplier_all_steps": 0.4954944696725502,
+    "extra_steps_after_configured_total": 23,
+    "extra_tail_sum_lr_multipliers": 0.0018866043480092465,
+    "extra_tail_max_lr_multiplier": 0.0002308013319454183,
+    "last_five_multipliers": [
+      0.00015750721503099419,
+      0.00017452223999453453,
+      0.0001924096222013505,
+      0.00021116933043219266,
+      0.0002308013319454183
+    ]
+  },
+  "scientific_interpretation": {
+    "semantic_leg": "MAX view and MAX repeat have identical rows, words, batch count, and LR horizon; view-minus-repeat remains the cleanest estimate of semantic re-expression at MAX dose.",
+    "source_leg": "MAX repeat-minus-clean0 and MAX view-minus-clean0 compare different row/update geometries as well as different text. Interpret this as the value of admitting the matched MAX source-packet stream under the fixed training recipe, not a pure source-content scalar.",
+    "verification_update": "Do not reject the launched MAX trainings merely because actual_training_steps is 2552 rather than the 2529 old-stream value. The run wrapper passed lr_total_steps=2529 by design, but the exact 100M MAX streams contain 653130 rows, so batch256 training should execute 2552 optimizer updates.",
+    "roberta_policy": "The RoBERTa MAX-dose scaffold currently mirrors the DeBERTa MAX schedule with lr_total_steps=2529; its dry-run records 2552 batch updates for all three candidate arms, so any later RoBERTa pair/trio shares this geometry internally."
+  }
+}

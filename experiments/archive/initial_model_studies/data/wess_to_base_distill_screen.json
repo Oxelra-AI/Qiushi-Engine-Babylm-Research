@@ -1,0 +1,119 @@
+{
+  "status": "WESS_TO_BASE_DISTILL_SCREEN",
+  "description": "Explicitly trains base-only logits on synthetic binding targets alongside WESS-on loss to test transfer into official-compatible backbone.",
+  "args": {
+    "hidden_size": 384,
+    "n_layer": 4,
+    "n_head": 12,
+    "intermediate_size": 1280,
+    "steps": 1000,
+    "batch_size": 32,
+    "episode_ratio": 0.5,
+    "anneal": true,
+    "encoder_lr": 0.0002,
+    "slot_lr": 0.001,
+    "gate_init": 0.03,
+    "probe_every": 250,
+    "seed": 42,
+    "train_pairs": 1200,
+    "eval_pairs": 200,
+    "official_examples": 5000,
+    "run_name": "distill_384x4_anneal",
+    "base_ce_weight": 1.0,
+    "kl_weight": 0.25,
+    "temperature": 2.0
+  },
+  "device": "cuda",
+  "shortcut_audit": {
+    "first_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "last_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "nearest_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "majority_fixed_first_visible": {
+      "example_acc": 0.2525,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    },
+    "prev_query_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 200
+    }
+  },
+  "distill": {
+    "train_meta": [
+      {
+        "step": 250,
+        "ratio": 0.5,
+        "loss_total": 3.8860833644866943,
+        "loss_wess": 2.8520517349243164,
+        "loss_base_all": 3.328416347503662,
+        "base_ce_syn": 0.9915341138839722,
+        "kl_syn": 0.16998955607414246,
+        "gate": 0.15242202579975128
+      },
+      {
+        "step": 500,
+        "ratio": 0.5,
+        "loss_total": 3.218869924545288,
+        "loss_wess": 2.241443634033203,
+        "loss_base_all": 2.696110248565674,
+        "base_ce_syn": 0.9047336578369141,
+        "kl_syn": 0.29077091813087463,
+        "gate": 0.16911569237709045
+      },
+      {
+        "step": 750,
+        "ratio": 0.351,
+        "loss_total": 2.1913864612579346,
+        "loss_wess": 1.5913790464401245,
+        "loss_base_all": 1.7732561826705933,
+        "base_ce_syn": 0.5361867547035217,
+        "kl_syn": 0.2552827298641205,
+        "gate": 0.173890620470047
+      },
+      {
+        "step": 1000,
+        "ratio": 0.25,
+        "loss_total": 3.661325216293335,
+        "loss_wess": 2.6922802925109863,
+        "loss_base_all": 2.901782512664795,
+        "base_ce_syn": 0.8755355477333069,
+        "kl_syn": 0.37403735518455505,
+        "gate": 0.17425361275672913
+      }
+    ],
+    "official_loss_base_only": 3.8357305973768234,
+    "synthetic_base_only": {
+      "example_acc": 0.465,
+      "pair_acc": 0.14,
+      "mean_logodds": -0.06937151730060577,
+      "n_pairs": 200
+    },
+    "synthetic_wess_on": {
+      "example_acc": 1.0,
+      "pair_acc": 1.0,
+      "mean_logodds": 6.4308614408969875,
+      "n_pairs": 200
+    },
+    "interventions_wess_on": {
+      "swap_delta": 11.849705425898234,
+      "ablation_delta": 7.665976238250733
+    },
+    "params_plain_hf": 14343552,
+    "params_with_wess": 15969409,
+    "exported_plain_hf_model": "experiments/archive/initial_model_studies/training/runs/wess_to_base_distill_screen/distill_384x4_anneal/hf_model"
+  },
+  "elapsed_sec": 58.3
+}

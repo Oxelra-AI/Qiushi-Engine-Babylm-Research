@@ -1,0 +1,150 @@
+{
+  "status": "CURRICULUM_FIXED256_PARITY_PROBE",
+  "created_utc": "2026-08-31T06:35:51Z",
+  "purpose": "Verify repaired curriculum trainer fixed-256 parity with the trusted legal40k accumulated trainer before a corrected 100M curriculum run.",
+  "inputs": {
+    "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "tokenizer_path": "experiments/archive/representation_and_objectives/data/legal_representation_route_map/tokenizers/legal_byte_bpe_40k",
+    "max_words": 200064,
+    "rows": 1296,
+    "actual_words": 200064,
+    "total_file_words": 100000000,
+    "total_file_rows": 647400
+  },
+  "baseline_seed_record": {
+    "seed": 43,
+    "extra_init_seed": 43022,
+    "train_rng_seed": 43023,
+    "source": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/scientific_metrics.json"
+  },
+  "launch_seed_required": {
+    "seed": 43,
+    "init_seed": 43022,
+    "train_rng_seed": 43023
+  },
+  "fixed256_dataset_parity": {
+    "base_len": 1296,
+    "curriculum_fixed_len": 1296,
+    "all_rows_equal": true,
+    "first_mismatches": [],
+    "total_steps": 6
+  },
+  "short_tail_handling_subset_seq64": {
+    "min_chunk_tokens_1": {
+      "chunks": 4983,
+      "tail_rows_losing_tokens": 0,
+      "tail_tokens_lost": 0
+    },
+    "min_chunk_tokens_8": {
+      "chunks": 4679,
+      "tail_rows_losing_tokens": 304,
+      "tail_tokens_lost": 1058
+    },
+    "interpretation": "Endpoint runs must use min_chunk_tokens=1 so short tails are retained; min8 was only a smoke-test convenience and changes token exposure."
+  },
+  "first_effective_batch_parity": {
+    "batch_equal": {
+      "input_ids": true,
+      "attention_mask": true,
+      "word_group": true,
+      "words": true
+    },
+    "batch_words": 39370,
+    "input_ids_hash": "020001a6381b1248",
+    "word_group_hash": "da25dd9e3325f226"
+  },
+  "first_mask_parity": {
+    "device": "cuda:0",
+    "train_rng_seed": 43023,
+    "masked_inputs_equal": true,
+    "labels_equal": true,
+    "attention_equal": true,
+    "n_masked": 8247,
+    "mask_rate": 0.15281560953916282,
+    "labels_hash": "75e226f06017b8d0",
+    "masked_inputs_hash": "5ec0f4b9251d0a4c"
+  },
+  "initialization_parity": {
+    "config": {
+      "hidden_size": 480,
+      "num_hidden_layers": 8,
+      "num_attention_heads": 8,
+      "intermediate_size": 1920,
+      "pos_att_type": [
+        "p2c",
+        "c2p"
+      ],
+      "max_relative_positions": 256,
+      "pad_token_id": 3,
+      "bos_token_id": 1,
+      "eos_token_id": 2,
+      "relative_attention": true
+    },
+    "digest_a": {
+      "sha256": "f2dc71338cebe869e62d039e877b16c5059fb33ddff581702111425e00ce49e2",
+      "n_tensors": 172,
+      "n_params": 65066720,
+      "samples": {
+        "deberta.embeddings.word_embeddings.weight": "625f889ac1ac4264",
+        "deberta.embeddings.position_embeddings.weight": "0fd08f91d6b36db2",
+        "deberta.embeddings.LayerNorm.weight": "6455c0dfdea9fcc7",
+        "deberta.embeddings.LayerNorm.bias": "155e437b946ac82a",
+        "deberta.encoder.layer.0.attention.self.query_proj.weight": "48f51b8a4a83abc0",
+        "deberta.encoder.layer.0.attention.self.query_proj.bias": "155e437b946ac82a",
+        "deberta.encoder.layer.0.attention.self.key_proj.weight": "74e7d593ee44463f",
+        "deberta.encoder.layer.0.attention.self.key_proj.bias": "155e437b946ac82a"
+      }
+    },
+    "digest_b": {
+      "sha256": "f2dc71338cebe869e62d039e877b16c5059fb33ddff581702111425e00ce49e2",
+      "n_tensors": 172,
+      "n_params": 65066720,
+      "samples": {
+        "deberta.embeddings.word_embeddings.weight": "625f889ac1ac4264",
+        "deberta.embeddings.position_embeddings.weight": "0fd08f91d6b36db2",
+        "deberta.embeddings.LayerNorm.weight": "6455c0dfdea9fcc7",
+        "deberta.embeddings.LayerNorm.bias": "155e437b946ac82a",
+        "deberta.encoder.layer.0.attention.self.query_proj.weight": "48f51b8a4a83abc0",
+        "deberta.encoder.layer.0.attention.self.query_proj.bias": "155e437b946ac82a",
+        "deberta.encoder.layer.0.attention.self.key_proj.weight": "74e7d593ee44463f",
+        "deberta.encoder.layer.0.attention.self.key_proj.bias": "155e437b946ac82a"
+      }
+    },
+    "state_diff": {
+      "max_abs": 0.0,
+      "max_key": null,
+      "n_nonzero_tensors": 0,
+      "n_tensors": 172
+    },
+    "identical": true
+  },
+  "first_update_parity": {
+    "loss_base_path": 10.683919814336338,
+    "loss_curriculum_fixed_path": 10.683919814336338,
+    "loss_abs_diff": 0.0,
+    "update_info_base": {
+      "n_pred_total": 8247,
+      "active_microbatches": 4,
+      "grad_norm_before_clip": 2.2912180423736572,
+      "lr_after_step": 0.001,
+      "labels_hash": "75e226f06017b8d0",
+      "masked_inputs_hash": "5ec0f4b9251d0a4c"
+    },
+    "update_info_curriculum_fixed": {
+      "n_pred_total": 8247,
+      "active_microbatches": 4,
+      "grad_norm_before_clip": 2.2912180423736572,
+      "lr_after_step": 0.001,
+      "labels_hash": "75e226f06017b8d0",
+      "masked_inputs_hash": "5ec0f4b9251d0a4c"
+    },
+    "post_update_state_diff": {
+      "max_abs": 0.0,
+      "max_key": null,
+      "n_nonzero_tensors": 0,
+      "n_tensors": 172
+    },
+    "identical_or_close": true
+  },
+  "runtime_sec": 28.0
+}

@@ -1,0 +1,316 @@
+\section{训练、测量与复用材料}
+\label{app:repro}
+
+\subsection{计算环境与实验支持}
+\label{app:compute}
+
+研究通过 AI Lab 技能及配套科研程序开展计算。这里的技能是一组可供 Qiushi Engine 调用的科研工具，支持模型生成、训练、评测、内部计算分析与干预实验。CPU 用于文本处理、分词、数据统计和结果分析；两张 NVIDIA H100 GPU 用于模型训练、评测、教师文本生成及需要加速的机制实验。已有记录包括在 H100 上运行 \nolinkurl{Qwen/Qwen3.5-9B}，为既有来源文本生成紧凑重述，也包括关系任务训练、隐藏状态和梯度测量、内部信号干预等不同类型的研究计算。
+
+\begin{table}[htbp]
+\caption{研究计算平台概要。GPU 配置依据研究记录；CPU、内存和操作系统为 2026 年 9 月 9 日的主机核对值。}
+\label{tab:compute_platform}
+\small
+\begin{tabularx}{\linewidth}{@{}P{28mm}Y@{}}
+\toprule 项目 & 配置\\\midrule
+GPU & 两张 NVIDIA H100\\
+CPU & 双路 Intel Xeon Platinum 8473C，共 104 个物理核心、208 个逻辑线程\\
+内存 & 操作系统可见约 503 GiB\\
+操作系统 & Ubuntu 22.04.5 LTS，x86\_64\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+两代模型发布包记录的 CPU 验证环境为 Python 3.12、PyTorch 2.11.0（CUDA 12.8 构建）、Transformers 4.57.6、Tokenizers 0.22.2 和 Safetensors 0.8.0，完整依赖见 \nolinkurl{models/frontier/ENVIRONMENT.json} 与 \nolinkurl{models/principle_guided/ENVIRONMENT.json}。各项原始训练、生成和评测分别使用相应的程序与依赖记录；上述发布验证环境不替代它们。配套工程在 \nolinkurl{reproducibility/TRAINING.md} 中给出环境说明、训练入口和数据依赖。
+
+\subsection{模型版本、教师与数据来源}
+
+两代公开模型具有相同的总参数量与结构配置；第三阶段更新既有增量分支。掩码预测与下游微调均采用包含相同增量模块的加载实现，才能评价完整模型。输入长度、填充和截断方式由各评测配置显式指定。后文所说的模型版本，包含权重、结构配置、分词器和加载实现这几个相互对应的部分。
+
+共同预训练采用 8 层 DeBERTa-v2 风格结构，隐藏维度 480，8 个注意力头，前馈层维度 1,920；字节级 BPE 词表为 16,384，序列长度为 256。优化器为 AdamW，有效批量 256，峰值学习率 0.001，前 6\% 训练线性预热，随后余弦衰减，权重衰减 0.01。初始残差支路的瓶颈维度为 128，尺度为 1.75。模型配置、参数初始化与训练随机过程分别记录种子 43、43022、43023；它们控制不同环节，不应合并成一个未加区分的“训练种子”。第一代后续增量训练与第二代续训的分界见表\ref{tab:lineage}，完整记录见 \nolinkurl{models/frontier/TRAINING.md}。
+
+以下链接直接指向本文采用的模型版本；完整版本记录随 \nolinkurl{results/public_model_revisions.csv} 提供。
+
+\begin{description}[font=\normalfont\bfseries,leftmargin=2em,style=nextline]
+\item[\Frontier]
+\href{https://huggingface.co/leslie721007/Qiushi-Engine-Frontier-Advancement/tree/5eb20f9c5088f40183269bb2c97381711aea0143}{Qiushi-Engine-Frontier-Advancement}。
+\item[\Guided]
+\href{https://huggingface.co/leslie721007/Qiushi-Engine-Principle-Guided-Frontier-Advancement/tree/ce7eabf0dfbd3d1393670f41f610bdccbdbe45d1}{Qiushi-Engine-Principle-Guided-Frontier-Advancement}。
+\end{description}
+
+本研究涉及三种不同的模型角色：驱动科研过程的推理模型、生成训练文本的外部改写教师，以及提供保持参照的冻结母模型。第三阶段的保持教师是 \Frontier{}，沿用的数据则包含此前已生成的 Qwen 改写。数据清单分别列出两部分：37,594 个既有来源—重述对，共 1,656,800 词；12,155 个紧凑重述对，共 423,511 词。它们均计入 10M 词语料池，第三阶段直接使用已有文本。
+
+紧凑配对的 423,511 词指实际来源与重述文本；加上预算对齐的 9 词补齐后，构成表\ref{tab:compact}中 423,520 词的替换数据块。
+
+紧凑重述的生成教师为 \nolinkurl{Qwen/Qwen3.5-9B}，生成温度为 0.1，每次最多生成 80 个 token，批量为 64，计算精度为 bfloat16。这些设置及来源计数记录在 \nolinkurl{models/frontier/DATA_MANIFEST.json}。配套工程保留生成模板、配对选取、过滤和装填记录；\nolinkurl{data/RECONSTRUCTION.md} 按配对构造、紧凑替换、续训文本选取与位置标注说明重建过程。原生成器由外部程序提供，仓库保留其调用设置与输入输出格式，具体依赖见 \nolinkurl{reproducibility/TRAINING.md}。
+
+第三阶段实际使用的训练文本见表\ref{tab:data_composition}。一行是组织为训练输入的文本，可包含多个片段；表内按行计数，描述本轮训练材料的组成。完整语料池的各来源词数另见数据清单。数据使用同时遵循来源许可、生成材料与累计曝光规则。
+
+\begin{table}[htbp]
+\caption{第三阶段训练文本的来源组成。合计 20,475 行、3,162,742 词；一个训练行可以容纳多个配对片段。}
+\label{tab:data_composition}
+\small
+\begin{tabularx}{\linewidth}{@{}Yr@{\hspace{8mm}}Yr@{}}
+\toprule 来源类别 & 打包行数 & 来源类别 & 打包行数\\\midrule
+Gutenberg & 3,635 & CHILDES & 5,173\\
+Simple Wikipedia & 2,063 & 紧凑重述与预算再分配 & 940\\
+既有 Qwen 来源—重述配对 & 3,831 & BNC spoken & 1,108\\
+OpenSubtitles & 3,684 & Switchboard & 41\\
+\midrule \multicolumn{3}{@{}l}{合计} & 20,475\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{新学习与保持的算法定义}
+
+设普通目标集合为 $Q_o$，关系聚焦目标集合为 $Q_f$，密集遮盖候选集合为 $Q_m$，其中 $Q_f\subseteq Q_m$。对给定输入 $x$ 与目标集合 $Q$，本文的均值交叉熵为
+\begin{equation}
+ \overline{\CE}(x,Q)=\frac{1}{|Q|}\sum_{i\in Q}-\log p_\theta(y_i\mid x,i).
+\end{equation}
+其中 $y_i$ 是位置 $i$ 的正确 token，$p_\theta(y_i\mid x,i)$ 是模型在该位置给它的概率，$|Q|$ 为目标数量。$(M,S)$ 的关系输入按 $Q_m$ 遮盖，损失只在 $Q_f$ 上求均值；$(M,M)$ 使用相同密集输入，但扩大关系监督集合。式中先以一行为例；实际训练在一次参数更新的所有行中分别累加聚焦与普通目标的损失，再各除以对应的目标 token 总数，按式\eqref{eq:acquisition}加权。微批次只划分计算，不改变这两个分母。
+
+行的分配由既有数据标注确定：带有来源—重述片段位置的 Qwen 配对行进入聚焦分支，其余行进入普通整词遮盖分支。表\ref{tab:data_composition}中的 940 行紧凑重述与预算再分配材料属于后者。因此，第一阶段的紧凑文本仍参与普通语言学习，第三阶段的聚焦任务则作用于另一组已存在的配对行。保持分支只再次呈现聚焦分支所用的 Qwen 配对行，重新施加普通整词遮盖，并在这次遮盖选中的目标位置计算 KL。
+
+内容组先在已有配对的重述文本中定位字符区间，再通过分词器返回的位置对应关系映射为有效 token。候选词由英文字母或数字组成，允许词内撇号；转为小写后，排除长度小于四、纯数字及固定停用词集合中的词。停用词是预先列出的、不参与本次候选选择的词。这是一套词面筛选规则。稀疏监督从每行候选中最多抽取 16 组，再逐组以 0.35 的概率选取；若候选非空但未选中任何一组，则保留一组。
+
+密集遮盖另取候选集合，默认最多抽样 128 组；超过该数量时按行级随机种子抽样，再补入全部被监督组。因此，补回后的集合可能超过 128 组。遮盖和监督分别选择，标签与输入使用同一套位置映射。确切停用词表、行级随机种子的生成规则和来源片段位置应与训练程序一同使用。
+
+完整方案按以下顺序计算。
+
+\begin{enumerate}
+\item 从固定训练文本中读取完整行，按累计词数安排更新，使用已经确定的来源—重述配对及分词映射。
+\item 为标注的 Qwen 配对行构造关系输入及 $Q_f,Q_m$，为其余行构造普通输入及 $Q_o$；统计本次更新两类目标的总数。
+\item 按各自目标总数归一化损失，以式\eqref{eq:acquisition}组合并累积梯度。更新集合只包含指定的 48 个增量参数张量，基座参数冻结；若本次更新某类目标为空，程序报错，不改变预定损失权重继续运行。
+\item 对同批 Qwen 配对行构造普通遮盖输入及保持目标。冻结教师，以无梯度方式计算其概率；学生在相同位置计算 $\KL(p_{\Frontier}\|p_\theta)$，按全部保持目标数归一化并累积梯度。
+\item 保持前向关闭 dropout，但学生仍保留梯度计算；确定性运行不等于冻结学生。保存、恢复额外前向前后的 Python、PyTorch CPU 与 CUDA 随机数状态，恢复训练模式后完成一次参数更新。
+\item 分别累计新学习词曝光与用于保持的文本呈现，保存检查点身份及评测向量。完整方案在 80 次更新后导出。
+\end{enumerate}
+
+表\ref{tab:configuration}汇总主要续训设置。按词数安排更新，是将完整训练行累积到预定词数后进行参数更新；由于行长不同，每次实际处理的行数与 token 数可以变化。学习率随日程变化，表中最后一次更新值单独标明。
+
+\begin{table}[htbp]
+\caption{第三阶段续训的主要配置。两次训练共享母模型、数据处理与方法设置，续训随机种子分别为 62064 和 62065。}
+\label{tab:configuration}
+\small
+\begin{tabularx}{\linewidth}{@{}P{48mm}Y@{}}
+\toprule 配置项 & 值或定义\\\midrule
+母模型 & 固定修订的 \Frontier\\
+总参数／可训练参数 & 36,458,592／995,584\\
+增量参数张量／尺度 & 48／0.75\\
+词表大小 & 16,384\\
+续训输入上限／微批量 & 512 token／8 行\\
+续训种子 & 62064、62065\\
+参数更新次数 & 80\\
+每次更新的词数目标 & 约 39,533 词；按完整行计账\\
+学习率参数／日程 & $5\times10^{-5}$；455 次更新日程、偏移 101、预热 10\\
+权重衰减／梯度范数上限 & 0.01／1.0\\
+聚焦／普通损失权重 & 0.15／0.85，各自在目标集合上取均值\\
+保持权重／温度／方向 & 1.0／1.0／教师到学生\\
+保持输入 & 普通 15\% 整词遮盖的完整行，保留来源\\
+新学习词数／保持词数 & 3,162,742／517,332\\
+最终更新学习率（62064） & $3.4055\times10^{-5}$；仅为该更新记录\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+普通续训的目标 token 数为 697,102；$(M,S)$ 的普通目标为 592,858，聚焦目标为 28,590。即使累计词曝光相同，目标数量与目标权重也不同。这正是完整方案比较不能被误写为单独改变一个遮盖比例的原因。
+
+输入长度按具体实验设置：主模型预训练窗口为 256 个 token，最终续训和表\ref{tab:gradient_geometry}的梯度比较采用 512 的上限。学习率日程的偏移表示从既有日程的相应位置继续计算，不能把这 80 次更新当作重新启动的一套独立日程。实际执行配置见 \nolinkurl{experiments/configs/executed_stage3.json}，环境和命令见 \nolinkurl{reproducibility/TRAINING.md}；使用时保留各对照自身的目标选择、随机采样和保持设置。
+
+\subsection{评测聚合、随机性与轨迹}
+\label{app:evaluation}
+
+完整评测的各项加载接口均包含实际增量分支。零样本掩码预测、Reading、下游微调和 AoA 按各自实现生成结果，再依据式\eqref{eq:overall}聚合。本地九项比较沿用各次运行的评分报告与统一聚合方式，公开榜单表保留网页显示值；正文的四位小数用于比较接近的数值，统计不确定性按相应测量单独分析。
+
+评分实现以文献\citet{babylm2026evaluation}所固定的官方版本为参照，AoA 估计器对应修订 \texttt{6f825c2}。配套工程保留实际使用的评分程序，以及为完整增量模型提供的加载适配；\nolinkurl{reproducibility/TRAINING.md}连接具体代码与运行入口。版本来源、模型加载和检查点清单共同确定本文的评测配置，不能用当前仓库主页的简写标签替代评分定义。
+
+BLiMP 的两种记录存在一处可复核的计分差别。本地运行按所选选项的序号判定正误，两代模型分别记为 68.51 与 68.26；发布的预测文件只保存所选答案文字，按文字与正确答案匹配后，分别得到 68.52 与 68.27，与公开显示一致。67 个子任务、59,875 道题中有 7 道题的两个选项文字相同，分布于 \texttt{passive\_1} 与 \texttt{principle\_A\_case\_2}。第一代与第二代分别有 3 道、5 道此类题在两种计分方式下不同，足以复现上述差值；预测文件本身与对应原运行保存的文件一致。\nolinkurl{results/blimp_scoring_comparison.csv}给出汇总。本文保留各记录的原值，所有本地训练对照仍使用同一计分方式。
+
+任务宏平均与逐题净变化衡量不同对象。记正误指示为 $c_i^{(0)},c_i^{(1)}$，则答对题目的净变化为 $\Delta N=\sum_i(c_i^{(1)}-c_i^{(0)})$。子任务样本量不等，两种统计量可以异号；Reading 等非准确率量不纳入题目计数。第一阶段的不同增量尺度之间曾出现这种差别，该结果不描述两代正式模型的逐题变化。
+
+不确定性的计算与测量单位对应：关系实验报告训练种子间的标准差；来源隔离损失以配对文本为单位重采样，同一对中的目标一起抽取；最终结果报告同一母模型的两次续训。GlobalPIQA 的逐题配对区间尚未随本文提供。
+
+AoA 按规定的有效词数和统计条件评价词汇学习轨迹。两代模型共享 17 个前期检查点：1M 至 10M 每 1M 一个，20M 至 80M 每 10M 一个；各加入自身最终模型后，形成 18 点轨迹。两代模型目录中的 \nolinkurl{CHECKPOINTS.json}列出检查点与实际累计词数，也明确了两条轨迹共享的前期历史。清单按各模型实际停止点配置，不补入它们未经历的 90M 或 100M 分支；使用默认检查点列表运行其他模型时，应相应调整列表，而非改变这里的实际训练轨迹。
+
+\FloatBarrier\clearpage
+\section{本地完整评测向量}
+\label{app:local}
+
+以下两表列出共同母模型和八个续训模型的全部九项结果，顺序一致。附随 CSV 保留原始精度，文件索引见附录\ref{app:assets}；构建程序逐行复核九项均值与 Overall。
+
+\begin{table}[htbp]
+\caption{本地对照的语言形式、知识、实体与组合分项。Sup. 为 BLiMP Supplement；同一母模型只列一次。}
+\label{tab:local_a}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
+\toprule 方案 & 种子 & BLiMP & Sup. & EWoK & Entity & COMPS\\\midrule
+\input{tables/local_language}
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{同一组九个模型的其余分项及完整 Overall。数值保留四位小数，完整精度见附随数据表。}
+\label{tab:local_b}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
+\toprule 方案 & 种子 & GlobalPIQA & (Super)GLUE & Reading & AoA & Overall\\\midrule
+\input{tables/local_remaining}
+\end{tabularx}
+\end{table}
+
+其中，稀疏监督与密集监督分别对应 $(M,S)$ 和 $(M,M)$，完整方案再加入普通输入保持。$(S,S)$ 的快速测量不混入完整九项比较。
+
+\begin{table}[htbp]
+\caption{主要 Overall 差值。完整方案增加了用于保持的文本呈现。}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule 比较 & 种子 62064 & 种子 62065\\\midrule
+\input{tables/strategy_differences}
+\end{tabularx}
+\end{table}
+
+完整方案相对 $(M,S)$ 的 GlobalPIQA 不变，额外收益来自其他分项的净变化，并非每项同步提高。
+
+\FloatBarrier\clearpage
+\section{扩展机制、控制与独立发现}
+\label{app:extended}
+
+\subsection{下游微调随机性的补充比较}
+
+表\ref{tab:finetuning_seeds}固定母模型及续训种子 62064 的两个训练结果，分别使用微调种子 42、44 进行 \mbox{(Super)GLUE} 评测。它检验相同模型在不同微调随机过程下的表现，区别于重新进行预训练或续训。两种微调设置下，完整方案的均值均高于母模型和 $(M,S)$。本文完整九项主表使用微调种子 42；种子 44 的结果仅用于这一补充比较，不拼接成新的 Overall。七个子任务的全部数值见 \nolinkurl{results/finetuning_seed_comparison.csv}。
+
+\begin{table}[htbp]
+\caption{固定模型、改变下游微调种子的 (Super)GLUE 结果。数值为七个子任务主要指标的等权均值；两种续训方案均采用续训种子 62064。}
+\label{tab:finetuning_seeds}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule 模型 & 微调种子 42 & 微调种子 44\\\midrule
+\input{tables/finetuning_seeds}
+\end{tabularx}
+\end{table}
+
+\subsection{目标删除与来源隔离}
+
+来源外目标是指目标词未出现在配对的那段来源中，不是该词或事实从未被模型见过。在累计曝光 20M 词的模型上，比较删除来源外目标与删除来源内整词匹配目标，前者在来源外内容词上、按分词片段加权的平均预测损失更高。表\ref{tab:disjoint}区分隔离层次和采样单位。
+
+\begin{table}[htbp]
+\caption{来源隔离目标的局部损失差异（nats）。正值表示删除来源外监督相对删除匹配复制目标，在被测目标上更差。区间按对应记录的重采样单位解释。}
+\label{tab:disjoint}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule 测量样本 & 目标事件 & 损失差异 & 95\% 区间\\\midrule
+来源对隔离、质量筛选 & 974 & 0.0796 & $[0.031,0.125]$\\
+文档隔离、质量筛选 & 71 & 0.1141 & $[-0.063,0.313]$\\
+文档隔离、全部接受目标 & 1,012 & 0.0356 & $[-0.008,0.076]$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+来源对隔离排除已用于相应训练的配对，文档隔离进一步排除同一来源文档中的其他配对。前一种条件观察到对应目标上的损失差异；后一种条件的区间包含零，尚不能确认同样差异。下表则评价 100M 词模型的七项任务表现，与前面的早期局部预测测量共同说明监督删除的作用与范围。
+
+\begin{table}[htbp]
+\caption{100M 词、单种子目标删除实验的七项结果。保留相同紧凑输入，两种删除条件分别移除 48,105 与 48,387 个 BPE token 的监督。GP 为 GlobalPIQA。}
+\small\setlength{\tabcolsep}{4.5pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrrrr@{}}
+\toprule 条件 & BLiMP & Sup. & EWoK & Entity & COMPS & GP & Reading & 均值\\\midrule
+完整目标 & 66.87 & 63.28 & 53.54 & 27.75 & 51.97 & 35.62 & 8.240 & 43.896\\
+删除来源外 & 65.64 & 63.73 & 51.51 & 26.72 & 51.60 & 36.665 & 8.195 & 43.437\\
+删除来源内匹配 & 67.32 & 59.84 & 51.93 & 25.67 & 51.58 & 35.09 & 8.115 & 42.792\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+经验替换、共同初始化、关系锚点、字符身份及实体存储的完整论述见第\ref{sec:lineage}章。本附录保留主线相关的详细数值与测量更正，避免同一结果在多个位置重复展开。
+
+\subsection{测量样本与后续更正}
+
+研究对象的“未见”需要明确参照。某个样本不在当前续训前缀内，可能已经存在于母模型历史训练流；逐行文本不同，也可能共享同一来源对或文档。后续去重核查发现，一组曾用于普通损失分析的 6,992 行样本与历史训练流重合，因此不再将其作为干净的泛化保持证据。进一步的候选集合还需要区分精确行重合、配对文本重合与文档重合。
+
+本文把样本范围写在相应结果旁：训练行上的新学习效果、当前前缀之外的来源对、来源对隔离与文档隔离各有作用。更正不会自动推翻其他数据身份下的实验，但会改变原结果允许承担的主张。
+
+同样，KL 自比较需要一致的前向随机性，保持分支的额外调用也需要保存并恢复新学习分支的随机数状态。共同初始化、查询相关性、文本重合与前向一致性检查，分别排除了不同来源的实验混淆。相应程序、测量与核查记录和模型一同保留，供后续比较复用。
+
+\FloatBarrier\clearpage
+\section{公开前沿的完整分项}
+\label{app:board}
+
+两表与表\ref{tab:board}使用同一个冻结快照，只列两代正式代表模型及八项外部提交，不附排名。模型完整名称及链接在 \nolinkurl{results/leaderboard_comparison.csv} 中；发布者按公开账号列示，不推断未公开的学校或机构归属。
+
+\begin{table}[htbp]
+\caption{公开条目的语言形式、知识、实体及组合分项。保留网页显示精度。}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrr@{}}
+\toprule 发布者／模型 & BLiMP & Sup. & EWoK & Entity & COMPS\\\midrule
+\input{tables/board_language}
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{相同公开条目的其余分项。Reading 与 AoA 不是普通任务准确率，负值按快照原值保留。}
+\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule 发布者／模型 & GlobalPIQA & (Super)GLUE & Reading & AoA\\\midrule
+\input{tables/board_remaining}
+\end{tabularx}
+\end{table}
+
+总分相近的模型，分项优势仍然不同。语法较高的模型可能在实体跟踪上较弱，NLP 均值最高的模型也未必 Overall 最高。因此，评价两代模型时需要同时保留总分与分项：综合改善已经体现于 Overall，各项得失则帮助解释这种改善来自哪里。
+
+\FloatBarrier\clearpage
+\section{配套研究工程与材料使用}
+\label{app:assets}
+
+配套研究工程按三个阶段与科学问题组织模型、方法、实验和科研记录。读者可从报告中的发现进入相应程序、配置与结果，也可沿专题目录查阅推导、实验规划和后续修正。本附录列出直接入口，全部文件路径均相对于仓库根目录。
+
+\textbf{模型资源。}\href{https://huggingface.co/leslie721007/Qiushi-Engine-Frontier-Advancement}{Hugging Face：第一代模型}与\href{https://huggingface.co/leslie721007/Qiushi-Engine-Principle-Guided-Frontier-Advancement}{第二代模型}包含权重、分词器、加载实现及训练评测说明，本文采用的具体版本见附录\ref{app:repro}。
+
+\textbf{研究材料。}\href{https://github.com/Oxelra-AI/Qiushi-Engine-Babylm-Research}{GitHub：Qiushi-Engine-Babylm-Research}收录两代模型、方法实现、实验配置、数据构造、完整评测、科研笔记与报告源文件。模型包的使用说明见 \nolinkurl{models/README.md}，各科学主题的材料见下表。
+
+\begin{longtable}{@{}P{48mm}P{102mm}@{}}
+\caption{报告与研究材料的对应入口。方法说明、执行配置和原始程序各有用途，主要图表数据见表\ref{tab:files}。}\label{tab:material_entries}\\
+\toprule 研究内容 & 材料入口与用途\\\midrule\endfirsthead
+\multicolumn{2}{@{}l}{\ReportTableContinuation}\\
+\toprule 研究内容 & 材料入口与用途\\\midrule\endhead
+\bottomrule\endfoot
+两代模型与继承关系 & \nolinkurl{models/README.md}：本地权重、分词器、自定义加载实现、训练说明及模型使用示例。\\
+经验构造与增量学习 & \nolinkurl{methods/compact_views.md}、\nolinkurl{methods/residual_learning.md}：第一阶段的文本预算与模型设计。\\
+关系学习与能力复用 & \nolinkurl{methods/relation_learning.md}、\nolinkurl{methods/functional_access.md}：关系、窗口、监督及内部干预的实验解释。\\
+原理指导的训练与对照 & \nolinkurl{methods/principle_guided_training.md}、\nolinkurl{experiments/configs/executed_stage3.json}：完整方案、比较条件及实际执行配置。\\
+训练、机制与评测程序 & \nolinkurl{experiments/CORE_PROGRAMS.md}：原始程序入口；\nolinkurl{reproducibility/TRAINING.md}：环境、运行参数与数据依赖。\\
+数据生成与训练输入 & \nolinkurl{data/RECONSTRUCTION.md}：配对、压缩、替换、装填和续训文本构造；来源许可见 \nolinkurl{data/README.md}。\\
+科学问题与设计演进 & \nolinkurl{research/reading_paths.md}：从具体问题进入假设、对照、结果与后续修正；\nolinkurl{evidence/research_timeline.md}：研究判断的演变。\\
+科研笔记与实验规划 & \nolinkurl{research/notes/README.md}：分析、推导及路线选择；\nolinkurl{research/plans/README.md}：实验目标、竞争解释、对照设计和判定条件。\\
+测量记录与术语解释 & \nolinkurl{research/documents/README.md}：测量、数据与技术记录；\nolinkurl{research/terms.md}：原始材料中的英文术语、缩写与实验条件。\\
+独立发现与完整研究目录 & \nolinkurl{research/materials.md}：74 个主题及其方法、笔记、实验和结果；\nolinkurl{research/catalog.md}：主题概述与结论状态。\\
+结论与证据对应 & \nolinkurl{evidence/claim_evidence_map.md}、\nolinkurl{experiments/index.csv}：从主要发现定位方法、结果表和报告章节。\\
+\end{longtable}
+
+中英文 LaTeX 工程与 PDF 分别位于 \nolinkurl{reports/zh/} 与 \nolinkurl{reports/en/}，各目录提供阅读与修改说明。两版共用 \nolinkurl{results/} 中的结果数据、参考文献与英文科研图。在仓库根目录运行 \mbox{\texttt{make report}} 重建中文 PDF，运行 \mbox{\texttt{make report-en}} 重建英文 PDF，无需模型训练或外部模型调用。
+
+\begin{longtable}{@{}P{69mm}P{81mm}@{}}
+\caption{主要结果数据与报告构建文件。全部路径相对于 GitHub 研究工程根目录。}\label{tab:files}\\
+\toprule 文件 & 内容与用途\\\midrule\endfirsthead
+\multicolumn{2}{@{}l}{\ReportTableContinuation}\\
+\toprule 文件 & 内容与用途\\\midrule\endhead
+\bottomrule\endfoot
+\nolinkurl{results/training_strategy_comparison.csv} & 九个本地模型、全部九项、精确 Overall、续训种子与累计曝光。\\
+\nolinkurl{results/leaderboard_comparison.csv} & 同一公开快照的两代代表模型、八项外部提交、模型链接与显示分数；不含排名列。\\
+\nolinkurl{results/public_model_revisions.csv} & 两代公开模型及固定仓库修订。\\
+\nolinkurl{results/relation_context_use.csv} & 紧凑重述目标上的来源优势变化及三个训练种子标准差。\\
+\nolinkurl{results/relation_window_controls.csv} & 同窗与分窗对照，保留训练种子、测量目标数与检查点聚合方式。\\
+\nolinkurl{results/natural_restatement_transfer.csv} & 自然重述中的两类目标及三个训练种子的来源优势变化。\\
+\nolinkurl{results/finetuning_seed_comparison.csv} & 三种模型在两种微调种子下的七个子任务与 (Super)GLUE 均值。\\
+\nolinkurl{results/blimp_scoring_comparison.csv} & 选项序号计分与保存答案文字计分的 BLiMP 对应结果。\\
+\nolinkurl{results/interface_reach.csv} & 同一受控功能干预设置下的熟悉／未见准确率及干预读数。\\
+\nolinkurl{results/state_preservation_readouts.csv} & 新学习与保持的不同测量集合及所报告读数。\\
+\nolinkurl{results/compact_budget.csv} & 紧凑重述、来源与预算再分配的数量。\\
+\nolinkurl{results/source_disjoint_target_loss.csv} & 来源对隔离与文档隔离下的目标损失和区间。\\
+\nolinkurl{results/target_deletion_100m.csv} & 三个目标删除条件的七项模型结果。\\
+\nolinkurl{results/late_consolidation_controls.csv} & 第一阶段晚期续训与增量对照、更新方式和曝光。\\
+\nolinkurl{results/private_scale_sweep.csv} & 第一阶段增量尺度选择的历史测量。\\
+\nolinkurl{results/preservation_gradient_diagnostic.csv} & 共同目标位置上的保持强度、梯度方向及测量规模。\\
+\nolinkurl{results/research_catalog.tsv} & 按科学主题组织的研究目录、结果状态及正文入口。\\
+\nolinkurl{reports/zh/render.py} & 数据读取、九项均值检查与矢量统计图生成。\\
+\nolinkurl{reports/zh/figures/input_supervision.tex} & 输入遮盖和损失位置示意的可编辑矢量源。\\
+\nolinkurl{reports/zh/figures/research_lineage.tex} & 模型继承、方法联系与独立研究分支的矢量源。\\
+\nolinkurl{reports/zh/build.sh} & 中文 LaTeX 与参考文献编译入口。\\
+\end{longtable}
+
+74 个主题共同保留模型方法、机制发现、对照实验与结论修正。科研笔记和实验规划解释问题怎样形成、方法为何改变，以及哪些结果支持后续研究。模型、代码、文档和第三方数据分别适用各自许可；再分发范围及数据获取、构造方式见 \nolinkurl{data/README.md} 与各材料说明。

@@ -1,0 +1,197 @@
+{
+  "status": "ALLOCATION_DESIGN_V2",
+  "purpose": "Execute-ready design for testing whether compact faithful views preserve base learning while allowing the same processed-word budget to teach additional reviewed source-supported rows.",
+  "human_stage_context": "Stage III needs principle-guided improvement of Qiushi-BabyLM-36M-Strict-Small-v4, not a standalone compaction score. This is a bounded learner test before any legal-stream v5 candidate.",
+  "inputs": {
+    "semantic_labels": "experiments/archive/functional_learning/data/selective_reviewed_labels/selective_semantic_labels.jsonl",
+    "plan": "experiments/archive/functional_learning/data/concentrated_compact_learning_schedulematched/plan.json",
+    "independent_review_review": "data/external/independent_review01_verifier1_integration.md"
+  },
+  "word_accounting_per_base_epoch": {
+    "current_base_row_words": 1306,
+    "compact_base_row_words": 1147,
+    "saved_row_words": 159,
+    "aux_all_once_row_words": 416
+  },
+  "token_accounting_per_base_epoch": {
+    "current_base_row_tokens_with_specials": 1745,
+    "compact_base_row_tokens_with_specials": 1587,
+    "saved_row_tokens_with_specials": 158,
+    "aux_all_once_row_tokens_with_specials": 602
+  },
+  "base_rows": 17,
+  "additional_rows": 7,
+  "additional_label_counts": {
+    "supported_partial_view": 6,
+    "correspondence_repair": 1
+  },
+  "additional_common_tasks": 14,
+  "additional_task_edit_issues": [],
+  "aux_schedule_summary": {
+    "epochs": 80,
+    "per_epoch_capacity": 159,
+    "capacity_total": 12720,
+    "used_aux_words_total": 11791,
+    "unused_capacity_total": 929,
+    "aux_presentations_by_pair": {
+      "rw2s1_000216": 28,
+      "rw2s1_002259": 30,
+      "rw2s1_017873": 28,
+      "rw2s1_032596": 30,
+      "rw_024111": 27,
+      "rw_041960": 27,
+      "rw_000248": 28
+    },
+    "aux_words_by_pair": {
+      "rw2s1_000216": 2100,
+      "rw2s1_002259": 930,
+      "rw2s1_017873": 1288,
+      "rw2s1_032596": 2520,
+      "rw_024111": 1134,
+      "rw_041960": 1215,
+      "rw_000248": 2604
+    },
+    "schedule_pattern_counts": {
+      "rw2s1_000216 + rw2s1_032596": 14,
+      "rw2s1_002259 + rw2s1_032596 + rw_024111": 16,
+      "rw2s1_000216 + rw2s1_002259 + rw2s1_017873": 6,
+      "rw2s1_000216 + rw2s1_002259 + rw_041960": 6,
+      "rw2s1_017873 + rw_000248": 14,
+      "rw_041960 + rw_000248": 13,
+      "rw2s1_017873 + rw_024111 + rw_041960": 8,
+      "rw_024111 + rw_000248": 1,
+      "rw2s1_000216 + rw2s1_002259 + rw_024111": 2
+    }
+  },
+  "recurrence_schedule_summary": {
+    "used_extra_words_total": 11791,
+    "target_aux_words_total": 11791,
+    "word_gap_total": 0,
+    "extra_presentations_by_base_pair": {
+      "rw2s0_029078": 20,
+      "rw2s1_024034": 14,
+      "rw2s0_019304": 37,
+      "rw2s1_015912": 16,
+      "rw_015472": 37,
+      "rw_004509": 7,
+      "rw2s0_014542": 6,
+      "rw2s1_005600": 6,
+      "rw2s0_019852": 17,
+      "rw2s0_020973": 27,
+      "rw_041183": 8,
+      "rw2s0_025051": 2
+    }
+  },
+  "current_substitution_schedule_summary": {
+    "total_row_words": 104478,
+    "epoch_capacity": 1306,
+    "capacity_total": 104480,
+    "unused_capacity_total": 2,
+    "kept_presentations_by_pair": {
+      "rw2s0_010026": 78,
+      "rw2s0_014542": 74,
+      "rw2s0_019304": 72,
+      "rw2s0_019852": 59,
+      "rw2s0_020973": 66,
+      "rw2s0_025051": 74,
+      "rw2s0_029078": 80,
+      "rw2s1_005600": 58,
+      "rw2s1_015912": 80,
+      "rw2s1_024034": 79,
+      "rw_004509": 80,
+      "rw_015472": 80,
+      "rw_017379": 78,
+      "rw_031652": 80,
+      "rw_041183": 63,
+      "rw2s0_002308": 66,
+      "rw2s0_006924": 33
+    },
+    "dropped_presentations_by_pair": {
+      "rw2s0_002308": 14,
+      "rw2s0_006924": 47,
+      "rw2s1_005600": 22,
+      "rw_041183": 17,
+      "rw2s0_014542": 6,
+      "rw2s0_025051": 6,
+      "rw2s0_020973": 14,
+      "rw2s0_019852": 21,
+      "rw2s0_019304": 8,
+      "rw2s1_024034": 1,
+      "rw2s0_010026": 2,
+      "rw_017379": 2
+    }
+  },
+  "arms": [
+    {
+      "arm": "current_base80",
+      "role": "inherited base reference",
+      "base_view": "current",
+      "epochs": 80,
+      "row_words": 104480,
+      "row_tokens_with_specials": 139600,
+      "base_presentations": 1360,
+      "aux_presentations": 0
+    },
+    {
+      "arm": "compact_base80_unspent",
+      "role": "preservation at lower processed-word count",
+      "base_view": "compact",
+      "epochs": 80,
+      "row_words": 91760,
+      "row_tokens_with_specials": 126960,
+      "base_presentations": 1360,
+      "aux_presentations": 0
+    },
+    {
+      "arm": "compact_interleaved_recurrence",
+      "role": "saved-budget spent on old source IDs at same epochs as aux rows",
+      "base_view": "compact",
+      "epochs": 80,
+      "row_words": 103551,
+      "base_presentations": 1557,
+      "aux_presentations": 0,
+      "schedule": "experiments/archive/functional_learning/data/allocation_design_v2/compact_interleaved_recurrence_schedule.jsonl"
+    },
+    {
+      "arm": "compact_aux_support",
+      "role": "saved-budget spent on additional reviewed source-supported rows",
+      "base_view": "compact",
+      "epochs": 80,
+      "row_words": 103551,
+      "base_presentations": 1360,
+      "aux_presentations": 198,
+      "schedule": "experiments/archive/functional_learning/data/allocation_design_v2/aux_support_schedule_epoch80.jsonl"
+    },
+    {
+      "arm": "current_aux_substitution",
+      "role": "current-view base with base exposures removed to fit the same aux rows",
+      "base_view": "current",
+      "epochs": 80,
+      "row_words": 104478,
+      "base_presentations": 1200,
+      "aux_presentations": 198,
+      "schedule": "experiments/archive/functional_learning/data/allocation_design_v2/current_aux_substitution_schedule.jsonl"
+    }
+  ],
+  "primary_metrics_for_execute": {
+    "common_target_decomposition": "For each source item compute g=(delta original-source + delta altered-source)/2, b=(delta original-source - delta altered-source)/2, and p=delta no-source prior. Treat g as the source-following movement, b/p as prior or practiced-answer movement.",
+    "base_preservation": "research 25-task bank plus research surface NLL on current and compact views; require compact_aux not to erase the base preservation seen in compact_unspent.",
+    "additional_support_learning": "Repaired aux tasks and aux surface NLL; judge by source directions and pair-level aggregation, not only compact surface reconstruction.",
+    "allocation_contrast": "compact_aux_support must be compared against compact_interleaved_recurrence and current_aux_substitution under the recorded processed-word, token, presentation, and step counts.",
+    "broad_preservation": "Use parent KL or a small Cheap7/common broad readout only as early preservation evidence; this experiment is not a BabyLM endpoint."
+  },
+  "interpretation_patterns": {
+    "supports_next_practical_test": "compact_aux preserves base common-target and surface behavior near compact_unspent/current while improving additional-support g across multiple source IDs more than interleaved recurrence and current_aux_substitution, without large prior-only movement.",
+    "does_not_support_next_practical_test": "improvement appears only on trained compact surfaces, comes mainly from no-source/original-answer shifts, is driven by one row, or aux learning damages base common targets or broad preservation signals.",
+    "remaining_before_v5": "A positive small result would justify a larger reviewed-policy legal-stream candidate and official-compatible evaluation; it would not itself be v5."
+  },
+  "artifacts": {
+    "base_current_rows": "experiments/archive/functional_learning/data/allocation_design_v2/base_current_rows.jsonl",
+    "base_compact_rows": "experiments/archive/functional_learning/data/allocation_design_v2/base_compact_rows.jsonl",
+    "aux_compact_rows": "experiments/archive/functional_learning/data/allocation_design_v2/aux_compact_rows.jsonl",
+    "aux_tasks": "experiments/archive/functional_learning/data/allocation_design_v2/aux_support_tasks_repaired.jsonl",
+    "aux_schedule": "experiments/archive/functional_learning/data/allocation_design_v2/aux_support_schedule_epoch80.jsonl",
+    "recurrence_schedule": "experiments/archive/functional_learning/data/allocation_design_v2/compact_interleaved_recurrence_schedule.jsonl",
+    "current_substitution_schedule": "experiments/archive/functional_learning/data/allocation_design_v2/current_aux_substitution_schedule.jsonl"
+  }
+}

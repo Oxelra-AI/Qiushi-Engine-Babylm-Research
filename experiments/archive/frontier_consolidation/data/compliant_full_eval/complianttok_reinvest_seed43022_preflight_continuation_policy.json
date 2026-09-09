@@ -1,0 +1,123 @@
+{
+  "status": "COMPLIANT_EVAL_CONTINUATION_POLICY",
+  "created_utc": "2026-08-30T00:08:46Z",
+  "source": "experiments/archive/frontier_consolidation/data/compliant_full_eval/complianttok_reinvest_seed43022_preflight.json",
+  "target": "complianttok_reinvest_seed43022",
+  "family": "end_to_end_compliant_tokenizer_density_reinvestment",
+  "description": "compact_view_reinvest retrained from random weights with a 16k BPE tokenizer trained only on the same 10M Strict-Small pool used for its pretraining; submission-relevant end-to-end corpus-budget-valid endpoint if training/evaluation complete",
+  "budget_semantics": {
+    "reinvest": "end-to-end submission-relevant only for the reinvest arm because tokenizer training text and pretraining 10M pool are the same frozen pool",
+    "clean_qwen": "fixed-tokenizer scientific control only: it isolates pretraining-corpus effects under the reinvest tokenizer but its tokenizer-training text plus clean-Qwen pretraining text exceeds the 10M union"
+  },
+  "scores": {
+    "BLiMP": null,
+    "Supplement": null,
+    "EWoK": null,
+    "Entity": null,
+    "COMPS": null,
+    "SuperGLUE": null,
+    "GlobalPIQA": null,
+    "Reading": null,
+    "AoA": null
+  },
+  "known_keys": [],
+  "missing_keys": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "SuperGLUE",
+    "GlobalPIQA",
+    "Reading",
+    "AoA"
+  ],
+  "policy": {
+    "strategist_rule": "For the submission-relevant reinvest endpoint, partial columns conserve compute but must not substitute for the full official result. Stop SuperGLUE/AoA/pristine collation only if completed columns plus favorable upper-bound unfinished columns cannot reach the decision target; otherwise complete the official surface.",
+    "decision_target_overall": 41.8,
+    "missing_upper_each": 100.0,
+    "hard_stop_remaining_evaluation": false,
+    "recommended_action": "continue_remaining_official_evaluation_for_submission_relevant_endpoint",
+    "reinvest_endpoint_detected": true,
+    "aoa_counting_rule": "AoA is counted only after official_aoa_done with row_count_values=[8005] and finite_surprisals=true; missing-checkpoint placeholders remain missing, not zero."
+  },
+  "bounds": {
+    "leader": {
+      "target_overall": 41.8,
+      "known_sum": 0,
+      "target_sum_to_exceed_or_equal": 376.2,
+      "missing_keys": [
+        "BLiMP",
+        "Supplement",
+        "EWoK",
+        "Entity",
+        "COMPS",
+        "SuperGLUE",
+        "GlobalPIQA",
+        "Reading",
+        "AoA"
+      ],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 900.0,
+      "hard_upper_overall_if_missing_at_upper": 100.0,
+      "lower_overall_if_missing_zero": 0.0,
+      "needed_sum_from_missing_to_equal_target": 376.2,
+      "needed_mean_missing_to_equal_target": 41.8,
+      "mathematically_can_reach_target_with_missing_upper": true,
+      "complete_overall_if_no_missing": null
+    },
+    "frozen_oldtokenizer_reference": {
+      "target_overall": 42.0331347900748,
+      "known_sum": 0,
+      "target_sum_to_exceed_or_equal": 378.29821311067315,
+      "missing_keys": [
+        "BLiMP",
+        "Supplement",
+        "EWoK",
+        "Entity",
+        "COMPS",
+        "SuperGLUE",
+        "GlobalPIQA",
+        "Reading",
+        "AoA"
+      ],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 900.0,
+      "hard_upper_overall_if_missing_at_upper": 100.0,
+      "lower_overall_if_missing_zero": 0.0,
+      "needed_sum_from_missing_to_equal_target": 378.29821311067315,
+      "needed_mean_missing_to_equal_target": 42.0331347900748,
+      "mathematically_can_reach_target_with_missing_upper": true,
+      "complete_overall_if_no_missing": null
+    },
+    "decision_target": {
+      "target_overall": 41.8,
+      "known_sum": 0,
+      "target_sum_to_exceed_or_equal": 376.2,
+      "missing_keys": [
+        "BLiMP",
+        "Supplement",
+        "EWoK",
+        "Entity",
+        "COMPS",
+        "SuperGLUE",
+        "GlobalPIQA",
+        "Reading",
+        "AoA"
+      ],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 900.0,
+      "hard_upper_overall_if_missing_at_upper": 100.0,
+      "lower_overall_if_missing_zero": 0.0,
+      "needed_sum_from_missing_to_equal_target": 376.2,
+      "needed_mean_missing_to_equal_target": 41.8,
+      "mathematically_can_reach_target_with_missing_upper": true,
+      "complete_overall_if_no_missing": null
+    }
+  },
+  "notes": [
+    "The frozen old-tokenizer 42.0331347900748 reference is scientifically important but not an end-to-end compliant Strict-Small submission because of tokenizer provenance.",
+    "A complete compliant reinvest endpoint above the visible leader can answer the submission question even if it does not improve the old-tokenizer reference.",
+    "Clean-Qwen fixed-tokenizer projections are scientific controls only, not independent submission-valid scores, because tokenizer fitting used the reinvest 10M pool."
+  ]
+}

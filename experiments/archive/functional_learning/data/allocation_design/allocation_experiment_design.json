@@ -1,0 +1,177 @@
+{
+  "status": "ALLOCATION_EXPERIMENT_DESIGN",
+  "purpose": "Define the next learner comparison that tests whether faithful shortening can preserve base learning while allocating saved words to additional reviewed source-supported experience.",
+  "inputs": {
+    "semantic_labels": "experiments/archive/functional_learning/data/selective_reviewed_labels/selective_semantic_labels.jsonl",
+    "plan": "experiments/archive/functional_learning/data/concentrated_compact_learning_schedulematched/plan.json",
+    "directional_summary": "experiments/archive/functional_learning/data/route_synthesis/common_target_directional_summary.json"
+  },
+  "base_faithful_rows": 17,
+  "additional_reviewed_rows": 7,
+  "additional_label_counts": {
+    "supported_partial_view": 6,
+    "correspondence_repair": 1
+  },
+  "word_arithmetic_per_epoch": {
+    "base_current_row_words": 1306,
+    "base_compact_row_words": 1147,
+    "saved_row_words": 159,
+    "base_current_view_words": 686,
+    "base_compact_view_words": 527,
+    "saved_view_words": 159,
+    "aux_all_once_row_words": 416
+  },
+  "arms": [
+    {
+      "arm": "current_base80",
+      "description": "Inherited-view second views for the 17 faithful base rows, 80 epochs.",
+      "base_view": "current",
+      "base_epochs": 80,
+      "base_row_words_per_epoch": 1306,
+      "aux_policy": "none",
+      "charged_words": 104480,
+      "optimizer_presentations": {
+        "base_rows": 1360,
+        "aux_rows": 0
+      }
+    },
+    {
+      "arm": "compact_base80_unspent",
+      "description": "Compact faithful second views for the same 17 rows, 80 epochs, leaving the saved word budget unused.",
+      "base_view": "compact",
+      "base_epochs": 80,
+      "base_row_words_per_epoch": 1147,
+      "aux_policy": "unspent",
+      "charged_words": 91760,
+      "optimizer_presentations": {
+        "base_rows": 1360,
+        "aux_rows": 0
+      }
+    },
+    {
+      "arm": "compact_base80_recurrence92",
+      "description": "Compact faithful second views continued to 92 epochs, spending approximately the inherited-view word difference as recurrence on the same source IDs.",
+      "base_view": "compact",
+      "base_epochs": 92,
+      "base_row_words_per_epoch": 1147,
+      "aux_policy": "same_source_recurrence",
+      "charged_words": 105524,
+      "optimizer_presentations": {
+        "base_rows": 1564,
+        "aux_rows": 0
+      },
+      "note": "Exact continuation evidence already exists at compact_continuation_control and need not be rerun unless the training harness changes."
+    },
+    {
+      "arm": "compact_base80_aux_support",
+      "description": "Compact faithful second views for 80 epochs, plus reviewed additional source-supported compact rows scheduled within the 159 saved row words per epoch.",
+      "base_view": "compact",
+      "base_epochs": 80,
+      "base_row_words_per_epoch": 1147,
+      "aux_policy": "reviewed_additional_source_supported_rows",
+      "aux_rows": 7,
+      "aux_total_words_once": 416,
+      "aux_schedule_summary": {
+        "epochs": 80,
+        "per_epoch_capacity": 159,
+        "capacity_total": 12720,
+        "used_aux_words_total": 11791,
+        "unused_capacity_total": 929,
+        "aux_presentations_by_pair": {
+          "rw2s1_000216": 28,
+          "rw2s1_002259": 30,
+          "rw2s1_017873": 28,
+          "rw2s1_032596": 30,
+          "rw_024111": 27,
+          "rw_041960": 27,
+          "rw_000248": 28
+        },
+        "aux_words_by_pair": {
+          "rw2s1_000216": 2100,
+          "rw2s1_002259": 930,
+          "rw2s1_017873": 1288,
+          "rw2s1_032596": 2520,
+          "rw_024111": 1134,
+          "rw_041960": 1215,
+          "rw_000248": 2604
+        },
+        "schedule_pattern_counts": {
+          "rw2s1_000216 + rw2s1_032596": 14,
+          "rw2s1_002259 + rw2s1_032596 + rw_024111": 16,
+          "rw2s1_000216 + rw2s1_002259 + rw2s1_017873": 6,
+          "rw2s1_000216 + rw2s1_002259 + rw_041960": 6,
+          "rw2s1_017873 + rw_000248": 14,
+          "rw_041960 + rw_000248": 13,
+          "rw2s1_017873 + rw_024111 + rw_041960": 8,
+          "rw_024111 + rw_000248": 1,
+          "rw2s1_000216 + rw2s1_002259 + rw_024111": 2
+        }
+      },
+      "charged_words": 103551,
+      "optimizer_presentations": {
+        "base_rows": 1360,
+        "aux_rows": 198
+      }
+    }
+  ],
+  "aux_schedule_summary": {
+    "epochs": 80,
+    "per_epoch_capacity": 159,
+    "capacity_total": 12720,
+    "used_aux_words_total": 11791,
+    "unused_capacity_total": 929,
+    "aux_presentations_by_pair": {
+      "rw2s1_000216": 28,
+      "rw2s1_002259": 30,
+      "rw2s1_017873": 28,
+      "rw2s1_032596": 30,
+      "rw_024111": 27,
+      "rw_041960": 27,
+      "rw_000248": 28
+    },
+    "aux_words_by_pair": {
+      "rw2s1_000216": 2100,
+      "rw2s1_002259": 930,
+      "rw2s1_017873": 1288,
+      "rw2s1_032596": 2520,
+      "rw_024111": 1134,
+      "rw_041960": 1215,
+      "rw_000248": 2604
+    },
+    "schedule_pattern_counts": {
+      "rw2s1_000216 + rw2s1_032596": 14,
+      "rw2s1_002259 + rw2s1_032596 + rw_024111": 16,
+      "rw2s1_000216 + rw2s1_002259 + rw2s1_017873": 6,
+      "rw2s1_000216 + rw2s1_002259 + rw_041960": 6,
+      "rw2s1_017873 + rw_000248": 14,
+      "rw_041960 + rw_000248": 13,
+      "rw2s1_017873 + rw_024111 + rw_041960": 8,
+      "rw_024111 + rw_000248": 1,
+      "rw2s1_000216 + rw2s1_002259 + rw_024111": 2
+    }
+  },
+  "readouts": {
+    "base_common_preservation": [
+      "Use the research 25-item common-target bank to check preservation on trained-content and held-source items; analyze source_original, source_altered, and no_source separately.",
+      "Do not average no_source with contextual source directions as evidence use; no_source is a prior movement readout."
+    ],
+    "base_surface": "Reuse research-style current/compact with-source and view-only NLL to detect loss of the base second-view signal.",
+    "aux_surface": "Score additional reviewed rows with and without their source to see whether the reinvested examples are learned.",
+    "aux_common_targets": "15 hand-authored common cloze tasks over the additional rows, each with original-source, altered-source, and no-source conditions.",
+    "broad_behavior": "For this bounded subset, use parent KL / no-source prior shifts / optional Cheap7 quick score only as preservation signals; it is not a BabyLM endpoint."
+  },
+  "aux_task_edit_issues": [],
+  "interpretation": {
+    "current_vs_compact_unspent": "Tests preservation of second-view learning under shorter faithful expression at fewer charged words and equal update count.",
+    "compact_recurrence_vs_aux_support": "Separates spending saved budget as same-source recurrence from spending it on additional source-supported content. Extra examples, charged words, presentations, and compute must be recorded separately.",
+    "history_warning": "The auxiliary rows come from the same inherited Qwen/official ecosystem and may have been seen by coherent86; call them additional reviewed source-supported rows, not definitely novel experience.",
+    "promotion_rule": "Only if compact+aux preserves base common/source behavior while learning the auxiliary support better than recurrence should it justify a realistic legal-stream candidate."
+  },
+  "artifacts": {
+    "base_current_rows": "experiments/archive/functional_learning/data/allocation_design/base_current_rows.jsonl",
+    "base_compact_rows": "experiments/archive/functional_learning/data/allocation_design/base_compact_rows.jsonl",
+    "aux_compact_rows": "experiments/archive/functional_learning/data/allocation_design/aux_compact_rows.jsonl",
+    "aux_support_tasks": "experiments/archive/functional_learning/data/allocation_design/aux_support_tasks.jsonl",
+    "aux_schedule": "experiments/archive/functional_learning/data/allocation_design/aux_support_schedule_epoch80.jsonl"
+  }
+}

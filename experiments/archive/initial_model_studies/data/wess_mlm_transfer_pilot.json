@@ -1,0 +1,117 @@
+{
+  "status": "WESS_MLM_TRANSFER_PILOT",
+  "description": "short bridge pilot: DeBERTa-v2 MLM with counterfactual paired natural-language episodes and WESS/no-address/destroyed routing arms",
+  "device": "cuda",
+  "train_episode_examples": 480,
+  "eval_episode_examples": 240,
+  "official_examples": 600,
+  "shortcut_audit": {
+    "first_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 120
+    },
+    "last_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 120
+    },
+    "nearest_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 120
+    },
+    "majority_fixed_first_visible": {
+      "example_acc": 0.25416666666666665,
+      "pair_acc": 0.0,
+      "n_pairs": 120
+    },
+    "prev_query_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 120
+    }
+  },
+  "arms": {
+    "plain_mlm": {
+      "binding": {
+        "example_acc": 0.08333333333333333,
+        "pair_acc": 0.008333333333333333,
+        "mean_logodds": -0.0003648330767949422,
+        "n_pairs": 120,
+        "n_examples": 240
+      },
+      "official_mlm_loss": 3.578626036643982,
+      "params": 2823424
+    },
+    "no_address": {
+      "binding": {
+        "example_acc": 0.08333333333333333,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.00038156857093175255,
+        "n_pairs": 120,
+        "n_examples": 240
+      },
+      "official_mlm_loss": 3.6541748046875,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.0,
+        "swap_top1_to_other": 0.075,
+        "ablation_logodds_delta_prev_minus_answer": 0.0002160683274269104,
+        "ablation_top1_to_prev": 0.1
+      },
+      "params": 2823424
+    },
+    "wess_gold": {
+      "binding": {
+        "example_acc": 0.08333333333333333,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.2828916718562444,
+        "n_pairs": 120,
+        "n_examples": 240
+      },
+      "official_mlm_loss": 3.641340911388397,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.5037395343184471,
+        "swap_top1_to_other": 0.075,
+        "ablation_logodds_delta_prev_minus_answer": 0.48480735570192335,
+        "ablation_top1_to_prev": 0.1
+      },
+      "params": 2823424
+    },
+    "wess_eventwise_random": {
+      "binding": {
+        "example_acc": 0.07916666666666666,
+        "pair_acc": 0.0,
+        "mean_logodds": -0.0006028885642687479,
+        "n_pairs": 120,
+        "n_examples": 240
+      },
+      "official_mlm_loss": 3.6289873719215393,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.013715632259845734,
+        "swap_top1_to_other": 0.0625,
+        "ablation_logodds_delta_prev_minus_answer": -0.01060381978750229,
+        "ablation_top1_to_prev": 0.1125
+      },
+      "params": 2823424
+    },
+    "wess_wrong_entity": {
+      "binding": {
+        "example_acc": 0.08333333333333333,
+        "pair_acc": 0.0,
+        "mean_logodds": 8.099774519602458e-05,
+        "n_pairs": 120,
+        "n_examples": 240
+      },
+      "official_mlm_loss": 3.620157778263092,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.004300020635128021,
+        "swap_top1_to_other": 0.075,
+        "ablation_logodds_delta_prev_minus_answer": 0.0,
+        "ablation_top1_to_prev": 0.1
+      },
+      "params": 2823424
+    }
+  },
+  "elapsed_sec": 27.9
+}

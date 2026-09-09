@@ -1,0 +1,131 @@
+{
+  "status": "ALPHA075_STAGE_LOAD_PILOT_PASS",
+  "created_utc": "2026-09-01T14:20:06Z",
+  "stage_manifest": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/alpha075_developmental_staging_manifest.json",
+  "hf_model_root": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model",
+  "device_requested": "cpu",
+  "text": "The child put the [MASK] on the table and smiled.",
+  "loads": {
+    "chck_1M": {
+      "model_dir": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_1M",
+      "loaded_class": [
+        "AdapterDebertaV2ForMaskedLM"
+      ],
+      "auto_map": {
+        "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+      },
+      "adapter_scale": 1.75,
+      "private_adapter_scale": null,
+      "private_adapter_enabled": null,
+      "vocab_size": 16384,
+      "probe_logits": {
+        "shape": [
+          1,
+          17,
+          16384
+        ],
+        "finite": true,
+        "mean": -0.4373686909675598,
+        "std": 0.4726024568080902,
+        "max": 5.42745304107666,
+        "min": -2.090892791748047
+      }
+    },
+    "chck_80M": {
+      "model_dir": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_80M",
+      "loaded_class": [
+        "AdapterDebertaV2ForMaskedLM"
+      ],
+      "auto_map": {
+        "AutoModelForMaskedLM": "adapter_scaled_modeling.AdapterDebertaV2ForMaskedLM"
+      },
+      "adapter_scale": 1.75,
+      "private_adapter_scale": null,
+      "private_adapter_enabled": null,
+      "vocab_size": 16384,
+      "probe_logits": {
+        "shape": [
+          1,
+          17,
+          16384
+        ],
+        "finite": true,
+        "mean": -2.371337652206421,
+        "std": 2.5459165573120117,
+        "max": 20.62928009033203,
+        "min": -13.036054611206055
+      }
+    },
+    "chck_83M": {
+      "model_dir": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_83M",
+      "loaded_class": [
+        "FrozenSlowPrivateDebertaV2ForMaskedLM"
+      ],
+      "auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+      },
+      "adapter_scale": 1.75,
+      "private_adapter_scale": 0.75,
+      "private_adapter_enabled": true,
+      "vocab_size": 16384,
+      "probe_logits": {
+        "shape": [
+          1,
+          17,
+          16384
+        ],
+        "finite": true,
+        "mean": -2.376339912414551,
+        "std": 2.5544028282165527,
+        "max": 20.57670783996582,
+        "min": -13.091304779052734
+      }
+    },
+    "main": {
+      "model_dir": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/main",
+      "loaded_class": [
+        "FrozenSlowPrivateDebertaV2ForMaskedLM"
+      ],
+      "auto_map": {
+        "AutoModelForMaskedLM": "frozen82_private_modeling.FrozenSlowPrivateDebertaV2ForMaskedLM"
+      },
+      "adapter_scale": 1.75,
+      "private_adapter_scale": 0.75,
+      "private_adapter_enabled": true,
+      "vocab_size": 16384,
+      "probe_logits": {
+        "shape": [
+          1,
+          17,
+          16384
+        ],
+        "finite": true,
+        "mean": -2.3748116493225098,
+        "std": 2.5492188930511475,
+        "max": 20.643308639526367,
+        "min": -13.014677047729492
+      }
+    }
+  },
+  "compare_alpha1_to_alpha0p75_chck83": {
+    "a": "experiments/archive/frontier_consolidation/training/runs/frozen82_fastpath4M_coherent_seed43022/hf_model/chck_total_83012495w",
+    "b": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_83M",
+    "max_abs_diff": 0.19905829429626465,
+    "mean_abs_diff": 0.025625629350543022,
+    "rms_diff": 0.03261379525065422,
+    "same_shape": true,
+    "finite": true
+  },
+  "compare_main_to_chck86_alias": {
+    "a": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/main",
+    "b": "experiments/archive/representation_and_objectives/data/alpha075_developmental_staging/hf_model/chck_86M",
+    "max_abs_diff": 0.0,
+    "mean_abs_diff": 0.0,
+    "rms_diff": 0.0,
+    "same_shape": true,
+    "finite": true
+  },
+  "errors": [],
+  "elapsed_sec": 9.76950478553772,
+  "interpretation": "This pilot proves local loading and alpha=0.75 staging for existing truthful revisions only. It does not make missing chck_90M/chck_100M states or full AoA/fast results available."
+}

@@ -1,0 +1,125 @@
+{
+  "variant": "masked_curriculum",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "model_type": "deberta_v2",
+  "parameter_count": 29329792,
+  "embedding_parameter_count": 6291456,
+  "non_embedding_parameter_count": 23038336,
+  "vocab_size": 16384,
+  "tokenizer_label": "baseline16k",
+  "tokenizer_path": "",
+  "word_exposure": 100000,
+  "example_pool_words_actual": 100000,
+  "selected_for_training_words": 100000,
+  "loss_first": 9.814275535377297,
+  "loss_last": 8.06750202178955,
+  "lr_schedule_total_steps": 40,
+  "actual_training_steps": 40,
+  "micro_batch_size": 8,
+  "optimizer_steps": 40,
+  "effective_batch_size": 16,
+  "mask_mode": "wwm",
+  "mask_mode_schedule": "0.0:wwm,0.5:token",
+  "curriculum_progress_basis": "word",
+  "curriculum_total_words": 100000,
+  "unique_mask_modes": [
+    "token",
+    "wwm"
+  ],
+  "mask_mode_step_counts": {
+    "wwm": 20,
+    "token": 20
+  },
+  "mask_mode_word_counts": {
+    "wwm": 51200,
+    "token": 48800
+  },
+  "mask_mode_masked_token_counts": {
+    "wwm": 3490,
+    "token": 7060
+  },
+  "mask_prob": 0.15,
+  "masked_tokens_total": 10550,
+  "masked_tokens_mean_per_step": 263.75,
+  "masked_tokens_per_whitespace_word": 0.1055,
+  "unique_training_seq_lengths": [
+    64,
+    128,
+    256
+  ],
+  "seq_len_step_counts": {
+    "64": 16,
+    "128": 16,
+    "256": 8
+  },
+  "seq_len_word_counts": {
+    "64": 40960,
+    "128": 40960,
+    "256": 18080
+  },
+  "tokenization_coupling_summary": {
+    "num_examples_summarized": 625,
+    "total_words_summarized": 100000,
+    "total_untruncated_tokens": 123387,
+    "total_kept_tokens_at_max_seq_length": 123305,
+    "total_word_groups_kept_at_max_seq_length": 99957,
+    "mean_untruncated_tokens_per_example": 197.4192,
+    "mean_kept_tokens_per_example": 197.288,
+    "mean_word_groups_kept_per_example": 159.9312,
+    "untruncated_tokens_per_whitespace_word": 1.23387,
+    "kept_tokens_per_whitespace_word": 1.23305,
+    "word_groups_kept_per_whitespace_word": 0.99957,
+    "expected_wwm_selected_word_groups_at_mask_prob_0p15": 14993.55,
+    "expected_wwm_predicted_tokens_at_mask_prob_0p15_if_selected_groups_cover_tokens": 18495.75,
+    "truncated_examples_at_max_seq_length": 4,
+    "truncated_example_fraction": 0.0064,
+    "total_tokens_lost_to_truncation": 82,
+    "max_untruncated_tokens": 299,
+    "max_kept_tokens": 256,
+    "untruncated_length_histogram": {
+      "<=64": 0,
+      "65-128": 0,
+      "129-256": 621,
+      ">256": 4
+    }
+  },
+  "seq_length": 256,
+  "max_seq_length": 256,
+  "max_position_embeddings": 512,
+  "seq_len_schedule": "0.0:64,0.4:128,0.8:256",
+  "hidden_size": 384,
+  "n_layer": 12,
+  "n_head": 12,
+  "ffn_mult": 4,
+  "intermediate_size": 1280,
+  "position_buckets": 256,
+  "max_relative_positions": 256,
+  "deberta_relative_attention": "true",
+  "deberta_pos_att_type": "p2c,c2p",
+  "seed": 42,
+  "extra_init_seed": 456,
+  "train_rng_seed": 789,
+  "saved_checkpoints": [
+    {
+      "name": "chck_1M",
+      "target_word_exposure": 100000,
+      "actual_cumulative_word_exposure": 100000,
+      "path": "experiments/archive/initial_model_studies/training/runs/babylm_compressed_curriculum_mechanism_smoke100k/hf_model/chck_1M"
+    }
+  ],
+  "source_words_consumed": {
+    "epoch1::bnc_spoken.train.txt": 100000
+  },
+  "data_source_type": "official_corpus_fullcycle",
+  "selection_epochs": [
+    {
+      "epoch_index": 1,
+      "shuffle_seed": 42,
+      "words_added": 100000,
+      "examples_added": 625
+    }
+  ],
+  "unique_official_pool_words": 100000,
+  "total_official_corpus_words": 10000000
+}

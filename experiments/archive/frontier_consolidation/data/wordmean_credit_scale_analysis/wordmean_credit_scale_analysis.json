@@ -1,0 +1,2050 @@
+{
+  "status": "WORDMEAN_CREDIT_SCALE_ANALYSIS",
+  "created_utc": "2026-08-30T09:46:08Z",
+  "purpose": "Separate relative whole-word credit reweighting from total gradient-scale effects before interpreting the research word-mean training screen.",
+  "scope": "CPU-only actual training-stream batches; no model forward pass, official evaluation text, GPU, corpus/tokenizer change, or new training.",
+  "train_file": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "tokenizer_dir": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "max_word_exposure": 80000000,
+  "loaded_examples": 517920,
+  "loaded_words": 80000000,
+  "jsonl_total_rows_seen_by_loader": 647400,
+  "jsonl_total_words_seen_by_loader": 100000000,
+  "sample_rows_without_text": [
+    {
+      "words": 160,
+      "example_id": 10289,
+      "source": "childes"
+    },
+    {
+      "words": 160,
+      "example_id": 14184,
+      "source": "childes"
+    },
+    {
+      "words": 96,
+      "example_id": 300801,
+      "source": "qwen_pair_packed"
+    },
+    {
+      "words": 134,
+      "example_id": 308289,
+      "source": "qwen_pair_packed"
+    },
+    {
+      "words": 160,
+      "example_id": 57335,
+      "source": "simple_wiki"
+    },
+    {
+      "words": 160,
+      "example_id": 42019,
+      "source": "open_subtitles"
+    },
+    {
+      "words": 160,
+      "example_id": 4211,
+      "source": "bnc_spoken"
+    },
+    {
+      "words": 160,
+      "example_id": 51924,
+      "source": "open_subtitles"
+    },
+    {
+      "words": 134,
+      "example_id": 311606,
+      "source": "qwen_pair_packed"
+    },
+    {
+      "words": 122,
+      "example_id": 309682,
+      "source": "qwen_pair_packed"
+    }
+  ],
+  "batch_size": 256,
+  "total_batches": 2024,
+  "sampled_batches": 126,
+  "front_batches": 32,
+  "stride_batches_requested": 96,
+  "sample_seed": 62062,
+  "train_rng_seed_for_sampled_masks": 43023,
+  "mask_prob": 0.15,
+  "selected_group_length_summary": {
+    "n_groups": 726919,
+    "n_tokens": 1060869,
+    "mean_tokens_per_group": 1.4594046929575373,
+    "mean_inverse_group_length": 0.8261376188148685,
+    "mean_group_length_squared": 2.8602567823925362,
+    "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0980296525719075,
+    "lr_multiplier_to_match_uncorrelated_logit_weight_rms": 0.9107222174353002,
+    "group_coherent_gradient_weight_scale_approx": 0.8629253481121787,
+    "lr_multiplier_to_match_group_coherent_weight_rms": 1.1588487951914954,
+    "length_table": [
+      {
+        "k_tokens_in_word_group": 1,
+        "n_groups": 504476,
+        "group_fraction": 0.6939920403786392,
+        "token_fraction_or_tokenmean_credit_fraction": 0.4755309090943368,
+        "wordmean_credit_fraction": 0.6939920403786392,
+        "credit_fraction_delta_wordmean_minus_tokenmean": 0.21846113128430233,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 1.4594046929575373
+      },
+      {
+        "k_tokens_in_word_group": 2,
+        "n_groups": 144510,
+        "group_fraction": 0.19879794034823686,
+        "token_fraction_or_tokenmean_credit_fraction": 0.27243703039677847,
+        "wordmean_credit_fraction": 0.19879794034823686,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0736390900485416,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.7297023464787686
+      },
+      {
+        "k_tokens_in_word_group": 3,
+        "n_groups": 58630,
+        "group_fraction": 0.08065547880850549,
+        "token_fraction_or_tokenmean_credit_fraction": 0.165798039154693,
+        "wordmean_credit_fraction": 0.08065547880850549,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0851425603461875,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.48646823098584574
+      },
+      {
+        "k_tokens_in_word_group": 4,
+        "n_groups": 11275,
+        "group_fraction": 0.01551066900163567,
+        "token_fraction_or_tokenmean_credit_fraction": 0.04251231773197256,
+        "wordmean_credit_fraction": 0.01551066900163567,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.02700164873033689,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.3648511732393843
+      },
+      {
+        "k_tokens_in_word_group": 5,
+        "n_groups": 4454,
+        "group_fraction": 0.0061272301315552355,
+        "token_fraction_or_tokenmean_credit_fraction": 0.020992224299135897,
+        "wordmean_credit_fraction": 0.0061272301315552355,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.01486499416758066,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.29188093859150743
+      },
+      {
+        "k_tokens_in_word_group": 6,
+        "n_groups": 2556,
+        "group_fraction": 0.0035162101967344365,
+        "token_fraction_or_tokenmean_credit_fraction": 0.014456073275776745,
+        "wordmean_credit_fraction": 0.0035162101967344365,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.010939863079042308,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.24323411549292287
+      },
+      {
+        "k_tokens_in_word_group": 7,
+        "n_groups": 486,
+        "group_fraction": 0.0006685751782523224,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0032068049872321655,
+        "wordmean_credit_fraction": 0.0006685751782523224,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.002538229808979843,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.20848638470821962
+      },
+      {
+        "k_tokens_in_word_group": 8,
+        "n_groups": 228,
+        "group_fraction": 0.0003136525527603488,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0017193451783396442,
+        "wordmean_credit_fraction": 0.0003136525527603488,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0014056926255792954,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.18242558661969216
+      },
+      {
+        "k_tokens_in_word_group": 9,
+        "n_groups": 71,
+        "group_fraction": 9.767250546484546e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0006023363864906977,
+        "wordmean_credit_fraction": 9.767250546484546e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0005046638810258522,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.16215607699528192
+      },
+      {
+        "k_tokens_in_word_group": 10,
+        "n_groups": 33,
+        "group_fraction": 4.5397080004787327e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.00031106573950223827,
+        "wordmean_credit_fraction": 4.5397080004787327e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.00026566865949745094,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.14594046929575372
+      },
+      {
+        "k_tokens_in_word_group": 11,
+        "n_groups": 66,
+        "group_fraction": 9.079416000957465e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0006843446269049242,
+        "wordmean_credit_fraction": 9.079416000957465e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0005935504668953495,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.13267315390523066
+      },
+      {
+        "k_tokens_in_word_group": 12,
+        "n_groups": 44,
+        "group_fraction": 6.0529440006383104e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0004977051832035812,
+        "wordmean_credit_fraction": 6.0529440006383104e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0004371757431971981,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.12161705774646143
+      },
+      {
+        "k_tokens_in_word_group": 13,
+        "n_groups": 52,
+        "group_fraction": 7.15347927348164e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0006372134542530699,
+        "wordmean_credit_fraction": 7.15347927348164e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0005656786615182535,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.1122618994582721
+      },
+      {
+        "k_tokens_in_word_group": 14,
+        "n_groups": 26,
+        "group_fraction": 3.57673963674082e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0003431149369054992,
+        "wordmean_credit_fraction": 3.57673963674082e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.000307347540538091,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.10424319235410981
+      },
+      {
+        "k_tokens_in_word_group": 15,
+        "n_groups": 4,
+        "group_fraction": 5.502676364216646e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 5.655740718222514e-05,
+        "wordmean_credit_fraction": 5.502676364216646e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -5.1054730818008496e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.09729364619716915
+      },
+      {
+        "k_tokens_in_word_group": 17,
+        "n_groups": 2,
+        "group_fraction": 2.751338182108323e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 3.204919740326091e-05,
+        "wordmean_credit_fraction": 2.751338182108323e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -2.929785922115259e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.08584733487985513
+      },
+      {
+        "k_tokens_in_word_group": 19,
+        "n_groups": 1,
+        "group_fraction": 1.3756690910541614e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 1.7909845607704627e-05,
+        "wordmean_credit_fraction": 1.3756690910541614e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.6534176516650466e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.0768107733135546
+      },
+      {
+        "k_tokens_in_word_group": 22,
+        "n_groups": 1,
+        "group_fraction": 1.3756690910541614e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 2.0737715966815885e-05,
+        "wordmean_credit_fraction": 1.3756690910541614e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.9362046875761724e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.06633657695261533
+      },
+      {
+        "k_tokens_in_word_group": 23,
+        "n_groups": 1,
+        "group_fraction": 1.3756690910541614e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 2.168033941985297e-05,
+        "wordmean_credit_fraction": 1.3756690910541614e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -2.030467032879881e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.06345237795467554
+      },
+      {
+        "k_tokens_in_word_group": 28,
+        "n_groups": 1,
+        "group_fraction": 1.3756690910541614e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 2.6393456685038398e-05,
+        "wordmean_credit_fraction": 1.3756690910541614e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -2.5017787593984237e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.052121596177054905
+      },
+      {
+        "k_tokens_in_word_group": 32,
+        "n_groups": 1,
+        "group_fraction": 1.3756690910541614e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 3.0163950497186742e-05,
+        "wordmean_credit_fraction": 1.3756690910541614e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -2.878828140613258e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.04560639665492304
+      },
+      {
+        "k_tokens_in_word_group": 70,
+        "n_groups": 1,
+        "group_fraction": 1.3756690910541614e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 6.598364171259599e-05,
+        "wordmean_credit_fraction": 1.3756690910541614e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -6.460797262154183e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.02084863847082196
+      }
+    ]
+  },
+  "candidate_visible_group_length_summary": {
+    "n_groups": 4850899,
+    "n_tokens": 7080181,
+    "mean_tokens_per_group": 1.459560588666142,
+    "mean_inverse_group_length": 0.8262518033831496,
+    "mean_group_length_squared": 2.8604906018451426,
+    "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0981641810459724,
+    "lr_multiplier_to_match_uncorrelated_logit_weight_rms": 0.9106106511756069,
+    "group_coherent_gradient_weight_scale_approx": 0.862982254346867,
+    "lr_multiplier_to_match_group_coherent_weight_rms": 1.158772379110892,
+    "length_table": [
+      {
+        "k_tokens_in_word_group": 1,
+        "n_groups": 3368042,
+        "group_fraction": 0.6943129510632977,
+        "token_fraction_or_tokenmean_credit_fraction": 0.47569998563596044,
+        "wordmean_credit_fraction": 0.6943129510632977,
+        "credit_fraction_delta_wordmean_minus_tokenmean": 0.21861296542733727,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 1.459560588666142
+      },
+      {
+        "k_tokens_in_word_group": 2,
+        "n_groups": 962163,
+        "group_fraction": 0.19834735788149785,
+        "token_fraction_or_tokenmean_credit_fraction": 0.2717905093104258,
+        "wordmean_credit_fraction": 0.19834735788149785,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.07344315142892796,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.729780294333071
+      },
+      {
+        "k_tokens_in_word_group": 3,
+        "n_groups": 391041,
+        "group_fraction": 0.08061206798987157,
+        "token_fraction_or_tokenmean_credit_fraction": 0.16569110309468077,
+        "wordmean_credit_fraction": 0.08061206798987157,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0850790351048092,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.48652019622204734
+      },
+      {
+        "k_tokens_in_word_group": 4,
+        "n_groups": 75094,
+        "group_fraction": 0.01548042950389196,
+        "token_fraction_or_tokenmean_credit_fraction": 0.04242490410908987,
+        "wordmean_credit_fraction": 0.01548042950389196,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.02694447460519791,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.3648901471665355
+      },
+      {
+        "k_tokens_in_word_group": 5,
+        "n_groups": 30560,
+        "group_fraction": 0.006299863180000243,
+        "token_fraction_or_tokenmean_credit_fraction": 0.021581369176861438,
+        "wordmean_credit_fraction": 0.006299863180000243,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.015281505996861195,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.2919121177332284
+      },
+      {
+        "k_tokens_in_word_group": 6,
+        "n_groups": 17297,
+        "group_fraction": 0.0035657308057743522,
+        "token_fraction_or_tokenmean_credit_fraction": 0.014658099842362786,
+        "wordmean_credit_fraction": 0.0035657308057743522,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.011092369036588435,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.24326009811102367
+      },
+      {
+        "k_tokens_in_word_group": 7,
+        "n_groups": 3292,
+        "group_fraction": 0.0006786370938665183,
+        "token_fraction_or_tokenmean_credit_fraction": 0.003254719053086355,
+        "wordmean_credit_fraction": 0.0006786370938665183,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0025760819592198364,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.20850865552373457
+      },
+      {
+        "k_tokens_in_word_group": 8,
+        "n_groups": 1351,
+        "group_fraction": 0.00027850507710014166,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0015265146470125552,
+        "wordmean_credit_fraction": 0.00027850507710014166,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0012480095699124135,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.18244507358326775
+      },
+      {
+        "k_tokens_in_word_group": 9,
+        "n_groups": 495,
+        "group_fraction": 0.00010204294090641755,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0006292212021133358,
+        "wordmean_credit_fraction": 0.00010204294090641755,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0005271782612069183,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.16217339874068246
+      },
+      {
+        "k_tokens_in_word_group": 10,
+        "n_groups": 260,
+        "group_fraction": 5.3598312395290027e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.00036722225039162134,
+        "wordmean_credit_fraction": 5.3598312395290027e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0003136239379963313,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.1459560588666142
+      },
+      {
+        "k_tokens_in_word_group": 11,
+        "n_groups": 427,
+        "group_fraction": 8.802492074149555e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0006634011192651713,
+        "wordmean_credit_fraction": 8.802492074149555e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0005753761985236757,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.13268732624237656
+      },
+      {
+        "k_tokens_in_word_group": 12,
+        "n_groups": 314,
+        "group_fraction": 6.473026958508104e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0005321897844137036,
+        "wordmean_credit_fraction": 6.473026958508104e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.00046745951482862253,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.12163004905551184
+      },
+      {
+        "k_tokens_in_word_group": 13,
+        "n_groups": 314,
+        "group_fraction": 6.473026958508104e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.0005765389331148455,
+        "wordmean_credit_fraction": 6.473026958508104e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.0005118086635297644,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.11227389143585707
+      },
+      {
+        "k_tokens_in_word_group": 14,
+        "n_groups": 166,
+        "group_fraction": 3.4220460990839016e-05,
+        "token_fraction_or_tokenmean_credit_fraction": 0.00032824019611928,
+        "wordmean_credit_fraction": 3.4220460990839016e-05,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -0.00029401973512844094,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.10425432776186729
+      },
+      {
+        "k_tokens_in_word_group": 15,
+        "n_groups": 17,
+        "group_fraction": 3.504505041230502e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 3.601602840379363e-05,
+        "wordmean_credit_fraction": 3.504505041230502e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -3.251152336256313e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.09730403924440947
+      },
+      {
+        "k_tokens_in_word_group": 16,
+        "n_groups": 9,
+        "group_fraction": 1.855326198298501e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 2.0338463098612874e-05,
+        "wordmean_credit_fraction": 1.855326198298501e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.8483136900314373e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.09122253679163388
+      },
+      {
+        "k_tokens_in_word_group": 17,
+        "n_groups": 8,
+        "group_fraction": 1.6491788429320009e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 1.920854848202327e-05,
+        "wordmean_credit_fraction": 1.6491788429320009e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.755936963909127e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.08585650521565541
+      },
+      {
+        "k_tokens_in_word_group": 18,
+        "n_groups": 3,
+        "group_fraction": 6.184420660995003e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 7.626923661979828e-06,
+        "wordmean_credit_fraction": 6.184420660995003e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -7.008481595880328e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.08108669937034123
+      },
+      {
+        "k_tokens_in_word_group": 19,
+        "n_groups": 7,
+        "group_fraction": 1.4430314875655008e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 1.8784830500802168e-05,
+        "wordmean_credit_fraction": 1.4430314875655008e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.7341799013236666e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.07681897835084958
+      },
+      {
+        "k_tokens_in_word_group": 20,
+        "n_groups": 5,
+        "group_fraction": 1.0307367768325005e-06,
+        "token_fraction_or_tokenmean_credit_fraction": 1.4123932707370051e-05,
+        "wordmean_credit_fraction": 1.0307367768325005e-06,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.3093195930537551e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.0729780294333071
+      },
+      {
+        "k_tokens_in_word_group": 21,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 2.966025868547711e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -2.7598785131812108e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.06950288517457819
+      },
+      {
+        "k_tokens_in_word_group": 22,
+        "n_groups": 2,
+        "group_fraction": 4.122947107330002e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 6.2145303912428225e-06,
+        "wordmean_credit_fraction": 4.122947107330002e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -5.802235680509822e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.06634366312118828
+      },
+      {
+        "k_tokens_in_word_group": 23,
+        "n_groups": 3,
+        "group_fraction": 6.184420660995003e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 9.745513568085335e-06,
+        "wordmean_credit_fraction": 6.184420660995003e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -9.127071501985835e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.0634591560289627
+      },
+      {
+        "k_tokens_in_word_group": 24,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 3.3897438497688125e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -3.1835964944023124e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.06081502452775592
+      },
+      {
+        "k_tokens_in_word_group": 25,
+        "n_groups": 2,
+        "group_fraction": 4.122947107330002e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 7.061966353685026e-06,
+        "wordmean_credit_fraction": 4.122947107330002e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -6.6496716429520255e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.05838242354664568
+      },
+      {
+        "k_tokens_in_word_group": 28,
+        "n_groups": 4,
+        "group_fraction": 8.245894214660004e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 1.5818804632254458e-05,
+        "wordmean_credit_fraction": 8.245894214660004e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.4994215210788458e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.05212716388093364
+      },
+      {
+        "k_tokens_in_word_group": 29,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 4.095940485137315e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -3.889793129770815e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.050329675471246275
+      },
+      {
+        "k_tokens_in_word_group": 30,
+        "n_groups": 4,
+        "group_fraction": 8.245894214660004e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 1.694871924884406e-05,
+        "wordmean_credit_fraction": 8.245894214660004e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.612412982737806e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.04865201962220474
+      },
+      {
+        "k_tokens_in_word_group": 31,
+        "n_groups": 2,
+        "group_fraction": 4.122947107330002e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 8.756838278569432e-06,
+        "wordmean_credit_fraction": 4.122947107330002e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -8.344543567836433e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.04708259963439168
+      },
+      {
+        "k_tokens_in_word_group": 32,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 4.519658466358417e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -4.313511110991916e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.04561126839581694
+      },
+      {
+        "k_tokens_in_word_group": 35,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 4.943376447579518e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -4.737229092213018e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.04170173110474692
+      },
+      {
+        "k_tokens_in_word_group": 36,
+        "n_groups": 3,
+        "group_fraction": 6.184420660995003e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 1.5253847323959656e-05,
+        "wordmean_credit_fraction": 6.184420660995003e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.4635405257860156e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.040543349685170614
+      },
+      {
+        "k_tokens_in_word_group": 37,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 5.225855101726919e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -5.01970774636042e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.0394475834774633
+      },
+      {
+        "k_tokens_in_word_group": 38,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 5.367094428800619e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -5.16094707343412e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.03840948917542479
+      },
+      {
+        "k_tokens_in_word_group": 43,
+        "n_groups": 2,
+        "group_fraction": 4.122947107330002e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 1.2146582128338245e-05,
+        "wordmean_credit_fraction": 4.122947107330002e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.1734287417605246e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.03394326950386377
+      },
+      {
+        "k_tokens_in_word_group": 45,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 6.355769718316523e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -6.149622362950023e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.03243467974813649
+      },
+      {
+        "k_tokens_in_word_group": 48,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 6.779487699537625e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -6.573340344171124e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.03040751226387796
+      },
+      {
+        "k_tokens_in_word_group": 51,
+        "n_groups": 2,
+        "group_fraction": 4.122947107330002e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 1.4406411361517453e-05,
+        "wordmean_credit_fraction": 4.122947107330002e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -1.3994116650784452e-05,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.02861883507188514
+      },
+      {
+        "k_tokens_in_word_group": 70,
+        "n_groups": 1,
+        "group_fraction": 2.061473553665001e-07,
+        "token_fraction_or_tokenmean_credit_fraction": 9.886752895159035e-06,
+        "wordmean_credit_fraction": 2.061473553665001e-07,
+        "credit_fraction_delta_wordmean_minus_tokenmean": -9.680605539792536e-06,
+        "per_token_weight_ratio_wordmean_over_tokenmean": 0.02085086555237346
+      }
+    ]
+  },
+  "per_batch_summary": {
+    "mean_selected_tokens": 8419.595238095239,
+    "mean_selected_word_groups": 5769.1984126984125,
+    "mean_tokens_per_selected_group": 1.4600047458704748,
+    "mean_rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0980380532088039,
+    "p10_rms_scale_uncorrelated": 1.094872090573639,
+    "p90_rms_scale_uncorrelated": 1.1019488103090613,
+    "mean_group_coherent_gradient_weight_scale_approx": 0.8633111344337159
+  },
+  "per_batch_records": [
+    {
+      "batch_index0": 0,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39370,
+      "selected_tokens": 8330,
+      "selected_word_groups": 5738,
+      "mean_tokens_per_selected_group": 1.4517253398396655,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0963219598931373,
+      "group_coherent_gradient_weight_scale_approx": 0.8642538145787158
+    },
+    {
+      "batch_index0": 1,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39517,
+      "selected_tokens": 8676,
+      "selected_word_groups": 5874,
+      "mean_tokens_per_selected_group": 1.4770173646578142,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.100963101923919,
+      "group_coherent_gradient_weight_scale_approx": 0.861752409127307
+    },
+    {
+      "batch_index0": 2,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39717,
+      "selected_tokens": 8446,
+      "selected_word_groups": 5905,
+      "mean_tokens_per_selected_group": 1.4303132938187977,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0938170551506043,
+      "group_coherent_gradient_weight_scale_approx": 0.8678926722007485
+    },
+    {
+      "batch_index0": 3,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39422,
+      "selected_tokens": 8407,
+      "selected_word_groups": 5818,
+      "mean_tokens_per_selected_group": 1.4449982811962874,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0961207075896084,
+      "group_coherent_gradient_weight_scale_approx": 0.8672166200018185
+    },
+    {
+      "batch_index0": 4,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39617,
+      "selected_tokens": 8621,
+      "selected_word_groups": 5877,
+      "mean_tokens_per_selected_group": 1.466904883443934,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1017727964804647,
+      "group_coherent_gradient_weight_scale_approx": 0.8561453230877734
+    },
+    {
+      "batch_index0": 5,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39179,
+      "selected_tokens": 8466,
+      "selected_word_groups": 5771,
+      "mean_tokens_per_selected_group": 1.4669901230289377,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.100735642729926,
+      "group_coherent_gradient_weight_scale_approx": 0.855332636898267
+    },
+    {
+      "batch_index0": 6,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39516,
+      "selected_tokens": 8794,
+      "selected_word_groups": 5831,
+      "mean_tokens_per_selected_group": 1.5081461155890927,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1042160271431216,
+      "group_coherent_gradient_weight_scale_approx": 0.8607725820541846
+    },
+    {
+      "batch_index0": 7,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39711,
+      "selected_tokens": 8509,
+      "selected_word_groups": 5797,
+      "mean_tokens_per_selected_group": 1.4678281869932723,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1011473473797297,
+      "group_coherent_gradient_weight_scale_approx": 0.8557079143352034
+    },
+    {
+      "batch_index0": 8,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39572,
+      "selected_tokens": 8242,
+      "selected_word_groups": 5768,
+      "mean_tokens_per_selected_group": 1.4289181692094313,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0956739022370448,
+      "group_coherent_gradient_weight_scale_approx": 0.8495973243522283
+    },
+    {
+      "batch_index0": 9,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39417,
+      "selected_tokens": 8361,
+      "selected_word_groups": 5752,
+      "mean_tokens_per_selected_group": 1.4535813630041725,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0984369364688515,
+      "group_coherent_gradient_weight_scale_approx": 0.8597747174060096
+    },
+    {
+      "batch_index0": 10,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39774,
+      "selected_tokens": 8433,
+      "selected_word_groups": 5828,
+      "mean_tokens_per_selected_group": 1.4469800960878518,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0956022654993587,
+      "group_coherent_gradient_weight_scale_approx": 0.8677028276399672
+    },
+    {
+      "batch_index0": 11,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39690,
+      "selected_tokens": 8588,
+      "selected_word_groups": 5819,
+      "mean_tokens_per_selected_group": 1.4758549578965459,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1011363495084252,
+      "group_coherent_gradient_weight_scale_approx": 0.8631577418024211
+    },
+    {
+      "batch_index0": 12,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39507,
+      "selected_tokens": 8676,
+      "selected_word_groups": 5960,
+      "mean_tokens_per_selected_group": 1.455704697986577,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0973368282558473,
+      "group_coherent_gradient_weight_scale_approx": 0.8607156410876776
+    },
+    {
+      "batch_index0": 13,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39295,
+      "selected_tokens": 8152,
+      "selected_word_groups": 5583,
+      "mean_tokens_per_selected_group": 1.460146874440265,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0988448392571275,
+      "group_coherent_gradient_weight_scale_approx": 0.8594126218710303
+    },
+    {
+      "batch_index0": 14,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39468,
+      "selected_tokens": 8369,
+      "selected_word_groups": 5776,
+      "mean_tokens_per_selected_group": 1.448926592797784,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.097349099015793,
+      "group_coherent_gradient_weight_scale_approx": 0.862434678753424
+    },
+    {
+      "batch_index0": 15,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39617,
+      "selected_tokens": 8505,
+      "selected_word_groups": 5785,
+      "mean_tokens_per_selected_group": 1.470181503889369,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0987735337784283,
+      "group_coherent_gradient_weight_scale_approx": 0.8629474614128602
+    },
+    {
+      "batch_index0": 16,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39701,
+      "selected_tokens": 8550,
+      "selected_word_groups": 5836,
+      "mean_tokens_per_selected_group": 1.4650445510623715,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0985915609291517,
+      "group_coherent_gradient_weight_scale_approx": 0.8633289284642731
+    },
+    {
+      "batch_index0": 17,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39037,
+      "selected_tokens": 8529,
+      "selected_word_groups": 5864,
+      "mean_tokens_per_selected_group": 1.454467939972715,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0984515226648177,
+      "group_coherent_gradient_weight_scale_approx": 0.86040514514205
+    },
+    {
+      "batch_index0": 18,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39240,
+      "selected_tokens": 8539,
+      "selected_word_groups": 5882,
+      "mean_tokens_per_selected_group": 1.4517171030261815,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0967343978588746,
+      "group_coherent_gradient_weight_scale_approx": 0.8656924355377353
+    },
+    {
+      "batch_index0": 19,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39513,
+      "selected_tokens": 8599,
+      "selected_word_groups": 5841,
+      "mean_tokens_per_selected_group": 1.4721794213319637,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.099800153690836,
+      "group_coherent_gradient_weight_scale_approx": 0.8598336105107977
+    },
+    {
+      "batch_index0": 20,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39600,
+      "selected_tokens": 8433,
+      "selected_word_groups": 5785,
+      "mean_tokens_per_selected_group": 1.4577355229040623,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0975992825893268,
+      "group_coherent_gradient_weight_scale_approx": 0.8686734476728947
+    },
+    {
+      "batch_index0": 21,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39531,
+      "selected_tokens": 8600,
+      "selected_word_groups": 5787,
+      "mean_tokens_per_selected_group": 1.4860895109728702,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.104960683143963,
+      "group_coherent_gradient_weight_scale_approx": 0.8531186855921813
+    },
+    {
+      "batch_index0": 22,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39498,
+      "selected_tokens": 8471,
+      "selected_word_groups": 5777,
+      "mean_tokens_per_selected_group": 1.466332006231608,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0997312883905992,
+      "group_coherent_gradient_weight_scale_approx": 0.8582035866121724
+    },
+    {
+      "batch_index0": 23,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39471,
+      "selected_tokens": 8387,
+      "selected_word_groups": 5743,
+      "mean_tokens_per_selected_group": 1.4603865575483197,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0985625681400402,
+      "group_coherent_gradient_weight_scale_approx": 0.8662910997340607
+    },
+    {
+      "batch_index0": 24,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39426,
+      "selected_tokens": 8387,
+      "selected_word_groups": 5775,
+      "mean_tokens_per_selected_group": 1.4522943722943722,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0958841779780062,
+      "group_coherent_gradient_weight_scale_approx": 0.8660660367293953
+    },
+    {
+      "batch_index0": 25,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 40064,
+      "selected_tokens": 8647,
+      "selected_word_groups": 5873,
+      "mean_tokens_per_selected_group": 1.472331006300017,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.100784819673645,
+      "group_coherent_gradient_weight_scale_approx": 0.8605173417622222
+    },
+    {
+      "batch_index0": 26,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39750,
+      "selected_tokens": 8577,
+      "selected_word_groups": 5735,
+      "mean_tokens_per_selected_group": 1.4955536181342632,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1026433905526676,
+      "group_coherent_gradient_weight_scale_approx": 0.8609100984716821
+    },
+    {
+      "batch_index0": 27,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39447,
+      "selected_tokens": 8399,
+      "selected_word_groups": 5737,
+      "mean_tokens_per_selected_group": 1.4640055778281331,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0974414836778172,
+      "group_coherent_gradient_weight_scale_approx": 0.872702322293898
+    },
+    {
+      "batch_index0": 28,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 40024,
+      "selected_tokens": 8832,
+      "selected_word_groups": 5930,
+      "mean_tokens_per_selected_group": 1.4893760539629004,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.102107308402324,
+      "group_coherent_gradient_weight_scale_approx": 0.863197457680443
+    },
+    {
+      "batch_index0": 29,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39631,
+      "selected_tokens": 8749,
+      "selected_word_groups": 6009,
+      "mean_tokens_per_selected_group": 1.455982692627725,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0961652370772816,
+      "group_coherent_gradient_weight_scale_approx": 0.8678033323148195
+    },
+    {
+      "batch_index0": 30,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39183,
+      "selected_tokens": 8630,
+      "selected_word_groups": 5837,
+      "mean_tokens_per_selected_group": 1.478499229056022,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1016272527287505,
+      "group_coherent_gradient_weight_scale_approx": 0.863254205364039
+    },
+    {
+      "batch_index0": 31,
+      "sample_kind": "front",
+      "rows": 256,
+      "words": 39429,
+      "selected_tokens": 8484,
+      "selected_word_groups": 5843,
+      "mean_tokens_per_selected_group": 1.451993838781448,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0964918546603764,
+      "group_coherent_gradient_weight_scale_approx": 0.86473529576176
+    },
+    {
+      "batch_index0": 43,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39062,
+      "selected_tokens": 8284,
+      "selected_word_groups": 5744,
+      "mean_tokens_per_selected_group": 1.442200557103064,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0951306525766396,
+      "group_coherent_gradient_weight_scale_approx": 0.8686354597267888
+    },
+    {
+      "batch_index0": 64,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39743,
+      "selected_tokens": 8584,
+      "selected_word_groups": 5858,
+      "mean_tokens_per_selected_group": 1.4653465346534653,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0974569462544774,
+      "group_coherent_gradient_weight_scale_approx": 0.8699604626569891
+    },
+    {
+      "batch_index0": 85,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39754,
+      "selected_tokens": 8390,
+      "selected_word_groups": 5816,
+      "mean_tokens_per_selected_group": 1.4425722145804676,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0953507950955421,
+      "group_coherent_gradient_weight_scale_approx": 0.8648892581972569
+    },
+    {
+      "batch_index0": 106,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39935,
+      "selected_tokens": 8539,
+      "selected_word_groups": 5745,
+      "mean_tokens_per_selected_group": 1.4863359442993909,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1033933730092924,
+      "group_coherent_gradient_weight_scale_approx": 0.8590340900706512
+    },
+    {
+      "batch_index0": 128,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39620,
+      "selected_tokens": 8302,
+      "selected_word_groups": 5674,
+      "mean_tokens_per_selected_group": 1.4631653154740925,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0962123201675347,
+      "group_coherent_gradient_weight_scale_approx": 0.8740564885774097
+    },
+    {
+      "batch_index0": 149,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39909,
+      "selected_tokens": 8781,
+      "selected_word_groups": 5920,
+      "mean_tokens_per_selected_group": 1.483277027027027,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1000368173346096,
+      "group_coherent_gradient_weight_scale_approx": 0.8663049876145191
+    },
+    {
+      "batch_index0": 170,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39563,
+      "selected_tokens": 8392,
+      "selected_word_groups": 5844,
+      "mean_tokens_per_selected_group": 1.4360027378507871,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0946135285706386,
+      "group_coherent_gradient_weight_scale_approx": 0.866454568667137
+    },
+    {
+      "batch_index0": 192,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39875,
+      "selected_tokens": 8606,
+      "selected_word_groups": 5888,
+      "mean_tokens_per_selected_group": 1.461616847826087,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0961109985663813,
+      "group_coherent_gradient_weight_scale_approx": 0.8720139504909092
+    },
+    {
+      "batch_index0": 213,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39444,
+      "selected_tokens": 8741,
+      "selected_word_groups": 5875,
+      "mean_tokens_per_selected_group": 1.4878297872340425,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1047374778655146,
+      "group_coherent_gradient_weight_scale_approx": 0.8519704619507978
+    },
+    {
+      "batch_index0": 234,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39776,
+      "selected_tokens": 8582,
+      "selected_word_groups": 5885,
+      "mean_tokens_per_selected_group": 1.458283772302464,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0976446165370382,
+      "group_coherent_gradient_weight_scale_approx": 0.8683351799224256
+    },
+    {
+      "batch_index0": 256,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39413,
+      "selected_tokens": 8345,
+      "selected_word_groups": 5759,
+      "mean_tokens_per_selected_group": 1.449036291022747,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.097245136072227,
+      "group_coherent_gradient_weight_scale_approx": 0.8591769091107992
+    },
+    {
+      "batch_index0": 277,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39610,
+      "selected_tokens": 8237,
+      "selected_word_groups": 5668,
+      "mean_tokens_per_selected_group": 1.4532462949894143,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0965225173289401,
+      "group_coherent_gradient_weight_scale_approx": 0.8679722942411564
+    },
+    {
+      "batch_index0": 298,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39316,
+      "selected_tokens": 8413,
+      "selected_word_groups": 5791,
+      "mean_tokens_per_selected_group": 1.4527715420480056,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0974780976246645,
+      "group_coherent_gradient_weight_scale_approx": 0.8623088212521169
+    },
+    {
+      "batch_index0": 319,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39114,
+      "selected_tokens": 8128,
+      "selected_word_groups": 5609,
+      "mean_tokens_per_selected_group": 1.4490996612586915,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0962456543432113,
+      "group_coherent_gradient_weight_scale_approx": 0.8678059042122214
+    },
+    {
+      "batch_index0": 341,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39612,
+      "selected_tokens": 8466,
+      "selected_word_groups": 5880,
+      "mean_tokens_per_selected_group": 1.439795918367347,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0952540490944063,
+      "group_coherent_gradient_weight_scale_approx": 0.8555203037253664
+    },
+    {
+      "batch_index0": 362,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39191,
+      "selected_tokens": 8269,
+      "selected_word_groups": 5695,
+      "mean_tokens_per_selected_group": 1.4519754170324846,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0954136611185668,
+      "group_coherent_gradient_weight_scale_approx": 0.8710873635486047
+    },
+    {
+      "batch_index0": 383,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39521,
+      "selected_tokens": 8447,
+      "selected_word_groups": 5890,
+      "mean_tokens_per_selected_group": 1.434125636672326,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0955636531913262,
+      "group_coherent_gradient_weight_scale_approx": 0.8538243513314606
+    },
+    {
+      "batch_index0": 405,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39581,
+      "selected_tokens": 8509,
+      "selected_word_groups": 5897,
+      "mean_tokens_per_selected_group": 1.442937086654231,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0942099833960701,
+      "group_coherent_gradient_weight_scale_approx": 0.8727040085159458
+    },
+    {
+      "batch_index0": 426,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39637,
+      "selected_tokens": 8398,
+      "selected_word_groups": 5691,
+      "mean_tokens_per_selected_group": 1.475663328061852,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.099726006733281,
+      "group_coherent_gradient_weight_scale_approx": 0.868221769306258
+    },
+    {
+      "batch_index0": 447,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39467,
+      "selected_tokens": 8391,
+      "selected_word_groups": 5741,
+      "mean_tokens_per_selected_group": 1.4615920571329037,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0976443814956272,
+      "group_coherent_gradient_weight_scale_approx": 0.868453006019391
+    },
+    {
+      "batch_index0": 468,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39387,
+      "selected_tokens": 8571,
+      "selected_word_groups": 5781,
+      "mean_tokens_per_selected_group": 1.482615464452517,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1027286430420482,
+      "group_coherent_gradient_weight_scale_approx": 0.8572745974651618
+    },
+    {
+      "batch_index0": 490,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39307,
+      "selected_tokens": 8554,
+      "selected_word_groups": 5813,
+      "mean_tokens_per_selected_group": 1.4715293308102528,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0975820857411949,
+      "group_coherent_gradient_weight_scale_approx": 0.8693803187157895
+    },
+    {
+      "batch_index0": 511,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39549,
+      "selected_tokens": 8521,
+      "selected_word_groups": 5897,
+      "mean_tokens_per_selected_group": 1.4449720196710192,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0958973655947761,
+      "group_coherent_gradient_weight_scale_approx": 0.8637609212861922
+    },
+    {
+      "batch_index0": 532,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39561,
+      "selected_tokens": 8368,
+      "selected_word_groups": 5685,
+      "mean_tokens_per_selected_group": 1.471943711521548,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.100120507599715,
+      "group_coherent_gradient_weight_scale_approx": 0.8601523959638402
+    },
+    {
+      "batch_index0": 554,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39640,
+      "selected_tokens": 8440,
+      "selected_word_groups": 5757,
+      "mean_tokens_per_selected_group": 1.466041340976203,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0996390396330074,
+      "group_coherent_gradient_weight_scale_approx": 0.8613871498287462
+    },
+    {
+      "batch_index0": 575,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39624,
+      "selected_tokens": 8755,
+      "selected_word_groups": 5892,
+      "mean_tokens_per_selected_group": 1.4859131025118806,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1008601557880409,
+      "group_coherent_gradient_weight_scale_approx": 0.8667392279849319
+    },
+    {
+      "batch_index0": 596,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39730,
+      "selected_tokens": 8453,
+      "selected_word_groups": 5777,
+      "mean_tokens_per_selected_group": 1.4632162021810629,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0985460363338395,
+      "group_coherent_gradient_weight_scale_approx": 0.8654593909766611
+    },
+    {
+      "batch_index0": 618,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39656,
+      "selected_tokens": 8228,
+      "selected_word_groups": 5842,
+      "mean_tokens_per_selected_group": 1.408421773365286,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0872539184982437,
+      "group_coherent_gradient_weight_scale_approx": 0.8769137513778907
+    },
+    {
+      "batch_index0": 639,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39393,
+      "selected_tokens": 8519,
+      "selected_word_groups": 5805,
+      "mean_tokens_per_selected_group": 1.4675279931093885,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1005258740787616,
+      "group_coherent_gradient_weight_scale_approx": 0.8599633021237814
+    },
+    {
+      "batch_index0": 660,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39469,
+      "selected_tokens": 8629,
+      "selected_word_groups": 5909,
+      "mean_tokens_per_selected_group": 1.4603147740734472,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.099277844707189,
+      "group_coherent_gradient_weight_scale_approx": 0.8479098505109323
+    },
+    {
+      "batch_index0": 681,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39445,
+      "selected_tokens": 8376,
+      "selected_word_groups": 5801,
+      "mean_tokens_per_selected_group": 1.4438889846578176,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0935937803756155,
+      "group_coherent_gradient_weight_scale_approx": 0.8701729628024847
+    },
+    {
+      "batch_index0": 703,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39662,
+      "selected_tokens": 8520,
+      "selected_word_groups": 5843,
+      "mean_tokens_per_selected_group": 1.4581550573335615,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0954130615318751,
+      "group_coherent_gradient_weight_scale_approx": 0.873509789270829
+    },
+    {
+      "batch_index0": 724,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39442,
+      "selected_tokens": 8363,
+      "selected_word_groups": 5754,
+      "mean_tokens_per_selected_group": 1.4534237052485228,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0960085919908884,
+      "group_coherent_gradient_weight_scale_approx": 0.8675159321027314
+    },
+    {
+      "batch_index0": 745,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39551,
+      "selected_tokens": 8311,
+      "selected_word_groups": 5784,
+      "mean_tokens_per_selected_group": 1.4368948824343015,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0935405142423653,
+      "group_coherent_gradient_weight_scale_approx": 0.8710650173397112
+    },
+    {
+      "batch_index0": 767,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39569,
+      "selected_tokens": 8317,
+      "selected_word_groups": 5718,
+      "mean_tokens_per_selected_group": 1.4545295557887372,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0978683332739694,
+      "group_coherent_gradient_weight_scale_approx": 0.8651880470473456
+    },
+    {
+      "batch_index0": 788,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39595,
+      "selected_tokens": 8339,
+      "selected_word_groups": 5694,
+      "mean_tokens_per_selected_group": 1.4645240604144714,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0992064471730627,
+      "group_coherent_gradient_weight_scale_approx": 0.8604568226279155
+    },
+    {
+      "batch_index0": 809,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39728,
+      "selected_tokens": 8536,
+      "selected_word_groups": 5841,
+      "mean_tokens_per_selected_group": 1.4613935969868173,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.099060938871572,
+      "group_coherent_gradient_weight_scale_approx": 0.8613925525926693
+    },
+    {
+      "batch_index0": 830,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39879,
+      "selected_tokens": 8504,
+      "selected_word_groups": 5870,
+      "mean_tokens_per_selected_group": 1.4487223168654173,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0968103635183137,
+      "group_coherent_gradient_weight_scale_approx": 0.8623734400922122
+    },
+    {
+      "batch_index0": 852,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39696,
+      "selected_tokens": 8520,
+      "selected_word_groups": 5768,
+      "mean_tokens_per_selected_group": 1.477115117891817,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0991224569857425,
+      "group_coherent_gradient_weight_scale_approx": 0.8697661730295507
+    },
+    {
+      "batch_index0": 873,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39372,
+      "selected_tokens": 8425,
+      "selected_word_groups": 5825,
+      "mean_tokens_per_selected_group": 1.446351931330472,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0965880332053326,
+      "group_coherent_gradient_weight_scale_approx": 0.8612245075535958
+    },
+    {
+      "batch_index0": 894,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39489,
+      "selected_tokens": 8595,
+      "selected_word_groups": 5882,
+      "mean_tokens_per_selected_group": 1.4612376742604556,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0965665231780466,
+      "group_coherent_gradient_weight_scale_approx": 0.8673415649285392
+    },
+    {
+      "batch_index0": 916,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39840,
+      "selected_tokens": 8622,
+      "selected_word_groups": 5891,
+      "mean_tokens_per_selected_group": 1.4635885248684435,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.097419355027263,
+      "group_coherent_gradient_weight_scale_approx": 0.8717804885825161
+    },
+    {
+      "batch_index0": 937,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39240,
+      "selected_tokens": 8537,
+      "selected_word_groups": 5822,
+      "mean_tokens_per_selected_group": 1.466334592923394,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.099856246287778,
+      "group_coherent_gradient_weight_scale_approx": 0.8637461882908294
+    },
+    {
+      "batch_index0": 958,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39756,
+      "selected_tokens": 8318,
+      "selected_word_groups": 5704,
+      "mean_tokens_per_selected_group": 1.4582748948106592,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.098021960410064,
+      "group_coherent_gradient_weight_scale_approx": 0.8620170671753741
+    },
+    {
+      "batch_index0": 980,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39649,
+      "selected_tokens": 8307,
+      "selected_word_groups": 5722,
+      "mean_tokens_per_selected_group": 1.451765117091926,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0978854939230003,
+      "group_coherent_gradient_weight_scale_approx": 0.8626721267390951
+    },
+    {
+      "batch_index0": 1001,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39619,
+      "selected_tokens": 8600,
+      "selected_word_groups": 5903,
+      "mean_tokens_per_selected_group": 1.4568863289852618,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.097093015592729,
+      "group_coherent_gradient_weight_scale_approx": 0.8655496402276609
+    },
+    {
+      "batch_index0": 1022,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39858,
+      "selected_tokens": 8611,
+      "selected_word_groups": 5922,
+      "mean_tokens_per_selected_group": 1.4540695710908478,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.096872491149179,
+      "group_coherent_gradient_weight_scale_approx": 0.8642066598961415
+    },
+    {
+      "batch_index0": 1043,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39707,
+      "selected_tokens": 8508,
+      "selected_word_groups": 5793,
+      "mean_tokens_per_selected_group": 1.4686690833764888,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.098990635938802,
+      "group_coherent_gradient_weight_scale_approx": 0.8647956246596086
+    },
+    {
+      "batch_index0": 1065,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39433,
+      "selected_tokens": 8256,
+      "selected_word_groups": 5769,
+      "mean_tokens_per_selected_group": 1.4310972438897556,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0925693891333437,
+      "group_coherent_gradient_weight_scale_approx": 0.871506132747157
+    },
+    {
+      "batch_index0": 1086,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39442,
+      "selected_tokens": 8456,
+      "selected_word_groups": 5718,
+      "mean_tokens_per_selected_group": 1.478838754809374,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1020126099289165,
+      "group_coherent_gradient_weight_scale_approx": 0.8578683573635771
+    },
+    {
+      "batch_index0": 1107,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39564,
+      "selected_tokens": 8467,
+      "selected_word_groups": 5832,
+      "mean_tokens_per_selected_group": 1.4518175582990398,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0983236613365674,
+      "group_coherent_gradient_weight_scale_approx": 0.8600394211266883
+    },
+    {
+      "batch_index0": 1129,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39483,
+      "selected_tokens": 8406,
+      "selected_word_groups": 5850,
+      "mean_tokens_per_selected_group": 1.436923076923077,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.094108362531479,
+      "group_coherent_gradient_weight_scale_approx": 0.8694068650002705
+    },
+    {
+      "batch_index0": 1150,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39532,
+      "selected_tokens": 8641,
+      "selected_word_groups": 5955,
+      "mean_tokens_per_selected_group": 1.4510495382031905,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.09629647733288,
+      "group_coherent_gradient_weight_scale_approx": 0.8709632538231336
+    },
+    {
+      "batch_index0": 1171,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39809,
+      "selected_tokens": 8410,
+      "selected_word_groups": 5801,
+      "mean_tokens_per_selected_group": 1.449750043096018,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0960651973664814,
+      "group_coherent_gradient_weight_scale_approx": 0.8701710928708564
+    },
+    {
+      "batch_index0": 1193,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39676,
+      "selected_tokens": 8619,
+      "selected_word_groups": 5900,
+      "mean_tokens_per_selected_group": 1.4608474576271187,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0991669994780362,
+      "group_coherent_gradient_weight_scale_approx": 0.8599274390345628
+    },
+    {
+      "batch_index0": 1214,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39480,
+      "selected_tokens": 8422,
+      "selected_word_groups": 5939,
+      "mean_tokens_per_selected_group": 1.418083852500421,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0911994677936379,
+      "group_coherent_gradient_weight_scale_approx": 0.8694208098891251
+    },
+    {
+      "batch_index0": 1235,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39619,
+      "selected_tokens": 8833,
+      "selected_word_groups": 5943,
+      "mean_tokens_per_selected_group": 1.486286387346458,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1018850106892064,
+      "group_coherent_gradient_weight_scale_approx": 0.8645324284965116
+    },
+    {
+      "batch_index0": 1256,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39351,
+      "selected_tokens": 8486,
+      "selected_word_groups": 5830,
+      "mean_tokens_per_selected_group": 1.4555746140651802,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0972456956445096,
+      "group_coherent_gradient_weight_scale_approx": 0.8670616309571634
+    },
+    {
+      "batch_index0": 1278,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39506,
+      "selected_tokens": 8327,
+      "selected_word_groups": 5704,
+      "mean_tokens_per_selected_group": 1.4598527349228612,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0981744963418363,
+      "group_coherent_gradient_weight_scale_approx": 0.8645666426230744
+    },
+    {
+      "batch_index0": 1299,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39488,
+      "selected_tokens": 8337,
+      "selected_word_groups": 5643,
+      "mean_tokens_per_selected_group": 1.4774056353003722,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1010099632914745,
+      "group_coherent_gradient_weight_scale_approx": 0.8636579715585831
+    },
+    {
+      "batch_index0": 1320,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39368,
+      "selected_tokens": 8405,
+      "selected_word_groups": 5742,
+      "mean_tokens_per_selected_group": 1.463775687913619,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0990694873890847,
+      "group_coherent_gradient_weight_scale_approx": 0.8617037337145325
+    },
+    {
+      "batch_index0": 1342,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39219,
+      "selected_tokens": 8372,
+      "selected_word_groups": 5620,
+      "mean_tokens_per_selected_group": 1.4896797153024912,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1038244890735744,
+      "group_coherent_gradient_weight_scale_approx": 0.8615501684784058
+    },
+    {
+      "batch_index0": 1363,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 40010,
+      "selected_tokens": 8747,
+      "selected_word_groups": 5983,
+      "mean_tokens_per_selected_group": 1.4619755975263247,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0988915884884278,
+      "group_coherent_gradient_weight_scale_approx": 0.8630827199148801
+    },
+    {
+      "batch_index0": 1384,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39466,
+      "selected_tokens": 8328,
+      "selected_word_groups": 5751,
+      "mean_tokens_per_selected_group": 1.4480959833072509,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0986550070275114,
+      "group_coherent_gradient_weight_scale_approx": 0.8523441577154934
+    },
+    {
+      "batch_index0": 1405,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39265,
+      "selected_tokens": 8415,
+      "selected_word_groups": 5845,
+      "mean_tokens_per_selected_group": 1.4396920444824637,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0959824586896918,
+      "group_coherent_gradient_weight_scale_approx": 0.8664101906127756
+    },
+    {
+      "batch_index0": 1427,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39407,
+      "selected_tokens": 8437,
+      "selected_word_groups": 5766,
+      "mean_tokens_per_selected_group": 1.4632327436697885,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0995436625852695,
+      "group_coherent_gradient_weight_scale_approx": 0.8643831228328736
+    },
+    {
+      "batch_index0": 1448,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39505,
+      "selected_tokens": 8287,
+      "selected_word_groups": 5732,
+      "mean_tokens_per_selected_group": 1.4457431960921145,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0956110591280641,
+      "group_coherent_gradient_weight_scale_approx": 0.8665001165410292
+    },
+    {
+      "batch_index0": 1469,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39643,
+      "selected_tokens": 8442,
+      "selected_word_groups": 5822,
+      "mean_tokens_per_selected_group": 1.4500171762281002,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0936847675924626,
+      "group_coherent_gradient_weight_scale_approx": 0.8740248471623479
+    },
+    {
+      "batch_index0": 1491,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39782,
+      "selected_tokens": 8618,
+      "selected_word_groups": 5819,
+      "mean_tokens_per_selected_group": 1.4810104829008421,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0991739511763652,
+      "group_coherent_gradient_weight_scale_approx": 0.8709472833811848
+    },
+    {
+      "batch_index0": 1512,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39453,
+      "selected_tokens": 8353,
+      "selected_word_groups": 5675,
+      "mean_tokens_per_selected_group": 1.4718942731277533,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1010983004998898,
+      "group_coherent_gradient_weight_scale_approx": 0.8578992901643056
+    },
+    {
+      "batch_index0": 1533,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39678,
+      "selected_tokens": 8505,
+      "selected_word_groups": 5805,
+      "mean_tokens_per_selected_group": 1.4651162790697674,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0990508083033792,
+      "group_coherent_gradient_weight_scale_approx": 0.8634675069465361
+    },
+    {
+      "batch_index0": 1555,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39431,
+      "selected_tokens": 8403,
+      "selected_word_groups": 5769,
+      "mean_tokens_per_selected_group": 1.4565782631305253,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.098468780657116,
+      "group_coherent_gradient_weight_scale_approx": 0.7635664558103037
+    },
+    {
+      "batch_index0": 1576,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39689,
+      "selected_tokens": 8414,
+      "selected_word_groups": 5749,
+      "mean_tokens_per_selected_group": 1.4635588798051835,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.099516374289856,
+      "group_coherent_gradient_weight_scale_approx": 0.862700090034276
+    },
+    {
+      "batch_index0": 1597,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39442,
+      "selected_tokens": 8424,
+      "selected_word_groups": 5784,
+      "mean_tokens_per_selected_group": 1.4564315352697095,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0968798865024718,
+      "group_coherent_gradient_weight_scale_approx": 0.8688085542820142
+    },
+    {
+      "batch_index0": 1618,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39346,
+      "selected_tokens": 8578,
+      "selected_word_groups": 5893,
+      "mean_tokens_per_selected_group": 1.4556253181741048,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.09649952093222,
+      "group_coherent_gradient_weight_scale_approx": 0.8669233854334976
+    },
+    {
+      "batch_index0": 1640,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39774,
+      "selected_tokens": 8673,
+      "selected_word_groups": 5913,
+      "mean_tokens_per_selected_group": 1.4667681380010147,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0982989282384126,
+      "group_coherent_gradient_weight_scale_approx": 0.8630970210905342
+    },
+    {
+      "batch_index0": 1661,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39701,
+      "selected_tokens": 8602,
+      "selected_word_groups": 5836,
+      "mean_tokens_per_selected_group": 1.473954763536669,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.103654081531715,
+      "group_coherent_gradient_weight_scale_approx": 0.8544603176325711
+    },
+    {
+      "batch_index0": 1682,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39372,
+      "selected_tokens": 8333,
+      "selected_word_groups": 5764,
+      "mean_tokens_per_selected_group": 1.4456974323386538,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0952181184007592,
+      "group_coherent_gradient_weight_scale_approx": 0.8694329785498844
+    },
+    {
+      "batch_index0": 1704,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39724,
+      "selected_tokens": 8551,
+      "selected_word_groups": 5790,
+      "mean_tokens_per_selected_group": 1.4768566493955095,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0999718563612144,
+      "group_coherent_gradient_weight_scale_approx": 0.8672917395670812
+    },
+    {
+      "batch_index0": 1725,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39569,
+      "selected_tokens": 8549,
+      "selected_word_groups": 5902,
+      "mean_tokens_per_selected_group": 1.4484920365977634,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0963754722788233,
+      "group_coherent_gradient_weight_scale_approx": 0.8684450879311996
+    },
+    {
+      "batch_index0": 1746,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39412,
+      "selected_tokens": 8484,
+      "selected_word_groups": 5818,
+      "mean_tokens_per_selected_group": 1.4582330697834307,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.098501949550134,
+      "group_coherent_gradient_weight_scale_approx": 0.8632440559930674
+    },
+    {
+      "batch_index0": 1767,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39691,
+      "selected_tokens": 8294,
+      "selected_word_groups": 5770,
+      "mean_tokens_per_selected_group": 1.4374350086655112,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0932158395339775,
+      "group_coherent_gradient_weight_scale_approx": 0.8645070792580278
+    },
+    {
+      "batch_index0": 1789,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39638,
+      "selected_tokens": 8385,
+      "selected_word_groups": 5795,
+      "mean_tokens_per_selected_group": 1.446937014667817,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.09661185859115,
+      "group_coherent_gradient_weight_scale_approx": 0.8571109782658602
+    },
+    {
+      "batch_index0": 1810,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39760,
+      "selected_tokens": 8799,
+      "selected_word_groups": 5914,
+      "mean_tokens_per_selected_group": 1.487825498816368,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1037188559266256,
+      "group_coherent_gradient_weight_scale_approx": 0.8599421233553036
+    },
+    {
+      "batch_index0": 1831,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39547,
+      "selected_tokens": 8418,
+      "selected_word_groups": 5835,
+      "mean_tokens_per_selected_group": 1.4426735218508997,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0960377234998682,
+      "group_coherent_gradient_weight_scale_approx": 0.8638559629207674
+    },
+    {
+      "batch_index0": 1853,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39150,
+      "selected_tokens": 8198,
+      "selected_word_groups": 5780,
+      "mean_tokens_per_selected_group": 1.4183391003460208,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0898944943774211,
+      "group_coherent_gradient_weight_scale_approx": 0.8752592727946601
+    },
+    {
+      "batch_index0": 1874,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39692,
+      "selected_tokens": 8615,
+      "selected_word_groups": 5788,
+      "mean_tokens_per_selected_group": 1.4884243261921217,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1026613085346972,
+      "group_coherent_gradient_weight_scale_approx": 0.8586748502355636
+    },
+    {
+      "batch_index0": 1895,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39606,
+      "selected_tokens": 8504,
+      "selected_word_groups": 5782,
+      "mean_tokens_per_selected_group": 1.4707713593912142,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.1006552865944335,
+      "group_coherent_gradient_weight_scale_approx": 0.8625819203528581
+    },
+    {
+      "batch_index0": 1917,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39333,
+      "selected_tokens": 8275,
+      "selected_word_groups": 5774,
+      "mean_tokens_per_selected_group": 1.4331485971596813,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0974263568849405,
+      "group_coherent_gradient_weight_scale_approx": 0.8306720048289022
+    },
+    {
+      "batch_index0": 1938,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39643,
+      "selected_tokens": 8426,
+      "selected_word_groups": 5854,
+      "mean_tokens_per_selected_group": 1.4393577041339256,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0942742260826752,
+      "group_coherent_gradient_weight_scale_approx": 0.8701436417268337
+    },
+    {
+      "batch_index0": 1959,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39631,
+      "selected_tokens": 8670,
+      "selected_word_groups": 5911,
+      "mean_tokens_per_selected_group": 1.4667568939265776,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.097525742388373,
+      "group_coherent_gradient_weight_scale_approx": 0.8681711192862253
+    },
+    {
+      "batch_index0": 1980,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39559,
+      "selected_tokens": 8386,
+      "selected_word_groups": 5752,
+      "mean_tokens_per_selected_group": 1.4579276773296246,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0966890863884002,
+      "group_coherent_gradient_weight_scale_approx": 0.8691118098813666
+    },
+    {
+      "batch_index0": 2002,
+      "sample_kind": "stride",
+      "rows": 256,
+      "words": 39595,
+      "selected_tokens": 8681,
+      "selected_word_groups": 5889,
+      "mean_tokens_per_selected_group": 1.4741042621837324,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.0986513487917688,
+      "group_coherent_gradient_weight_scale_approx": 0.8702502906894701
+    },
+    {
+      "batch_index0": 2023,
+      "sample_kind": "stride",
+      "rows": 32,
+      "words": 5021,
+      "selected_tokens": 1099,
+      "selected_word_groups": 712,
+      "mean_tokens_per_selected_group": 1.5435393258426966,
+      "rms_logit_gradient_weight_scale_uncorrelated_tokens": 1.105238942611845,
+      "group_coherent_gradient_weight_scale_approx": 0.8755218491878931
+    }
+  ],
+  "interpretation": {
+    "loss_weight_identity": "Token-mean weight per selected BPE token is 1/T; word-mean weight is 1/(G*k_g), so the per-token weight ratio is mean_selected_tokens_per_group/k_g. Sum of weights remains one, but squared weight norm generally changes.",
+    "gradient_scale_caution": "The uncorrelated-position logit-gradient scale is sqrt(mean_k * E_group[1/k]); a scalar learning-rate match would require roughly its inverse. Parameter-gradient scale also depends on within-word gradient correlations, so a single unchanged learning rate does not isolate relative reweighting from update-scale effects.",
+    "route_use": "If research improves cheap columns, follow-up should check whether the gain survives a scale-matched or learning-rate-adjusted variant before attributing it solely to tokenizer-invariant credit allocation. If it fails, the compact-view data mechanism remains preserved and this objective should not be extended by retuning alone."
+  }
+}

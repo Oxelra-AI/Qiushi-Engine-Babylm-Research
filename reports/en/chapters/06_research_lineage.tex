@@ -1,0 +1,128 @@
+\chapterstart{Research Lineage and Independent Findings}
+\label{sec:lineage}
+
+The three-stage program produced both model improvements and independent scientific findings. Compact text, residual architecture, and continued training connect the two model generations through actual inheritance. Studies of relation identification, information retrieval, and measurement developed into complementary research branches. This section explains their questions, their relationship to the main investigation, and the methods and understanding they leave for subsequent work.
+
+The studies span the path from representing text to acquiring capabilities, continuing learning, and measuring outcomes. Table~\ref{tab:research_scope} groups their contributions by scientific question. The following sections develop experience substitution, relational anchors, identity matching, and measurement controls. Appendix~\ref{app:catalog} preserves the full topic catalog and the status of its conclusions; accompanying materials provide derivations, implementations, experiments, and scientific notes.
+
+\begin{table}[htbp]
+\caption{Research questions and representative outputs across the three stages. Training methods, mechanism findings, and experimental tools each provide a basis for further research.}
+\label{tab:research_scope}
+\small
+\begin{tabularx}{\linewidth}{@{}P{29mm}Y Y@{}}
+\toprule Research area & Question & Representative outputs\\\midrule
+Experience and data & How should limited words be allocated to content, expression, and related passages? & Compact restatements and reinvestment; fixed-budget substitution; relation and window controls.\\
+Representation and architecture & How can sparse supervision identify a relation and make it usable by new inputs? & Character/subword comparisons; zero-initialized residual increments; anchors, shared representations, and identity matching.\\
+Learning signals and capabilities & Which predictions train relation use, and which computations affect answers? & Separate input and target design; supervision allocation; familiar/unseen tests and internal interventions.\\
+Optimization and dynamics & How does experience value change during learning, and how can new and old capabilities coexist? & Early/late trajectories; curriculum and optimizer comparisons; relation dosage; incremental learning and preservation.\\
+Measurement and computation & Which controls make comparisons interpretable and implementations faithful? & Shared initialization; source exclusion and item-level analysis; complete model loading, exposure accounting, and gradient checks.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Model Inheritance and the Development of Scientific Questions}
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{research_lineage.pdf}}
+\caption{Model inheritance and research branches. Solid lines denote inheritance of first-generation training text, pretrained base, and residual structure. Dashed lines connect practical questions, mechanism studies, and subsequent training design. Independent findings concern experience and training, relations and computation, and comparison and measurement.}
+\label{fig:lineage}
+\end{figure}
+
+Compact restatement began as a way to improve a model within its word budget; it subsequently supplied controlled material for comparing expression relationships. Residual incremental learning began as a way to continue training a mature model; it subsequently enabled comparisons of objectives and preservation with a common frozen base. A successful method can thus leave both a model and a new experimental instrument. Across Stages I and II, the objects of research remained available while explanations became more precise.
+
+The two main mechanism branches provide complementary evidence. Natural-text experiments examine how practiced relationships shape source use. Controlled binding tasks examine how queries select attributes and whether new symbols can still use the learned computation. Different tasks and models address a shared design problem: what information a prediction can access, which targets receive supervision, and which established functions should survive further learning.
+
+Stage III implements these choices by masking more of the restatement, retaining sparse targets, and constraining prediction changes on ordinarily masked inputs. Complete evaluation establishes the method's practical benefit. Further controls distinguish target count, input conditions, and effective constraint strength. Figure~\ref{fig:lineage} separates actual inheritance of model and data from the way mechanism findings informed the design.
+
+\subsection{Experience Compression, Substitution, and Learning Stage}
+\label{sec:experience_branch}
+
+Data processing under a fixed budget can change the expression of existing content or allow more content into training. Compact restatement combines both. To understand their effects, the study treats what is added and what is displaced as separate experimental conditions. This fixed-budget substitution design applies to corpus construction, data mixing, and curricula, beyond the particular restatement method.
+
+At 80M, 90M, and 100M words in one DeBERTa configuration, the study compares compact restatement, different sentences from the same source range, and near-exact repetition. Averaging late results over those checkpoints and five metrics gives differences from the reference of $+0.3853$, $+0.3350$, and $+0.0343$, respectively. The five metrics are BLiMP, Supplement, EWoK, COMPS, and Reading. The different-sentence condition broadens sentence coverage within the specified source range, rather than establishing an expansion of document coverage. Both varied expression and expanded content improve this late-training comparison, while repetition has a smaller effect.
+
+Displaced material matters too. With an added FineWeb block held fixed, replacing child-directed/spoken material rather than adult prose produces a four-metric score 0.6125 points lower at 100M words. The respective changes from the reference are $+0.0825$ and $+0.6950$ on BLiMP, Supplement, EWoK, and COMPS. The added text is identical; different opportunity costs produce different net gains.
+
+In a RoBERTa configuration, restatement improves its own training loss but changes the late five-metric score by $-0.6873$. The usefulness of the treatment depends on model configuration and learning stage. Text statistics, such as word-frequency distributions, can help propose candidates; their value is tested through the corresponding task measurements.
+
+Other compression studies distinguish lexical coverage from preserved relationships. Extractive compact views, fluent connecting text with controlled vocabulary, and rule-based rewriting respectively seek broader content coverage, better connections between expressions, or reduced reliance on external generation. Short comparisons show local gains and task costs without the same completeness of final-model evaluation. Their reusable contribution is to make compression quality inspectable: which words, correspondences, and prediction clues survive, and where the released word budget is spent.
+
+\subsection{Relational Anchors, Shared Representations, and Identifiability}
+\label{sec:anchors}
+
+Some learning problems lack enough information to determine an answer, regardless of training time. Knowing that several objects belong to the same or opposite binary classes identifies their grouping but not which group should be called positive. A few absolute labels can resolve this ambiguity. We call such labels \emph{anchors}.
+
+The study implements this question in a binary relation task. Let an event's orientation be $z_i\in\{-1,+1\}$ and a comparison between events be $r_{ij}=z_i z_j$. A value of $+1$ denotes agreement and $-1$ opposition. For connected events, flipping every orientation leaves the pairwise comparisons unchanged:
+\begin{equation}
+(z_i,z_j)\mapsto(-z_i,-z_j),\qquad (-z_i)(-z_j)=z_i z_j.
+\end{equation}
+An absolute state label can resolve the remaining orientation ambiguity within this finite hypothesis class. Sparse anchors therefore supply missing absolute information without relabeling every relation.
+
+The model shares input representations and sequence processing between state judgments and relational comparisons, with separate output heads. Embeddings map symbols to vectors; a gated recurrent unit (GRU) processes the sequence. Across three training seeds, reversing a few state anchors reverses indirectly supervised orientations: accuracy against the original absolute labels changes from 1.0 to 0.0. Relative same/opposite judgments remain completely correct. Absolute orientation follows the anchors while relative structure is retained.
+
+The combination of change and invariance identifies what the anchors convey through the shared representation. A matched model with separate representations fits some local tasks but does not show the same propagation. Sharing becomes a testable condition for transferring the anchor information, rather than a general architectural preference.
+
+\begin{table}[htbp]
+\caption{Anchor reversal in the binary relation task, across three training seeds. The two measurements distinguish absolute orientation from relative structure. Accuracy is on a 0--1 scale.}
+\label{tab:anchor}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule Measurement & Original anchors & Reversed anchors\\\midrule
+Indirectly supervised relations, original labels & 1.0 & 0.0\\
+Relative comparisons between unseen relations & 1.0 & 1.0\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+This construction identifies sufficient information for a specified relational structure and shows how shared representations transmit that information. It relates to work on binding objects, properties, and roles in language models~\citep{feng2024binding,dai2024binding}. Candidate objects and relation rules are provided here. Ordinary text additionally requires discovering the objects and interpreting their relations, so the one-anchor result does not directly generalize to all language learning.
+
+Matching names to objects is another prerequisite. A model able to compute a relation still needs to associate its input name with the correct object; we call this mapping the \emph{identity interface}. Character-level experiments supply a small amount of same-letter supervision to align query and candidate representations. In the construction covering all base letters, matching accuracy rises from 0 to 1 and restores relational responses for events without direct supervision. Partial alphabet or training-name coverage leaves new names containing uncovered characters difficult.
+
+New names in this experiment recombine learned characters. Character positions are aligned, candidate objects are provided, and the matcher is frozen after training. Hard assignment selects one candidate instead of mixing candidate representations. Under these conditions, base-character coverage supports new name combinations. Aliases, pronouns, and unrestricted reference remain distinct problems. The experiment separates learning the relation from identifying the object to which it should apply.
+
+\subsection{Entity Storage, Retrieval, and Semantic Addressing}
+\label{sec:memory_branch}
+
+Explicit memory stores states at readable and writable locations. Language use additionally requires identifying an object in text, writing the new state to the correct location, replacing outdated content, and retrieving the state required by a query. \emph{Addressing} selects a read or write location; semantic addressing makes that selection from the meaning of the text. Qiushi Engine separates storage, retrieval, and addressing to determine what each component has learned.
+
+Experiments first provide correct read and write locations---the gold-address condition. A slot can be understood as a numbered storage cell. Renumbering reads and writes consistently should preserve the result; exchanging only one location should change the retrieved content. These interventions distinguish invariance to arbitrary numbering from dependence on the information actually read.
+
+With retrieved content connected to language prediction, the three-seed mean answer log-odds gain under correct addressing is 1.2056, the targeted slot-swap effect is 2.0513, and paired accuracy is 0.0472. Log-odds compares the relative probability of a target and a contrast answer; paired accuracy requires both members of a corresponding test pair to be correct. Memory affects answer probabilities, while reliable paired relational behavior remains difficult.
+
+A subsequent design adds memory through $h+gP(m)$, where $h$ is the original representation, $m$ the retrieved content, $P$ a projection to matching dimensionality, and $g$ a gate controlling its contribution. Training also uses a lower learning rate and longer duration. Paired accuracy rises to 0.1375 and the slot-swap effect to 3.087. These are joint changes to the connection and training configuration, not an isolated estimate of the gate's contribution.
+
+\begin{table}[htbp]
+\caption{Distinct components of entity-memory behavior. Conditions test stored-content effects, address recognition, candidate selection, and temporal state selection.}
+\label{tab:memory_layers}
+\small
+\begin{tabularx}{\linewidth}{@{}P{34mm}Y Y@{}}
+\toprule Condition & Observation & Functional interpretation\\\midrule
+Gold addresses & Slot swaps change probabilities; paired accuracy remains low & Memory influences prediction, but the complete relation task is difficult.\\
+Addresses inferred from text & 90.4\% overall token accuracy; zero key-query recall & Easy positions conceal failure on the required queries.\\
+Frozen reader, learned selector & About 0.994--0.995 on lexical and role swaps & Correspondence selection works among provided candidates.\\
+Temporal state selection & About 0.511 on original/updated state selection & Determining which temporal state to retrieve remains difficult.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The natural-text difficulty motivated a selection--retrieval decomposition. A reader is first trained to retrieve content from a given location and frozen. A separate selector then uses a softmax over four candidate locations. This distinguishes inability to read the content from selection of the wrong location when the content is readable. Lexical and role swaps are largely successful, whereas choosing an original or updated state from temporal meaning remains difficult.
+
+Task inspection also removed an apparent positive result. In an early small entity task, the correct answer did not vary with the queried object. A constant answer or first-slot shortcut could therefore produce high accuracy. That result was withdrawn as evidence for compositional binding; correcting the corpus did not itself constitute a new training validation. The storage, addressing, and selection results above come from separately completed experiments.
+
+\subsection{Optimization, Initialization, and Measurement}
+\label{sec:measurement_branch}
+
+Architecture comparisons require a genuinely shared starting point. In an experiment removing position-related attention terms, the same random seed left 53 of 140 shared tensors with different initial values because model construction consumed random numbers in a different order. Explicit parameter copying changed the estimated architecture-by-data interaction, compact views relative to repetition, from $-0.6908$ to $+0.0679$, with an interval spanning zero. The reduced architecture still had lower absolute performance.
+
+Two questions must therefore be distinguished: whether deleting a component reduces overall capability, and whether that component changes the relative benefit of a data treatment. The first remained supported; the initially large interaction estimate was affected by initialization. Checking tensor names, shapes, and actual starting values, then aligning common parameters explicitly, provides a reusable control.
+
+Optimization studies likewise separated local measurements from task outcomes. They compared the directions of parameter change favored by different objectives, projected conflicting components, added detection tasks, or switched optimizers. Some interventions improved short-run loss or internal measurements without establishing stable full-task gains. More aligned updates are a hypothesis about learning, not a substitute for measuring the resulting capabilities.
+
+Evaluation uses complementary scales. A macro-average weights task scores equally; an item-level comparison tracks whether each question changes from incorrect to correct or vice versa. Unequal task sizes allow a macro-average to rise while the total number of correct answers falls. The study records gained items, lost items, and their difference, keeping nonaccuracy quantities such as Reading separate.
+
+Implementation choices also affect scientific interpretation. Continuous packing requires checking whole words, source--restatement correspondence, and the content actually visible after truncation. Microbatching requires weighting by target count to preserve the intended average loss. Gradient checkpointing saves memory by recomputing intermediate activations during backpropagation; short comparisons under fixed randomness test numerical consistency. Trainable parameter fraction, final-model training cost, and the cost of searching for the method are recorded as different quantities.
+
+\subsection{Preserving the Full Research Contribution}
+
+The independent branches leave four kinds of reusable result: training methods that change real models, mechanism experiments identifying conditions of effect, controls that resolve confounds, and exploratory constructions with explicit questions and implementations. Together they supply executable methods, testable explanations, reliable comparison tools, and directions for further work.
+
+Appendix~\ref{app:catalog} organizes methods, controls, and corrections by scientific question, distinguishing completed results from untested candidates. Related methods share topic entries so that readers can move from a question to its intervention, finding, and material. Appendix~\ref{app:assets} links the figures, numerical results, model versions, and research records.

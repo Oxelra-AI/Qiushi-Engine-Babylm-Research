@@ -1,0 +1,1159 @@
+{
+  "status": "EQUIVARIANCE_TRUTH_GRADIENT_AND_COMPOSITION",
+  "created_utc": "2026-09-03T22:03:11Z",
+  "script": "experiments/archive/representation_and_objectives/scripts/equivariance_truth_gradient_and_composition.py",
+  "purpose": "Repair research all-chance interpretation by verifying truth table/gradient/memorization, then comparing ordinary vs equivariant learning when every predicate has independent semantic evidence.",
+  "inputs": {
+    "train": "experiments/archive/representation_and_objectives/data/paired_world_pilot/families_train.jsonl",
+    "held": "experiments/archive/representation_and_objectives/data/paired_world_pilot/families_held.jsonl"
+  },
+  "legacy_truth_table_audit": {
+    "name": "legacy_step253_full_matrix_debug",
+    "n": 5120,
+    "label_counts": {
+      "1": 2560,
+      "0": 2560
+    },
+    "label_fraction_true": 0.5,
+    "source_label_counts": {
+      "legacy_step253_full_matrix_debug": {
+        "1": 2560,
+        "0": 2560
+      }
+    },
+    "n_pair_cells": 64,
+    "pair_cell_unbalanced_examples": [],
+    "duplicate_text_conflicts": 0,
+    "duplicate_text_conflict_examples": []
+  },
+  "gradient_and_memorization_probe": {
+    "slice_rows": 64,
+    "labels": {
+      "1": 32,
+      "0": 32
+    },
+    "vocab_size": 26,
+    "max_len": 19,
+    "initial_acc": 0.5,
+    "initial_loss": 0.7058542966842651,
+    "first_step_grad_norm": 0.6440612979568007,
+    "first_step_nonzero_grad_entries": 52129,
+    "first_step_param_delta_l2": 2.2816505432128906,
+    "after_first_step_acc": 0.5,
+    "after_first_step_loss": 0.9054135084152222,
+    "final_acc": 1.0,
+    "final_loss": 0.013801229186356068,
+    "reached_999_acc_epoch": 30,
+    "history": [
+      {
+        "epoch": 0,
+        "acc": 0.5,
+        "loss": 0.7058542966842651
+      },
+      {
+        "epoch": 1,
+        "acc": 0.5,
+        "loss": 0.9054135084152222
+      },
+      {
+        "epoch": 2,
+        "acc": 0.5,
+        "loss": 0.7067224383354187
+      },
+      {
+        "epoch": 3,
+        "acc": 0.5,
+        "loss": 0.6981320381164551
+      },
+      {
+        "epoch": 4,
+        "acc": 0.515625,
+        "loss": 0.6742318868637085
+      },
+      {
+        "epoch": 5,
+        "acc": 0.671875,
+        "loss": 0.6671164035797119
+      },
+      {
+        "epoch": 6,
+        "acc": 0.65625,
+        "loss": 0.6555474996566772
+      },
+      {
+        "epoch": 7,
+        "acc": 0.671875,
+        "loss": 0.6408774852752686
+      },
+      {
+        "epoch": 8,
+        "acc": 0.671875,
+        "loss": 0.6221489310264587
+      },
+      {
+        "epoch": 9,
+        "acc": 0.671875,
+        "loss": 0.5993673205375671
+      },
+      {
+        "epoch": 10,
+        "acc": 0.71875,
+        "loss": 0.567218005657196
+      },
+      {
+        "epoch": 20,
+        "acc": 0.90625,
+        "loss": 0.256119966506958
+      },
+      {
+        "epoch": 30,
+        "acc": 1.0,
+        "loss": 0.013801229186356068
+      }
+    ],
+    "passed_gradient_path": true,
+    "passed_memorization": true
+  },
+  "composition_experiment": {
+    "family_domain_counts_all": {
+      "tennis": 350,
+      "football": 50,
+      "badminton": 100
+    },
+    "held_domain": "football",
+    "family_counts": {
+      "train": 24,
+      "held_family": 12,
+      "held_domain": 12
+    },
+    "predicate_sets": {
+      "all": [
+        "defeated",
+        "beat",
+        "overcame",
+        "prevailed",
+        "lost_to",
+        "was_beaten",
+        "fell_to",
+        "was_defeated"
+      ],
+      "wf": [
+        "defeated",
+        "beat",
+        "overcame",
+        "prevailed"
+      ],
+      "lf": [
+        "lost_to",
+        "was_beaten",
+        "fell_to",
+        "was_defeated"
+      ]
+    },
+    "pair_split": {
+      "train_pairs": 48,
+      "held_pairs": 16,
+      "held_pairs_list": [
+        [
+          "beat",
+          "beat"
+        ],
+        [
+          "beat",
+          "was_beaten"
+        ],
+        [
+          "defeated",
+          "defeated"
+        ],
+        [
+          "defeated",
+          "lost_to"
+        ],
+        [
+          "fell_to",
+          "fell_to"
+        ],
+        [
+          "fell_to",
+          "overcame"
+        ],
+        [
+          "lost_to",
+          "defeated"
+        ],
+        [
+          "lost_to",
+          "lost_to"
+        ],
+        [
+          "overcame",
+          "fell_to"
+        ],
+        [
+          "overcame",
+          "overcame"
+        ],
+        [
+          "prevailed",
+          "prevailed"
+        ],
+        [
+          "prevailed",
+          "was_defeated"
+        ],
+        [
+          "was_beaten",
+          "beat"
+        ],
+        [
+          "was_beaten",
+          "was_beaten"
+        ],
+        [
+          "was_defeated",
+          "prevailed"
+        ],
+        [
+          "was_defeated",
+          "was_defeated"
+        ]
+      ],
+      "property": "Each predicate appears in both training and held pair-composition cells; held cells test new cp×hp combinations, not zero-shot predicate words."
+    },
+    "row_counts": {
+      "train_total": 6912,
+      "support": 2304,
+      "composition_train": 4608,
+      "train_pair_held_family": 2304,
+      "held_pair_seen_family": 1536,
+      "held_pair_held_family": 768,
+      "held_pair_held_domain": 768,
+      "semantic_support_held_family": 1152
+    },
+    "equivariance_pairs": 11520,
+    "audits": {
+      "support_train": {
+        "name": "semantic_support_train",
+        "n": 2304,
+        "label_counts": {
+          "1": 1152,
+          "0": 1152
+        },
+        "label_fraction_true": 0.5,
+        "source_label_counts": {
+          "semantic_support_context_predicate": {
+            "1": 768,
+            "0": 768
+          },
+          "semantic_support_hypothesis_predicate": {
+            "1": 384,
+            "0": 384
+          }
+        },
+        "n_pair_cells": 24,
+        "pair_cell_unbalanced_examples": [],
+        "duplicate_text_conflicts": 0,
+        "duplicate_text_conflict_examples": []
+      },
+      "composition_train": {
+        "name": "composition_train_pair",
+        "n": 4608,
+        "label_counts": {
+          "1": 2304,
+          "0": 2304
+        },
+        "label_fraction_true": 0.5,
+        "source_label_counts": {
+          "composition_train_pair": {
+            "1": 2304,
+            "0": 2304
+          }
+        },
+        "n_pair_cells": 48,
+        "pair_cell_unbalanced_examples": [],
+        "duplicate_text_conflicts": 0,
+        "duplicate_text_conflict_examples": []
+      },
+      "held_pair_seen_family": {
+        "name": "held_pair_seen_family",
+        "n": 1536,
+        "label_counts": {
+          "1": 768,
+          "0": 768
+        },
+        "label_fraction_true": 0.5,
+        "source_label_counts": {
+          "eval_held_pair_seen_family": {
+            "1": 768,
+            "0": 768
+          }
+        },
+        "n_pair_cells": 16,
+        "pair_cell_unbalanced_examples": [],
+        "duplicate_text_conflicts": 0,
+        "duplicate_text_conflict_examples": []
+      },
+      "held_pair_held_family": {
+        "name": "held_pair_held_family",
+        "n": 768,
+        "label_counts": {
+          "1": 384,
+          "0": 384
+        },
+        "label_fraction_true": 0.5,
+        "source_label_counts": {
+          "eval_held_pair_held_family": {
+            "1": 384,
+            "0": 384
+          }
+        },
+        "n_pair_cells": 16,
+        "pair_cell_unbalanced_examples": [],
+        "duplicate_text_conflicts": 0,
+        "duplicate_text_conflict_examples": []
+      },
+      "held_pair_held_domain": {
+        "name": "held_pair_held_domain",
+        "n": 768,
+        "label_counts": {
+          "1": 384,
+          "0": 384
+        },
+        "label_fraction_true": 0.5,
+        "source_label_counts": {
+          "eval_held_pair_held_domain": {
+            "1": 384,
+            "0": 384
+          }
+        },
+        "n_pair_cells": 16,
+        "pair_cell_unbalanced_examples": [],
+        "duplicate_text_conflicts": 0,
+        "duplicate_text_conflict_examples": []
+      }
+    },
+    "aggregates": {
+      "train_pair_held_family": {
+        "standard": {
+          "mean": 0.6640625,
+          "std": 0.23756509524584343,
+          "seeds": [
+            0.5,
+            1.0,
+            0.4921875
+          ]
+        },
+        "equivariant": {
+          "mean": 0.8363715277777778,
+          "std": 0.2314056046070559,
+          "seeds": [
+            0.5091145833333334,
+            1.0,
+            1.0
+          ]
+        },
+        "delta_equiv_minus_standard": 0.1723090277777778
+      },
+      "held_pair_seen_family": {
+        "standard": {
+          "mean": 0.6690538194444445,
+          "std": 0.23403255106871748,
+          "seeds": [
+            0.5,
+            1.0,
+            0.5071614583333334
+          ]
+        },
+        "equivariant": {
+          "mean": 0.8220486111111112,
+          "std": 0.2280228451724184,
+          "seeds": [
+            0.5,
+            0.96875,
+            0.9973958333333334
+          ]
+        },
+        "delta_equiv_minus_standard": 0.15299479166666663
+      },
+      "held_pair_held_family": {
+        "standard": {
+          "mean": 0.66796875,
+          "std": 0.2347869643310541,
+          "seeds": [
+            0.5,
+            1.0,
+            0.50390625
+          ]
+        },
+        "equivariant": {
+          "mean": 0.8190104166666666,
+          "std": 0.22947964344657182,
+          "seeds": [
+            0.4947916666666667,
+            0.96875,
+            0.9934895833333334
+          ]
+        },
+        "delta_equiv_minus_standard": 0.15104166666666663
+      },
+      "held_pair_held_domain": {
+        "standard": {
+          "mean": 0.6640625,
+          "std": 0.23756509524584343,
+          "seeds": [
+            0.5,
+            1.0,
+            0.4921875
+          ]
+        },
+        "equivariant": {
+          "mean": 0.828125,
+          "std": 0.23210708286622075,
+          "seeds": [
+            0.5,
+            0.984375,
+            1.0
+          ]
+        },
+        "delta_equiv_minus_standard": 0.1640625
+      },
+      "semantic_support_held_family": {
+        "standard": {
+          "mean": 0.6666666666666666,
+          "std": 0.23570226039551584,
+          "seeds": [
+            0.5,
+            1.0,
+            0.5
+          ]
+        },
+        "equivariant": {
+          "mean": 0.8333333333333334,
+          "std": 0.23570226039551584,
+          "seeds": [
+            0.5,
+            1.0,
+            1.0
+          ]
+        },
+        "delta_equiv_minus_standard": 0.16666666666666674
+      }
+    },
+    "per_seed": {
+      "standard": [
+        {
+          "seed": 254,
+          "epochs": 12,
+          "lr": 0.002,
+          "lambda": 0.0,
+          "vocab_size": 29,
+          "max_len": 22,
+          "best_selector_score": 0.5,
+          "history_tail": [
+            {
+              "epoch": 5,
+              "train_acc": 0.5,
+              "train_loss": 0.6931524519567136,
+              "opt_loss": 0.6935877833101485,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 6,
+              "train_acc": 0.5,
+              "train_loss": 0.6932291830027545,
+              "opt_loss": 0.6933964192867279,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 7,
+              "train_acc": 0.5,
+              "train_loss": 0.6931780113114251,
+              "opt_loss": 0.6933184431658851,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 8,
+              "train_acc": 0.5,
+              "train_loss": 0.6931738434014497,
+              "opt_loss": 0.6932541154049061,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 9,
+              "train_acc": 0.49291087962962965,
+              "train_loss": 0.6931474407513937,
+              "opt_loss": 0.6932711623333119,
+              "held_pair_seen_family_acc": 0.4739583333333333
+            },
+            {
+              "epoch": 10,
+              "train_acc": 0.5,
+              "train_loss": 0.6931471846721791,
+              "opt_loss": 0.6932624865461279,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 11,
+              "train_acc": 0.5,
+              "train_loss": 0.6931649910079108,
+              "opt_loss": 0.6932439594357102,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 12,
+              "train_acc": 0.5,
+              "train_loss": 0.6931502068484271,
+              "opt_loss": 0.6932339767615,
+              "held_pair_seen_family_acc": 0.5
+            }
+          ],
+          "eval": {
+            "train_pair_held_family": {
+              "n": 2304,
+              "acc": 0.5,
+              "loss": 0.6941110359297858,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            },
+            "held_pair_seen_family": {
+              "n": 1536,
+              "acc": 0.5,
+              "loss": 0.6938481330871582,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            },
+            "held_pair_held_family": {
+              "n": 768,
+              "acc": 0.5,
+              "loss": 0.6941126187642416,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            },
+            "held_pair_held_domain": {
+              "n": 768,
+              "acc": 0.5,
+              "loss": 0.6945712367693583,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "football": 0.5
+              }
+            },
+            "semantic_support_held_family": {
+              "n": 1152,
+              "acc": 0.5,
+              "loss": 0.6941900849342346,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            }
+          }
+        },
+        {
+          "seed": 255,
+          "epochs": 12,
+          "lr": 0.002,
+          "lambda": 0.0,
+          "vocab_size": 29,
+          "max_len": 22,
+          "best_selector_score": 1.0,
+          "history_tail": [
+            {
+              "epoch": 5,
+              "train_acc": 0.5,
+              "train_loss": 0.6937670376565721,
+              "opt_loss": 0.6952339432857655,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 6,
+              "train_acc": 0.4965277777777778,
+              "train_loss": 0.6931108986889875,
+              "opt_loss": 0.6949844007138852,
+              "held_pair_seen_family_acc": 0.4973958333333333
+            },
+            {
+              "epoch": 7,
+              "train_acc": 0.5138888888888888,
+              "train_loss": 0.6928824429158811,
+              "opt_loss": 0.6932854464760533,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 8,
+              "train_acc": 1.0,
+              "train_loss": 0.017186255539181055,
+              "opt_loss": 0.5930275619892335,
+              "held_pair_seen_family_acc": 1.0
+            },
+            {
+              "epoch": 9,
+              "train_acc": 1.0,
+              "train_loss": 2.4780088097031694e-06,
+              "opt_loss": 0.0010047435818360438,
+              "held_pair_seen_family_acc": 1.0
+            },
+            {
+              "epoch": 10,
+              "train_acc": 1.0,
+              "train_loss": 1.2220237345496166e-06,
+              "opt_loss": 2.18324212002901e-06,
+              "held_pair_seen_family_acc": 1.0
+            },
+            {
+              "epoch": 11,
+              "train_acc": 1.0,
+              "train_loss": 9.208659308670677e-07,
+              "opt_loss": 1.3462892709454806e-06,
+              "held_pair_seen_family_acc": 1.0
+            },
+            {
+              "epoch": 12,
+              "train_acc": 1.0,
+              "train_loss": 7.517292201723817e-07,
+              "opt_loss": 1.0381567855583179e-06,
+              "held_pair_seen_family_acc": 1.0
+            }
+          ],
+          "eval": {
+            "train_pair_held_family": {
+              "n": 2304,
+              "acc": 1.0,
+              "loss": 0.02188514131638739,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_seen_family": {
+              "n": 1536,
+              "acc": 1.0,
+              "loss": 0.024596833313504856,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_held_family": {
+              "n": 768,
+              "acc": 1.0,
+              "loss": 0.024118035410841305,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_held_domain": {
+              "n": 768,
+              "acc": 1.0,
+              "loss": 0.02418922446668148,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "football": 1.0
+              }
+            },
+            "semantic_support_held_family": {
+              "n": 1152,
+              "acc": 1.0,
+              "loss": 0.0067420896763602895,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            }
+          }
+        },
+        {
+          "seed": 256,
+          "epochs": 12,
+          "lr": 0.002,
+          "lambda": 0.0,
+          "vocab_size": 29,
+          "max_len": 22,
+          "best_selector_score": 0.5071614583333334,
+          "history_tail": [
+            {
+              "epoch": 5,
+              "train_acc": 0.49363425925925924,
+              "train_loss": 0.6931576110698559,
+              "opt_loss": 0.6932535734441545,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 6,
+              "train_acc": 0.5,
+              "train_loss": 0.693147994853832,
+              "opt_loss": 0.6932309280942988,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 7,
+              "train_acc": 0.5,
+              "train_loss": 0.6931642558839586,
+              "opt_loss": 0.6932282503004428,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 8,
+              "train_acc": 0.5,
+              "train_loss": 0.6931474495817114,
+              "opt_loss": 0.6932049305350693,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 9,
+              "train_acc": 0.5,
+              "train_loss": 0.6931520832909478,
+              "opt_loss": 0.69321518474155,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 10,
+              "train_acc": 0.5,
+              "train_loss": 0.6931480677039535,
+              "opt_loss": 0.693220344958482,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 11,
+              "train_acc": 0.5,
+              "train_loss": 0.6931486129760742,
+              "opt_loss": 0.6932695772912767,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 12,
+              "train_acc": 0.5,
+              "train_loss": 0.6931590857329192,
+              "opt_loss": 0.6932137332580708,
+              "held_pair_seen_family_acc": 0.5
+            }
+          ],
+          "eval": {
+            "train_pair_held_family": {
+              "n": 2304,
+              "acc": 0.4921875,
+              "loss": 0.6931748853789436,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.49895833333333334,
+                "tennis": 0.48735119047619047
+              }
+            },
+            "held_pair_seen_family": {
+              "n": 1536,
+              "acc": 0.5071614583333334,
+              "loss": 0.6931682229042053,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.50859375
+              }
+            },
+            "held_pair_held_family": {
+              "n": 768,
+              "acc": 0.50390625,
+              "loss": 0.6931743224461874,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5066964285714286
+              }
+            },
+            "held_pair_held_domain": {
+              "n": 768,
+              "acc": 0.4921875,
+              "loss": 0.6931711236635844,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "football": 0.4921875
+              }
+            },
+            "semantic_support_held_family": {
+              "n": 1152,
+              "acc": 0.5,
+              "loss": 0.6939886808395386,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            }
+          }
+        }
+      ],
+      "equivariant": [
+        {
+          "seed": 254,
+          "epochs": 12,
+          "lr": 0.002,
+          "lambda": 0.35,
+          "vocab_size": 29,
+          "max_len": 22,
+          "best_selector_score": 0.5,
+          "history_tail": [
+            {
+              "epoch": 5,
+              "train_acc": 0.5,
+              "train_loss": 0.6931538802606089,
+              "opt_loss": 0.6932891585208751,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 6,
+              "train_acc": 0.5,
+              "train_loss": 0.6931508647070991,
+              "opt_loss": 0.6932123093693344,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 7,
+              "train_acc": 0.5,
+              "train_loss": 0.6931955924740544,
+              "opt_loss": 0.6932089019704748,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 8,
+              "train_acc": 0.5,
+              "train_loss": 0.693150955217856,
+              "opt_loss": 0.693229638867908,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 9,
+              "train_acc": 0.5,
+              "train_loss": 0.6931490986435501,
+              "opt_loss": 0.6931990385055542,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 10,
+              "train_acc": 0.5,
+              "train_loss": 0.6931485445411117,
+              "opt_loss": 0.6932091172094699,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 11,
+              "train_acc": 0.5,
+              "train_loss": 0.6931492730423257,
+              "opt_loss": 0.6932182510693868,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 12,
+              "train_acc": 0.5,
+              "train_loss": 0.6931487432232609,
+              "opt_loss": 0.693241106139289,
+              "held_pair_seen_family_acc": 0.5
+            }
+          ],
+          "eval": {
+            "train_pair_held_family": {
+              "n": 2304,
+              "acc": 0.5091145833333334,
+              "loss": 0.6933515535460578,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.521875,
+                "tennis": 0.5
+              }
+            },
+            "held_pair_seen_family": {
+              "n": 1536,
+              "acc": 0.5,
+              "loss": 0.6934289733568827,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            },
+            "held_pair_held_family": {
+              "n": 768,
+              "acc": 0.4947916666666667,
+              "loss": 0.6933507919311523,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.4875,
+                "tennis": 0.5
+              }
+            },
+            "held_pair_held_domain": {
+              "n": 768,
+              "acc": 0.5,
+              "loss": 0.6931689182917277,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "football": 0.5
+              }
+            },
+            "semantic_support_held_family": {
+              "n": 1152,
+              "acc": 0.5,
+              "loss": 0.6933059030108981,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.5,
+                "tennis": 0.5
+              }
+            }
+          }
+        },
+        {
+          "seed": 255,
+          "epochs": 12,
+          "lr": 0.002,
+          "lambda": 0.35,
+          "vocab_size": 29,
+          "max_len": 22,
+          "best_selector_score": 0.96875,
+          "history_tail": [
+            {
+              "epoch": 5,
+              "train_acc": 0.5069444444444444,
+              "train_loss": 0.6922912906717371,
+              "opt_loss": 0.6940208651401378,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 6,
+              "train_acc": 0.9652777777777778,
+              "train_loss": 0.08395164597917486,
+              "opt_loss": 0.5677493841007903,
+              "held_pair_seen_family_acc": 0.953125
+            },
+            {
+              "epoch": 7,
+              "train_acc": 1.0,
+              "train_loss": 9.021538992076078e-05,
+              "opt_loss": 0.015225120630391218,
+              "held_pair_seen_family_acc": 0.96875
+            },
+            {
+              "epoch": 8,
+              "train_acc": 1.0,
+              "train_loss": 7.518524324512798e-05,
+              "opt_loss": 0.0023994603263283215,
+              "held_pair_seen_family_acc": 0.96875
+            },
+            {
+              "epoch": 9,
+              "train_acc": 1.0,
+              "train_loss": 5.503964725735218e-05,
+              "opt_loss": 0.0017067827068752161,
+              "held_pair_seen_family_acc": 0.96875
+            },
+            {
+              "epoch": 10,
+              "train_acc": 1.0,
+              "train_loss": 3.4723891817352354e-05,
+              "opt_loss": 0.0012095822139936328,
+              "held_pair_seen_family_acc": 0.9615885416666666
+            },
+            {
+              "epoch": 11,
+              "train_acc": 1.0,
+              "train_loss": 3.6305956773166715e-05,
+              "opt_loss": 0.0008923735316515107,
+              "held_pair_seen_family_acc": 0.9602864583333334
+            },
+            {
+              "epoch": 12,
+              "train_acc": 1.0,
+              "train_loss": 1.863972546642698e-05,
+              "opt_loss": 0.0006847202182850904,
+              "held_pair_seen_family_acc": 0.9459635416666666
+            }
+          ],
+          "eval": {
+            "train_pair_held_family": {
+              "n": 2304,
+              "acc": 1.0,
+              "loss": 8.777282184584894e-05,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_seen_family": {
+              "n": 1536,
+              "acc": 0.96875,
+              "loss": 0.06741943458716075,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.96875,
+                "tennis": 0.96875
+              }
+            },
+            "held_pair_held_family": {
+              "n": 768,
+              "acc": 0.96875,
+              "loss": 0.06885076810916264,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.96875,
+                "tennis": 0.96875
+              }
+            },
+            "held_pair_held_domain": {
+              "n": 768,
+              "acc": 0.984375,
+              "loss": 0.04977420096596082,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "football": 0.984375
+              }
+            },
+            "semantic_support_held_family": {
+              "n": 1152,
+              "acc": 1.0,
+              "loss": 9.732220496516675e-05,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            }
+          }
+        },
+        {
+          "seed": 256,
+          "epochs": 12,
+          "lr": 0.002,
+          "lambda": 0.35,
+          "vocab_size": 29,
+          "max_len": 22,
+          "best_selector_score": 0.9973958333333334,
+          "history_tail": [
+            {
+              "epoch": 5,
+              "train_acc": 0.49537037037037035,
+              "train_loss": 0.6931953386024192,
+              "opt_loss": 0.6935320044005359,
+              "held_pair_seen_family_acc": 0.5026041666666666
+            },
+            {
+              "epoch": 6,
+              "train_acc": 0.5,
+              "train_loss": 0.6931347228862621,
+              "opt_loss": 0.6933153746304689,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 7,
+              "train_acc": 0.5104166666666666,
+              "train_loss": 0.6929750265898528,
+              "opt_loss": 0.6931932579588007,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 8,
+              "train_acc": 0.5277777777777778,
+              "train_loss": 0.6834357645776536,
+              "opt_loss": 0.6913592594641226,
+              "held_pair_seen_family_acc": 0.5
+            },
+            {
+              "epoch": 9,
+              "train_acc": 0.9784432870370371,
+              "train_loss": 0.08203149569669256,
+              "opt_loss": 0.4352521706648447,
+              "held_pair_seen_family_acc": 0.9615885416666666
+            },
+            {
+              "epoch": 10,
+              "train_acc": 1.0,
+              "train_loss": 8.786998902602743e-05,
+              "opt_loss": 0.0050022171387724855,
+              "held_pair_seen_family_acc": 0.9973958333333334
+            },
+            {
+              "epoch": 11,
+              "train_acc": 1.0,
+              "train_loss": 0.00014878335436892316,
+              "opt_loss": 0.002937069417115439,
+              "held_pair_seen_family_acc": 0.9973958333333334
+            },
+            {
+              "epoch": 12,
+              "train_acc": 1.0,
+              "train_loss": 0.0001475478892205973,
+              "opt_loss": 0.0022644993236840324,
+              "held_pair_seen_family_acc": 0.984375
+            }
+          ],
+          "eval": {
+            "train_pair_held_family": {
+              "n": 2304,
+              "acc": 1.0,
+              "loss": 9.527821869899829e-05,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_seen_family": {
+              "n": 1536,
+              "acc": 0.9973958333333334,
+              "loss": 0.0129695488139987,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.984375,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_held_family": {
+              "n": 768,
+              "acc": 0.9934895833333334,
+              "loss": 0.01519750120739142,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 0.984375,
+                "tennis": 1.0
+              }
+            },
+            "held_pair_held_domain": {
+              "n": 768,
+              "acc": 1.0,
+              "loss": 0.025877511128783226,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "football": 1.0
+              }
+            },
+            "semantic_support_held_family": {
+              "n": 1152,
+              "acc": 1.0,
+              "loss": 9.870881654529108e-05,
+              "label_true_frac": 0.5,
+              "by_sport_acc": {
+                "badminton": 1.0,
+                "tennis": 1.0
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "interpretation_boundary": "This controlled CPU probe can show whether the objective/data format is measurable and whether equivariance helps after predicate words are semantically supported. It is not BabyLM training and does not by itself establish a general natural data-efficient learning principle."
+}

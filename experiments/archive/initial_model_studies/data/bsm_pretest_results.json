@@ -1,0 +1,375 @@
+{
+  "status": "BSM_PRETEST",
+  "frozen_ckpt": "experiments/archive/initial_model_studies/training/runs/babylm_fullcycle_debertav2_8x480_wwm_seed42_100M_b256/hf_model/chck_100M",
+  "params": {
+    "n_train_pairs": 200,
+    "n_heldout_pairs": 80,
+    "n_epochs": 3,
+    "batch_size": 8,
+    "lr": 2e-05,
+    "margin_target": 1.0,
+    "lambda_bsm": 1.0,
+    "seed": 42
+  },
+  "inventories": {
+    "train_entities": [
+      "Alice",
+      "Bob",
+      "John",
+      "Mary",
+      "Tom",
+      "Sarah",
+      "David",
+      "Emma",
+      "Peter"
+    ],
+    "heldout_entities": [
+      "Lisa",
+      "Mike",
+      "Kate",
+      "Jack",
+      "Anna",
+      "Sam",
+      "Jane"
+    ],
+    "train_values": [
+      "hat",
+      "ball",
+      "fish",
+      "cake",
+      "milk",
+      "book",
+      "apple",
+      "bread",
+      "coffee",
+      "tea",
+      "Paris",
+      "London",
+      "Rome",
+      "fast",
+      "slow",
+      "red"
+    ],
+    "heldout_values": [
+      "blue",
+      "green",
+      "north",
+      "south",
+      "home",
+      "school",
+      "river",
+      "forest",
+      "doctor",
+      "teacher",
+      "gold",
+      "silver"
+    ]
+  },
+  "pair_counts": {
+    "train": 200,
+    "heldout_entities": 80,
+    "heldout_values": 80,
+    "heldout_templates": 80,
+    "heldout_order_flip": 80
+  },
+  "arm_results": {
+    "base": {
+      "train_logs": [],
+      "evaluations": {
+        "train": {
+          "n_pairs": 162,
+          "both_correct_frac": 0.024691358024691357,
+          "same_value_pref_frac": 0.9629629629629629,
+          "mean_margin_q1": -0.9486856000658906,
+          "mean_margin_q2": 1.0850009312278326,
+          "mean_margin_overall": 0.06815766558097097
+        },
+        "heldout_entities": {
+          "n_pairs": 64,
+          "both_correct_frac": 0.015625,
+          "same_value_pref_frac": 0.96875,
+          "mean_margin_q1": -0.1526755429804325,
+          "mean_margin_q2": 0.2629955103620887,
+          "mean_margin_overall": 0.055159983690828085
+        },
+        "heldout_values": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.014492753623188406,
+          "same_value_pref_frac": 0.9710144927536232,
+          "mean_margin_q1": 0.13371882274530936,
+          "mean_margin_q2": -0.10305523267690686,
+          "mean_margin_overall": 0.015331795034201248
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.0375,
+          "same_value_pref_frac": 0.9625,
+          "mean_margin_q1": -0.687386830151081,
+          "mean_margin_q2": 0.8336881276220083,
+          "mean_margin_overall": 0.07315064873546362
+        },
+        "heldout_order_flip": {
+          "n_pairs": 68,
+          "both_correct_frac": 0.014705882352941176,
+          "same_value_pref_frac": 0.9852941176470589,
+          "mean_margin_q1": 0.3955766812843435,
+          "mean_margin_q2": -0.16732608132502613,
+          "mean_margin_overall": 0.11412529997965867
+        }
+      }
+    },
+    "mlm_only": {
+      "train_logs": [
+        {
+          "epoch": 1,
+          "batch": 10,
+          "loss": 2.6817781925201416,
+          "mlm_loss": 2.6817779541015625,
+          "bsm_loss": 2.591890607561384
+        },
+        {
+          "epoch": 1,
+          "batch": 20,
+          "loss": 0.6803982853889465,
+          "mlm_loss": 0.6803982734680176,
+          "bsm_loss": 0.44235897064208984
+        },
+        {
+          "epoch": 2,
+          "batch": 0,
+          "loss": 0.41092997789382935,
+          "mlm_loss": 0.41092995802561444,
+          "bsm_loss": 0.0
+        },
+        {
+          "epoch": 2,
+          "batch": 10,
+          "loss": 0.5760165452957153,
+          "mlm_loss": 0.5760164942060199,
+          "bsm_loss": 0.0
+        },
+        {
+          "epoch": 2,
+          "batch": 20,
+          "loss": 0.15151451528072357,
+          "mlm_loss": 0.1515145182609558,
+          "bsm_loss": 0.0
+        }
+      ],
+      "evaluations": {
+        "train": {
+          "n_pairs": 162,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 11.573520004013439,
+          "mean_margin_q2": 12.033053592399314,
+          "mean_margin_overall": 11.803286798206376
+        },
+        "heldout_entities": {
+          "n_pairs": 64,
+          "both_correct_frac": 0.96875,
+          "same_value_pref_frac": 0.03125,
+          "mean_margin_q1": 11.903444811701775,
+          "mean_margin_q2": 12.055441752076149,
+          "mean_margin_overall": 11.979443281888962
+        },
+        "heldout_values": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.9710144927536232,
+          "same_value_pref_frac": 0.028985507246376812,
+          "mean_margin_q1": 10.657241842021113,
+          "mean_margin_q2": 10.919980035311934,
+          "mean_margin_overall": 10.788610938666523
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 11.120732045173645,
+          "mean_margin_q2": 12.269664287567139,
+          "mean_margin_overall": 11.695198166370393
+        },
+        "heldout_order_flip": {
+          "n_pairs": 68,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 12.724558423547183,
+          "mean_margin_q2": 12.029015954803018,
+          "mean_margin_overall": 12.3767871891751
+        }
+      }
+    },
+    "bsm": {
+      "train_logs": [
+        {
+          "epoch": 1,
+          "batch": 10,
+          "loss": 3.7565035820007324,
+          "mlm_loss": 2.668197359357561,
+          "bsm_loss": 1.088306222643171
+        },
+        {
+          "epoch": 1,
+          "batch": 20,
+          "loss": 0.8296880722045898,
+          "mlm_loss": 0.7834235668182373,
+          "bsm_loss": 0.04626445770263672
+        },
+        {
+          "epoch": 2,
+          "batch": 0,
+          "loss": 1.4124150276184082,
+          "mlm_loss": 1.4124150276184082,
+          "bsm_loss": 0.0
+        },
+        {
+          "epoch": 2,
+          "batch": 10,
+          "loss": 1.3543071746826172,
+          "mlm_loss": 0.892141478402274,
+          "bsm_loss": 0.4621655600411551
+        },
+        {
+          "epoch": 2,
+          "batch": 20,
+          "loss": 0.13041631877422333,
+          "mlm_loss": 0.13041632175445556,
+          "bsm_loss": 0.0
+        }
+      ],
+      "evaluations": {
+        "train": {
+          "n_pairs": 162,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 11.100335712786075,
+          "mean_margin_q2": 11.578027183626904,
+          "mean_margin_overall": 11.339181448206489
+        },
+        "heldout_entities": {
+          "n_pairs": 64,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 11.210548035800457,
+          "mean_margin_q2": 11.852803170681,
+          "mean_margin_overall": 11.531675603240728
+        },
+        "heldout_values": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.9710144927536232,
+          "same_value_pref_frac": 0.028985507246376812,
+          "mean_margin_q1": 10.426961221556732,
+          "mean_margin_q2": 10.969396998916848,
+          "mean_margin_overall": 10.69817911023679
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 10.591681897640228,
+          "mean_margin_q2": 11.790885281562804,
+          "mean_margin_overall": 11.191283589601516
+        },
+        "heldout_order_flip": {
+          "n_pairs": 68,
+          "both_correct_frac": 1.0,
+          "same_value_pref_frac": 0.0,
+          "mean_margin_q1": 12.133660134147195,
+          "mean_margin_q2": 11.291430298019858,
+          "mean_margin_overall": 11.712545216083527
+        }
+      }
+    },
+    "random_corr": {
+      "train_logs": [
+        {
+          "epoch": 1,
+          "batch": 10,
+          "loss": 6.009931564331055,
+          "mlm_loss": 3.869652509689331,
+          "bsm_loss": 2.1402790546417236
+        },
+        {
+          "epoch": 1,
+          "batch": 20,
+          "loss": 9.675344467163086,
+          "mlm_loss": 4.8965163230896,
+          "bsm_loss": 4.778827667236328
+        },
+        {
+          "epoch": 2,
+          "batch": 0,
+          "loss": 5.7147135734558105,
+          "mlm_loss": 2.2534468173980713,
+          "bsm_loss": 3.4612667560577393
+        },
+        {
+          "epoch": 2,
+          "batch": 10,
+          "loss": 4.552395820617676,
+          "mlm_loss": 3.1424312591552734,
+          "bsm_loss": 1.4099644252232142
+        },
+        {
+          "epoch": 2,
+          "batch": 20,
+          "loss": 6.227862358093262,
+          "mlm_loss": 2.7773122787475586,
+          "bsm_loss": 3.4505503177642822
+        }
+      ],
+      "evaluations": {
+        "train": {
+          "n_pairs": 162,
+          "both_correct_frac": 0.7654320987654321,
+          "same_value_pref_frac": 0.2345679012345679,
+          "mean_margin_q1": 2.3880011358378845,
+          "mean_margin_q2": 2.1609447443926775,
+          "mean_margin_overall": 2.274472940115281
+        },
+        "heldout_entities": {
+          "n_pairs": 64,
+          "both_correct_frac": 0.75,
+          "same_value_pref_frac": 0.25,
+          "mean_margin_q1": 2.7172919139266014,
+          "mean_margin_q2": 2.5593032240867615,
+          "mean_margin_overall": 2.6382975690066814
+        },
+        "heldout_values": {
+          "n_pairs": 69,
+          "both_correct_frac": 0.6376811594202898,
+          "same_value_pref_frac": 0.36231884057971014,
+          "mean_margin_q1": 3.1620905572089595,
+          "mean_margin_q2": 2.2559497356414795,
+          "mean_margin_overall": 2.7090201464252193
+        },
+        "heldout_templates": {
+          "n_pairs": 80,
+          "both_correct_frac": 0.7375,
+          "same_value_pref_frac": 0.2625,
+          "mean_margin_q1": 1.9516676545143128,
+          "mean_margin_q2": 2.81073836684227,
+          "mean_margin_overall": 2.3812030106782913
+        },
+        "heldout_order_flip": {
+          "n_pairs": 68,
+          "both_correct_frac": 0.8088235294117647,
+          "same_value_pref_frac": 0.19117647058823528,
+          "mean_margin_q1": 2.822500186807969,
+          "mean_margin_q2": 2.4255281686782837,
+          "mean_margin_overall": 2.6240141777431263
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "bsm_learns_binding_on_train": false,
+    "bsm_exceeds_random_corr": true,
+    "bsm_transfers_to_heldout_entities": true,
+    "bsm_transfers_to_heldout_values": true,
+    "bsm_transfers_to_heldout_templates": true,
+    "bsm_transfers_to_order_flips": true,
+    "bsm_route_viable": true
+  },
+  "elapsed_sec": 92.94586515426636
+}

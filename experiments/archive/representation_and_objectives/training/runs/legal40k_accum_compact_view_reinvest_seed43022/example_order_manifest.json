@@ -1,0 +1,620 @@
+{
+  "seed": 43,
+  "selected_for_training_words": 100000000,
+  "num_consumed_examples": 647400,
+  "masking_curriculum": "wwm_fixed",
+  "mask_prob_start": 0.15,
+  "mask_prob_end": 0.15,
+  "switch_frac": 0.7,
+  "effective_batch_size": 256,
+  "micro_batch_size": 64,
+  "gradient_accumulation_steps": 4,
+  "source_words_consumed": {
+    "childes": 25748800,
+    "qwen_pair_packed": 16568000,
+    "simple_wiki": 10590400,
+    "open_subtitles": 18294400,
+    "bnc_spoken": 5758400,
+    "gutenberg": 18593600,
+    "cleanqwen_fineweb_compact_view_reinvest": 4235110,
+    "switchboard": 211200,
+    "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 90
+  },
+  "data_source_type": "example_jsonl",
+  "example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+  "example_jsonl_label": "cleanqwen_fineweb_compact_view_reinvest_legal40k_accum",
+  "example_jsonl_meta": {
+    "status": "DENSITY_CLEANQWEN_ROWHOLDOUT_OVERLAY_MATERIALIZED",
+    "created_utc": "2026-08-29T11:38:22Z",
+    "scientific_purpose": "Map the FineWeb density contrast onto the inherited clean-Qwen paired-view base while preserving coherent non-heldout base rows and all qwen_pair_packed rows.",
+    "inputs": {
+      "density_metadata": "experiments/archive/frontier_consolidation/data/density_core_reinvestment_medium_riskhard/density_core_reinvestment_metadata.json",
+      "density_metadata_sha256": "d1cb4893a2282c55bcde67daf1f59503295dd0644cd3036c802c83ad4272ed68",
+      "base_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "base_pool_sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3",
+      "preserve_source": "qwen_pair_packed"
+    },
+    "base_split": {
+      "base_source_counts": {
+        "childes": 2712640,
+        "open_subtitles": 1927200,
+        "bnc_spoken": 606560,
+        "gutenberg": 1958880,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1115680,
+        "switchboard": 22240
+      },
+      "row_holdout": {
+        "target_rows": 2647,
+        "preserved_source": "qwen_pair_packed",
+        "protected_rows": 12236,
+        "protected_words": 1656800,
+        "noncandidate_rows": 0,
+        "candidate_rows_by_source": {
+          "childes": 16954,
+          "open_subtitles": 12045,
+          "bnc_spoken": 3791,
+          "gutenberg": 12243,
+          "simple_wiki": 6973,
+          "switchboard": 139
+        },
+        "heldout_rows_by_source": {
+          "childes": 861,
+          "gutenberg": 622,
+          "open_subtitles": 611,
+          "simple_wiki": 354,
+          "bnc_spoken": 192,
+          "switchboard": 7
+        },
+        "heldout_words_by_source": {
+          "childes": 137760,
+          "gutenberg": 99520,
+          "open_subtitles": 97760,
+          "simple_wiki": 56640,
+          "bnc_spoken": 30720,
+          "switchboard": 1120
+        }
+      },
+      "changed_block_budget_words": 423520,
+      "heldout_words": 423520,
+      "heldout_rows": 2647,
+      "common_filler_words": 9576480,
+      "common_filler_rows": 61734,
+      "common_filler_source_counts": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "switchboard": 21120
+      }
+    },
+    "changed_block_budget_words": 423520,
+    "total_words_per_pool": 10000000,
+    "passes": 10,
+    "write_training": true,
+    "families": {
+      "near_core": {
+        "family_name": "near_core",
+        "arm_names": {
+          "cleanqwen_lengthmatched": "cleanqwen_lengthmatched_near_core",
+          "repeat": "cleanqwen_fineweb_repeat_near_core",
+          "view": "cleanqwen_fineweb_near_view_core"
+        },
+        "pair_rows": 3098,
+        "changed_block_rows": 3099,
+        "pair_words": 423503,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 17,
+        "changed_block_budget_words": 423520,
+        "row_length_sequence_identical_within_family": true,
+        "repeat_view_suffix_identical_after_pair_rows": true,
+        "common_filler_rows": 61734,
+        "common_filler_words": 9576480,
+        "word_totals": {
+          "cleanqwen_lengthmatched_near_core": 10000000,
+          "cleanqwen_fineweb_repeat_near_core": 10000000,
+          "cleanqwen_fineweb_near_view_core": 10000000
+        },
+        "row_counts": {
+          "cleanqwen_lengthmatched_near_core": 64833,
+          "cleanqwen_fineweb_repeat_near_core": 64833,
+          "cleanqwen_fineweb_near_view_core": 64833
+        }
+      },
+      "compact_core_neutral": {
+        "family_name": "compact_core_neutral",
+        "arm_names": {
+          "cleanqwen_lengthmatched": "cleanqwen_lengthmatched_compact_core_neutral",
+          "repeat": "cleanqwen_fineweb_repeat_compact_core_neutral",
+          "view": "cleanqwen_fineweb_compact_view_core_neutral"
+        },
+        "pair_rows": 2514,
+        "changed_block_rows": 2949,
+        "pair_words": 353945,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 69575,
+        "changed_block_budget_words": 423520,
+        "row_length_sequence_identical_within_family": true,
+        "repeat_view_suffix_identical_after_pair_rows": true,
+        "common_filler_rows": 61734,
+        "common_filler_words": 9576480,
+        "word_totals": {
+          "cleanqwen_lengthmatched_compact_core_neutral": 10000000,
+          "cleanqwen_fineweb_repeat_compact_core_neutral": 10000000,
+          "cleanqwen_fineweb_compact_view_core_neutral": 10000000
+        },
+        "row_counts": {
+          "cleanqwen_lengthmatched_compact_core_neutral": 64683,
+          "cleanqwen_fineweb_repeat_compact_core_neutral": 64683,
+          "cleanqwen_fineweb_compact_view_core_neutral": 64683
+        }
+      },
+      "compact_reinvest": {
+        "family_name": "compact_reinvest",
+        "arm_names": {
+          "cleanqwen_lengthmatched": "cleanqwen_lengthmatched_compact_reinvest",
+          "repeat": "cleanqwen_fineweb_repeat_compact_reinvest",
+          "view": "cleanqwen_fineweb_compact_view_reinvest"
+        },
+        "pair_rows": 3005,
+        "changed_block_rows": 3006,
+        "pair_words": 423511,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 9,
+        "changed_block_budget_words": 423520,
+        "row_length_sequence_identical_within_family": true,
+        "repeat_view_suffix_identical_after_pair_rows": true,
+        "common_filler_rows": 61734,
+        "common_filler_words": 9576480,
+        "word_totals": {
+          "cleanqwen_lengthmatched_compact_reinvest": 10000000,
+          "cleanqwen_fineweb_repeat_compact_reinvest": 10000000,
+          "cleanqwen_fineweb_compact_view_reinvest": 10000000
+        },
+        "row_counts": {
+          "cleanqwen_lengthmatched_compact_reinvest": 64740,
+          "cleanqwen_fineweb_repeat_compact_reinvest": 64740,
+          "cleanqwen_fineweb_compact_view_reinvest": 64740
+        }
+      }
+    },
+    "pair_summaries": {
+      "near_core": {
+        "pairs": 10094,
+        "source_words": 218542,
+        "rewrite_words": 204961,
+        "pair_words": 423503,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 17,
+        "changed_block_budget_words": 423520,
+        "unique_docs": 4247,
+        "rewrite_to_source_ratio_weighted": 0.9378563388273192,
+        "rewrite_to_source_ratio_stats": {
+          "n": 10094,
+          "min": 0.75,
+          "mean": 0.9431078590296663,
+          "median": 0.9444444444444444,
+          "max": 1.2,
+          "sum": 9519.730729045452
+        },
+        "content_recall_stats": {
+          "n": 10094,
+          "min": 0.45454545454545453,
+          "mean": 0.8555736763883932,
+          "median": 0.875,
+          "max": 1.0,
+          "sum": 8636.160689464441
+        },
+        "entity_recall_stats": {
+          "n": 10094,
+          "min": 0.75,
+          "mean": 0.9993715031088718,
+          "median": 1.0,
+          "max": 1.0,
+          "sum": 10087.655952380952
+        },
+        "number_recall_stats": {
+          "n": 10094,
+          "min": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "max": 1.0,
+          "sum": 10094.0
+        },
+        "domain_hit_counts": {
+          "no_domain": 5899,
+          "science_physical": 1295,
+          "causal_relational": 1237,
+          "quant_numeric": 804,
+          "institutions_society": 715,
+          "geography_places": 627,
+          "media_culture": 291,
+          "people_history": 290
+        },
+        "near_copy_like_soft_count": 1984
+      },
+      "compact_core_neutral": {
+        "pairs": 10094,
+        "source_words": 218542,
+        "rewrite_words": 135403,
+        "pair_words": 353945,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 69575,
+        "changed_block_budget_words": 423520,
+        "unique_docs": 4247,
+        "rewrite_to_source_ratio_weighted": 0.6195742694768054,
+        "rewrite_to_source_ratio_stats": {
+          "n": 10094,
+          "min": 0.35,
+          "mean": 0.6263752967080456,
+          "median": 0.625,
+          "max": 0.85,
+          "sum": 6322.632244971012
+        },
+        "content_recall_stats": {
+          "n": 10094,
+          "min": 0.45,
+          "mean": 0.6617579123891815,
+          "median": 0.6666666666666666,
+          "max": 1.0,
+          "sum": 6679.784367656398
+        },
+        "entity_recall_stats": {
+          "n": 10094,
+          "min": 0.75,
+          "mean": 0.9959779265381603,
+          "median": 1.0,
+          "max": 1.0,
+          "sum": 10053.40119047619
+        },
+        "number_recall_stats": {
+          "n": 10094,
+          "min": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "max": 1.0,
+          "sum": 10094.0
+        },
+        "domain_hit_counts": {
+          "no_domain": 5899,
+          "science_physical": 1295,
+          "causal_relational": 1237,
+          "quant_numeric": 804,
+          "institutions_society": 715,
+          "geography_places": 627,
+          "media_culture": 291,
+          "people_history": 290
+        },
+        "near_copy_like_soft_count": 25
+      },
+      "compact_reinvest": {
+        "pairs": 12155,
+        "source_words": 261803,
+        "rewrite_words": 161708,
+        "pair_words": 423511,
+        "neutral_cleanqwen_topup_words_inside_changed_block": 9,
+        "changed_block_budget_words": 423520,
+        "unique_docs": 4529,
+        "rewrite_to_source_ratio_weighted": 0.6176705385346998,
+        "rewrite_to_source_ratio_stats": {
+          "n": 12155,
+          "min": 0.35,
+          "mean": 0.6247153875185093,
+          "median": 0.625,
+          "max": 0.85,
+          "sum": 7593.41553528748
+        },
+        "content_recall_stats": {
+          "n": 12155,
+          "min": 0.45,
+          "mean": 0.6631212351812201,
+          "median": 0.6666666666666666,
+          "max": 1.0,
+          "sum": 8060.23861362773
+        },
+        "entity_recall_stats": {
+          "n": 12155,
+          "min": 0.75,
+          "mean": 0.9960414095708213,
+          "median": 1.0,
+          "max": 1.0,
+          "sum": 12106.883333333333
+        },
+        "number_recall_stats": {
+          "n": 12155,
+          "min": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "max": 1.0,
+          "sum": 12155.0
+        },
+        "domain_hit_counts": {
+          "no_domain": 6975,
+          "science_physical": 1589,
+          "causal_relational": 1537,
+          "quant_numeric": 974,
+          "institutions_society": 862,
+          "geography_places": 772,
+          "media_culture": 370,
+          "people_history": 358
+        },
+        "near_copy_like_soft_count": 30
+      }
+    },
+    "audit": {
+      "all_pool_word_totals": {
+        "cleanqwen_lengthmatched_near_core": 10000000,
+        "cleanqwen_fineweb_repeat_near_core": 10000000,
+        "cleanqwen_fineweb_near_view_core": 10000000,
+        "cleanqwen_lengthmatched_compact_core_neutral": 10000000,
+        "cleanqwen_fineweb_repeat_compact_core_neutral": 10000000,
+        "cleanqwen_fineweb_compact_view_core_neutral": 10000000,
+        "cleanqwen_lengthmatched_compact_reinvest": 10000000,
+        "cleanqwen_fineweb_repeat_compact_reinvest": 10000000,
+        "cleanqwen_fineweb_compact_view_reinvest": 10000000
+      },
+      "all_exact_10M": true,
+      "common_filler_shared_by_all_arms": true,
+      "all_inherited_qwen_pair_words_preserved_in_common_filler": 1656800,
+      "nonheldout_base_rows_preserved_coherently": true,
+      "heldout_rows_are_intact_160_word_base_rows_before_changed_block_repacking": true
+    },
+    "source_word_counts_by_arm": {
+      "cleanqwen_lengthmatched_near_core": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_lengthmatched_near_core::childes": 137401,
+        "cleanqwen_lengthmatched_near_core::gutenberg": 99229,
+        "cleanqwen_lengthmatched_near_core::open_subtitles": 97662,
+        "cleanqwen_lengthmatched_near_core::simple_wiki": 57361,
+        "cleanqwen_lengthmatched_near_core::bnc_spoken": 30807,
+        "switchboard": 21120,
+        "cleanqwen_lengthmatched_near_core::switchboard": 1060
+      },
+      "cleanqwen_fineweb_repeat_near_core": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_repeat_near_core": 423503,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_near_core::open_subtitles": 17
+      },
+      "cleanqwen_fineweb_near_view_core": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_near_view_core": 423503,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_near_core::open_subtitles": 17
+      },
+      "cleanqwen_lengthmatched_compact_core_neutral": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_lengthmatched_compact_core_neutral::childes": 138495,
+        "cleanqwen_lengthmatched_compact_core_neutral::gutenberg": 99563,
+        "cleanqwen_lengthmatched_compact_core_neutral::open_subtitles": 96461,
+        "cleanqwen_lengthmatched_compact_core_neutral::simple_wiki": 58222,
+        "cleanqwen_lengthmatched_compact_core_neutral::bnc_spoken": 29720,
+        "switchboard": 21120,
+        "cleanqwen_lengthmatched_compact_core_neutral::switchboard": 1059
+      },
+      "cleanqwen_fineweb_repeat_compact_core_neutral": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_repeat_compact_core_neutral": 353945,
+        "neutral_cleanqwen_topup_compact_core_neutral::childes": 23815,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_core_neutral::open_subtitles": 18080,
+        "neutral_cleanqwen_topup_compact_core_neutral::gutenberg": 16160,
+        "neutral_cleanqwen_topup_compact_core_neutral::simple_wiki": 8480,
+        "neutral_cleanqwen_topup_compact_core_neutral::bnc_spoken": 3040
+      },
+      "cleanqwen_fineweb_compact_view_core_neutral": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_compact_view_core_neutral": 353945,
+        "neutral_cleanqwen_topup_compact_core_neutral::childes": 23815,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_core_neutral::open_subtitles": 18080,
+        "neutral_cleanqwen_topup_compact_core_neutral::gutenberg": 16160,
+        "neutral_cleanqwen_topup_compact_core_neutral::simple_wiki": 8480,
+        "neutral_cleanqwen_topup_compact_core_neutral::bnc_spoken": 3040
+      },
+      "cleanqwen_lengthmatched_compact_reinvest": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_lengthmatched_compact_reinvest::childes": 137949,
+        "cleanqwen_lengthmatched_compact_reinvest::gutenberg": 99005,
+        "cleanqwen_lengthmatched_compact_reinvest::open_subtitles": 96323,
+        "cleanqwen_lengthmatched_compact_reinvest::simple_wiki": 59263,
+        "cleanqwen_lengthmatched_compact_reinvest::bnc_spoken": 29940,
+        "switchboard": 21120,
+        "cleanqwen_lengthmatched_compact_reinvest::switchboard": 1040
+      },
+      "cleanqwen_fineweb_repeat_compact_reinvest": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_repeat_compact_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      },
+      "cleanqwen_fineweb_compact_view_reinvest": {
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "switchboard": 21120,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9
+      }
+    },
+    "files": {
+      "pools": {
+        "cleanqwen_lengthmatched_near_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_near_core_10M.jsonl",
+        "cleanqwen_fineweb_repeat_near_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_near_core_10M.jsonl",
+        "cleanqwen_fineweb_near_view_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_near_view_core_10M.jsonl",
+        "cleanqwen_lengthmatched_compact_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_compact_core_neutral_10M.jsonl",
+        "cleanqwen_fineweb_repeat_compact_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_core_neutral_10M.jsonl",
+        "cleanqwen_fineweb_compact_view_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl",
+        "cleanqwen_lengthmatched_compact_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_compact_reinvest_10M.jsonl",
+        "cleanqwen_fineweb_repeat_compact_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_reinvest_10M.jsonl",
+        "cleanqwen_fineweb_compact_view_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl"
+      },
+      "training": {
+        "cleanqwen_lengthmatched_near_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_near_core_100M.jsonl",
+        "cleanqwen_fineweb_repeat_near_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_near_core_100M.jsonl",
+        "cleanqwen_fineweb_near_view_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_near_view_core_100M.jsonl",
+        "cleanqwen_lengthmatched_compact_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_compact_core_neutral_100M.jsonl",
+        "cleanqwen_fineweb_repeat_compact_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_core_neutral_100M.jsonl",
+        "cleanqwen_fineweb_compact_view_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_100M.jsonl",
+        "cleanqwen_lengthmatched_compact_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_compact_reinvest_100M.jsonl",
+        "cleanqwen_fineweb_repeat_compact_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_reinvest_100M.jsonl",
+        "cleanqwen_fineweb_compact_view_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl"
+      },
+      "row_meta": {
+        "cleanqwen_lengthmatched_near_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_near_core_changed_block_rows_meta.jsonl",
+        "cleanqwen_fineweb_repeat_near_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_near_core_changed_block_rows_meta.jsonl",
+        "cleanqwen_fineweb_near_view_core": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_near_view_core_changed_block_rows_meta.jsonl",
+        "cleanqwen_lengthmatched_compact_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_compact_core_neutral_changed_block_rows_meta.jsonl",
+        "cleanqwen_fineweb_repeat_compact_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_core_neutral_changed_block_rows_meta.jsonl",
+        "cleanqwen_fineweb_compact_view_core_neutral": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_core_neutral_changed_block_rows_meta.jsonl",
+        "cleanqwen_lengthmatched_compact_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_lengthmatched_compact_reinvest_changed_block_rows_meta.jsonl",
+        "cleanqwen_fineweb_repeat_compact_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_reinvest_changed_block_rows_meta.jsonl",
+        "cleanqwen_fineweb_compact_view_reinvest": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl"
+      },
+      "heldout_cleanqwen_rows": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/heldout_cleanqwen_rows.jsonl",
+      "common_filler_rows": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/common_filler_rows.jsonl",
+      "note": "research/notes/frontier_consolidation/density_cleanqwen_overlay_medium_riskhard.md"
+    },
+    "sha256": {
+      "cleanqwen_lengthmatched_near_core_10M.jsonl": "584486a7d4fa74c2bbb1c84f3b834e5af7661226b3e4baf10467f3ee6a71788b",
+      "cleanqwen_fineweb_repeat_near_core_10M.jsonl": "45c58c0c1ff3e76a774578fd6dddac668c85378a6a5594e65f49e82f43253516",
+      "cleanqwen_fineweb_near_view_core_10M.jsonl": "6914cfba96edfcf1cc72c3e2932ace3ee0bc94c542e4de856ef700ea501fbcd6",
+      "cleanqwen_lengthmatched_compact_core_neutral_10M.jsonl": "f6bb0bf25ccf03694ee0df6943e1099bdbea926c77b8d989ecd1bf21254ac36b",
+      "cleanqwen_fineweb_repeat_compact_core_neutral_10M.jsonl": "fa62d69fad09c69d8839a14ad66371e2360deda77ed012923e7be6b57dc9ddfd",
+      "cleanqwen_fineweb_compact_view_core_neutral_10M.jsonl": "359aba13b2d5ee9e1d0b9d2a78e9f88ecb4e99b160eedc02f00daa1d7668ded6",
+      "cleanqwen_lengthmatched_compact_reinvest_10M.jsonl": "ec1ce30bcdafc3941c6dd3ef36ea6952bfda68d9545c300222bd26bf006e3e74",
+      "cleanqwen_fineweb_repeat_compact_reinvest_10M.jsonl": "0950c099e7227b8dc6940ea4bf749ce5604b28ff244ca3cf0bf9c102dab2a242",
+      "cleanqwen_fineweb_compact_view_reinvest_10M.jsonl": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23",
+      "cleanqwen_lengthmatched_near_core_changed_block_rows_meta.jsonl": "7a98a5764a93aee0d27f4cfa25f2ae7f65648dd7bb82cb7c6b9d8ecf0a85f356",
+      "cleanqwen_fineweb_repeat_near_core_changed_block_rows_meta.jsonl": "de2b799938e02a86a0c00cc3fb9ea88fd647699fe32d107d1b9e72f2d8c4dc0f",
+      "cleanqwen_fineweb_near_view_core_changed_block_rows_meta.jsonl": "de2b799938e02a86a0c00cc3fb9ea88fd647699fe32d107d1b9e72f2d8c4dc0f",
+      "cleanqwen_lengthmatched_compact_core_neutral_changed_block_rows_meta.jsonl": "06d661f6ecb69c94c795289164dfbfbfb5ba3b894b9eeb88006e2c616f1bc1a6",
+      "cleanqwen_fineweb_repeat_compact_core_neutral_changed_block_rows_meta.jsonl": "8f25997bb9a4f7f2d376b105ba921408ec6e20f10d81f140a9754c6c095a18cc",
+      "cleanqwen_fineweb_compact_view_core_neutral_changed_block_rows_meta.jsonl": "8f25997bb9a4f7f2d376b105ba921408ec6e20f10d81f140a9754c6c095a18cc",
+      "cleanqwen_lengthmatched_compact_reinvest_changed_block_rows_meta.jsonl": "bec4f8f94b4679422c1c33a331a1376cc0ea1684046fcd2775bc805f7e90b292",
+      "cleanqwen_fineweb_repeat_compact_reinvest_changed_block_rows_meta.jsonl": "4c30b7f6d1a90ab6e8f1b618f5ef445e4dd80b9a6817a5ce3d299e1744924e2c",
+      "cleanqwen_fineweb_compact_view_reinvest_changed_block_rows_meta.jsonl": "4c30b7f6d1a90ab6e8f1b618f5ef445e4dd80b9a6817a5ce3d299e1744924e2c",
+      "cleanqwen_lengthmatched_near_core_100M.jsonl": "b4a55277cd3326c71650a1d4f40d3b75c43d84d13daa1f6d4dd9dcdedf690cd7",
+      "cleanqwen_fineweb_repeat_near_core_100M.jsonl": "2e22390446d2de418908d24e64878c1ee4bec6fd7f84cd6a4b06c66f0eca3fa1",
+      "cleanqwen_fineweb_near_view_core_100M.jsonl": "142c8686801cfb60b7a14de783b161087ea6df8432bbf72b6354caaa51db87e4",
+      "cleanqwen_lengthmatched_compact_core_neutral_100M.jsonl": "191fb9ee88e32be5729627ca0bb1930e4a96566cf79cb66a6d67713b7ac6b774",
+      "cleanqwen_fineweb_repeat_compact_core_neutral_100M.jsonl": "07f702538c1676e1bac76a59698096b7013e2155e9b9030b376b443fbe161e39",
+      "cleanqwen_fineweb_compact_view_core_neutral_100M.jsonl": "5380686975f6126eb1d9d88dfd91dea7a511d10a8e5a0cc45f2cc394a2853604",
+      "cleanqwen_lengthmatched_compact_reinvest_100M.jsonl": "b6858480a6e3850134c4dd7ece99039932d042c29754d2a9ee3067c663c9bc49",
+      "cleanqwen_fineweb_repeat_compact_reinvest_100M.jsonl": "91e8817e25f234b87481fa6ca96d968d6c460b84317273629eda21ea3be24eaa",
+      "cleanqwen_fineweb_compact_view_reinvest_100M.jsonl": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+      "heldout_cleanqwen_rows.jsonl": "5b56a820783963a3da33785b8dd7a7478c95e08f72d27ec4af2d3947f1d67c6d",
+      "common_filler_rows.jsonl": "bc0236f67d29b28fd353ea964cc143d961d29049d28c6b2f8e97bbb75286fa81"
+    },
+    "interpretation": {
+      "cleanqwen_lengthmatched_control": "same inherited clean-Qwen base minus one coherent held-out official/non-Qwen row slice, with that slice repacked to the same changed-block row lengths",
+      "near_view_value_at_cleanqwen_base": "cleanqwen_fineweb_near_view_core minus cleanqwen_fineweb_repeat_near_core",
+      "compact_core_view_value_at_cleanqwen_base": "cleanqwen_fineweb_compact_view_core_neutral minus cleanqwen_fineweb_repeat_compact_core_neutral",
+      "compact_reinvestment_value_at_cleanqwen_base": "cleanqwen_fineweb_compact_view_reinvest minus cleanqwen_fineweb_compact_view_core_neutral; repeat counterpart isolates added-source effect without generated views",
+      "fineweb_substitution_vs_cleanqwen_slice": "FineWeb arms minus corresponding cleanqwen_lengthmatched family control estimate whether replacing a clean-Qwen official slice helps at an inherited second-view base."
+    },
+    "elapsed_sec": 57.17
+  },
+  "manifest_files": [
+    {
+      "path": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "name": "cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "bytes": 599352510,
+      "sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+      "whitespace_words": 100000000,
+      "rows": 647400
+    }
+  ],
+  "sample_rows": [
+    {
+      "words": 160,
+      "example_id": 10289,
+      "source": "childes"
+    },
+    {
+      "words": 160,
+      "example_id": 14184,
+      "source": "childes"
+    },
+    {
+      "words": 96,
+      "example_id": 300801,
+      "source": "qwen_pair_packed"
+    },
+    {
+      "words": 134,
+      "example_id": 308289,
+      "source": "qwen_pair_packed"
+    },
+    {
+      "words": 160,
+      "example_id": 57335,
+      "source": "simple_wiki"
+    },
+    {
+      "words": 160,
+      "example_id": 42019,
+      "source": "open_subtitles"
+    },
+    {
+      "words": 160,
+      "example_id": 4211,
+      "source": "bnc_spoken"
+    },
+    {
+      "words": 160,
+      "example_id": 51924,
+      "source": "open_subtitles"
+    },
+    {
+      "words": 134,
+      "example_id": 311606,
+      "source": "qwen_pair_packed"
+    },
+    {
+      "words": 122,
+      "example_id": 309682,
+      "source": "qwen_pair_packed"
+    }
+  ]
+}

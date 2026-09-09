@@ -1,0 +1,406 @@
+{
+  "status": "STATE_DEPENDENT_RTD_PROBE_COMPLETE",
+  "purpose": "Compare identical balanced RTD shortcut-resistance and gradient-geometry probes across existing 20M/80M MLM states and the RTD-trained 20M state before admitting any delayed RTD tail training.",
+  "config": {
+    "probe_words": 799882,
+    "n_examples": 5184,
+    "n_batches": 21,
+    "train_batches": 15,
+    "eval_batches": 6,
+    "head_train_steps": 80,
+    "gradient_batches": 6,
+    "mask_prob": 0.15,
+    "rtd_temperature": 1.0,
+    "seed_base": 43093
+  },
+  "checkpoints": {
+    "mlm20_step35": {
+      "label": "mlm20_step35",
+      "checkpoint": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_20M",
+      "balanced_head": {
+        "loss_first": 0.6983221173286438,
+        "loss_last": 0.6053471565246582,
+        "class_weights_last": [
+          0.5589087009429932,
+          4.743854999542236
+        ],
+        "heldout_hard": {
+          "recall_original": 0.6424263474085404,
+          "recall_replaced": 0.6528940317732913,
+          "balanced_accuracy": 0.6476601895909159,
+          "auroc": 0.7159116811419399,
+          "n_batches": 6
+        },
+        "heldout_random": {
+          "recall_original": 0.526325978598687,
+          "recall_replaced": 0.9619240546698385,
+          "balanced_accuracy": 0.7441250166342628,
+          "auroc": 0.9295337248918888,
+          "n_batches": 6
+        },
+        "random_minus_hard_balanced_accuracy": 0.09646482704334691,
+        "random_minus_hard_auroc": 0.21362204374994886,
+        "hard_replacement_rate": 0.696789211523968,
+        "hard_generator_accuracy": 0.30321078847603206
+      },
+      "trained_head_gradient_geometry": {
+        "per_group": {
+          "embedding": {
+            "cosine": 0.01442371184627215,
+            "mlm_norm": 0.32657821476459503,
+            "rtd_balanced_norm": 0.03452924266457558,
+            "rtd_mlm_norm_ratio": 0.1057303919964932
+          },
+          "embeddings_other": {
+            "cosine": 0.026458091335371137,
+            "mlm_norm": 0.14760773380597433,
+            "rtd_balanced_norm": 0.030389561007420223,
+            "rtd_mlm_norm_ratio": 0.20588054720334867
+          },
+          "layer_0": {
+            "cosine": 0.04653189331293106,
+            "mlm_norm": 0.0971871626873811,
+            "rtd_balanced_norm": 0.020220890330771606,
+            "rtd_mlm_norm_ratio": 0.20806133003198693
+          },
+          "layer_1": {
+            "cosine": 0.03993926470866427,
+            "mlm_norm": 0.09580239281058311,
+            "rtd_balanced_norm": 0.02180139223734538,
+            "rtd_mlm_norm_ratio": 0.22756626006670075
+          },
+          "layer_2": {
+            "cosine": 0.03006490133702755,
+            "mlm_norm": 0.1011326623459657,
+            "rtd_balanced_norm": 0.026488407825430233,
+            "rtd_mlm_norm_ratio": 0.2619174380559248
+          },
+          "layer_3": {
+            "cosine": 0.005704929702915251,
+            "mlm_norm": 0.11529001221060753,
+            "rtd_balanced_norm": 0.03150940965861082,
+            "rtd_mlm_norm_ratio": 0.27330563207028374
+          },
+          "layer_4": {
+            "cosine": 0.018356028711423278,
+            "mlm_norm": 0.12171941126386325,
+            "rtd_balanced_norm": 0.03973842039704323,
+            "rtd_mlm_norm_ratio": 0.32647562113900064
+          },
+          "layer_5": {
+            "cosine": 0.009291607663423443,
+            "mlm_norm": 0.130484809478124,
+            "rtd_balanced_norm": 0.04966709452370802,
+            "rtd_mlm_norm_ratio": 0.380635069494697
+          },
+          "layer_6": {
+            "cosine": 0.011881807004101574,
+            "mlm_norm": 0.13392199327548346,
+            "rtd_balanced_norm": 0.06105205354591211,
+            "rtd_mlm_norm_ratio": 0.4558777244326504
+          },
+          "layer_7": {
+            "cosine": 0.01230988341073195,
+            "mlm_norm": 0.15213758498430252,
+            "rtd_balanced_norm": 0.06316957374413808,
+            "rtd_mlm_norm_ratio": 0.41521346451408364
+          },
+          "rel_embeddings": {
+            "cosine": -0.059084922075271606,
+            "mlm_norm": 0.03315371864785751,
+            "rtd_balanced_norm": 0.00808338075876236,
+            "rtd_mlm_norm_ratio": 0.24381520651182614
+          }
+        },
+        "trunk_cosine_mean": 0.0217600394814023,
+        "trunk_norm_ratio_mean": 0.318631567475666,
+        "mlm_loss_mean": 3.6711706717809043,
+        "balanced_rtd_loss_mean": 0.6093716621398926
+      },
+      "joint_update_at_lambda1": {
+        "norm_multiplier": 1.0561216533944293,
+        "rotation_degrees": 17.55542567057203
+      }
+    },
+    "mlm80_step35": {
+      "label": "mlm80_step35",
+      "checkpoint": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_80M",
+      "balanced_head": {
+        "loss_first": 0.6972498893737793,
+        "loss_last": 0.5711063146591187,
+        "class_weights_last": [
+          0.5442281365394592,
+          6.152511119842529
+        ],
+        "heldout_hard": {
+          "recall_original": 0.649979785798324,
+          "recall_replaced": 0.7242514300072056,
+          "balanced_accuracy": 0.6871156079027649,
+          "auroc": 0.7622034429572851,
+          "n_batches": 6
+        },
+        "heldout_random": {
+          "recall_original": 0.5440873419541986,
+          "recall_replaced": 0.966811696520038,
+          "balanced_accuracy": 0.7554495192371183,
+          "auroc": 0.9506029156767516,
+          "n_batches": 6
+        },
+        "random_minus_hard_balanced_accuracy": 0.0683339113343534,
+        "random_minus_hard_auroc": 0.18839947271946644,
+        "hard_replacement_rate": 0.5224071511803695,
+        "hard_generator_accuracy": 0.47759284881963043
+      },
+      "trained_head_gradient_geometry": {
+        "per_group": {
+          "embedding": {
+            "cosine": 0.02656861829260985,
+            "mlm_norm": 0.2907438625892003,
+            "rtd_balanced_norm": 0.0270780927191178,
+            "rtd_mlm_norm_ratio": 0.09313384116856545
+          },
+          "embeddings_other": {
+            "cosine": 0.023531049800415833,
+            "mlm_norm": 0.15118442475795746,
+            "rtd_balanced_norm": 0.024725654162466526,
+            "rtd_mlm_norm_ratio": 0.1635463057920926
+          },
+          "layer_0": {
+            "cosine": 0.047444759557644524,
+            "mlm_norm": 0.11138458301623662,
+            "rtd_balanced_norm": 0.02127817738801241,
+            "rtd_mlm_norm_ratio": 0.19103341604206278
+          },
+          "layer_1": {
+            "cosine": 0.05599896858135859,
+            "mlm_norm": 0.12996315211057663,
+            "rtd_balanced_norm": 0.02733212864647309,
+            "rtd_mlm_norm_ratio": 0.2103067538960434
+          },
+          "layer_2": {
+            "cosine": 0.09268873020967779,
+            "mlm_norm": 0.17227218796809515,
+            "rtd_balanced_norm": 0.03917453127602736,
+            "rtd_mlm_norm_ratio": 0.2273990464629293
+          },
+          "layer_3": {
+            "cosine": 0.011375278835960975,
+            "mlm_norm": 0.14592104156812033,
+            "rtd_balanced_norm": 0.0318106065193812,
+            "rtd_mlm_norm_ratio": 0.2179987627386216
+          },
+          "layer_4": {
+            "cosine": 0.017614735523238778,
+            "mlm_norm": 0.16439351936181387,
+            "rtd_balanced_norm": 0.0383933720489343,
+            "rtd_mlm_norm_ratio": 0.233545532682674
+          },
+          "layer_5": {
+            "cosine": 0.016017298097722232,
+            "mlm_norm": 0.17801672965288162,
+            "rtd_balanced_norm": 0.04524468630552292,
+            "rtd_mlm_norm_ratio": 0.2541597432654023
+          },
+          "layer_6": {
+            "cosine": 0.014374528060822437,
+            "mlm_norm": 0.1955130249261856,
+            "rtd_balanced_norm": 0.054381332049767174,
+            "rtd_mlm_norm_ratio": 0.278146850166624
+          },
+          "layer_7": {
+            "cosine": 0.015159296143489579,
+            "mlm_norm": 0.21665371706088385,
+            "rtd_balanced_norm": 0.08503550539414088,
+            "rtd_mlm_norm_ratio": 0.39249502176897466
+          },
+          "rel_embeddings": {
+            "cosine": -0.23593795796235403,
+            "mlm_norm": 0.046615976840257645,
+            "rtd_balanced_norm": 0.012383291653047005,
+            "rtd_mlm_norm_ratio": 0.2656447958922266
+          }
+        },
+        "trunk_cosine_mean": 0.03383419937623936,
+        "trunk_norm_ratio_mean": 0.2506356408779165,
+        "mlm_loss_mean": 2.45766814549764,
+        "balanced_rtd_loss_mean": 0.5722806751728058
+      },
+      "joint_update_at_lambda1": {
+        "norm_multiplier": 1.0391238313920022,
+        "rotation_degrees": 13.949164888214158
+      }
+    },
+    "rtd20_step094": {
+      "label": "rtd20_step094",
+      "checkpoint": "experiments/archive/frontier_consolidation/training/runs/mlm_rtd_lambda1_seed43022_20M/hf_model/chck_20M",
+      "balanced_head": {
+        "loss_first": 0.7050067782402039,
+        "loss_last": 0.5300540924072266,
+        "class_weights_last": [
+          0.5582554340362549,
+          4.791447162628174
+        ],
+        "heldout_hard": {
+          "recall_original": 0.7504936303294865,
+          "recall_replaced": 0.654072581143967,
+          "balanced_accuracy": 0.7022831057367268,
+          "auroc": 0.7913119273245443,
+          "n_batches": 6
+        },
+        "heldout_random": {
+          "recall_original": 0.672187166841914,
+          "recall_replaced": 0.9412270323769737,
+          "balanced_accuracy": 0.806707099609444,
+          "auroc": 0.9189029656088246,
+          "n_batches": 6
+        },
+        "random_minus_hard_balanced_accuracy": 0.10442399387271717,
+        "random_minus_hard_auroc": 0.1275910382842803,
+        "hard_replacement_rate": 0.6924509054242382,
+        "hard_generator_accuracy": 0.30754909457576185
+      },
+      "trained_head_gradient_geometry": {
+        "per_group": {
+          "embedding": {
+            "cosine": 0.0053340251712749405,
+            "mlm_norm": 0.3710467716058095,
+            "rtd_balanced_norm": 0.04421530601878961,
+            "rtd_mlm_norm_ratio": 0.11916369957198499
+          },
+          "embeddings_other": {
+            "cosine": 0.032107530472179256,
+            "mlm_norm": 0.14712276806433996,
+            "rtd_balanced_norm": 0.0425974236180385,
+            "rtd_mlm_norm_ratio": 0.28953658348386785
+          },
+          "layer_0": {
+            "cosine": 0.055319533993800483,
+            "mlm_norm": 0.10681316877404849,
+            "rtd_balanced_norm": 0.02506672404706478,
+            "rtd_mlm_norm_ratio": 0.23467821744049816
+          },
+          "layer_1": {
+            "cosine": 0.05376886731634537,
+            "mlm_norm": 0.10585876554250717,
+            "rtd_balanced_norm": 0.023430974843601387,
+            "rtd_mlm_norm_ratio": 0.22134184848578053
+          },
+          "layer_2": {
+            "cosine": 0.042708607080082096,
+            "mlm_norm": 0.10527425383528073,
+            "rtd_balanced_norm": 0.024562899954617023,
+            "rtd_mlm_norm_ratio": 0.23332295466135347
+          },
+          "layer_3": {
+            "cosine": 0.02280393778346479,
+            "mlm_norm": 0.1200070505340894,
+            "rtd_balanced_norm": 0.028415674654146034,
+            "rtd_mlm_norm_ratio": 0.2367833767073063
+          },
+          "layer_4": {
+            "cosine": 0.015530224501465758,
+            "mlm_norm": 0.13761714845895767,
+            "rtd_balanced_norm": 0.0312845790758729,
+            "rtd_mlm_norm_ratio": 0.22733052839852347
+          },
+          "layer_5": {
+            "cosine": 0.0006502749747596681,
+            "mlm_norm": 0.13315142939488092,
+            "rtd_balanced_norm": 0.029593900156517822,
+            "rtd_mlm_norm_ratio": 0.22225747249586475
+          },
+          "layer_6": {
+            "cosine": 0.012100515673713138,
+            "mlm_norm": 0.14645799001057944,
+            "rtd_balanced_norm": 0.03411693808933099,
+            "rtd_mlm_norm_ratio": 0.23294692277878828
+          },
+          "layer_7": {
+            "cosine": 0.00987649786596497,
+            "mlm_norm": 0.16930909703175226,
+            "rtd_balanced_norm": 0.033544037491083145,
+            "rtd_mlm_norm_ratio": 0.19812306650476252
+          },
+          "rel_embeddings": {
+            "cosine": 0.19012200894455114,
+            "mlm_norm": 0.03447684614608685,
+            "rtd_balanced_norm": 0.007488575453559558,
+            "rtd_mlm_norm_ratio": 0.21720593066513763
+          }
+        },
+        "trunk_cosine_mean": 0.026594807398699533,
+        "trunk_norm_ratio_mean": 0.2258480484341097,
+        "mlm_loss_mean": 3.676647504170736,
+        "balanced_rtd_loss_mean": 0.5404223501682281
+      },
+      "joint_update_at_lambda1": {
+        "norm_multiplier": 1.0310286667597806,
+        "rotation_degrees": 12.648760789893029
+      }
+    }
+  },
+  "summary_table": {
+    "mlm20_step35": {
+      "hard_bal_acc": 0.6476601895909159,
+      "hard_auroc": 0.7159116811419399,
+      "random_minus_hard_auroc": 0.21362204374994886,
+      "replacement_rate": 0.696789211523968,
+      "trunk_cosine": 0.0217600394814023,
+      "trunk_ratio": 0.318631567475666,
+      "rel_cosine": -0.059084922075271606,
+      "embedding_cosine": 0.01442371184627215,
+      "rotation_degrees": 17.55542567057203
+    },
+    "mlm80_step35": {
+      "hard_bal_acc": 0.6871156079027649,
+      "hard_auroc": 0.7622034429572851,
+      "random_minus_hard_auroc": 0.18839947271946644,
+      "replacement_rate": 0.5224071511803695,
+      "trunk_cosine": 0.03383419937623936,
+      "trunk_ratio": 0.2506356408779165,
+      "rel_cosine": -0.23593795796235403,
+      "embedding_cosine": 0.02656861829260985,
+      "rotation_degrees": 13.949164888214158
+    },
+    "rtd20_step094": {
+      "hard_bal_acc": 0.7022831057367268,
+      "hard_auroc": 0.7913119273245443,
+      "random_minus_hard_auroc": 0.1275910382842803,
+      "replacement_rate": 0.6924509054242382,
+      "trunk_cosine": 0.026594807398699533,
+      "trunk_ratio": 0.2258480484341097,
+      "rel_cosine": 0.19012200894455114,
+      "embedding_cosine": 0.0053340251712749405,
+      "rotation_degrees": 12.648760789893029
+    }
+  },
+  "comparisons": {
+    "mlm80_minus_mlm20": {
+      "hard_bal_acc": 0.039455418311849066,
+      "hard_auroc": 0.04629176181534522,
+      "random_minus_hard_auroc": -0.02522257103048242,
+      "replacement_rate": -0.1743820603435985,
+      "trunk_cosine": 0.012074159894837063,
+      "trunk_ratio": -0.0679959265977495,
+      "rel_cosine": -0.17685303588708243,
+      "embedding_cosine": 0.012144906446337702,
+      "rotation_degrees": -3.6062607823578734
+    },
+    "rtd20_minus_mlm20": {
+      "hard_bal_acc": 0.05462291614581094,
+      "hard_auroc": 0.07540024618260432,
+      "random_minus_hard_auroc": -0.08603100546566855,
+      "replacement_rate": -0.0043383060997298495,
+      "trunk_cosine": 0.004834767917297235,
+      "trunk_ratio": -0.09278351904155632,
+      "rel_cosine": 0.24920693101982275,
+      "embedding_cosine": -0.00908968667499721,
+      "rotation_degrees": -4.906664880679003
+    }
+  },
+  "elapsed_sec": 189.7,
+  "interpretation": {
+    "maturity_shift": "80M vs 20M changes trunk cosine by +0.0121, RTD/MLM trunk norm ratio by -0.0680, hard AUROC by +0.0463, and random-hard AUROC gap by -0.0252.",
+    "rtd20_state_shift": "The RTD-trained 20M encoder differs from matched MLM20 by trunk cosine +0.0048, hard AUROC +0.0754, random-hard AUROC gap -0.0860, and lambda1 update rotation -4.91 degrees."
+  }
+}

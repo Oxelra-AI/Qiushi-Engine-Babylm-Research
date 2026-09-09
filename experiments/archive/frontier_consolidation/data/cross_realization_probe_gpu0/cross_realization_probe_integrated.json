@@ -1,0 +1,245 @@
+{
+  "status": "CROSS_REALIZATION_PROBE",
+  "meaning": "Saved-checkpoint no-training probe of whether genuine compact context and source context give a cross-realization advantage for copied/shared content targets relative to matched counterfactual compact contexts.",
+  "events_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_preflight/cross_realization_probe_preflight_events.jsonl",
+  "events_sha256": "9e24915d1ddd2e73ea425fc0db645ee3bff744592a2d595a1c00351ed898c858",
+  "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+  "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+  "arms": {
+    "full_compact_100M": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "drop_abs_100M": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast/hf_model/chck_100M",
+    "drop_copied_word_100M": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast/hf_model/chck_100M"
+  },
+  "device": "cuda:0",
+  "batch_size": 128,
+  "input_events": 4500,
+  "arm_meta": [
+    {
+      "arm": "full_compact_100M",
+      "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+      "loaded_context_records": 13500,
+      "input_events": 4500,
+      "complete_events": 4500,
+      "incomplete_events": 0,
+      "skipped_context_build": [],
+      "skipped_count": 0,
+      "elapsed_sec": 8.964,
+      "event_losses_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/full_compact_100M_event_losses.jsonl",
+      "event_losses_sha256": "b66ca7e78847a825ea36f05c08a0d7481715016eff891e86f5de373efb7e7e28",
+      "summary_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/full_compact_100M_summary.json"
+    },
+    {
+      "arm": "drop_abs_100M",
+      "model_path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_abs_content_100M_fast/hf_model/chck_100M",
+      "loaded_context_records": 13500,
+      "input_events": 4500,
+      "complete_events": 4500,
+      "incomplete_events": 0,
+      "skipped_context_build": [],
+      "skipped_count": 0,
+      "elapsed_sec": 7.154,
+      "event_losses_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_abs_100M_event_losses.jsonl",
+      "event_losses_sha256": "b39cad74abad0c949885c0d48858fe30df04810e16e35b5c3beef39bfe84c45f",
+      "summary_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_abs_100M_summary.json"
+    },
+    {
+      "arm": "drop_copied_word_100M",
+      "model_path": "experiments/archive/representation_and_objectives/training/runs/packed_drop_copied_content_wholeword_100M_fast/hf_model/chck_100M",
+      "loaded_context_records": 13500,
+      "input_events": 4500,
+      "complete_events": 4500,
+      "incomplete_events": 0,
+      "skipped_context_build": [],
+      "skipped_count": 0,
+      "elapsed_sec": 6.905,
+      "event_losses_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_copied_word_100M_event_losses.jsonl",
+      "event_losses_sha256": "4f205c66f7aa2be666cf010d0768e35330f134b0b57a21168ac9a3f676f4cf81",
+      "summary_path": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_copied_word_100M_summary.json"
+    }
+  ],
+  "per_arm_paths": {
+    "full_compact_100M": {
+      "event_losses": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/full_compact_100M_event_losses.jsonl",
+      "summary": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/full_compact_100M_summary.json"
+    },
+    "drop_abs_100M": {
+      "event_losses": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_abs_100M_event_losses.jsonl",
+      "summary": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_abs_100M_summary.json"
+    },
+    "drop_copied_word_100M": {
+      "event_losses": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_copied_word_100M_event_losses.jsonl",
+      "summary": "experiments/archive/frontier_consolidation/data/cross_realization_probe_gpu0/drop_copied_word_100M_summary.json"
+    }
+  },
+  "summary_by_arm_all": {
+    "full_compact_100M": {
+      "n_events": 4500,
+      "n_clusters_pair": 2009,
+      "target_pieces": 7715,
+      "compact_context_advantage_nats": 0.18981395432905415,
+      "source_context_advantage_nats": 0.16378680277792032,
+      "compact_minus_source_loss_nats": -0.026027151551133845,
+      "rep_source_compact_advantage": 0.2732552557932581,
+      "rep_cos_source_compact": 0.7587315003389441,
+      "rep_cos_source_counterfactual": 0.48547624454568594,
+      "bootstrap": {
+        "compact_context_advantage_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.10575544701441279,
+          "p50": 0.1878065056646027,
+          "p975": 0.26081017774859105,
+          "fraction_gt0": 1.0
+        },
+        "source_context_advantage_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.07599745663614275,
+          "p50": 0.16492447739856506,
+          "p975": 0.24270459464440586,
+          "fraction_gt0": 1.0
+        },
+        "compact_minus_source_loss_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": -0.07886640647312311,
+          "p50": -0.02676187491924334,
+          "p975": 0.03384306701980921,
+          "fraction_gt0": 0.225
+        },
+        "rep_source_compact_advantage": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.26350019337329506,
+          "p50": 0.2732237855683726,
+          "p975": 0.28192614948516953,
+          "fraction_gt0": 1.0
+        }
+      }
+    },
+    "drop_abs_100M": {
+      "n_events": 4500,
+      "n_clusters_pair": 2009,
+      "target_pieces": 7715,
+      "compact_context_advantage_nats": 0.17707831702078616,
+      "source_context_advantage_nats": 0.1545304240597314,
+      "compact_minus_source_loss_nats": -0.02254789296105475,
+      "rep_source_compact_advantage": 0.27539389001897263,
+      "rep_cos_source_compact": 0.7486394539543042,
+      "rep_cos_source_counterfactual": 0.4732455639353315,
+      "bootstrap": {
+        "compact_context_advantage_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.09605677990704353,
+          "p50": 0.17361536302122532,
+          "p975": 0.257680177163039,
+          "fraction_gt0": 1.0
+        },
+        "source_context_advantage_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.06468090439139501,
+          "p50": 0.1498947262366804,
+          "p975": 0.24037551436370935,
+          "fraction_gt0": 1.0
+        },
+        "compact_minus_source_loss_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": -0.09240368788746957,
+          "p50": -0.021906819164962087,
+          "p975": 0.03483166188151644,
+          "fraction_gt0": 0.2075
+        },
+        "rep_source_compact_advantage": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.2671902378633174,
+          "p50": 0.2755744401879963,
+          "p975": 0.28298737162002363,
+          "fraction_gt0": 1.0
+        }
+      }
+    },
+    "drop_copied_word_100M": {
+      "n_events": 4500,
+      "n_clusters_pair": 2009,
+      "target_pieces": 7715,
+      "compact_context_advantage_nats": 0.1817024617889873,
+      "source_context_advantage_nats": 0.17059071958885902,
+      "compact_minus_source_loss_nats": -0.011111742200128304,
+      "rep_source_compact_advantage": 0.2701686151440383,
+      "rep_cos_source_compact": 0.7590280709593851,
+      "rep_cos_source_counterfactual": 0.4888594558153468,
+      "bootstrap": {
+        "compact_context_advantage_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.11182133511162651,
+          "p50": 0.18744343807477326,
+          "p975": 0.2613427723822814,
+          "fraction_gt0": 1.0
+        },
+        "source_context_advantage_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.09596691260233788,
+          "p50": 0.17778563827538857,
+          "p975": 0.2508542277992017,
+          "fraction_gt0": 1.0
+        },
+        "compact_minus_source_loss_nats": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": -0.06536732618014152,
+          "p50": -0.011837258893377722,
+          "p975": 0.04820814077773406,
+          "fraction_gt0": 0.34
+        },
+        "rep_source_compact_advantage": {
+          "n_boot": 400,
+          "n_clusters": 2009,
+          "p025": 0.2621161377549621,
+          "p50": 0.27008514115601784,
+          "p975": 0.278061413492599,
+          "fraction_gt0": 1.0
+        }
+      }
+    }
+  },
+  "arm_contrasts_all": {
+    "full_minus_drop_abs": {
+      "compact_context_advantage_nats": 0.012735637308267989,
+      "source_context_advantage_nats": 0.009256378718188907,
+      "compact_minus_source_loss_nats": -0.0034792585900790957,
+      "rep_source_compact_advantage": -0.0021386342257145308,
+      "rep_cos_source_compact": 0.010092046384639897,
+      "rep_cos_source_counterfactual": 0.012230680610354427
+    },
+    "full_minus_drop_copied_word": {
+      "compact_context_advantage_nats": 0.00811149254006685,
+      "source_context_advantage_nats": -0.006803916810938698,
+      "compact_minus_source_loss_nats": -0.014915409351005542,
+      "rep_source_compact_advantage": 0.0030866406492198184,
+      "rep_cos_source_compact": -0.0002965706204409724,
+      "rep_cos_source_counterfactual": -0.0033832112696608463
+    },
+    "drop_abs_minus_drop_copied_word": {
+      "compact_context_advantage_nats": -0.004624144768201138,
+      "source_context_advantage_nats": -0.016060295529127605,
+      "compact_minus_source_loss_nats": -0.011436150760926446,
+      "rep_source_compact_advantage": 0.005225274874934349,
+      "rep_cos_source_compact": -0.010388617005080869,
+      "rep_cos_source_counterfactual": -0.015613891880015274
+    }
+  },
+  "interpretation_contract": {
+    "positive_compact_context_advantage_nats": "counterfactual target NLL minus genuine compact-context target NLL; positive means genuine compact context predicts the copied/shared target better than matched counterfactual compact context.",
+    "positive_rep_source_compact_advantage": "cos(masked-target hidden under source, compact) minus cos(source, counterfactual); positive means source and genuine compact target representations align more than source and counterfactual.",
+    "input_exposure_contextual_enrichment_signature": "drop_abs keeps compact_context_advantage and representation agreement above repeat despite no source-absent target supervision; adjbreak retains much; full adds little beyond drop_abs.",
+    "joint_target_complementarity_signature": "full_compact uniquely exceeds both deletion arms on compact advantage/representation, not merely both copied-supervised models.",
+    "not_downstream_evidence": "This probe is mechanistic inference only. Any new training or endpoint claim still requires official-compatible selected scores on stable families."
+  },
+  "no_training_official_eval_upload_aoa_or_leaderboard": true
+}

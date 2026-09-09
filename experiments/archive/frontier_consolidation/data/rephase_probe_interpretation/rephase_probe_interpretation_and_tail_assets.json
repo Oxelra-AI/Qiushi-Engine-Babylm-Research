@@ -1,0 +1,164 @@
+{
+  "status": "REPHASE_PROBE_INTERPRETATION_READY",
+  "created_utc": "2026-08-30T16:39:15Z",
+  "parent_run": "experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2",
+  "checkpoint_80M_log_record": {
+    "step": 2024,
+    "loss": 2.5786514282226562,
+    "lr": 0.00010720866372880134,
+    "batch_words": 39389,
+    "cumulative_word_exposure": 80034368,
+    "seq_len": 256,
+    "masked_tokens": 8654,
+    "effective_mask_rate": 0.1538,
+    "mask_mode": "wwm",
+    "mask_prob_nominal": 0.15,
+    "elapsed_sec": 4715.9
+  },
+  "parent_step": 2024,
+  "parent_actual_words": 80034368,
+  "row_start_after_chck80": 518144,
+  "pool_rows": 64740,
+  "pool_words": 10000000,
+  "train100m_rows": 647400,
+  "train100m_words": 100000000,
+  "tail_segment": {
+    "row_start_index0": 518144,
+    "tail_rows": 129256,
+    "tail_words": 19965632,
+    "pass_rows": {
+      "9": 64516,
+      "10": 64740
+    },
+    "pass_words": {
+      "9": 9965632,
+      "10": 10000000
+    },
+    "first_tail_rows_no_text": [
+      {
+        "words": 160,
+        "example_id": 12380,
+        "source": "childes",
+        "global_row_index0": 518144,
+        "pass_index1": 9
+      },
+      {
+        "words": 160,
+        "example_id": 46575,
+        "source": "open_subtitles",
+        "global_row_index0": 518145,
+        "pass_index1": 9
+      },
+      {
+        "words": 158,
+        "example_id": 304690,
+        "source": "qwen_pair_packed",
+        "global_row_index0": 518146,
+        "pass_index1": 9
+      },
+      {
+        "words": 160,
+        "example_id": 27673,
+        "source": "gutenberg",
+        "global_row_index0": 518147,
+        "pass_index1": 9
+      },
+      {
+        "words": 148,
+        "example_id": 310525,
+        "source": "qwen_pair_packed",
+        "global_row_index0": 518148,
+        "pass_index1": 9
+      }
+    ],
+    "last_tail_rows_no_text": [
+      {
+        "words": 160,
+        "example_id": 18897,
+        "source": "childes",
+        "global_row_index0": 647395,
+        "pass_index1": 10
+      },
+      {
+        "words": 160,
+        "example_id": 57382,
+        "source": "simple_wiki",
+        "global_row_index0": 647396,
+        "pass_index1": 10
+      },
+      {
+        "words": 148,
+        "example_id": 305591,
+        "source": "qwen_pair_packed",
+        "global_row_index0": 647397,
+        "pass_index1": 10
+      },
+      {
+        "words": 160,
+        "example_id": 38797,
+        "source": "open_subtitles",
+        "global_row_index0": 647398,
+        "pass_index1": 10
+      },
+      {
+        "words": 160,
+        "example_id": 40450,
+        "source": "open_subtitles",
+        "global_row_index0": 647399,
+        "pass_index1": 10
+      }
+    ]
+  },
+  "tail_words_from_training_log_after_parent_step": 19965632,
+  "tail_words_agree_with_100M_minus_parent": true,
+  "restart_chunk_presentation": {
+    "pool_rows": 64740,
+    "pool_words": 10000000,
+    "pool_tokens_no_specials": 14664519,
+    "restart_token_chunks_per_pass": 57284,
+    "restart_tail_buffer_tokens": 71,
+    "restart_has_padded_tail_chunk": true,
+    "restart_steps_per_pass": 224,
+    "restart_two_pass_steps_nominal": 448,
+    "restart_words_per_full_chunk_step_approx": 44689.6166468822
+  },
+  "trainer_differences": [
+    {
+      "axis": "post_80M_text_order",
+      "original_continuous": "fixed order from frozen 100M stream after the batch that saved chck_80M",
+      "restart": "fresh random shuffle of token chunks from the 10M pool for each continuation pass, train_rng_seed=43044",
+      "scientific_consequence": "a score movement cannot by itself be assigned to optimizer-state reset"
+    },
+    {
+      "axis": "training_unit",
+      "original_continuous": "one JSONL row is one example, tokenized then truncated/padded to length 256",
+      "restart": "all rows are concatenated into a token buffer and split into length-256 chunks",
+      "scientific_consequence": "context boundaries, truncation, and source/rewrite adjacency differ from the original run"
+    },
+    {
+      "axis": "word_accounting",
+      "original_continuous": "batch word exposure is the sum of row word counts",
+      "restart": "batch word exposure is approximated from selected token-chunk fraction of the 10M pool",
+      "scientific_consequence": "nominal total exposure is close, but row/source composition around each checkpoint differs"
+    },
+    {
+      "axis": "gradient_step_update",
+      "original_continuous": "AdamW plus gradient clipping at norm 1.0",
+      "restart": "AdamW without gradient clipping",
+      "scientific_consequence": "large-update behavior is not identical, especially for base-LR restart"
+    },
+    {
+      "axis": "learning_rate_schedule",
+      "original_continuous": "single 2529-step cosine schedule, LR about 1.07e-4 at 80M and decaying to zero by 100M",
+      "matched_lr": "fresh 20M cosine tail starting near 1.08e-4 with no warmup",
+      "base_lr": "fresh 20M cosine tail at peak 1e-3 with warmup 0.06",
+      "scientific_consequence": "matched-LR is closer to the inherited COMPACT_EXPERIENCE restart; base-LR is a separate late-schedule perturbation"
+    }
+  ],
+  "replay_plan": {
+    "if_restart_score_moves_up": "run original-tail replay from chck_80M before interpreting the movement",
+    "original_tail_replay_trainer": "experiments/archive/frontier_consolidation/scripts/original_tail_replay_trainer.py",
+    "matched_lr_command_template": "PYTHONDONTWRITEBYTECODE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python3 -B experiments/archive/frontier_consolidation/scripts/original_tail_replay_trainer.py --init_checkpoint experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_80M --train_file experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl --run_dir experiments/archive/frontier_consolidation/training/runs/original_tail_replay_matched_lr_seed43044 --lr_mode matched --gpu 0 --train_rng_seed 43044",
+    "base_lr_command_template": "PYTHONDONTWRITEBYTECODE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python3 -B experiments/archive/frontier_consolidation/scripts/original_tail_replay_trainer.py --init_checkpoint experiments/archive/frontier_consolidation/training/runs/complianttok_reinvest_seed43022_r2/hf_model/chck_80M --train_file experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl --run_dir experiments/archive/frontier_consolidation/training/runs/original_tail_replay_base_lr_seed43044 --lr_mode base --gpu 0 --train_rng_seed 43044"
+  }
+}

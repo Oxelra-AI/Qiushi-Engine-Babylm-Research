@@ -1,0 +1,181 @@
+{
+  "status": "LAMB_CONFIG_AUDIT",
+  "purpose": "Detect architecture/config mismatches in the research LAMB trainer before interpreting endpoint scores.",
+  "tokenizer_ids": {
+    "pad_token": "<pad>",
+    "pad_token_id": 3,
+    "mask_token": "<mask>",
+    "mask_token_id": 4,
+    "bos_token": "<s>",
+    "bos_token_id": 1,
+    "eos_token": "</s>",
+    "eos_token_id": 2,
+    "unk_token": "<unk>",
+    "unk_token_id": 0,
+    "all_special_ids": [
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "vocab_size": 40000
+  },
+  "config_paths": {
+    "legal40k_8x480_adamw_baseline": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_100M/config.json",
+    "legal40k_12x384_adamw_depth": "experiments/archive/representation_and_objectives/training/runs/legal40k_12x384_depth_compact_view_reinvest_seed43022/hf_model/chck_100M/config.json",
+    "lamb_smoke_12x384": "experiments/archive/representation_and_objectives/data/smoke_test/hf_model/chck_final/config.json"
+  },
+  "field_table": {
+    "hidden_size": {
+      "legal40k_8x480_adamw_baseline": 480,
+      "legal40k_12x384_adamw_depth": 384,
+      "lamb_smoke_12x384": 384
+    },
+    "num_hidden_layers": {
+      "legal40k_8x480_adamw_baseline": 8,
+      "legal40k_12x384_adamw_depth": 12,
+      "lamb_smoke_12x384": 12
+    },
+    "num_attention_heads": {
+      "legal40k_8x480_adamw_baseline": 8,
+      "legal40k_12x384_adamw_depth": 12,
+      "lamb_smoke_12x384": 12
+    },
+    "intermediate_size": {
+      "legal40k_8x480_adamw_baseline": 1920,
+      "legal40k_12x384_adamw_depth": 1280,
+      "lamb_smoke_12x384": 1280
+    },
+    "vocab_size": {
+      "legal40k_8x480_adamw_baseline": 40000,
+      "legal40k_12x384_adamw_depth": 40000,
+      "lamb_smoke_12x384": 40000
+    },
+    "pad_token_id": {
+      "legal40k_8x480_adamw_baseline": 3,
+      "legal40k_12x384_adamw_depth": 3,
+      "lamb_smoke_12x384": 0
+    },
+    "bos_token_id": {
+      "legal40k_8x480_adamw_baseline": 1,
+      "legal40k_12x384_adamw_depth": 1,
+      "lamb_smoke_12x384": null
+    },
+    "eos_token_id": {
+      "legal40k_8x480_adamw_baseline": 2,
+      "legal40k_12x384_adamw_depth": 2,
+      "lamb_smoke_12x384": null
+    },
+    "type_vocab_size": {
+      "legal40k_8x480_adamw_baseline": 0,
+      "legal40k_12x384_adamw_depth": 0,
+      "lamb_smoke_12x384": 0
+    },
+    "relative_attention": {
+      "legal40k_8x480_adamw_baseline": true,
+      "legal40k_12x384_adamw_depth": true,
+      "lamb_smoke_12x384": true
+    },
+    "max_relative_positions": {
+      "legal40k_8x480_adamw_baseline": 256,
+      "legal40k_12x384_adamw_depth": 256,
+      "lamb_smoke_12x384": -1
+    },
+    "position_buckets": {
+      "legal40k_8x480_adamw_baseline": 256,
+      "legal40k_12x384_adamw_depth": 256,
+      "lamb_smoke_12x384": 256
+    },
+    "pos_att_type": {
+      "legal40k_8x480_adamw_baseline": [
+        "p2c",
+        "c2p"
+      ],
+      "legal40k_12x384_adamw_depth": [
+        "p2c",
+        "c2p"
+      ],
+      "lamb_smoke_12x384": null
+    },
+    "position_biased_input": {
+      "legal40k_8x480_adamw_baseline": true,
+      "legal40k_12x384_adamw_depth": true,
+      "lamb_smoke_12x384": true
+    },
+    "norm_rel_ebd": {
+      "legal40k_8x480_adamw_baseline": null,
+      "legal40k_12x384_adamw_depth": null,
+      "lamb_smoke_12x384": "layer_norm"
+    },
+    "max_position_embeddings": {
+      "legal40k_8x480_adamw_baseline": 512,
+      "legal40k_12x384_adamw_depth": 512,
+      "lamb_smoke_12x384": 512
+    },
+    "layer_norm_eps": {
+      "legal40k_8x480_adamw_baseline": 1e-07,
+      "legal40k_12x384_adamw_depth": 1e-07,
+      "lamb_smoke_12x384": 1e-07
+    },
+    "hidden_dropout_prob": {
+      "legal40k_8x480_adamw_baseline": 0.1,
+      "legal40k_12x384_adamw_depth": 0.1,
+      "lamb_smoke_12x384": 0.1
+    },
+    "attention_probs_dropout_prob": {
+      "legal40k_8x480_adamw_baseline": 0.1,
+      "legal40k_12x384_adamw_depth": 0.1,
+      "lamb_smoke_12x384": 0.1
+    }
+  },
+  "vs_matched_12x384_non_size_mismatches": [
+    {
+      "field": "pad_token_id",
+      "smoke": 0,
+      "matched_12x384_baseline": 3
+    },
+    {
+      "field": "bos_token_id",
+      "smoke": null,
+      "matched_12x384_baseline": 1
+    },
+    {
+      "field": "eos_token_id",
+      "smoke": null,
+      "matched_12x384_baseline": 2
+    },
+    {
+      "field": "max_relative_positions",
+      "smoke": -1,
+      "matched_12x384_baseline": 256
+    },
+    {
+      "field": "pos_att_type",
+      "smoke": null,
+      "matched_12x384_baseline": [
+        "p2c",
+        "c2p"
+      ]
+    },
+    {
+      "field": "norm_rel_ebd",
+      "smoke": "layer_norm",
+      "matched_12x384_baseline": null
+    }
+  ],
+  "tokenizer_config_consistency": {
+    "pad_token_id_matches_tokenizer": false,
+    "bos_token_id_matches_tokenizer": false,
+    "eos_token_id_matches_tokenizer": false,
+    "baseline_pad_token_id_matches_tokenizer": true,
+    "depth_pad_token_id_matches_tokenizer": true
+  },
+  "interpretation": {
+    "create_model_does_not_set_pad_bos_eos": true,
+    "create_model_does_not_set_pos_att_type_or_max_relative_positions": true,
+    "not_a_pure_lamb_curriculum_factor_test": true,
+    "if_endpoint_scores_high": "The run is still a legal trained model candidate, but mechanism attribution requires matched repaired-config controls.",
+    "if_endpoint_scores_low": "Failure could arise from LAMB/update allocation, curriculum geometry, and/or positional/padding config mismatch; do not use it alone to close LAMB or curriculum."
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "status": "ROBERTA_TRAINING_PAIR_INTEGRITY_REPAIRED",
+  "created_utc": "2026-09-02T03:37:49Z",
+  "meaning": "Completed RoBERTa compact-vs-repeat training-pair integrity and training-surface comparison. This is not downstream evaluation evidence.",
+  "compact_run": "experiments/archive/frontier_consolidation/training/runs/roberta_compact_reinvest_100M_seed43022",
+  "repeat_run": "experiments/archive/frontier_consolidation/training/runs/roberta_repeat_compact_reinvest_100M_seed43022",
+  "mechanical_integrity": {
+    "compact_metrics_exists": true,
+    "repeat_metrics_exists": true,
+    "compact_training_log_rows": 2529,
+    "repeat_training_log_rows": 2529,
+    "recipe_mismatches_excluding_expected_corpus_identity": [],
+    "expected_corpus_identity_differences": {
+      "compact_example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+      "repeat_example_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_repeat_compact_reinvest_100M.jsonl",
+      "compact_example_jsonl_label": "compact_reinvest100M_roberta_transfer",
+      "repeat_example_jsonl_label": "repeat_compact_reinvest100M_roberta_transfer"
+    },
+    "checkpoint_names_match": true,
+    "checkpoint_exposure_mismatches": {},
+    "exact_batch_word_match_all_steps": true,
+    "exact_cumulative_word_match_all_steps": true,
+    "same_lr_all_steps": true,
+    "compact_word_exposure": 100000000,
+    "repeat_word_exposure": 100000000,
+    "compact_loss_first_last": [
+      9.80518913269043,
+      3.9984281063079834
+    ],
+    "repeat_loss_first_last": [
+      9.804080963134766,
+      4.214375019073486
+    ],
+    "compact_all_checkpoints_present": true,
+    "repeat_all_checkpoints_present": true
+  },
+  "training_surface": {
+    "deltas_compact_minus_repeat": {
+      "loss": {
+        "n": 2529,
+        "mean": -0.11294480744629992,
+        "median": -0.05953788757324219,
+        "min": -0.3492283821105957,
+        "max": 0.13684511184692383
+      },
+      "lr": {
+        "n": 2529,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "batch_words": {
+        "n": 2529,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "cumulative_word_exposure": {
+        "n": 2529,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "masked_tokens": {
+        "n": 2529,
+        "mean": 13.949387109529459,
+        "median": 13.0,
+        "min": -25.0,
+        "max": 72.0
+      },
+      "candidate_tokens": {
+        "n": 2529,
+        "mean": 94.89916963226572,
+        "median": 92.0,
+        "min": 2.0,
+        "max": 260.0
+      },
+      "effective_mask_rate": {
+        "n": 2529,
+        "mean": -2.8865164096480606e-06,
+        "median": 0.0,
+        "min": -0.0008000000000000229,
+        "max": 0.0008999999999999841
+      }
+    },
+    "windows": {
+      "early_1_500": {
+        "n": 500,
+        "loss_delta_compact_minus_repeat": 0.00635006046295166,
+        "masked_tokens_delta_compact_minus_repeat": 13.95,
+        "candidate_tokens_delta_compact_minus_repeat": 95.112,
+        "effective_mask_rate_delta_compact_minus_repeat": -5.599999999999772e-06
+      },
+      "mid_501_1500": {
+        "n": 1000,
+        "loss_delta_compact_minus_repeat": -0.025230616092681884,
+        "masked_tokens_delta_compact_minus_repeat": 14.175,
+        "candidate_tokens_delta_compact_minus_repeat": 94.658,
+        "effective_mask_rate_delta_compact_minus_repeat": 2.7999999999999135e-06
+      },
+      "late_1501_2529": {
+        "n": 1029,
+        "loss_delta_compact_minus_repeat": -0.2561533840335145,
+        "masked_tokens_delta_compact_minus_repeat": 13.72983479105928,
+        "candidate_tokens_delta_compact_minus_repeat": 95.03012633624878,
+        "effective_mask_rate_delta_compact_minus_repeat": -7.094266277939722e-06
+      },
+      "last_250": {
+        "n": 250,
+        "loss_delta_compact_minus_repeat": -0.21355599212646484,
+        "masked_tokens_delta_compact_minus_repeat": 13.552,
+        "candidate_tokens_delta_compact_minus_repeat": 94.548,
+        "effective_mask_rate_delta_compact_minus_repeat": -7.1999999999997625e-06
+      },
+      "last_50": {
+        "n": 50,
+        "loss_delta_compact_minus_repeat": -0.2131042242050171,
+        "masked_tokens_delta_compact_minus_repeat": 14.04,
+        "candidate_tokens_delta_compact_minus_repeat": 92.56,
+        "effective_mask_rate_delta_compact_minus_repeat": 1.0000000000002784e-05
+      }
+    },
+    "total_masked_tokens_compact": 21449599,
+    "total_masked_tokens_repeat": 21414321,
+    "total_candidate_tokens_compact": 142948930,
+    "total_candidate_tokens_repeat": 142708930
+  },
+  "scientific_reading": "The two RoBERTa arms are mechanically matched on exposure, checkpoint cadence, LR, seeds, tokenizer, architecture, and batch words. Loss/masked-token differences are realized consequences of compact vs first-N-repeat text, not recipe drift; selected official-compatible scores and the late local bridge remain necessary before judging transfer."
+}

@@ -1,0 +1,214 @@
+{
+  "status": "SCALED_WESS_SCREEN_COMPLETE",
+  "args": {
+    "output": "experiments/archive/initial_model_studies/data/s1_1000steps.json",
+    "hidden_size": 384,
+    "n_layer": 12,
+    "n_head": 12,
+    "intermediate_size": 1280,
+    "max_position_embeddings": 512,
+    "position_buckets": 256,
+    "steps": 1000,
+    "batch_size": 32,
+    "episode_ratio": 0.1,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "seed": 42,
+    "train_pairs": 1200,
+    "eval_pairs": 240,
+    "official_examples": 5000,
+    "max_official_len": 192,
+    "arms": "plain_mlm,no_address,wess_gold,wess_eventwise_random",
+    "log_every": 200
+  },
+  "device": "cuda",
+  "arms": [
+    "plain_mlm",
+    "no_address",
+    "wess_gold",
+    "wess_eventwise_random"
+  ],
+  "train_episode_examples": 2400,
+  "eval_episode_examples": 480,
+  "official_meta": {
+    "official_examples": 5000,
+    "official_unique_words_loaded": 39475,
+    "official_tokens_loaded": 63762
+  },
+  "train_episode_words_unique_approx": 57600,
+  "eval_episode_words_approx": 11520,
+  "shortcut_audit_eval": {
+    "first_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "last_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "nearest_state": {
+      "example_acc": 0.5,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "majority_fixed_first_visible": {
+      "example_acc": 0.25,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    },
+    "prev_query_state": {
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "n_pairs": 240
+    }
+  },
+  "source_bridge": "experiments/archive/initial_model_studies/scripts/wess_mlm_transfer_pilot.py",
+  "elapsed_sec": 210.2,
+  "arms_results": {
+    "plain_mlm": {
+      "train_meta": {
+        "steps": 1000,
+        "batch_size": 32,
+        "episode_examples_seen": 3000,
+        "official_examples_seen": 29000,
+        "approx_word_exposure": 301814,
+        "token_exposure": 464066,
+        "masked_targets": 32000,
+        "loss_first": 9.821556091308594,
+        "loss_last": 4.869733810424805,
+        "loss_mean_last20": 5.165944027900696
+      },
+      "binding": {
+        "example_acc": 0.0,
+        "pair_acc": 0.0,
+        "mean_logodds": -7.947285970052083e-09,
+        "n_pairs": 240,
+        "n_examples": 480
+      },
+      "official_mlm_loss": 5.470828533172607,
+      "params": 30954496
+    },
+    "no_address": {
+      "train_meta": {
+        "steps": 1000,
+        "batch_size": 32,
+        "episode_examples_seen": 3000,
+        "official_examples_seen": 29000,
+        "approx_word_exposure": 301814,
+        "token_exposure": 464066,
+        "masked_targets": 32000,
+        "loss_first": 9.813647270202637,
+        "loss_last": 4.5533623695373535,
+        "loss_mean_last20": 4.861151170730591
+      },
+      "binding": {
+        "example_acc": 0.08958333333333333,
+        "pair_acc": 0.0,
+        "mean_logodds": 2.5828679402669272e-08,
+        "n_pairs": 240,
+        "n_examples": 480
+      },
+      "official_mlm_loss": 5.363726735115051,
+      "params": 30954496,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.0,
+        "swap_top1_to_other": 0.09375,
+        "ablation_logodds_delta_prev_minus_answer": -8.953511714935303e-05,
+        "ablation_top1_to_prev": 0.1
+      }
+    },
+    "wess_gold": {
+      "train_meta": {
+        "steps": 1000,
+        "batch_size": 32,
+        "episode_examples_seen": 3000,
+        "official_examples_seen": 29000,
+        "approx_word_exposure": 301814,
+        "token_exposure": 464066,
+        "masked_targets": 32000,
+        "loss_first": 9.813491821289062,
+        "loss_last": 4.533363342285156,
+        "loss_mean_last20": 4.862288618087769
+      },
+      "binding": {
+        "example_acc": 0.08958333333333333,
+        "pair_acc": 0.0,
+        "mean_logodds": 4.3710072835286455e-08,
+        "n_pairs": 240,
+        "n_examples": 480
+      },
+      "official_mlm_loss": 5.365953862667084,
+      "params": 30954496,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 2.0861625671386717e-08,
+        "swap_top1_to_other": 0.09375,
+        "ablation_logodds_delta_prev_minus_answer": -0.0001578420400619507,
+        "ablation_top1_to_prev": 0.1
+      }
+    },
+    "wess_eventwise_random": {
+      "train_meta": {
+        "steps": 1000,
+        "batch_size": 32,
+        "episode_examples_seen": 3000,
+        "official_examples_seen": 29000,
+        "approx_word_exposure": 301814,
+        "token_exposure": 464066,
+        "masked_targets": 32000,
+        "loss_first": 9.811380386352539,
+        "loss_last": 3.3783657550811768,
+        "loss_mean_last20": 4.010980021953583
+      },
+      "binding": {
+        "example_acc": 0.08958333333333333,
+        "pair_acc": 0.0,
+        "mean_logodds": 0.0002075334390004476,
+        "n_pairs": 240,
+        "n_examples": 480
+      },
+      "official_mlm_loss": 4.335464656352997,
+      "params": 30954496,
+      "interventions": {
+        "swap_logodds_delta_other_minus_answer": 0.012396135926246643,
+        "swap_top1_to_other": 0.0875,
+        "ablation_logodds_delta_prev_minus_answer": -0.0015210777521133423,
+        "ablation_top1_to_prev": 0.1125
+      }
+    }
+  },
+  "summary": {
+    "plain_mlm": {
+      "mean_logodds": -7.947285970052083e-09,
+      "example_acc": 0.0,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 5.470828533172607
+    },
+    "no_address": {
+      "mean_logodds": 2.5828679402669272e-08,
+      "example_acc": 0.08958333333333333,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 5.363726735115051,
+      "swap_delta": 0.0,
+      "ablation_delta": -8.953511714935303e-05
+    },
+    "wess_gold": {
+      "mean_logodds": 4.3710072835286455e-08,
+      "example_acc": 0.08958333333333333,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 5.365953862667084,
+      "swap_delta": 2.0861625671386717e-08,
+      "ablation_delta": -0.0001578420400619507
+    },
+    "wess_eventwise_random": {
+      "mean_logodds": 0.0002075334390004476,
+      "example_acc": 0.08958333333333333,
+      "pair_acc": 0.0,
+      "official_mlm_loss": 4.335464656352997,
+      "swap_delta": 0.012396135926246643,
+      "ablation_delta": -0.0015210777521133423
+    }
+  }
+}

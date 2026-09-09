@@ -1,0 +1,132 @@
+\chapterstart{Stage II: Principle Discovery}
+\label{sec:principles}
+
+Stage I showed that changing text organization and training could improve a model. In Stage II, Qiushi Engine turned those practical results into questions about experience, representation, objectives, architecture, reusable capabilities, learning dynamics, and measurement. It proposed explanations, designed controls that could distinguish them, conducted experiments, and revised its understanding. The outputs included both principles relevant to the next model and independent theoretical constructions, mechanism studies, and experimental methods.
+
+Two complementary investigations connect experience to capability: natural-text experiments establish how training changes context use, while controlled tasks test whether new inputs retain access to learned computations after further training. Their findings inform the next training design. Section~\ref{sec:lineage} develops the other research branches, and Appendix~\ref{app:catalog} records their methods and evidential status.
+
+\subsection{Relation Type Shapes Context Use}
+\label{sec:relation}
+
+Exact repetition presents the same expression again. Aligned restatement presents corresponding content in different words. Both increase exposure to related text, but impose different prediction problems. If they supplied interchangeable information exposure, comparable budgets should produce similar source-use behavior. If the model instead practices particular source--target relations, transfer should depend on the relation required by the later target.
+
+Consider a source that describes an object's location and a restatement that describes the same location in another sentence form. Predicting the masked location could require reading the source or merely recognizing a local collocation. Replacing the source with length-matched unrelated text while leaving the target unchanged measures the contribution of that source. We use \emph{contextual dependency} to mean the information relationship needed for the target prediction.
+
+All conditions inherit the existing rewritten corpus. The reference adds none of the compact pairs under investigation; two other conditions add exact repetition or aligned restatement. These test the relation in the additional experience. Each pairing condition also has same-window and split-window variants. The latter preserve that condition's text but place the source and corresponding passage in separate windows, so a prediction cannot access both. Thus, relation-type comparisons and within-condition, text-matched window comparisons test different variables.
+
+Source use is measured with fixed target tokens under true-source, unrelated-source, and length-matched neutral-context inputs. For a correct token with probability $p$, negative log-likelihood (NLL) is $-\log p$: smaller values mean better predictions. Averaging over the specified targets gives cross-entropy (CE); natural logarithms express the result in nats. Let $T,U,N$ denote the respective mean losses. Define
+\begin{equation}
+A_T=N-T,\qquad A_U=N-U.
+\label{eq:source_advantage}
+\end{equation}
+Larger $A_T$ means that the true source helps more than the neutral context. $A_U$ tests whether unrelated source material produces a similar change. A substantial improvement in $A_T$ with little change in $A_U$ supports an effect specific to the relevant source content.
+
+Targets are also grouped by whether their exact tokenizer ID occurs in the source. This measures lexical token overlap, not whether a whole word, fact, or meaning is new. Figure~\ref{fig:relation} uses nonoverlapping target tokens in compact restatements.
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{relation_context_use.pdf}}
+\caption{Training relations change the use of source information. (a) True-source advantage; (b) unrelated-source advantage. The horizontal axis shows the change from the reference model in nats, as defined in Equation~\eqref{eq:source_advantage}. Targets are compact-restatement tokens absent from the source by tokenizer ID. Points are means over three training seeds; error bars are between-seed standard deviations.}
+\label{fig:relation}
+\end{figure}
+
+Relative to the reference, exact repetition changes true-source advantage by $-0.8138$ nats and aligned restatement by $+0.7970$ nats, averaged over three seeds. Standard deviations are 0.1729 and 0.0758. Unrelated-source advantage changes much less: approximately $+0.0679$ and $-0.0085$ nats.
+
+Does this difference depend on the text alone, or on the opportunity to use its parts together? Table~\ref{tab:relation_windows} reports window controls for two seeds. Separating the two passages, while retaining each condition's complete material, substantially attenuates both the negative repetition effect and the positive restatement effect. The text remains in training but no longer supplies a shared context for a single prediction. Organizing limited experience therefore requires deciding not only which passages to include, but which relationships a prediction can access.
+
+\begin{table}[htbp]
+\caption{Window controls preserving each condition's paired text. Values are changes in true-source advantage, $\Delta A_T$ (nats), averaged over the 80M-, 90M-, and 100M-word checkpoints. Each checkpoint is measured on 2,732 source-nonoverlapping targets. Columns correspond to different training seeds.}
+\label{tab:relation_windows}
+\small
+\begin{tabularx}{\linewidth}{@{}Ylrr@{}}
+\toprule Training relation & Window layout & Seed 43022 & Seed 43122\\\midrule
+\input{tables/relation_windows}
+\end{tabularx}
+\end{table}
+
+Natural restatements from English and Simple English Wikipedia further reveal target dependence. Table~\ref{tab:natural_restatement} compares 1,200 source pairs separately for targets whose token IDs occur in the source and targets whose IDs do not. Aligned restatement improves true-source advantage when a source token recurs in a different sentence form. Without token overlap, its effect is close to the reference, whereas exact repetition produces a negative effect. Reusing source content in another expression and predicting a source-absent target impose different requirements; training does not transfer indiscriminately between them.
+
+\begin{table}[htbp]
+\caption{Transfer to natural restatements. Entries are changes in true-source advantage, $\Delta A_T$ (nats). Targets are averaged within each source pair and target class, then across pairs. Values are means and standard deviations over three training seeds. Each target class contains 1,200 source pairs; overlap is defined by tokenizer ID.}
+\label{tab:natural_restatement}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule Target class & Exact repetition & Aligned restatement\\\midrule
+\input{tables/natural_restatement}
+\end{tabularx}
+\end{table}
+
+Transfer is selective: its direction depends on how the practiced relationship corresponds to the relationship required at test time. Same-window versus split-window comparisons identify when that relationship can enter learning; natural-restatement tests identify which targets benefit. Together, these results turn the broad idea of adding related text into a testable principle of experience organization.
+
+This finding connects to work on related-document pretraining, training distributions, and contextual learning~\citep{shi2024incontext,chan2022distribution,haga2024variationsets}. Chen et al. directly studied within-window parallel structure by removing it from pretraining text~\citep{chen2024parallel}; repetition can also support the formation of particular attention mechanisms~\citep{zucchet2025sparse}. The present experiments distinguish specific effects of repetition and restatement across target classes, test window separation while retaining each condition's text, and identify transfer settings without the same benefit.
+
+\subsection{Familiar Performance and Reuse on Unseen Inputs}
+\label{sec:reach}
+
+After a model learns a relation, can new names or symbols use the same computation? Its \emph{functional reach} is the range of inputs able to use that computation; \emph{functional accessibility} describes whether a particular input can do so. For example, selecting an attribute for a familiar name and performing the same operation for an unseen name are separate tests. Qiushi Engine studied a four-choice relation task with familiar and unseen symbols and intervened directly on internal signals involved in answer selection.
+
+The task specifies a query object and four object--attribute assignments, then asks for the queried object's attribute. An illustrative instance is ``query B; A is red, B is blue, C is green, D is yellow,'' whose answer is blue. The experiments use controlled symbols rather than these explanatory words. Tests can retain the rule while replacing the query symbol with one absent from the corresponding relation training. They can also query familiar objects within contexts containing unseen objects. The latter separates difficulty with unfamiliar context from difficulty selecting an attribute using an unfamiliar query.
+
+Full-sequence supervision predicts sequence targets; relation-answer supervision emphasizes the query's answer position. A static condition fixes the relative weight of these signals, while interleaving alternates relation-answer and full-sequence supervision. Figure~\ref{fig:reach} reports means for the two training seeds used in the functional-intervention study, 43 and 100, both of which had acquired unseen-symbol transfer during initial relation learning. Initial accuracy is 100.0\% on familiar symbols and 87.5\% on unseen symbols. Full-sequence continuation yields 87.2\% and 40.2\%. With a static relation weight, unseen accuracy is 75.5\%; with interleaved supervision it is 83.3\%, both at 100.0\% familiar accuracy. Supervision allocation changes whether new symbols can use the learned relation.
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{interface_reach.pdf}}
+\caption{Four-choice accuracy on familiar and unseen symbols. Conditions are initial acquisition, full-sequence continuation, static relation supervision, and interleaved supervision. Points average two training seeds; the dashed line denotes 25\% chance accuracy. The static relation weight is $1/17$; interleaving alternates relation-answer and full-sequence targets.}
+\label{fig:reach}
+\end{figure}
+
+Accuracy alone does not identify the computation producing an answer. Each attribute position has an internal vector, or hidden state. In the first layer, the study takes the normalized difference between the mean hidden states at queried and other attribute positions. This selection-related direction is fitted on 1,000 examples from the initial relation model and then held fixed across continuation conditions; each test class uses 384 examples. Interventions change only the projection onto this direction. Centering sets it to the same value at all four positions; zeroing removes it; rotation cyclically transfers its values between positions. All orthogonal components remain unchanged. If removing the signal impairs the answer and moving it redirects the answer, the intervention establishes a functional role in selection.
+
+Zeroing reduces initial unseen accuracy from 87.5\% to 25.0\%, and interleaved-supervision accuracy from 83.3\% to 38.7\%. After rotation, a separate measurement asks whether the answer follows the relocated signal. This intervention-target selection rate is distinct from accuracy on the original question.
+
+\begin{table}[htbp]
+\caption{Functional interventions on unseen symbols, in percent, using the same setting as Figure~\ref{fig:reach}. The first three numerical columns measure original-question accuracy. The final column measures selection of the new target indicated by the rotated signal.}
+\label{tab:intervention}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule Condition & Intact & Centered & Zeroed & Relocated target\\\midrule
+Initial acquisition & 87.5 & 26.6 & 25.0 & 67.6\\
+Full-sequence continuation & 40.2 & 25.1 & 31.1 & 31.4\\
+Static relation weight & 75.5 & 31.3 & 33.6 & 48.2\\
+Interleaved supervision & 83.3 & 32.9 & 38.7 & 63.9\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Measurements through continuation separate loss of the signal from later recovery. Full-sequence training first weakens the answer-selection signal, then restores its use for familiar queries, without comparable recovery for unseen queries. Familiar queries still use the signal in contexts containing unfamiliar objects. The distinction concerns which queries can access a learned computation, rather than a general inability to process unfamiliar context.
+
+An alternative explanation is that the relevant information moves to another linear direction after continuation. The study therefore fits new directions from familiar queries, a single unseen query, or two unseen queries, keeping fitting and testing examples separate. It replaces answer-selection signals along each new direction and measures whether answers move to the designated position. Refitting alone does not alter the model's predictions; the fitted direction is an intervention tool. Unseen-query redirection remains weaker after full-sequence continuation than after interleaving. These tests do not support the explanation that changing the linear direction suffices to recover the same function. They connect information that can be read from a representation with computation that actually affects behavior~\citep{geiger2021causal,zhang2024patching}.
+
+The loss of contextual learning during training and differences between familiar and unseen tokens have prior evidence~\citep{singh2023transient,anand2025dual}. Dual Process Learning studies the coexistence of these strategies through weight forgetting. Here the new measurements concern the effects of relation-supervision allocation and the functional consequences of removing or moving a specific signal.
+
+\subsection{How Supervision Allocation Changes Relation Learning}
+
+Visible source text is only one prerequisite for relation learning. If nearby words already determine the answer, loss can fall without much source use. Supervision allocation determines which predictions are trained and their relative weight. Removing local clues, changing target positions, or changing loss weights can alter the learning problem; relation behavior and ordinary language performance must both be measured.
+
+The controlled experiments compare full-sequence, relation-answer, interleaved, and effective-weight-matched supervision. Relation-misaligned answer targets and a simple reduction in context pressure do not reproduce all the target behavior. The correspondence between the supervised position and the relation being learned is therefore an experimental variable, not merely a matter of total loss or the amount of relational text.
+
+Target-deletion experiments with compact restatements test a related question while preserving the input. A source-absent target is a word absent from its paired source passage; a copied target has a word-level match there. The study removes some prediction losses from either class. At 100M words, the seven-metric average is 43.896 with full supervision, 43.437 after deleting source-absent targets, and 42.792 after deleting matched copied targets. Target selection changes later performance even with the same input. The deletion counts are close but unequal, while full supervision has more targets, so content and quantity are both involved.
+
+A separate measurement uses the target-deletion models at 20M words and excludes source pairs used in the corresponding training. Across 710 pairs and 974 target events, deleting source-absent supervision rather than matched copied targets raises measured source-absent loss by 0.0796 nats. Resampling by source pair gives a 95\% interval of $[0.031,0.125]$. Requiring whole-document separation yields an interval containing zero. This early local-prediction test and the 100M-word task evaluation answer different questions: which targets support prediction of specified content, and how the supervision choice affects later task performance. Appendix~\ref{app:extended} preserves both measurements.
+
+Together, these experiments motivate separate tests of whether input supplies the relation, targets require its use, and sufficient learning signal reaches those targets. Separating input corruption from prediction rate has direct precedent~\citep{wettig2023mask}. The present work applies that distinction to source--restatement learning and measures the consequences of selecting different supervised positions in otherwise retained text.
+
+\subsection{Experience Value Depends on Budget, Displacement, and Learning State}
+
+Adding data under a fixed budget necessarily displaces other material. Replacing an equal amount of experience estimates a substitution effect. Let $A$ be added experience, $D$ displaced experience, and $B$ the reference stream. Under fixed training settings, define
+\begin{equation}
+\Delta_T(A,D;B)=Y_T(B-D+A)-Y_T(B),
+\label{eq:substitution}
+\end{equation}
+where $Y_T$ is the evaluation at training amount $T$. The comparison holds budget, architecture, schedule, and seed fixed. This is an experimental quantity to estimate, not a formula that predicts data value without measurements.
+
+Late-training DeBERTa comparisons distinguish transformed views, expanded sentence coverage, and exact repetition. In another RoBERTa configuration, the view method improves its own training objective without yielding the same broad benefit. Holding the added content fixed while removing child-directed or adult-prose material also changes the result. Experience value depends on displaced information, learning stage, and model state; one early loss or text-distribution distance does not establish a universal ranking.
+
+These studies also uncovered an initialization confound. A seed determines a pseudorandom sequence, but inserting a layer changes how its values are assigned to parameters. The same seed can therefore give shared tensors different initial values. Explicitly copying the common parameters substantially weakened a previously large negative interaction, where interaction means that a data treatment has different effects in different architectures. Actual parameter alignment is essential to that comparison.
+
+\subsection{A Design Principle and Independent Findings}
+
+Stage II made three conditions separately testable: the information visible during prediction, the targets and weights that receive supervision, and the existing functions to preserve during further training. Natural-text experiments establish effects of relation and window organization; controlled tasks establish conditions for reuse on new inputs. They jointly motivate coordinated input, supervision, and preservation design.
+
+The corresponding tests are concrete: hold targets fixed while increasing local masking; hold masking fixed while adding targets; change the inputs used for preservation while measuring both acquisition and retained behavior. Stage III implements these choices in real language-model training and uses its controls to refine the design.
+
+Relational anchors, shared representation spaces, identity matching, entity storage, and measurement design also retain independent value. Section~\ref{sec:lineage} explains their questions, constructions, and results. Their scientific value does not depend on inclusion in the second-generation training recipe.

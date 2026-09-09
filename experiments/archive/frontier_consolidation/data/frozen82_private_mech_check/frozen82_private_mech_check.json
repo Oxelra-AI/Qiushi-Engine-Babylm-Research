@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-31T23:35:50Z",
+  "purpose": "Mechanical validation of a fresh zero-output private pathway attached to the verified frozen scale1.75 chck_82M slow function.",
+  "endpoint": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+  "device": "cpu",
+  "load_state": {
+    "missing_keys_count": 50,
+    "missing_keys_sample": [
+      "deberta.encoder.layer.0.private_adapter.layer_norm.weight",
+      "deberta.encoder.layer.0.private_adapter.layer_norm.bias",
+      "deberta.encoder.layer.0.private_adapter.down.weight",
+      "deberta.encoder.layer.0.private_adapter.down.bias",
+      "deberta.encoder.layer.0.private_adapter.up.weight",
+      "deberta.encoder.layer.0.private_adapter.up.bias",
+      "deberta.encoder.layer.1.private_adapter.layer_norm.weight",
+      "deberta.encoder.layer.1.private_adapter.layer_norm.bias",
+      "deberta.encoder.layer.1.private_adapter.down.weight",
+      "deberta.encoder.layer.1.private_adapter.down.bias",
+      "deberta.encoder.layer.1.private_adapter.up.weight",
+      "deberta.encoder.layer.1.private_adapter.up.bias"
+    ],
+    "unexpected_keys_count": 0,
+    "unexpected_keys_sample": []
+  },
+  "model_identity": {
+    "original_class": "AdapterDebertaV2ForMaskedLM",
+    "new_class": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+    "param_count_original": 35463008,
+    "param_count_new": 36458592,
+    "private_param_count": 995584,
+    "slow_param_count": 35463008,
+    "adapter_scale_slow": 1.75,
+    "private_adapter_scale": 1.0
+  },
+  "function_checks": {
+    "slow_vs_original_max_abs_logit_diff": 0.0,
+    "private_on_vs_off_max_abs_logit_diff": 0.0,
+    "private_zero_rms": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "slow_adapter_rms": [
+      0.08043575286865234,
+      0.09346504509449005,
+      0.08970679342746735,
+      0.11028769612312317,
+      0.09954699128866196,
+      0.1021663099527359,
+      0.12243394553661346,
+      0.10121959447860718
+    ]
+  },
+  "gradient_checks": {
+    "private_grad_norm_enabled": 21.607111155986786,
+    "slow_grad_norm_when_frozen": 0.0,
+    "disabled_loss_has_grad_fn": false,
+    "disabled_private_grad_norm": 0.0,
+    "private_grad_nonzero_names_sample": [
+      "deberta.encoder.layer.0.private_adapter.up.weight",
+      "deberta.encoder.layer.0.private_adapter.up.bias",
+      "deberta.encoder.layer.1.private_adapter.up.weight",
+      "deberta.encoder.layer.1.private_adapter.up.bias",
+      "deberta.encoder.layer.2.private_adapter.up.weight",
+      "deberta.encoder.layer.2.private_adapter.up.bias",
+      "deberta.encoder.layer.3.private_adapter.up.weight",
+      "deberta.encoder.layer.3.private_adapter.up.bias",
+      "deberta.encoder.layer.4.private_adapter.up.weight",
+      "deberta.encoder.layer.4.private_adapter.up.bias",
+      "deberta.encoder.layer.5.private_adapter.up.weight",
+      "deberta.encoder.layer.5.private_adapter.up.bias"
+    ]
+  },
+  "checks": {
+    "loaded_with_only_private_or_tied_missing": true,
+    "slow_path_matches_original": true,
+    "private_on_off_equivalent_at_attachment": true,
+    "private_rms_zero_at_attachment": true,
+    "slow_adapter_active": true,
+    "only_private_requires_grad_after_freeze": true,
+    "private_grad_nonzero_when_enabled": true,
+    "slow_grad_zero_when_frozen": true,
+    "disabled_private_loss_has_no_grad_path_or_zero_private_grad": true,
+    "all_checks_passed": true
+  },
+  "scientific_reading": "The verified chck_82M score-bearing function can be represented as a frozen slow path with a fresh zero-output private residual attached exactly. This supports the proposed 82M-anchored tail experiment if the research panel justifies it; no new training was launched by this check.",
+  "elapsed_sec": 1.327
+}

@@ -1,0 +1,719 @@
+{
+  "status": "PREFIX_SCRATCH_ONLY",
+  "created": "2026-09-04T12:44:23Z",
+  "args": {
+    "model_path": "experiments/archive/frontier_consolidation/training/runs/cleanqwen_fineweb_compact_view_reinvest_16k_seed43022/hf_model/chck_100M",
+    "out_dir": "experiments/archive/representation_and_objectives/data/badns_prefix1_scratch_seed27001",
+    "seed": 27000,
+    "prefix_mode": "prefix_one",
+    "shared_address_ns": "s269_prefix1_direct",
+    "shared_address_suffix": "_direct_tag",
+    "base_stable": 80,
+    "base_train_wording": true,
+    "sparse_changed": 16,
+    "sparse_stable": 16,
+    "eval_held_changed": 40,
+    "eval_held_stable": 40,
+    "eval_train_changed": 40,
+    "eval_train_stable": 40,
+    "max_len": 200,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "tag_epochs": 10,
+    "prefix_epochs": 10,
+    "scratch_epochs": 10,
+    "head_lr": 0.001,
+    "encoder_lr": 8e-05,
+    "prefix_head_lr": 0.001,
+    "prefix_encoder_lr": 8e-05,
+    "weight_decay": 0.001,
+    "device": "cuda",
+    "dry_build": false,
+    "skip_scratch": false,
+    "only_scratch": true
+  },
+  "construction": {
+    "tag_train": {
+      "mode": "tag_only",
+      "qmode": "direct_tag",
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "train": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=tag_only|q=direct_tag": 2560,
+          "base_stable_train|ctx=tag_only|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=tag_only|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=tag_only|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "eval_counts": {
+        "tag_only_heldChanged_heldStable_direct_hH": 1280,
+        "tag_only_trainChanged_heldStable_direct_hH": 1280
+      }
+    },
+    "prefix_train": {
+      "mode": "prefix_one",
+      "qmode": "direct_tag",
+      "inv": {
+        "train_total": 1320,
+        "held_total": 440
+      },
+      "selection": {
+        "base_stable": {
+          "n": 80,
+          "changed": {
+            "False": 80
+          },
+          "dir": {
+            "A->A": 40,
+            "B->B": 40
+          },
+          "winner_initial_later": {
+            "1->1": 44,
+            "0->0": 36
+          }
+        },
+        "base_stable2": {
+          "n": 97,
+          "changed": {
+            "False": 97
+          },
+          "dir": {
+            "A->A": 49,
+            "B->B": 48
+          },
+          "winner_initial_later": {
+            "1->1": 53,
+            "0->0": 44
+          }
+        },
+        "sparse_changed": {
+          "n": 16,
+          "changed": {
+            "True": 16
+          },
+          "dir": {
+            "A->B": 8,
+            "B->A": 8
+          },
+          "winner_initial_later": {
+            "0->1": 13,
+            "1->0": 3
+          }
+        },
+        "sparse_stable": {
+          "n": 16,
+          "changed": {
+            "False": 16
+          },
+          "dir": {
+            "B->B": 8,
+            "A->A": 8
+          },
+          "winner_initial_later": {
+            "0->0": 9,
+            "1->1": 7
+          }
+        },
+        "sparse_secondary_stable": {
+          "n": 33,
+          "changed": {
+            "False": 33
+          },
+          "dir": {
+            "A->A": 17,
+            "B->B": 16
+          },
+          "winner_initial_later": {
+            "0->0": 14,
+            "1->1": 19
+          }
+        },
+        "eval_train_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "1->0": 16,
+            "0->1": 24
+          }
+        },
+        "eval_train_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "1->1": 22,
+            "0->0": 18
+          }
+        },
+        "eval_held_changed": {
+          "n": 40,
+          "changed": {
+            "True": 40
+          },
+          "dir": {
+            "A->B": 20,
+            "B->A": 20
+          },
+          "winner_initial_later": {
+            "0->1": 24,
+            "1->0": 16
+          }
+        },
+        "eval_held_stable": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "A->A": 20,
+            "B->B": 20
+          },
+          "winner_initial_later": {
+            "0->0": 22,
+            "1->1": 18
+          }
+        },
+        "eval_held_stable2": {
+          "n": 40,
+          "changed": {
+            "False": 40
+          },
+          "dir": {
+            "B->B": 20,
+            "A->A": 20
+          },
+          "winner_initial_later": {
+            "1->1": 23,
+            "0->0": 17
+          }
+        }
+      },
+      "train": {
+        "n": 5632,
+        "by_query": {
+          "focal_after": 1536,
+          "focal_before": 1536,
+          "secondary_after": 1280,
+          "secondary_before": 1280
+        },
+        "by_label": {
+          "0": 2816,
+          "1": 2816
+        },
+        "by_kind": {
+          "base_stable_anchor|ctx=prefix_one|q=direct_tag": 2560,
+          "base_stable_train|ctx=prefix_one|q=direct_tag": 2560,
+          "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 256,
+          "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 256
+        },
+        "by_changed_focal": {
+          "False": 5376,
+          "True": 256
+        },
+        "by_stable_secondary": {
+          "True": 5632
+        }
+      },
+      "eval_counts": {
+        "prefix_one_heldChanged_heldStable_direct_hH": 1280,
+        "prefix_one_trainChanged_heldStable_direct_hH": 1280
+      }
+    },
+    "token_audit": {
+      "n": 16384,
+      "min": 78,
+      "p50": 85.0,
+      "p90": 90.0,
+      "max": 99,
+      "frac_gt_max_len": 0.0
+    }
+  },
+  "results": {
+    "scratch_prefix": {
+      "phase": "scratch_prefix",
+      "best_train_acc": 0.9998224431818182,
+      "fit": {
+        "overall": 0.9998224431818182,
+        "by_train_kind": {
+          "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+          "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+          "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.99609375,
+          "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+        },
+        "by_query_family": {
+          "focal_after": 1.0,
+          "focal_before": 0.9993489583333334,
+          "secondary_after": 1.0,
+          "secondary_before": 1.0
+        },
+        "by_changed_focal": {
+          "False": 1.0,
+          "True": 0.99609375
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 0.5673015921354156,
+          "train_acc": 0.9754971590909091,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 0.998828125,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 0.996875,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.50390625,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 0.75,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 0.5,
+              "focal_after": 0.5,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 2,
+          "loss": 0.10261658871281605,
+          "train_acc": 0.9923650568181818,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.83203125,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 3,
+          "loss": 0.022105811342588245,
+          "train_acc": 0.998046875,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.95703125,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 4,
+          "loss": 0.019872320726984135,
+          "train_acc": 0.9996448863636364,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 0.999609375,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.99609375,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "loss": 0.02304008092483354,
+          "train_acc": 0.9950284090909091,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 0.99921875,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.8984375,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 6,
+          "loss": 0.026453619348631885,
+          "train_acc": 0.9998224431818182,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.99609375,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 0.75,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 7,
+          "loss": 0.035961449347762214,
+          "train_acc": 0.9984019886363636,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 0.99921875,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.97265625,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 8,
+          "loss": 0.034199514503313225,
+          "train_acc": 0.9989346590909091,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.9765625,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 9,
+          "loss": 0.02867290547132397,
+          "train_acc": 0.9998224431818182,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 1.0,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.99609375,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        },
+        {
+          "epoch": 10,
+          "loss": 0.04962104538625674,
+          "train_acc": 0.9989346590909091,
+          "fit_by_train_kind": {
+            "base_stable_anchor|ctx=prefix_one|q=direct_tag": 0.99921875,
+            "base_stable_train|ctx=prefix_one|q=direct_tag": 1.0,
+            "sparse_changed_focal|ctx=prefix_one|q=direct_tag": 0.984375,
+            "sparse_stable_focal|ctx=prefix_one|q=direct_tag": 1.0
+          },
+          "track_by_query": {
+            "prefix_one_heldChanged_heldStable_direct_hH": {
+              "focal_before": 1.0,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            },
+            "prefix_one_trainChanged_heldStable_direct_hH": {
+              "focal_before": 0.75,
+              "focal_after": 1.0,
+              "secondary_before": 1.0,
+              "secondary_after": 1.0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "evals": {
+    "scratch_prefix_on_prefix": {
+      "prefix_one_heldChanged_heldStable_direct_hH": {
+        "con_acc": 0.9375,
+        "by_q": {
+          "focal_before": 0.75,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 8.291834056377411,
+          "focal_after": 18.417775630950928,
+          "secondary_before": 20.94174861907959,
+          "secondary_after": 21.413689851760864
+        },
+        "std_acc": 0.96953125
+      },
+      "prefix_one_trainChanged_heldStable_direct_hH": {
+        "con_acc": 1.0,
+        "by_q": {
+          "focal_before": 1.0,
+          "focal_after": 1.0,
+          "secondary_before": 1.0,
+          "secondary_after": 1.0
+        },
+        "by_m": {
+          "focal_before": 14.642619609832764,
+          "focal_after": 16.664151668548584,
+          "secondary_before": 21.877798318862915,
+          "secondary_after": 21.651423454284668
+        },
+        "std_acc": 0.9859375
+      }
+    }
+  },
+  "boundary": "Small pretrained bridge direct-learning control; no continuation run."
+}

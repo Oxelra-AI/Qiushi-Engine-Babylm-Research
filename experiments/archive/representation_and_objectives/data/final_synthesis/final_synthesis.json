@@ -1,0 +1,78 @@
+{
+  "status": "FINAL_SYNTHESIS",
+  "created_utc": "2026-09-01T10:08:12Z",
+  "fastpath80_readout": {
+    "decision": "STOP_FASTPATH_INSTANTIATION",
+    "cheap7": {
+      "anchor80": 43.81357142857143,
+      "coherent80": 43.67,
+      "shuffled80": 42.784285714285716,
+      "ordinary84": 44.122142857142855
+    },
+    "coherent_net_items": 63,
+    "ordinary84_net_items_vs_anchor80": 306,
+    "coherent_change_benefit": 0.009828393135725429,
+    "ordinary84_change_benefit": 0.023469857340082834,
+    "discovery_wins_vs_both": 0,
+    "path": "experiments/archive/representation_and_objectives/data/fastpath80_fourway_readout/task_balanced_readout.json"
+  },
+  "endpoint_scores": {
+    "chck82": {
+      "cheap7": 43.95944987645173,
+      "superglue": 69.7661813713118,
+      "aoa": 0.0,
+      "overall": 41.942481167385985
+    },
+    "coherent86": {
+      "cheap7": 44.10642857142857,
+      "superglue_values": [
+        69.777968264287,
+        69.789755157262,
+        69.842796175649
+      ],
+      "overall_aoa0_values": [
+        42.058107584920776,
+        42.059417239695776,
+        42.065310686183224
+      ],
+      "overall_aoa0_min": 42.058107584920776,
+      "overall_aoa0_max": 42.065310686183224
+    },
+    "ordinary84": {
+      "cheap7": 44.122142857142855,
+      "superglue": 69.28753642850036,
+      "aoa_assumed": 0.0,
+      "projected_overall_aoa0": 42.01583738094448,
+      "thresholds": {
+        "tie_chck82_aoa0_sg": 68.62733050647392,
+        "tie_coherent86_min_aoa0_sg": 69.66796826428703,
+        "tie_coherent86_max_aoa0_sg": 69.73279617564907
+      },
+      "payload": "experiments/archive/representation_and_objectives/data/frozen80_eval/per_target/ordinary84.json",
+      "superglue_payload": "experiments/archive/representation_and_objectives/data/ordinary84_superglue_eval/per_target/ordinary84_superglue.json"
+    },
+    "ordinary85": {
+      "cheap7": 44.089285714285715,
+      "payload": "experiments/archive/representation_and_objectives/data/ordinary85_cheap7_eval/per_target/ordinary85_cheap7.json"
+    },
+    "ordinary86": {
+      "cheap7": 43.770714285714284,
+      "payload": "experiments/archive/representation_and_objectives/data/scale1p75_chck86_cheap7_eval/per_target/scale1p75_chck86_cheap7.json"
+    }
+  },
+  "ordinary84_item_synthesis": {
+    "vs_chck82_net": -58,
+    "vs_coherent86_net": 57,
+    "path": "experiments/archive/representation_and_objectives/data/ordinary84_candidate_synthesis/ordinary84_candidate_synthesis.json"
+  },
+  "scientific_conclusions": [
+    "The frozen-anchor private fast-path instantiation is closed as a learning-principle route: coherent80 does not beat anchor80 or ordinary84 in cheap7, has zero discovery-column wins against both controls, and its prediction-change-zone benefit is weaker than ordinary84.",
+    "The original coherent86 remains a practical endpoint candidate around Overall 42.058-42.065 with AoA=0, but its mechanism remains endpoint reweighting rather than added broad competence.",
+    "Ordinary chck_84M is an existing same-trajectory endpoint candidate, not a new mechanism. Its cheap7 44.1221 exceeds coherent86's cheap7 44.1064, but measured SuperGLUE 69.2875 gives projected Overall 42.0158 with AoA=0, below coherent86 and above protected chck82 if AoA is not negative enough.",
+    "Ordinary chck_85M cheap7 44.0893 is below chck_84M, so the immediate ordinary-trajectory endpoint candidate is chck_84M rather than chck_85M."
+  ],
+  "next_scientific_work": [
+    "If the next step is endpoint assurance, run AoA-only and materialization checks for ordinary84 only if a simpler non-private backup above chck82 is valuable; it is not needed to beat coherent86.",
+    "For the main scientific goal, return to representation-level mechanism search rather than spending more GPU on the closed fast-path instantiation."
+  ]
+}

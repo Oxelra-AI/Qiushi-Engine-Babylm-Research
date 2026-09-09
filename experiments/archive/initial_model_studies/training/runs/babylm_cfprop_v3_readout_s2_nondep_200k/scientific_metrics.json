@@ -1,0 +1,149 @@
+{
+  "variant": "masked_wwm_counterfactual_propagation",
+  "backend": "mlm",
+  "model_family": "DebertaV2ForMaskedLM",
+  "model_type": "deberta_v2",
+  "parameter_count": 34467424,
+  "embedding_parameter_count": 7864320,
+  "non_embedding_parameter_count": 26603104,
+  "counterfactual_head_parameter_count": 61697,
+  "train_parameter_count_including_cf_head": 34529121,
+  "vocab_size": 16384,
+  "tokenizer_label": "baseline16k",
+  "tokenizer_path": "",
+  "wwm_word_exposure": 200000,
+  "aux_pair_words_seen": 131448,
+  "aux_triple_words_seen": 197206,
+  "total_counted_words_pair_rule": 331448,
+  "total_counted_words_triple_rule": 397206,
+  "example_pool_words_actual": 200000,
+  "selected_for_training_words": 200000,
+  "loss_first": 9.83348274230957,
+  "loss_last": 7.2471842765808105,
+  "loss_mlm_first": 9.778908729553223,
+  "loss_mlm_last": 7.195166110992432,
+  "loss_cf_first": 1.0914863348007202,
+  "loss_cf_last": 1.0403603315353394,
+  "cf_train_pair_accuracy_weighted": 0.515987210303283,
+  "cf_train_valid_pair_total": 2502,
+  "cf_heldout_eval": {
+    "eval_batches": 2,
+    "loss_mean": 1.0397204756736755,
+    "pair_accuracy": 0.609375,
+    "random_accuracy": 0.6444444643126593,
+    "valid_pair": 64,
+    "valid_random": 45
+  },
+  "cf_readout_mode": "s2_nondependent",
+  "lr_schedule_total_steps": 80,
+  "actual_training_steps": 79,
+  "mask_mode": "wwm",
+  "mask_prob": 0.15,
+  "masked_tokens_total": 37453,
+  "masked_tokens_mean_per_step": 474.0886075949367,
+  "masked_tokens_per_wwm_whitespace_word": 0.187265,
+  "unique_training_seq_lengths": [
+    256
+  ],
+  "tokenization_coupling_summary": {
+    "num_examples_summarized": 1250,
+    "total_words_summarized": 200000,
+    "total_untruncated_tokens": 253658,
+    "total_kept_tokens_at_max_seq_length": 253514,
+    "total_word_groups_kept_at_max_seq_length": 199915,
+    "mean_untruncated_tokens_per_example": 202.9264,
+    "mean_kept_tokens_per_example": 202.8112,
+    "mean_word_groups_kept_per_example": 159.932,
+    "untruncated_tokens_per_whitespace_word": 1.26829,
+    "kept_tokens_per_whitespace_word": 1.26757,
+    "word_groups_kept_per_whitespace_word": 0.999575,
+    "expected_wwm_selected_word_groups_at_mask_prob_0p15": 29987.25,
+    "expected_wwm_predicted_tokens_at_mask_prob_0p15_if_selected_groups_cover_tokens": 38027.1,
+    "truncated_examples_at_max_seq_length": 9,
+    "truncated_example_fraction": 0.0072,
+    "total_tokens_lost_to_truncation": 144,
+    "max_untruncated_tokens": 299,
+    "max_kept_tokens": 256,
+    "untruncated_length_histogram": {
+      "<=64": 0,
+      "65-128": 0,
+      "129-256": 1241,
+      ">256": 9
+    }
+  },
+  "seq_length": 256,
+  "max_seq_length": 256,
+  "max_position_embeddings": 512,
+  "hidden_size": 480,
+  "n_layer": 8,
+  "n_head": 8,
+  "ffn_mult": 4,
+  "position_buckets": 256,
+  "max_relative_positions": 256,
+  "deberta_relative_attention": "true",
+  "deberta_pos_att_type": "p2c,c2p",
+  "seed": 42,
+  "extra_init_seed": 456,
+  "train_rng_seed": 789,
+  "saved_checkpoints": [
+    {
+      "name": "chck_1M",
+      "target_wwm_word_exposure": 200000,
+      "actual_cumulative_wwm_word_exposure": 200000,
+      "path": "experiments/archive/initial_model_studies/training/runs/babylm_cfprop_v3_readout_s2_nondep_200k/hf_model/chck_1M"
+    }
+  ],
+  "source_words_consumed": {
+    "epoch1::bnc_spoken.train.txt": 200000
+  },
+  "counterfactual_aux_meta": {
+    "path": "experiments/archive/initial_model_studies/data/counterfactual_revision_109/linked_definition_counterfactual_v3_seed1093_target100000_actual.jsonl",
+    "split_requested": "train",
+    "rows_loaded": 1203,
+    "split_counts_all_seen": {
+      "heldout": 64,
+      "train": 1203
+    },
+    "dependent_counts_loaded": {
+      "it": 919,
+      "they": 139,
+      "these": 25,
+      "this": 108,
+      "that": 10,
+      "those": 2
+    },
+    "counted_words_pair_once": 63302,
+    "counted_words_triple_once": 94970,
+    "max_rows": 0
+  },
+  "counterfactual_heldout_meta": {
+    "path": "experiments/archive/initial_model_studies/data/counterfactual_revision_109/linked_definition_counterfactual_v3_seed1093_target100000_actual.jsonl",
+    "split_requested": "heldout",
+    "rows_loaded": 64,
+    "split_counts_all_seen": {
+      "heldout": 64,
+      "train": 1203
+    },
+    "dependent_counts_loaded": {
+      "it": 52,
+      "these": 2,
+      "they": 5,
+      "this": 4,
+      "that": 1
+    },
+    "counted_words_pair_once": 3352,
+    "counted_words_triple_once": 5023,
+    "max_rows": 0
+  },
+  "data_source_type": "official_corpus_fullcycle_with_counterfactual_aux",
+  "selection_epochs": [
+    {
+      "epoch_index": 1,
+      "shuffle_seed": 42,
+      "words_added": 200000,
+      "examples_added": 1250
+    }
+  ],
+  "unique_official_pool_words": 200000,
+  "total_official_corpus_words": 10000000
+}

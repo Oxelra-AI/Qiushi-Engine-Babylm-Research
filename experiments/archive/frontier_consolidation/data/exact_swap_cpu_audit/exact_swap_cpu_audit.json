@@ -1,0 +1,145 @@
+{
+  "status": "EXACT_SWAP_CPU_AUDIT",
+  "scientific_purpose": "Prepare, without GPU, the lower-perturbation exact-swap conditional-innovation fallback so it can be judged after research results rather than built under pressure.",
+  "inputs": {
+    "train_jsonl": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "tokenizer_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer",
+    "metadata_train": "experiments/archive/frontier_consolidation/analysis/innovation_metadata_train.jsonl",
+    "max_word_exposure": 2000000,
+    "batch_size": 256,
+    "seq_length": 256,
+    "mask_prob": 0.15,
+    "seed": 43023,
+    "max_swaps_per_changed_row": 1
+  },
+  "hash_report": {
+    "train_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "tokenizer_json_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "metadata_train_sha256": "351a95362db3b074f4bc5be6b3871d10861482371f380420f9f62b866ba74520"
+  },
+  "metadata_totals": {
+    "records": 3005,
+    "innovation_groups": 26315,
+    "copyable_groups": 129472,
+    "protected_source_groups": 259048,
+    "protected_pair_groups": 423068,
+    "innovation_tokens": 36899,
+    "rows_with_innovation": 3004,
+    "frozen_stream_occurrences_sum": 30050
+  },
+  "audited_stream": {
+    "rows": 12953,
+    "words": 1999862,
+    "batches": 51,
+    "changed_row_exposures": 610,
+    "eligible_changed_rows": 610,
+    "proposals": 610,
+    "successful_swaps": 511,
+    "proposal_baseline_collisions": 99,
+    "proposal_no_equal_length_donor": 0
+  },
+  "selection_mass": {
+    "baseline_selected_groups": 293700,
+    "biased_selected_groups": 293700,
+    "selected_group_delta": 0,
+    "baseline_selected_tokens": 429303,
+    "biased_selected_tokens": 429303,
+    "selected_token_delta": 0,
+    "batch_mass_mismatch": 0,
+    "successful_swaps_fraction_of_baseline_selected_groups": 0.0017398706162751107,
+    "successful_swaps_fraction_of_baseline_selected_tokens": 0.0011903014886921357
+  },
+  "targeting": {
+    "baseline_selected_innovation_groups": 804,
+    "biased_selected_innovation_groups": 1315,
+    "innovation_selection_gain": 511,
+    "innovation_multiplier": 1.6355721393034826,
+    "successful_swaps_per_10m_words_projected": 2555.176307165194,
+    "proposal_success_rate_excluding_collisions": 1.0,
+    "proposal_collision_rate": 0.16229508196721312,
+    "no_donor_rate": 0.0,
+    "forced_relation_cue": 64,
+    "forced_relation_cue_fraction": 0.12524461839530332,
+    "forced_copyable": 0
+  },
+  "controls": {
+    "baseline_selected_copyable_groups": 3927,
+    "biased_selected_copyable_groups": 3927,
+    "copyable_group_selection_delta": 0,
+    "baseline_selected_source_groups": 8062,
+    "biased_selected_source_groups": 8062,
+    "source_group_selection_delta": 0,
+    "donor_copyable_rewrite": 0,
+    "donor_protected_source": 0,
+    "donor_protected_pair": 0,
+    "donor_ordinary_row": 511,
+    "donor_changed_nonpair_row": 0,
+    "forced_targets_with_any_visible_paired_source": 511,
+    "forced_targets_with_fully_visible_paired_source": 17
+  },
+  "per_batch_stats": {
+    "changed_rows": {
+      "n": 51,
+      "mean": 11.96078431372549,
+      "min": 5.0,
+      "p05": 6.0,
+      "median": 12.0,
+      "p95": 17.0,
+      "max": 18.0
+    },
+    "successful_swaps": {
+      "n": 51,
+      "mean": 10.019607843137255,
+      "min": 4.0,
+      "p05": 6.0,
+      "median": 10.0,
+      "p95": 15.0,
+      "max": 16.0
+    },
+    "collisions": {
+      "n": 51,
+      "mean": 1.9411764705882353,
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 2.0,
+      "p95": 6.0,
+      "max": 6.0
+    },
+    "no_equal_length_donor": {
+      "n": 51,
+      "mean": 0.0,
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    },
+    "copyable_delta": {
+      "n": 51,
+      "mean": 0.0,
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    },
+    "source_delta": {
+      "n": 51,
+      "mean": 0.0,
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    }
+  },
+  "events_sample": "experiments/archive/frontier_consolidation/data/exact_swap_cpu_audit/exact_swap_events_sample.jsonl",
+  "interpretation": [
+    "Exact-swap port preserves selected group and token mass exactly across audited real frozen-stream batches.",
+    "Copyable rewrite and protected source selections are unchanged in aggregate; donors are ordinary non-pair groups.",
+    "The intervention is much smaller than research probability reallocation: it swaps a small fraction of global selected groups while forcing one candidate per eligible changed-row exposure when possible.",
+    "No equal-length donor misses occurred in the audited real batch stream."
+  ],
+  "all_checks_passed": true,
+  "elapsed_sec": 319.278
+}

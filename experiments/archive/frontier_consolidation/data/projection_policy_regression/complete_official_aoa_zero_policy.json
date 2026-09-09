@@ -1,0 +1,92 @@
+{
+  "status": "COMPLIANT_EVAL_CONTINUATION_POLICY",
+  "created_utc": "2026-08-30T00:13:51Z",
+  "source": "experiments/archive/frontier_consolidation/data/projection_policy_regression/complete_official_aoa_zero.json",
+  "target": "complianttok_reinvest_seed43022",
+  "family": "end_to_end_compliant_tokenizer_density_reinvestment",
+  "description": "synthetic regression payload",
+  "budget_semantics": {
+    "reinvest": "synthetic submission-relevant endpoint"
+  },
+  "scores": {
+    "BLiMP": 66.0,
+    "Supplement": 63.0,
+    "EWoK": 53.0,
+    "Entity": 27.0,
+    "COMPS": 52.0,
+    "SuperGLUE": 71.0,
+    "GlobalPIQA": 35.5,
+    "Reading": 8.0,
+    "AoA": 0.0
+  },
+  "known_keys": [
+    "BLiMP",
+    "Supplement",
+    "EWoK",
+    "Entity",
+    "COMPS",
+    "SuperGLUE",
+    "GlobalPIQA",
+    "Reading",
+    "AoA"
+  ],
+  "missing_keys": [],
+  "policy": {
+    "strategist_rule": "For the submission-relevant reinvest endpoint, partial columns conserve compute but must not substitute for the full official result. Stop SuperGLUE/AoA/pristine collation only if completed columns plus favorable upper-bound unfinished columns cannot reach the decision target; otherwise complete the official surface.",
+    "decision_target_overall": 41.8,
+    "missing_upper_each": 100.0,
+    "hard_stop_remaining_evaluation": false,
+    "recommended_action": "complete_columns_present_run_pristine_collation_or_read_collated_score",
+    "reinvest_endpoint_detected": true,
+    "aoa_counting_rule": "AoA is counted only after official_aoa_done with row_count_values=[8005] and finite_surprisals=true; missing-checkpoint placeholders remain missing, not zero."
+  },
+  "bounds": {
+    "leader": {
+      "target_overall": 41.8,
+      "known_sum": 375.5,
+      "target_sum_to_exceed_or_equal": 376.2,
+      "missing_keys": [],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 0.0,
+      "hard_upper_overall_if_missing_at_upper": 41.72222222222222,
+      "lower_overall_if_missing_zero": 41.72222222222222,
+      "needed_sum_from_missing_to_equal_target": 0.6999999999999886,
+      "needed_mean_missing_to_equal_target": null,
+      "mathematically_can_reach_target_with_missing_upper": false,
+      "complete_overall_if_no_missing": 41.72222222222222
+    },
+    "frozen_oldtokenizer_reference": {
+      "target_overall": 42.0331347900748,
+      "known_sum": 375.5,
+      "target_sum_to_exceed_or_equal": 378.29821311067315,
+      "missing_keys": [],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 0.0,
+      "hard_upper_overall_if_missing_at_upper": 41.72222222222222,
+      "lower_overall_if_missing_zero": 41.72222222222222,
+      "needed_sum_from_missing_to_equal_target": 2.798213110673146,
+      "needed_mean_missing_to_equal_target": null,
+      "mathematically_can_reach_target_with_missing_upper": false,
+      "complete_overall_if_no_missing": 41.72222222222222
+    },
+    "decision_target": {
+      "target_overall": 41.8,
+      "known_sum": 375.5,
+      "target_sum_to_exceed_or_equal": 376.2,
+      "missing_keys": [],
+      "missing_upper_each": 100.0,
+      "missing_upper_sum": 0.0,
+      "hard_upper_overall_if_missing_at_upper": 41.72222222222222,
+      "lower_overall_if_missing_zero": 41.72222222222222,
+      "needed_sum_from_missing_to_equal_target": 0.6999999999999886,
+      "needed_mean_missing_to_equal_target": null,
+      "mathematically_can_reach_target_with_missing_upper": false,
+      "complete_overall_if_no_missing": 41.72222222222222
+    }
+  },
+  "notes": [
+    "The frozen old-tokenizer 42.0331347900748 reference is scientifically important but not an end-to-end compliant Strict-Small submission because of tokenizer provenance.",
+    "A complete compliant reinvest endpoint above the visible leader can answer the submission question even if it does not improve the old-tokenizer reference.",
+    "Clean-Qwen fixed-tokenizer projections are scientific controls only, not independent submission-valid scores, because tokenizer fitting used the reinvest 10M pool."
+  ]
+}

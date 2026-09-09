@@ -1,0 +1,89 @@
+{
+  "status": "DOSE_ORIGINALS_CORRECTED",
+  "created_utc": "2026-09-06T23:05:58Z",
+  "elapsed_sec": 2.9,
+  "correction": "uses COMPACT_EXPERIENCE research source ids rw/rw2s0/rw2s1, not unsplit prompt ids; recomputes source completeness with COMPACT_EXPERIENCE is_complete_pair_text",
+  "compact_experience_counts": {
+    "source_counts_by_cohort": {
+      "base": 45000,
+      "extra_shard0": 32804,
+      "extra_shard1": 32804
+    },
+    "total_sources": 110608,
+    "clean_pairs_available": 37704,
+    "selected_pairs": 37594,
+    "clean_but_unselected_pairs": 110,
+    "rejected_by_exact_id": 72904
+  },
+  "source_filter_counts": {
+    "rejected_sources_passing_compact_experience_source_completeness": 54686,
+    "excluded_after_rejected": {
+      "source_incomplete_or_fragment_recomputed": 18218,
+      "low_diversity": 12,
+      "too_many_placeholder": 27
+    },
+    "salvageable_rejected_originals": 54647
+  },
+  "register_distribution": {
+    "bnc_spoken": {
+      "count": 6551,
+      "mean_words": 27.96,
+      "total_words": 183148
+    },
+    "childes": {
+      "count": 12576,
+      "mean_words": 18.3,
+      "total_words": 230140
+    },
+    "gutenberg": {
+      "count": 18693,
+      "mean_words": 29.23,
+      "total_words": 546470
+    },
+    "open_subtitles": {
+      "count": 6869,
+      "mean_words": 20.73,
+      "total_words": 142411
+    },
+    "simple_wiki": {
+      "count": 9608,
+      "mean_words": 24.32,
+      "total_words": 233708
+    },
+    "switchboard": {
+      "count": 350,
+      "mean_words": 27.45,
+      "total_words": 9609
+    }
+  },
+  "cohort_distribution": {
+    "base": 16307,
+    "extra_shard0": 19255,
+    "extra_shard1": 19085
+  },
+  "dose_targets_before_pilot": [
+    {
+      "target_total_pair_fraction": 0.21,
+      "target_total_pair_words_per_10M": 2100000,
+      "additional_pair_words_needed_per_10M": 443200,
+      "estimated_pairs_needed_at_existing_mean_pair_words": 10061
+    },
+    {
+      "target_total_pair_fraction": 0.25,
+      "target_total_pair_words_per_10M": 2500000,
+      "additional_pair_words_needed_per_10M": 843200,
+      "estimated_pairs_needed_at_existing_mean_pair_words": 19142
+    }
+  ],
+  "prompt_template": "Rewrite the following sentence to mean exactly the same thing, using different words and sentence structure.\n\nRules:\n- Keep every named entity, proper name, speaker label, number, date, quantity, and quoted word unchanged.\n- Do not add, remove, or change any facts.\n- Use different vocabulary and phrasing; do not copy more than three consecutive words from the original.\n- Output one complete rewritten sentence only. No explanation.\n\nOriginal: <source>\n\nRewritten:",
+  "outputs": {
+    "salvageable_rejected_originals": "experiments/archive/relation_learning/data/dose_arm_originals/salvageable_rejected_originals_corrected.jsonl",
+    "rewrite_prompts_all": "experiments/archive/relation_learning/data/dose_arm_originals/dose_arm_rewrite_prompts_corrected.jsonl",
+    "pilot_prompts": "experiments/archive/relation_learning/data/dose_arm_originals/dose_arm_rewrite_prompts_corrected_pilot512.jsonl"
+  },
+  "sha256": {
+    "salvageable_rejected_originals": "961e993b3e5130222651e35bc48833acf407c453ca99d825f74245f0538a80d3",
+    "rewrite_prompts_all": "4a059e26b00d7a051db824280d9cc72dd2855aa184afc47d7308232def78a10a",
+    "pilot_prompts": "8dd4afb6f42d71a1b714d66cf83da5b1cbc54b8c9a9c489677105caab107c4a9"
+  }
+}

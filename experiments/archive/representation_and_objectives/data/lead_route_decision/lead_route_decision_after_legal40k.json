@@ -1,0 +1,53 @@
+{
+  "status": "LEAD_ROUTE_DECISION_AFTER_LEGAL40K",
+  "current_best_compliant_a01_single_model": {
+    "route": "legal40k compact_view_reinvest 8x480 fixed-WWM seed43022",
+    "overall": 41.140577774478444,
+    "margin_vs_visible_leader_41p8": -0.6594222255215527,
+    "source": "experiments/archive/representation_and_objectives/data/legal40k_endpoint_interpretation/legal40k_endpoint_interpretation.json"
+  },
+  "decision": {
+    "do_not_launch_minfreq25_two_seed_now": true,
+    "reason": "minfreq25 is a coherent but interior support/segmentation operating point after legal16k and legal40k both missed 41.8; A02 is already pursuing support-floor/equal-word evidence, so A01 should avoid duplicating the vocabulary axis.",
+    "selected_a01_new_factor_route": "legal40k compact_view_reinvest true 12x384/1280 fixed-WWM seed43022 first",
+    "scientific_purpose": "Test whether depth-over-width / leader geometry repairs relational and stateful columns that a wide 8x480 legal40k model did not, while preserving the compact-view data mechanism and avoiding vocabulary interpolation.",
+    "why_not_sequence_curriculum_yet": "Inspection showed the existing seq_len_schedule implementation slices already-tokenized 256-token rows while charging full row words; it is not yet a faithful leader-style batch-scaled 64->256 curriculum.",
+    "why_not_relationboost_first": "Relation boost 2.0 is audited, but legal40k already recovered some EWoK while the largest loss was GlobalPIQA; use it later if depth/curriculum leave selective EWoK/COMPS/Entity deficits."
+  },
+  "low_cost_evidence_launched": {
+    "task_ref": "s73_t7_tool1",
+    "description": "evaluation-only conversion of already-trained clean-Qwen WWM->token chck_80M/chck_90M/chck_100M vs fixed-WWM reference",
+    "command": "GPU=1 MEM_FREE_MB=65000 UTIL_MAX=25 FORCE=0 DRY_RUN=0 bash experiments/archive/representation_and_objectives/training/scripts/eval_wwm_to_token_postswitch_minimal.sh",
+    "interpretation": "Use only as directional masking-factor evidence; lower token-level MLM loss is not competence."
+  },
+  "depth_launcher": {
+    "script": "experiments/archive/representation_and_objectives/scripts/legal40k_12x384_depth_train.py",
+    "preflight": "experiments/archive/representation_and_objectives/data/legal40k_12x384_depth_training/legal40k_12x384_depth_preflight.json",
+    "manifest_seed43022": "experiments/archive/representation_and_objectives/data/legal40k_12x384_depth_training/legal40k_12x384_depth_train_manifest_seed43022.json",
+    "preflight_status": "PREFLIGHT_OK",
+    "expected_param_count": 38421952,
+    "tokenizer_sha256": "94b44bcf5901d097e20294e8220740758eac29af3ec20d58d8da867c85197758",
+    "train_100m_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "full_launch_command": "python3 -B experiments/archive/representation_and_objectives/scripts/legal40k_12x384_depth_train.py --seed 43022",
+    "optional_memory_pilot_command": "python3 -B experiments/archive/representation_and_objectives/scripts/legal40k_12x384_depth_train.py --seed 43022 --pilot-words 1000000"
+  },
+  "gpu_state_at_decision": {
+    "note": "Depth training not launched because nvidia-smi showed GPU0 busy and GPU1 high-util, likely occupied by the WWM->token evaluation task.",
+    "gpu0": {
+      "memory_used_mb": 62167,
+      "memory_free_mb": 18915,
+      "util_pct": 100
+    },
+    "gpu1": {
+      "memory_used_mb": 4413,
+      "memory_free_mb": 76669,
+      "util_pct": 98
+    }
+  },
+  "independent_review_support": {
+    "generator_integration": "data/external/independent_review01_generator1_integration.md",
+    "verifier_integration": "data/external/independent_review01_verifier1_integration.md",
+    "summary": "Both integrations favored leaving vocabulary support-floor work to A02 and moving A01 to leader-distinguishing depth/curriculum factors; verifier specifically rejected immediate two-seed minfreq25."
+  },
+  "next_agent_action": "research process should collect s73_t7_tool1 if delivered; when one H100 is free, run a short operational pilot only if needed, then launch the full seed43022 depth training. After completion, run full official-compatible evaluation and compare against legal40k seed43022."
+}

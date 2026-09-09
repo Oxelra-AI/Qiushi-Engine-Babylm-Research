@@ -1,0 +1,787 @@
+{
+  "status": "CLEAN_QWEN_OWN_TOKENIZER_DIAGNOSTIC",
+  "created_utc": "2026-08-30T00:00:04Z",
+  "purpose": "Diagnostic only: quantify tokenizer-corpus mismatch for the fixed-reinvest-tokenizer clean-Qwen control; no model retrain is launched.",
+  "clean_tokenizer": {
+    "path": "experiments/archive/frontier_consolidation/data/clean_qwen_own_tokenizer_diagnostic/clean_qwen_own_10M_tokenizer",
+    "tokenizer_json": "experiments/archive/frontier_consolidation/data/clean_qwen_own_tokenizer_diagnostic/clean_qwen_own_10M_tokenizer/tokenizer.json",
+    "tokenizer_json_sha256": "2fac71fd07fb67d2de800eceb1b1b1ba657a7bb434dffcf378ded60e6297b7d3",
+    "vocab_size": 16384,
+    "special_ids": {
+      "<unk>": 0,
+      "<s>": 1,
+      "</s>": 2,
+      "<pad>": 3,
+      "<mask>": 4
+    },
+    "elapsed_sec": 7.87,
+    "source_pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl"
+  },
+  "input_pools": {
+    "clean_qwen_10M": {
+      "rows": 64381,
+      "words": 10000000,
+      "source_word_counts": {
+        "childes": 2712640,
+        "open_subtitles": 1927200,
+        "bnc_spoken": 606560,
+        "gutenberg": 1958880,
+        "qwen_pair_packed": 1656800,
+        "simple_wiki": 1115680,
+        "switchboard": 22240
+      },
+      "sha256": "e0a3cdc20e39f2715fbdb0cfbc6c4aff61d51924c480a982049878272c5690b3"
+    },
+    "reinvest_10M": {
+      "rows": 64740,
+      "words": 10000000,
+      "source_word_counts": {
+        "cleanqwen_fineweb_compact_view_reinvest": 423511,
+        "neutral_cleanqwen_topup_compact_reinvest::open_subtitles": 9,
+        "qwen_pair_packed": 1656800,
+        "childes": 2574880,
+        "gutenberg": 1859360,
+        "open_subtitles": 1829440,
+        "simple_wiki": 1059040,
+        "bnc_spoken": 575840,
+        "switchboard": 21120
+      },
+      "sha256": "215944978157394dbecf2039f2c1e1806bfcbb9701421920f78605eb58975a23"
+    }
+  },
+  "vocab_overlap_reinvest_tokenizer_vs_clean_own_tokenizer": {
+    "a_path": "experiments/archive/frontier_consolidation/data/compliant_tokenizer/tokenizer.json",
+    "b_path": "experiments/archive/frontier_consolidation/data/clean_qwen_own_tokenizer_diagnostic/clean_qwen_own_10M_tokenizer/tokenizer.json",
+    "a_vocab": 16384,
+    "b_vocab": 16384,
+    "shared_tokens": 15605,
+    "shared_fraction_of_a": 0.95245361328125,
+    "shared_fraction_of_b": 0.95245361328125,
+    "only_a_examples": [
+      "-Fr",
+      "-al",
+      "-con",
+      "-fl",
+      "-foot",
+      "-free",
+      "-gl",
+      "-made",
+      "-pr",
+      "-ray",
+      "-shaped",
+      "-sized",
+      "-ter",
+      "-third",
+      "-white",
+      ".com",
+      "BT",
+      "CC",
+      "CD",
+      "DA",
+      "LS",
+      "NS",
+      "PLE",
+      "SA",
+      "SP",
+      "Sc",
+      "TA",
+      "TM",
+      "Tr",
+      "abber",
+      "abul",
+      "achuset",
+      "active",
+      "acts",
+      "affes",
+      "aij",
+      "aired",
+      "airy",
+      "alu",
+      "ameter",
+      "amma",
+      "ammy",
+      "amond",
+      "ancer",
+      "anch",
+      "anche",
+      "anches",
+      "anged",
+      "anging",
+      "angled"
+    ],
+    "only_b_examples": [
+      "'D",
+      "'e",
+      "'gee",
+      ",m",
+      "-Fran",
+      "-Nord",
+      "-boy",
+      "-com",
+      "-election",
+      "-rel",
+      "ADY",
+      "ANCE",
+      "ATTER",
+      "April",
+      "August",
+      "BER",
+      "BLE",
+      "Ben",
+      "Black",
+      "CAUSE",
+      "CHUCK",
+      "Car",
+      "DP",
+      "DY",
+      "Da",
+      "ENCE",
+      "FC",
+      "Family",
+      "GB",
+      "GBT",
+      "Gy",
+      "Ha",
+      "Hi",
+      "His",
+      "INGING",
+      "INGS",
+      "IRL",
+      "January",
+      "June",
+      "LEASE",
+      "Little",
+      "ML",
+      "OPLE",
+      "PING",
+      "PR",
+      "Poss",
+      "RT",
+      "SIGHS",
+      "SO",
+      "SPE"
+    ]
+  },
+  "pool_tokenization": {
+    "clean_qwen_pool_reinvesttok_vs_cleanowntok": {
+      "pool": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+      "rows": 64381,
+      "words": 10000000,
+      "total_tokens_reinvesttok": 14817398,
+      "total_tokens_cleanowntok": 14811395,
+      "tokens_per_word_reinvesttok": {
+        "n": 64381,
+        "mean": 1.478224,
+        "std": 0.212722,
+        "p50": 1.4375,
+        "p95": 1.83125,
+        "max": 4.725
+      },
+      "tokens_per_word_cleanowntok": {
+        "n": 64381,
+        "mean": 1.477695,
+        "std": 0.211708,
+        "p50": 1.4375,
+        "p95": 1.83125,
+        "max": 4.7375
+      },
+      "cleanowntok_minus_reinvesttok_token_delta": {
+        "n": 64381,
+        "mean": -0.093242,
+        "std": 1.574212,
+        "p50": 0.0,
+        "p95": 2.0,
+        "max": 19.0
+      },
+      "cleanowntok_over_reinvesttok_token_ratio_total": 0.9995948681408167,
+      "seq256_truncated_rows_reinvesttok": 16756,
+      "seq256_truncated_rows_cleanowntok": 16730,
+      "rows_where_cleanowntok_longer": 13470,
+      "rows_where_cleanowntok_shorter": 16973,
+      "rows_equal_length": 33938,
+      "largest_abs_delta_examples": [
+        {
+          "example_id": 52500,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 308,
+          "len_cleanowntok": 286,
+          "delta": -22,
+          "text_preview": "the event. It's all black. TARS, do you read me? It's all blackness. TARS! Do you read me? Over. Screens... getting interference. Losing control of the stick. I got flashes. Flashes of lightness and blackness. The turbulence in the gravity "
+        },
+        {
+          "example_id": 51072,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 245,
+          "len_cleanowntok": 226,
+          "delta": -19,
+          "text_preview": "done fell through. Was a time, I was his only, only, only one But now I'm the sad and lonely one, Lordy! Was I gay - oh Lord was I gay! Til today - that man went away! Now he's gone, and we're through, am I blue! Anyway, so Luv and Kush, or"
+        },
+        {
+          "example_id": 1548,
+          "source": "bnc_spoken",
+          "words": 160,
+          "len_reinvesttok": 214,
+          "len_cleanowntok": 233,
+          "delta": 19,
+          "text_preview": "that's not, not the case? No, er it depends which type of asthma we, we're talking about. There is allergic asthma, there's also exercise-induced asthma and stress-induced asthma, for example, er as far as allergic asthma is concerned, we t"
+        },
+        {
+          "example_id": 56745,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 252,
+          "len_cleanowntok": 235,
+          "delta": -17,
+          "text_preview": "vaudois district in the canton of Vaud in Switzerland. = = = Arnex-sur-Orbe = = = Arnex-sur-Orbe is a municipality in the Swiss canton of Vaud in the district of Jura-Nord vaudois. = = = Baulmes = = = Baulmes is a municipality in the Jura-N"
+        },
+        {
+          "example_id": 58286,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 226,
+          "len_cleanowntok": 242,
+          "delta": 16,
+          "text_preview": "than for adults. This is because it takes about six months for an infant's immune system to develop completely. Until the infant's immune system is fully grown, it will not be able to fight off infections as well as an adult could. Sometime"
+        },
+        {
+          "example_id": 51624,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 301,
+          "len_cleanowntok": 285,
+          "delta": -16,
+          "text_preview": ") NAY! YOU STAY RIGHT THERE, YOU COW. - HEY, YOU! ( yells ) - ( gagging ) TWO IN ONE! ALL THERE! - WHY DO YOU FUCKING ANNOY ME? TELL ME FUCKING WHY! WHY DID I LET SCUM LIKE YOU TWO INTO MY BEAUTIFUL FUCKING HOME? THE ONLY REASON-- LOOK AT M"
+        },
+        {
+          "example_id": 56755,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 237,
+          "len_cleanowntok": 221,
+          "delta": -16,
+          "text_preview": "Jura-Nord vaudois district in the canton of Vaud in Switzerland. = = = Giez = = = Giez is a municipality in the Jura-Nord vaudois district in the canton of Vaud in Switzerland. = = = Sergey, Switzerland = = = Sergey is a municipality in the"
+        },
+        {
+          "example_id": 49644,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 450,
+          "len_cleanowntok": 434,
+          "delta": -16,
+          "text_preview": "BACK? THANK YOU. I'll SEE YOU LATER. [DOG BARKING IN DISTANCE] [WOMAN] SUGARBALLS, SUGARBALLS, GET BACK HERE. [BARKING] [GROWLS] [GROWLING CONTINUES] -[PUNCHING] -[WHIMPERING] SUGARBALLS. SUGARBALLS. SUGARBALLS. [CLANGING] [THUD] GET OVER H"
+        },
+        {
+          "example_id": 47768,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 326,
+          "len_cleanowntok": 311,
+          "delta": -15,
+          "text_preview": "Benri benri banzai you're so useful! Benri benri banzai you're so useful! Benri benri banzai you're so useful! ningen Human! Benri benri banzai you're so useful! Benri benri banzai you're so useful! Benri benri banzai you're so useful! ning"
+        },
+        {
+          "example_id": 56802,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 245,
+          "len_cleanowntok": 230,
+          "delta": -15,
+          "text_preview": "and a late-Gothic church. = = = Fontaines-sur-Grandson = = = Fontaines-sur-Grandson is a municipality in the district Jura-Nord vaudois in the canton of Vaud in Switzerland. = = = L'Abergement = = = L'Abergement is a municipality in the dis"
+        },
+        {
+          "example_id": 54187,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 297,
+          "len_cleanowntok": 312,
+          "delta": 15,
+          "text_preview": "Santiago pilgrimage. This work is exhibited under the title \"Santiago\" at \"Voies Off d'Arle\" s 2003. Marie Docher also worked as a photographer for the magazines \"Sciences et Vie\" and \"Sciences et Vie Découvertes\" . = = = Nerve Therapy (med"
+        },
+        {
+          "example_id": 57543,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 286,
+          "len_cleanowntok": 301,
+          "delta": 15,
+          "text_preview": "stages. 1) It is oxidized in the presence of platinium as catalyst at about 900 degrees Celsius to form nitric oxide and water. 4 NH3 (g) + 5 O2 (g) → 4 NO (g) + 6 H2O (g) 2) Nitric oxide is oxidized again to form nitrogen dioxide and then "
+        },
+        {
+          "example_id": 58284,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 218,
+          "len_cleanowntok": 233,
+          "delta": 15,
+          "text_preview": "of bacterial infections in newborns. It can cause infections that are very dangerous to newborns, like meningitis, septicaemia, and pneumonia. These infections can kill a newborn or cause serious long-term health problems. How these infecti"
+        },
+        {
+          "example_id": 48523,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 342,
+          "len_cleanowntok": 327,
+          "delta": -15,
+          "text_preview": "WHAT'S THE PROBLEM, JUSTIN? Justin: NOTHING. Nasira: WELL, IT DOESN'T SOUND LIKE NOTHING. SO COME ON, OUT WITH IT. WELL, JIMMY WAS SAYING THAT YOU AND MISS RACHEL CAN'T BE FRIENDS BECAUSE YOU'RE FROM DIFFERENT RELIGIONS, LIKE YOU HATE EACH "
+        },
+        {
+          "example_id": 57537,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 275,
+          "len_cleanowntok": 290,
+          "delta": 15,
+          "text_preview": "their region. IANA assigns addresses with a /8 prefix for IPv4. It also assigns IPv6 addresses with /23 and /12 prefixes. These IPv6 addresses come from the 2000::/3 IPv6 address block. Because IPv4 addresses have run out, IANA does not ass"
+        },
+        {
+          "example_id": 56839,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 290,
+          "len_cleanowntok": 276,
+          "delta": -14,
+          "text_preview": "in Coldwater, Ohio, USA. In 2013, AGCO’s GSI acquired Johnson System, a manufacturer of catwalks and towers. In 2017, AGCO acquired Precision Planting, LLC, a planting equipment and technology business. = = = Valeyres-sous-Ursins = = = Vale"
+        },
+        {
+          "example_id": 43566,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 315,
+          "len_cleanowntok": 301,
+          "delta": -14,
+          "text_preview": "FREE. OH, THANK YOU. IF THERE ARE THERE OTHER REQUESTS. CAN YOU PLEASE TELL THEM IT'S FULL? THANKS. WE HAVE NO SEATS ANYMORE. WHAT? WHAT? YOU CAN'T LISTEN TO THEM. NO, YOU CAN'T LISTEN TO THEM. DON'T LISTEN TO THEM. ARE YOU SURE YOU DIDN'T "
+        },
+        {
+          "example_id": 306797,
+          "source": "qwen_pair_packed",
+          "words": 131,
+          "len_reinvesttok": 176,
+          "len_cleanowntok": 190,
+          "delta": 14,
+          "text_preview": "After a new energy and transportation infrastructure was made, by 1960 manufacturing became the dominant sector of the economy and Bulgaria became a major exporter of household goods and later of computer technologies. By 1960, following th"
+        },
+        {
+          "example_id": 49426,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 316,
+          "len_cleanowntok": 302,
+          "delta": -14,
+          "text_preview": "be as far from the Marbella and all those people as possible. So I'm calling a lawyer. I want full custody. (flies buzz) (liquid splashes) (laughs) (moans quietly) (door squeaks) (footsteps approach) (chains rattle lightly) (Bubba whimpers)"
+        },
+        {
+          "example_id": 44589,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 328,
+          "len_cleanowntok": 314,
+          "delta": -14,
+          "text_preview": "THE CAR UNDER THE TARP? IS THAT HIS, TOO? 1977 MERCURY COUGAR. IN LESS THAN MINT CONDITION. THERE'S NO WAY HE'S KEEPING A CLUNKER LIKE THAT UNDER CANVAS UNLESS HE'S HIDING SOMETHING. CHIEF JOHNSON IS HAVING THEM TEAR IT APART RIGHT NOW. THI"
+        },
+        {
+          "example_id": 54188,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 261,
+          "len_cleanowntok": 275,
+          "delta": 14,
+          "text_preview": "acupuncture, massage, marma therapy, and chiropractic, which often target general areas of the body, Nerve Therapy delivers precise impulses to key nerve points, facilitating targeted healing and relief. Mechanism. The effectiveness of Nerv"
+        },
+        {
+          "example_id": 60679,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 255,
+          "len_cleanowntok": 268,
+          "delta": 13,
+          "text_preview": "a house can be charged admission. The Ferengi home planet is called Ferenginar. The capital city has a Tower of Commerce that holds the leader's office. The leader of the Ferengi is called the Grand Nagus. The Ferengi call themselves \"The F"
+        },
+        {
+          "example_id": 48552,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 331,
+          "len_cleanowntok": 318,
+          "delta": -13,
+          "text_preview": "LIFE. I'M KIDDING. I'M REALLY GLAD YOU TWO BECAME SUCH GOOD FRIENDS. SO HOW'S THE LOVE LIVES? ANY BULLETINS? ANY HOT PROSPECTS? NO, NOTHING TO REPORT, I'M SORRY. WE'RE ACTUALLY FORBIDDEN TO THINK ABOUT MEN UNLESS THEY RIDE IN ON HORSEBACK A"
+        },
+        {
+          "example_id": 28803,
+          "source": "gutenberg",
+          "words": 160,
+          "len_reinvesttok": 387,
+          "len_cleanowntok": 374,
+          "delta": -13,
+          "text_preview": "And then, from every girl there burst out, without signal, the words of the Camp Fire song: \"Wo-he-lo--wo-he-lo--wo he-lo--Wo-he-lo for Love!\" End of Project Gutenberg's A Campfire Girl's Happiness, by Jane L. Stewart = = = PG22652 = = = A "
+        },
+        {
+          "example_id": 38669,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 347,
+          "len_cleanowntok": 334,
+          "delta": -13,
+          "text_preview": "PLEASE DON'T TELL ME HOW MUCH I NEED YOU! WE'LL PLAY IT OUT AS LONG AS IT TAKES- A MONTH, A WEEK, BUT AS LONG AS YOU OWN HIM, AND WE DO THINGS MY WAY! UNDERSTAND, MR. SICKLES? UNDERSTAND, MR. SICKLES? Sickles: YOU'VE BEEN A VERY NAUGHTY BOY"
+        },
+        {
+          "example_id": 44447,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 372,
+          "len_cleanowntok": 359,
+          "delta": -13,
+          "text_preview": "FIRES HALF THE STAFF, BULLIES THE REST. (Goren) BULLIES ARE DISGUSTED BY WEAKNESS. HIS SON PAUL WAS A DISAPPOINTMENT. A LOT OF DADS ARE DISAPPOINTED BY THEIR KIDS. DOESN'T MEAN THEY'D HANG THEM. WELL, PHILLIPS' FAMILY HAS A HISTORY OF SCHIZ"
+        },
+        {
+          "example_id": 55572,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 197,
+          "len_cleanowntok": 210,
+          "delta": 13,
+          "text_preview": "the proteins stop moving. Then they look at the gel to see how far each sample moved. Small proteins move through gel faster than large proteins, so they move further. Proteins with big electric charges move faster than proteins with small "
+        },
+        {
+          "example_id": 5414,
+          "source": "childes",
+          "words": 160,
+          "len_reinvesttok": 271,
+          "len_cleanowntok": 258,
+          "delta": -13,
+          "text_preview": "barber shop. [dialogue between mike and racing car] *CHI: oh sure. [dialogue between mike and racing car] *CHI: car you know what? [dialogue between mike and racing car] *CHI: what? [dialogue between mike and racing car] *CHI: a sixty new R"
+        },
+        {
+          "example_id": 1547,
+          "source": "bnc_spoken",
+          "words": 160,
+          "len_reinvesttok": 218,
+          "len_cleanowntok": 230,
+          "delta": 12,
+          "text_preview": "attack, and the case is making legal history. The weather for the Fox F M area: the evening will start dry and cloudy but outbreaks of rain will reach the area later on. The rain is going to continue overnight with heavy rain in places and "
+        },
+        {
+          "example_id": 44454,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 308,
+          "len_cleanowntok": 296,
+          "delta": -12,
+          "text_preview": "TO TELL THEM WHAT YOU KNOW. KIANA TOLD ME NOT TO WORRY. SHE WAS GONNA PUT AN END TO IT. I WAS AT LACROSSE PRACTICE WHEN PAUL DIED. ASK MY TEAMMATES. WE DID. THEY BACK YOU. BUT YOUR COACH SAID YOU WERE HALF AN HOUR LATE. HE SAID, THEY SAID. "
+        }
+      ]
+    },
+    "reinvest_pool_reinvesttok_vs_cleanowntok": {
+      "pool": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_10M.jsonl",
+      "rows": 64740,
+      "words": 10000000,
+      "total_tokens_reinvesttok": 14793999,
+      "total_tokens_cleanowntok": 14801643,
+      "tokens_per_word_reinvesttok": {
+        "n": 64740,
+        "mean": 1.475808,
+        "std": 0.209457,
+        "p50": 1.4375,
+        "p95": 1.83125,
+        "max": 4.725
+      },
+      "tokens_per_word_cleanowntok": {
+        "n": 64740,
+        "mean": 1.476761,
+        "std": 0.208541,
+        "p50": 1.4375,
+        "p95": 1.825,
+        "max": 4.7375
+      },
+      "cleanowntok_minus_reinvesttok_token_delta": {
+        "n": 64740,
+        "mean": 0.118072,
+        "std": 1.930526,
+        "p50": 0.0,
+        "p95": 3.0,
+        "max": 21.0
+      },
+      "cleanowntok_over_reinvesttok_token_ratio_total": 1.0005166959927467,
+      "seq256_truncated_rows_reinvesttok": 15967,
+      "seq256_truncated_rows_cleanowntok": 15980,
+      "rows_where_cleanowntok_longer": 15626,
+      "rows_where_cleanowntok_shorter": 16209,
+      "rows_equal_length": 32905,
+      "largest_abs_delta_examples": [
+        {
+          "example_id": 52500,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 308,
+          "len_cleanowntok": 286,
+          "delta": -22,
+          "text_preview": "the event. It's all black. TARS, do you read me? It's all blackness. TARS! Do you read me? Over. Screens... getting interference. Losing control of the stick. I got flashes. Flashes of lightness and blackness. The turbulence in the gravity "
+        },
+        {
+          "example_id": 951807,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 157,
+          "len_reinvesttok": 238,
+          "len_cleanowntok": 259,
+          "delta": 21,
+          "text_preview": "The lungs consist of tubes called \"bronchi\" which carry air down to tiny air sacs or alveoli which allow oxygen to cross through into the blood and carbon dioxide to leave in the breath. Lungs have bronchi tubes carrying air to alveoli sacs"
+        },
+        {
+          "example_id": 951535,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 150,
+          "len_reinvesttok": 192,
+          "len_cleanowntok": 212,
+          "delta": 20,
+          "text_preview": "This means that whether a dog is prohibited under the Act will depend on a judgement about its physical characteristics, and whether they match the description of a prohibited 'type'. Whether a dog is prohibited depends on judging if its ph"
+        },
+        {
+          "example_id": 950432,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 153,
+          "len_reinvesttok": 233,
+          "len_cleanowntok": 252,
+          "delta": 19,
+          "text_preview": "Plant leaves that are wilted or have crisp brown spots or scorched edges indicate that the plant is getting too many nutrients. Wilted leaves, brown spots, or scorched edges show the plant has too many nutrients. One common theme they all h"
+        },
+        {
+          "example_id": 952117,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 123,
+          "len_reinvesttok": 179,
+          "len_cleanowntok": 198,
+          "delta": 19,
+          "text_preview": "The painting was placed in the headquarters of National Museum in Krakow, where a special exhibition was set up presenting the most valuable pieces from the Czartoryski collection. The painting went to Krakow's National Museum headquarters "
+        },
+        {
+          "example_id": 51072,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 245,
+          "len_cleanowntok": 226,
+          "delta": -19,
+          "text_preview": "done fell through. Was a time, I was his only, only, only one But now I'm the sad and lonely one, Lordy! Was I gay - oh Lord was I gay! Til today - that man went away! Now he's gone, and we're through, am I blue! Anyway, so Luv and Kush, or"
+        },
+        {
+          "example_id": 1548,
+          "source": "bnc_spoken",
+          "words": 160,
+          "len_reinvesttok": 214,
+          "len_cleanowntok": 233,
+          "delta": 19,
+          "text_preview": "that's not, not the case? No, er it depends which type of asthma we, we're talking about. There is allergic asthma, there's also exercise-induced asthma and stress-induced asthma, for example, er as far as allergic asthma is concerned, we t"
+        },
+        {
+          "example_id": 950153,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 133,
+          "len_reinvesttok": 206,
+          "len_cleanowntok": 224,
+          "delta": 18,
+          "text_preview": "People who are diabetic are prone to swollen and receding gums and tooth loss because diabetes can slow the process of gum healing and reduce resistance to oral infections. Diabetics get swollen gums, receding gums, and tooth loss because d"
+        },
+        {
+          "example_id": 952051,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 133,
+          "len_reinvesttok": 214,
+          "len_cleanowntok": 232,
+          "delta": 18,
+          "text_preview": "Puppies do not have molars, which is why there are fewer deciduous teeth. Puppies lack molars, so they have fewer baby teeth. When a database is detached, you should provide a password to protect confidential metadata. Detaching a database "
+        },
+        {
+          "example_id": 950280,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 137,
+          "len_reinvesttok": 232,
+          "len_cleanowntok": 249,
+          "delta": 17,
+          "text_preview": "Almonds and walnuts are rich in omega-3 fatty acids and natural antioxidants and naturally, one of those foods that are good for a healthy nervous system. Almonds and walnuts contain omega-3s and antioxidants, making them good for a healthy"
+        },
+        {
+          "example_id": 950445,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 141,
+          "len_reinvesttok": 168,
+          "len_cleanowntok": 185,
+          "delta": 17,
+          "text_preview": "Diabetes symptoms in pregnancy may not be fully visible but it usually occurs in women who are overweight before pregnancy, have a history of diabetes or have a high sugar level. Pregnancy diabetes symptoms may be hidden but usually occur i"
+        },
+        {
+          "example_id": 950879,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 148,
+          "len_reinvesttok": 199,
+          "len_cleanowntok": 216,
+          "delta": 17,
+          "text_preview": "“Increasing awareness of HIV status through HIV testing, especially among black MSM in the southern United States, is essential for reducing the risk for transmission and addressing disparities.” The study recommends testing outreach be mad"
+        },
+        {
+          "example_id": 951281,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 144,
+          "len_reinvesttok": 221,
+          "len_cleanowntok": 238,
+          "delta": 17,
+          "text_preview": "These layers were then protected with a silicon dioxide layer, another parylene layer, and finally molded into brain signal recording goodness with reactive ion etching. Layers were protected with silicon dioxide, parylene, then molded into"
+        },
+        {
+          "example_id": 951622,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 153,
+          "len_reinvesttok": 225,
+          "len_cleanowntok": 242,
+          "delta": 17,
+          "text_preview": "Women who use birth control pills for at least five years are three-times less likely to develop ovarian cancer. Women taking birth control pills for five years have three times lower ovarian cancer risk. Also, the ping-pong ball sized glob"
+        },
+        {
+          "example_id": 951756,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 139,
+          "len_reinvesttok": 175,
+          "len_cleanowntok": 192,
+          "delta": 17,
+          "text_preview": "Reading is an essential means from which pupils gain world knowledge, develop their fluency of ideas and improve their vocabulary in context. Reading helps pupils gain world knowledge, develop idea fluency, and improve vocabulary in context"
+        },
+        {
+          "example_id": 952538,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 125,
+          "len_reinvesttok": 171,
+          "len_cleanowntok": 188,
+          "delta": 17,
+          "text_preview": "Cinnamon tea has been used to accelerate weight loss, improve immunity, and prevent chronic disease. Cinnamon tea accelerates weight loss, improves immunity, and prevents chronic disease. Considering that voltage is stable in the mains, dyn"
+        },
+        {
+          "example_id": 56745,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 252,
+          "len_cleanowntok": 235,
+          "delta": -17,
+          "text_preview": "vaudois district in the canton of Vaud in Switzerland. = = = Arnex-sur-Orbe = = = Arnex-sur-Orbe is a municipality in the Swiss canton of Vaud in the district of Jura-Nord vaudois. = = = Baulmes = = = Baulmes is a municipality in the Jura-N"
+        },
+        {
+          "example_id": 950241,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 114,
+          "len_reinvesttok": 168,
+          "len_cleanowntok": 184,
+          "delta": 16,
+          "text_preview": "Now 43, Peacock has undergone the surgery in this new trial and no longer needs injections because her body is producing insulin naturally. At 43, Peacock had surgery in this trial and no longer needs injections because her body produces in"
+        },
+        {
+          "example_id": 950297,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 144,
+          "len_reinvesttok": 203,
+          "len_cleanowntok": 219,
+          "delta": 16,
+          "text_preview": "Nearline storage is frequently used for data backup because large volumes of data must be quickly backed up, which sometimes cannot be achieved with slower bandwidth rates to tape-based solutions. Nearline storage backs up large data quickl"
+        },
+        {
+          "example_id": 950584,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 158,
+          "len_reinvesttok": 215,
+          "len_cleanowntok": 231,
+          "delta": 16,
+          "text_preview": "A SNP is a variation in just one nucleotide of a genetic sequence; think of it as a spelling change affecting just one letter in an uncommonly long word. An SNP is a single-letter spelling change in an uncommonly long genetic word. \"I'm jus"
+        },
+        {
+          "example_id": 951571,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 137,
+          "len_reinvesttok": 177,
+          "len_cleanowntok": 193,
+          "delta": 16,
+          "text_preview": "ESP aims to increase the global understanding of current and future sanitation solutions, and to propose new concepts and modular technologies for safe excreta disposal and hygiene in emergency settings that are applicable in a variety of s"
+        },
+        {
+          "example_id": 952792,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 156,
+          "len_reinvesttok": 234,
+          "len_cleanowntok": 250,
+          "delta": 16,
+          "text_preview": "Next, research which vegetables and fruits are suitable for intercropping or interplanting. Next, research suitable vegetables and fruits for intercropping. 46% of all abortions are performed on never-married women; married women account fo"
+        },
+        {
+          "example_id": 51624,
+          "source": "open_subtitles",
+          "words": 160,
+          "len_reinvesttok": 301,
+          "len_cleanowntok": 285,
+          "delta": -16,
+          "text_preview": ") NAY! YOU STAY RIGHT THERE, YOU COW. - HEY, YOU! ( yells ) - ( gagging ) TWO IN ONE! ALL THERE! - WHY DO YOU FUCKING ANNOY ME? TELL ME FUCKING WHY! WHY DID I LET SCUM LIKE YOU TWO INTO MY BEAUTIFUL FUCKING HOME? THE ONLY REASON-- LOOK AT M"
+        },
+        {
+          "example_id": 58286,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 226,
+          "len_cleanowntok": 242,
+          "delta": 16,
+          "text_preview": "than for adults. This is because it takes about six months for an infant's immune system to develop completely. Until the infant's immune system is fully grown, it will not be able to fight off infections as well as an adult could. Sometime"
+        },
+        {
+          "example_id": 56755,
+          "source": "simple_wiki",
+          "words": 160,
+          "len_reinvesttok": 237,
+          "len_cleanowntok": 221,
+          "delta": -16,
+          "text_preview": "Jura-Nord vaudois district in the canton of Vaud in Switzerland. = = = Giez = = = Giez is a municipality in the Jura-Nord vaudois district in the canton of Vaud in Switzerland. = = = Sergey, Switzerland = = = Sergey is a municipality in the"
+        },
+        {
+          "example_id": 950121,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 140,
+          "len_reinvesttok": 190,
+          "len_cleanowntok": 205,
+          "delta": 15,
+          "text_preview": "\"The excitement here comes from having confirmed that it is possible to use our basic science research on mice and isolated nerve cells to successfully alter the course of Alzheimer's in a human suffering from the disease,\" says Gandy. Gand"
+        },
+        {
+          "example_id": 950123,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 130,
+          "len_reinvesttok": 183,
+          "len_cleanowntok": 198,
+          "delta": 15,
+          "text_preview": "Since no sea planes of the time could make a trans-oceanic journey with their limited fuel, ships taking planes to the battlefield were necessary. Since sea planes lacked fuel for trans-oceanic trips, ships were necessary to take planes to "
+        },
+        {
+          "example_id": 950542,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 137,
+          "len_reinvesttok": 181,
+          "len_cleanowntok": 196,
+          "delta": 15,
+          "text_preview": "“The best way out is always through.” -Robert Frost We try to go around the feelings by avoidance, escape, and resistance. Robert Frost said the best way out is always through, not by avoidance. The density and size of vegetation in the des"
+        },
+        {
+          "example_id": 950543,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 143,
+          "len_reinvesttok": 193,
+          "len_cleanowntok": 208,
+          "delta": 15,
+          "text_preview": "To help reduce the environmental footprint and cost of these lights, researchers have developed the first white LED with a hybrid, metal-organic framework material. Researchers made the first white LED using hybrid metal-organic framework m"
+        },
+        {
+          "example_id": 950580,
+          "source": "cleanqwen_fineweb_compact_view_reinvest",
+          "words": 155,
+          "len_reinvesttok": 240,
+          "len_cleanowntok": 255,
+          "delta": 15,
+          "text_preview": "By valuing humans according to their values and not external achievements we will be humble. Valuing humans by values, not achievements, makes us humble. One of the first tasks tackled by the Dawn science team was to determine the precise o"
+        }
+      ]
+    }
+  },
+  "interpretation": "If the fixed-tokenizer clean-Qwen control moves relative to prior clean-Qwen, this diagnostic helps separate pretraining-corpus effects from tokenizer-corpus mismatch. It does not make the running clean-Qwen control end-to-end compliant because that run still uses the reinvest-trained tokenizer.",
+  "elapsed_sec": 141.82
+}

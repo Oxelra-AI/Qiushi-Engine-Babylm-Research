@@ -1,0 +1,201 @@
+{
+  "status": "ACCUM_SEQUENTIAL_AND_OVERFLOW",
+  "purpose": "Stronger continuous-RNG masking identity across many effective batches (incl. final partial) and an exact 16k/40k overflow transition matrix.",
+  "sequential_identity": {
+    "legal16k_short": {
+      "n_examples": 1224,
+      "n_effective_batches_requested": 4,
+      "n_effective_batches_run": 4,
+      "all_input_tensors_equal": true,
+      "all_masked_inputs_equal": true,
+      "all_labels_equal": true,
+      "final_generator_state_equal": true,
+      "final_partial_batch_rows": 256,
+      "sampled_steps": [
+        {
+          "step": 1,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7676
+        },
+        {
+          "step": 2,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7771
+        },
+        {
+          "step": 3,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7556
+        },
+        {
+          "step": 4,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7597
+        }
+      ]
+    },
+    "legal40k_short": {
+      "n_examples": 1224,
+      "n_effective_batches_requested": 4,
+      "n_effective_batches_run": 4,
+      "all_input_tensors_equal": true,
+      "all_masked_inputs_equal": true,
+      "all_labels_equal": true,
+      "final_generator_state_equal": true,
+      "final_partial_batch_rows": 256,
+      "sampled_steps": [
+        {
+          "step": 1,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 6788
+        },
+        {
+          "step": 2,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7159
+        },
+        {
+          "step": 3,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 6838
+        },
+        {
+          "step": 4,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 6840
+        }
+      ]
+    },
+    "legal16k_long_101_effective_incl_partial": {
+      "n_examples": 25637,
+      "n_effective_batches_requested": 101,
+      "n_effective_batches_run": 101,
+      "all_input_tensors_equal": true,
+      "all_masked_inputs_equal": true,
+      "all_labels_equal": true,
+      "final_generator_state_equal": true,
+      "final_partial_batch_rows": 37,
+      "sampled_steps": [
+        {
+          "step": 1,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7676
+        },
+        {
+          "step": 2,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7771
+        },
+        {
+          "step": 3,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 7556
+        },
+        {
+          "step": 25,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 8282
+        },
+        {
+          "step": 50,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 8338
+        },
+        {
+          "step": 75,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 8435
+        },
+        {
+          "step": 100,
+          "rows": 256,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 8602
+        },
+        {
+          "step": 101,
+          "rows": 37,
+          "tensor_equal": true,
+          "masked_equal": true,
+          "labels_equal": true,
+          "masked_tokens": 1186
+        }
+      ]
+    }
+  },
+  "overflow": {
+    "rows": 64740,
+    "over256_count_16k": 15143,
+    "over256_count_40k": 11407,
+    "transition_matrix": {
+      "neither": 49597,
+      "only16k": 3736,
+      "only40k": 0,
+      "both": 11407
+    },
+    "net_overflow_reduction_16k_minus_40k": 3736,
+    "rows_rescued_16k_to_visible_40k": 3736,
+    "rows_newly_overflowing_only_40k": 0,
+    "group_token_hist_16k": {
+      "1": 6805763,
+      "2": 1950785,
+      "3": 784776,
+      "4": 260401
+    },
+    "group_token_hist_40k": {
+      "1": 7139005,
+      "2": 1927359,
+      "3": 647856,
+      "4": 157116
+    }
+  },
+  "all_sequential_pass": true,
+  "interpretation": [
+    "If all_sequential_pass is true, the 4x64 recombination preserves continuous masking-RNG-stream identity across consecutive effective batches, including the final partial effective batch; the only trainer difference is stochastic forward (dropout/kernel) execution.",
+    "The overflow transition matrix replaces the ambiguous net 'rescued rows' with an explicit neither/only16k/only40k/both partition."
+  ]
+}

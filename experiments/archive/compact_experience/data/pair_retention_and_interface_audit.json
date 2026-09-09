@@ -1,0 +1,958 @@
+{
+  "status": "PAIR_RETENTION_AND_INTERFACE_AUDIT",
+  "purpose": "Measure actual seq256-visible token and pair-side retention for the 16k vs 40k data-tokenizer interface after the matched 2x2 screen.",
+  "seq_length": 256,
+  "inputs": {
+    "qwen": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/qwen_aligned_10M.jsonl",
+    "official": "experiments/archive/compact_experience/data/qwen_clean_aligned/training_corpora/official_only_10M.jsonl"
+  },
+  "tokenizers": {
+    "tok16": "experiments/archive/initial_model_studies/training/runs/fullcycle_official_wwm_debertav2_8x480_seed43_100M_b256/hf_model",
+    "tok40": "experiments/archive/compact_experience/data/shared_tokenizer/hf_tokenizer_40k_shared"
+  },
+  "parameter_counts_from_2x2_runs": {
+    "tok16_8x480": 34467424,
+    "tok40_8x480": 45826720,
+    "delta_parameters_tok40_minus_tok16": 11359296,
+    "interpretation": "40k is a whole interface change: segmentation + visible subword targets + embedding/output capacity."
+  },
+  "corpus_tokenization": {
+    "tok16": {
+      "qwen": {
+        "rows": 64381,
+        "words": 10000000,
+        "untruncated_tokens": 14804797,
+        "visible_tokens_seq256": 14388005,
+        "padding_tokens_seq256": 2093531,
+        "over256_rows": 16630,
+        "over256_rate": 0.2583060219630015,
+        "untruncated_tokens_per_word": 1.4804797,
+        "visible_tokens_per_word": 1.4388005,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 229.95599633432224,
+          "median": 226,
+          "p05": 168.0,
+          "p95": 293.0,
+          "min": 63,
+          "max": 784
+        },
+        "visible_lengths": {
+          "n": 64381,
+          "mean": 223.48216088597567,
+          "median": 226,
+          "p05": 168.0,
+          "p95": 256.0,
+          "min": 63,
+          "max": 256
+        },
+        "by_source": {
+          "childes": {
+            "rows": 16954,
+            "words": 2712640,
+            "untruncated_tokens": 4518710,
+            "visible_tokens": 4262106,
+            "over256": 11465,
+            "visible_tokens_per_word": 1.5712022236640322,
+            "untruncated_tokens_per_word": 1.6657978943022296,
+            "over256_rate": 0.6762415949038575,
+            "visible_token_share": 0.29622633575676405
+          },
+          "open_subtitles": {
+            "rows": 12045,
+            "words": 1927200,
+            "untruncated_tokens": 2796344,
+            "visible_tokens": 2752766,
+            "over256": 1247,
+            "visible_tokens_per_word": 1.4283758821087589,
+            "untruncated_tokens_per_word": 1.4509879618098795,
+            "over256_rate": 0.10352843503528435,
+            "visible_token_share": 0.19132367551999044
+          },
+          "bnc_spoken": {
+            "rows": 3791,
+            "words": 606560,
+            "untruncated_tokens": 761054,
+            "visible_tokens": 760953,
+            "over256": 8,
+            "visible_tokens_per_word": 1.2545387101028753,
+            "untruncated_tokens_per_word": 1.2547052228963333,
+            "over256_rate": 0.0021102611448166712,
+            "visible_token_share": 0.05288801331386805
+          },
+          "gutenberg": {
+            "rows": 12243,
+            "words": 1958880,
+            "untruncated_tokens": 2636869,
+            "visible_tokens": 2606291,
+            "over256": 383,
+            "visible_tokens_per_word": 1.3305005921751205,
+            "untruncated_tokens_per_word": 1.3461105325492118,
+            "over256_rate": 0.03128318222657845,
+            "visible_token_share": 0.18114332042559061
+          },
+          "qwen_pair_packed": {
+            "rows": 12236,
+            "words": 1656800,
+            "untruncated_tokens": 2261538,
+            "visible_tokens": 2259947,
+            "over256": 106,
+            "visible_tokens_per_word": 1.36404333655239,
+            "untruncated_tokens_per_word": 1.3650036214389183,
+            "over256_rate": 0.008662961752206603,
+            "visible_token_share": 0.15707160235209816
+          },
+          "simple_wiki": {
+            "rows": 6973,
+            "words": 1115680,
+            "untruncated_tokens": 1798735,
+            "visible_tokens": 1714395,
+            "over256": 3421,
+            "visible_tokens_per_word": 1.536636849275778,
+            "untruncated_tokens_per_word": 1.612232002007744,
+            "over256_rate": 0.4906066255557149,
+            "visible_token_share": 0.11915446234554408
+          },
+          "switchboard": {
+            "rows": 139,
+            "words": 22240,
+            "untruncated_tokens": 31547,
+            "visible_tokens": 31547,
+            "over256": 0,
+            "visible_tokens_per_word": 1.4184802158273382,
+            "untruncated_tokens_per_word": 1.4184802158273382,
+            "over256_rate": 0.0,
+            "visible_token_share": 0.0021925902861446044
+          }
+        }
+      },
+      "official": {
+        "rows": 64381,
+        "words": 10000000,
+        "untruncated_tokens": 14896688,
+        "visible_tokens_seq256": 14497582,
+        "padding_tokens_seq256": 1983954,
+        "over256_rows": 16265,
+        "over256_rate": 0.252636647458101,
+        "untruncated_tokens_per_word": 1.4896688,
+        "visible_tokens_per_word": 1.4497582,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 231.38329631412995,
+          "median": 227,
+          "p05": 177.0,
+          "p95": 292.0,
+          "min": 68,
+          "max": 724
+        },
+        "visible_lengths": {
+          "n": 64381,
+          "mean": 225.18416924247836,
+          "median": 227,
+          "p05": 177.0,
+          "p95": 256.0,
+          "min": 68,
+          "max": 256
+        },
+        "by_source": {
+          "official_lengthmatched::bnc_spoken": {
+            "rows": 4892,
+            "words": 762205,
+            "untruncated_tokens": 956743,
+            "visible_tokens": 956602,
+            "over256": 8,
+            "visible_tokens_per_word": 1.2550455586095604,
+            "untruncated_tokens_per_word": 1.2552305482120951,
+            "over256_rate": 0.001635322976287817,
+            "visible_token_share": 0.06598355505076639
+          },
+          "official_lengthmatched::childes": {
+            "rows": 18291,
+            "words": 2841101,
+            "untruncated_tokens": 4722627,
+            "visible_tokens": 4492238,
+            "over256": 10503,
+            "visible_tokens_per_word": 1.5811609654144643,
+            "untruncated_tokens_per_word": 1.6622524155248264,
+            "over256_rate": 0.5742168279481712,
+            "visible_token_share": 0.30986118926590656
+          },
+          "official_lengthmatched::gutenberg": {
+            "rows": 16468,
+            "words": 2557706,
+            "untruncated_tokens": 3423954,
+            "visible_tokens": 3393511,
+            "over256": 401,
+            "visible_tokens_per_word": 1.3267791528815274,
+            "untruncated_tokens_per_word": 1.3386816154788705,
+            "over256_rate": 0.024350255040077727,
+            "visible_token_share": 0.2340742752825954
+          },
+          "official_lengthmatched::open_subtitles": {
+            "rows": 14709,
+            "words": 2282927,
+            "untruncated_tokens": 3298794,
+            "visible_tokens": 3257590,
+            "over256": 1259,
+            "visible_tokens_per_word": 1.4269356838830152,
+            "untruncated_tokens_per_word": 1.4449844432169754,
+            "over256_rate": 0.08559385410293018,
+            "visible_token_share": 0.22469884978060478
+          },
+          "official_lengthmatched::simple_wiki": {
+            "rows": 9863,
+            "words": 1531517,
+            "untruncated_tokens": 2459783,
+            "visible_tokens": 2362854,
+            "over256": 4094,
+            "visible_tokens_per_word": 1.5428193092208575,
+            "untruncated_tokens_per_word": 1.6061088450209824,
+            "over256_rate": 0.41508668762039946,
+            "visible_token_share": 0.16298262703394262
+          },
+          "official_lengthmatched::switchboard": {
+            "rows": 158,
+            "words": 24544,
+            "untruncated_tokens": 34787,
+            "visible_tokens": 34787,
+            "over256": 0,
+            "visible_tokens_per_word": 1.4173321382007822,
+            "untruncated_tokens_per_word": 1.4173321382007822,
+            "over256_rate": 0.0,
+            "visible_token_share": 0.002399503586184234
+          }
+        }
+      }
+    },
+    "tok40": {
+      "qwen": {
+        "rows": 64381,
+        "words": 10000000,
+        "untruncated_tokens": 14351076,
+        "visible_tokens_seq256": 14010865,
+        "padding_tokens_seq256": 2470671,
+        "over256_rows": 14455,
+        "over256_rate": 0.2245227629269505,
+        "untruncated_tokens_per_word": 1.4351076,
+        "visible_tokens_per_word": 1.4010865,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 222.90855997887576,
+          "median": 220,
+          "p05": 158.0,
+          "p95": 290.0,
+          "min": 62,
+          "max": 678
+        },
+        "visible_lengths": {
+          "n": 64381,
+          "mean": 217.62422143178887,
+          "median": 220,
+          "p05": 158.0,
+          "p95": 256.0,
+          "min": 62,
+          "max": 256
+        },
+        "by_source": {
+          "childes": {
+            "rows": 16954,
+            "words": 2712640,
+            "untruncated_tokens": 4537408,
+            "visible_tokens": 4264096,
+            "over256": 11818,
+            "visible_tokens_per_word": 1.571935826353663,
+            "untruncated_tokens_per_word": 1.6726908104282174,
+            "over256_rate": 0.6970626400849357,
+            "visible_token_share": 0.30434209451022476
+          },
+          "open_subtitles": {
+            "rows": 12045,
+            "words": 1927200,
+            "untruncated_tokens": 2755888,
+            "visible_tokens": 2735814,
+            "over256": 953,
+            "visible_tokens_per_word": 1.4195797011207971,
+            "untruncated_tokens_per_word": 1.4299958488999585,
+            "over256_rate": 0.07911996679119966,
+            "visible_token_share": 0.19526374709912628
+          },
+          "bnc_spoken": {
+            "rows": 3791,
+            "words": 606560,
+            "untruncated_tokens": 757502,
+            "visible_tokens": 757468,
+            "over256": 3,
+            "visible_tokens_per_word": 1.248793194407808,
+            "untruncated_tokens_per_word": 1.248849248219467,
+            "over256_rate": 0.0007913479293062516,
+            "visible_token_share": 0.054062900470456324
+          },
+          "gutenberg": {
+            "rows": 12243,
+            "words": 1958880,
+            "untruncated_tokens": 2511627,
+            "visible_tokens": 2491603,
+            "over256": 249,
+            "visible_tokens_per_word": 1.271952850608511,
+            "untruncated_tokens_per_word": 1.2821750183778486,
+            "over256_rate": 0.020338152413624112,
+            "visible_token_share": 0.17783363125688528
+          },
+          "qwen_pair_packed": {
+            "rows": 12236,
+            "words": 1656800,
+            "untruncated_tokens": 2110309,
+            "visible_tokens": 2109959,
+            "over256": 25,
+            "visible_tokens_per_word": 1.2735146064703042,
+            "untruncated_tokens_per_word": 1.2737258570738774,
+            "over256_rate": 0.002043151356652501,
+            "visible_token_share": 0.15059448506569723
+          },
+          "simple_wiki": {
+            "rows": 6973,
+            "words": 1115680,
+            "untruncated_tokens": 1646190,
+            "visible_tokens": 1619777,
+            "over256": 1405,
+            "visible_tokens_per_word": 1.4518293775993116,
+            "untruncated_tokens_per_word": 1.4755037286677184,
+            "over256_rate": 0.20149146708733687,
+            "visible_token_share": 0.1156086365831089
+          },
+          "switchboard": {
+            "rows": 139,
+            "words": 22240,
+            "untruncated_tokens": 32152,
+            "visible_tokens": 32148,
+            "over256": 2,
+            "visible_tokens_per_word": 1.4455035971223023,
+            "untruncated_tokens_per_word": 1.44568345323741,
+            "over256_rate": 0.014388489208633094,
+            "visible_token_share": 0.002294505014501246
+          }
+        }
+      },
+      "official": {
+        "rows": 64381,
+        "words": 10000000,
+        "untruncated_tokens": 14487664,
+        "visible_tokens_seq256": 14174244,
+        "padding_tokens_seq256": 2307292,
+        "over256_rows": 13706,
+        "over256_rate": 0.21288889579223683,
+        "untruncated_tokens_per_word": 1.4487664,
+        "visible_tokens_per_word": 1.4174244,
+        "token_lengths": {
+          "n": 64381,
+          "mean": 225.03011758127397,
+          "median": 221,
+          "p05": 171.0,
+          "p95": 288.0,
+          "min": 63,
+          "max": 644
+        },
+        "visible_lengths": {
+          "n": 64381,
+          "mean": 220.1619111228468,
+          "median": 221,
+          "p05": 171.0,
+          "p95": 256.0,
+          "min": 63,
+          "max": 256
+        },
+        "by_source": {
+          "official_lengthmatched::bnc_spoken": {
+            "rows": 4892,
+            "words": 762205,
+            "untruncated_tokens": 949985,
+            "visible_tokens": 949947,
+            "over256": 4,
+            "visible_tokens_per_word": 1.2463143117665194,
+            "untruncated_tokens_per_word": 1.2463641671203942,
+            "over256_rate": 0.0008176614881439084,
+            "visible_token_share": 0.06701923573490057
+          },
+          "official_lengthmatched::childes": {
+            "rows": 18291,
+            "words": 2841101,
+            "untruncated_tokens": 4741192,
+            "visible_tokens": 4495950,
+            "over256": 10941,
+            "visible_tokens_per_word": 1.582467501155362,
+            "untruncated_tokens_per_word": 1.6687868541104312,
+            "over256_rate": 0.5981630309988519,
+            "visible_token_share": 0.3171915200556728
+          },
+          "official_lengthmatched::gutenberg": {
+            "rows": 16468,
+            "words": 2557706,
+            "untruncated_tokens": 3258736,
+            "visible_tokens": 3239002,
+            "over256": 234,
+            "visible_tokens_per_word": 1.266369942440609,
+            "untruncated_tokens_per_word": 1.2740854500087186,
+            "over256_rate": 0.01420937575904785,
+            "visible_token_share": 0.22851321029890553
+          },
+          "official_lengthmatched::open_subtitles": {
+            "rows": 14709,
+            "words": 2282927,
+            "untruncated_tokens": 3250766,
+            "visible_tokens": 3231962,
+            "over256": 900,
+            "visible_tokens_per_word": 1.4157097445516216,
+            "untruncated_tokens_per_word": 1.423946538807417,
+            "over256_rate": 0.061187028349989805,
+            "visible_token_share": 0.22801653477956213
+          },
+          "official_lengthmatched::simple_wiki": {
+            "rows": 9863,
+            "words": 1531517,
+            "untruncated_tokens": 2251516,
+            "visible_tokens": 2221923,
+            "over256": 1623,
+            "visible_tokens_per_word": 1.450798783167278,
+            "untruncated_tokens_per_word": 1.4701214547406265,
+            "over256_rate": 0.1645543952144378,
+            "visible_token_share": 0.15675777840426622
+          },
+          "official_lengthmatched::switchboard": {
+            "rows": 158,
+            "words": 24544,
+            "untruncated_tokens": 35469,
+            "visible_tokens": 35460,
+            "over256": 4,
+            "visible_tokens_per_word": 1.4447522816166884,
+            "untruncated_tokens_per_word": 1.4451189700130378,
+            "over256_rate": 0.02531645569620253,
+            "visible_token_share": 0.0025017207266927253
+          }
+        }
+      }
+    }
+  },
+  "pair_retention": {
+    "tok16": {
+      "pair_rows": 12236,
+      "pair_sides": 75188,
+      "align_modes": {
+        "exact": 75188,
+        "nearby_search": 0
+      },
+      "row_over256_rate": 0.008662961752206603,
+      "row_all_pairs_both_sides_full_rate": 0.9913370382477934,
+      "pair_both_sides_full_fraction": 0.9971006011597595,
+      "side_full_retained_rate": 0.9983641006543598,
+      "original_side_full_rate": 0.9996276001489599,
+      "rewrite_side_full_rate": 0.9971006011597595,
+      "visible_word_fraction_stats_by_side": {
+        "original": {
+          "n": 37594,
+          "mean": 0.9997805262818569,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "rewrite": {
+          "n": 37594,
+          "mean": 0.9989278804206716,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "visible_token_fraction_stats_by_side": {
+        "original": {
+          "n": 37594,
+          "mean": 0.9997648783941309,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "rewrite": {
+          "n": 37594,
+          "mean": 0.9988760314423052,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "row_token_lengths": {
+        "n": 12236,
+        "mean": 184.82657731284735,
+        "median": 186.0,
+        "p05": 132.0,
+        "p95": 231.0,
+        "min": 63,
+        "max": 363
+      },
+      "row_visible_token_lengths": {
+        "n": 12236,
+        "mean": 184.69655116050998,
+        "median": 186.0,
+        "p05": 132.0,
+        "p95": 231.0,
+        "min": 63,
+        "max": 256
+      },
+      "truncated_row_examples": [
+        {
+          "row_index": 597,
+          "words": 160,
+          "n_pairs": 3,
+          "tokens_untruncated": 262,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 978,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.98125,
+          "visible_token_fraction": 0.9766536964980544
+        },
+        {
+          "row_index": 727,
+          "words": 132,
+          "n_pairs": 2,
+          "tokens_untruncated": 260,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 781,
+          "full_sides": 3,
+          "total_sides": 4,
+          "both_sides_full_pairs": 1,
+          "total_pairs": 2,
+          "visible_word_fraction": 0.9772727272727273,
+          "visible_token_fraction": 0.9844357976653697
+        },
+        {
+          "row_index": 1036,
+          "words": 160,
+          "n_pairs": 3,
+          "tokens_untruncated": 265,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 834,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.95625,
+          "visible_token_fraction": 0.9653846153846154
+        },
+        {
+          "row_index": 1070,
+          "words": 155,
+          "n_pairs": 3,
+          "tokens_untruncated": 262,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 916,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.967741935483871,
+          "visible_token_fraction": 0.9766536964980544
+        },
+        {
+          "row_index": 1370,
+          "words": 154,
+          "n_pairs": 3,
+          "tokens_untruncated": 265,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 922,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9675324675324676,
+          "visible_token_fraction": 0.9653846153846154
+        },
+        {
+          "row_index": 2290,
+          "words": 144,
+          "n_pairs": 3,
+          "tokens_untruncated": 266,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 784,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9791666666666666,
+          "visible_token_fraction": 0.9616858237547893
+        },
+        {
+          "row_index": 2510,
+          "words": 148,
+          "n_pairs": 3,
+          "tokens_untruncated": 261,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 844,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9932432432432432,
+          "visible_token_fraction": 0.98046875
+        },
+        {
+          "row_index": 3017,
+          "words": 146,
+          "n_pairs": 3,
+          "tokens_untruncated": 262,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 980,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9794520547945206,
+          "visible_token_fraction": 0.9766536964980544
+        },
+        {
+          "row_index": 3122,
+          "words": 160,
+          "n_pairs": 4,
+          "tokens_untruncated": 268,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 864,
+          "full_sides": 7,
+          "total_sides": 8,
+          "both_sides_full_pairs": 3,
+          "total_pairs": 4,
+          "visible_word_fraction": 0.93125,
+          "visible_token_fraction": 0.9540229885057471
+        },
+        {
+          "row_index": 3401,
+          "words": 149,
+          "n_pairs": 5,
+          "tokens_untruncated": 260,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 808,
+          "full_sides": 9,
+          "total_sides": 10,
+          "both_sides_full_pairs": 4,
+          "total_pairs": 5,
+          "visible_word_fraction": 0.9865771812080537,
+          "visible_token_fraction": 0.9840637450199203
+        },
+        {
+          "row_index": 4684,
+          "words": 156,
+          "n_pairs": 3,
+          "tokens_untruncated": 257,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 966,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9935897435897436,
+          "visible_token_fraction": 0.996031746031746
+        },
+        {
+          "row_index": 4913,
+          "words": 157,
+          "n_pairs": 4,
+          "tokens_untruncated": 259,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 966,
+          "full_sides": 7,
+          "total_sides": 8,
+          "both_sides_full_pairs": 3,
+          "total_pairs": 4,
+          "visible_word_fraction": 0.9936305732484076,
+          "visible_token_fraction": 0.9880952380952381
+        }
+      ]
+    },
+    "tok40": {
+      "pair_rows": 12236,
+      "pair_sides": 75188,
+      "align_modes": {
+        "exact": 75188,
+        "nearby_search": 0
+      },
+      "row_over256_rate": 0.002043151356652501,
+      "row_all_pairs_both_sides_full_rate": 0.9979568486433475,
+      "pair_both_sides_full_fraction": 0.9992818002872799,
+      "side_full_retained_rate": 0.9996010001596,
+      "original_side_full_rate": 0.99992020003192,
+      "rewrite_side_full_rate": 0.9992818002872799,
+      "visible_word_fraction_stats_by_side": {
+        "original": {
+          "n": 37594,
+          "mean": 0.99994236668972,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "rewrite": {
+          "n": 37594,
+          "mean": 0.9997443648827613,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "visible_token_fraction_stats_by_side": {
+        "original": {
+          "n": 37594,
+          "mean": 0.999941480023408,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "rewrite": {
+          "n": 37594,
+          "mean": 0.9997274692610271,
+          "median": 1.0,
+          "p05": 1.0,
+          "p95": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "row_token_lengths": {
+        "n": 12236,
+        "mean": 172.4672278522393,
+        "median": 174.0,
+        "p05": 124.0,
+        "p95": 213.0,
+        "min": 62,
+        "max": 334
+      },
+      "row_visible_token_lengths": {
+        "n": 12236,
+        "mean": 172.43862373324615,
+        "median": 174.0,
+        "p05": 124.0,
+        "p95": 213.0,
+        "min": 62,
+        "max": 256
+      },
+      "truncated_row_examples": [
+        {
+          "row_index": 5870,
+          "words": 158,
+          "n_pairs": 4,
+          "tokens_untruncated": 271,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 850,
+          "full_sides": 7,
+          "total_sides": 8,
+          "both_sides_full_pairs": 3,
+          "total_pairs": 4,
+          "visible_word_fraction": 0.930379746835443,
+          "visible_token_fraction": 0.9431818181818182
+        },
+        {
+          "row_index": 6881,
+          "words": 156,
+          "n_pairs": 5,
+          "tokens_untruncated": 261,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 904,
+          "full_sides": 9,
+          "total_sides": 10,
+          "both_sides_full_pairs": 4,
+          "total_pairs": 5,
+          "visible_word_fraction": 0.9743589743589743,
+          "visible_token_fraction": 0.9801587301587301
+        },
+        {
+          "row_index": 9203,
+          "words": 160,
+          "n_pairs": 5,
+          "tokens_untruncated": 334,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 769,
+          "full_sides": 5,
+          "total_sides": 10,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 5,
+          "visible_word_fraction": 0.675,
+          "visible_token_fraction": 0.7723076923076924
+        },
+        {
+          "row_index": 14509,
+          "words": 157,
+          "n_pairs": 3,
+          "tokens_untruncated": 263,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 1009,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9872611464968153,
+          "visible_token_fraction": 0.9728682170542635
+        },
+        {
+          "row_index": 15755,
+          "words": 160,
+          "n_pairs": 3,
+          "tokens_untruncated": 257,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 968,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.99375,
+          "visible_token_fraction": 0.996031746031746
+        },
+        {
+          "row_index": 21769,
+          "words": 159,
+          "n_pairs": 4,
+          "tokens_untruncated": 276,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 912,
+          "full_sides": 7,
+          "total_sides": 8,
+          "both_sides_full_pairs": 3,
+          "total_pairs": 4,
+          "visible_word_fraction": 0.9622641509433962,
+          "visible_token_fraction": 0.9256505576208178
+        },
+        {
+          "row_index": 22727,
+          "words": 151,
+          "n_pairs": 4,
+          "tokens_untruncated": 267,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 944,
+          "full_sides": 7,
+          "total_sides": 8,
+          "both_sides_full_pairs": 3,
+          "total_pairs": 4,
+          "visible_word_fraction": 0.9403973509933775,
+          "visible_token_fraction": 0.9576923076923077
+        },
+        {
+          "row_index": 30139,
+          "words": 153,
+          "n_pairs": 3,
+          "tokens_untruncated": 260,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 843,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9934640522875817,
+          "visible_token_fraction": 0.984313725490196
+        },
+        {
+          "row_index": 32453,
+          "words": 147,
+          "n_pairs": 3,
+          "tokens_untruncated": 263,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 994,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.9931972789115646,
+          "visible_token_fraction": 0.9728682170542635
+        },
+        {
+          "row_index": 32609,
+          "words": 160,
+          "n_pairs": 5,
+          "tokens_untruncated": 262,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 926,
+          "full_sides": 9,
+          "total_sides": 10,
+          "both_sides_full_pairs": 4,
+          "total_pairs": 5,
+          "visible_word_fraction": 0.96875,
+          "visible_token_fraction": 0.9762845849802372
+        },
+        {
+          "row_index": 37187,
+          "words": 145,
+          "n_pairs": 4,
+          "tokens_untruncated": 269,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 848,
+          "full_sides": 7,
+          "total_sides": 8,
+          "both_sides_full_pairs": 3,
+          "total_pairs": 4,
+          "visible_word_fraction": 0.9862068965517241,
+          "visible_token_fraction": 0.950381679389313
+        },
+        {
+          "row_index": 38953,
+          "words": 152,
+          "n_pairs": 3,
+          "tokens_untruncated": 257,
+          "tokens_visible_seq256": 256,
+          "over256": true,
+          "visible_end_char": 891,
+          "full_sides": 5,
+          "total_sides": 6,
+          "both_sides_full_pairs": 2,
+          "total_pairs": 3,
+          "visible_word_fraction": 0.993421052631579,
+          "visible_token_fraction": 0.996031746031746
+        }
+      ]
+    }
+  },
+  "screen_refs": {
+    "twenty_m_summary": "experiments/archive/compact_experience/data/tok16_tok40_2x2_summary.json",
+    "ten_m_summary": "experiments/archive/compact_experience/data/tok2x2_noaoa_eval_10M/tok16_tok40_2x2_10M_summary.json"
+  },
+  "derived_deltas_tok40_minus_tok16": {
+    "qwen_visible_tokens_per_word": -0.037714000000000025,
+    "qwen_untruncated_tokens_per_word": -0.045372100000000026,
+    "qwen_over256_rate": -0.033783259036051005,
+    "pair_row_over256_rate": -0.006619810395554102,
+    "pair_both_sides_full_fraction": 0.00218119912752035,
+    "pair_side_full_retained_rate": 0.0012368995052401965,
+    "pair_row_mean_untruncated_tokens": -12.359349460608058
+  }
+}

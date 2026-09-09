@@ -1,0 +1,204 @@
+{
+  "status": "CONSISTENCY_LOSS_SHAPE_SMOKE",
+  "created_utc": "2026-08-30T05:00:59Z",
+  "purpose": "Exercise tensor pooling and normalization for a possible positive-only source-view consistency auxiliary loss, without model training/evaluation.",
+  "inputs": {
+    "collate_script": "experiments/archive/frontier_consolidation/scripts/consistency_collate_smoke.py",
+    "train_sha256": "3dd19f09deeca44d6b07340e70cd15baa4b5c7bffe0bd462ff37536e470e7691",
+    "tokenizer_sha256": "91b775514b9f4e2d1f37c28445ab98181007e16d14f763955168547e293ee8f9",
+    "hidden_size": 480,
+    "batch_size": 256
+  },
+  "sample_results": [
+    {
+      "name": "front_batches",
+      "sample_mode": "front",
+      "sample_rows": 4096,
+      "batch_size": 256,
+      "hidden_size": 480,
+      "max_batches": 4,
+      "batches_seen": 4,
+      "eligible_batches": 4,
+      "total_aux_records": 180,
+      "total_aux_rows": 45,
+      "pair_mean_loss_by_batch": {
+        "n": 4,
+        "mean": 0.004203211865387857,
+        "median": 0.004216150613501668,
+        "min": 0.0041488357819616795,
+        "max": 0.004231710452586412,
+        "std": 3.25554976613371e-05
+      },
+      "symmetric_pair_mean_loss_by_batch": {
+        "n": 4,
+        "mean": 0.004203211865387857,
+        "median": 0.004216150613501668,
+        "min": 0.0041488357819616795,
+        "max": 0.004231710452586412,
+        "std": 3.25554976613371e-05
+      },
+      "row_mean_loss_by_batch": {
+        "n": 4,
+        "mean": 0.004201721400022507,
+        "median": 0.004219649592414498,
+        "min": 0.0041403211653232574,
+        "max": 0.004227265249937773,
+        "std": 3.56253007777753e-05
+      },
+      "pooled_source_norms": {
+        "n": 180,
+        "mean": 4.2328069474962025,
+        "median": 4.115914583206177,
+        "min": 2.6559929847717285,
+        "max": 6.5423455238342285,
+        "std": 0.7703050472783313
+      },
+      "pooled_rewrite_norms": {
+        "n": 180,
+        "mean": 5.1647039413452145,
+        "median": 5.071112632751465,
+        "min": 3.1640751361846924,
+        "max": 8.380536079406738,
+        "std": 0.9760726301214483
+      },
+      "per_batch_payload": [
+        {
+          "batch_index_1based": 1,
+          "aux_records": 42,
+          "aux_rows": 11,
+          "pair_mean_loss": 0.004224387463182211,
+          "symmetric_pair_mean_loss": 0.004224387463182211,
+          "row_mean_loss": 0.004222029820084572,
+          "grad_nonzero": true
+        },
+        {
+          "batch_index_1based": 2,
+          "aux_records": 70,
+          "aux_rows": 17,
+          "pair_mean_loss": 0.0041488357819616795,
+          "symmetric_pair_mean_loss": 0.0041488357819616795,
+          "row_mean_loss": 0.0041403211653232574,
+          "grad_nonzero": true
+        },
+        {
+          "batch_index_1based": 3,
+          "aux_records": 23,
+          "aux_rows": 6,
+          "pair_mean_loss": 0.004207913763821125,
+          "symmetric_pair_mean_loss": 0.004207913763821125,
+          "row_mean_loss": 0.004217269364744425,
+          "grad_nonzero": true
+        },
+        {
+          "batch_index_1based": 4,
+          "aux_records": 45,
+          "aux_rows": 11,
+          "pair_mean_loss": 0.004231710452586412,
+          "symmetric_pair_mean_loss": 0.004231710452586412,
+          "row_mean_loss": 0.004227265249937773,
+          "grad_nonzero": true
+        }
+      ]
+    },
+    {
+      "name": "stride_batches",
+      "sample_mode": "stride",
+      "sample_rows": 4096,
+      "batch_size": 256,
+      "hidden_size": 480,
+      "max_batches": 4,
+      "batches_seen": 4,
+      "eligible_batches": 4,
+      "total_aux_records": 132,
+      "total_aux_rows": 33,
+      "pair_mean_loss_by_batch": {
+        "n": 4,
+        "mean": 0.004168977029621601,
+        "median": 0.004155698465183377,
+        "min": 0.004129044245928526,
+        "max": 0.004235466942191124,
+        "std": 4.04916435177435e-05
+      },
+      "symmetric_pair_mean_loss_by_batch": {
+        "n": 4,
+        "mean": 0.004168977029621601,
+        "median": 0.004155698465183377,
+        "min": 0.004129044245928526,
+        "max": 0.004235466942191124,
+        "std": 4.04916435177435e-05
+      },
+      "row_mean_loss_by_batch": {
+        "n": 4,
+        "mean": 0.004167988896369934,
+        "median": 0.004154989495873451,
+        "min": 0.004128058906644583,
+        "max": 0.004233917687088251,
+        "std": 3.968040922120063e-05
+      },
+      "pooled_source_norms": {
+        "n": 132,
+        "mean": 4.267065241481319,
+        "median": 4.092225790023804,
+        "min": 2.6567373275756836,
+        "max": 6.565933704376221,
+        "std": 0.8339336941450523
+      },
+      "pooled_rewrite_norms": {
+        "n": 132,
+        "mean": 5.189644685297301,
+        "median": 5.13871693611145,
+        "min": 3.30497670173645,
+        "max": 8.191961288452148,
+        "std": 0.9998052311822472
+      },
+      "per_batch_payload": [
+        {
+          "batch_index_1based": 1,
+          "aux_records": 33,
+          "aux_rows": 8,
+          "pair_mean_loss": 0.004129044245928526,
+          "symmetric_pair_mean_loss": 0.004129044245928526,
+          "row_mean_loss": 0.004128058906644583,
+          "grad_nonzero": true
+        },
+        {
+          "batch_index_1based": 2,
+          "aux_records": 35,
+          "aux_rows": 8,
+          "pair_mean_loss": 0.004165448248386383,
+          "symmetric_pair_mean_loss": 0.004165448248386383,
+          "row_mean_loss": 0.004158084746450186,
+          "grad_nonzero": true
+        },
+        {
+          "batch_index_1based": 3,
+          "aux_records": 45,
+          "aux_rows": 12,
+          "pair_mean_loss": 0.004235466942191124,
+          "symmetric_pair_mean_loss": 0.004235466942191124,
+          "row_mean_loss": 0.004233917687088251,
+          "grad_nonzero": true
+        },
+        {
+          "batch_index_1based": 4,
+          "aux_records": 19,
+          "aux_rows": 5,
+          "pair_mean_loss": 0.0041459486819803715,
+          "symmetric_pair_mean_loss": 0.0041459486819803715,
+          "row_mean_loss": 0.004151894245296717,
+          "grad_nonzero": true
+        }
+      ]
+    }
+  ],
+  "loss_contract_for_future_trainer": [
+    "Use model outputs with hidden states enabled, pool token ranges for both-visible source/rewrite pairs, and compute a low-weight positive-only agreement loss.",
+    "Prefer row-normalized symmetric stop-gradient MSE/cosine agreement for a first screen so rows with more packed pairs do not dominate and both sides receive a gradient through one term.",
+    "Keep MLM as the primary objective and do not add negatives, static-prior masking, corpus changes, tokenizer changes, or optimizer changes in the first source-view consistency screen."
+  ],
+  "scientific_interpretation": [
+    "The shape smoke removes a tensor-construction risk for the broad-disappearance branch, but it is not behavioral evidence and does not justify GPU use without the mature 70M/80M pattern.",
+    "The auxiliary payload is large enough in ordinary batches to support a row-normalized loss if that branch is selected."
+  ],
+  "elapsed_sec": 26.263
+}

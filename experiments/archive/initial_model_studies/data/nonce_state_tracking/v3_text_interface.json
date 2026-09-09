@@ -1,0 +1,653 @@
+{
+  "status": "NONCE_STATE_V3_TEXT_INTERFACE",
+  "description": "Natural-language text interface: events as \"dax moves to lup.\" processed by shared Transformer encoder. WESS extracts entity/state representations from encoder hidden states at gold span positions.",
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    2024
+  ],
+  "random_baseline": 0.25,
+  "aggregate": {
+    "endpoint": {
+      "iid": {
+        "mean": 0.723,
+        "std": 0.0232,
+        "values": [
+          0.73,
+          0.75,
+          0.73,
+          0.68,
+          0.725
+        ]
+      },
+      "new_ent": {
+        "mean": 0.748,
+        "std": 0.0144,
+        "values": [
+          0.75,
+          0.74,
+          0.735,
+          0.74,
+          0.775
+        ]
+      },
+      "new_state": {
+        "mean": 0.406,
+        "std": 0.0689,
+        "values": [
+          0.385,
+          0.52,
+          0.305,
+          0.405,
+          0.415
+        ]
+      },
+      "new_both": {
+        "mean": 0.418,
+        "std": 0.0668,
+        "values": [
+          0.38,
+          0.5,
+          0.31,
+          0.435,
+          0.465
+        ]
+      },
+      "long": {
+        "mean": 0.239,
+        "std": 0.0282,
+        "values": [
+          0.225,
+          0.23,
+          0.22,
+          0.225,
+          0.295
+        ]
+      },
+      "overwrite": {
+        "mean": 0.299,
+        "std": 0.0341,
+        "values": [
+          0.32,
+          0.28,
+          0.25,
+          0.35,
+          0.295
+        ]
+      }
+    },
+    "step_supervised": {
+      "iid": {
+        "mean": 0.733,
+        "std": 0.0299,
+        "values": [
+          0.77,
+          0.73,
+          0.75,
+          0.68,
+          0.735
+        ]
+      },
+      "new_ent": {
+        "mean": 0.741,
+        "std": 0.0193,
+        "values": [
+          0.745,
+          0.715,
+          0.75,
+          0.725,
+          0.77
+        ]
+      },
+      "new_state": {
+        "mean": 0.426,
+        "std": 0.0347,
+        "values": [
+          0.425,
+          0.465,
+          0.39,
+          0.465,
+          0.385
+        ]
+      },
+      "new_both": {
+        "mean": 0.396,
+        "std": 0.0358,
+        "values": [
+          0.42,
+          0.425,
+          0.335,
+          0.425,
+          0.375
+        ]
+      },
+      "long": {
+        "mean": 0.259,
+        "std": 0.0271,
+        "values": [
+          0.24,
+          0.235,
+          0.24,
+          0.305,
+          0.275
+        ]
+      },
+      "overwrite": {
+        "mean": 0.296,
+        "std": 0.0501,
+        "values": [
+          0.35,
+          0.265,
+          0.22,
+          0.295,
+          0.35
+        ]
+      }
+    },
+    "wess_gold": {
+      "iid": {
+        "mean": 0.999,
+        "std": 0.002,
+        "values": [
+          1.0,
+          1.0,
+          0.995,
+          1.0,
+          1.0
+        ]
+      },
+      "new_ent": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "new_state": {
+        "mean": 0.848,
+        "std": 0.0209,
+        "values": [
+          0.825,
+          0.865,
+          0.82,
+          0.865,
+          0.865
+        ]
+      },
+      "new_both": {
+        "mean": 0.832,
+        "std": 0.0353,
+        "values": [
+          0.79,
+          0.835,
+          0.795,
+          0.86,
+          0.88
+        ]
+      },
+      "long": {
+        "mean": 0.984,
+        "std": 0.0073,
+        "values": [
+          0.99,
+          0.995,
+          0.975,
+          0.98,
+          0.98
+        ]
+      },
+      "overwrite": {
+        "mean": 0.987,
+        "std": 0.0075,
+        "values": [
+          0.985,
+          0.985,
+          0.995,
+          0.975,
+          0.995
+        ]
+      },
+      "slot_swap_transfer": {
+        "mean": 0.904,
+        "std": 0.0726,
+        "values": [
+          0.95,
+          0.76,
+          0.93,
+          0.95,
+          0.93
+        ]
+      },
+      "last_write_ablation_revert": {
+        "mean": 0.996,
+        "std": 0.0049,
+        "values": [
+          0.99,
+          1.0,
+          1.0,
+          0.99,
+          1.0
+        ]
+      }
+    },
+    "wess_shuffled": {
+      "iid": {
+        "mean": 0.996,
+        "std": 0.008,
+        "values": [
+          1.0,
+          1.0,
+          0.98,
+          1.0,
+          1.0
+        ]
+      },
+      "new_ent": {
+        "mean": 0.997,
+        "std": 0.006,
+        "values": [
+          1.0,
+          1.0,
+          0.985,
+          1.0,
+          1.0
+        ]
+      },
+      "new_state": {
+        "mean": 0.79,
+        "std": 0.0405,
+        "values": [
+          0.785,
+          0.825,
+          0.76,
+          0.845,
+          0.735
+        ]
+      },
+      "new_both": {
+        "mean": 0.783,
+        "std": 0.0471,
+        "values": [
+          0.745,
+          0.765,
+          0.755,
+          0.875,
+          0.775
+        ]
+      },
+      "long": {
+        "mean": 0.985,
+        "std": 0.0105,
+        "values": [
+          0.98,
+          0.995,
+          0.975,
+          0.975,
+          1.0
+        ]
+      },
+      "overwrite": {
+        "mean": 0.988,
+        "std": 0.0068,
+        "values": [
+          0.98,
+          1.0,
+          0.985,
+          0.985,
+          0.99
+        ]
+      },
+      "slot_swap_transfer": {
+        "mean": 0.316,
+        "std": 0.0242,
+        "values": [
+          0.31,
+          0.36,
+          0.29,
+          0.32,
+          0.3
+        ]
+      },
+      "last_write_ablation_revert": {
+        "mean": 0.996,
+        "std": 0.008,
+        "values": [
+          1.0,
+          1.0,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "per_seed": {
+    "42": {
+      "endpoint": {
+        "loss_last": 0.002554789651185274,
+        "params": 263808,
+        "accuracy": {
+          "iid": 0.73,
+          "new_ent": 0.75,
+          "new_state": 0.385,
+          "new_both": 0.38,
+          "long": 0.225,
+          "overwrite": 0.32
+        }
+      },
+      "step_supervised": {
+        "loss_last": 0.01094963401556015,
+        "params": 273024,
+        "accuracy": {
+          "iid": 0.77,
+          "new_ent": 0.745,
+          "new_state": 0.425,
+          "new_both": 0.42,
+          "long": 0.24,
+          "overwrite": 0.35
+        }
+      },
+      "wess_gold": {
+        "loss_last": 0.00038070231676101685,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.825,
+          "new_both": 0.79,
+          "long": 0.99,
+          "overwrite": 0.985
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.95,
+          "last_write_ablation_revert": 0.99,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      },
+      "wess_shuffled": {
+        "loss_last": 0.00031252377084456384,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.785,
+          "new_both": 0.745,
+          "long": 0.98,
+          "overwrite": 0.98
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.31,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      }
+    },
+    "123": {
+      "endpoint": {
+        "loss_last": 0.005692120175808668,
+        "params": 263808,
+        "accuracy": {
+          "iid": 0.75,
+          "new_ent": 0.74,
+          "new_state": 0.52,
+          "new_both": 0.5,
+          "long": 0.23,
+          "overwrite": 0.28
+        }
+      },
+      "step_supervised": {
+        "loss_last": 0.010843279771506786,
+        "params": 273024,
+        "accuracy": {
+          "iid": 0.73,
+          "new_ent": 0.715,
+          "new_state": 0.465,
+          "new_both": 0.425,
+          "long": 0.235,
+          "overwrite": 0.265
+        }
+      },
+      "wess_gold": {
+        "loss_last": 0.000855094927828759,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.865,
+          "new_both": 0.835,
+          "long": 0.995,
+          "overwrite": 0.985
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.76,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      },
+      "wess_shuffled": {
+        "loss_last": 0.00053433608263731,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.825,
+          "new_both": 0.765,
+          "long": 0.995,
+          "overwrite": 1.0
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.36,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      }
+    },
+    "456": {
+      "endpoint": {
+        "loss_last": 0.004001578316092491,
+        "params": 263808,
+        "accuracy": {
+          "iid": 0.73,
+          "new_ent": 0.735,
+          "new_state": 0.305,
+          "new_both": 0.31,
+          "long": 0.22,
+          "overwrite": 0.25
+        }
+      },
+      "step_supervised": {
+        "loss_last": 0.012954853475093842,
+        "params": 273024,
+        "accuracy": {
+          "iid": 0.75,
+          "new_ent": 0.75,
+          "new_state": 0.39,
+          "new_both": 0.335,
+          "long": 0.24,
+          "overwrite": 0.22
+        }
+      },
+      "wess_gold": {
+        "loss_last": 0.00039627726073376834,
+        "params": 356832,
+        "accuracy": {
+          "iid": 0.995,
+          "new_ent": 1.0,
+          "new_state": 0.82,
+          "new_both": 0.795,
+          "long": 0.975,
+          "overwrite": 0.995
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.93,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      },
+      "wess_shuffled": {
+        "loss_last": 0.00014854206528980285,
+        "params": 356832,
+        "accuracy": {
+          "iid": 0.98,
+          "new_ent": 0.985,
+          "new_state": 0.76,
+          "new_both": 0.755,
+          "long": 0.975,
+          "overwrite": 0.985
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.29,
+          "last_write_ablation_revert": 0.98,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      }
+    },
+    "789": {
+      "endpoint": {
+        "loss_last": 0.010116671212017536,
+        "params": 263808,
+        "accuracy": {
+          "iid": 0.68,
+          "new_ent": 0.74,
+          "new_state": 0.405,
+          "new_both": 0.435,
+          "long": 0.225,
+          "overwrite": 0.35
+        }
+      },
+      "step_supervised": {
+        "loss_last": 0.038487255573272705,
+        "params": 273024,
+        "accuracy": {
+          "iid": 0.68,
+          "new_ent": 0.725,
+          "new_state": 0.465,
+          "new_both": 0.425,
+          "long": 0.305,
+          "overwrite": 0.295
+        }
+      },
+      "wess_gold": {
+        "loss_last": 0.0002740999043453485,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.865,
+          "new_both": 0.86,
+          "long": 0.98,
+          "overwrite": 0.975
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.95,
+          "last_write_ablation_revert": 0.99,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      },
+      "wess_shuffled": {
+        "loss_last": 0.0005532994982786477,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.845,
+          "new_both": 0.875,
+          "long": 0.975,
+          "overwrite": 0.985
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.32,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      }
+    },
+    "2024": {
+      "endpoint": {
+        "loss_last": 0.013311929069459438,
+        "params": 263808,
+        "accuracy": {
+          "iid": 0.725,
+          "new_ent": 0.775,
+          "new_state": 0.415,
+          "new_both": 0.465,
+          "long": 0.295,
+          "overwrite": 0.295
+        }
+      },
+      "step_supervised": {
+        "loss_last": 0.009616226889193058,
+        "params": 273024,
+        "accuracy": {
+          "iid": 0.735,
+          "new_ent": 0.77,
+          "new_state": 0.385,
+          "new_both": 0.375,
+          "long": 0.275,
+          "overwrite": 0.35
+        }
+      },
+      "wess_gold": {
+        "loss_last": 0.0005838224315084517,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.865,
+          "new_both": 0.88,
+          "long": 0.98,
+          "overwrite": 0.995
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.93,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      },
+      "wess_shuffled": {
+        "loss_last": 0.0003950781829189509,
+        "params": 356832,
+        "accuracy": {
+          "iid": 1.0,
+          "new_ent": 1.0,
+          "new_state": 0.735,
+          "new_both": 0.775,
+          "long": 1.0,
+          "overwrite": 0.99
+        },
+        "interventions": {
+          "slot_swap_transfer": 0.3,
+          "last_write_ablation_revert": 1.0,
+          "persistence_check": 1.0,
+          "n_swap": 100,
+          "n_ablation": 100
+        }
+      }
+    }
+  },
+  "elapsed_sec": 824.6
+}

@@ -1,0 +1,51 @@
+{
+  "status": "ACS_SCREEN_DONE",
+  "variant": "standard_control",
+  "model_family": "DebertaV2ForMaskedLM",
+  "parameter_count": 45826720,
+  "vocab_size": 40000,
+  "mechanism": {
+    "name": "Auxiliary Contrastive Softmax (ACS)",
+    "acs_alpha": 0.0,
+    "acs_topk": 8,
+    "loss_formula": "L = L_CE (standard MLM)",
+    "acs_description": "For each masked position, compute a (K+1)-way contrastive loss between the correct token and the K tokens the model currently ranks highest (excluding the correct one).  Selection uses detached logits; loss flows through live logits.  This concentrates gradient on the context-dependent decision boundary."
+  },
+  "source_checkpoint": {
+    "name": "chck_80M",
+    "path": "experiments/archive/representation_and_objectives/training/runs/legal40k_accum_compact_view_reinvest_seed43022/hf_model/chck_80M",
+    "consumed_words": 80034368,
+    "source_step": 2024
+  },
+  "pairing_contract": {
+    "same_source_checkpoint": true,
+    "same_tail_rows": true,
+    "same_mask_rng_seed": 53023,
+    "same_dropout_seed": 53023,
+    "fresh_adamw_moments": true,
+    "only_intended_difference": "ACS alpha=0.0 topk=8 vs standard MLM"
+  },
+  "word_exposure": 100000000,
+  "tail_word_exposure": 19965632,
+  "actual_training_steps": 505,
+  "final_global_step": 2529,
+  "saved_checkpoints": [
+    {
+      "name": "chck_90M",
+      "total_word_exposure": 90038971,
+      "tail_word_exposure": 10004603,
+      "local_step": 253,
+      "global_step": 2277,
+      "path": "experiments/archive/representation_and_objectives/training/runs/acs_control_standard/hf_model/chck_90M"
+    },
+    {
+      "name": "chck_100M",
+      "total_word_exposure": 100000000,
+      "tail_word_exposure": 19965632,
+      "local_step": 505,
+      "global_step": 2529,
+      "path": "experiments/archive/representation_and_objectives/training/runs/acs_control_standard/hf_model/chck_100M"
+    }
+  ],
+  "training_log": "experiments/archive/representation_and_objectives/training/runs/acs_control_standard/training_log.jsonl"
+}

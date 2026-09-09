@@ -1,0 +1,178 @@
+\chapterstart{BabyLM 2026: Learning from Limited Data}
+\label{sec:intro}
+
+Large-scale training has shown how far language-model capabilities can grow with additional resources. Learning from limited text asks a complementary question: how much more can a model learn from the experience already available to it? A better method must do more than fit that text. It should help the model use relevant information, apply what it learns to new expressions, and retain useful capabilities as training continues.
+
+BabyLM provides shared experimental conditions for this question. This report concerns its Strict-Small track and the complete research program conducted by Qiushi Engine: building a frontier model, investigating the conditions behind its behavior, and using those findings to improve the next model. Model scores are one outcome. The resulting methods and testable explanations are another.
+
+\subsection{The Scientific Problem of Learning from Limited Data}
+
+Language models learn by predicting text. Training compares a model's predicted probabilities with the words that actually occur, measures the error through a loss, and adjusts the parameters. In this report, \emph{supervision} specifies which predictions contribute to learning: a target is a token to be recovered, and a target position identifies where that token occurs. Repeated training can establish lexical, syntactic, semantic, and contextual regularities. The scientific question is which regularities actually support a correct answer.
+
+Suppose a passage states that a key was moved from a drawer to a box, and a later query asks where the key is now. The required computation uses the change of state. A model that instead relies on the familiar association between ``key'' and ``drawer'' may fit many ordinary sentences without learning that operation. If nearby words usually reveal the target, training offers little incentive to consult earlier information. \textbf{Encountering relevant information and learning to use it are distinct achievements.}
+
+This distinction matters especially when data are scarce. Adding a new passage, repeating an old one, and restating its content in different words all consume training budget, but need not provide interchangeable learning opportunities. Repetition can consolidate a pattern; restatement can vary its expression; a new source can broaden coverage. Their value depends on the model's current capabilities and remaining training budget. Data-constrained scaling studies likewise examine repeated exposure jointly with the amount of nonrepeated data and the training configuration~\citep{muennighoff2025scaling}.
+
+Data-efficient language modeling studies how to use limited learning material more effectively. Parameter count, corpus size, cumulative exposure, and compute measure different resources: capacity, available text, repeated presentations, and execution cost. A small model can read a large amount of text repeatedly; a larger model can have limited experience. BabyLM's strict English tracks constrain both the corpus and cumulative exposure, allowing methods to be compared under common data limits.
+
+Our central question is: \textbf{what training experience teaches a model to use information relationships in context, and what allows that ability to remain usable during further learning?} We use \emph{contextual dependencies} to mean the contextual information and relationships required to make a prediction. This question connects language acquisition, compositional generalization---using learned elements in new combinations---and continual learning---acquiring new capabilities while retaining previous ones. Natural text, controlled relational tasks, and full language-model training examine different parts of this question.
+
+\subsection{Research Background and Track Rules}
+\label{sec:setting}
+
+Launched in 2023, BabyLM enters its fourth edition in 2026 as a shared task and workshop associated with EMNLP 2026. It brings together natural language processing, computational cognitive science, and language-acquisition research through training data, evaluation software, baseline models, and public comparisons~\citep{warstadt2023babylm,babylm2026website}. Earlier editions have established a body of work on data processing, model design, and learning behavior~\citep{charpentier2025babylm}.
+
+Its value lies in the experimental question as much as the leaderboard. For machine learning, BabyLM provides a tractable setting for comparing training methods. For language and cognition, it provides models whose input and learning trajectories can be manipulated. For research teams with limited resources, it makes training from scratch and retaining intermediate models more feasible. The task does not require a complete simulation of a child; it makes learning from restricted input a shared object of investigation.
+
+The 2026 tracks include English Strict-Small, English Strict, and Multilingual, covering English, Dutch, and Chinese. Results in this report belong only to Strict-Small. The two English budget levels are summarized in Table~\ref{tab:tracks}~\citep{choshen2026babylm}.
+
+\begin{table}[htbp]
+\caption{Data limits for the English tracks. Word counts follow the track rules, rather than the model tokenizer. M denotes million and B denotes billion.}
+\label{tab:tracks}
+\begin{tabularx}{\linewidth}{@{}lYY@{}}
+\toprule Track & Corpus limit & Cumulative exposure limit\\\midrule
+Strict-Small (this study) & 10M words & 100M words\\
+Strict & 100M words & 1B words\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The corpus is the collection available for training; cumulative exposure counts the text actually presented during training. Reading a thousand-word article ten times still uses one article but consumes ten thousand words of exposure. Rewritten text, repeated passages, and additional inputs used to preserve existing behavior must also be accounted for under the applicable rules. A tokenizer converts text into computational units called tokens. Because one word can produce several tokens, tokenizer counts cannot replace the track's word counts.
+
+Intermediate checkpoints---model weights saved at successive training amounts---are required for evaluating learning trajectories. External teachers and auxiliary training methods have additional rules; satisfying the final word count alone is insufficient to document them. Appendix~\ref{app:repro} records the data, teacher roles, and training settings used here. The evaluation therefore concerns both the final score and the experience through which it was obtained.
+
+A fixed budget still leaves substantial scientific freedom. Data content, expression, vocabulary, architecture, objectives, learning rate, batch size, presentation order, and model selection all remain consequential choices. The learning rate controls the magnitude of parameter updates; the batch size controls how much evidence is combined in an update. At a fixed exposure budget, larger batches can also mean fewer updates. Strict-Small supplies common constraints, not a prescribed training recipe.
+
+\subsection{Evaluating Language Abilities and Learning Behavior}
+
+No single test establishes grammatical knowledge, state tracking, commonsense use, transfer to new tasks, and correspondence with human language behavior. BabyLM's nine top-level metrics measure these separately. \textbf{The overall score combines task performance with measures of human behavioral correspondence.} Each component must be interpreted through its own task, scale, and reference level.
+
+\begin{table}[htbp]
+\caption{The nine top-level English evaluation metrics. The first seven form NLP Average; the final two form Human-like Average. Scores use the fixed official-compatible evaluation implementation.}
+\label{tab:metrics}
+\small
+\begin{tabularx}{\linewidth}{@{}P{29mm}Y Y@{}}
+\toprule Metric & Main question & Interpretation\\\midrule
+BLiMP & Does the model prefer the grammatical member of a minimal pair? & Choice accuracy across grammatical phenomena.\\
+BLiMP Supplement & Does it handle additional linguistic phenomena, including question answering and reference? & Aggregation of supplementary task groups.\\
+EWoK & Does contextual information support elementary world knowledge? & Relative plausibility of continuations under different contexts.\\
+Entity Tracking & Can it recover an object's state after moves or updates? & Candidate-answer accuracy after state changes.\\
+COMPS & Can properties transfer to new concepts despite distractors? & Property, inheritance, and interference tests.\\
+GlobalPIQA & Can it judge everyday physical actions and uses? & Choice accuracy across subsets with different formats.\\
+(Super)GLUE & Do pretrained representations support downstream understanding? & Mean task metrics after prescribed fine-tuning.\\
+Reading & Do model predictions explain variation in human reading? & Explanatory gain beyond word length, frequency, and other controls.\\
+AoA & Does the learning order of words correspond to children's acquisition? & A trajectory-based correlation measure.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Linguistic Form, Knowledge, and Context Use}
+
+BLiMP isolates small grammatical contrasts such as subject--verb agreement. EWoK changes the context and asks whether the model's judgment changes accordingly. COMPS tests whether a new concept inherits the appropriate property and whether unrelated concepts interfere. Entity Tracking requires the model to recover a state after a sequence of operations~\citep{warstadt2020blimp,ivanova2025ewok,misra2023comps,kim2023entity}. These tasks separate plausible language from the use of the information needed for a particular answer.
+
+``The keys are on the table'' illustrates agreement; a key moved from a drawer into a box illustrates state updating; assigning a newly named animal to a category illustrates property inheritance. These are explanatory examples, not benchmark items. They show why the challenge extends beyond remembering facts: limited experience must support different structural and relational operations.
+
+Most of these tests score sentences or candidate answers with the pretrained model, without training on the individual questions. This is zero-shot evaluation. Chance performance depends on the task format. The GlobalPIQA English evaluation used here has 103 four-choice items and 100 two-choice items, with equal weight assigned to the two subsets; uniform random choice therefore has an expected score of 37.5. A score near 40 cannot be interpreted without that reference~\citep{chang2026globalpiqa,babylm2026evaluation}.
+
+\subsubsection{Transfer Through Downstream Fine-Tuning}
+
+(Super)GLUE asks whether pretrained representations support language understanding after task-specific training, or fine-tuning. BabyLM uses seven selected tasks covering yes/no questions, entailment, paraphrase, multi-sentence reading judgments, and reference resolution~\citep{wang2018glue,wang2019superglue}. It tests whether pretraining supplies a useful basis for subsequent learning.
+
+Some tasks use accuracy and others F1. Accuracy measures the proportion of correct answers; F1 combines precision and recall for the relevant predictions. The score is consequently neither the full original GLUE/SuperGLUE suite nor a pooled accuracy over all questions. Fine-tuning seeds, classification heads, training settings, and model selection must be kept consistent when comparing models.
+
+\subsubsection{Reading Behavior and Word Acquisition}
+
+Reading measures how model expectations relate to human reading, rather than accuracy on reading-comprehension questions. A less probable word has higher \emph{surprisal}, defined as its negative log probability given the preceding context. The evaluation asks whether surprisal explains eye movements or word-by-word reading times beyond factors such as length and frequency~\citep{devarda2024cloze}.
+
+The score follows the BabyLM 2026 evaluation implementation~\citep{babylm2026evaluation}. If control variables explain a proportion $R_0^2$ of the variance and adding model predictions raises this to $R_1^2$, the normalized gain is
+\begin{equation}
+q=\frac{R_1^2-R_0^2}{1-R_0^2}.
+\end{equation}
+An increase from 20\% to 24\% explained variance gives $0.04/0.80=0.05$, or 5 on a percentage scale. Small Reading values can therefore represent meaningful explanatory gains. The leaderboard aggregates the prescribed reading responses~\citep{babylm2026leaderboard}.
+
+AoA denotes Age of Acquisition. The evaluation estimates word-learning progress from prediction curves across checkpoints and compares it with children's acquisition order~\citep{chang2022word}. The implementation used here computes Pearson correlation, returning zero when fewer than three words have valid estimates or the correlation test gives $p>0.1$; a negative correlation that passes this threshold remains negative~\citep{babylm2026evaluation}. Appendix~\ref{app:evaluation} specifies the scoring version and checkpoint trajectories. \textbf{An AoA score of zero does not mean that the model learned no words.} Reading and AoA make behavioral correspondence an explicit dimension alongside task competence.
+
+\subsection{Aggregate Scores and the Public Leaderboard}
+
+Let $m_1,\ldots,m_9$ be the component scores, $N$ the mean of the seven language-task scores, and $H$ the mean of the two human-behavior scores. Overall Average is
+\begin{equation}
+O=\frac{1}{9}\sum_{j=1}^{9}m_j=\frac{7N+2H}{9}.
+\label{eq:overall}
+\end{equation}
+Each component has equal weight; NLP and Human-like therefore have unequal total weights. Overall permits comparison under a shared protocol. It is not the percentage of language a model understands, and it cannot be compared directly with large-model scores from different tests and training budgets.
+
+The two representative models are \nolinkurl{Qiushi-Engine-Frontier-Advancement} and \nolinkurl{Qiushi-Engine-Principle-Guided-Frontier-Advancement}, abbreviated \Frontier{} and \Guided{}. Their public Overall scores are 42.02 and 42.25. The latter is the highest Overall in the retained Strict-Small snapshot.
+
+Table~\ref{tab:board} includes these two models and the eight highest-Overall entries from other publishers, without the team's historical submissions or an adjusted ranking column. The snapshot was recorded on 8 September 2026 at 20:53 Beijing time. This is a comparison of public submissions, distinct from the determination of workshop awards~\citep{babylm2026leaderboard}.
+
+\begin{table}[htbp]
+\caption{Two representative models and eight external public submissions. Readable names are used here; full identities and links accompany the data. Scores retain the leaderboard's displayed precision.}
+\label{tab:board}
+\small
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule Publisher/model & Overall & NLP & Human-like\\\midrule
+\input{tables/leaderboard}
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{leaderboard.pdf}}
+\caption{Public Overall scores on BabyLM 2026 Strict-Small, 8 September 2026. Points and labels show the displayed scores for the two Qiushi Engine models and the eight external submissions in Table~\ref{tab:board}.}
+\label{fig:leaderboard}
+\end{figure}
+
+The external entries lie between 40.67 and 41.80, a span of 1.13 points, with adjacent differences as small as 0.01. The second-generation model exceeds the highest external displayed score by 0.45. Closely spaced totals make component-level analysis important: which abilities improved, which incurred costs, and whether repeated training from the same starting model retains the advantage. The leaderboard establishes the public comparison; common-parent experiments below test the training method itself.
+
+Similar totals also conceal different capability profiles. The highest NLP score in the comparison is 53.59, yet weaker human-behavior scores prevent that model from achieving the highest Overall. BLiMP ranges from 67.13 to 73.11, Entity Tracking from 16.59 to 29.40, and GlobalPIQA from 36.08 to 40.68, near its 37.5 chance reference. Syntactic preferences, changing states, and physical commonsense remain unevenly learned. Appendix~\ref{app:board} retains all nine components.
+
+\subsection{The Main Challenges}
+
+\textbf{Coverage versus practice.} A fixed word budget can buy broader content or more rehearsal. Compression may create room for additional examples while removing relational clues. Rewriting may provide useful variation or redundancy. Data quality must be judged by what the transformation teaches, not text volume or fluency alone.
+
+\textbf{Correct prediction versus relevant information use.} A model may complete a target using nearby collocations without reading the source. Loss reduction can be genuine even when the desired relational ability has not formed. Keeping targets fixed while changing visible clues, or keeping text fixed while changing supervised positions, separates these possibilities.
+
+\textbf{New learning versus retention.} Training a particular relation can improve that task while degrading ordinary language abilities. Familiar-item performance may recover even when new names cannot use the learned computation. An integrated improvement requires measuring acquisition and retention together.
+
+\textbf{Interactions among representation, architecture, and optimization.} Tokenization determines the input units; architecture determines the available computations; objectives and optimization determine which relationships are practiced. Early rankings can reverse, and the same random seed does not ensure matching initial parameters across architectures. Useful controls isolate the differences relevant to the proposed explanation.
+
+\textbf{Training a model versus conducting the research.} The cost of one final training run is not the cost of finding its method. Candidate selection, mechanism experiments, full evaluation, and error analysis are additional work. Autonomous research must connect these activities over time: preserve reliable starting points, identify informative questions, implement controls, correct mistakes, revise explanations, and construct another executable method. This complete process is the relevant setting for assessing Qiushi Engine's research contribution.
+
+\subsection{Performance Gains and Scientific Contributions}
+
+Because Overall averages nine metrics, a 0.9-point increase in one component with no other change yields a 0.1-point increase in Overall. Several smaller changes can yield the same total. A narrow aggregate margin may therefore reflect identifiable behavioral changes, but sample size, training randomness, and model selection also matter. Component results and matched comparisons establish what the margin means.
+
+The study compares the new methods with ordinary continuation from the same first-generation model. Ordinary continuation achieves 42.0926 and 42.1159 across two continuation seeds. Dense masking with sparse supervision reaches 42.2025 and 42.1789 at the same cumulative word exposure. Adding ordinary-input preservation yields 42.2464 and 42.2317, with extra preservation presentations accounted for separately.
+
+The scientific contribution extends beyond these differences. Stage I produced a way to compress expression and reinvest the word budget, an extensible model structure, and a complete training and evaluation implementation. Stage II established relation-dependent context-use effects and separated familiar performance from reuse on unseen inputs. Stage III converted those findings into training operations and tested their practical value. \textbf{New observations, discriminating explanations, executable methods, and evidence together define the contribution.}
+
+Independent investigations studied how sparse labels identify relational structure, how new names become associated with known objects, and how explicit memory retrieves the appropriate state. These yielded work on relational anchors, identity matching, and entity memory, developed in Section~\ref{sec:lineage}.
+
+\subsection{Research Value and Prospective Applications}
+
+Data-limited research produces methods that others can inspect and adapt. Specialized domains and low-resource languages often lack sufficient high-quality training text. Preserving relevant content, organizing corresponding expressions, selecting supervision, and continuing learning are therefore plausible transfer directions. The present experiments provide concrete methods and hypotheses for those applications, rather than an already established cross-domain result.
+
+Small-scale experiments also make mechanisms easier to study. Data and training variables can be controlled directly, and changes to a method can be tested economically. Local prediction shortcuts, supervision imbalance, and excessive preservation constraints suggest specific questions for larger models: when do the same conditions recur, and how do they vary with scale, task, and budget?
+
+For language and cognitive science, the model is an experimental object whose experience can be manipulated and whose learning can be followed. Joint evaluation of grammar, conceptual inheritance, reading behavior, and acquisition order helps identify when better task performance coincides with more human-like behavior and when the two diverge.
+
+For autonomous AI research, the contribution is a sustained scientific process. Qiushi Engine turns differences in trained-model behavior into questions, constructs comparisons, revises explanations, and uses the resulting understanding in subsequent model design. Its models, methods, and scientific judgments develop together. We describe the reuse of this accumulation in subsequent research as Research RSI---recursive self-improvement of the research process. Section~\ref{sec:rsi} develops its concrete realization, relationship to prior work, and empirical scope.
+
+\subsection{Three Complete Research Stages Conducted by Qiushi Engine}
+
+Qiushi Engine conducted the research across all three stages: data preparation, representation and architecture exploration, objective design, experimental implementation, training, evaluation, mechanism analysis, and synthesis of the findings. The team supplied goals, resources, and stage-level requirements; Qiushi Engine carried out the scientific work within that setting. Computational research used the AI Lab skill and associated scientific programs on two NVIDIA H100 GPUs and CPUs. Section~\ref{sec:research_organization} describes the research organization; Appendix~\ref{app:compute} records the compute environment.
+
+Each stage is a complete research process, including questions, hypotheses, method construction, experiments, analysis, and reporting. The stages differ in their scientific aims, while data, models, experimental methods, and findings connect them.
+
+\textbf{Stage I: frontier advancement.} Qiushi Engine explored text construction, tokenization, representation, architecture, optimization, and training schedules under limited data. Compact restatements, budget reinvestment, and residual incremental learning became a combined method that produced the first frontier model. Its training also exposed changing method rankings and differences between local learning and broad performance.
+
+\textbf{Stage II: principle discovery.} Qiushi Engine treated those models and observations as research objects. It proposed competing explanations and tested them through interventions on data, windows, supervision, representations, and internal computations. The work covered experience structure and compression, inductive biases, learning signals, retention, curricula, learning dynamics, and measurement. Relation learning and capability reuse informed the next model; anchors, identity matching, initialization controls, and measurement methods also produced independent findings.
+
+\textbf{Stage III: principle-guided model improvement.} Using the first model and its existing text, Qiushi Engine changed the visible input, supervised positions, and preservation constraints. Ordinary continuation, target-set comparisons, mechanism tests, and full evaluation established the second model and refined earlier explanations of supervision quantity and preservation strength. Figure~\ref{fig:program} summarizes the continuity of the three research processes.
+
+\begin{figure}[H]
+\centering\makebox[\linewidth][c]{\includegraphics[width=\ReportFigureWidth]{three_stage_research_public.pdf}}
+\caption{Qiushi Engine's three-stage autonomous research program. Frontier advancement, principle discovery, and principle-guided model improvement each comprise a complete research process. Models, methods, and scientific understanding develop across the stages, producing two successive frontier models, data-efficient learning principles, and open research materials.}
+\label{fig:program}
+\end{figure}
+
+The resulting design principle is: \textbf{organize limited experience around the contextual dependencies a capability requires; make relevant information available during prediction, train the model to use it, and evaluate acquisition, reuse, and retention together.} Acquisition asks whether the target behavior is learned; reuse asks whether new objects or expressions can use it; retention asks whether it remains available after further learning. The practical variables are visible information, supervision targets, and preservation conditions. The principle developed through model construction and mechanism experiments before informing the third-stage design.

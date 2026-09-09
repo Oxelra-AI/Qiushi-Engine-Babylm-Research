@@ -1,0 +1,105 @@
+{
+  "status": "FORMATION_EXPERIMENT_MANIFEST",
+  "experiment": "formation_stage_private_replay_comparison",
+  "scientific_question": "Does extended private formation (18M words, full schedule) from chck_82M produce a better model than the 4M formation that produced coherent86?",
+  "differs_from_failed_recipes": {
+    "vs_late_focus_steps_64_68": "Starts from chck_82M with fresh private adapters, not from mature coherent86",
+    "vs_continuation_step_27": "Fresh private formation (lr from warmup), not continuation from already-trained coherent86",
+    "vs_bridge_steps_44_56": "Ordinary WWM MLM, not answer-only or relation-specific credit",
+    "vs_alpha_scaling": "Fixed training scale=1.0, eval scale sweep; not alpha search on same model",
+    "vs_source_dependence": "No source-perturbation reward or contrastive objective"
+  },
+  "arms": {
+    "reference_4M": {
+      "description": "Reproduce coherent86 formation exactly",
+      "max_tail_words": 3992918,
+      "expected_updates": 101,
+      "lr_at_endpoint": "~93% of peak (schedule at 22%)",
+      "expected_cheap7_alpha1": 44.106,
+      "expected_cheap7_alpha075": 44.564,
+      "gpu": 0
+    },
+    "full_18M": {
+      "description": "Full remaining legal budget with natural schedule completion",
+      "max_tail_words": 17987505,
+      "expected_updates": 455,
+      "lr_at_endpoint": "~0 (natural cosine completion)",
+      "expected_cheap7": "unknown - key experimental question",
+      "gpu": 1
+    }
+  },
+  "shared_parameters": {
+    "endpoint": "experiments/archive/frontier_consolidation/training/runs/adapter128_scale1p75_h100M100M_seed43022_official_ladder/hf_model/chck_82M",
+    "stream": "experiments/archive/frontier_consolidation/data/density_cleanqwen_overlay_medium_riskhard/cleanqwen_fineweb_compact_view_reinvest_100M.jsonl",
+    "initial_consumed_words": 82012495,
+    "full_cap_words": 100000000,
+    "skip_rows": 530944,
+    "lr_total_steps": 455,
+    "batch_size": 256,
+    "seq_length": 256,
+    "learning_rate": 0.001,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "mask_prob": 0.15,
+    "private_adapter_bottleneck": 128,
+    "train_scale": 1.0,
+    "neutral_lambda": 1.0,
+    "seed": 43023,
+    "checkpoint_every": "1M words",
+    "architecture": "FrozenSlowPrivateDebertaV2ForMaskedLM",
+    "trainable": "private_adapter_only (995,584 params)",
+    "frozen": "slow_path (35,463,008 params)"
+  },
+  "tail_composition": {
+    "total_rows_available": 116456,
+    "total_words_available": 17987505,
+    "source_distribution": {
+      "childes": {
+        "rows": 28990,
+        "words": 4638400
+      },
+      "qwen_pair_packed": {
+        "rows": 22065,
+        "words": 2987777
+      },
+      "gutenberg": {
+        "rows": 20853,
+        "words": 3336480
+      },
+      "open_subtitles": {
+        "rows": 20563,
+        "words": 3290080
+      },
+      "simple_wiki": {
+        "rows": 11880,
+        "words": 1900800
+      },
+      "bnc_spoken": {
+        "rows": 6480,
+        "words": 1036800
+      },
+      "compact_view_reinvest": {
+        "rows": 5391,
+        "words": 760030
+      },
+      "switchboard": {
+        "rows": 232,
+        "words": 37120
+      }
+    }
+  },
+  "evaluation_plan": {
+    "primary": "Cheap7 at alpha=0.75 for all checkpoints",
+    "secondary": "Alpha sweep (0.5, 0.75, 1.0) for best checkpoints",
+    "promotion_criterion": "cheap7_mean > 44.564 (coherent86 fast screen) by >0.3 points",
+    "official_criterion": "cheap7_mean > 44.564 with Entity >= 27.78"
+  },
+  "reference_scores": {
+    "chck_82M_cheap7": 43.959,
+    "coherent_replay_cheap7_alpha1": 44.106,
+    "spanbreak_cheap7_alpha1": 43.121,
+    "coherent86_cheap7_alpha075": 44.564,
+    "coherent86_entity_alpha075": 27.78,
+    "coherent86_overall_alpha075": 42.121
+  }
+}

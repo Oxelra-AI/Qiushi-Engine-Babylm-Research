@@ -1,0 +1,29 @@
+\definecolor{ResearchBlue}{HTML}{315C8A}
+\begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily\fontsize{8}{10}\selectfont,
+  box/.style={draw=black!38,line width=.6pt,fill=white,align=center,minimum height=1.40cm,text width=3.55cm,inner sep=4pt},
+  relation/.style={-{Latex[length=2mm]},draw=black!55,line width=.75pt},
+  reason/.style={-{Latex[length=2mm]},draw=ResearchBlue,dashed,line width=.7pt},
+  label/.style={font=\sffamily\fontsize{7}{9}\selectfont,fill=white,inner sep=2pt,text=black!65}]
+\path[use as bounding box](-.1,-.25) rectangle(15.5,7.6);
+\node[box] (first) at(2,6.8) {\textbf{Frontier model}\\Compact text\\Residual learning};
+\node[box] (second) at(13.25,6.8) {\textbf{Principle-guided model}\\Inputs, supervision\\and preservation};
+\draw[relation] (first.east)--node[label,above]{Shared text, base model and residual structure}(second.west);
+\node[box] (question) at(2,4.65) {\textbf{Questions from practice}\\Coherence, learning gains\\and capability trade-offs};
+\node[box] (insight) at(7.65,4.65) {\textbf{Mechanistic insight}\\Relation specificity\\and functional access};
+\node[box] (design) at(13.25,4.65) {\textbf{Principle-guided design}\\Inputs, supervision\\and preservation};
+\draw[reason] (first)--(question);
+\draw[reason] (question)--node[label,above]{Controls}(insight);
+\draw[reason] (insight)--node[label,above]{Design}(design);
+\draw[reason] (design)--(second);
+\draw[black!25,line width=.5pt] (0,3.28)--(15.3,3.28);
+\node[label,anchor=west] at(0,2.98){Independent studies: distinct questions, controls and scope};
+\node[align=center,anchor=north,text width=4.6cm,font=\sffamily\fontsize{7}{9}\selectfont] at(2.1,2.6)
+  {{\bfseries\fontsize{8}{10}\selectfont Experience \& training}\\Compression \& coverage\\Fixed-budget substitution\\Architecture \& optimization\\Training dynamics};
+\node[align=center,anchor=north,text width=4.6cm,font=\sffamily\fontsize{7}{9}\selectfont] at(7.65,2.6)
+  {{\bfseries\fontsize{8}{10}\selectfont Relations \& computation}\\Sparse anchors\\Shared representations\\Identity interfaces\\Storage \& addressing};
+\node[align=center,anchor=north,text width=4.6cm,font=\sffamily\fontsize{7}{9}\selectfont] at(13.1,2.6)
+  {{\bfseries\fontsize{8}{10}\selectfont Comparison \& measurement}\\Matched initialization\\Matched targets\\Item-level changes\\Data \& model identity};
+\draw[black!16] (4.8,.9)--(4.8,2.55);
+\draw[black!16] (10.45,.9)--(10.45,2.55);
+\node[label,align=center] at(7.65,.4){Solid: model and material inheritance\qquad Dashed: links between questions and design};
+\end{tikzpicture}

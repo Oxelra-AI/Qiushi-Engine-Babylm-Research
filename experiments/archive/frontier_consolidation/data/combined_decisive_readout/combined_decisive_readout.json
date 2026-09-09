@@ -1,0 +1,240 @@
+{
+  "status": "COMBINED_DECISIVE_READOUT",
+  "created_utc": "2026-09-04T22:51:36Z",
+  "input_roots": [
+    "experiments/archive/frontier_consolidation/data/register_decisive_gpu_eval",
+    "experiments/archive/frontier_consolidation/data/incorpus_decisive_gpu_eval"
+  ],
+  "root_status": [
+    {
+      "root": "experiments/archive/frontier_consolidation/data/register_decisive_gpu_eval",
+      "per_target_exists": true,
+      "n_files": 2
+    },
+    {
+      "root": "experiments/archive/frontier_consolidation/data/incorpus_decisive_gpu_eval",
+      "per_target_exists": false,
+      "n_files": 0
+    }
+  ],
+  "clean_score_dir": "experiments/archive/frontier_consolidation/data/deberta_maxgeom_clean_stable_eval/eval/per_target",
+  "arms_seen": {
+    "regmax_adultprose": [
+      "chck_100M",
+      "chck_80M"
+    ]
+  },
+  "n_arm_rows": 2,
+  "n_contrast_rows": 2,
+  "arm_rows": [
+    {
+      "arm": "regmax_adultprose",
+      "checkpoint": "chck_100M",
+      "source_root": "experiments/archive/frontier_consolidation/data/register_decisive_gpu_eval",
+      "source_payload": "experiments/archive/frontier_consolidation/data/register_decisive_gpu_eval/per_target/regmax_adultprose_chck_100M.json",
+      "BLiMP": 67.4,
+      "delta_BLiMP_vs_clean": 0.52,
+      "Supplement": 59.78,
+      "delta_Supplement_vs_clean": 1.9,
+      "EWoK": 50.12,
+      "delta_EWoK_vs_clean": -0.24,
+      "COMPS": 52.18,
+      "delta_COMPS_vs_clean": 0.6,
+      "Entity": 26.96,
+      "delta_Entity_vs_clean": 2.14,
+      "exEntity4": 57.370000000000005,
+      "cheap5_noReading": 51.288000000000004,
+      "delta_exEntity4_vs_clean": 0.695,
+      "delta_cheap5_vs_clean": 0.984,
+      "complete_families": 5
+    },
+    {
+      "arm": "regmax_adultprose",
+      "checkpoint": "chck_80M",
+      "source_root": "experiments/archive/frontier_consolidation/data/register_decisive_gpu_eval",
+      "source_payload": "experiments/archive/frontier_consolidation/data/register_decisive_gpu_eval/per_target/regmax_adultprose_chck_80M.json",
+      "BLiMP": 66.99,
+      "delta_BLiMP_vs_clean": 0.66,
+      "Supplement": 59.25,
+      "delta_Supplement_vs_clean": 1.18,
+      "EWoK": 49.68,
+      "delta_EWoK_vs_clean": 0.37,
+      "COMPS": 52.28,
+      "delta_COMPS_vs_clean": 0.86,
+      "Entity": 26.11,
+      "delta_Entity_vs_clean": 2.06,
+      "exEntity4": 57.05,
+      "cheap5_noReading": 50.862,
+      "delta_exEntity4_vs_clean": 0.7675,
+      "delta_cheap5_vs_clean": 1.026,
+      "complete_families": 5
+    }
+  ],
+  "contrast_rows": [
+    {
+      "contrast": "regmax_adultprose_minus_clean",
+      "checkpoint": "chck_80M",
+      "arm_A": "regmax_adultprose",
+      "arm_B": "clean_maxgeom",
+      "BLiMP": 0.66,
+      "Supplement": 1.18,
+      "EWoK": 0.37,
+      "COMPS": 0.86,
+      "Entity": 2.06,
+      "exEntity4": 0.7675,
+      "cheap5_noReading": 1.026,
+      "complete_families": 5
+    },
+    {
+      "contrast": "regmax_adultprose_minus_clean",
+      "checkpoint": "chck_100M",
+      "arm_A": "regmax_adultprose",
+      "arm_B": "clean_maxgeom",
+      "BLiMP": 0.52,
+      "Supplement": 1.9,
+      "EWoK": -0.24,
+      "COMPS": 0.6,
+      "Entity": 2.14,
+      "exEntity4": 0.695,
+      "cheap5_noReading": 0.984,
+      "complete_families": 5
+    }
+  ],
+  "register_prediction_excerpt": {
+    "contrast_definition": "childspeech_removed - adultprose_removed; positive means the arm sacrificing CHILDES/OpenSubtitles/BNC/Switchboard scores higher than the arm sacrificing Gutenberg/SimpleWiki because adult-prose removal is costlier",
+    "profile_exEntity5": 0.7482735781151597,
+    "strict_profile_exEntity5": 0.7697313461466507,
+    "word_control_exEntity5": -0.06922283357166191
+  },
+  "register_rate_commitment_excerpt": {
+    "rate_based_sign_commitment": "positive_register_contrast_predicted_by_rate: adult-prose block has larger clean late loss reduction, so removing adult prose should be costlier and childspeech_removed - adultprose_removed should be positive",
+    "childspeech_removed_block_rate_60_to_100": {
+      "n": 3,
+      "mean": 0.150145,
+      "sd": 0.003279,
+      "min": 0.147004,
+      "max": 0.153546,
+      "values": [
+        0.149885,
+        0.153546,
+        0.147004
+      ]
+    },
+    "adultprose_removed_block_rate_60_to_100": {
+      "n": 3,
+      "mean": 0.212764,
+      "sd": 0.008398,
+      "min": 0.203253,
+      "max": 0.219157,
+      "values": [
+        0.215882,
+        0.219157,
+        0.203253
+      ]
+    },
+    "adult_minus_child_removed_block_rate": {
+      "n": 3,
+      "mean": 0.062619,
+      "sd": 0.00552,
+      "min": 0.056249,
+      "max": 0.065997,
+      "values": [
+        0.065997,
+        0.065611,
+        0.056249
+      ]
+    },
+    "interpretation": "If this rate sign and the static profile sign coincide, a positive register score cannot by itself distinguish target-profile proximity from removal-side active-error opportunity cost. If they diverge, the register score adjudicates between them. In either case, Entity must remain separated from broad ex-Entity interpretation."
+  },
+  "incorpus_rate_commitment_excerpt": {
+    "primary_commitment": "conditional_rate_commitment: official in-corpus broad late gain should be small/repeat-like if the same-script in-corpus admitted-block loss reduction from 60M to 100M is at or below the repeat-distinct midpoint; it should approach the view/breadth late-retention regime only if that 60M->100M reduction remains distinct-like. The current clean-prior level is recorded now and must not be used alone as the mechanism.",
+    "incorpus_clean_prior_position": {
+      "incorpus_clean_prior_100M": 3.49535,
+      "reference_clean_prior_100M": {
+        "view": 3.26586,
+        "repeat": 2.949448,
+        "breadth": 5.266488
+      },
+      "nearest_reference_by_level": "view",
+      "distance_to_nearest": 0.22949,
+      "distance_to_breadth_prior": 1.771138
+    },
+    "rate_classification_thresholds": {
+      "repeat_rate_60_to_100": 0.148226,
+      "breadth_rate_60_to_100": 0.22266,
+      "view_rate_60_to_100": 0.29571,
+      "repeat_distinct_midpoint": 0.185443,
+      "repeat_view_midpoint": 0.221968
+    }
+  },
+  "incorpus_static_profile_commitment_excerpt": {
+    "primary_profile_predictions_mass_scaled": {
+      "incorpus_minus_clean_exEntity4_noReading": 0.27543065398934624,
+      "incorpus_minus_clean_exEntity5_withReading": 0.28927327530058433,
+      "incorpus_minus_clean_cheap5_noReading": 0.3115962258155697,
+      "incorpus_minus_full1x_exEntity4_noReading": 0.020123307236453336,
+      "incorpus_minus_full1x_cheap5_noReading": 0.042285993744071604
+    },
+    "word_js_control_predictions_mass_scaled": {
+      "incorpus_minus_clean_exEntity4_noReading": -0.024001987762539246,
+      "incorpus_minus_full1x_exEntity4_noReading": -0.01742863003330492
+    },
+    "interpretation_rule": {
+      "static_profile_proximity": "supported if in-corpus official ex-Entity movement is positive and closer to the mass-scaled profile prediction than to zero even if the late admitted-block loss rate is small",
+      "out_of_corpus_novelty": "supported if in-corpus remains near clean while full1x/FineWeb stays positive despite similar or positive profile prediction for in-corpus",
+      "rate_account": "supported if the official in-corpus movement follows the future 60M->100M admitted-block loss reduction rather than the static profile prediction alone"
+    }
+  },
+  "incorpus_rate_spread_interpretation_excerpt": {
+    "future_rate_available": false,
+    "classification": "pending_future_incorpus_60M_100M_rate",
+    "interpretation": "The post-training in-corpus rate ladder remains pending; repeat the analysis when it is available.",
+    "rate_60_to_100": null,
+    "transition_bands": {
+      "repeat_breadth_midpoint": {
+        "n": 3,
+        "mean": 0.191695,
+        "sd": 0.006574,
+        "min": 0.184275,
+        "max": 0.196788,
+        "values": [
+          0.184275,
+          0.194024,
+          0.196788
+        ]
+      },
+      "repeat_view_midpoint": {
+        "n": 3,
+        "mean": 0.228982,
+        "sd": 0.013206,
+        "min": 0.220116,
+        "max": 0.244159,
+        "values": [
+          0.220116,
+          0.244159,
+          0.22267
+        ]
+      },
+      "repeat_range": {
+        "min": 0.147678,
+        "max": 0.161811
+      },
+      "breadth_range": {
+        "min": 0.220871,
+        "max": 0.240976
+      },
+      "view_range": {
+        "min": 0.292553,
+        "max": 0.326507
+      }
+    },
+    "rate_fit_spread": null
+  },
+  "files": {
+    "summary_json": "experiments/archive/frontier_consolidation/data/combined_decisive_readout/combined_decisive_readout.json",
+    "summary_md": "research/documents/frontier_consolidation/data/combined_decisive_readout/combined_decisive_readout.md",
+    "arm_csv": "experiments/archive/frontier_consolidation/data/combined_decisive_readout/arm_scores_vs_clean.csv",
+    "contrast_csv": "experiments/archive/frontier_consolidation/data/combined_decisive_readout/decisive_contrasts.csv"
+  },
+  "no_model_loading_training_official_evaluation_gpu_globalpiqa_superglue_aoa_upload_or_leaderboard": true
+}
