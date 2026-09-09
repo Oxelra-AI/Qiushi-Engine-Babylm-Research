@@ -11,7 +11,7 @@ Qiushi Engine's end-to-end autonomous research on BabyLM 2026 Strict-Small.
 [![Code license](assets/badges/code-license.svg)](LICENSE)
 [![Documentation license](assets/badges/docs-license.svg)](LICENSE)
 
-[English report](reports/en/qiushi-engine-babylm-report-en.pdf) · [Chinese report](reports/zh/qiushi-engine-babylm-report-zh.pdf) · [Models](models/README.md) · [Research materials](research/README.md) · [Getting started](#getting-started) · [Citation](#citation)
+[English report](reports/en/qiushi-engine-babylm-report-en.pdf) · [Chinese report](reports/zh/qiushi-engine-babylm-report-zh.pdf) · [Results](#frontier-results) · [Models](models/README.md) · [Research materials](research/README.md) · [Getting started](#getting-started) · [Citation](#citation)
 
 **How can a language model learn more from the text it already has?** A passage
 can occur in training without teaching the model how to use it in a new context.
@@ -31,6 +31,27 @@ and English reports, and research materials organized around 74 scientific
 topics**. It includes the programs and measurements behind the results, along
 with the hypotheses, experimental plans, analyses and corrections through which
 the research developed.
+
+## Frontier results
+
+[![Qiushi Engine model generations in the BabyLM Strict-Small report comparison](assets/leaderboard/report-snapshot.svg)](assets/leaderboard/report-snapshot.svg)
+
+The two representative Qiushi models lead the report's ten-model comparison:
+**42.25** for the principle-guided generation and **42.02** for the frontier
+generation, compared with **41.80** for the highest-scoring external submission.
+These results are the practical outcomes of the three-stage research program
+described below. Its mechanism studies and research records explain how earlier
+understanding informed subsequent model development.
+
+**Report snapshot: 8 September 2026.** The comparison includes the two
+representative Qiushi generations and the eight highest-scoring external
+submissions; earlier Qiushi submissions are excluded. Positions apply to this
+selected comparison. The snapshot is preserved with the reports rather than
+updated as later models appear.
+
+[Full scores and model links](results/leaderboard_comparison.csv) ·
+[Figure source](tools/plot_leaderboard.py) ·
+[Official leaderboard](https://huggingface.co/spaces/BabyLM-community/BabyLM-Leaderboard-2026)
 
 ## Why BabyLM?
 

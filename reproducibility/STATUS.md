@@ -9,6 +9,8 @@ and 74 scientific topics provide its reading structure.
 - Both 58-page report PDFs and their editable LaTeX sources.
 - Eight shared English-language vector figures, 40 shared references, and the
   numerical tables used by both reports.
+- A homepage comparison figure drawn from the report's fixed leaderboard table,
+  with an editable plotting script, SVG and high-resolution PNG.
 - Both final model packages, including weights, tokenizers, loading code,
   training descriptions and evaluation identities.
 - Original research programs, configurations, data construction, numerical
