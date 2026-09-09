@@ -5,11 +5,11 @@
 **From Frontier Advancement to Principle-Guided Model Improvement**  
 Qiushi Engine's end-to-end autonomous research on BabyLM 2026 Strict-Small.
 
-[![English report](https://img.shields.io/badge/Report-English-285c91?style=flat-square)](reports/en/qiushi-engine-babylm-report-en.pdf)
-[![Chinese report](https://img.shields.io/badge/Report-Chinese-285c91?style=flat-square)](reports/zh/qiushi-engine-babylm-report-zh.pdf)
-[![Hugging Face models](https://img.shields.io/badge/Hugging%20Face-Models-ffd21e?style=flat-square&logo=huggingface&logoColor=black)](models/README.md)
-[![Code license](https://img.shields.io/badge/Code-Apache--2.0-57606a?style=flat-square)](LICENSE)
-[![Documentation license](https://img.shields.io/badge/Docs-CC%20BY%204.0-57606a?style=flat-square)](LICENSE)
+[![English report](assets/badges/report-en.svg)](reports/en/qiushi-engine-babylm-report-en.pdf)
+[![Chinese report](assets/badges/report-zh.svg)](reports/zh/qiushi-engine-babylm-report-zh.pdf)
+[![Hugging Face models](assets/badges/models.svg)](models/README.md)
+[![Code license](assets/badges/code-license.svg)](LICENSE)
+[![Documentation license](assets/badges/docs-license.svg)](LICENSE)
 
 [English report](reports/en/qiushi-engine-babylm-report-en.pdf) · [Chinese report](reports/zh/qiushi-engine-babylm-report-zh.pdf) · [Models](models/README.md) · [Research materials](research/README.md) · [Getting started](#getting-started) · [Citation](#citation)
 
